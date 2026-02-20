@@ -1,0 +1,153 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)repeat.ps 23.6 91/02/11
+%
+%    repeat.ps:      make selected keyboard keys repeat if held down
+%
+%	Copyright (C) 1987, 1988 Sun Microsystems, Inc.
+
+/ClassRepeatKeys ClassObject [
+]
+classbegin
+
+% Defaults:
+
+% Class variables:
+
+%   get a local ref to elements in the keyboard device dict,
+%	similarly, to the set of repeating keys,
+%	and build the convers (non-repeating) set
+
+    /KbdDeviceDict	devicedict (/dev/kbd) get	def
+    /RepeatKeys		//repeatkeydict		def
+%   /RepeatKeys		256 dict			def
+    /NonRepeatKeys	256 dict			def
+
+% Methods:
+
+
+% methods for dealing with repeat-timing
+    /interval {
+	KbdDeviceDict /KeyRepeatTime get
+    } def
+
+    /setinterval {
+	KbdDeviceDict /KeyRepeatTime 3 -1 roll put
+    } def
+
+    /threshold {
+	KbdDeviceDict /KeyRepeatThresh get
+    } def
+
+    /setthreshold {
+	KbdDeviceDict /KeyRepeatThresh 3 -1 roll put
+    } def
+
+    /repetition {
+	KbdDeviceDict /AutoRepeat get
+    } def
+
+    % switch repeatkeys on or off globally
+    /setrepetition { %  bool  =>  --
+	KbdDeviceDict /AutoRepeat 3 -1 roll put
+    } def
+
+%   Provide for non-repeating keys: if a repeater is stolen for
+%	some other purpose (e.g. bindkey, or a global function)
+%	inhibitrepeat takes care of getting it out of the
+%	RepeatKeys set; conversely, allowrepeat will restore
+%	it if-and-when its other uses are all deleted.
+%	(Note that 2 inhibits + 1 allow leave a key inhibited.)
+
+    /inhibitrepeat { %  keycode  =>  --
+	NonRepeatKeys exch 2 copy known {
+	    2 copy get 1 add put
+	} {					%  NRK keycode
+	    RepeatKeys 1 index undef
+	    1 put
+	} ifelse
+    } def
+
+    /allowrepeat {		%  keycode  =>  --
+	NonRepeatKeys exch 2 copy known {	%  NRK keycode
+	    2 copy get 1 sub dup 0 eq {		%  NRK keycode n
+		pop				%  NRK keycode
+		RepeatKeys 1 index dup  put
+		undef
+	    } {
+		put
+	    } ifelse
+	} {
+	    pop pop
+	} ifelse
+    } def
+
+
+    %	Initialization
+
+    /classinit {
+	% define the repeat keys
+	{   KeyTable {
+		aload pop {
+		    /anydown
+		    /kana
+		    /kana_shift
+		    /letter
+		    /controlled
+		    /shifted
+		    /altgraphed
+		    /unshifted
+		    /cursor
+		    /number
+		    /text_func
+		    /function   { //RepeatKeys exch dup put }
+		    /Default	{ //NonRepeatKeys exch 1 put }
+		} case pop
+	     } forall
+	} ClassKeyboard send
+    
+	% fix up the tables to eliminate duplicates
+	RepeatKeys {
+	    pop NonRepeatKeys 1 index known {
+		RepeatKeys exch undef
+	    } {
+		pop
+	    } ifelse
+	} forall
+    
+	UserProfile dup 
+	/KeyRepeatThresh known {
+	    dup /KeyRepeatThresh get setthreshold
+	} if
+	/KeyRepeatTime known {
+	    UserProfile /KeyRepeatTime get setinterval
+	} if
+    
+	% XView compatibility: disable autorepeat for left function keys
+
+	[
+	    /FunctionL1
+	    /FunctionL2
+	    /FunctionL3
+	    /FunctionL4
+	    /FunctionL5
+	    /FunctionL6
+	    /FunctionL7
+	    /FunctionL8
+	    /FunctionL9
+	    /FunctionL10
+	    /HELPKey
+	] {
+	    /keyforsymbol ClassKeyboard send
+	    dup null ne {/inhibitrepeat ClassRepeatKeys send} {pop} ifelse
+	} forall
+
+    } def
+
+classend def	% ClassRepeatKeys
+
+/classinit ClassRepeatKeys send

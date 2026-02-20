@@ -1,0 +1,3551 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 7 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Italic FMDEFINEFONT
+1 9 /Palatino-Roman FMDEFINEFONT
+2 18 /Bookman-Light FMDEFINEFONT
+3 10 /Palatino-Roman FMDEFINEFONT
+4 11 /Palatino-BoldItalic FMDEFINEFONT
+5 10 /Courier FMDEFINEFONT
+%%Page: "1" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (1) 553.42 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+-1.44 (Using TNT Services ) 222.71 636 P
+3 F
+0.52 0.1 (TNT pr) 126.1 613.33 B
+0.52 0.1 (ovides several services that support pr) 160.05 613.33 B
+0.52 0.1 (ogramming OPEN LOOK- compliant user ) 336.53 613.33 B
+0.52 0.1 (interfaces. The application pr) 126 600.93 B
+0.52 0.1 (ogrammer can use these services by pr) 259.27 600.93 B
+0.52 0.1 (oviding or overriding ) 436.46 600.93 B
+0.52 0.1 (callback methods, typically in a subclass of ClassCanvas. W) 126 588.53 B
+0.52 0.1 (e will discuss the menu service, ) 398.28 588.53 B
+0.52 0.1 (which displays the canvas\325 menu; the key service, which handles focus and keyboar) 126 576.13 B
+0.52 0.1 (d input; ) 510.38 576.13 B
+0.52 0.1 (the track service, which can be used to pr) 126 563.73 B
+0.52 0.1 (ovide visual feedback when the user drags the ) 316.18 563.73 B
+0.52 0.1 (mouse; the selection service, which pr) 126 551.33 B
+0.52 0.1 (ovides a general mechanism for making and adjusting ) 299.52 551.33 B
+0.52 0.1 (selections, transferring selections via dragging, and transferring selections via the cut or copy ) 126 538.93 B
+0.36 0.1 (keys; and the r) 126 526.53 B
+0.36 0.1 (eception service, which supports the r) 193.26 526.53 B
+0.36 0.1 (eception of selections via dr) 366.18 526.53 B
+0.36 0.1 (opping or the ) 493.01 526.53 B
+0.52 0.1 (paste key) 126 514.13 B
+0.52 0.1 (.) 168 514.13 B
+4 F
+-0.71 0.11 (The Menu Service) 198 485.07 B
+3 F
+0.52 0.1 (The menu service is per) 126.1 468.73 B
+0.52 0.1 (haps the easiest to use, at least in the simplest case wher) 235.12 468.73 B
+0.52 0.1 (e the same ) 493.99 468.73 B
+0.12 0.1 (menu is always displayed over a canvas. A canvas instance is made menuable by either setting ) 126 456.33 B
+0.52 0.1 (the variable ) 126 443.93 B
+5 F
+1.22 0.1 (/Menuable?) 182.92 443.93 B
+3 F
+0.52 0.1 ( to tr) 243.88 443.93 B
+0.52 0.1 (ue in the class de\336nition, or by calling the method ) 266.36 443.93 B
+5 F
+1.22 0.1 (/setmenuable) 126 431.53 B
+3 F
+0.52 0.1 ( with an ar) 199.16 431.53 B
+0.52 0.1 (gument of tr) 249.21 431.53 B
+0.52 0.1 (ue: ) 306.63 431.53 B
+5 F
+(true /setmenuable canvas send ) 210.6 415.13 T
+3 F
+0.52 0.1 (A menu instance is attached to the class or an instance by calling the method ) 126 395.13 B
+5 F
+1.22 0.1 (/setmenu) 481.97 395.13 B
+3 F
+0.52 0.1 (: ) 530.75 395.13 B
+5 F
+(aMenu /setmenu canvas send ) 210.6 378.73 T
+3 F
+0.38 0.1 (Should the application need to display dif) 126.1 358.73 B
+0.38 0.1 (fer) 317.8 358.73 B
+0.38 0.1 (ent menus corr) 329.98 358.73 B
+0.38 0.1 (esponding to dif) 398.31 358.73 B
+0.38 0.1 (fer) 473.24 358.73 B
+0.38 0.1 (ent states, or to ) 485.42 358.73 B
+0.51 0.1 (display no menu at all in a given state, then the ClassCanvas method ) 126 346.33 B
+5 F
+1.2 0.1 (/MenuStart) 446.04 346.33 B
+3 F
+0.51 0.1 ( should be ) 507.01 346.33 B
+0.52 0.1 (overriden in your subclass. ) 126 333.93 B
+5 F
+1.22 0.1 (/MenuStart ) 253.1 333.93 B
+3 F
+0.52 0.1 (takes as ar) 321.38 333.93 B
+0.52 0.1 (guments the invoker of the menu \050the ) 369.36 333.93 B
+0.52 0.1 (canvas, menu button, or menu that caused the menu to be invoked\051, a position name, and an ) 126 321.54 B
+0.52 0.1 (event \050the MENU button was pr) 126 309.14 B
+0.52 0.1 (essed at a speci\336c point\051, and r) 273.81 309.14 B
+0.52 0.1 (eturns as r) 415.35 309.14 B
+0.52 0.1 (esults an invoker) 463.56 309.14 B
+0.52 0.1 (, a ) 540.95 309.14 B
+0.17 0.1 (position name, an event, and one of the following combinations: the menu to be displayed and ) 126 296.73 B
+0.52 0.1 (tr) 126 284.33 B
+0.52 0.1 (ue, or false, or null and tr) 133.33 284.33 B
+0.52 0.1 (ue. Returning false causes the event to be r) 250.82 284.33 B
+0.52 0.1 (edistributed, allowing ) 447.41 284.33 B
+0.03 0.1 (some other object to open a menu. Returning ) 126 271.93 B
+5 F
+0.08 0.1 (null true) 331.57 271.93 B
+3 F
+0.03 0.1 ( causes no menu to be displayed, and ) 386.52 271.93 B
+0.52 0.1 (pr) 126 259.53 B
+0.52 0.1 (events any other object fr) 135.98 259.53 B
+0.52 0.1 (om causing a menu to be displayed. ) 251.72 259.53 B
+5 F
+(invoker posname event /MenuStart ) 162 243.14 T
+(=> invoker posname event menu true | false | null true) 162 227.14 T
+3 F
+0.52 0.1 (The invoker determines in which pr) 126.1 207.14 B
+0.52 0.1 (ocess the menu noti\336er will be executed \050that is, in the ) 290.72 207.14 B
+0.52 0.1 (event manager of which canvas\051. The position name is either ) 126 194.73 B
+5 F
+1.22 0.1 (/Default) 407.33 194.73 B
+3 F
+0.52 0.1 ( or ) 456.1 194.73 B
+5 F
+1.22 0.1 (/NorthWest) 471.94 194.73 B
+3 F
+0.52 0.1 (. If ) 532.91 194.73 B
+5 F
+1.14 0.1 (/Default) 126 182.34 B
+3 F
+0.49 0.1 (, then the default item is aligned beside the mousedown point; if ) 174.77 182.34 B
+5 F
+1.14 0.1 (/NorthWest) 474.1 182.34 B
+3 F
+0.49 0.1 (, the ) 535.07 182.34 B
+0.52 0.1 (top left corner of the menu appears under the cursor) 126 169.93 B
+0.52 0.1 (. The XLocation and YLocation \336elds of ) 366.71 169.93 B
+FMENDPAGE
+%%EndPage: "1" 2
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (2) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (the event can be changed to have the menu appear at some other point. The default ) 126 641.33 B
+0.37 0.1 (implementation in ClassCanvas simply r) 126 628.93 B
+0.37 0.1 (eturns the value of the class variable ) 311.01 628.93 B
+5 F
+0.86 0.1 (/Menu) 480.46 628.93 B
+3 F
+0.37 0.1 ( and tr) 510.94 628.93 B
+0.37 0.1 (ue, ) 541.42 628.93 B
+0.52 0.1 (and doesn\325t change any of the positioning information.) 126 616.53 B
+0.5 0.1 ( Example: in a graphics editor with a drawing mode and a selection mode, the menu over the ) 126.1 596.13 B
+0.48 0.1 (drawing canvas might be a tools menu in drawing mode, and a command menu with various ) 126 583.73 B
+0.52 0.1 (motion, alignment, or gr) 126 571.33 B
+0.52 0.1 (ouping commands in selection mode. ) 237.78 571.33 B
+4 F
+-0.71 0.11 (The T) 198 542.27 B
+-0.71 0.11 (rack Service) 223.98 542.27 B
+3 F
+0.52 0.1 (The track service allows an application to follow the mouse as it is being dragged in a canvas ) 126.1 525.93 B
+0.29 0.1 (or r) 126 513.53 B
+0.29 0.1 (egion. A ClassCanvas subclass is made trackable by either setting ) 142.36 513.53 B
+5 F
+0.68 0.1 (/Trackable?) 443.2 513.53 B
+3 F
+0.29 0.1 ( to tr) 510.26 513.53 B
+0.29 0.1 (ue in ) 532.28 513.53 B
+0.52 0.1 (the class de\336nition, or by calling the method ) 126 501.13 B
+5 F
+1.22 0.1 (/settrackable) 333.17 501.13 B
+3 F
+0.52 0.1 ( with an ar) 412.42 501.13 B
+0.52 0.1 (gument of tr) 462.47 501.13 B
+0.52 0.1 (ue: ) 519.89 501.13 B
+5 F
+(true /settrackable canvas send ) 210.6 484.73 T
+3 F
+0.52 0.1 (When the SELECT button is pr) 126.1 464.73 B
+0.52 0.1 (essed over a trackable canvas, the Global Event Manager \336rst ) 267.31 464.73 B
+-0.06 0.1 (calls ) 126 452.33 B
+5 F
+-0.13 0.1 (/TrackStart) 148.53 452.33 B
+3 F
+-0.06 0.1 (, which must be overriden in a trackable canvas subclass. ) 215.6 452.33 B
+5 F
+-0.13 0.1 (/TrackStart ) 475.08 452.33 B
+3 F
+-0.06 0.1 (is ) 548.11 452.33 B
+0.52 0.1 (passed an event as an ar) 126 439.93 B
+0.52 0.1 (gument, which will contain the mouse coor) 237.79 439.93 B
+0.52 0.1 (dinates. ) 436.15 439.93 B
+5 F
+1.22 0.1 (/TrackStart ) 474.68 439.93 B
+3 F
+0.52 0.1 (must r) 126 427.53 B
+0.52 0.1 (eturn one of the following thr) 155.73 427.53 B
+0.52 0.1 (ee possibilities: false, an array of labels and tr) 291.89 427.53 B
+0.52 0.1 (ue, or the ) 500.61 427.53 B
+0.52 0.1 (name of an array of labels and tr) 126 415.13 B
+0.52 0.1 (ue.) 276.1 415.13 B
+5 F
+(event ) 162 398.73 T
+0.1 (/TrackStart => ) 197.98 398.73 S
+(false | [label*] true | name true) 289.43 398.73 T
+3 F
+0.42 0.1 ( The array of labels contains the other types of intermediate mouse tracking events the canvas ) 126 378.73 B
+0.52 0.1 (is inter) 126 366.33 B
+0.52 0.1 (ested in r) 157.5 366.33 B
+0.52 0.1 (eceiving, which can be some or all of ) 200.2 366.33 B
+5 F
+1.21 0.1 (/TrackCrossing, /TrackMotion, ) 372.67 366.33 B
+1.22 0.1 (/TrackShift) 126 353.93 B
+3 F
+0.52 0.1 (, ) 193.06 353.93 B
+5 F
+1.22 0.1 (/TrackTimer, ) 198.78 353.93 B
+3 F
+0.52 0.1 (and ) 279.26 353.93 B
+5 F
+1.22 0.1 (/TrackStop. ) 299.6 353.93 B
+3 F
+0.52 0.1 (A default array) 373.97 353.93 B
+0.52 0.1 (, \050named ) 443.04 353.93 B
+5 F
+1.22 0.1 (/Default) 486.33 353.93 B
+3 F
+0.52 0.1 (\051,) 535.1 353.93 B
+5 F
+( [/TrackCrossing /TrackMotion /TrackStop] ) 210.6 337.54 T
+3 F
+-0.01 0.1 (is pr) 126 317.54 B
+-0.01 0.1 (ovided by the toolkit. The subclass must pr) 145.91 317.54 B
+-0.01 0.1 (ovide a de\336nition for each method whose name ) 340.38 317.54 B
+0.52 0.1 (was passed back by ) 126 305.14 B
+5 F
+1.22 0.1 (/TrackStart. ) 219.52 305.14 B
+3 F
+0.52 0.1 (An application might want to do something special if the mouse moves out of or back into a ) 126.1 284.73 B
+0.52 0.1 (canvas; it would then de\336ne ) 126 272.34 B
+5 F
+1.22 0.1 (/TrackCrossing. ) 258.75 272.34 B
+3 F
+0.52 0.1 (The ) 357.51 272.34 B
+5 F
+1.22 0.1 (/Name) 377.66 272.34 B
+3 F
+0.52 0.1 ( \336eld of the event can be ) 408.14 272.34 B
+0.17 0.1 (examined to determine enter or exit status.) 126 259.93 B
+5 F
+0.41 0.1 (/TrackMotion) 320.29 259.93 B
+3 F
+0.17 0.1 ( is typically called to pr) 393.45 259.93 B
+0.17 0.1 (ovide visual ) 499.73 259.93 B
+0.29 0.1 (feedback as the mouse is being dragged. ) 126 247.53 B
+5 F
+0.67 0.1 (/TrackShift) 312.75 247.53 B
+3 F
+0.29 0.1 ( would be used to detect the pr) 379.82 247.53 B
+0.29 0.1 (ess of a ) 521.7 247.53 B
+0.52 0.1 (modi\336er key during tracking. ) 126 235.14 B
+5 F
+1.22 0.1 (/TrackTimer) 264.29 235.14 B
+3 F
+0.52 0.1 ( might be used to implement autoscr) 331.36 235.14 B
+0.52 0.1 (olling of a ) 499.82 235.14 B
+0.52 0.1 (text or drawing canvas as the mouse moves beyond the canvas boundary) 126 222.73 B
+0.52 0.1 (. Finally) 460.62 222.73 B
+0.52 0.1 (, ) 496.59 222.73 B
+5 F
+1.22 0.1 (/TrackStop) 126 210.34 B
+3 F
+0.52 0.1 ( would be wher) 186.97 210.34 B
+0.52 0.1 (e an application does any cleanup when tracking is \336nished. In ) 259.28 210.34 B
+0.52 0.1 (addition to the above method array) 126 197.93 B
+0.52 0.1 (, a trackable canvas must also have a de\336nition of ) 287.63 197.93 B
+5 F
+1.22 0.1 (/TrackCancel) 126 185.53 B
+3 F
+0.52 0.1 (, which is called if the tracking is somehow interr) 199.16 185.53 B
+0.52 0.1 (upted. ) 425.76 185.53 B
+0.28 0.1 (Example: T) 126.1 165.14 B
+0.28 0.1 (rack the mouse over a r) 176.4 165.14 B
+0.28 0.1 (ectangular canvas, and draw a r) 283.35 165.14 B
+0.28 0.1 (ectangular r) 428.8 165.14 B
+0.28 0.1 (ubber) 483.38 165.14 B
+0.28 0.1 (-band box ) 509.52 165.14 B
+0.52 0.1 (between the curr) 126 152.74 B
+0.52 0.1 (ent mouse position and the initial mouse-down position. In the subclass, ) 202.98 152.74 B
+FMENDPAGE
+%%EndPage: "2" 3
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (3) 553.42 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+( ) 180 641.33 T
+(/Trackable? true def) 180 630.33 T
+(/startX 0 def ) 180 619.33 T
+(% intial x ) 414 619.33 T
+(/startY 0 def) 180 608.33 T
+(% initial y ) 414 608.33 T
+(/OverlayCanvas null def) 180 597.33 T
+(% overlay ) 414 597.33 T
+(/TrackStart { % event => false | [/label*] true | name true ) 180 586.33 T
+(gsave ) 198 575.33 T
+(self setcanvas ) 216 564.33 T
+(/Coordinates get aload pop ) 216 553.33 T
+(% x y ) 414 553.33 T
+(/startY exch promote ) 216 542.33 T
+(/startX exch promote ) 216 531.33 T
+(grestore ) 198 520.33 T
+(self createoverlay /OverlayCanvas exch promote ) 198 509.33 T
+([/TrackMotion /TrackStop] true ) 198 498.33 T
+(} def ) 180 487.33 T
+(/TrackMotion { % event => - ) 180 476.33 T
+(gsave self setcanvas ) 198 465.33 T
+(/Coordinates get aload pop ) 216 454.33 T
+(% x y ) 414 454.33 T
+(startX startY 2 copy) 216 443.33 T
+(% x y sX sY sX sY) 414 443.33 T
+(6 2 roll xysub) 216 432.33 T
+(% sX sY x-sX y-sY) 414 432.33 T
+(OverlayCanvas setcanvas) 216 421.33 T
+(% sX sY x-sX y-sY ) 414 421.33 T
+(erasepage) 216 410.33 T
+(% sX sY x-sX y-sY) 414 410.33 T
+(0 setgray 0 setlinewidth) 216 399.33 T
+(% sX sY x-sX y-sY ) 414 399.33 T
+(newpath rectpath stroke) 216 388.33 T
+(% - ) 414 388.33 T
+(grestore) 198 377.33 T
+( } def) 180 366.33 T
+( /TrackStop { % event => - ) 180 355.33 T
+(gsave OverlayCanvas setcanvas erasepage grestore ) 198 344.33 T
+(/startX unpromote ) 198 333.33 T
+(/startY unpromote ) 198 322.33 T
+(/OverlayCanvas unpromote ) 198 311.33 T
+(pop) 198 300.33 T
+( } def) 180 289.33 T
+(/TrackCancel { % event => - ) 180 278.34 T
+(/TrackStop self send) 198 267.34 T
+(} def) 180 256.34 T
+4 F
+-0.71 0.11 (The Key Service) 198 217.67 B
+3 F
+0.52 0.1 ( The Key service pr) 126.1 201.34 B
+0.52 0.1 (ovides the interface to detecting keyboar) 214.93 201.34 B
+0.52 0.1 (d input. T) 400.68 201.34 B
+0.52 0.1 (o use it, a ClassCanvas ) 445.54 201.34 B
+0.52 0.1 (subclass must be made keyable by either setting ) 126 188.94 B
+5 F
+1.22 0.1 (/Keyable) 349.47 188.94 B
+3 F
+0.52 0.1 (? to tr) 398.24 188.94 B
+0.52 0.1 (ue in the class de\336nition, or ) 425.26 188.94 B
+0.52 0.1 (by executing ) 126 176.54 B
+5 F
+(true ) 180 164.14 T
+0.1 (/setkeyable) 209.98 164.14 S
+( canvas send ) 277.05 164.14 T
+FMENDPAGE
+%%EndPage: "3" 4
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (4) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (When a keyable canvas r) 126.1 641.33 B
+0.52 0.1 (eceives the input focus , the Global Event Manager calls the canvas\325 ) 239.91 641.33 B
+5 F
+1.22 0.1 (/KeyStart) 126 628.93 B
+3 F
+0.52 0.1 ( method, passing the event as an ar) 180.87 628.93 B
+0.52 0.1 (gument. The ) 342.98 628.93 B
+5 F
+1.22 0.1 (/Name) 403.72 628.93 B
+3 F
+0.52 0.1 ( \336eld of the event is either ) 434.2 628.93 B
+5 F
+0.65 0.1 (/AcceptFocus) 126 616.53 B
+3 F
+0.28 0.1 ( or ) 199.16 616.53 B
+5 F
+0.65 0.1 (/RestoreFocus) 214.52 616.53 B
+3 F
+0.28 0.1 (. ) 293.77 616.53 B
+5 F
+0.65 0.1 (/KeyStart) 299.25 616.53 B
+3 F
+0.28 0.1 ( should r) 354.12 616.53 B
+0.28 0.1 (eturn one of the following: false, or ) 394.89 616.53 B
+0.52 0.1 (an array of labels and tr) 126 604.13 B
+0.52 0.1 (ue, or a name of an array of labels and tr) 236.05 604.13 B
+0.52 0.1 (ue, or an empty array and ) 423.82 604.13 B
+0.32 0.1 (tr) 126 591.73 B
+0.32 0.1 (ue. The array of labels should be names of corr) 133.33 591.73 B
+0.32 0.1 (esponding methods de\336ned in the subclass to ) 347 591.73 B
+0.52 0.1 (handle speci\336c categories of keys, such as ) 126 579.33 B
+5 F
+1.22 0.1 (/StandardKey) 320.27 579.33 B
+3 F
+0.52 0.1 (, ) 392.32 579.33 B
+5 F
+1.22 0.1 (/ArrowKey) 398.04 579.33 B
+3 F
+0.52 0.1 (, ) 451.8 579.33 B
+5 F
+1.22 0.1 (/NumPadKey) 457.52 579.33 B
+3 F
+0.52 0.1 (, ) 517.38 579.33 B
+5 F
+1.08 0.1 (/FunctionKey) 126 566.93 B
+3 F
+0.46 0.1 (, or ) 198.05 566.93 B
+5 F
+1.08 0.1 (/MetaKey) 216.37 566.93 B
+3 F
+0.46 0.1 (. The r) 264.04 566.93 B
+0.46 0.1 (eturn of nullarray and tr) 293.66 566.93 B
+0.46 0.1 (ue is permitted for canvases that ) 405.77 566.93 B
+0.52 0.1 (wish to r) 126 554.53 B
+0.52 0.1 (eceive noti\336cation of the Find, Undo, Again, Paste, or Help keys, but do not wish to ) 166.72 554.53 B
+0.52 0.1 (r) 126 542.13 B
+0.52 0.1 (espond to other keys. ) 129.87 542.13 B
+0.52 0.1 (Example: Suppose you wish for a scr) 126.1 501.33 B
+0.52 0.1 (olling list to support the up and down arr) 295.28 501.33 B
+0.52 0.1 (ow keys as an ) 487.39 501.33 B
+0.38 0.1 (alternate way of choosing an item. Y) 126 488.93 B
+0.38 0.1 (ou would subclass ClassScr) 291.81 488.93 B
+0.38 0.1 (ollList, and add the following: ) 416.88 488.93 B
+5 F
+(/Keyable? true def ) 162 476.53 T
+(/KeyStart { % event => false | [labels*] true | name true ) 162 465.53 T
+(pop [/ArrowKey] true ) 198 454.53 T
+(} def) 162 443.53 T
+(/ArrowKey { % event => - ) 162 432.53 T
+(/Name get { ) 180 421.53 T
+(/UpArrowkey { ) 198 410.54 T
+(% choose previous item ) 216 399.54 T
+(} ) 198 388.54 T
+(/DownArrowkey { ) 198 377.54 T
+(% choose next item ) 216 366.54 T
+(}) 198 355.54 T
+(/Default {}) 198 344.54 T
+(} case) 180 333.54 T
+(} def ) 162 322.54 T
+4 F
+-0.71 0.11 (The Selection Service) 198 283.87 B
+3 F
+0.52 0.1 (The interface to the Selection Service is by far the most involved that an application ) 126.1 267.53 B
+0.52 0.1 (pr) 126 255.14 B
+0.52 0.1 (ogrammer must write. Ther) 135.98 255.14 B
+0.52 0.1 (e ar) 262.45 255.14 B
+0.52 0.1 (e several ClassCanvas methods that ar) 279.42 255.14 B
+0.52 0.1 (e strict subclass ) 455.15 255.14 B
+0.38 0.1 (r) 126 242.73 B
+0.38 0.1 (esponsibility; that is, ther) 129.87 242.73 B
+0.38 0.1 (e is no default backstop in ClassCanvas. In addition, the application ) 244.93 242.73 B
+0.52 0.1 (must pr) 126 230.34 B
+0.52 0.1 (ovide a subclass of ClassSelection for each type of selection that can be made in the ) 161.84 230.34 B
+0.52 0.1 (application. ) 126 217.94 B
+0.52 0.1 (A selection can be thought of as, r) 126.1 197.54 B
+0.52 0.1 (oughly) 282.14 197.54 B
+0.52 0.1 (, the minimum description needed to r) 312.96 197.54 B
+0.52 0.1 (econstr) 490.01 197.54 B
+0.52 0.1 (uct the ) 522.57 197.54 B
+0.42 0.1 (selected object in a new context. This can be as simple as a text string, or as complicated as an ) 126 185.14 B
+0.52 0.1 (application car) 126 172.74 B
+0.52 0.1 (es to make it. For instance, a graphic object might well want to stor) 193.42 172.74 B
+0.52 0.1 (e an ) 501.47 172.74 B
+0.19 0.1 (executable array as the \322value\323 of a selection, assuming a default transformation matrix. ) 126 160.34 B
+0.19 0.1 (Ther) 529.42 160.34 B
+0.19 0.1 (e ) 550.32 160.34 B
+0.52 0.1 (ar) 126 147.94 B
+0.52 0.1 (e two strict subclass r) 134.96 147.94 B
+0.52 0.1 (esponsibility methods that a ClassSelection subclass must de\336ne: ) 233.6 147.94 B
+FMENDPAGE
+%%EndPage: "4" 5
+2 9 /Helvetica FMDEFINEFONT
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (5) 553.42 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+1.22 0.1 (/Deselect) 126 641.33 B
+3 F
+0.52 0.1 ( and ) 180.87 641.33 B
+5 F
+1.22 0.1 (/SingleRequest) 204.33 641.33 B
+3 F
+0.52 0.1 (. ) 289.68 641.33 B
+5 F
+1.22 0.1 (/Deselect) 295.4 641.33 B
+3 F
+0.52 0.1 ( might tell the Holder of the selection ) 350.27 641.33 B
+0.52 0.1 (\050) 126 628.93 B
+5 F
+1.22 0.1 (/Holder) 129.43 628.93 B
+3 F
+0.52 0.1 ( is a variable inherited fr) 172.1 628.93 B
+0.52 0.1 (om ClassSelection, which is set to the canvas the selection ) 285.19 628.93 B
+0.52 0.1 (was made in\051 to unhighlight the selected object, and no longer consider it to be selected. The ) 126 616.53 B
+5 F
+1.14 0.1 (/SingleRequest) 126 604.13 B
+3 F
+0.49 0.1 ( method is the public interface for other pr) 211.35 604.13 B
+0.49 0.1 (ograms to \336nd out in what form ) 406.76 604.13 B
+0.52 0.1 (the selection is capable of r) 126 591.73 B
+0.52 0.1 (econstituting itself. ) 249.81 591.73 B
+0.52 0.1 (A canvas is made selectable by setting ) 126 571.33 B
+5 F
+1.22 0.1 (/Selectable) 304.34 571.33 B
+3 F
+0.52 0.1 (? to tr) 371.4 571.33 B
+0.52 0.1 (ue in the class de\336nition, or by ) 398.42 571.33 B
+0.1 (executing) 126 558.93 S
+5 F
+(true ) 180 546.53 T
+0.1 (/setselectable) 209.98 546.53 S
+( canvas send) 295.34 546.53 T
+3 F
+0.25 0.1 (A selectable canvas must also specify what general type of selections it supports by setting the ) 126 527.53 B
+0.52 0.1 (value of the ) 126 515.13 B
+5 F
+1.22 0.1 (/SelectableType) 183.37 515.13 B
+3 F
+0.52 0.1 ( variable; the possible values ar) 274.82 515.13 B
+0.52 0.1 (e ) 418.73 515.13 B
+5 F
+1.22 0.1 (/Text) 426.73 515.13 B
+3 F
+0.52 0.1 (, ) 457.22 515.13 B
+5 F
+1.22 0.1 (/Graphic) 462.93 515.13 B
+3 F
+0.52 0.1 (, ) 511.71 515.13 B
+5 F
+1.22 0.1 (/Canvas) 126 502.73 B
+3 F
+0.52 0.1 (, or ) 168.68 502.73 B
+5 F
+1.22 0.1 (/Dynamic) 187.12 502.73 B
+3 F
+0.52 0.1 (, the latter meaning that the selectable type may vary) 235.89 502.73 B
+0.52 0.1 (.) 478.54 502.73 B
+0.04 0.1 (The methods that must be pr) 126.1 482.33 B
+0.04 0.1 (ovided in the ClassCanvas subclass, along with a brief description ) 256.5 482.33 B
+0.52 0.1 (of the purpose of each, ar) 126 469.93 B
+0.52 0.1 (e: ) 242.9 469.93 B
+5 F
+0.1 (/NewSelection) 180 443.53 S
+( % event rank => selection ) 259.26 443.53 T
+3 F
+0.52 0.1 (Returns a new instance of the selection subclass of the given rank \050) 126 424.53 B
+5 F
+1.22 0.1 (/PrimarySelection) 432.83 424.53 B
+3 F
+0.52 0.1 (, ) 536.47 424.53 B
+5 F
+1.22 0.1 (/SecondarySelection) 126 412.13 B
+3 F
+0.52 0.1 (, ) 241.84 412.13 B
+5 F
+1.22 0.1 (/ShelfSelection) 247.55 412.13 B
+3 F
+0.52 0.1 (\051. A canvas may r) 339 412.13 B
+0.52 0.1 (efuse to make a selection by ) 419.66 412.13 B
+0.52 0.1 (r) 126 399.73 B
+0.52 0.1 (eturning null. ) 129.87 399.73 B
+5 F
+0.1 (/SelectionContext) 180 366.93 S
+( % event selection| event null => context ) 283.64 366.93 T
+( [boolean]) 414 355.93 T
+3 F
+0.52 0.1 (wher) 126 336.93 B
+0.52 0.1 (e context is one of ) 149.11 336.93 B
+5 F
+1.22 0.1 (/Background) 235.15 336.93 B
+3 F
+0.52 0.1 (, ) 302.21 336.93 B
+5 F
+1.22 0.1 (/UnselectedObject) 307.93 336.93 B
+3 F
+0.52 0.1 (, ) 411.57 336.93 B
+5 F
+1.22 0.1 (/SelectedObject) 417.29 336.93 B
+3 F
+0.52 0.1 (. Resolves ) 508.74 336.93 B
+0.12 0.1 (the coor) 126 324.54 B
+0.12 0.1 (dinates of the event and determines whether the event occurr) 162.4 324.54 B
+0.12 0.1 (ed in a selected object, an ) 440.42 324.54 B
+0.52 0.1 (unselected object, or neither) 126 312.14 B
+0.52 0.1 (. The selection ar) 253.4 312.14 B
+0.52 0.1 (gument may be null. An optional boolean r) 330.85 312.14 B
+0.52 0.1 (esult ) 529.32 312.14 B
+0.52 0.1 (may be r) 126 299.73 B
+0.52 0.1 (eturned in addition to the calculated context for canvases of ) 166.3 299.73 B
+5 F
+1.22 0.1 (/SelectableType) 443.98 299.73 B
+3 F
+0.52 0.1 ( ) 535.43 299.73 B
+5 F
+1.22 0.1 (/Graphic) 126 287.33 B
+3 F
+0.52 0.1 (. ) 174.77 287.33 B
+5 F
+1.22 0.1 (true) 180.49 287.33 B
+2 F
+0.45 -0.27 ( ) 204.88 287.33 B
+3 F
+0.52 0.1 (should be r) 207.55 287.33 B
+0.52 0.1 (eturned if the context r) 259.32 287.33 B
+0.52 0.1 (eturned on this call to ) 364.56 287.33 B
+5 F
+1.03 0.1 (/SelectionContext) 126 274.93 B
+3 F
+0.44 0.1 ( matches that r) 229.64 274.93 B
+0.44 0.1 (eturned on the last call; ) 297.42 274.93 B
+5 F
+1.03 0.1 (false) 407.72 274.93 B
+3 F
+0.44 0.1 ( should be r) 438.21 274.93 B
+0.44 0.1 (eturned if the ) 492.86 274.93 B
+0.52 0.1 (contexts do not match. As an example, in a graphics editor) 126 262.53 B
+0.52 0.1 (, a mouse pr) 394.47 262.53 B
+0.52 0.1 (ess may occur over an ) 451.33 262.53 B
+0.52 0.1 (object alr) 126 250.14 B
+0.52 0.1 (eady selected, over a selectable object not yet selected, or in the backgr) 167.5 250.14 B
+0.52 0.1 (ound.) 491.43 250.14 B
+5 F
+0.1 (/SelectionStart) 180 217.34 S
+( % event selection => - ) 271.45 217.34 T
+3 F
+0.52 0.1 (Called at the beginning of every selection transaction. May involve toggling the selected state ) 126 198.34 B
+0.52 0.1 (of the object under the cursor) 126 185.93 B
+0.52 0.1 (, or setting up machinery to do bounding-box selections. The ) 260.41 185.93 B
+0.52 0.1 (event contains the coor) 126 173.54 B
+0.52 0.1 (dinates of the cursor) 231.56 173.54 B
+0.52 0.1 (, the selection ar) 324.79 173.54 B
+0.52 0.1 (gument has been pr) 399.37 173.54 B
+0.52 0.1 (eviously ) 490.24 173.54 B
+0.52 0.1 (cr) 126 161.14 B
+0.52 0.1 (eated by a call to ) 134.4 161.14 B
+5 F
+1.22 0.1 (/NewSelection) 215.38 161.14 B
+3 F
+0.52 0.1 (, and possibly adjusted by calls to ) 294.64 161.14 B
+5 F
+1.22 0.1 (/SelectionStart) 452.77 161.14 B
+3 F
+0.52 0.1 (, ) 544.22 161.14 B
+5 F
+1.22 0.1 (/SelectionAdjust) 126 148.74 B
+3 F
+0.52 0.1 (, and/or ) 223.55 148.74 B
+5 F
+1.22 0.1 (/SelectionStop) 265.36 148.74 B
+3 F
+0.52 0.1 (. ) 350.72 148.74 B
+5 F
+1.22 0.1 (/SelectionStart) 356.43 148.74 B
+3 F
+0.52 0.1 ( should r) 447.88 148.74 B
+0.52 0.1 (eturn tr) 489.14 148.74 B
+0.52 0.1 (ue if it ) 523.92 148.74 B
+FMENDPAGE
+%%EndPage: "5" 6
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (6) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.48 0.1 (is desir) 126 641.33 B
+0.48 0.1 (ed to begin a selection; r) 158.73 641.33 B
+0.48 0.1 (eturning false means a r) 270.29 641.33 B
+0.48 0.1 (efusal to initiate a selection. The ) 380.4 641.33 B
+5 F
+1.12 0.1 (/Pin) 530.53 641.33 B
+3 F
+0.48 0.1 ( ) 554.92 641.33 B
+0.21 0.1 (variable of the selection must be examined to determine whether the object under the cursor is ) 126 628.93 B
+0.52 0.1 (being toggled, or if a bounding box should be started.) 126 616.53 B
+5 F
+0.1 (/SelectionAdjust) 180 582.13 S
+( % event selection => -) 277.55 582.13 T
+3 F
+0.52 0.1 (Called if the selection is being adjusted by the user) 126 563.13 B
+0.52 0.1 (, for example, by wiping SELECT or ) 358.76 563.13 B
+0.52 0.1 (ADJUST) 126 550.73 B
+0.52 0.1 (. A typical chor) 163.85 550.73 B
+0.52 0.1 (e to perform her) 234.33 550.73 B
+0.52 0.1 (e would be to draw a bounding box in an overlay ) 309.16 550.73 B
+0.1 (canvas.) 126 538.33 S
+5 F
+0.1 (/SelectionStop) 180 505.53 S
+( % event selection => -) 265.35 505.53 T
+3 F
+0.52 0.1 (Called at the end of every selection transaction not canceled by ) 126 486.53 B
+5 F
+1.22 0.1 (/SelectionCancel) 418.46 486.53 B
+3 F
+0.52 0.1 (. If a ) 516.01 486.53 B
+0.12 0.1 (bounding box selection had been made, the \336nal determination of those objects in the selection ) 126 474.13 B
+0.52 0.1 (would be made now) 126 461.73 B
+0.52 0.1 (, and the overlay machinery would be dismantled.) 219.31 461.73 B
+5 F
+0.1 (/SelectionCancel) 180 428.93 S
+( % selection => -) 277.55 428.93 T
+3 F
+0.52 0.1 (Called when a selection transaction is terminated abnormally) 126 409.93 B
+0.52 0.1 (, say by dragging the mouse ) 405.08 409.93 B
+0.52 0.1 (outside of the canvas, and onto a SunV) 126 397.53 B
+0.52 0.1 (iew window) 304.65 397.53 B
+0.52 0.1 (, and r) 360.74 397.53 B
+0.52 0.1 (eleasing. Any machinery set up to ) 390.66 397.53 B
+0.52 0.1 (support bounding box selections would be dismantled her) 126 385.14 B
+0.52 0.1 (e.) 393.23 385.14 B
+4 F
+-0.71 0.11 (Dragging Selections) 198 356.07 B
+5 F
+0.1 (/DragStart) 180 341.73 S
+( % event selection => -) 240.97 341.73 T
+3 F
+0.52 0.1 (Set up machinery to drag a selection, typically by r) 126 322.73 B
+0.52 0.1 (emembering the event coor) 359.59 322.73 B
+0.52 0.1 (dinates and ) 484.19 322.73 B
+0.52 0.1 (setting up an overlay canvas.) 126 310.33 B
+5 F
+0.1 (/DragAdjust) 180 283.93 S
+( % event selection => -) 247.06 283.93 T
+3 F
+0.52 0.1 (Pr) 126 264.93 B
+0.52 0.1 (ovide visual feedback during a drag operation.) 136 264.93 B
+5 F
+0.1 (/DragStop) 180 238.53 S
+( % event selection => -) 234.87 238.53 T
+3 F
+0.52 0.1 (Dismantle str) 126 219.53 B
+0.52 0.1 (uctur) 187.16 219.53 B
+0.52 0.1 (es built during the drag.) 211.17 219.53 B
+0.11 0.1 (As an example, let\325s build in selection support for the \322pur) 126 199.14 B
+0.11 0.1 (e\323 NeWS version of chooser that we ) 391.96 199.14 B
+0.52 0.1 (built in the lab yester) 126 186.73 B
+0.52 0.1 (day) 223.42 186.73 B
+0.52 0.1 (. W) 239.27 186.73 B
+0.52 0.1 (e will need to add or override all the variables and methods ) 254.16 186.73 B
+0.52 0.1 (discussed above.) 126 174.34 B
+FMENDPAGE
+%%EndPage: "6" 7
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (7) 553.42 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (Our \336rst task is to design a subclass of class selection. Since the main purpose of our demo ) 126 641.33 B
+0.16 0.1 (application was to display a string in a chosen color) 126 628.93 B
+0.16 0.1 (, we will interpr) 360.41 628.93 B
+0.16 0.1 (et selection as selecting the ) 433.26 628.93 B
+0.52 0.1 (displayed color) 126 616.53 B
+0.52 0.1 (. Hence, our selection subclass will contain variables named ) 195.6 616.53 B
+5 F
+1.22 0.1 (/Hue) 472.89 616.53 B
+3 F
+0.52 0.1 (, ) 497.27 616.53 B
+5 F
+0.56 0.1 (/Saturation) 126 604.13 B
+3 F
+0.24 0.1 (, and ) 193.06 604.13 B
+5 F
+0.56 0.1 (/Brightness) 218.56 604.13 B
+3 F
+0.24 0.1 (, to hold the values of the thr) 285.62 604.13 B
+0.24 0.1 (ee color indices. W) 417.36 604.13 B
+0.24 0.1 (e will begin ) 502.04 604.13 B
+0.52 0.1 (the class de\336nition by specifying these instance variables in a dictionary) 126 591.73 B
+0.52 0.1 (, all initialized to 0.) 455.11 591.73 B
+5 F
+0.1 (/ChooserSelection) 162 558.93 S
+( ClassSelection) 265.64 558.93 T
+(dictbegin) 162 547.93 T
+( ) 162 536.93 T
+0.1 (/Hue) 180 536.93 S
+( 0 def) 204.39 536.93 T
+( ) 162 525.93 T
+0.1 (/Saturation) 180 525.93 S
+( 0 def) 247.06 525.93 T
+( ) 162 514.93 T
+0.1 (/Brightness) 180 514.93 S
+( 0 def) 247.06 514.93 T
+(dictend) 162 503.93 T
+3 F
+0.49 0.1 (Our next task will be to override the class variable ) 126 484.93 B
+5 F
+1.14 0.1 (/CanRenderAs) 360.14 484.93 B
+3 F
+0.49 0.1 (. This is used internally by ) 433.3 484.93 B
+0.19 0.1 (the selection service for selection transfers. Since we ar) 126 472.53 B
+0.19 0.1 (e transferring a color in HSB format, we ) 374.01 472.53 B
+0.52 0.1 (will choose to pr) 126 460.13 B
+0.52 0.1 (ovide the key ) 202.5 460.13 B
+5 F
+1.22 0.1 (/HSB) 267.62 460.13 B
+3 F
+0.52 0.1 (, initialized as a null array) 292.01 460.13 B
+0.52 0.1 (.) 411.23 460.13 B
+5 F
+(classbegin) 162 427.33 T
+( ) 162 416.33 T
+0.1 (/CanRenderAs) 180 416.33 S
+( 1 dict dup begin) 253.16 416.33 T
+0.1 (/HSB) 198 405.33 S
+( nullarray def) 222.39 405.33 T
+( ) 162 394.33 T
+(end def) 180 394.33 T
+3 F
+0.52 0.1 (Now we must pr) 126 364.33 B
+0.52 0.1 (ovide de\336nitions for two subclass-r) 203.8 364.33 B
+0.52 0.1 (esponsibility methods. The \336rst, ) 365.11 364.33 B
+5 F
+1.22 0.1 (/Deselect) 126 351.93 B
+3 F
+0.52 0.1 (, will be called by the selection service when one of our selections is the curr) 180.87 351.93 B
+0.52 0.1 (ent ) 531.52 351.93 B
+0.52 0.1 (selection, and the user makes another selection, either in our canvas, or elsewher) 126 339.54 B
+0.52 0.1 (e.) 496.01 339.54 B
+5 F
+( ) 162 306.73 T
+0.1 (/Deselect) 180 306.73 S
+( { % - => -) 234.87 306.73 T
+0.1 (/deselect) 198 295.73 S
+( Holder send) 252.87 295.73 T
+( ) 162 284.73 T
+(} def) 180 284.73 T
+3 F
+0.52 0.1 (Finally) 126 245.34 B
+0.52 0.1 (, we must de\336ne the ) 156.24 245.34 B
+5 F
+1.22 0.1 (/SingleRequest) 252.71 245.34 B
+3 F
+0.52 0.1 ( method. All querying of the selection by the ) 338.06 245.34 B
+0.28 0.1 (selection service or other clients \336lters thr) 126 232.93 B
+0.28 0.1 (ough this method. W) 315.6 232.93 B
+0.28 0.1 (e will r) 410.74 232.93 B
+0.28 0.1 (espond to thr) 442.72 232.93 B
+0.28 0.1 (ee dif) 503.55 232.93 B
+0.28 0.1 (fer) 528.67 232.93 B
+0.28 0.1 (ent ) 540.86 232.93 B
+0.52 0.1 (r) 126 220.53 B
+0.52 0.1 (equests: ) 129.87 220.53 B
+5 F
+1.22 0.1 (/HSB) 169.22 220.53 B
+3 F
+0.52 0.1 (, our \322native format\323, by pr) 193.6 220.53 B
+0.52 0.1 (oviding an array of color indices; ) 320 220.53 B
+5 F
+1.22 0.1 (/DeleteContents) 126 208.14 B
+3 F
+0.52 0.1 (, by telling the canvas that holds this selection to paint itself with black; ) 217.45 208.14 B
+0.52 0.1 (and ) 126 195.74 B
+5 F
+1.22 0.1 (/Default) 146.34 195.74 B
+3 F
+0.52 0.1 (, which is to r) 195.11 195.74 B
+0.52 0.1 (eply that the r) 258.13 195.74 B
+0.52 0.1 (equested format is unknown to us.) 322.9 195.74 B
+FMENDPAGE
+%%EndPage: "7" 8
+%%Page: "8" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (8) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+( ) 162 641.33 T
+(/SingleRequest { % oldval key => newval) 180 641.33 T
+({) 198 630.33 T
+( ) 198 619.33 T
+(/HSB {) 216 619.33 T
+(pop) 234 608.33 T
+(Hue Saturation Brightness) 234 597.33 T
+(3 array astore) 234 586.33 T
+( ) 198 575.33 T
+(}) 216 575.33 T
+( ) 198 564.33 T
+(% Pretend we actually have something to delete) 216 564.33 T
+( ) 198 553.33 T
+(/DeleteContents {) 216 553.33 T
+(pop) 234 542.33 T
+(% tell Holder to change back to black) 234 531.33 T
+([/sethue /setsaturation /setbrightness]) 234 520.33 T
+({ 0 exch Holder send} forall) 234 509.33 T
+(% Update the sliders and numeric fields to their new) 234 498.33 T
+(% values. Since this means the Holder must refer to) 234 487.33 T
+-1.31 (% other objects defined in its userdict, we must package) 234 476.33 P
+(% this up with SendCanvasHandler to obtain correct ) 234 465.33 T
+(% context) 234 454.33 T
+(createevent dup /Canvas Holder put) 234 443.33 T
+(% event) 437.89 443.33 T
+(/updatesliders SendCanvasHandler) 234 432.33 T
+( ) 180 421.33 T
+([0 0 0]) 234 421.33 T
+( ) 180 410.33 T
+(}) 216 410.33 T
+( ) 180 399.33 T
+(/Default {pop /UnknownRequest} ) 216 399.33 T
+(} case) 198 388.33 T
+( ) 162 377.33 T
+(} def) 180 377.33 T
+(classend def) 162 366.33 T
+3 F
+0.52 0.1 (A point worth discussing is the use of SendCanvasHandler in the ) 126 347.33 B
+5 F
+1.22 0.1 (/DeleteContents) 429.16 347.33 B
+3 F
+0.52 0.1 ( case. ) 520.61 347.33 B
+0.52 0.1 (Our canvas might get a message to delete a selection after the selection had been moved ) 126 334.93 B
+0.42 0.1 (elsewher) 126 322.54 B
+0.42 0.1 (e on the same canvas, or it might get this message if the user has pr) 166.23 322.54 B
+0.42 0.1 (essed the cut key) 475.4 322.54 B
+0.42 0.1 (, ) 552.38 322.54 B
+0.27 0.1 (or dragged the selection to a dif) 126 310.14 B
+0.27 0.1 (fer) 270.73 310.14 B
+0.27 0.1 (ent canvas. In any case, ) 282.92 310.14 B
+5 F
+0.64 0.1 (/SingleRequest) 392.28 310.14 B
+3 F
+0.27 0.1 ( will be called by ) 477.64 310.14 B
+0.52 0.1 (the Global Event Manager) 126 297.73 B
+0.52 0.1 (, and the ) 245.17 297.73 B
+5 F
+1.22 0.1 (/updatesliders) 288.51 297.73 B
+3 F
+0.52 0.1 ( method will execute in the context of ) 373.86 297.73 B
+0.03 0.1 (the GEM if it is called as a simple send. Using SendCanvasHandler guarantees that our canvas\325 ) 126 285.33 B
+0.52 0.1 (corr) 126 272.93 B
+0.52 0.1 (ect context \050that of the Local Event Manager\051, in particular) 144.01 272.93 B
+0.52 0.1 (, the user) 411.46 272.93 B
+0.52 0.1 (dict in which our ) 453.68 272.93 B
+0.52 0.1 (canvas is de\336ned, will be available as ) 126 260.53 B
+5 F
+1.22 0.1 (/updatesliders) 300.74 260.53 B
+3 F
+0.52 0.1 ( executes.) 386.1 260.53 B
+0.52 0.1 (W) 126 240.14 B
+0.52 0.1 (e turn now to the necessary additions to our canvas class. First, we will add an instance ) 135.18 240.14 B
+0.52 0.1 (variable, ) 126 227.74 B
+5 F
+1.22 0.1 (/ColorSelected) 168.24 227.74 B
+3 F
+0.52 0.1 (?, that will be set whenever a selection occurs. In a mor) 253.59 227.74 B
+0.52 0.1 (e ) 507.21 227.74 B
+0.52 0.1 (substantial application, it might be desirable to keep a list of the curr) 126 215.34 B
+0.52 0.1 (ently selected objects; ) 441.94 215.34 B
+0.52 0.1 (some such mechanism must be used.) 126 202.94 B
+FMENDPAGE
+%%EndPage: "8" 9
+%%Page: "9" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (9) 553.42 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(/ChooserCanvas ClassCanvas) 162 641.33 T
+(dictbegin) 162 630.33 T
+( ) 162 619.33 T
+(/Hue 0 def) 180 619.33 T
+( ) 162 608.33 T
+(/Saturation 0 def) 180 608.33 T
+( ) 162 597.33 T
+(/Brightness 0 def) 180 597.33 T
+( ) 162 586.33 T
+(/ColorSelected? false def) 180 586.33 T
+(dictend) 162 575.33 T
+3 F
+0.52 0.1 (The \336rst part of the class de\336nition is identical to that developed in our lab exer) 126 556.33 B
+0.52 0.1 (cise:) 492.58 556.33 B
+5 F
+(classbegin) 162 543.93 T
+(% Class variables) 162 532.93 T
+(/TextFont /ZapfDingbats findfont 100 scalefont def) 162 521.93 T
+(/DisplayString \05088\051 def) 162 510.93 T
+(/Menuable? true def) 162 499.93 T
+(/StringLowerLeft [-1 -1] def) 162 488.93 T
+(% Class methods) 162 466.93 T
+(/sethue { % hue => -) 162 455.93 T
+(/Hue exch def) 180 444.93 T
+(/PreviewColor self send) 180 433.93 T
+(} def) 162 422.93 T
+(/setsaturation { % saturation => -) 162 400.93 T
+(/Saturation exch def) 180 389.93 T
+(/PreviewColor self send) 180 378.93 T
+(} def) 162 367.93 T
+(/setbrightness { % brightness => -) 162 345.93 T
+(/Brightness exch def) 180 334.93 T
+(/PreviewColor self send) 180 323.93 T
+(} def) 162 312.93 T
+(/PreviewColor { % - => -) 162 290.93 T
+(gsave self setcanvas) 180 279.93 T
+(/ShowColor self send) 180 268.93 T
+(grestore) 180 257.93 T
+(} def) 162 246.94 T
+(/Paint { % - => -) 162 224.94 T
+(1 fillcanvas) 180 213.94 T
+(/ShowColor self send) 180 202.94 T
+(0 strokecanvas) 180 191.94 T
+(} def) 162 180.94 T
+(/ShowColor { % - => -) 162 158.94 T
+(TextFont setfont) 180 147.94 T
+FMENDPAGE
+%%EndPage: "9" 10
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (10) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(Hue Saturation Brightness hsbcolor setcolor) 180 641.33 T
+(/stringfits? self send { ) 180 630.33 T
+(StringLowerLeft aload pop) 198 619.33 T
+( ) 180 608.33 T
+(moveto DisplayString show ) 198 608.33 T
+(} {) 180 597.33 T
+( ) 180 586.33 T
+(currentcolor /FillCanvas self send) 198 586.33 T
+(} ifelse) 180 575.33 T
+(} def) 162 564.33 T
+(/stringlowerleft {) 162 542.33 T
+(gsave self setcanvas) 180 531.33 T
+(TextFont setfont) 180 520.33 T
+(/size self send) 180 509.33 T
+(DisplayString stringbbox) 180 498.33 T
+(4 2 roll pop pop) 180 487.33 T
+(xysub) 180 476.33 T
+(2 div exch 2 div exch) 180 465.33 T
+(} def) 162 454.33 T
+(/stringfits? { % - => boolean) 162 432.33 T
+(StringLowerLeft aload pop) 180 421.33 T
+(0 ge exch 0 ge and) 180 410.33 T
+(} def) 162 399.33 T
+(/setdisplaystring { % string => -) 162 377.33 T
+(/DisplayString exch promote) 180 366.33 T
+(/updateStringLowerLeft self send) 180 355.33 T
+(} def) 162 344.33 T
+(/settextfont { % font => -) 162 322.33 T
+(/settextfont super send) 180 311.33 T
+(/updateStringLowerLeft self send) 180 300.33 T
+(} def) 162 289.33 T
+(/reshape {) 162 267.34 T
+(/reshape super send) 180 256.34 T
+(/updateStringLowerLeft self send) 180 245.34 T
+(} def) 162 234.34 T
+(/updateStringLowerLeft { % - => -) 162 212.34 T
+(/stringlowerleft self send) 180 201.34 T
+(% llx lly) 335.91 201.34 T
+(2 array astore) 180 190.34 T
+(% [llx lly]) 263.95 190.34 T
+(% Stash the result) 180 179.34 T
+(/StringLowerLeft exch promote) 180 168.34 T
+(} def) 162 157.34 T
+FMENDPAGE
+%%EndPage: "10" 11
+%%Page: "11" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (1) 549.33 108.7 S
+0.09 (1) 553.42 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (Now) 126 620.93 B
+0.52 0.1 (, we\325ll tackle the selection service. T) 147.48 620.93 B
+0.52 0.1 (o support selections, we must make our canvas ) 310.57 620.93 B
+0.52 0.1 (selectable, and pr) 126 608.53 B
+0.52 0.1 (ovide a selectable-type. W) 205.67 608.53 B
+0.52 0.1 (e will also keep a r) 324.37 608.53 B
+0.52 0.1 (efer) 410.81 608.53 B
+0.52 0.1 (ence to our selection ) 427.88 608.53 B
+0.48 0.1 (subclass, and de\336ne a few variables that will be used to implement dragging a bounding box, ) 126 596.13 B
+0.52 0.1 (and the selected object itself.) 126 583.73 B
+5 F
+(%% Selection-related stuff) 162 550.93 T
+(/Selectable? true def) 162 539.93 T
+(/SelectableType /Graphic def) 162 528.93 T
+(/SelectionClass ChooserSelection def) 162 517.93 T
+(/OverlayCanvas null def) 162 506.93 T
+(/startX null def) 162 495.93 T
+(/startY null def) 162 484.93 T
+3 F
+0.52 0.1 (Our \336rst methods will deal with highlighting and deselecting a selection. They update the ) 126 454.93 B
+0.52 0.1 (visual state, and r) 126 442.53 B
+0.52 0.1 (eset ) 207.4 442.53 B
+5 F
+1.22 0.1 (/ColorSelected) 227.99 442.53 B
+3 F
+0.52 0.1 (? to false in the case of ) 313.35 442.53 B
+5 F
+1.22 0.1 (/deselect) 420.32 442.53 B
+3 F
+0.52 0.1 (.) 475.19 442.53 B
+5 F
+(/deselect { % - => -) 162 409.73 T
+(/PreviewColor self send) 180 398.73 T
+(/ColorSelected? false def) 180 387.73 T
+(} def) 162 376.73 T
+(/HighlightSelection { % boolean => -) 162 354.73 T
+( gsave self setcanvas ) 180 343.73 T
+({ ) 311.93 343.73 T
+(/stringfits? self send { % - => boolean ) 216 332.73 T
+( ) 198 321.73 T
+(1 setlinewidth 0 setgray ) 234 321.73 T
+(TextFont setfont) 234 310.73 T
+(StringLowerLeft aload pop ) 234 299.73 T
+( ) 198 288.73 T
+(newpath moveto DisplayString true charpath stroke) 234 288.73 T
+(} { ) 216 277.73 T
+( ) 198 266.73 T
+(0 /StrokeCanvas self send) 234 266.73 T
+(} ifelse ) 216 255.73 T
+(} { ) 198 244.73 T
+(/Paint self send) 216 233.73 T
+( ) 180 222.74 T
+(} ifelse ) 198 222.74 T
+(grestore ) 180 211.74 T
+(} def ) 162 200.74 T
+FMENDPAGE
+%%EndPage: "11" 12
+%%Page: "12" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (12) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.35 0.1 (Next, we will need a hit-detection utility) 126 641.33 B
+0.35 0.1 (, ) 309.85 641.33 B
+5 F
+0.83 0.1 (/pointinpaint) 315.4 641.33 B
+3 F
+0.35 0.1 (?, to test if a mouse-down occurr) 394.66 641.33 B
+0.35 0.1 (ed ) 543.95 641.33 B
+0.52 0.1 (inside the str) 126 628.93 B
+0.52 0.1 (oked characters, and a method ) 185.33 628.93 B
+5 F
+1.22 0.1 (/stringinbbox) 328.86 628.93 B
+3 F
+0.52 0.1 (?, to test whether the display ) 408.11 628.93 B
+0.52 0.1 (string lies inside a given r) 126 616.53 B
+0.52 0.1 (ectangle. The de\336nition of the latter method is lengthy) 244.7 616.53 B
+0.52 0.1 (, and not ) 493.03 616.53 B
+0.08 0.1 (particularly germane to the pr) 126 604.13 B
+0.08 0.1 (esent discussion; it may be found, along with all other code fr) 262.29 604.13 B
+0.08 0.1 (om ) 540.84 604.13 B
+0.52 0.1 (this section, in the \336leTUT) 126 591.73 B
+0.52 0.1 (ORIAL/labcode/chooser/pur) 246.57 591.73 B
+0.52 0.1 (e+selections/chooser) 383.19 591.73 B
+0.52 0.1 (canvas.ps.) 478.89 591.73 B
+5 F
+(% Test to see if the point \050in canvas\324 coordinates\051 lies inside) 162 558.93 T
+(% the image of the display string) 162 547.93 T
+(/pointinpaint? { % x y => boolean) 162 536.93 T
+(gsave self setcanvas) 180 525.93 T
+(/stringfits? self send { % x y ) 180 514.93 T
+(TextFont setfont) 198 503.93 T
+(StringLowerLeft aload pop ) 198 492.93 T
+(% x y llx lly) 414 492.93 T
+( ) 180 481.93 T
+(newpath moveto DisplayString true charpath) 198 481.93 T
+( ) 180 470.93 T
+(pointinpath) 198 470.93 T
+( ) 263.96 470.93 T
+(% boolean) 414 470.93 T
+(} {) 180 459.93 T
+( ) 180 448.93 T
+(/bbox self send pointinrect?) 198 448.93 T
+(} ifelse) 180 437.93 T
+(grestore) 180 426.93 T
+(} def) 162 415.93 T
+3 F
+0.25 0.1 (Now come the subclass-r) 126 385.93 B
+0.25 0.1 (esponsibility methods. The \336rst of these cr) 239.72 385.93 B
+0.25 0.1 (eates a new instance of our ) 432.12 385.93 B
+0.52 0.1 (selection subclass with a given rank:) 126 373.54 B
+5 F
+(/NewSelection { % event rank => selection) 162 340.73 T
+(Holder /new SelectionClass send) 180 329.73 T
+(% event selection) 414 329.73 T
+(exch pop) 180 318.73 T
+(} def) 162 307.73 T
+3 F
+0.52 0.1 (The next method is called at the beginning of every selection transaction. W) 126 277.73 B
+0.52 0.1 (e will set up the ) 472.74 277.73 B
+-0.07 0.1 (machinery for a bounding-box selection in the utility method ) 126 265.34 B
+5 F
+-0.16 0.1 (/StartOverlay) 403.75 265.34 B
+3 F
+-0.07 0.1 (, below) 481.89 265.34 B
+-0.07 0.1 (, if, when ) 513.62 265.34 B
+0.52 0.1 (we examine the attributes of the selection passed as an ar) 126 252.93 B
+0.52 0.1 (gument, we decide that a \322wipe\323 ) 388.89 252.93 B
+0.52 0.1 (selection is occurring:) 126 240.53 B
+FMENDPAGE
+%%EndPage: "12" 13
+%%Page: "13" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (13) 548.83 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(/SelectionStart { % event selection => boolean ) 162 641.33 T
+(% Should we start an overlay? ) 180 630.33 T
+(/Pin get /NoPin ne {) 180 619.33 T
+(% event ) 414 619.33 T
+(self StartOverlay) 198 608.33 T
+(% - ) 414 608.33 T
+( } {) 180 597.33 T
+(pop) 198 586.33 T
+(} ifelse) 180 575.33 T
+(% - ) 414 575.33 T
+(true ) 180 564.33 T
+(} def ) 162 553.33 T
+(/StartOverlay { % event canvas => - ) 162 531.33 T
+(gsave self setcanvas ) 180 520.33 T
+(exch /Coordinates get aload pop) 198 509.33 T
+(% canvas x y ) 414 509.33 T
+(/startY exch promote ) 198 498.33 T
+(/startX exch promote ) 198 487.33 T
+(createoverlay /OverlayCanvas exch promote ) 198 476.33 T
+(OverlayCanvas setcanvas erasepage ) 198 465.33 T
+(grestore ) 180 454.33 T
+(} def ) 162 443.33 T
+0.23 0.1 (/SelectionAdjust) 126 413.33 B
+3 F
+0.1 0.1 ( will perform the actual drawing of a bounding box, if necessary) 223.55 413.33 B
+0.1 0.1 (. It might ) 513.61 413.33 B
+0.05 0.1 (also toggle the state of an object, based on whether or not the object wer) 126 400.93 B
+0.05 0.1 (e completely contained ) 450.74 400.93 B
+0.52 0.1 (in a bounding box; we will keep it simple.) 126 388.54 B
+5 F
+(/SelectionAdjust { % event selection => - ) 162 356.17 T
+(% Are we dragging out a bounding box?) 180 346.86 T
+(/Pin get /NoPin ne {) 180 337.55 T
+(% event ) 414 337.55 T
+(/OverlayCanvas promoted? {) 198 328.25 T
+(% event ) 414 328.25 T
+( ) 162 318.94 T
+(gsave self setcanvas) 216 318.94 T
+(% event) 414 318.94 T
+( ) 162 309.64 T
+(/Coordinates get aload pop ) 234 309.64 T
+(% x y) 414 309.64 T
+(startX startY 2 copy 6 2 roll) 234 300.33 T
+(xysub) 234 291.03 T
+(% startX startY w h) 414 291.03 T
+( ) 162 281.72 T
+(OverlayCanvas setcanvas ) 234 281.72 T
+(erasepage ) 234 272.42 T
+(rectpath) 234 263.11 T
+(% - ) 414 263.11 T
+(0 setgray 0 setlinewidth) 234 253.8 T
+( ) 162 244.5 T
+(stroke) 234 244.5 T
+(% -) 414 244.5 T
+( ) 162 235.19 T
+(grestore) 216 235.19 T
+( ) 162 225.89 T
+(} {) 198 225.89 T
+(% event) 414 225.89 T
+( ) 162 216.58 T
+(pop) 216 216.58 T
+( ) 162 207.28 T
+(} ifelse) 198 207.28 T
+( ) 162 197.97 T
+(} {) 180 197.97 T
+(% event) 414 197.97 T
+( ) 162 188.67 T
+(pop) 198 188.67 T
+( ) 162 179.36 T
+(} ifelse) 180 179.36 T
+(} def ) 162 170.06 T
+FMENDPAGE
+%%EndPage: "13" 14
+%%Page: "14" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (14) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+0.59 0.1 (/SelectionContext) 126 641.33 B
+3 F
+0.25 0.1 ( is called by the selection service to determine, for ) 229.64 641.33 B
+5 F
+0.59 0.1 (/Graphic) 459.31 641.33 B
+3 F
+0.25 0.1 ( selectable-) 508.08 641.33 B
+0.52 0.1 (type, whether an event occurr) 126 628.93 B
+0.52 0.1 (ed over a selected object, an unselected object, or in the ) 263.01 628.93 B
+0.1 (backgr) 126 616.53 S
+0.1 (ound.) 156.44 616.53 S
+5 F
+(/SelectionContext { % event sel|event null => context [boolean]) 162 593.13 T
+(dup null eq {) 180 582.13 T
+( ) 180 571.13 T
+(pop pop /Background) 198 571.13 T
+(} {) 180 560.13 T
+( ) 180 549.13 T
+(% event selection) 198 549.13 T
+( ) 180 538.13 T
+(pop gsave self setcanvas) 198 538.13 T
+(% event) 414 538.13 T
+( ) 180 527.13 T
+(/Coordinates get aload pop) 216 527.13 T
+( ) 371.91 527.13 T
+(% x y) 414 527.13 T
+( ) 180 516.13 T
+(/pointinpaint? self send) 216 516.13 T
+( ) 359.92 516.13 T
+(% boolean) 414 516.13 T
+( ) 180 505.13 T
+({) 216 505.13 T
+(ColorSelected? {) 234 494.13 T
+( ) 198 483.13 T
+(/SelectedObject) 252 483.13 T
+(}{) 234 472.13 T
+( ) 198 461.13 T
+(/UnselectedObject) 252 461.13 T
+(} ifelse) 234 450.13 T
+( ) 180 439.14 T
+(} {/Background} ifelse) 216 439.14 T
+( ) 180 428.14 T
+(grestore) 198 428.14 T
+(} ifelse) 180 417.14 T
+(} def) 162 406.14 T
+1.22 0.1 (/SelectionStop) 126 376.14 B
+3 F
+0.52 0.1 ( is called when a selection transaction terminates normally) 211.35 376.14 B
+0.52 0.1 (. Her) 478.31 376.14 B
+0.52 0.1 (e, we will ) 501.19 376.14 B
+0.52 0.1 (dismantle the overlay machinery set up in ) 126 363.73 B
+5 F
+1.22 0.1 (/SelectionStart) 322.47 363.73 B
+3 F
+0.52 0.1 (, and update the state of our ) 413.92 363.73 B
+0.52 0.1 (canvas and its display string. W) 126 351.33 B
+0.52 0.1 (e \336rst test to see whether or not we ar) 271.77 351.33 B
+0.52 0.1 (e toggling the object ) 445.75 351.33 B
+0.52 0.1 (under the cursor by examining the ) 126 338.93 B
+5 F
+1.22 0.1 (/Pin) 287.83 338.93 B
+3 F
+0.52 0.1 ( variable of the selection passed as an ar) 312.22 338.93 B
+0.52 0.1 (gument. If it ) 496.71 338.93 B
+0.52 0.1 (has ) 126 326.54 B
+5 F
+1.22 0.1 (/Pin) 144.47 326.54 B
+3 F
+0.52 0.1 ( equal to ) 168.86 326.54 B
+5 F
+1.22 0.1 (/NoPin) 211.94 326.54 B
+3 F
+0.52 0.1 (, then we ar) 248.52 326.54 B
+0.52 0.1 (e toggling; otherwise we have completed a bounding ) 302.84 326.54 B
+0.52 0.1 (box. If we ar) 126 314.14 B
+0.52 0.1 (e completing a bounding box, we must see if it completely encloses the display ) 183.58 314.14 B
+0.52 0.1 (string. If so, we must highlight the display string, get the color parameters fr) 126 301.73 B
+0.52 0.1 (om our canvas ) 477.74 301.73 B
+0.52 0.1 (and set the same parameters in the selection instance. If the string is not contained in the ) 126 289.33 B
+0.46 0.1 (bounding box, we do nothing. If we ar) 126 276.93 B
+0.46 0.1 (e toggling the selected state of an object, we switch our ) 302.67 276.93 B
+0.52 0.1 (state variable, ) 126 264.53 B
+5 F
+1.22 0.1 (/ColorSelected) 192.39 264.53 B
+3 F
+0.52 0.1 (. ) 277.75 264.53 B
+FMENDPAGE
+%%EndPage: "14" 15
+%%Page: "15" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (15) 548.83 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(/SelectionStop { % event selection => -) 162 617.93 T
+( dup /Pin get /NoPin ne {) 180 606.93 T
+(% event selection ) 414 606.93 T
+(1 index /stringinbbox? self send ) 198 595.93 T
+(% event selection bool) 414 595.93 T
+( ) 162 584.93 T
+(dup /HighlightSelection self send) 198 584.93 T
+(% event selection bool) 414 584.93 T
+(% Fill out the selection\325s data if true) 198 573.93 T
+({) 198 562.93 T
+(/ColorSelected? true def) 216 551.93 T
+(Hue Saturation Brightness) 216 540.93 T
+(3 index begin) 216 529.93 T
+(% event selection H S B) 414 529.93 T
+(/Brightness exch def) 234 518.93 T
+(/Saturation exch def) 234 507.93 T
+(/Hue exch def) 234 496.93 T
+(end) 216 485.93 T
+(% event selection) 414 485.93 T
+(} if) 198 474.93 T
+( ) 162 463.93 T
+(StopOverlay) 198 463.93 T
+(% event selection ) 414 463.93 T
+(} { ) 180 452.93 T
+(dup /ToggleSelected? get {) 198 441.93 T
+(% ev selection) 414 441.93 T
+(/ColorSelected? ColorSelected? not def) 216 430.93 T
+( ) 180 419.93 T
+(ColorSelected? ) 216 419.93 T
+(% event selection bool) 414 419.93 T
+( ) 180 408.93 T
+(dup /HighlightSelection self send % event selection bool) 216 408.93 T
+(% Fill out the selection\325s data if true) 216 397.93 T
+({) 216 386.93 T
+(Hue Saturation Brightness) 234 375.93 T
+(3 index begin) 234 364.93 T
+(% event selection H S B) 414 364.93 T
+(/Brightness exch def) 252 353.93 T
+(/Saturation exch def) 252 342.93 T
+(/Hue exch def) 252 331.93 T
+(end) 234 320.93 T
+(% event selection) 414 320.93 T
+(} if) 216 309.93 T
+(} if) 198 298.93 T
+(% event selection) 414 298.93 T
+( } ifelse ) 180 287.93 T
+(pop pop ) 180 276.93 T
+(} def ) 162 265.93 T
+(/StopOverlay { % - => - ) 162 243.94 T
+(gsave OverlayCanvas setcanvas erasepage grestore ) 180 232.94 T
+(/OverlayCanvas unpromote) 198 221.94 T
+( ) 180 210.94 T
+(/startX unpromote) 198 210.94 T
+( ) 180 199.94 T
+(/startY unpromote) 198 199.94 T
+( grestore ) 180 188.94 T
+(} def) 162 177.94 T
+FMENDPAGE
+%%EndPage: "15" 16
+%%Page: "16" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (16) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(% Defined in file) 162 608.33 T
+(% TUTORIAL/labcode/chooser/pure+selections/choosercanvas.ps) 162 597.33 T
+(/stringinbbox? % event => bool) 162 586.33 T
+( ) 180 575.33 T
+(/SelectionCancel { % selection => -) 162 564.33 T
+( pop) 180 553.33 T
+( /OverlayCanvas promoted? {) 180 542.33 T
+( ) 180 531.33 T
+(StopOverlay) 198 531.33 T
+( } if ) 180 520.33 T
+(} def) 162 509.33 T
+0.47 0.1 (/DragStart) 126 490.33 B
+3 F
+0.2 0.1 ( is called at the beginning of a selection drag. W) 186.97 490.33 B
+0.2 0.1 (e set up the overlay machinery in ) 403.62 490.33 B
+0.52 0.1 (a manner similar to that in ) 126 477.93 B
+5 F
+1.22 0.1 (/SelectionStart) 251.6 477.93 B
+3 F
+0.52 0.1 (, except the overlay covers the entir) 343.05 477.93 B
+0.52 0.1 (e ) 505.87 477.93 B
+0.1 (framebuf) 126 465.53 S
+0.1 (fer) 167.39 465.53 S
+0.1 (.) 179.01 465.53 S
+5 F
+( /DragStart { % event selection => -) 162 432.73 T
+(pop framebuffer StartOverlay) 180 421.73 T
+(} def) 162 410.73 T
+3 F
+0.52 0.1 ( ) 126 391.73 B
+FMENDPAGE
+%%EndPage: "16" 17
+%%Page: "17" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (17) 548.83 108.7 S
+53.5 69 126.83 142.5 R
+7 X
+V
+0 X
+-53.5 -69 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (In ) 126 641.33 B
+5 F
+1.22 0.1 (/DragAdjust) 138.5 641.33 B
+3 F
+0.52 0.1 (, we draw an outline of the string in the overlay) 205.57 641.33 B
+0.52 0.1 (, at the mouse point.) 424.79 641.33 B
+5 F
+( /DragAdjust { % event selection => -) 162 608.53 T
+(gsave ) 180 597.53 T
+(pop self setcanvas) 198 586.53 T
+(% event) 414 586.53 T
+(/stringfits? self send exch) 198 575.53 T
+(% bool event) 414 575.53 T
+(/Coordinates get aload pop ) 198 564.53 T
+(% bool x y) 414 564.53 T
+(startX startY xysub) 198 553.53 T
+(% bool offsetx offsety) 414 553.53 T
+(OverlayCanvas setcanvas erasepage) 198 542.53 T
+(% bool offsetx offsety) 414 542.53 T
+(/location self send xyadd ) 198 531.53 T
+(% bool newX newY) 414 531.53 T
+(translate) 198 520.53 T
+(% bool) 414 520.53 T
+(0 setlinewidth 0 setgray {) 198 509.53 T
+(StringLowerLeft aload pop) 216 498.53 T
+(% sllx slly) 414 498.53 T
+(TextFont setfont) 216 487.53 T
+(moveto DisplayString true charpath stroke) 216 476.53 T
+(} {) 198 465.53 T
+( ) 180 454.53 T
+(0 0 moveto) 216 454.53 T
+( ) 180 443.53 T
+(0 0 /size self send % 0 0 w h) 216 443.53 T
+( ) 180 432.53 T
+(rectpath stroke) 216 432.53 T
+(} ifelse) 198 421.54 T
+(grestore) 180 410.54 T
+(} def) 162 399.54 T
+3 F
+0.52 0.1 (Finally) 126 369.54 B
+0.52 0.1 (, in ) 156.24 369.54 B
+5 F
+1.22 0.1 (/DragStop) 174 369.54 B
+3 F
+0.52 0.1 (, we dismantle the overlay machinery) 228.87 369.54 B
+0.52 0.1 (.) 400.18 369.54 B
+5 F
+( /DragStop { % event selection => -) 162 336.73 T
+(pop pop) 180 325.73 T
+(StopOverlay) 180 314.73 T
+(} def) 162 303.73 T
+4 F
+0.11 (Reception) 198 276.07 S
+3 F
+0.52 0.1 (In this particular application, r) 126 259.73 B
+0.52 0.1 (eceiving a selection is much simpler than actually making a ) 266.18 259.73 B
+0.37 0.1 (selection. W) 126 247.34 B
+0.37 0.1 (e must declar) 180.24 247.34 B
+0.37 0.1 (e ourselves to be r) 241.43 247.34 B
+0.37 0.1 (eceptible and keyable, and then write one method: ) 324.43 247.34 B
+5 F
+0.1 (/HandleReception) 126 234.93 S
+3 F
+0.1 (.) 223.55 234.93 S
+FMENDPAGE
+%%EndPage: "17" 18
+%%Page: "18" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (18) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486.5 69.17 559.83 142.67 R
+7 X
+V
+0 X
+-486.5 -69.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(% Reception-related stuff) 162 641.33 T
+(/Receptible? true def) 162 630.33 T
+(/Keyable? true def) 162 619.33 T
+(% so we see paste key) 414 619.33 T
+(/HandleReception { % event selection => bool) 162 597.33 T
+(/HSB /query 2 index send) 180 586.33 T
+( ) 323.92 586.33 T
+-0.99 (% ev sel false | val true) 414 586.33 P
+({) 180 575.33 T
+(% If we are receiving from ourself, ignore it) 198 564.33 T
+( % since we can\325t reposition the string) 198 553.33 T
+( 1 index /Holder get self eq {) 198 542.33 T
+(pop pop pop false) 216 531.33 T
+( } {) 198 520.33 T
+( ) 180 509.33 T
+(aload pop) 216 509.33 T
+( ) 269.97 509.33 T
+( ) 275.97 509.33 T
+( ) 414 509.33 T
+(% ev sel H S B) 420 509.33 T
+( ) 180 498.33 T
+(setbrightness setsaturation sethue % ev sel) 216 498.33 T
+(% Update the sliders and numeric fields to their new) 216 476.33 T
+(% values. Since this means the Holder must refer to) 216 465.33 T
+(% other objects defined in its userdict, we must package) 216 454.33 T
+(% this up with SendCanvasHandler to obtain correct ) 216 443.33 T
+(% context) 216 432.33 T
+(1 index ) 216 421.33 T
+(% event sel event) 414 421.33 T
+( ) 180 410.33 T
+(/updatesliders self send) 216 410.33 T
+( ) 198 399.33 T
+(pop pop true) 216 399.33 T
+(} { ifelse) 198 388.33 T
+(} {) 180 377.33 T
+( ) 180 366.33 T
+(pop pop false) 198 366.33 T
+(} ifelse) 180 355.33 T
+(} def) 162 344.33 T
+3 F
+0.3 0.1 (Our \336nal method is ) 126 314.33 B
+5 F
+0.7 0.1 (/updatesliders) 218.09 314.33 B
+3 F
+0.3 0.1 (. Since the purpose of this method is to r) 303.44 314.33 B
+0.3 0.1 (eset the sliders ) 487.74 314.33 B
+0.52 0.1 (and their numeric \336elds when a r) 126 301.93 B
+0.52 0.1 (eception has occurr) 279.3 301.93 B
+0.52 0.1 (ed, they must r) 367.83 301.93 B
+0.52 0.1 (efer to the slider objects ) 437.31 301.93 B
+0.52 0.1 (themselves. T) 126 289.54 B
+0.52 0.1 (o avoid keeping a r) 187.32 289.54 B
+0.52 0.1 (efer) 276.05 289.54 B
+0.52 0.1 (ence to each slider inside our canvas instance, we will ) 293.12 289.54 B
+0.31 0.1 (simply use ) 126 277.14 B
+5 F
+0.72 0.1 (/installmethod) 178.2 277.14 B
+3 F
+0.31 0.1 ( to override this de\336nition in any instance we cr) 263.56 277.14 B
+0.31 0.1 (eate of our class ) 482.02 277.14 B
+0.52 0.1 (ChooserCanvas. See the end of the \336le,) 126 264.73 B
+0.52 0.1 ( TUT) 126 244.34 B
+0.52 0.1 (ORIAL/labcode/chooser/pur) 149.27 244.34 B
+0.52 0.1 (e+selections/chooser) 285.88 244.34 B
+0.52 0.1 (.ps for details.) 381.02 244.34 B
+5 F
+(/updatesliders nullproc def) 180 220.94 T
+(classend def) 162 209.94 T
+FMENDPAGE
+%%EndPage: "18" 19
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 18 1
+%%DocumentFonts: Palatino-Italic
+%%+ Palatino-Roman
+%%+ Bookman-Light
+%%+ Palatino-BoldItalic
+%%+ Courier
+%%+ Helvetica

@@ -1,0 +1,359 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#) compat.ps 23.5 91/02/11
+%
+%	compat.ps: compatibility across the input cataclysm
+%		(ie. compatibility for pre-beta packages)
+
+% systemdict begin
+
+/DefaultMenuButton /RightMouseButton def
+
+/currentlinequality	{ 0 } def	% Compatibility ...
+/setlinequality		{ pop } def	% with NeWS 1.1
+/geteventname		{ /Name get } def
+/geteventaction		{ /Action get } def
+/geteventclientdata	{ /ClientData get } def
+/geteventtimestamp	{ /TimeStamp get } def
+/geteventcanvas		{ /Canvas get } def
+/geteventlocation	{ dup /XLocation get exch /YLocation get } def
+/seteventname		{ exch dup /Name 4 -1 roll put } def
+/seteventaction		{ exch dup /Action 4 -1 roll put } def
+/seteventclientdata	{ exch dup /ClientData 4 -1 roll put } def
+/seteventtimestamp	{ exch dup /TimeStamp 4 -1 roll put } def
+/seteventcanvas		{ exch dup /Canvas 4 -1 roll put } def
+/seteventlocation	{ 2 index /YLocation 2 index put pop
+			  1 index /XLocation 2 index put pop} def
+/createcanvas { gsave initmatrix 0 0 moveto rect newcanvas
+		dup reshapecanvas grestore } def
+/setcanvasshape { gsave initmatrix pathbbox pop pop translate
+		  reshapecanvas grestore } def
+
+/currentmouse		/currentcursorlocation load	def
+
+/bottomcanvas		{ /BottomCanvas get } def
+/canvasabove		{ /CanvasAbove get } def
+/canvasbelow		{ /CanvasBelow get } def
+/colorcanvas		{ currentcanvas /Color get } def
+/monochromecanvas	{ currentcanvas /Color get not } def
+/mapped			{ /Mapped get } def
+/mapcanvas		 { /Mapped true put } def
+/unmapcanvas		 { /Mapped false put } def
+/getcanvasopacity	{
+    /EventsConsumed get {
+	/AllEvents	{ /Opaque }
+	/MatchedEvents	{ /Partial }
+	/NoEvents	{ /Clear }
+    } case
+} def
+/setcanvasopacity {		%  event kwd  =>
+    {
+	/Opaque		{ /AllEvents }
+	/Partial	{ /MatchedEvents }
+	/Clear		{ /NoEvents }
+    } case
+    /EventsConsumed exch put
+} def
+/parentcanvas		{ /Parent get } def
+/makecanvasnonretained	{ /Retained false put } def
+/makecanvasretained	{ /Retained true put } def
+/retained		{ /Retained get } def
+/savebehindcanvas	{ /SaveBehind true put } def
+/topcanvas		{ /TopCanvas get } def
+/topchildcanvas		{ /TopChild get } def
+/makecanvasopaque	{ /Transparent false put } def
+/makecanvastransparent	{ /Transparent true put } def
+/transparent		{ /Transparent get } def
+/fontascent		{ /FontAscent get } ?def
+/fontdescent		{ /FontDescent get } ?def
+/fontheight		{ /FontHeight get } ?def
+/forkunix		{ runprogram } def
+/^C			{ shutdownserver } def
+
+
+% Class cataclysm:
+/makewindow { %  hook width height => window
+    framebuffer /new DefaultWindow send		% hook width height win
+    0 0 6 3 roll 3 -1 roll			% win 0 0 width height hook
+    /doit 6 index send				% win 0 0 width height
+    /reshape 5 index send			% win
+} def
+/makewindowfromuser { %  hook => window
+    framebuffer /new DefaultWindow send	exch	% win hook
+    /doit 2 index send				% win
+    /reshapefromuser 1 index send		% win
+    /map 1 index send				% win
+} def
+/showwindow { %  win x y => -  (Moves window/icon to x y)
+    /move 3 index send
+    /map exch send
+} def
+% Fake windowpackage
+/windowpackage 20 dict dup begin
+    /getclientcanvas {begin ClientCanvas end} def % may be a proc!
+    /getframecanvas {/FrameCanvas get} def
+    /geticoncanvas {/IconCanvas get} def
+    /iconic {/Iconic? get} def
+
+    /getfbrect {gsave fboverlay setcanvas getrect grestore} def
+    /getfbwholerect {gsave fboverlay setcanvas getwholerect grestore} def
+
+    /movewindow {/move 4 -1 roll send} def
+    /windowtotop {/totop exch send} def
+
+    /thiswindow { self } def
+    /paintwindow { /paint exch send } def
+end def
+/makemenu { %      keys actions => menu
+	    % -or- keys/actions (one array) => menu
+    /new DefaultMenu send
+} def
+/showmenu { %  menu => -  (Forks menu at mouse)
+    /popup exch send
+} def
+% Fake menupackage
+/menupackage 20 dict dup begin
+    /addmenuitem { % menu index key proc => -
+	/insertitem 5 -1 roll send
+    } def
+    
+    /deletemenuitem { % menu index => -
+	/deleteitem 3 -1 roll send
+    } def
+end def
+
+/ColorDisplay? { framebuffer /Color get } def    
+
+%/VMstr {
+%    10 dict begin vmstatus /break exch def /used exch def /avail exch def
+%	used  round (      ) cvs ( Used, )
+%	avail round (      ) cvs ( Avail, )
+%	break round (      ) cvs ( Break)
+%	5 {append} repeat
+%    end
+%} def
+
+% lite{win,menu,item} & util needed changes for this; some
+% demos need them still.
+/LeftMouseButton	dup def
+/MiddleMouseButton	dup def
+/RightMouseButton	dup def
+/MouseDragged		dup def
+/DownTransition		dup def
+/UpTransition		dup def
+
+% An errordict that simply stops on all errors.
+/StopOnErrorsDict StandardErrorNames dup length dict begin
+    { {pop stop} def } forall
+    currentdict
+    end
+def
+% A procedure acting like "stopped" even in the presence of an errordict.
+/errored { % proc => bool (executes proc, returning true if error occurred)
+10 dict begin
+    /realerrordict currentprocess /errordict get def
+    currentprocess /errordict StopOnErrorsDict put
+    stopped
+    currentprocess /errordict realerrordict put
+end
+} def
+
+/popmsg { 	% cx cy strings => process
+  { 20 dict begin newprocessgroup
+    dup type /arraytype ne { 1 array astore } if
+    /strs exch def
+    /y exch def
+    /x exch def
+    /Times-Roman findfont 24 scalefont setfont
+    0 setgray
+    /width 0 def
+    strs { stringwidth pop width max /width exch def } forall
+    /height strs length 30 mul def
+    /x0 x 10 sub def
+    /y0 y 25 add def
+    /x1 x0 width add 20 add def
+    /y1 y0 height 5 add sub def
+    x0 y0 10 sub moveto
+    x0 y1 x1 y1 10 arcto
+    x1 y1 x1 y0 10 arcto
+    x1 y0 x0 y0 10 arcto
+    x0 y0 x0 y1 10 arcto clear
+    /cv framebuffer newcanvas def
+    closepath
+    cv reshapecanvas cv setcanvas
+    cv /SaveBehind true put
+    cv /Mapped true put
+
+    [
+	/Damaged {
+	    pop
+	    damagepath clipcanvas
+	    clippath 0 setgray fill
+	    /ix0 x0 2 add def 
+	    /iy0 y0 2 sub def
+	    /ix1 x1 2 sub def 
+	    /iy1 y1 2 add def
+	    ix0 iy0 10 sub moveto
+	    ix0 iy1 ix1 iy1 10 arcto
+	    ix1 iy1 ix1 iy0 10 arcto
+	    ix1 iy0 ix0 iy0 10 arcto
+	    ix0 iy0 ix0 iy1 10 arcto clear
+	    1 setgray fill
+	    ColorDisplay? { 
+		1 .5 .5 sethsbcolor 
+	    } { 
+		0 setgray 
+	    } ifelse
+	    /t y def
+	    strs { 
+		x t moveto show /t t 30 sub def 
+	    } forall
+	} null cv eventmgrinterest
+
+	/LeftMouseButton {
+	    pop quit
+	} /UpTransition cv eventmgrinterest
+    ] forkeventmgr waitprocess pop
+  } fork pause
+  4 1 roll pop pop pop
+} def
+
+
+
+%%%%%%%%%%%%%%%%
+% from util.ps %
+%%%%%%%%%%%%%%%%
+
+
+/modifyproc {		% /proc {head} {tail}  =>  {head proc tail}
+			% Note: any of proc, head, tail may be keywords.
+    10 dict begin
+        /defbody {dup type /nametype eq {load} if def} def
+        /tail exch defbody
+        /head exch defbody
+        /proc exch defbody
+        [ /head load aload pop /proc load aload pop /tail load aload pop ] cvx
+    end
+} def
+
+
+% ----------------------------------------------------------
+% Here is a simple client-side synchronizer utility: (cid=ClientID)
+% ----------------------------------------------------------
+%
+systemdict /currentcid 0 put
+
+/uniquecid {
+    currentcid 1 add /currentcid 1 index store
+} def
+
+/cidinterest { 		% id => interest
+    /CIDEvent {/ClientData get cvx exec} 3 -1 roll null eventmgrinterest
+} def
+
+/cidinterest1only { 	% id => interest
+    /CIDEvent 		% id name
+    {/ClientData get cvx exec exit} % id name proc
+    3 -1 roll null 	 % name proc id null
+    eventmgrinterest
+} def
+
+/sendcidevent { 	% id proc => - (Send client-supplied proc to id eventmgr)
+    createevent begin
+	/Name		/CIDEvent def
+	/ClientData	exch def
+	/Action		exch def
+	currentdict
+    end sendevent
+} def
+
+%
+% Old style cursor support
+%
+
+/setcanvascursor { % font shape mask => -
+    3 -1 roll				% shape mask font
+    newcursor				% cursor
+    currentcanvas			% cursor canvas
+    exch /Cursor exch put		% -
+} ?def
+
+/getcanvascursor { % - => font shape mask
+
+    % Search for a cursor.  If we don't have one, try our parent.
+    % REMIND: This code will blow up if the local root canvas does not
+    % have a cursor.
+
+    currentcanvas
+    {
+	dup				% canvas canvas
+	/Cursor get dup			% canvas cursor cursor
+	null eq {
+	    pop /Parent get
+	} {
+	    exit
+	} ifelse
+    } loop
+					% canvas cursor
+    exch pop				% cursor
+    begin
+	CursorFont CursorChar MaskChar
+    end
+} ?def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% from old class Object    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% OBSOLETE: set/get not thought out yet; here's a try:
+% DON'T USE THIS!!
+/set { % {/key value ...}  =>  -  stores the values in the object
+    mark exch cvx exec
+    counttomark 2 idiv {def} repeat pop % store??
+} /installmethod ClassObject send
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% from liteUI.ps and UI.ps %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+% Backwards compatability code
+%
+[       /addkbdinterests                (NeWS/kbdcompat.ps)
+        /revokekbdinterests             (NeWS/kbdcompat.ps)
+        /addfunctionnamesinterest       (NeWS/kbdcompat.ps)
+        /addfunctionstringsinterest     (NeWS/kbdcompat.ps)
+        /addeditkeysinterest            (NeWS/kbdcompat.ps)
+        /addselectioninterests          (NeWS/kbdcompat.ps)
+        /ascii_keymap                   (NeWS/kbdcompat.ps)
+        /setselection			(NeWS/selcompat.ps)
+        /selectionrequest		(NeWS/selcompat.ps)
+        /selectionresponse		(NeWS/selcompat.ps)
+        /selectionsinterests		(NeWS/selcompat.ps)
+    % these are the forkeventmgr utilities (util.ps) that are no
+    % longer needed:
+	/InstallEMgrCallBack		(NeWS/kbdcompat.ps)
+	/asciiinterest			(NeWS/kbdcompat.ps)
+	/editkeysinterest		(NeWS/kbdcompat.ps)
+	/functionnamesinterest		(NeWS/kbdcompat.ps)
+	/functionstringsinterest	(NeWS/kbdcompat.ps)
+	/selectionsinterest		(NeWS/kbdcompat.ps)
+] DefineAutoLoads
+
+%
+% An autoload that's not in systemdict; needed by kbdcompat
+%
+UIprivate begin
+    /LiteSelectDict  (NeWS/selcompat.ps)  autoload
+end
+
+% Some clients decide if Lite is present by looking for /Selections, so:
+systemdict /Selections null put
+
+

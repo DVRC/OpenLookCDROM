@@ -1,0 +1,433 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)layout.ps 1.11 91/02/11
+%
+
+/ClassLayout ClassObject [/Placement]
+classbegin
+
+    % Class variables required by /Calculated placement :
+
+    /CURRENT		null def	% Current client being positioned
+    /PREVIOUS		null def	% Last client to be positioned
+    /InMinsize?		false def	% Are we executing in /minsize?
+    /BBox 		[0 0 0 0] def
+
+    % This dictionary defines compass-points on an object.
+    %
+    /CornerPositions dictbegin
+	/North		{ Size exch 2.0 div exch } def
+	/East		{ Size 2.0 div } def
+	/West		{ Size 2.0 div exch pop 0 exch } def
+	/South		{ Size pop 0 exch 2.0 div exch } def
+	/NorthWest	{ Size exch pop 0 exch } def
+	/SouthWest	{ pop 0 0 } def
+	/NorthEast	{ Size} def
+	/SouthEast	{ Size pop 0 } def
+	/Center		{ Size 2.0 div exch 2.0 div exch } def
+    dictend def
+
+    /LayoutParameters	null def
+    /Contents           nullarray def   % List of all clients.
+
+    % Class variables required by /Grid and /Spaced placement :
+
+    /VerticalGap	0 def
+    /HorizontalGap	0 def
+
+    /Rows		1 def
+    /Columns		{List length} def
+    /LayoutByRow?	true def
+
+    /Move { % x y list-element => -
+        SubclassResponsibility
+    } def
+
+    /Size { % list-element => width height
+        SubclassResponsibility
+    } def
+
+    /List { % - => list
+        SubclassResponsibility
+    } def
+
+    /Location { % list-element => x y
+        SubclassResponsibility
+    } def
+
+    % /ResolveReference is required by Calculated placement to
+    % return the object associated with the name or index.
+
+    /ResolveReference { % reference => list-element
+        SubclassResponsibility
+    } def
+
+    /ResolveOffset { % inst compass-point|method => x y
+	CornerPositions dup 2 index known {	% inst compass lbp
+	    exch get exec			% x y
+	} {					% inst compass lbp
+	    pop exch /offset exch send		% x y
+	} ifelse
+    } def
+
+    /CellSize { % - => <cell width> <cell height>
+        SubclassResponsibility
+    } def
+
+    /placement {
+        Placement
+    } def
+
+    /SetLayoutData { % list-element layout => -
+        /TNTLayout exch put
+    } def
+
+    /LayoutData { % list-element => layout
+        /TNTLayout get
+    } def
+
+    % /LayoutByPlacement is a dictionary containing /Layout methods for
+    % each placement protocol.
+    /LayoutByPlacement dictbegin
+
+        /Absolute {
+            List {
+                dup /LayoutData self send	% e x y
+                aload pop 3 -1 roll Move	% x y e
+                pause
+            } forall
+        } def
+
+        /Calculated {
+            10 dict begin
+            List {
+	        /PREVIOUS CURRENT def
+	        /CURRENT 1 index def
+	        /LayoutData self send
+		
+	        aload length 0 eq {
+                    /layoutparameters self send aload pop
+                } if
+
+		exec					% compass-point x y
+		CURRENT 4 -1 roll 			% x y cur compass-point
+		/ResolveOffset self send		% x y x' y'
+		xysub					% x y
+		CURRENT Move				%
+                pause
+	    } forall
+            end
+         } def
+
+        /Grid {
+	    10 dict begin
+	    mark
+	    CellSize 
+	    /CellHeight exch VerticalGap add def
+	    /CellWidth exch HorizontalGap add def
+	    0 /size self send exch pop
+	    CellHeight sub VerticalGap add
+	    2 copy
+	    0 3 1 roll List {
+		3 1 roll 2 copy
+		/Y exch def
+		/X exch def
+		3 -1 roll Move
+		1 add LayoutByRow? {
+		    dup Columns eq {
+			pop 0 2 index Y CellHeight sub
+		    }{
+			X CellWidth add Y
+		    } ifelse
+		}{
+		    dup Rows eq {
+			pop 0
+			X CellWidth add
+			2 index
+		    }{
+			X Y CellHeight sub
+		    } ifelse
+		} ifelse
+		pause
+	    } forall
+	    end cleartomark
+        } def
+
+	/Spaced {
+	    10 dict begin
+		/size self send			% dw dh
+		CellSize exch pop dup		% dw dh rh rh
+		VerticalGap add			% dw dh rh rh'
+		/RowHeight exch def		% dw dh rh
+		sub /Y exch def			% dw
+		/Width exch def			% -
+
+		% The 1st element in moved into position prior to
+		% entering the "forall" loop.  If the width returned
+		% by /CellSize is less than the drawable width, the
+		% 1st element would be moved down an extra row.
+
+		List dup 0 get 			% l i#0
+		dup Size pop 			% l i#0 iw
+		HorizontalGap add /X exch def	% l i#0
+		0 Y 3 -1 roll Move		% l -
+
+		dup length dup 1 gt {		% l l#
+		    1 sub 1 exch getinterval {	% l'
+	    	        dup Size pop dup X add	% i iw x'
+		        dup Width le {		% i iw x'
+			    X Y 5 -1 roll Move	% iw x'
+			    HorizontalGap add	% iw x'
+			    /X exch def 	% iw
+			    pop			% -
+		       }{
+			    pop			% i iw
+			    HorizontalGap add	% i x'
+			    /X exch def		% i
+			    0 			% i x
+			    Y RowHeight sub	% i x y'
+			    /Y 1 index def	% i x y'
+			    3 -1 roll Move	% -
+		       } ifelse
+		        pause
+		    } forall
+		} {
+		    pop pop			% -
+		} ifelse
+	        end
+	    } def
+		
+    dictend def
+
+    % /MinSizeByPlacement is a dictionary containing /minsize methods for
+    % each placement protocol.
+
+    /MinsizeByPlacement dictbegin
+
+        /Absolute {
+            0 0 List {
+                dup /LayoutData self send
+                aload pop 3 -1 roll Size	% x y w h
+                3 -1 roll add 3 1 roll add
+                4 -1 roll max 3 1 roll max
+                pause
+            } forall
+        } def
+
+        /Calculated {
+            /InMinsize? true promote
+
+            10 dict begin
+		List
+
+		/RootCorners 1 index length dict def
+		/Locations 1 index length dict def
+		{
+		    /PREVIOUS CURRENT def
+		    /CURRENT 1 index def
+		    /LayoutData self send
+
+		    aload length 0 eq {
+			/layoutparameters self send aload pop
+		    } if
+
+		    % Execute the client's positioning code, and remember
+		    % which corner of the bag this client gets attached to.
+		    % The default corner is /SouthWest because of NeWS's 
+		    % coordinates.
+		    /CurrentCorner null def
+		    exec
+
+		    CurrentCorner null eq {
+			/CurrentCorner /SouthWest def
+		    } if
+
+		    RootCorners CURRENT CurrentCorner put
+
+		    % Calculate where the client's origin should go and
+		    % store this in Locations.
+		    %
+		    CURRENT 4 -1 roll /ResolveOffset self send xysub
+		    2 copy Locations CURRENT [ 5 -2 roll]  put
+		    2 copy CURRENT Size xyadd
+
+		    % Before adding the client's bounding box into the
+		    % cumulative bbox we consider the centering problem.
+		    % Clients added to the /East or /West side have a copy of
+		    % their box, reflected about the x-axis added to the
+		    % bounding box. /North and /South clients have a copy
+		    % reflected about the y-axis, and /Center clients have a
+		    % copy reflected about both axes. Trust me, it works.
+		    %
+		    CurrentCorner {
+			/East /West {
+			    4 copy neg 3 1 roll exch neg
+			    BBoxUnion
+			} /North /South {
+			    4 copy exch neg 4 1 roll 3 -1 roll neg exch
+			    BBoxUnion
+			} /Center {
+			    4 copy neg exch neg exch 4 2 roll neg exch neg exch
+			    BBoxUnion
+			}
+		    } case
+		    BBoxUnion
+		} forall
+
+		BBox aload pop 3 -1 roll sub 3 1 roll exch sub exch
+            end
+	    /InMinsize? unpromote
+
+        } def
+
+        /Grid {
+            CellSize
+            Rows dup 1 sub VerticalGap mul 3 1 roll mul add exch
+            Columns dup 1 sub HorizontalGap mul 3 1 roll  mul add
+            exch
+        } def 
+
+	/Spaced {
+	    CellSize
+	} def
+
+    dictend def
+
+    /minsize {
+        MinsizeByPlacement Placement get exec
+    } def
+
+    /preferredsize {
+	Placement /Spaced eq {
+	    List dup length 1 sub HorizontalGap mul exch {
+		Size pop add				% w
+		pause
+	    } forall
+	    ceiling
+	    CellSize exch pop ceiling			% w h
+	}{
+	    /preferredsize super send
+	} ifelse
+    } def
+
+    /Layout {
+        LayoutByPlacement Placement get exec
+    } def
+
+    % Utilities required by /Calculated placement
+
+    % /POSITION is a convenience function which returns the xy
+    % coordinates of the compass-point corner of the specified
+    % list-element.
+     /POSITION { % compass-point list-element => x y
+	ResolveReference
+	InMinsize? {
+	    CurrentCorner null eq {
+		%
+		% During /minsize the first call to /POSITION while
+		% executing a client's positioning code is used to
+		% decide which other client this client is attached to,
+		% and indirectly, which corner of the bag it is
+		% attached to.
+		%
+		dup self eq {
+                    1 index
+                }{
+                    RootCorners 1 index get
+                } ifelse
+		/CurrentCorner exch def
+	    } if
+
+	    dup self eq {
+		%
+		% During /minsize always return 0 0 for a position
+		% on the bag itself.
+		%
+		pop pop 0 0
+	    }{
+		RootCorners 1 index get /CurrentCorner exch def
+		dup 3 -1 roll /ResolveOffset self send
+		3 -1 roll Locations exch get aload pop xyadd
+	    } ifelse
+	}{
+	    dup 3 -1 roll /ResolveOffset self send
+            3 -1 roll Location xyadd
+	} ifelse
+    } def
+
+
+    % /WIDTH is a convenience function which returns the width of
+    % the list-element.
+
+    /WIDTH { % list-element => width
+	ResolveReference
+	dup self eq InMinsize? and {
+	    pop 0
+        }{			
+            Size pop
+	} ifelse
+    } def
+
+    % /HEIGHT is a convenience function which returns the height of
+    % the list-element.
+
+    /HEIGHT { %  list-element => height
+	ResolveReference
+	dup self eq InMinsize? and {
+	    pop 0
+        }{			
+            Size exch pop
+	} ifelse
+    } def
+
+    % /PARENT is a convenience function which returns the container
+    % instance
+
+    /PARENT { % - => self
+        self
+    } def
+
+    % Max this box with the current bouding box, and
+    % update the current bounding box.
+    %
+    /BBoxUnion { % x1 y1 x2 y2 => -
+	BBox aload pop
+	5 -1 roll max 7 1 roll
+	4 -1 roll max 6 1 roll
+	3 -1 roll min 5 1 roll
+	min 4 1 roll
+	/BBox [6 2 roll] def
+   } def
+
+    /setlayoutparameters { % [compass-point {}] => -
+                           % [LayoutByRow? rows columns] => -
+        /invalidate self send
+        /LayoutParameters exch promote
+        Placement /Grid eq {
+            LayoutParameters aload pop
+            /Columns exch promote
+            /Rows exch promote
+            /LayoutByRow? exch promote
+        } if
+    } def
+
+    /layoutparameters { % - => <layout parameters>
+        LayoutParameters
+    } def
+
+    /setgaps { % <horizontal gap> <vertical gap> => -
+        /invalidate self send
+        /VerticalGap exch promote
+        /HorizontalGap exch promote
+    } def
+
+    /gaps { % - => <horizontal gap> <vertical gap>
+        HorizontalGap VerticalGap
+    } def
+
+
+classend def

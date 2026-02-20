@@ -1,0 +1,824 @@
+% 
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%              @(#)journalui.ps 23.8 91/02/11
+% 
+% ---------
+% 
+% This is the standard window interface for the new OpenWindows
+% journaler.  It is only a slight rewrite of earlier versions of the
+% interface and has not changed nearly as much as the journaler
+% itself.
+%
+% The interface is simple and its use should be self-explanatory.  Not
+% all features of the journaling package are available through this
+% interface, although by subclassing JournalBag the range of accessible
+% features can be extended.
+%
+% Journal features specifically supported by this interface are:
+%
+%    * Recording
+%    * Synchronous (/Loose) or Asynchronous playback (/None)
+%    * Variable playback speed
+%    * Continuous play mode
+%    * Arbitrary script file
+%
+% Note that /Strict synchronization is explicitly not supported.
+%
+% Scripts may play with the interface to set speed, synchronization and
+% continuous play mode.  The user cannot do these things during playback
+% since they require mouse clicks, which are defined to abort script
+% playback.  All options must be set before playback begins.
+%
+% This file defines the relevant classes but does not create an
+% instance.  A separate file (runjournal.ps) will actually bring up a
+% journal control window.
+%
+% People who have worked on this:
+%  
+%     Jerry Farrell, ????
+%     Steven Isaac, 8/25/87
+%     Nayeem Islam and Bruce Martin, 9/20/88
+%     Bruce Martin, 7/8/89
+%     Bruce Martin and Garth Snyder, 7/30/89
+%
+     
+% Be sure that the journaling package is loaded.
+
+/ClassJournal where {
+    pop
+}{
+    (NeWS/journal.ps) (r) file cvx exec
+} ifelse
+
+%
+% If eventsecurity is turned on, print a message to console and exit
+%
+createevent /Synthetic get {
+	console (Journalling cannot be run in secure mode. Please\n) fprintf
+	console (start server with -defeateventsecurity.\n) fprintf
+	exit
+} if
+
+%
+% BigButtonGraphic: A framed, round-cornered rectangle with a drop
+% shadow, labelled below with a centered thing and displaying
+% prominently a groovy glyph.
+%
+% This class is meant to be used as a graphic for an OpenLookButton, so
+% it obeys the OLB highlighting state conventions.  The button state is
+% represented as a three-element array containing the following flags:
+%
+%   /Highlighted or /Normal
+%   /Enabled or /Disabled
+%   /Emphasized or /Normal
+% 
+% Highlighting is accomplished by insetting the button's roundrect
+% and inverting the color scheme inside.  Disabling is shown by greying
+% out the button.  Emphasis is not supported.
+% 
+% The record, stop, and play buttons are BigButtonGraphics.
+% 
+
+/BigButtonGraphic ClassGraphic
+
+    % Instance Variables:
+
+    [
+	/ThingX		    % Horz. location of the label thing. 
+	
+	/ImageY		    % Location of bottom edge of button image
+
+	/ButtonWidth	    % Image width and height, minus size of
+	/ButtonHeight	    % drop shadow.  It's the "top" of the button.
+
+	/ButtonCornerRadius % The curvature of the button's corners.
+	
+	/LegendWidth	    % The legend is the portion of the button
+	/LegendHeight	    % which responds to highlight requests.
+			    % The legend size along each dimension is
+			    % obtained by subtracting twice the
+			    % ButtonBorderWidth from the basic button
+			    % dimension.
+			    
+	/LegendY	    % Vert. location of legend.
+	
+	/LegendCornerRadius % The curvature of the legend's corners
+
+	/GlyphX		    % Location of the groovy glyph, relative to
+	/GlyphY		    % the whole graphic.
+	
+	/GlyphSize	    % Width and height of the (square) glyph.
+			    % This is a percentage of the smallest
+			    % dimension of the legend. 
+    ]
+
+classbegin
+
+    % Class Variables:
+
+    /Terminal?		    true def
+
+    % The minsize method guesstimates an appropriate minimum size by
+    % finding the size of the graphic's thing, then scaling vertically
+    % by MinSizeFudgeFactorY.
+
+    /MinSizeFudgeFactorY    2.5 def
+
+    % Size of the drop shadow.  This value is used as an X and Y
+    % displacement.
+
+    /Shadow		    1 def
+
+    % Width of the button's frame.  The button is first outlined, then
+    % outlined again inset by this amount to form a closed solid.
+    
+    /ButtonBorderWidth	    1 def
+    
+    % The amount to inset the legend from the edge of the button.  Both
+    % LegendGap and ButtonBorderWidth are relative to the true edge
+    % of the button, so the actual gap between the button's frame and
+    % the edge of the legend is LegendGap - ButtonBorderWidth.
+    
+    /LegendGap		    2 def
+
+    % The amount of space between the thing and the button image.
+
+    /LabelGap		    3 def
+
+    % The corner radius of the button or legend expressed as a percentage
+    % of height.
+
+    /RadiusFactor	    .13 def
+
+    % Color to use to show that the button is disabled.  When the
+    % button isn't disabled, this color is replaced with the graphic's
+    % FG.
+    
+    /DisabledColor	    .7 .7 .7 rgbcolor def
+
+    % The percentage of the legend's smallest dimension occupied by
+    % the groovy glyph.
+
+    /GlyphLegendPctSize	    .55 def
+
+    % Methods:
+
+    % Overridden
+
+    /NewInit { % thing => --
+    
+        /NewInit super send
+	/setthing self send
+        [/Normal /Enabled /Normal] /setinitstate self send
+	
+    } def
+
+
+    %
+    % The validation proc for this graphic just computes where
+    % everything should be placed when the graphic gets drawn.
+    %
+
+    /validate { % -- => --
+    
+	/size self send	1 index			% gw gh gw 
+	/ThingSize self send			% gw gh gw tw th
+
+	/ImageY
+	    exch LabelGap add store		% gw gh gw tw
+	
+	sub 2 div /ThingX exch store		% gw gh
+
+	/ButtonHeight
+	    exch ImageY sub Shadow sub store	% gw
+	/ButtonWidth
+	    exch Shadow sub store		% --
+
+	/ButtonCornerRadius
+	    ButtonHeight RadiusFactor mul store
+
+	/LegendWidth
+	    ButtonWidth LegendGap dup add sub store
+	/LegendHeight
+	    ButtonHeight LegendGap dup add sub store
+
+	/LegendY
+	    ImageY LegendGap add Shadow add store
+
+	/LegendCornerRadius
+	    LegendHeight RadiusFactor mul store
+
+	/GlyphSize
+	    LegendWidth LegendHeight min GlyphLegendPctSize mul store
+
+	/GlyphX
+	    ButtonWidth GlyphSize sub 2 div store
+	/GlyphY
+	    ButtonHeight GlyphSize sub 2 div ImageY add store
+
+	/validate super send
+	
+    } def
+
+
+    /paint { % - => -
+    
+	/valid? self send not {
+	    /validate self send
+	} if
+
+	% We need to preserve the current point since we're going to
+	% pass part of the job along to Fix.
+	
+	currentpoint
+
+	% Paint the shadow
+	
+	FG setcolor
+
+	ButtonCornerRadius Shadow ImageY	% X Y r x y
+	    ButtonWidth ButtonHeight		% X Y r x y w h
+	rrectpath fill
+
+	% Paint the face of the button.  The frame is first filled in
+	% with FG, then the area inside the frame is filled
+	% with BG.
+	
+	ButtonBorderWidth ButtonCornerRadius	% X Y b r
+	    0 ImageY Shadow add			% X Y b r x y
+	    ButtonWidth ButtonHeight		% X Y b r x y w h
+	6 copy rrectframe eofill		% X Y b r x y w h
+
+	BG setcolor
+	insetrrect rrectpath fill		% X Y
+
+	moveto
+
+	% Paint the glyph and highlight correctly.
+
+	[true true false] Fix
+
+    } def
+
+
+    % Handle painting after damage (or when called by /paint).
+    
+    /Fix { % [bool bool bool] => -
+    
+	/valid? self send not {
+	    /validate self send
+	} if
+
+	aload length {1 {false} 3 {pop}} case
+
+	% Don't worry about doing two /state self sends, because 
+	% the expectation is that only one state will change at a time.
+
+	{/state self send 1 get /PaintState self send} if
+	{/state self send 0 get /PaintState self send} if
+	    
+    } def
+
+
+    % Repaint to reflect state.
+    
+    /PaintState { % name => -
+    
+	dup { % case
+	
+	    /Highlighted /Normal {
+
+		currentpoint
+
+		LegendCornerRadius		    % name X Y r
+		    LegendGap LegendY		    % name X Y r x y
+		    LegendWidth LegendHeight	    % name X Y r x y w h
+		rrectpath			    % name X Y
+
+		3 -1 roll			    % X Y name
+
+		/Highlighted eq {
+		    FG setcolor fill
+		    BG setcolor
+		}{
+		    BG setcolor fill
+		    FG setcolor
+		} ifelse
+		    
+		GlyphX GlyphY moveto
+		/FunctionGlyph self send
+
+		moveto
+	    }
+
+	    /Enabled /Disabled {
+	    
+		/Enabled eq {
+		    FG setcolor
+		}{
+		    DisabledColor setcolor
+		} ifelse
+
+		ThingX 0 moveto
+		/ShowThing self send
+	    }
+	    
+	} case
+    } def
+
+    /minsize { % - => width height
+    
+	/ThingSize self send
+	MinSizeFudgeFactorY mul
+	
+    } def
+
+    /FunctionGlyph { % - => -
+	SubClassResponsibility
+    } def
+
+classend def
+
+/StopButtonGraphic BigButtonGraphic [] classbegin
+
+    % Override
+
+    /NewInit { % -- => --
+	[(STOP) TextFont] /NewInit super send
+    } def
+    
+    /FunctionGlyph { % - => -
+	GlyphX GlyphY GlyphSize dup rectpath fill
+    } def
+    
+classend def
+
+/RecordButtonGraphic BigButtonGraphic [] classbegin
+
+    % Override
+    
+    /NewInit { % -- => --
+	[(RECORD) TextFont] /NewInit super send
+    } def
+	
+    /FunctionGlyph { % - => -
+    
+	GlyphX GlyphY GlyphSize dup .15 mul rectpath
+	GlyphX GlyphSize add GlyphY GlyphSize add moveto
+	GlyphSize neg dup 2 div exch rlineto
+	GlyphSize dup 2 div neg exch rlineto
+	closepath fill
+	
+    } def
+    
+classend def
+
+/PlayButtonGraphic BigButtonGraphic [] classbegin
+
+    % Override
+    
+    /NewInit { % -- => --
+	[(PLAY) TextFont] /NewInit super send
+    } def
+
+    /FunctionGlyph { % - => -
+    
+	GlyphX .1 GlyphSize mul add GlyphY moveto
+
+	GlyphSize dup .9 mul exch		% w h
+	2 div 2 copy rlineto			% w h/2 
+	exch neg exch rlineto			% --
+	closepath fill
+	
+    } def
+    
+classend def
+
+
+%
+% classes PageViewNumer and SliderGroup lifted intact from PageView.
+% If this ever becomes a utility class, please remove these...
+%
+
+/PageViewNumeric OpenLookNumeric []
+classbegin
+
+    /CallNotify? { pop true } def
+
+classend def
+
+
+/SliderGroup ClassBag [/Minvalue /Maxvalue /clientnotifyproc /Label /BX /w]
+classbegin
+
+    /Initvalue 1 def		% inital value of slider
+    /Gap 8 def			% spacing between slider
+
+    /NewInit { % string /notifyproc min max => -
+	/NewInit super send
+
+	/Maxvalue exch def
+	/Minvalue exch def
+	/clientnotifyproc exch cvx def
+	/Label exch def
+
+% Create Label Graphic
+	/blabel [
+	    Label /new OpenLookLabelGraphic send
+	] /addclient self send
+
+% Create Numeric Contol
+	/bnumber [
+	    /NumericCallback self soften buildsend
+	    framebuffer /new PageViewNumeric send
+	    Minvalue Maxvalue /setrange 3 index send
+	    0 /setincrement 2 index send
+	    0 /setdisplaychars 2 index send
+	    Initvalue /setvalue 2 index send
+	] /addclient self send
+
+% Create Minimal Value Graphic
+
+	/bmin [
+	    Minvalue NumberString /new OpenLookLabelGraphic send
+	] /addclient self send
+
+% Create Slider
+	/slider [
+	    /SliderCallback self soften buildsend
+	    framebuffer /new OpenLookHorizontalSlider send
+	    1 /setnormalization 2 index send
+	    [ /Line 1 ] /setdelta 2 index send
+	    Minvalue Maxvalue /setrange 3 index send
+	] /addclient self send
+
+% Create Maximum Value Graphic
+	/bmax [
+	    Maxvalue NumberString /new OpenLookLabelGraphic send
+	] /addclient self send
+    } def
+
+    /HorLayout { % yval /thing
+	BX 3 -1 roll
+	/minsize 3 index SendMessage
+	/w 2 index def
+	/reshape 5 index SendMessage
+	/BX BX w add Gap add def
+	pop
+    } def    
+
+    /Layout { % - => -
+	/Layout super send
+	/BX 0 def
+
+	0 /blabel /HorLayout self send
+
+	-4 /bnumber /HorLayout self send
+
+	0 /bmin /HorLayout self send
+	BX -1
+	/BX Width /minsize /bmax SendMessage pop 2 mul sub Gap sub def
+	BX
+	0 /bmax /HorLayout self send
+	2 index sub Gap sub
+	/minsize /slider SendMessage exch pop
+	/invalidate /slider SendMessage
+	/reshape /slider SendMessage
+    } def
+
+% override
+    /StrokeAndFillCanvas { pop pop pop } def
+
+    /SendMessage { /sendclient self send } def
+
+    /SliderCallback { % slider => -
+	/value exch send
+	/setvalue /bnumber SendMessage
+	self clientnotifyproc
+    } def
+
+    /NumericCallback { % textctrl => -
+	/value exch send
+	/setvalue /slider SendMessage
+	self clientnotifyproc
+    } def
+
+    /NumberString { 10 string cvs } def
+
+    /value { % - => number
+	/value /slider SendMessage
+    } def
+
+    /setvalue { % number => -
+	dup /setvalue /slider SendMessage
+	/setvalue /bnumber SendMessage
+    } def
+
+    /setrangeandval { % val min max
+	/Maxvalue exch def
+	/Minvalue exch def
+	Minvalue Maxvalue /setrange /bnumber SendMessage
+	Minvalue Maxvalue /setrange / slider SendMessage
+	Minvalue NumberString /setthing /bmin SendMessage
+	Maxvalue NumberString /setthing /bmax SendMessage
+	/setvalue self send
+    } def
+
+classend def
+
+
+%
+% JournalBag implements a bag that controls a journal.  Once you've got
+% one of these in some kind of frame, you're home free.
+%
+
+/JournalBag [ AbsoluteBag ClassJournal ] [] classbegin
+
+    % Default coordinate system for this bag.
+
+    /TopDown? false def
+
+    % Override
+
+    /NewInit { % -- => --
+    
+	/NewInit super send
+
+	/recordbutton [
+	    20 5 /new RecordButtonGraphic send
+		{/record /sendtarget 3 -1 roll send}
+		OpenLookButton
+	] /addclient self send
+	self soften /settarget /recordbutton /sendclient self send
+
+	/stopbutton [
+	    100 5 /new StopButtonGraphic send
+		{/maybejournalstop /sendtarget 3 -1 roll send}
+		OpenLookButton
+	] /addclient self send
+	self soften /settarget /stopbutton /sendclient self send
+
+	/playbutton [
+	    180 5 /new PlayButtonGraphic send
+		{/play /sendtarget 3 -1 roll send}
+		OpenLookButton
+	] /addclient self send
+	self soften /settarget /playbutton /sendclient self send
+
+	% REMIND: SliderGroup doesn't deal with targets, sigh...
+	
+	/Speed [
+	    10 85 (Speed:) [
+		{
+		    /value exch send
+		    dup 0 ne {4 5 div mul 4 sub 2 exch exp} if
+		    /setspeed self send
+		}
+	    ] self buildsend 0 10 SliderGroup
+	] /addclient self send
+
+	/journalfilelabel [
+	    10 110 (File:) /new OpenLookLabelGraphic send
+	] /addclient self send
+
+	/journfile [
+	    40 105 {
+		/value 1 index send
+		/setjournalfile /sendtarget 4 -1 roll send
+	    } OpenLookTextControl
+	] /addclient self send
+	self soften /settarget /journfile /sendclient self send
+
+	/synclabel [
+	    10 135 (Synchronous:) /new OpenLookLabelGraphic send
+	] /addclient self send
+
+	/synchronous [
+	    95 135 {
+		/value 1 index send {/Loose} {/None} ifelse
+		/setsynchronization /sendtarget 4 -1 roll send
+	    } OpenLookCheckBox
+	] /addclient self send
+	self soften /settarget /synchronous /sendclient self send
+
+	/playforeverlabel [
+	    130 135 (Play Forever:) /new OpenLookLabelGraphic send
+	] /addclient self send
+
+	/playforever [
+	    210 135 {
+		/value 1 index send
+		/setplayforever /sendtarget 4 -1 roll send
+	    } OpenLookCheckBox
+	] /addclient self send
+	self soften /settarget /playforever /sendclient self send
+
+    } def
+
+    /LayoutClient { % name [x y w h] angle [Tx Ty] => -
+    
+        gsave
+	
+	    aload pop translate rotate aload pop
+	    /reshape 6 -1 roll /sendclient self send
+	    
+        grestore
+	
+    } def
+
+
+    /Layout { % -- => --
+
+	/recordbutton /client self send {
+	    0 0 60 65 /reshape 6 -1 roll send
+	} if
+
+	/stopbutton /client self send {
+	    0 0 60 65 /reshape 6 -1 roll send
+	} if
+
+	/playbutton /client self send {
+	    0 0 60 65 /reshape 6 -1 roll send
+	} if
+
+	/Speed /client self send {
+	    /speed self send
+	    dup 0 ne {
+		log 2 log div % log base 2
+		4 add 5 4 div mul
+		10 min 0 max
+	    } if
+	    /setvalue 2 index send
+	    0 0 265 15 /reshape 6 -1 roll send
+	} if
+
+	/journalfilelabel /client self send {
+	    0 0 /move 4 -1 roll send
+	} if
+
+	/journfile /client self send {
+	    0 0 210 /size 4 index send exch pop /reshape 5 index send
+	    /journalfile self send /setvalue 2 index send
+	    true /setkeyconsumer 3 -1 roll send
+	} if
+
+	/synclabel /client self send {
+	    0 0 /move 4 -1 roll send
+	} if
+
+	/synchronous /client self send {
+	    /synchronization self send {
+		/None {false}
+		/Loose {true}
+		/Strict {/Loose /setsynchronization self send true}
+	    } case /setvalue 3 -1 roll send
+	} if
+
+	/playforeverlabel /client self send {
+	    0 0 /move 4 -1 roll send
+	} if
+
+	/playforever /client self send {
+	    /playforever? self send
+	    /setvalue 3 -1 roll send
+	} if
+
+	/Layout super send
+
+    } def
+
+
+    % Don't want to stop the journaler if the playback script whomps on
+    % the stop button.
+    
+    /maybejournalstop { % -- => --
+	/journalstate self send /Playing ne {
+	    /stop self send
+	} if
+    } def
+
+    /play { % - =>-
+	/journfile /client self send {
+	    null /checknotify 3 -1 roll send
+	} if
+	/play super send
+    } def
+
+    /record { % - => -
+	/journfile /client self send {
+	    null /checknotify 3 -1 roll send
+	} if
+	/record super send
+    } def
+
+    /ErrorMessages dictbegin
+	/EventLoggerBusy	(Another process is already logging events) def
+	/BadJournalFileName	(Couldn't open the journal file) def
+	/JournalBusy		(Tried to play while recording or vice versa)def
+	/BadSetSpeedValue	(Non-numeric value for /setspeed) def
+	/BadSetSyncValue	(Bad policy name given to /setsynchronization) def
+	/BadSetFileValue	(Non-string given to /setjournalfile) def
+	/BadSetPlayForever	(Non-boolean given to /setplayforever) def
+	/BadSetTimeoutValue	(Non-numeric given to /settimeout) def
+	/SecureMode		(Cannot run journalling in secure mode) def
+    dictend def
+
+    % Override
+    
+    /JournalError { % errorname => --
+    
+	ErrorMessages 1 index known {
+	    ErrorMessages exch get
+	}{
+	    (Internal Error: ) exch 100 string cvs append 
+	} ifelse
+
+	[ [ (Journal Error!) 4 -1 roll ]
+	    [
+		[ (Continue) nullarray cvx (\177) ]
+		[ (Quit) /destroy /parent self send soften buildsend (\r) ]
+	    ]
+	] framebuffer /new NoticeFrame send
+	
+	1 /setdefault 2 index send
+	/place 1 index send
+	/activate 1 index send
+	/map 1 index send
+
+	/EventMgr 1 index send waitprocess pop
+	/destroy exch send
+	
+    } def
+
+    % Override
+    
+    /ChangeState { % name => --
+    
+	() (State: ) 2 index 40 string cvs append
+	    /setfooter /Parent self send send
+	/ChangeState super send
+	
+    } def
+
+    % Override
+    
+    /Synchronize { % dict => --
+    
+	(Synchronizing...) null	/setfooter /Parent self send send
+	/Synchronize super send
+	() null	/setfooter /Parent self send send
+	
+    } def
+
+    % Override
+
+    /preferredsize { % -- => width height
+	270 210
+    } def
+	
+classend def
+
+
+/JournalFrame [ OpenLookBaseFrame ] [] classbegin
+
+    % Override
+
+    /NewInit { % client canvas => --
+
+	[/Footer true /Reshape false] /NewInit super send
+
+	(Journaling Control Panel) /setlabel self send
+	(Journal) /seticonlabel self send
+
+	() (State: )
+	    /journalstate /client self send send
+	    40 string cvs append
+	/setfooter self send
+	
+	{
+	    gsave
+		/location self send translate
+		/size self send scale
+		FG setcolor
+		.02 .3 .94 .65 rectpath
+		gsave BG setcolor fill grestore
+		stroke
+		.27 .7 .20 0 360 arc stroke
+		.73 .7 .20 0 360 arc stroke
+		.27 .7 .05 0 360 arc stroke
+		.73 .7 .05 0 360 arc stroke
+		.4 .45 moveto
+		.5 .55 lineto
+		.6 .45 lineto
+		closepath stroke
+	    grestore
+	} /seticon self send
+
+    } def
+
+classend def

@@ -1,0 +1,11 @@
+
+Example "presentation style" framework and "visibox" demo
+
+File  presentation.lisp  contains the framework; see the comments at
+the beginning of the file.  Compiler warnings about "undefined functions"
+(contains-xy-p, overlaps-region-p, redraw, enter, exit) can be ignored;
+these methods make up a protocol that must be supplied by an application.
+
+The sample application is in file  vb-demo.lisp ; see the comments with
+the function vb-demo for some basic things to try.
+

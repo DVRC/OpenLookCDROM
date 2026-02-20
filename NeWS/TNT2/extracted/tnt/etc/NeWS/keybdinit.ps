@@ -1,0 +1,220 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+% 	@(#)keybdinit.ps 23.4 91/02/11
+
+%   keybdinit.ps:
+%	computes the default set of dictionaries for this keyboard,
+%	since the pre-computed version doesn't seem to exist.
+
+KeyTable begin
+    UserProfile /PrivateKeyTable 2 copy known {
+	get LoadFile
+    } {
+	pop pop
+        KeyboardType {
+	    //KB_KLUNK {
+	        (NeWS/sun0_keys.ps) LoadFile
+	    }
+	    //KB_SUN2 {
+	        (NeWS/sun2_keys.ps) LoadFile
+	    }
+	    //KB_VT100 {
+	        (NeWS/sun1_keys.ps) LoadFile
+	    }
+	    //KB_SUN3 {
+	        (NeWS/sun3_keys.ps) LoadFile
+	    }
+	    //KB_SUN4_FRANCE_BELGIUM {
+	        (NeWS/FranceBe4.ps) LoadFile
+	    }
+	    //KB_SUN4_CANADA_FRENCH {
+	        (NeWS/CanadaFr4.ps) LoadFile
+	    }
+	    //KB_SUN4_DENMARK {
+	        (NeWS/Denmark4.ps) LoadFile
+	    }
+	    //KB_SUN4_GERMANY {
+	        (NeWS/Germany4.ps) LoadFile
+	    }
+	    //KB_SUN4_ITALY {
+	        (NeWS/Italy4.ps) LoadFile
+	    }
+	    //KB_SUN4_JAPAN {
+	        (NeWS/Japan4.ps) LoadFile
+	    }
+	    //KB_SUN4_NETHERLANDS {
+	        (NeWS/Nether4.ps) LoadFile
+	    }
+	    //KB_SUN4_NORWAY {
+	        (NeWS/Norway4.ps) LoadFile
+	    }
+	    //KB_SUN4_PORTUGAL {
+	        (NeWS/Portugal4.ps) LoadFile
+	    }
+	    //KB_SUN4_SPAIN {
+	        (NeWS/Spain4.ps) LoadFile
+	    }
+	    //KB_SUN4_SWEDEN_FINLAND {
+	        (NeWS/SwedenFi4.ps) LoadFile
+	    }
+	    //KB_SUN4_SWITZERLAND_FRENCH {
+	        (NeWS/SwitzFr4.ps) LoadFile
+	    }
+	    //KB_SUN4_SWITZERLAND_GERMAN {
+	        (NeWS/SwitzGe4.ps) LoadFile
+	    }
+	    //KB_SUN4_UK {
+	        (NeWS/UK4.ps) LoadFile
+	    }
+	    //KB_SUN4_US {
+	        (NeWS/US4.ps) LoadFile
+	    }
+	    //KB_SUN4_XEROX {
+	        (NeWS/Xerox4.ps) LoadFile
+	    }
+	    /Default {
+	        false
+	    }
+        } case
+    } ifelse
+end			%  bool, propagating result of LoadFile
+
+
+{	%  /KeyTable is now defined, for good or ill;
+	%  the bool on the stack indicates whether it was successful.
+	%  This block is the true arm of an if statement
+	%  which extends to the end of the file.
+
+    /ascii000 growabledict def		%  unshifted keymap
+    /asciiC00 growabledict def		%  Control-shifted
+    /ascii0S0 growabledict def		%  Shifted
+    /ascii00L growabledict def		%  Caps-Locked
+    /ascii0A0 growabledict def		%  Altgraphed
+    /kanakeys growabledict def		%  kana characters
+
+    /numpadN  growabledict def		%  for NumLock on a type-4 keyboard
+
+    /FKeyNames growabledict def
+    /FKeyStrings growabledict def
+    /CursKeyStrings growabledict def
+
+    /doKey {			% name|value [ key class ]
+	aload pop {					%  name|value key class
+	    /anydown {					%  name|val key
+		1 index type /integertype ne {		%  name key
+		    KeyNames 3 -1 roll get		%  key val
+		} {
+		    exch
+		}ifelse
+		[ ascii000 asciiC00 ascii0S0 ascii00L ] {
+		    2 index 2 index put
+		} forall
+		pop pop
+	    }
+	    /kana
+	    /kana_shift {
+		1 index type /integertype ne {		%  name key
+		    KeyNames 3 -1 roll get		%  key val
+		} {
+		    exch
+		}ifelse
+	        kanakeys 3 1 roll put
+	    }
+	    /letter {
+		exch
+		ascii0S0 2 index 2 index put
+		ascii000 2 index 2 index toLower put
+		asciiC00 2 index 2 index toControl put
+		ascii00L 3 1 roll put
+	    }
+	    /controlled {				%  name|val key
+		1 index type /integertype ne {		%  name key
+		    KeyNames 3 -1 roll get		%  key val
+		} {
+		    exch
+		}ifelse
+		asciiC00 3 1 roll put 
+	    }
+	    /shifted {					%  name|val key
+		1 index type /integertype ne {		%  name key
+		    KeyNames 3 -1 roll get		%  key val
+		} {
+		    exch
+		}ifelse
+	       ascii0S0 3 1 roll put
+	    }
+	    /altgraphed {				%  name|val key
+		1 index type /integertype ne {		%  name key
+		    KeyNames 3 -1 roll get		%  key val
+		} {
+		    exch
+		}ifelse
+	       ascii0A0 3 1 roll put
+	    }
+	    /unshifted {				%  name|val key
+		1 index type /integertype ne {		%  name key
+		    KeyNames 3 -1 roll get		%  key val
+		} {
+		    exch
+		}ifelse
+		ascii000 2 index 2 index put
+		ascii00L 3 1 roll put
+	    }
+	    /function {
+		FKeyNames 1 index 3 index put
+		FKeyStrings exch FunctionStrings 4 -1 roll get put
+	    }
+	    /cursor {
+		CursKeyStrings exch CursorStrings 4 -1 roll get put
+	    }
+	    /number {
+		numpadN exch				%  name numpadN key
+		KeyNames 4 -1 roll get put
+	    }
+	    /non_character
+	    /shift_key
+	    /lock_key
+	    /text_func {
+		pop pop
+	    }
+	    /Default {					%  name|value key
+		dumpKeyPair
+	    }
+	} case
+    } def
+
+    /dumpKeyPair {		%  name|value key  =>  --
+	stack
+	(Couldn't do key: ) print
+	(            ) cvs print (:\t) print
+	dup type {
+	  /integertype {
+		(') print
+		( ) dup 0 4 -1 roll put print
+		('\n) print
+	    }
+	  /nametype {
+		(/) print
+		(                             ) cvs print
+		(\n) print
+	    }
+	  /stringtype {
+		(\() print print
+		(\)\n) print
+	    }
+	  /Default {
+		==
+	    }
+	} case
+    } def
+
+    KeyTable { doKey } forall
+
+
+    asciiC00 /SPkey keyforsymbol 0 put		% special case:  ^SP  ==  NUL
+
+} if

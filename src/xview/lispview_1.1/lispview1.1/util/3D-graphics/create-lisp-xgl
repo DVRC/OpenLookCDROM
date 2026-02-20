@@ -1,0 +1,16 @@
+#! /bin/csh -f
+
+# Construct a lisp image having the XGL interface.
+
+set verbose
+
+# Prevent your own lisp-init stuff from getting into the image
+mv ~/lisp-init.lisp ~/lisp-init.lisp.orig
+
+# You might need a pathname for lisp-view here
+lisp-view << EOF
+(load "build.lisp")
+(disksave-xgl)  ;; Put image in "lisp-xgl" by default
+EOF
+
+mv ~/lisp-init.lisp.orig ~/lisp-init.lisp

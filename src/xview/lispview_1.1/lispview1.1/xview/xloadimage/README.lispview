@@ -1,0 +1,70 @@
+LispView library version of xloadimage: libxloadimage.a
+
+I've made some minor changes to xloadimage so that it can be used as 
+a C library.  The library, libxloadimage.a,  is used by LispView to 
+read image files, it depends on the functions loadImage, freeImage, a
+truncated version of sendImagetoX, and the structures: RGBMap and Image.
+The Makefile Makefile.lispview should be used to recompile the sources
+and build the library - libxloadimage.a.  The library does not contain 
+all of the objects that are linked into the xloadimage program.
+
+
+The changes I've made are itemized below.
+
+- imagetypes.h 
+Changed ImageTypes table, now only includes support for Sun
+Pixrect/Icon and Raster files, X11 bitmap, pixmap, and window dump
+files, and portable bitmap format.  This change cuts the size of the 
+library by about half.  Since the other formats can all be converted
+to PBM format this change should be liveable.  If not, it's easy enough
+to change imagetypes.h and build a new version of the library.
+
+
+- imagetypes.c 
+Added ";;;" prefix to messages printed by loadImage
+
+
+- sunraster.c 
+Changed babble function - preceeds message with ";;;"
+
+Changed calls to exit in sunRasterLoad to EXIT_SUNRASTERLOAD.
+
+Changed calls to exit in sunRead to EXIT_SUNREAD, sunread is an 
+int function (was void)
+
+
+- xbitmap.c 
+Changed single call to exit to (badFile) to 
+{freeImage(image); zclose(zf); return( (Image *)0 );}
+
+Changed babble code - preceed message with ";;;"
+
+
+- send.c => lv-send.c
+New version for LispView called lv-send.c.  The new version doesn't attempt
+to compress the colormap and like all of the other modules it doesn't call exit
+(anymore).  
+
+
+xpixmap.c
+xwd.c
+zio.c
+new.c
+
+
+- sunicon.c 
+This is new.  It has the same constraints as the XView version, 
+libxvol/icon/icon_load.c and, unlike most of the other modules,
+it doesn't automatically uncompress it's input (id doesn't use the zio
+input module).  It's unlikely anyone will ever notice.
+
+
+The following files aren't used at the moment but they have been modified:
+
+g3.c - doesn't call exit (unless compiled with -DALLOW_G3_ERRORS)
+cmuwmraster.c  - calls to exit replaced with EXIT_CMUWMLOAD
+faces.c - calls to exit replaced with EXIT_FACESLOAD
+fbm.c - single call to exit in fbmLoad replaced with return( (Image *)0 ); /* exit(1); */
+
+
+

@@ -1,0 +1,280 @@
+%
+%	@(#)paintroot.ps 23.7 91/02/11
+%
+%
+% Establish a default framebuffer painting procedures.
+% InitPaintRoot is used during loading the rest of the initialization files.
+% It can be over-ridden by startup.ps.
+% PaintRoot is used from then on.
+%
+
+systemdict 
+begin
+
+    %
+    % Need to make this a procedure for multi-screen to work.
+    %
+    /ColorDisplay? { framebuffer /Color get } def		% Color or Gray display
+    
+    /RootColor {
+	ColorDisplay? { 
+	    .247 .624 .749 rgbcolor
+	} { 
+	    .5 dup dup rgbcolor 
+	} ifelse 
+    } def
+
+    /PaintRoot {
+	gsave
+	    framebuffer setcanvas
+	    RootColor setcolor
+	    clippath fill
+	grestore
+    } def
+
+    /InitPaintRoot {
+	45 dict 
+	begin
+	    framebuffer setcanvas
+	    /normal RootColor def
+	    ColorDisplay? {
+		/sd 1 def
+		/bright 1 dup dup rgbcolor def
+		/dim 0 .25 .25 rgbcolor def
+	    }{
+		/sd 3 def
+		/bright 1 dup dup rgbcolor def
+		/dim 0 dup dup rgbcolor def
+	    } ifelse
+
+	    /size 64 def
+	    /space 25 def
+	    /banner (OpenWindows) def
+	    /trademark (TM) def
+	    /versionstring openwinversion (%) sprintf def
+
+	    /textfont /Helvetica-BoldOblique findfont size scalefont def
+	    /tmfont /Helvetica-BoldOblique findfont size 3 div scalefont def
+
+	    /embossrect { % x1 y1 x2 y2 r => -
+		5 dict 
+		begin
+		    /r exch def
+		    /y2 exch def
+		    /x2 exch def
+		    /y1 exch def
+		    /x1 exch def
+		    gsave
+			x1 sd add y1 sd sub x2 sd add y2 sd sub r rrect
+			dim setcolor stroke
+			x1 1 sub y1 1 add x2 1 sub y2 1 add r rrect
+			bright setcolor stroke
+		    grestore
+		    ColorDisplay? {
+			x1 y1 x2 y2 r rrect stroke
+		    } if
+		end
+	    } def
+
+	    /emboss { % s => -
+		1 dict 
+		begin
+		    /s exch def
+		    gsave
+			sd sd neg rmoveto
+			dim setcolor
+			s show
+		    grestore
+
+		    ColorDisplay? {
+			gsave
+		    } if
+		    -1 1 rmoveto
+		    bright setcolor
+		    s show
+		    ColorDisplay? {
+			grestore
+			s show
+		    } if
+		end
+	    } def
+
+	    /rrect { % x1 y1 x2 y2 r => -
+		5 dict 
+		begin
+		    /r exch def
+		    /y2 exch def
+		    /x2 exch def
+		    /y1 exch def
+		    /x1 exch def
+		    x1 y1 r add moveto
+		    x1 y2 x2 y2 r arcto pop pop pop pop
+		    x2 y2 x2 y1 r arcto pop pop pop pop
+		    x2 y1 x1 y1 r arcto pop pop pop pop
+		    x1 y1 x1 y2 r arcto pop pop pop pop
+		end
+	    } def
+
+	    % retrieve visual of given class from list of available visuals
+	    /getvis {	% class => vis true | false
+		1 dict begin
+		    /class exch def
+	            false
+	            framebuffer /VisualList get {
+		        dup /Class get		% false vis class
+		        class eq {
+		            exch pop		% wipe the false
+		            true exit		% vis true
+		        } {
+		            pop
+		        } ifelse
+	            } forall
+		end
+	    } def
+
+	    /StaticGray  0 def
+	    /GrayScale   1 def
+	    /StaticColor 2 def
+	    /PseudoColor 3 def
+
+	    % return a supported dynamic visual, preferring PseudoColor
+	    /getdynvis {	% - => vis true | false
+    		PseudoColor getvis {
+		    true
+		}{
+	    	    GrayScale getvis {
+			true
+		    }{
+				false
+		    } ifelse
+		} ifelse
+	    } def
+
+	    % utility for allocating a read-only color
+	    /coloralloc {	% color => -
+	        dup currentcanvas /Colormap get	% color color cmap
+	        exch createcolorsegment		% color cmapentry
+	        def				% 
+            } def
+
+	    /GrayWindow? { 	% cv => bool
+		/Visual get /Class get
+	    	dup StaticGray eq exch GrayScale eq or		
+	    } def
+
+	    /GrayDisplay? { 	% - => bool
+		framebuffer GrayWindow?
+	    } def
+
+	    gsave
+
+	    % resize canvas to full-screen, map it and install its colormap.
+	    % stash it away in the systemdict and set it to currentcanvas.
+	    /preparebanner {	% cv => -
+	        dup dup framebuffer setcanvas clipcanvaspath reshapecanvas 	% cv cv 
+	        setcanvas /Mapped true put					% -
+	        currentcanvas /Colormap get /Installed true put			% -
+	        systemdict begin 
+		    /BannerCanvas currentcanvas def
+	        end
+	    } def
+
+	    % returns true if colormap is dynamic (Grayscale, PseudoColor, Directcolor)
+	    /isdynamic? {		% cmap => bool
+	        /Visual get /Class get 2 mod 1 eq
+	    } def
+
+	    % is default colormap dynamic?
+	    /dyndefault? {		% - => bool
+		framebuffer /Colormap get isdynamic?
+	    } def
+	
+	    % For 8-bit color screens, draw banner on a fullscreen canvas with a 
+	    % dynamic colormap in order to get exactly the desired banner color.
+	    % This colormap will be the default colormap unless the default
+	    % visual of the screen is static.
+	    % 
+	    % For 8-bit grayscale screens, just always draw the banner with
+	    % the default colormap.  Doing otherwise leads to some flashing
+	    % behavior which is to tricky to try to finesse.  The banner
+	    % colors will be slightly different between the dynamic and
+	    % static default visuals, but this should not be a major
+	    % problem.
+	    % 
+	    % REMIND: 24-bit screens are not yet supported here.
+	    %
+	    ColorDisplay? {	% vis
+	        % color case 
+		%
+		% must manually allocate colors. If fb has dynamic cmap,
+		% just use it, otherwise create a new canvas which uses
+		% a private dynamic colormap.
+		dyndefault? GrayDisplay? or {
+	   	    framebuffer setcanvas
+		}{
+	   	    framebuffer getdynvis pop dup createcolormap newcanvas 	
+		    preparebanner
+
+		    % allocate banner colors.  Since this is done early, we don't
+		    % have to deal with the colormap-full case.
+		    % This is necessary because when we finally unmap this canvas, 
+	    	    % there will be a point in time when both the blue root bkgd and 
+	            % the X11 gray stipple will be present at the same time.
+	    	    1 1 1 rgbcolor coloralloc
+	            0 0 0 rgbcolor coloralloc
+		} ifelse			
+			    
+	    	normal coloralloc
+		bright coloralloc
+		dim coloralloc
+	    } if
+
+		clippath pathbbox
+		/rootheight exch def
+		/rootwidth exch def
+		pop pop
+
+		/top rootheight .666 mul cvi def
+
+		2 setlinejoin
+		0 setlinecap
+		space 1 add setlinewidth
+
+		/width1
+		    tmfont setfont trademark stringwidth pop
+		    textfont setfont banner stringwidth pop
+		add def
+		/width2 versionstring stringwidth pop def
+
+		/leftright
+		    rootwidth
+			width1 width2 max
+			space 2 mul add
+		    sub 2 div
+		def
+
+		normal setcolor
+		newpath clippath fill
+
+		leftright top size 2 mul sub space 3 mul sub
+		rootwidth leftright sub top
+		size 2 div embossrect
+
+		rootwidth width1 sub 2 div
+		top space sub size sub moveto
+		banner emboss
+
+		0 size 2 div rmoveto
+		tmfont setfont
+		trademark emboss
+
+		textfont setfont
+		rootwidth width2 sub 2 div
+		top space sub size sub size sub moveto 
+		versionstring emboss
+
+	    grestore
+
+	end
+    } def
+end

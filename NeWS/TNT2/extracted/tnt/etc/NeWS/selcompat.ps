@@ -1,0 +1,341 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#) selcompat.ps 23.6 91/02/11
+%
+% selcompat.ps: compatibility for pre-beta ("Lite") selection clients
+
+% All the old stuff that LiteSelectDict used to do -- mapping mouse events to
+% selection events -- is now handled externally.  But in its place, we now
+% need an event to catch /TransferSelection.
+% We do this by overriding LiteSelectDict because kbdcompat expects to be able
+% to poke inside LiteSelectDict to implement compatibility with an even older
+% style (where the interest is NOT expected to consume the event).
+
+systemdict begin	% define public names
+
+    /ClassLiteSelection dup def		% REMIND: not clear where this belongs
+    /ClassLiteSelectable dup def	% REMIND: nor this
+    /selectionsinterests dup def
+    /setselection dup def
+    /selectionrequest dup def
+    /selectionresponse dup def
+    /selection_timeout .125 def		% 7.5 seconds
+
+end % systemdict
+
+UIprivate begin
+    /LiteSelectDict dictbegin
+    
+    	/TransferSelection {	% ev  =>  --
+    	    begin				% open the event
+    	        Action				% save for later
+    	        /ContentsAscii /query
+    	        Action /Source get send {	% actdict val
+    	    	    /Action exch def
+    	    	    /Name /InsertValue def
+    	    	    currentdict redistributeevent
+    	    	} if
+    	    end					% actdict
+    	    /TransferFinished ClassLiteSelectable send
+    	} def
+    	
+    dictend def
+    
+end % UIprivate
+    	
+% The general idea is that, when we're asked to set up selectionsinterests, we
+% will create a Selectable for the specified canvas.  The Selectable's methods
+% generates events.  The Selection obtained via the Selectable's /newselection
+% also sends events.  The first interest returned by /selectionsinterests
+% matches all these events.
+
+% REMIND: It looks like liteUI/kbdcompat have the two interests reversed from
+% the order shown in the 1.1 manual for /addselectioninterests.  Bogus?  For
+% now, this version too will have them reversed so kbdcompat will work.
+
+/selectionsinterests {		% canvas handlers-dict  =>  [ event event ]
+    1 index /LiteSelCompat known not {		% cv hd
+	1 index /LiteSelCompat true put
+	1 index soften dup /Text		% cv hd cv cv /Text
+	/new ClassLiteSelectable send		% cv hd selectable
+
+	[exch]
+	    /new ClassEventMgr send		% cv hd [selectable] emgr
+	    exch /addclients 2 index send	% cv hd emgr
+	/clearcontext 1 index send
+	createevent begin
+		/Name /Obsolete def
+		% /Action 1 dict def
+		% in the 1 dict, cv {/destroy emgr send} def
+		/Action 1 dict begin		% cv hd emgr /A
+			3 index soften		% cv hd emgr /A cv
+			/destroy 3 index	% cv hd emgr /A cv /d emgr
+			buildsend def		% cv hd emgr /A
+			currentdict		% cv hd emgr /A 1dict
+		end def				% cv hd emgr
+		currentdict			% cv hd emgr ev
+	end
+	/addclient 3 -1 roll send		% cv hd
+    } if
+
+    createevent dup 4 1 roll begin		% e1 cv hd
+        /Name UIprivate /LiteSelectDict get def
+        /Canvas 2 index def
+    end
+    createevent begin				% e1 cv hd
+        /Name exch def
+        /Canvas exch def
+    currentdict end
+    2 array astore
+} store
+
+% ClassLiteSelection: A Selection subclass that stashes a Lite-style selection
+% dict as instance data, and translates new-style method calls into old-style
+% sendevents.
+%
+/ClassLiteSelection [ClassSelection] [
+    /SelInfo		% old-style selection dict
+] classbegin
+
+% Class variables
+    
+% Defaults
+
+% Methods
+
+    % Send an old-style /DeSelect event to the client.
+    %
+    /Deselect {		% --  =>  --
+    	createevent begin
+    	    /Name /DeSelect def
+    	    /Action /Rank self send def
+    	    /Canvas /Holder self send def
+    	currentdict end sendevent
+    } def
+    
+    % Handle a new-style selection request by converting to old style.
+    % Note: Explicitly do not override /SingleRequest, since /request is
+    % much closer to the old-style interface, so overriding at this level
+    % makes us more "bug for bug compatible" with Lite.
+    %
+    /request {	% rdict  =>  rdict
+    	dup /Rank dup self send put			% rdict
+    	SelInfo /SelectionResponder get dup null ne {	% rdict pr
+    	    /Holder self send
+    	    /ForkRequest self send			% rdict
+    	} {
+    	    pop dup SelInfo exch {			% rdict sdict key junk
+    	    	pop 2 copy known {			% rdict sdict key
+    	    	    2 copy get
+    	    	} {
+    	    	    /UnknownRequest
+    	    	} ifelse				% rdict sdict key val
+    	    	3 index 3 1 roll put			% rdict sdict
+	    } forall pop				% rdict
+	} ifelse
+    } def
+    
+    % Forked process to send old-style request
+    %
+    /ForkRequest {	% dict process canvas  =>  dict
+    	% build the interest for awaiting a response
+	{   createevent dup begin
+		/Name [ /SelectionResponse /SelectionTimeout ] def
+	    end expressinterest				% dict
+	    createevent begin
+		/Name /SelectionRequest def
+		/Canvas exch def
+		/Process exch def			% dict
+		dup /SelectionRequester currentprocess put
+		/Action exch def
+		/TimeStamp lasteventtime def
+	    currentdict end sendevent
+	    createevent dup begin
+		/Name /SelectionTimeout def
+		/TimeStamp currenttime selection_timeout add def
+		/Process currentprocess def
+	    end dup sendevent		% copy for recallevent below
+	    awaitevent begin Name {
+		/SelectionTimeout
+		    { pop null }	% won't recallevent; pop copy
+		/SelectionResponse
+		    { recallevent Action }
+	    } case end
+	} fork 4 1 roll pop pop pop waitprocess
+    } def
+
+    % Stash an old-style selection dict into our instance data.
+    %
+    /SetDict {		% sdict  =>  --
+    	dup /SelectionResponder known not {
+    	    dup /SelectionResponder null put
+    	} if
+	dup /Canvas 2 copy get soften put
+	dup /Rank dup self send put
+    	/SelInfo exch store
+    } def
+
+classend store	% ClassLiteSelection
+
+
+% ClassLiteSelectable: The Selectable that knows how to talk to LiteSelection.
+%
+/ClassLiteSelectable [/DefaultClass ClassSelectable send] [
+    /EMgr		% the eventmgr this selectable has been given to
+] classbegin
+
+% Class variables
+
+% Defaults
+
+% Methods
+
+    % Start a selection; translate into old event form
+    %
+    /selectat {		% event selection  =>  --
+    	/SetSelectionAt /ConstructEvent self send
+    	sendevent
+    } def
+    
+    % Extend a selection; translate into old event form
+    %
+    /adjustto {		% event selection  =>  --
+    	/ExtendSelectionTo /ConstructEvent self send
+    	sendevent
+    } def
+    
+    % The drag methods have no equivalent in Lite; fortunately, since
+    % /inselection? always returns false, these methods should never
+    % actually get called.  We'll clean up the stack just to be safe.
+    %
+    /dragat {		% event selection  =>  --
+    	pop pop
+    } def
+    
+    /dragto {		% event selection  =>  --
+    	pop pop
+    } def
+
+    % Test whether a click is inside the selection; pretend it's always false.
+    % This means nobody ever gets multiclicks or drags, but that's how Lite
+    % always worked anyhow.
+    %
+    /inselection? {		% event selection  =>  bool
+    	pop pop false
+    } def
+    
+    % Create a selection object that knows how to translate methods to events
+    %
+    /newselection {	% event rank holder  =>  selection
+    	/new ClassLiteSelection send		% event sel
+    	exch pop
+    	% set up no-op sdict to represent an as-yet-empty selection
+    	/Canvas dup self send			% sel /Canvas cv
+    	dictbegin
+    	    def					% sel
+    	dictend					% sel sdict
+    	/SetDict 2 index send			% sel
+    } def
+
+% Utilities
+
+    % Construct an old-style event with info stashed in the Action field
+    %
+    /ConstructEvent {	% event selection name  =>  oldstyleevent
+	gsave
+	    /Canvas self send setcanvas
+            createevent begin				% ev sel name
+		/Name exch def				% ev sel
+		dictbegin				% ev sel
+		    /Rank dup 2 index send def
+		    /PendingDelete /PendingDelete? 2 index send def
+		    /Preview /Preview? 2 index send def
+		    /Size /Level 3 -1 roll send def	% ev
+		    gsave
+		    	/Canvas self send setcanvas
+			begin XLocation YLocation end	% x y
+		    grestore
+		    2 copy				% x y x y
+		    /Y exch def
+		    /X exch def
+		    % force this event to be processed before any other events
+		    % can come along and change the global selection; thus if
+		    % this event calls /setselection the global sel will be 'us'
+		    /TimeStamp 0 def
+		dictend /Action exch def		% x y
+		/YLocation exch def
+		/XLocation exch def
+		/Canvas dup self send def
+    	    currentdict end				% oldev
+    	grestore
+    } def
+    
+classend store	% ClassLiteSelectable
+
+
+% other utilities, formerly public, retained and/or modified
+
+% Setselection has to be careful because of some potential races.  The new
+% code sends a /selectat method (for example) that does a sendevent to the
+% client.  The method then returns, and the global code calls the /setselection
+% method to install the instance as the current selection.  Then the event
+% gets processed, and the old-style code calls the global /setselection (here).
+% We want to just install the client's sdict into the existing selection (and
+% maybe call its /setselection method, which is a no-op if it's already the
+% current selection).  But the client -- or some OTHER client -- might also
+% call setselection on its own, in which case we need to create a new instance
+% of ClassLiteSelection and install it in place of the current selection.
+%
+% Thus the problem arises: how to tell if a given sdict represents the current
+% selection?  We obtain the current selection of the specified rank, and see
+% if it's a ClassLiteSelection.  If it is, we compare the Canvas in its sdict
+% to that in the given sdict.  We would PREFER to compare the given sdict's
+% Canvas against the selection's Holder, but some old-style clients failed to
+% play by the rules (i.e., violated the 1.1 manual), and didn't include a
+% Canvas in the sdict if they provided /ContentsAscii etc.  Such clients get
+% a null Canvas stuck into their sdict (which means they probably never see
+% /DeSelect events, for example), whereas their LiteSelection's Holder is
+% whatever canvas was given to /selectionsinterests.
+
+/setselection {			% sdict rank  =>  --
+    1 index /Canvas known not {1 index /Canvas null put} if
+    dup getselection dup null ne {		% sd rank oldsel
+    	dup /descendantof? ClassLiteSelection send {	% sd r sel
+    	    dup /SelInfo get /Canvas get		% sd r sel selcv
+    	    3 index /Canvas get eq
+    	} {
+    	    false
+    	} ifelse
+    } {						% sd rank null
+    	false
+    } ifelse					% sd rank oldsel useit?
+    {	% current selection is already the right instance
+    	exch pop				% sd oldsel
+    } {
+    	% need to create a new selection instance to replace global sel
+    	pop 1 index /Canvas get			% sd rank cv
+    	/new ClassLiteSelection send		% sd newsel
+    } ifelse
+    exch /SetDict 2 index send			% sel
+    /setselection exch send
+} store
+
+/selectionrequest {		% rdict rank  =>  dict|null
+    getselection dup null ne {			% rdict sdict
+    	/request exch send
+    } {						% rdict null
+    	exch pop
+    } ifelse
+} store
+
+/selectionresponse {		% event  =>  --
+    dup begin
+	/Name /SelectionResponse def
+	/Process Action /SelectionRequester get def
+	/Canvas null def
+    end sendevent
+} store
+

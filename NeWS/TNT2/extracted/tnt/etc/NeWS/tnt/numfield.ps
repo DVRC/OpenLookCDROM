@@ -1,0 +1,401 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#) numfield.ps 1.17 91/02/11
+%
+
+% A control to display numbers.  Two arrows allow a client to increase and
+% decrease the value by discrete stepping.
+
+/ClassNumericField ClassTextField
+dictbegin
+
+    % Maximum range for the field.  Use hex to reduce chance of error, and
+    % to avoid bug in (at least one version of) X/NeWS parser (caused the
+    % token '2147483647' to create a realtype).
+    /Maximum	16#7fffffff def
+    /Minimum	16#80000000 def
+    
+    % REMIND: Oh bother.  If running with the buggy parser, letting the value
+    % get all the way up to 2147483647 breaks because it generates a real when
+    % /value re-parses the string.  So use lower default max/min if parser is
+    % broken.  This code can be pulled once the bad parser is out-dated.
+    (2147483640) token pop exch pop type /realtype eq {
+    	/Maximum Maximum 8 sub def
+    	/Minimum Minimum 9 add def
+    } if
+
+    % Increment/decrement quantum.  If 0, no buttons are displayed.
+    /Delta	1	def
+
+dictend
+classbegin
+
+    % Class variable; promoted if changed.
+    /Normalizer nullproc def		% how to constrain values
+
+    % Spacing between text portion and right edge of canvas.  Equals twice
+    % the width of a button, plus a small gap as dictated by OpenLook, plus
+    % 2 to avoid overlapping edges of buttons with each other and/or the gap.
+    %
+    /RightGap { % - => width
+    	ButtonWidth dup add InterGap add 2 add
+    } def
+    
+    % Gap between text portion and incr/decr buttons.  Auto-promoted.
+    %
+    /InterGap { % - => width
+    	TextFont fontscale 3 div ceiling cvi
+    	/InterGap 1 index promote
+    } def
+    
+    /invalidate { % - => -
+    	/InterGap unpromote
+    	/invalidate super send
+    } def
+
+    /minsize { % - => minwidth minheight
+    	/minsize super send
+    	exch RightGap add exch
+    } def
+
+    /CachedDims { % - => w h
+    	/size self send exch RightGap sub 0 max exch
+    	2 copy 2 array astore cvx
+    	/CachedDims exch promote
+    } def
+
+    /PaintText { % n => -
+    	0 0 CachedDims rectpath clip newpath
+    	/PaintText super send
+    	initclip
+    } def
+    
+    /AnyArrows? { % - => bool
+    	Delta 0 ne { true } { /AnyArrows? super send } ifelse
+    } def
+    
+    /Paint { % - => -
+    	TextBegin
+	    CachedDims 0
+	    /size self send pop 2 index sub
+	    3 -1 roll rectpath
+	    BackgroundColor setcolor fill
+	    /PaintArrows self send
+    	TextEnd
+    	/Paint super send
+    } def
+
+    /PaintArrows { % - => -
+	Delta 0 ne {
+	    3D? {
+		/ShowUpArrow self send
+		/ShowDownArrow self send
+	    } {
+		/ShowArrows self send
+	    } ifelse
+	} if
+    } def
+
+    /DimArrow { % x y limit => -
+        LastValue ne {pop pop} {
+	    ButtonWidth exch 1 index sub exch dup
+	    BackgroundColor setcolor StippleRect
+	} ifelse
+    } def
+
+    /ShowUpArrow { % - => -
+    	gsave
+    	    GraphicFont setfont
+    	    CachedDims pop InterGap add ButtonTop
+	    2 copy /Up PaintArrowBox
+    	    2 copy moveto BG2 setcolor <cc> show
+    	    2 copy moveto BG0 setcolor <cb> show
+    	    	   moveto FG  setcolor <ca> show
+	    Maximum DimArrow
+    	grestore
+    } def
+
+    /ShowDownArrow { % - => -
+    	gsave
+    	    GraphicFont setfont
+    	    CachedDims pop InterGap add ButtonWidth add ButtonTop
+    	    2 copy /Down PaintArrowBox
+    	    2 copy moveto BG2 setcolor <2f> show
+    	    2 copy moveto BG0 setcolor <2e> show
+    	    	   moveto FG  setcolor <2d> show
+	    Minimum DimArrow
+    	grestore
+    } def
+
+    /ShowArrows { % - => -
+	gsave
+	    GraphicFont setfont
+	    CachedDims pop InterGap add		% x
+	    dup 0 /size self send		% x x 0 w h
+	    exch 3 index sub exch		% x x 0 w-x h
+	    rectpath				% x
+	    2DBG setcolor fill
+	    dup 1 add ButtonTop moveto
+	    ActiveButton /Up eq { <e9> } {
+	      ActiveButton /Down eq { <ea> } { <e8> } ifelse
+	    } ifelse				% x glyph
+	    InsideButton? not { pop <e8> } if
+	    2DFG setcolor show			% x
+	    ButtonTop				% x y
+	    2 copy Maximum DimArrow
+	    exch ButtonWidth add 1 sub exch
+	    Minimum DimArrow			%
+	grestore
+    } def
+
+    /ButtonForX { % x => x name|null
+    	/ButtonForX super send				% x name|null
+    	1 index CachedDims pop InterGap add 1 add sub	% x name|null x-x'
+    	dup 0 ge {
+    	    ButtonWidth sub 1 sub dup 0 lt {
+    	    	pop pop
+		LastValue Maximum eq { null } { /Up } ifelse
+    	    } {
+    	    	dup ButtonWidth le {
+    	    	    pop pop
+		    LastValue Minimum eq { null } { /Down } ifelse
+    	    	} {
+    	    	    pop
+    	    	} ifelse
+    	    } ifelse
+    	} {
+    	    pop
+    	} ifelse
+    } def
+    
+    /ShowNamedButton { % name => -
+    	dup {
+    	    /Up {
+              pop 3D? { /ShowUpArrow self send }
+	      { /ShowArrows self send } ifelse
+	    }
+    	    /Down {
+              pop 3D? { /ShowDownArrow self send }
+	      { /ShowArrows self send } ifelse
+	    }
+    	    /Default {/ShowNamedButton super send}
+    	} case
+    } def
+
+    /TrackTimer { % event => -
+        /TrackTimer super send
+	ActiveButton /Up eq { LastValue Maximum eq } {
+	    ActiveButton /Down eq { LastValue Minimum eq } {
+	        false
+	    } ifelse
+	} ifelse
+	{   /stoptracktimer self send
+	    /ActiveButton unpromote
+	    gsave
+	        self setcanvas
+	        /PaintArrows self send
+            grestore
+	} if
+    } def
+
+    /DoButtonAction { % name => -
+    	dup {
+    	    /Up {pop /increment self send /executenotifier self send}
+    	    /Down {pop /decrement self send /executenotifier self send}
+    	    /Default {/DoButtonAction super send}
+    	} case
+    } def
+
+    % Set the minimum and maximum values for the field.  If the current
+    % value is out of range, change it to be in range.
+    %
+    /setrange {	% min max => -
+	/Maximum exch def
+	/Minimum exch def
+	/value self send dup Maximum min Minimum max	% val newval
+	dup 3 -1 roll ne {/setvalue self send} {pop} ifelse
+    } def
+
+    % Get the current min/max.
+    %
+    /range { % - => min max
+    	Minimum Maximum
+    } def
+
+    % Set the delta.  A delta of 2, starting from a minimum value of 0,
+    % means the field only shows even numbers. The default delta is 1.
+    % An increment of 0 causes the arrows to disappear.
+    %
+    /setdelta { % delta => -
+	dup 0 eq Delta 0 eq ne		% incr bool
+	/Delta 3 -1 roll promote
+	{ /paint self send } if
+    } def
+
+    % Get the current delta.
+    %
+    /delta { % - => delta
+    	Delta
+    } def
+
+    % Increment by one delta.  A negative delta will decrement the value.
+    %
+    /increment { % - => -
+	/value self send Delta add /setvalue self send
+    } def
+
+    % Decrement by one delta.  A negative delta will increment the value.
+    %
+    /decrement { % - => -
+	/value self send Delta sub /setvalue self send
+    } def
+
+    % Set the proc used to constrain to legal values.
+    %
+    /setnormalizer { % proc => -
+    	/Normalizer exch promote
+    } def
+
+    % Return the proc used to constrain to legal values.
+    %
+    /normalizer { % - => proc
+    	/Normalizer load
+    } def
+
+    % Override: Enforce min/max/normalizer; convert number into a string.
+    %
+    /setvalue { % number => -
+        LastValue dup Minimum eq exch Maximum eq or exch
+    	/normalizer self send exec
+	Minimum max Maximum min
+	/LastValue 1 index promote
+	/NumberToString self send /setvalue super send
+        LastValue dup Minimum eq exch Maximum eq or or {
+	    gsave
+		self setcanvas
+		PaintArrows
+	    grestore
+	} if
+    } def
+
+    % Override: Return number instead of a string.
+    %
+    /value { % - => number
+%	/value super send			% string
+%	token {					% post any
+%	    dup type dup /integertype ne exch /realtype ne and {
+%		pop pop 0
+%	    }{
+%		exch pop
+%	    } ifelse				% number
+%	}{					% -
+%	    0
+%	} ifelse
+%    	/normalizer self send exec
+%	Minimum max Maximum min
+%	% Get rid of any annoying vestigial decimal point.
+%	dup dup cvi eq { cvi } if
+	% enter a stopped loop with the idea that if we get an error we
+	% use the 2nd element on the stack as the final value; (the top
+	% element will typically be something that generated an error
+	% when we tried to convert it); earlier code using the 'token'
+	% operator was ripped out because 'token' can raise errors on
+	% bad syntax, and gets into a very bad state on certain input
+	% such as mismatched parentheses.
+	LastValue /value super send {		% last string
+	    cvr % may generate an error, in which case final value is unchanged
+	    exch pop dup /normalizer self send exec
+	    exch pop Minimum max Maximum min	% value
+	    dup dup truncate eq {		% value
+	    	/value super send cvi % if rangecheck, use float value
+	    	/normalizer self send exec
+	    	Minimum max Maximum min
+	    	exch pop
+	    } if
+	} stopped {				% value junk
+	    pop
+	} if
+	/LastValue 1 index promote
+    } def
+
+    /LastValue { Minimum } def
+
+    % Override: Store the value back into the string if it's different.
+    % The difference could be due to enforcing min/max/normalizer, or
+    % due to removing extraneous zeroes.
+    %
+    /executenotifier { % - => -
+        LastValue dup Minimum eq exch Maximum eq or
+    	/value self send
+    	dup NumberToString
+    	dup /value super send eq {pop} {
+	    /setvalue super send
+	} ifelse
+        exch LastValue dup Minimum eq exch Maximum eq or or {
+	    gsave
+		self setcanvas
+		PaintArrows
+	    grestore
+	} if
+	/notifier self send
+	/ExecuteNotifier self send
+    } def
+
+    /NumberToString { % number => string
+        dup dup { cvi } stopped {pop 0} if eq { cvi } if
+	20 string cvs
+    } def
+
+    IncludeDemos? {
+        %   Create a demonstration field on the framebuffer.
+        %
+        /demo { % - => window instance
+	    10 dict begin
+	    	/panel /Calculated framebuffer /new ClassPanel send def
+	    	/win panel framebuffer /new ClassBaseWindow send def
+	    	
+	    	/num1 panel /new self send def
+	    	{
+	    	    () (Value: %) [5 -1 roll] sprintf
+	    	    /setfooter /sendtarget 5 -1 roll send
+	    	} /setnotifier num1 send
+	    	37 /setvalue num1 send
+		9 /setminimumvisible num1 send
+		win /settarget num1 send
+		/num1 num1 [/West {/West PARENT POSITION}]
+	    	    /addclient panel send
+		
+		/num2 panel /new self send def
+		{
+		    /Parent 1 index send
+		    /num1 /client 3 -1 roll send {	% val2 num2 num1
+		    	2 index /setdelta 3 -1 roll send
+		    } if
+		    () (Delta is now %) [5 -1 roll] sprintf
+		    /setfooter /sendtarget 5 -1 roll send
+		} /setnotifier num2 send
+		1 /setvalue num2 send
+		0 10 /setrange num2 send
+		{floor} /setnormalizer num2 send
+		4 /setminimumvisible num2 send
+		win /settarget num2 send
+		/num2 num2 [/West {/East PREVIOUS POSITION 20 0 xyadd}]
+		    /addclient panel send
+
+		(ClassNumericField Demo) /setlabel win send
+		10 38 0 38 /setgaps win send
+		/place win send
+	    	/new ClassEventMgr send /activate win send
+	    	((Second value is the \252delta\272 for the first.)) ()
+	    	/setfooter win send
+	    	/map win send
+	    	win [num1 num2]
+	    end
+        } def
+    } if
+
+classend def

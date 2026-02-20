@@ -1,0 +1,508 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)bag.ps 23.52 91/02/11
+%
+
+/ClassBag ClassCanvas  []
+classbegin
+
+% Defaults:
+
+% Class Variables:
+
+    % Unmapped canvases (one per framebuffer) where we stick clients that
+    % get removed from a bag.
+    /Limbo dictbegin
+    	rootcanvases {dup /new ClassCanvas send /unmap 1 index send def} forall
+    dictend def
+
+    % Note: these are all promoted when they change from default value.
+    /ClientDict         nulldict def    % List of named clients.
+    /RegionClientList	[] def		% List of region clients.
+
+% Methods:
+    % /new { % <client args> parentcanvas => instance
+
+    /NewInit {
+	/NewInit super send
+	/ClientDict growabledict promote
+    } def
+
+    % Use internal knowledge to layout the clients of the bag.
+    %
+    /Layout { % - => -
+    } def
+
+    % Override: Activate the bag and its contents.
+    %
+    /activate { % eventmgr => -
+	EventMgr null ne {pop} {
+	    /activate super send
+
+	    FocusNoticeable? {self /addnoticer ClassFocus send} if
+	    FocusForwardable? {self /addforwarder ClassFocus send} if
+
+	    /children self send {
+		EventMgr /activate 3 -1 roll send
+	    } forall
+	} ifelse
+    } def
+
+% Focus Notice:
+
+    /FocusNoticeable? false def
+    /focusnoticeable? { % - => bool
+	FocusNoticeable?
+    } def
+
+    /setfocusnoticeable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addnoticer} {/removenoticer} ifelse
+		ClassFocus send
+	} if
+	/FocusNoticeable? exch def
+    } def
+
+    /HandleFocusNotice NullNotify def % enter? => -
+
+% Focus Forward:
+
+    /FocusForwardable?  false def
+    /focusforwardable? { % - => bool
+	FocusForwardable?
+    } def
+
+    /setfocusforwardable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addforwarder} {/removeforwarder} ifelse
+		ClassFocus send
+	} if
+	/FocusForwardable? exch def
+    } def
+
+    % There is no /HandleFocusForward method; it's handled inside ClassFocus.
+
+% More methods:
+
+    % Override: Deactivate the bag and its contents.
+    %
+    /deactivate { % - => -
+	EventMgr null ne {
+	    /deactivate super send
+
+	    FocusNoticeable? {self /removenoticer ClassFocus send} if
+	    FocusForwardable? {self /removeforwarder ClassFocus send} if
+
+	    /children self send {
+		/deactivate exch send
+	    } forall
+	} if
+    } def
+
+    % Paint all children of the bag.
+    %
+    /PaintChildren { % - => -
+        /regionclientlist self send {
+            {   Mapped {
+                    /PaintAll self send
+                } if
+            } exch send
+        } forall
+
+	/children self send {
+	    {   Mapped {
+		    /PaintAll self send
+		} if
+	    } exch send
+	} forall
+    } def
+
+
+    % Fix the children of the bag in a back to front order.
+    %
+    /FixChildren {  % - => -
+        /regionclientlist self send {
+            {   Mapped {
+                    /FixAll self send
+                } if
+            } exch send
+        } forall
+	/children self send {
+	    {   Transparent Mapped and {
+		    /FixAll self send
+		} if
+	    } exch send
+	} forall
+    } def
+
+    /CaptureChildren { % - => -
+        /regionclientlist self send {
+            {   Mapped {
+                    /CaptureAll self send
+                } if
+            } exch send
+        } forall
+	/children self send {
+	    {   Mapped {
+		    /CaptureAll self send
+		} if
+	    } exch send
+	} forall
+    } def
+    % Layout all the clients of the bag. This makes sure that
+    % all reshapes are relative to the bag.
+    %
+    /layout { % - => -
+	gsave
+	    self setcanvas
+	    /Layout self send
+	grestore
+    } def
+
+    % Add a named client to a bag.  The name may be any value that
+    % is a legal key in a dictionary.
+    %
+    /addclient { % name instance => -
+	    self soften /reparent 2 index send
+
+	dup type /canvastype eq {		% /name ins
+	    EventMgr null ne {
+		EventMgr /activate 2 index send
+	    } if
+	}{
+            RegionClientList dup length 2 index 
+            arrayinsert /RegionClientList exch promote
+	} ifelse
+				% /name ins
+	harden ClientDict 3 1 roll put
+
+	/invalidate self send
+    } def
+
+    % Remove a client from the bag.  The method returns true and the 
+    % client, if it has found and removed it; otherwise, it returns
+    % false.
+    %
+   /removeclient { % name|client => oldclient true
+		   %             => false
+	ClientDict 1 index known not {
+	    pop false
+	}{
+	    ClientDict 1 index get exch
+	    ClientDict exch undef 
+
+	    dup type /canvastype eq {			% n c
+		/eventmgr 1 index send EventMgr eq {	% 
+			/deactivate 1 index send
+		} if
+	    }{
+	        RegionClientList 2 copy exch arrayindex pop arraydelete
+                /RegionClientList exch promote
+
+	    } ifelse
+            Limbo /framebufferof self send get /reparent 2 index send
+	    true
+	} ifelse
+
+	/invalidate self send
+    } def
+
+    % Get a named client. Returns client and true if name
+    % client was found in the bag; false otherwise.
+    %
+    /client { % name => client true
+		 %      => false
+	ClientDict 1 index known {
+	    ClientDict exch get
+	    true
+	}{
+	    pop false
+	} ifelse
+    } def
+
+    % Override: Destroy a bag and its contents.
+    %
+    /destroy {  % - => -
+        /clientlist self send {
+            /destroy exch send
+        } forall
+
+	/ClientDict unpromote
+        /RegionClientList unpromote
+
+	/destroy super send
+    } def
+
+    % Override: Call layout to place the contents.
+    %
+    /validate { % - => -
+	/layout self send
+	/validate super send
+    } def
+
+    % Returns an array of all the clients
+    /clientlist { % - => [ client1 client2 ...]
+	[ ClientDict { exch pop } forall ]
+    } def
+
+    % Return list of the region clients
+    % (Use /children for list of canvas clients)
+    %
+    /regionclientlist {  % - => [client1 client2 ...]
+        RegionClientList
+    } def
+
+    % Returns the numbers of clients currently in the bag.
+    % 
+    /clientcount { % - => n; count of clients of bag
+	ClientDict length 
+    } def
+
+    % Returns the numbers of region clients currently in the bag.
+    % (use clientcount less regionclientcount for count of canvas clients)
+    %
+    /regionclientcount { % - => n; count of regions in bag
+        RegionClientList length
+    } def
+
+    /ConstrainedToRegion?	false def
+    
+    % Three tracking variables.  These are safely used as global class
+    % variables during tracking, rather than being instance variables,
+    % because tracking is guaranteed to be serial, unique to one
+    % instance at a time.
+    % REMIND: We had to back this global usage out; promotion fixed a race.
+    /CurrentRegion		null def
+    /ConstrainedRegion		null def
+    % REMIND: This boolean is required until /TrackLocalMotion is available.
+    /EventInCanvas?		true def
+
+    % Regions is a convenience function which returns the
+    % constrained region when "constraints" are on or the list of 
+    % all regions when "constraints" are off.
+
+    /Regions {
+	ConstrainedRegion null ne {
+	    [ConstrainedRegion]
+	}{
+	    /regionclientlist self send
+	} ifelse
+    } def
+
+    % EventInRegion? is a convenience function which determines if a region
+    % includes the X-Y location contained in the event.
+
+    /EventInRegion? { % event [region ...] => region true  | false
+        exch begin XLocation YLocation end 
+        false 4 1 roll 3 -1 roll {				% f x y rl
+            3 copy						% f x y r x y r
+            /pointinregion? exch send {				% f x y r
+		/mapped? 1 index send {				% f x y r
+		    true 5 -1 roll pop				% x y r t
+		    4 2 roll					% r t x y
+		    exit
+		} {						% f x y r
+		    pop						% f x y
+		} ifelse
+            }{
+                pop						% f x y
+            } ifelse
+        } forall
+
+        pop pop							% r t  |  f
+    } def
+
+    /TrackStart { % event =>  false | [/label...] true | /name true
+        dup /TrackRegion? self send {
+	    /TrackStartRegion self send
+        }{
+	    pop false
+        } ifelse
+    } def
+
+    /TrackRegion? { % event => bool
+        /Name get PointButton eq
+    } def
+
+    /TrackStartRegion { % - => /Default true | false
+	    /CurrentRegion unpromote
+	    /ConstrainedRegion unpromote
+	    /EventInCanvas? unpromote
+%	    /CurrentRegion null store
+%	    /ConstrainedRegion null store
+%	    /EventInCanvas? true store
+
+            /Default true 3 -1 roll				% d t e
+            gsave self setcanvas
+                dup /regionclientlist self send			% d t e rl	
+                  
+                EventInRegion? {
+		    % TrackStart in region			% d t e r
+		    /CurrentRegion 1 index soften promote
+%		    /CurrentRegion 1 index soften store
+		    /TrackStart /sendtranslated 3 -1 roll send	% d t	
+                    ConstrainedToRegion? {
+                        /ConstrainedRegion CurrentRegion promote
+%                        /ConstrainedRegion CurrentRegion store
+                    } if
+                }{  % TrackStart in canvas "background" unless constrained
+                    pop						% d t
+		    ConstrainedToRegion? {
+                        pop pop false				% f
+                    } if			
+                } ifelse
+            grestore
+    } def
+
+    /TrackMotion { % event => -
+        gsave self setcanvas
+	    CurrentRegion null eq {
+		EventInCanvas? {
+		    % TrackMotion in canvas			% e
+		    dup Regions EventInRegion? {
+			% TrackStart in new region
+			/CurrentRegion 1 index promote		% e r
+%			/CurrentRegion 1 index store		% e r
+			/TrackStart /sendtranslated 3 -1 roll send	% -
+		    }{  % TrackMotion in canvas "background"
+			pop					% -
+		    } ifelse
+		}{  % TrackMotion outside canvas
+		    pop						% -
+		} ifelse
+	    }{							% e
+		dup begin XLocation YLocation end		% e x y
+		/pointinregion? CurrentRegion send {		% e
+		    % TrackMotion in current region
+		    /TrackMotion /sendtranslated CurrentRegion send
+		}{
+		    % TrackCancel in current region
+		    dup /TrackCancel /sendtranslated CurrentRegion send
+		    /CurrentRegion unpromote
+%		    /CurrentRegion null store
+		    ConstrainedToRegion? {
+			% Tracking constrained to "canceled" region
+			pop
+		    }{
+			dup /regionclientlist self send EventInRegion? {
+			    /CurrentRegion 1 index soften promote
+%			    /CurrentRegion 1 index soften store
+			    % TrackStart in new region
+			    /TrackStart /sendtranslated 3 -1 roll send
+			}{
+			    % TrackMotion in canvas "background"
+			    pop
+			} ifelse
+		    } ifelse
+		} ifelse
+	    } ifelse
+	grestore
+    } def
+			
+    /TrackCrossing { % event => -
+        gsave self setcanvas
+            dup /Name get /ExitEvent eq {			% e
+		/EventInCanvas? false promote
+%		/EventInCanvas? false store
+                CurrentRegion null eq {
+		    % TrackMotion in canvas "background"
+		    pop						% -
+		}{  % TrackCancel in current region 
+		    /TrackCancel /sendtranslated CurrentRegion send
+		    /CurrentRegion unpromote
+%		    /CurrentRegion null store
+		} ifelse
+            }{
+		/EventInCanvas? unpromote
+%		/EventInCanvas? true store
+                dup Regions EventInRegion? {
+		    % TrackStart in new region  
+                    /CurrentRegion 1 index soften promote
+%                    /CurrentRegion 1 index soften store
+                    /TrackStart /sendtranslated 3 -1 roll send
+                }{
+		    % TrackMotion in canvas "background"
+                    pop 
+                } ifelse
+            } ifelse
+        grestore
+    } def
+
+    /TrackStop { % event => -
+        CurrentRegion null eq {
+            pop
+        }{
+            gsave self setcanvas
+		% TrackStop in current region
+		/TrackStop /sendtranslated CurrentRegion send
+            grestore
+            /CurrentRegion unpromote
+%            /CurrentRegion null store
+        } ifelse
+    } def
+
+    /TrackCancel { % event => -
+        CurrentRegion null eq {
+            pop
+        }{
+            gsave self setcanvas
+		% TrackCancel in current region
+                /TrackCancel /sendtranslated CurrentRegion send
+            grestore
+            /CurrentRegion unpromote
+%            /CurrentRegion null store
+        } ifelse
+    } def
+
+    /MenuStart { % invoker posname event => invoker posname event menu true
+    		 %		       | => invoker posname event false
+	self setcanvas
+	dup /regionclientlist self send			% i pn e e [r ..]
+	/EventInRegion? self send {			% i pn e r
+	    /location 1 index send 2 copy translate	% i pn e r x y 
+	    5 -3 roll					% i x y pn e r
+	    dup 4 1 roll				% i x y r pn e r
+	    /MenuStart exch send {			% i x y r pn e m
+		6 -2 roll				% i r pn e m x y
+		neg exch neg exch translate 		% i r pn e m
+	        5 -2 roll exch pop 4 1 roll		% i' pn e m
+		true					% i' pn e m true
+	    }{						% i x y r pn e
+		5 2 roll pop				% i pn e x y
+		neg exch neg exch translate		% i pn e 
+		/MenuStart super send			% 
+	    } ifelse
+	}{
+	    /MenuStart super send
+	} ifelse
+	framebuffer setcanvas
+    } def
+       
+    /MenuStop { % menu  => -
+	/invoker 1 index send				% m i
+	dup self ne 1 index null ne and {		% m i
+	    /location 1 index send 2 copy translate	% m i x y
+	    4 2 roll /MenuStop exch send		% x y
+	    neg exch neg exch translate			% -
+	}{
+	    pop /MenuStop super send
+	} ifelse
+    } def
+       
+    % Forward help events to region clients
+    /HandleHelp { % event => -
+	dup /Regions self send 
+	gsave self setcanvas 
+	/EventInRegion? self send {
+	    /HandleHelp exch send
+	} {
+	    /HandleHelp super send
+	} ifelse
+	grestore
+    } def
+classend def
+

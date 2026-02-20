@@ -1,0 +1,115 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)pack.ps 23.3 91/02/11
+%
+% Put items to be packed into an array. Leave array on the stack.
+% CAUTION: most frequent found items in executable arrays must be first
+% in the following list. There can be more items in list than there
+% is room in packing table: they are ignored. Ones not in the system dict
+% at the time of packing are also ignored.
+{
+ def		 exch		 pop		
+ dup		 get		 null		 ifelse		
+ send		 if		 index		 sub		
+ end		 begin		 add		 put		
+ eq		 roll		 ne		 true		
+ store		 false		 mark		 forall		
+ rlineto	 grestore	 setcanvas	 gsave		
+ moveto		 known		 cvx		 currentdict	
+ copy		 not		 length		 exec		
+ type		 dict		 div		 and		
+ createevent	 lineto		 neg		 setcolor	
+ exit		 mul		 stroke		 setfont	
+ forkunix	 sendevent	 currentprocess	 print		
+ load		 writeXevent	 aload		 undef		
+ fill		 loop		 or		 expressinterest
+ translate	 fork		 closepath	 array		
+ clippath	 le		 astore		 systemdict	
+ show		 pathbbox	 max		 lt		
+ for		 ge		 redistributeevent lasteventtime  
+ stringwidth	 gt		 reshapecanvas	 currentcanvas	
+ setgray	 newcanvas	 movecanvas	 currenttime	
+ waitprocess	 newprocessgroup getcard32	 string		
+ stopped	 repeat		 bitshift	 findfont	
+ cleartomark	 abs		 clipcanvas	 newpath	
+ min		 arcto		 rmoveto	 rgbcolor	
+ killprocess	 currentcursorlocation stop	       scalefont      
+ awaitevent	 where		 unblockinputqueue soften	  
+ putenv		 getenv		 damagepath	 initmatrix	
+ getinterval	 currentfont	 xcheck		 search		
+ revokeinterest	 getcanvaslocation blockinputqueue random	  
+ clear		 transform	setmatrix	 scale
+ idtransform	 dtransform	currentmatrix	 currentcolor
+ rotate          itransform      file           
+ erasepage       setpath         putcard32      
+ getcanvasshape  sin             currentpoint   
+ cos             setrgbcolor     cvs            
+ canvastotop     pause           idiv           
+ counttomark     count           arc            
+ =               killprocessgroup	hsbcolor       
+ fontheight      cvrs            createoverlay  
+ createdevice    atan            monitor        
+ cvn             currentlinejoin countdictstack 
+ buildimage      writestring     userdict       
+ status          setretainthreshold	setrasteropcode
+ setkeyboardtranslation sethsbcolor     putinterval    
+ imagemaskcanvas imagecanvas     anchorsearch   
+ shutdownserver  quit            pathforallvec  
+ mod             initclip        flushfile      
+ flush           floor           currentlinewidth
+ currentlinecap  controlpoint    statusdict_setjobtimeout
+ statusdict_jobtimeout	stack           setstate       
+ setcursorlocation recallevent     newcursor      
+ makefont        localhostname   getsocketpeername
+ getsocketlocaladdress fontdescent     fontascent     
+ findfilefont    currentstate    currentpath    
+ currentfile     copyarea        charpath       
+ canvastobottom  setlinewidth    readline       
+ maxlength       initgraphics    eofill         
+ cvlit           cvi             currentmiterlimit
+ clip            arcn            arccos         
+ acceptconnection ==              writehexstring 
+ typedprint      token           tagprint       
+ settransferfromstack setsysinputtoken setlinequality 
+ setflat         setfileinputtoken setdash        
+ setbackcolor    readcanvas     
+ rcurveto        rcheck          pointinpath    
+ passivekeygrab  passivebuttongrab monitorlocked  
+ invertmatrix    insertcanvasbelow insertcanvasabove
+ grabptrup       grabptrmouse    grabptrdown    
+ grabkbdup       grabkbddown     flattenpath    
+ extend          eoreshapecanvas eocurrentpath  
+ eocopyarea      eoclipcanvas    enumeratefontdicts
+ emptypath       definefont      curveto        
+ currentrgbcolor currentrasteropcode currentlinequality
+ currenthsbcolor currentflat     currentdash    
+ createmonitor   countinputqueue contrastswithcurrent
+ concatmatrix    concat          closefile      
+ clipcanvaspath  canvasesunderpoint bytesavailable 
+ arctan         
+}
+
+% Iterate over above array elements.
+{ dup type /operatortype eq {	% we have an operator, add to the packing list
+	load:unpack
+  } { pop }			% not an operator, ignore it
+  ifelse
+} forall
+
+
+
+% The Xnews packing mode is a per-process mode, not global.
+% The following gives a semblance of Adobe compatibility,
+% but differs in that the packing mode is for the current process.
+
+/setpacking { % boolean => -
+    currentprocess /PackedArrays 3 -1 roll put
+} def
+
+/currentpacking { % - => boolean
+    currentprocess /PackedArrays get
+} def

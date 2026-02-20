@@ -1,0 +1,59 @@
+
+OBVIUS (Object-Based Vision and Image Understanding System) is an
+image-processing system based on Common Lisp and CLOS (Common Lisp
+Object System).  The system provides a flexible interactive user
+interface for working with images, image-sequences, and other
+pictorially displayable objects.  By using Lisp as its primary
+language, the system is able to take advantage of the interpretive
+lisp environment (the ``listener''), object-oriented programming, and
+the extensibility provided by incremental compilation.
+
+The basic functionality of OBVIUS is to present certain lisp objects
+to the user pictorially.  These objects are refered to as "viewables".
+Some examples of viewables are monochrome images, color images, binary
+images, complex images, image sequences, image pyramids, filters and
+discrete functions.  A "picture" is the displayable representation of
+a viewable.  Note that a given viewable may be compatible with several
+different picture types.  For example, a floating point image may be
+displayed as an eight bit grayscale picture, as a one bit dithered
+picture, or as a 3D surface plot.  OBVIUS also provides postscript
+hardcopy output of pictures.
+
+In the typical mode of interaction, the user types an expression to
+the lisp listener and it returns a viewable, which is automatically
+displayed as a picture in a window.  Each window contains a circular
+stack of pictures.  Standard stack manipulation operations are
+provided via mouse clicks (e.g., cycle, pop, and push).  Commonly used
+operations such as histogram and zoom are also provided via mouse
+clicks.
+
+OBVIUS provides a library of image processing routines (e.g., point
+operations, image statistics, convolutions, fourier transforms).  All
+of the operations are defined on all of the viewable types.  The
+low-level floating point operations are implemented in C for speed.
+OBVIUS also provides a library of functions for synthesizing images.
+In addition, it is straightforward to add new operations and new
+viewable and picture types.
+
+OBVIUS currently runs on Sun workstations in Lucid v4.0 Common Lisp.
+We have plans to port it to other platforms, particularly Silicon
+Graphics and DecStations.
+
+OBVIUS is available via anonymous ftp from whitechapel.media.mit.edu,
+IP number 18.85.0.125.  Documentation (latex), and a User's Guide
+with instructions for installing OBVIUS, is included in the tarfile.
+Since it is currently an in-house product it comes without warrantee
+or support.  For more information contact:
+
+David Heeger 
+heeger@white.stanford.edu
+
+Eero Simoncelli
+eero@whitechapel.media.mit.edu
+
+Let us know if you get a copy of OBVIUS at your site so that we can
+keep a list of everybody (to send out bug fixes, inform you of new
+releases, etc.)
+
+
+

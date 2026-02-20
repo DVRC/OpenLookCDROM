@@ -1,0 +1,47 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#)Xaccess.ps 23.7 91/02/11
+
+%	Xaccess.ps: set host access control
+
+Xcompat_private begin
+
+%	XAddHost
+%		Xfamily hostname => --
+/XAddHost {
+    exch pop /addhost ClassAuthorization send
+} def
+
+%	XRemoveHost
+%		Xfamily hostname => --
+/XRemoveHost {
+    exch pop /removehost ClassAuthorization send
+} def
+
+
+%	XSetAccessControl
+%		mode => -- 
+/XSetAccessControl {
+    /sethostaccesscontrol ClassAuthorization send
+} def
+
+
+/XListHosts { % - => security-enabled [ hosts ... ]
+    /xlisthosts ClassAuthorization send
+} def
+
+%	XClientAuthorized
+%		authorization_name authorization_data => boolean
+%
+/XClientAuthorized {
+    /clientauthorized? ClassAuthorization send
+} def
+
+end    % Xcompat_private
+
+
+
+

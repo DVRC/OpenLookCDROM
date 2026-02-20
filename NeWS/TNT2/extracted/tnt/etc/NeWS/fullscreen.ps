@@ -1,0 +1,125 @@
+% Copyright (c) 1989, 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%    @(#) fullscreen.ps 1.12 91/02/11
+%       fullscreen.ps:   a backstop interest; solves X11 interoperability issues
+
+
+/ClassFullScreenInterest ClassObject []
+classbegin
+
+% Defaults
+    /FullScreenCount		0 def
+
+    /PopProc { pop } def
+
+    /BackStopName [
+	% N.B.: This list explicitly does NOT include /EnterEvent or /ExitEvent
+	% because most clients who want to override the backstop to see those
+	% events (e.g., ClassTrackInterest) do so for a specific canvas, and
+	% the backstop is on the root and thus keeps the client from getting
+	% the events.  (The backstop has to be prechild on root in order to
+	% keep X from seeing an event and starting an Xgrab.)
+	/MouseDragged
+        0 1 255 {
+	    16#6F00 add
+	} for
+	/SunWindowExit
+    ] def
+    /BackStopAction dictbegin
+	/AnyValue { % event => -
+	    dup /Name get /MouseDragged eq {
+		dup /Name /FSMouseDragged put
+		redistributeevent
+	    } {
+		/Name get /SunWindowExit eq {
+		    /deactivateall ClassFullScreenInterest send
+		} if
+	    } ifelse
+	} def
+    dictend def
+
+    % The following names cause an extra layer of fullscreen activation if
+    % they go down while a FullScreen is in effect.  Since FullScreen itself
+    % activates the extra layer, FullScreen is also responsible for turning
+    % itself off on the UpTransition, but ONLY if it responded to the Down.
+    % The Name field of the interest is used to keep track of which Down's
+    % have been seen by FullScreen.  Note the use of an executable boolean
+    % so the bool gets put on the stack during event matching, rather than
+    % having the bool replace the /Name field in the distributed event.
+    %
+    % NOTE: "FS" in names is to avoid name conflict with ClassMenuService.
+    %
+    /FSTriggerName dictbegin
+    	[   PointButton
+	    AdjustButton
+	    MenuButton
+	    /4thMouseButton
+	    /5thMouseButton
+	] { false cvx def } forall
+    dictend def
+    /FSTriggerAction dictbegin
+	/DownTransition {	% event bool => -
+	    {
+	        pop
+	    } {
+	    	dup /Interest get /Name get exch	% FSTriggerName event
+	    	/Name get true cvx put			% -
+	    	/activatefullscreen ClassFullScreenInterest send
+	    } ifelse
+	    unblockinputqueue
+	} def
+	/UpTransition {		% event bool => -
+	    {
+	    	dup /Interest get /Name get exch	% FSTriggerName event
+	    	/Name get false cvx put			% -
+	    	/deactivatefullscreen ClassFullScreenInterest send
+	    } {
+	    	pop
+	    } ifelse
+	    unblockinputqueue
+	} def
+    dictend def
+    
+    /activatefullscreen { % - => -
+	nullevent /activate BackStopInterest send
+	nullevent /activate TriggerInterest send
+	/FullScreenCount FullScreenCount 1 add store
+    } def
+
+    /deactivatefullscreen { % - => -
+	FullScreenCount 1 sub dup 0 le {
+	    pop 0
+	    /deactivate TriggerInterest send
+	    /deactivate BackStopInterest send
+	    FSTriggerName dup dup {		% TN TN button bool
+	    	pop false cvx put		% TN
+	    	dup
+	    } forall pop pop
+	} if
+	/FullScreenCount exch store
+    } def
+
+    /deactivateall { % - => -
+    	/FullScreenCount 0 store
+    	/deactivatefullscreen self send
+    } def
+
+    /BackStopInterest
+	null BackStopAction BackStopName /new ClassInterest send
+	dup /Exclusivity true put
+	dup /Priority ClassInterest /FullScreenPriority get put
+	dup /Process GlobalSystemEventMgr put
+	def
+    /TriggerInterest
+	null FSTriggerAction FSTriggerName /new ClassInterest send
+	dup /Exclusivity true put
+	dup /Priority ClassInterest /FullScreenPriority get put
+	dup /Process GlobalSystemEventMgr put
+	dup /Synchronous true put
+	def
+
+classend def
+

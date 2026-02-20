@@ -1,0 +1,100 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)autoload.ps 23.4 91/02/11
+%
+
+%
+% To AutoLoad an object means to define a procedure of the object's
+% name that, when invoked, creates the object by reading the associated
+% file, returning the object itself as the result of the procedure.  This
+% yields a Lazy Loading technique.
+%
+% We wrap a monitor around the loader to ensure that two clients don't
+% try to load the same file (resolve objects in the same file) at the same
+% time.	 Also, once we are in the monitor, we need to make sure that somebody
+% didn't already do the load while we were waiting.
+%
+
+/AutoLoadMonitor createmonitor def
+/AutoLoad { % name filename pack? vm dict
+			% => object | 'result of object execution`
+    AutoLoadMonitor {
+	begin					% name filename pack? vm
+	    3 index load
+	    dup isarray? {			% name filename pack? vm object
+		5 get /AutoLoad eq {		% name filename pack? vm
+		    currentvm 4 1 roll setvm	% name ovm filename pack?
+		    currentpacking 3 1 roll	% name ovm opack filename pack?
+		    setpacking			% name ovm opack filename
+		    LoadFile 3 1 roll		% name bool ovm opack
+		    setpacking			% name bool ovm
+		    setvm			% name bool
+		} {
+		    pop pop pop true		% name bool
+		} ifelse
+	    } {
+		pop pop pop pop true		% name bool
+	    } ifelse
+	end
+	/undefinedfilename assert
+	load
+    } monitor
+    exec
+} def
+
+/autoload { % objectname filename => -
+    % the code in AutoLoad has dependencies on the construction of this
+    % array (namely on the location of the /AutoLoad keyword).	Careful
+    % when changing it.	 Note that it attempts to preserve the current
+    % packing state, vm, and dictionary for the eventual loading.
+    [				% name filename [
+	exch			% name [ filename
+	2 index exch		% name [ name filename
+	currentpacking		% name [ name filename pack?
+	currentvm		% name [ name filename pack? vm
+	currentdict		% name [ name filename pack? vm dict
+	/AutoLoad cvx		% name [ name filename pack? vm dict AutoLoad
+    ] cvx def
+} def
+
+%
+% DefineAutoLoads automatically builds the autoload-s for a collection of
+% objects.  Its input is an array of object - filename pairs.
+%
+/DefineAutoLoads { % array => -; make autoloads for the list of classes
+    systemdict begin
+	aload length 2 idiv {autoload} repeat
+    end
+} def
+
+
+%
+% To CheckLoad an object means to make sure that the given file has been
+% loaded by testing the existence of a given named object.  This is used
+% by clients which can't define AutoLoad's but wish to have a library of
+% code loaded upon their first invokation.
+%
+% We wrap a monitor around the loader to ensure that two clients don't
+% try to load the same file (resolve objects in the same file) at the same
+% time.	 Also, once we are in the monitor, we need to make sure that somebody
+% didn't already do the load while we were waiting.
+%
+% Note that, since /CheckLoad is called explicitly by the client, it's up
+% to the client to call setpacking if he wants to affect the packing-ness
+% of the loaded code.
+%
+/CheckLoad { % name filename dict => bool
+    AutoLoadMonitor {
+	begin					% name filename
+	    exch where {			% filename dict
+		pop pop true			% bool
+	    } {					% filename
+		LoadFile			% bool
+	    } ifelse
+	end
+    } monitor
+} def

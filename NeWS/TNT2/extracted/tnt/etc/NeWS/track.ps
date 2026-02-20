@@ -1,0 +1,320 @@
+% Copyright (c) 1989, 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%    @(#) track.ps 23.22 91/02/11
+%	track.ps:   the suite of interests that constitute a vanilla tracker
+
+%   ClassTrackInterest
+%
+%   A Track interest is a Notify interest triggered by a button down,
+%   which then activates some [sub]set of dependents interested in
+%   motion, button up, crossings, shift events, and timers.
+
+/ClassTrackInterest [ ClassNotifyInterest ClassFullScreenInterest ]
+dictbegin
+    /StopWanted?  true def	% true if client wants to be called in untrigger
+    /TimerSet?    false def	% true if timer event has been queued
+dictend
+classbegin
+
+    %  Sets of dependents clients can request by name
+    %
+    /BuiltIn dictbegin
+	/Default [/TrackCrossing /TrackStop /TrackMotion] def
+		% no /TrackShift or /TrackTimer
+    dictend def
+
+% Class variables:
+
+%	Useful values for the Name and/or Action of the Notify and
+%	dependent interests:
+
+    %	The default Name for a Track notify interest:
+    %
+    /DefaultTrackName [
+	/LeftMouseButton /MiddleMouseButton /RightMouseButton
+    ] def
+
+    %	The canonical NotifyInterest Action for a tracker:
+    %
+    /DefaultTrackAction 1 dict dup begin
+	/DownTransition { % event => -
+	    /trigger /SendInContext 2 index /Interest get send
+	} def
+    end def
+
+%	Name dicts for the known dependent interests:
+
+    %	Pointer in or out of the client canvas' subtree.
+    /CrossingName 2 dict dup begin
+	/EnterEvent { % event => -
+	    /TrackCrossing 1 index /Canvas get send
+	}				def
+	/ExitEvent	//EnterEvent	def
+    end def
+
+    %	Button-up which concludes this transaction.
+    /EndAction 1 dict dup begin
+	/UpTransition { % event => -
+	    /untrigger 1 index /Interest get /NotifyInterest get send
+	} def
+    end def
+
+    %	Any pointer motion.
+    /MotionName 1 dict dup begin
+	/MouseDragged { % event => -
+	    /TrackMotion 1 index /Interest get
+	    /NotifyInterest get /CurrentClient get send
+	} def
+    end def
+
+    %	Shift-key transitions.
+    /ShiftName 1 dict dup begin
+%	HOLE: REMIND
+    end def
+
+    %	Timeout events.  Use Action rather than Name so ClassTimerInterest
+    %   can use the Name to set up the next event before we consume the
+    %   current one on the stack.
+    /TimerAction 1 dict dup begin
+	/TrackTimer {  % event => -
+	    /TrackTimer 1 index /Interest get
+	    /NotifyInterest get /CurrentClient get send
+	} def
+    end def
+
+% Methods:
+
+    %	initialize the track-interest; create & install its dependents
+    %
+    /NewInit { % canvas action name  =>  -
+	dup /Default eq {
+	    pop DefaultTrackName
+	} if 3 1 roll			%  nm cv act
+	dup /Default eq {
+	    pop DefaultTrackAction
+	} if 3 1 roll			%  act nm cv
+	dup /Default eq {
+	    pop growabledict
+	} if 3 1 roll			%  cv act nm
+	/NewInit super send		%  Nint
+	/Exclusivity true def
+	/Priority TrackPriority def
+	CreateDependents
+    } def
+
+    %	/trigger is inherited intact from NotifyInterest.  SelectUI
+    %	depends on this fact; if TrackInterest ever needs its own
+    %	/trigger, SelectUI will have to be changed not to do a super send.
+
+
+    %	Ask the client which dependents to activate.
+    %	NOTE:  this code is quite fragile!
+    %
+    /ActivateDependents { % event  =>  -
+	dup /TrackStart CurrentClient send {	  %  ev name  | ev [labels...]
+	    /activatefullscreen self send
+	    dup type /nametype eq {		  %  ev name
+		BuiltIn exch get
+	    } if				  %  ev [labels...]
+
+	    % make up-interest only match the same button as went down
+	    Dependents /TrackStop get
+	    /Name 3 index /Name get put
+
+	    false exch
+	    {   Dependents 1 index get exch	  %  ev stop? Dint label
+	    	dup /TrackStop eq {
+	    	    3 -1 roll pop true 3 1 roll
+	    	} if				  %  ev stop? Dint label
+		dup /TrackCrossing eq
+		exch /TrackTimer eq or {	  %  ev stop? Dint
+		    dup /Canvas CurrentClient put
+		} if
+		2 index /activate 3 -1 roll send  %  ev stop?
+	    } forall				  %  ev stop?
+	    
+	    % Activate TrackStop even if client didn't ask for it; it's needed
+	    % to know when to turn off fullscreen and any other dependents.
+	    /StopWanted? exch def		  % ev
+	    StopWanted? not {
+	    	/activate Dependents /TrackStop get send
+	    } {
+	    	pop
+	    } ifelse				  %
+	} {					  %  ev
+    	    /CancelNotify self send
+	    dup /Canvas null put
+	    % Let event continue to other interests on this canvas and then
+	    % up the canvas tree; the Canvas field got set to this particular
+	    % canvas when it was distributed to it so we must clear it again.
+	    % REMIND: Do we need to be hairy like the ReceptionService and
+	    % avoid having modified the Canvas field in the first place (to
+	    % avoid marking the event as /Synthetic)?
+	    redistributeevent
+	} ifelse
+    } def
+
+    % remove CurrentClient from all interests
+    %
+    /untrigger { % event => -
+	/deactivatefullscreen self send
+	TimerSet? {
+	    /stoptimer self send
+	    /TimerSet? false def
+	} if
+	StopWanted? {
+	    dup /TrackStop CurrentClient send
+	} if
+	/untrigger super send
+    } def
+
+    % Override: remove CurrentClient from all interests
+    %
+    /DeactivateDependents { % - => -
+    	/DeactivateDependents super send
+    	{/TrackCrossing /TrackTimer} {
+	    Dependents exch 2 copy known {
+		 get /Canvas null put
+	    } {
+		 pop pop
+	    } ifelse
+	} forall
+    } def
+    
+    % override: Send TrackCancel
+    %
+    /CancelNotify { % - => -
+	TimerSet? {
+	    /stoptimer self send
+	    /TimerSet? false def
+	} if
+    	Triggered? {
+    	    /deactivatefullscreen self send
+    	    nullevent /TrackCancel CurrentClient send
+    	} if
+    	/CancelNotify super send
+    } def
+
+    %	Create a set of dependent interests for this Notify.
+    %
+    /CreateDependents { % - => -
+	/TrackCrossing
+	    null SubTreeAction CrossingName DepCreate
+	    pop
+	/TrackStop
+	    null EndAction false DepCreate
+	    dup /Synchronous true put
+	    /Exclusivity true put
+	/TrackMotion
+	    null null MotionName DepCreate
+	    /Exclusivity true put
+	/TrackShift
+	    null null nullarray DepCreate	%  REMIND:  not yet
+	    pop
+	/TrackTimer
+	    self null TimerAction /new ClassTimerInterest send
+	    pop
+    } def
+
+    % Glue to connect clients with the timer interest.
+    %
+    /starttimer { % initial repeat => -
+    	/starttimer Dependents /TrackTimer get send
+    	/TimerSet? true def
+    } def
+    
+    /stoptimer { % - => -
+    	/stoptimer Dependents /TrackTimer get send
+    	/TimerSet? false def
+    } def
+
+classend def
+
+% ClassTimerInterest - An interest in timer events, used by Trackers.
+% The TimerInterest itself provides methods for generating the timer
+% events to which it responds.  ClassTrackInterest provides some glue
+% so that clients don't have to have a handle on the TrackService's
+% dependent timer-interest.
+
+/ClassTimerInterest ClassDependentInterest [
+	/Event			% timer event used by this instance
+	/Interval		% time between one event and the next
+	/Pending?		% has Event been sent but not received?
+]
+classbegin
+
+% Class Variables:
+
+    /TimerName dictbegin
+    	/TimerEvent { % event => event	(leave event for Action to consume)
+    	    dup /Interest get /NextEvent exch send
+    	} def
+    dictend def
+
+% Methods:
+
+    % Override: Create the event template, and force the Name field
+    % to be an executable match that sets up the next event.  (Clients
+    % should use the Action field to perform their own executable
+    % matches.
+    %
+    /NewInit { % canvas action => -
+    	TimerName
+    	/NewInit super send
+    	Action dup type {
+    	    /arraytype /packedarraytype {0 get}
+    	    /dicttype {{pop exit} forall}
+    	} case					% action-key
+    	createevent begin
+    	    /Action exch def
+    	    /Name /TimerEvent def
+    	currentdict end
+    	/Event exch def
+    	/Pending? false def
+    } def
+
+    % Send a timer event for "initial" minutes from now.  When it
+    % arrives, subsequent events will be generated every "repeat"
+    % minutes (unless repeat<=0).
+    %
+    /starttimer { % initial repeat => -
+    	/Interval exch def
+	Event /TimeStampMS currenttimems 4 -1 roll add put
+	Event /Canvas CurrentClient put
+	Event sendevent
+	/Pending? true def
+    } def
+    
+    % Recall any pending timer event.
+    %
+    /stoptimer { % - => -
+    	Pending? {
+    	    Event recallevent
+    	    /Pending? false def
+    	} if
+    	Event /Canvas null put
+    } def
+    
+    % This is the method called by the executable match when a timer event
+    % is received.  It sends the next timer event.  If Pending? is false,
+    % we assume there was a race condition with a timer event arriving while
+    % we were trying to deactivate the interest, so we ignore it.
+    %
+    /NextEvent { % - => -
+    	Pending? {
+    	    Interval 0 gt {
+    	    	  % could base new event off of lasteventtime, but then lots
+    	    	  % of events can get backlogged, so we'll use currenttime
+	    	Event /TimeStampMS currenttimems Interval add put
+	    	Event sendevent
+	    }{
+	    	/Pending? false def
+	    	Event /Canvas null put
+	    } ifelse
+	} if
+    } def
+    
+classend def

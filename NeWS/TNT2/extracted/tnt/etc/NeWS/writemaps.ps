@@ -1,0 +1,155 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+% 	@(#)writemaps.ps 23.3 91/02/11
+
+%   writemaps.ps:
+%	put pre-computed dicts for a keyboard out in a file where they
+%	can be loaded without repeating a great deal of work.
+
+{	% start of the whole file, which gets shipped to ClassKeyboard
+
+    /header	(\
+% Copyright \(c\) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:\n\
+% Use, duplication, or disclosure by the Government is subject to\n\
+% restrictions as set forth in subparagraph \(c\)\(1\)\(ii\) of the Rights in\n\
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and\n\
+% in similar clauses in the FAR and NASA FAR Supplement.\n\
+%	%Z) (%%M) append (% %I) append (% %E) append (%\n%\n\
+% This file is machine-generated; editing it is probably futile.\n\
+% Change one of keybdinit.ps, keyboard.ps or writemaps.ps instead.\n\
+\n)		append	def
+
+    /maps [
+	/ascii000  /asciiC00  /ascii0S0  /ascii00L
+	/ascii000M /asciiC00M /ascii0S0M /ascii00LM
+	/KeyTable  /numpadN   /CursKeyStrings
+	/FKeyNames /FKeyStrings
+    ] def
+
+    /buf 256 string def
+    /f currentfile def		%  file
+    /nl (\n) def
+    /sp ( ) def
+
+    /opnames dictbegin
+	systemdict {
+	    dup type /operatortype eq { exch def} { pop pop } ifelse
+	} forall
+    dictend def
+
+    /specialChars dictbegin
+	([) toControlChar	(\\033)	def
+	(H) toControlChar	(\\b)	def
+	(I) toControlChar	(\\t)	def
+	(J) toControlChar	(\\n)	def
+	(M) toControlChar	(\\r)	def
+	(L) toControlChar	(\\f)	def
+	(\\) toChar		(\\\\)	def
+	(\() toChar		(\\\()	def
+	(\)) toChar		(\\\))	def
+    dictend def
+
+    /pr {	% str  =>  --
+	f exch writestring
+    } def
+
+    /prc {	% char => --
+	specialChars 1 index known {
+	    specialChars exch get pr
+	} {
+	    f exch write
+	} ifelse
+    } def
+
+    /cvpr {	% any => --
+	buf cvs pr
+    } def
+
+    /objpr {	% any  =>  --
+	printers 1 index type 2 copy known not {
+	    pop /Default
+	} if get exec
+    } def
+
+    /printers dictbegin
+	/arraytype {
+	    dup xcheck {
+		({\n) (\n})
+	    } {
+		([ ) (])
+	    } ifelse
+	    3 1 roll pr
+	    {objpr sp pr} forall
+	    pr
+	} def
+	/dicttype {
+	    (dictbegin\n) pr
+	    {   sp pr exch objpr
+		sp pr objpr
+		( def) pr nl pr
+	    } forall
+	    (dictend) pr
+	} def
+	/nametype {
+	    dup xcheck not {(/) pr } if
+	    cvpr 
+	} def
+	/packedarraytype
+	    /arraytype load
+	def
+	/operatortype {
+	    opnames exch get cvpr
+	} def
+	/stringtype {
+	    (\() pr
+	    { prc } forall
+	    (\)) pr
+	} def
+	/Default {
+	    cvpr
+	} def
+    dictend def
+
+     
+    /writemap {	%  kbd-type filename  =>  --
+	/f exch (w) file def
+	/KeyboardType exch store
+	maps {
+	    load dup type /dicttype eq {
+		cleanoutdict
+	    } {
+		pop
+	    } ifelse
+	} forall
+	(NeWS/keybdinit.ps) LoadFile {
+	    f header writestring
+	    maps {
+		dup objpr sp pr
+		load objpr sp pr
+		(def\n) pr
+	    } forall
+	} {
+	    (%stderr) (w) file dup
+	    (writemap failed for ) writestring
+	    f buf cvs writestring
+	} ifelse
+	f closefile
+	maps {
+	    load dup type /dicttype eq {
+		cleanoutdict
+	    } {
+		pop
+	    } ifelse
+	} forall
+    } def
+
+    KeyboardNames { writemap } forall
+
+    /KeyboardType /kbdtype self send store
+    (NeWS/keybdinit.ps) LoadFile pop
+
+} ClassKeyboard send
+

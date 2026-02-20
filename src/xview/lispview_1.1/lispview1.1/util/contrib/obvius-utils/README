@@ -1,0 +1,15 @@
+
+x-mouse-utilities.lisp - general utilities for providing dynamic
+	(Symbolics-style) mouse documentation, and for click-and-drag
+	operations (eg, interactive line-drawing, rubber-band boxes, etc).
+x-bucky.lisp - LispView patch to catch bucky (i.e., shift,
+	control, meta) key transition events.  Required for mouse
+	documentation code in x-mouse-utilities.lisp.
+
+x-dialogs.lisp - code for automatically generating dialog boxes to
+	edit either: a) a collection of global variables, b) the slots of a
+	CLOS object, or c) the default values (initargs and initforms) of
+	the slots of a CLOS object.
+clos-extensions.lisp - extensions to CLOS used to generate dialog
+	boxes in item (c) above.
+

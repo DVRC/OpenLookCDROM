@@ -1,0 +1,1581 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%              @(#)util.ps 23.12 91/02/11
+%
+%  Simple utilities used by windows & input.
+%
+%  Note: this file should be usable when running NeWS as a filter.
+%  This means that it should "protect" defining and using utilities
+%  that depend on the framebuffer.
+%  See "setstandardcursor" for an example.
+%
+
+%
+% null-types to avoid building billions of empty object-bodies!
+% Note that "{} {} eq" will return false since they are different empty procs.
+% Similarly, strings and dicts need a common null representative.
+%
+/nullproc	{{}}		def
+/nullstring	()		def
+/nullarray	[]		def
+% REMIND - the server cannot really support 0 length dicts.
+/nulldict	0 dict readonly def
+/nullnotify	{{pop}}		def
+/nullprocess	{} fork dup /ProcessName (nullprocess) put def
+/nullevent	createevent dup /TimeStamp 0 put def
+
+%
+% A procedure to allow programmer to know if there is a "stopped"
+% pending somewhere within the scope of the call.  This is used
+% to check if it's safe to rely on stopped to handle an error,
+% rather than the errordict.  The debugger can use this to
+% catch errors that have no stopped call pending.
+%
+/stoppedpending? {	% - => bool
+    false currentprocess /ExecutionStack get		% result a
+    dup length 1 sub -2 1 {				% result a i
+        2 copy get					% result a i index
+        exch 1 sub 2 index exch get			% result a index proc
+        dup isarray? {
+            exch 1 sub get				% result a caller
+            /stopped load eq {pop true exch exit} if
+        } {
+            pop pop
+        } ifelse
+    } for
+    pop
+} def
+
+
+%
+% refork forks a process to do something, checking first
+% to see if a prior process is running.  If so, it kills
+% it first.  The second form takes an additional procedure
+% that is executed after the original process is killed to
+% reset required state.  refork is most often used in user interaction
+% so that potentially long actions do not "freeze" the system.
+% The window manager uses it to fork painting, for example.
+% The window manager might use the second form to reset the
+% clippath for the earlier painting procedure.
+%
+/refork { % processname proc => -
+          % processname proc killproc => -
+    1 index type dup				% name proc type type
+    /nametype eq exch /stringtype eq or		% name proc bool
+    {nullproc} if				% name proc killproc
+    2 index where {				% name proc killproc dict
+	3 index get				% name proc killproc obj
+	dup type /processtype ne {pop pop} {	% name proc killproc process
+	    dup /State get /zombie eq {pop pop} {
+		killprocess			% name proc killproc
+		cvx exec			% name proc
+	    } ifelse
+	} ifelse
+    } {						% name proc killproc
+	pop					% name proc
+    } ifelse
+    fork store					% -
+} def
+
+
+%
+% setshade is the polymorphic combo of setcolor and setgray.  
+%
+/setshade { 		% grey or color  =>  -   /   sets current color or grey
+    dup type /colortype eq {
+        setcolor
+    } {
+        setgray
+    } ifelse
+} def
+
+
+%
+% Interaciton lock for monitoring full screen activity.
+%
+/InteractionLock createmonitor def
+
+%%%%%%%%%%%%%%%%%%%
+% array utilities %
+%%%%%%%%%%%%%%%%%%%
+
+/arraycontains? { % array value => bool ; returns true if value is in array.
+    exch false exch {			% value bool ai
+	2 index eq {pop true exit} if
+    } forall				% value bool
+    exch pop
+} def
+
+/arraysequal? { % A B => bool
+    dup length 2 index length		% A B lengthB lengthA
+    gt { exch } if			% longerarray shorterarray
+    0 exch {				% A i bi
+    	2 index 2 index get ne		% A i bool
+	{exit} {1 add} ifelse		% A i
+    } forall
+    exch length eq
+} def
+
+/arrayindex { 	% array value => index true -or- false
+    exch 0 exch {				% value i ai
+	2 index eq				% value i
+	    {exch pop true exit} {1 add} ifelse
+    } forall					% i true -or- value i
+    dup true ne {pop pop false} if		% i true -or- false
+} def
+
+
+%
+% reverse the elements of an array, e.g. [1 2 3] arrayreverse => [3 2 1]
+%
+% /arrayreverse is the safer of the two methods.  /arrayreverseFast is up 
+% to 100% faster but it uses the operand stack so for very large (>1000) 
+% arrays you are in danger of getting stackoverflows.  Stack usage is twice
+% the array size.
+%
+
+/arrayreverse {		% array => rarray
+    dup length dup 1 sub exch array exch	% old new i'
+    2 copy 5 -1 roll				% new i' new i' old
+    {						% new i' new i' old[i]
+	put 1 sub 2 copy			% new i'-1 new i'-1
+    } forall
+    pop	pop pop					% new
+} def
+
+/arrayreverseFast { 	% array => rarray
+    mark exch aload length			% mark a0 ... an n 
+    [ 2 2 3 index dup add /index load for ]	% mark a0 ... an n rarray
+    exch 2 add 1 roll cleartomark		% cleanup the stack
+} def
+
+/arrayop { 	% A B proc => C   ;  C[i] via: i A[i] B[i] proc => i newval
+    cvx 2 index length array 4 1 roll		% C A B proc
+    0 1 4 index length 1 sub			% C A B proc 0 1 l-1
+    4 index isarray? {				% choose forbody for array or scalar
+        { 			 		% C A B proc i
+	3 index 1 index get 3 index 2 index get	% C A B proc i Ai Bi
+	3 index exec				% C A B proc i Ci
+	5 index 3 1 roll put			% C A B proc
+        } % forbody when B is an array
+    } {
+        { 					% C A b proc i
+	3 index 1 index get 3 index		% C A b proc i Ai b
+	3 index exec				% C A B proc i Ci
+	5 index 3 1 roll put			% C A B proc
+        } % forbody when B is a consant
+    } ifelse					% C A B proc 0 1 l-1 forbody
+    for 
+    pop pop pop
+} def
+
+% Delete the item at the given index from the array.
+% This does the deletion by copying the elements beyond the
+% index "down" one, returning a subarray of the original array.
+% Note this does not release the initial array.
+% If index beyond end of array, delete last item. 
+/arraydelete { % array index => array'; delete nth elem in place
+    1 index length 1 sub min		% a i; i legal
+    % compact the array by performing a putinterval:
+    % a i (a i+1 l-(1+1) getinterval) putinterval
+    2 copy 2 copy 1 add 2 copy		% a i a i a i+1 a i+1
+    exch length exch sub		% a i a i a i+1 l-(1+1)
+    getinterval putinterval		% a i; a modified
+    % return modified array's shortened subinterval
+    pop dup length 1 sub		% a l-1
+    2 copy null put			% a l-1
+    0 exch getinterval
+} def
+%/arraydelete { % array index => array'; delete nth elem in place
+%    % create result subarray
+%    1 index dup length 1 sub		% a i a l-1
+%    0 exch getinterval			% a i a'
+%    % now roll to result location & 
+%    dup 4 1 roll length min		% a' a i; i legal
+%    % compact the array by performing a putinterval:
+%    % a i (a i+1 l-(1+1) getinterval) putinterval
+%    2 copy 1 add 2 copy			% a' a i a i+1 a i+1
+%    exch length exch sub		% a' a i a i+1 l-(1+1)
+%    getinterval putinterval		% a'; elements moved
+%} def
+
+% Make new array = old array with object appended to end.
+/arrayappend { % array obj => array'; append obj to end of array
+    exch dup length 1 add array dup dup	% obj a a' a' a'
+    5 2 roll copy length		% a' a' obj l
+    exch put
+} def
+
+% Insert an item in an array.
+% If index beyond end of array, insert at end.
+/arrayinsert { % array index value => array'
+    3 1 roll				% v a i
+    1 index length min			% v a i
+    [ 2 index 0 3 index			% v a i [ a 0 i
+    getinterval aload length		% v a i [ a0..ai-1 i
+    4 add -3 roll			% [ a0..ai-1 v a i
+    1 index length 1 index sub		% [ a0..ai-1 v a i l-i
+    getinterval aload pop ]		% [a0..ai-1 v ai..al-1]
+} def 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% string/font utilities %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% show centered & right flush:
+/rshow { dup stringwidth exch neg exch rmoveto show } def
+/cshow { dup stringwidth exch 2 div neg exch rmoveto show } def
+
+%
+% cvis assumes "int" to be ascii and converts it to a single char string 
+% cvas converts an array of ints into a mutil char string.
+% 
+/cvis {				% int => ('int')
+    1 string dup 0 4 -1 roll put
+} def	
+
+/cvns { % name => str
+    dup length string cvs
+} def	
+
+/cvas { 			% array  =>  str  
+    dup length string 0		% array str i   (i is index into str)
+    3 -1 roll { 		% str i array
+        3 copy put		% add (ai) to the string
+        pop 			% remove an extra copy of ai
+        1 add			% i++
+    } forall			% for each ai: add to str
+    pop				% pop the index
+} def
+
+/fontheight { % font => int
+    begin 
+        FontBBox aload pop 	% x y 
+        exch pop exch sub exch pop
+        FontMatrix 3 get mul 
+    end 
+} ?def
+
+/fontascent { % font => int
+    begin 
+        FontBBox 3 get FontMatrix 3 get mul 
+    end
+} ?def
+
+/fontdescent { % font => int
+    begin 
+        FontBBox 1 get FontMatrix 3 get mul neg 
+    end 
+} ?def
+
+/fontscale { % font => scale; return fonts scale
+    begin
+	FontMatrix 0 get				% this font's scale
+	FontName findfont /FontMatrix get 0 get		% base font scale
+	div
+    end
+} def
+
+/fontspec { % font => name size encoding
+    begin
+	FontName
+	currentdict fontscale
+	Encoding
+    end
+} def
+
+/modifyfont { % name|null size|null encoding|null font => font
+    begin
+	dup null eq {pop Encoding} if		% name|null size|null encoding
+	exch					% name|null encoding size|null
+	dup null eq {
+	    pop currentdict fontscale
+	} if					% name|null encoding size
+	3 -1 roll				% encoding size name|null
+	dup null eq {pop FontName} if		% encoding size name
+	PrinterMatched 4 1 roll			% printermatched encoding size name
+    end
+    findfont exch scalefont exch encodefont
+    exch printermatchfont
+} def
+
+%
+% stringbbox is unusual.  It returns x y w h instead of x y x' y'
+%
+% Use the new getbbox operator, if present.  Otherwise, use
+% charpath.
+%
+% Using points2rect on the pathbbox output does the right thing.
+% If charpath hands an empty path, return an empty bbox.
+%
+
+systemdict /getbbox known {
+    /stringbbox {			% s => x y w h
+	false getbbox			% x y w h
+    } def
+} {
+    /stringbbox { 		% s => x y w h
+   	gsave 
+	0 0 moveto false charpath
+	emptypath {
+	    0 0 0 0
+	} {
+	    pathbbox 
+	    points2rect		% x y x' y' => x y w h
+	} ifelse
+	grestore
+    } def
+} ifelse
+
+%
+%
+% litstring replace escapes in strings with escaped escapes!
+% Thus (foo\n) produces (\(foo\\n\)) which prints as (foo\n)
+% Mainly used with printf when you want the arg to print as
+% the string you typed to the interpreter.
+% test: /s (\b\t\n\f\r\(\\\)\200\300) def s litstring
+%
+/litstring { 		% str => str'
+    [ 
+        40 3 -1 roll {
+            dup {
+                8 9 10 12 13 {	% \b \11 \n \f \r
+                    (\\ ) dup 1 (--------btn-fr) 4 index get put
+                    }
+                40 41 92 {	% ( ) & \
+                    (\\ ) dup 1 3 index put
+                    } 
+                /Default {	% all other chars
+                    dup 32 lt 1 index 126 gt or {
+                        (\\000) dup			% i s s
+                        2 index dup 0 lt {256 add} if % BUG workaround
+                        8 4 string cvrs		% i s s os
+                        dup length 4 exch sub exch putinterval
+                    } if
+                }
+            } case
+            dup type /stringtype eq {exch pop {} forall} if
+        } forall 41	% 41 is ')' 
+    ] cvas
+} def
+
+
+%%%%%%%%%%%%%%%%%%
+% Graphics State %
+%%%%%%%%%%%%%%%%%%
+
+%
+%   These procedures return the numbers used to build the current CTM
+%   as if it was built in the following order:
+%
+%   Tx Ty translate Sx Sy scale Angle rotate
+%
+%   If you use these procedures to decompose the CTM then you must 
+%   recreate it in the above order
+%
+/currenttranslation { % - => Tx Ty
+    matrix currentmatrix 4 2 getinterval aload pop
+} def
+
+/currentscale { % - => Sx Sy
+    matrix currentmatrix 0 4 getinterval aload pop
+    exch 4 -1 roll dup mul exch dup mul add sqrt 
+    3 1 roll dup mul exch dup mul add sqrt 
+} def
+
+/currentangle { % - => Angle
+    matrix currentmatrix dup 1 get exch 3 get atan
+} def
+
+%%%%%%%%%%%%%%%%%%%
+% point utilities %
+%%%%%%%%%%%%%%%%%%%
+
+
+/xyadd { % x1 y1 x2 y2 => x1+x2 y1+y2
+    3 -1 roll add 3 1 roll add exch
+} def
+
+/xysub { % x1 y1 x2 y2 => x1-x2 y1-y2
+    3 -1 roll exch sub 3 1 roll sub exch
+} def
+
+/xymax { % x y x' y' => max(x,x') max(y,y')
+    exch 4 -1 roll max 3 1 roll max
+} def
+
+/xymin { % x y x' y' => min(x,x') min(y,y')
+    exch 4 -1 roll min 3 1 roll min
+} def
+
+% These aren't used enough to warrent general usage yet.
+% /xymul { % x1 y1 x2 y2 => x1*x2 y1*y2
+%     3 -1 roll mul 3 1 roll mul exch
+% } def
+% /xydiv { % x1 y1 x2 y2 => x1/x2 y1/y2
+%     3 -1 roll exch div 3 1 roll div exch
+% } def
+
+%%%%%%%%%%%%%%%%%%
+% rect utilities %
+%%%%%%%%%%%%%%%%%%
+
+
+/rect {				% w h => -  ; add a rect to path at current point
+    dup 0 exch rlineto 
+    exch 0 rlineto 
+    neg 0 exch rlineto 
+    closepath 
+} ?def
+
+/points2rect { 			% x y x' y'  =>  x y w h
+    3 index 2 index min		% x y x' y' X
+    3 index 2 index min		% x y x' y' X Y
+    5 index 4 index sub abs	% x y x' y' X Y W
+    5 index 4 index sub abs	% x y x' y' X Y W H
+    8 -4 roll pop pop pop pop	% X Y W H
+} def
+
+/rect2points { 			% x y w h    =>    x y x' y'
+    2 index add			% x y w (h+y)
+    exch 3 index add exch	% x y (w+x) (h+y)
+} def
+
+/rectsoverlap { 	% r1 r2 => bool  ; r1 & r2 = x y w h quadruples
+    rect2points 4 array astore
+    5 1 roll rect2points 4 array astore exch
+    {2 index 1 le {max} {min} ifelse} arrayop
+    aload pop		% x y X Y (i.e. x0max y0max x1min y1min)
+    exch 4 1 roll	% X x y Y
+    lt 3 1 roll gt and	% x0max<x1min & y0max<y1min
+} def
+
+/pointinrect? { %  X Y x y w h => bool
+    2 index add exch 3 index add	%  X Y x y t r
+    5 index gt exch 4 index gt and	%  X Y x y R/T?
+    exch 4 -1 roll le and exch		%  X R/T/B? x
+    3 -1 roll le and			%  in?
+} def
+
+/strokebbox {		% -  =>  -  ;  Strokes current rectangular path
+    pathbbox points2rect
+    4 2 roll
+    .5 add exch .5 add exch moveto 1 sub exch 1 sub exch rect
+    stroke
+} def
+
+%
+% /polypath is a procedure for drawing simple straight line
+% polygons.  It takes an x,y location; and an array of delta
+% motions (dx dy pairs; must be an even number).  The path
+% is closed via a closepath call.
+%
+% /polyline is the delta line drawer used by polypath; it does
+% no move or closepath and is intended more controlled usage.
+%
+% /polyrectpath is a rectangular version in which each delta
+% is represented by only one number, not two.  The first delta
+% is dx,0; the next is 0,dy; the next is dx,0; and so on.  The
+% array does not have to be an even length.
+%
+% /polyrectline is the delta line drawer used by polyrectpath and
+% is analogous to polyline.
+%
+% This example paints a 100x100 star and its bounding box at 100 100:
+%
+%    gsave
+%	framebuffer setcanvas
+%	100 100 translate 0 setgray
+%	20 0 [80 65 -100 0 80 -65 -30 100] polypath stroke
+%	0 0 [100 100 -100] polyrectpath stroke
+%    grestore
+%
+/polypath { % x y array => -; 
+    3 1 roll moveto polyline closepath
+} def
+/polyrectpath { % x y array => -; 
+    3 1 roll moveto polyrectline closepath
+} def
+/polyline { % array => -; 
+    null exch {				% null dx -or- close? null dx dy
+        1 index null ne {rlineto} if	% null dx -or- null
+    } forall
+    pop					% -
+} def
+/polyrectline { % array => -; 
+    false exch {		% dy? dx|dy
+        0 2 index {exch} if	% false dx 0 -or- true 0 dy
+        rlineto not		% dy?
+    } forall
+    pop				% -
+} def
+
+%
+% Mac-like bounding box graphics procs.  Very useful for edge-critical drawing.
+% The graphics prinitives are rects, ovals and round rects.
+% (A round rect has a quarter circle [radius r] at corners.)
+% The primitives are specified by their bounding box.
+% Each primitive as two flavors, path and frame:
+%    -foopath makes a path composed of a single foo, while
+%    -fooframe makes makes a path composed of two foo's, one inset
+%     from the other by "thickness".
+% This allows a "thick-line" style of frame to be drawn using eofill.
+% It also has a rather pleasing affect when stroked.
+%
+
+% The two insetting procs:
+/insetrect { 	% delta x y w h => x' y' w' h' ; return new rect inset by delta
+    3 index 5 index add		% delta x y w h x'
+    3 index 6 index add		% delta x y w h x' y'
+    3 index 7 index 2 mul sub	% delta x y w h x' y' w'
+    3 index 8 index 2 mul sub	% delta x y w h x' y' w' h'
+    mark 10 5 roll cleartomark
+} def
+
+/insetrrect { 	% delta r x y w h => r' x' y' w' h'  ; roundrect version of above
+    6 -2 roll 1 index sub 0 max exch 6 2 roll insetrect
+} def
+
+
+% The six path/frame procs:
+/rectpath { 	% x y w h  =>  -   ; make a rect path
+    4 2 roll moveto rect
+} def
+
+/rectframe { 	% thickness x y w h => -   ; make a rect frame
+    4 copy rectpath
+    insetrect rectpath
+} def
+
+/ovalpath { 	% x y w h  =>  -    ; make a oval path
+    matrix currentmatrix 5 1 roll
+    4 2 roll translate scale 
+    .5 .5 translate 
+    0 0 .5 0 360 arc 
+    closepath
+    setmatrix
+} def
+
+/ovalframe { 	% thickness x y w h => -   ; make a oval frame
+    4 copy ovalpath
+    insetrect ovalpath
+} def
+
+/rrectpath { %	r x y w h  =>  -    ; make a round rect path
+    2 index add 4 index sub exch	% r x y Y2 w
+    3 index add 4 index sub		% r x y Y2 X2
+    5 2 roll				% Y2 X2 r x y
+
+    % setcurrent point
+    2 copy 4 index add moveto
+
+    2 index add exch			% Y2 X2 r Y1 x
+    2 index add				% Y2 X2 r Y1 X1
+    5 2 roll exch			% Y1 X1 Y2 r X2
+    3 copy				% Y1 X1 Y2 r X2 Y2 r X2
+    8 -1 roll				% X1 Y2 r X2 Y2 r X2 Y1
+    2 index				% X1 Y2 r X2 Y2 r X2 Y1 r
+    8 index				% X1 Y2 r X2 Y2 r X2 Y1 r X1
+    2 index				% X1 Y2 r X2 Y2 r X2 Y1 r X1 Y1
+    2 index				% X1 Y2 r X2 Y2 r X2 Y1 r X1 Y1 r
+
+    180 270 arc
+    270   0 arc
+      0  90 arc
+     90 180 arc
+    closepath
+} def
+
+/rrectframe { % thickness r x y w h => -   ; make round rect frame
+    5 copy rrectpath
+    insetrrect rrectpath
+} def
+
+
+%%%%%%%%%%%%%%%%%%
+% dict utilities %
+%%%%%%%%%%%%%%%%%%
+
+% dict building utility (needed by class.ps users): 
+%	/foo dictbegin
+%		/foo value def
+%		/bar value def
+%		...
+%	dictend def
+% or
+%      /foo [/foo value /bar value ..] cvad def
+
+% dictbegin:
+% a large size dict is created.  it will be allocated as a growable dict so
+% there is no trouble with its large size.  It must be large since growable
+% dicts use it as a hard max (ie they grow up to DICTBEGINSIZE but not beyond)
+%
+/DICTBEGINSIZE 50000 def % Size for dict; used elsewhere building similar dicts.
+/dictbegin {		% - => -   ; large, growable dict on dict stack
+    //DICTBEGINSIZE dict begin
+} def 
+
+/dictend { 		% - => dict  ;  see usage in comment above.
+    currentdict		% put dict on operand stack
+    end			% pop the dict stack
+} def
+
+/growabledict {	% - => dict   ; large, growable dict on dict stack
+    //DICTBEGINSIZE dict
+} def 
+
+%
+% cvad converts an array to a dict.  The array can be {} style but it must 
+% consist of key value pairs
+%
+/cvad {			% array => dict 
+    dictbegin		% create the dict
+        aload length 2 idiv  
+        { def } repeat	% for each k-v pair do: key value def
+    dictend		% put dict on operand stack
+} def
+
+% nulloutdict defines every key in the dict to null
+/nulloutdict {	%  dict  =>  -- ; with every key in dict def'd to null
+     dup dup { pop null put dup } forall pop pop
+} def
+
+% cleanoutdict undefs every key in the dict
+/cleanoutdict {	%  dict  =>  -- ; with every key in dict undef'd
+    %	Since a forall on a dict can miss keys if it defs or undefs
+    %	in the same dict, we need a backstop: do it `til the length
+    %	doesn't change.
+    dup {				%  d d
+	2 copy length 3 1 roll {	%  d oldlen d k v
+	    pop undef 1 index		%  d oldlen d
+	} forall
+	length eq {			%  d
+	    pop exit			%
+	} if
+	dup				%  d d; go round again
+    } loop
+} def
+
+% keyindict searches a dict for a given value.  If not found,
+% it returns false.  If found, it returns the key under which
+% that value is defined and true.  If multiple keys are defined
+% to the given value, one is returned; the choice of which is
+% indeterminate.
+/dictkey { % dict value  =>  key true
+%			 =>  false
+    exch false exch {			%  val false key val'
+	3 index eq {			%  val false key
+	    3 1 roll			%  key val false
+	    pop pop true exit		%  key true
+	} {				%  val false key
+	    pop				%  val false
+	} ifelse
+    } forall dup not {			%  val false | key true
+	exch pop
+    } if
+} def
+
+% Dicts used as lists.  A list is a dict in which each element points
+% to the next element.  It is null terminated and has a special entry,
+% "/First", for the head of the list.  To check if an object is in
+% the list, the known operator is used: "list obj known".
+% These are so simple that they are not included
+%    /listcontains? { % list obj => bool
+%	known
+%    } def
+%    /listhead { % list => obj'|null
+%	/First get
+%    } def
+%    /listnext { % list obj => obj'|null
+%	get
+%    } def
+
+% An empty list. Its length is 1, containing a marker for the
+% head of the list.
+/nulllist 2 dict dup begin
+    /First null def
+end def
+
+% Return a new empty list.
+/newlist { % - => list; create empty list
+    nulllist growabledict copy
+} def
+
+% Insert object at the beginning of list.
+/listinsert { % list obj => -; insert obj at list head
+    exch begin
+	dup First def
+	/First exch def
+    end
+} def
+
+% Return the object pointing to this object in the list.
+% This is slow because it must search the list for the object.
+/listprev { % list obj => obj'
+    exch begin
+        &ListPrev        % obj prev; prev preceeds obj in list
+        exch pop
+    end
+} def
+/&ListPrev { % list obj => obj prev; util used by list procs.
+    % Note: we do not use dictkey above; this is significantly faster.
+    % It also is predictable: faster for items nearer head of list.
+    /First {            % obj obj'
+        dup load        % obj obj' obj''
+        2 index eq {    % obj obj'
+            exit
+        } if
+        load            % obj obj''
+    } loop              % obj prev; prev preceeds obj in list
+} def
+
+% Insert an object just after the given object in the list.
+/listsplice { % list obj newobj => -; add new obj to list
+    3 -1 roll begin		% obj newobj
+	dup 2 index load	% obj newobj newobj next
+	def def
+    end
+} def
+
+% Delete object from list.  This is slow because it must search
+% the list for the object.
+/listdelete { % list obj => -
+    exch begin
+        &ListPrev        % obj prev; prev preceeds obj in list
+        1 index load    % obj prev next; prev will pt to next
+        dup null eq {   % if next is null, point Last to parent
+            /Last 2 index def
+        } if
+        def                     % obj
+        currentdict exch undef
+    end
+} def
+
+% Convert the list into an array and return the array.
+/list2array { % list => array; convert list to array
+    begin			% -
+    [   First		% [obj1
+	{	dup null eq {	% [obj1..objN|null
+		pop exit
+	    } if		% [obj1..objN
+	    dup load	% [obj1..objN objN+1|null
+	} loop
+    ]			% [obj1..objN]
+    end
+} def
+
+% return the number of elements in the list.
+/listsize { % list => int; return list size
+    length 1 sub
+} def
+
+%%%%%%%%%%%%%%%%%%%%
+% User interaction %
+%%%%%%%%%%%%%%%%%%%%
+systemdict /framebuffer known {
+% getfromuser is a simple animator for interacting with the user.
+% It uses forkeventmgr to fork a process interested in two events:
+% MouseDragged, and a terminating action supplied by the caller;
+% generally DownTransition or UpTransition.
+%
+% getfromuser takes three procedures, one to initialize the event
+% management, one to handle drag events, and one to finish up,
+% passing arguments back to the caller.  It also takes the terminating
+% action.
+%
+% Internally, getfromuser "begins" a local dict and stores its parameters.
+% It then defines several local procedures:
+%    /X0Y0Proc  - => x0 y0	get initial x,y; default to curcursorloc
+%    /SetX0Y0   x0 y0 => -	store these in /x0 & /y0
+%    /InitXY    - => -		set initial /x & /y; default to curcursorloc
+%    /SetXY     x y => -	store /x & /y
+%    /XYProc    event => x y	
+% and the parameter 
+%    /Button   [/RightMouseButton /MiddleMouseButton /LeftMouseButton] def
+% defining the event name that terminates the event manager.
+% Clients may override any of these in their initialization procedure.
+%
+% NDE replacement for getanimated.
+%
+/getfromuser { % initproc eventproc exitproc transition => result
+gsave
+40 dict begin 
+    /Action	exch def
+    /ExitProc	exch cvx def
+    /EventProc	exch cvx def
+    /InitProc	exch cvx def
+
+    /Button   [/RightMouseButton /MiddleMouseButton /LeftMouseButton] def
+    /X0Y0Proc {currentcursorlocation} def		% - => x0 y0
+    /SetX0Y0  {/y0 exch def /x0 exch def} def		% x0 y0 => -
+    /InitXY   {currentcursorlocation SetXY} def		% - => -
+    /SetXY    {/y exch def /x exch def} def		% x y => -
+    /XYProc   {begin XLocation YLocation end} def	% event => x y
+    /CallEventProc { % event => -
+	XYProc SetXY
+	EventProc pause
+    } def
+
+    InitProc
+    X0Y0Proc SetX0Y0 InitXY
+    [   Button {pop exit} Action null eventmgrinterest
+	dup /Synchronous true put
+	dup /Exclusivity true put
+	/MouseDragged /CallEventProc null null eventmgrinterest
+	dup /Exclusivity true put
+    ] forkeventmgr pause unblockinputqueue waitprocess pop
+    ExitProc
+    unblockinputqueue
+end
+grestore
+} def
+
+%
+% This stuff used to be in input.ps and is a prime canidate for kruft.ps.  
+% However until there is some fuctional replacement we will leave it here.
+% This applies to the code down through dragcanvas
+%
+% Note: These is only defined if /framebuffer is defined.  This allows
+% this file to be included in non-window system invocations of NeWS.
+% 
+
+/dragframe? true def
+/fboverlay { framebuffer createoverlay } def
+
+/GA_constraint null def	% null=none, 0=x, 1=y
+/GA_value null def	% null=>use mouse, otherwise use value
+
+%  Why doesn't this use forkeventmgr?
+
+/getanimated {		%  proc  =>  [ x y ]
+    10 dict begin
+    /proc exch  def /y0 exch def /x0 exch def
+    currentcursorlocation /y exch def /x exch def
+    GA_constraint null ne GA_value null eq and {
+	/GA_value currentcursorlocation GA_constraint 1 eq {exch} if pop store
+    } if
+    {	createevent begin
+	  /Action [/UpTransition /DownTransition] def
+          /Exclusivity true def
+	currentdict end expressinterest
+	createevent begin
+	  /Name /MouseDragged def
+	  /Exclusivity true def
+	currentdict end expressinterest
+	createevent begin
+	  /Name /EnterEvent def
+	  /Exclusivity true def
+	currentdict end expressinterest
+	unblockinputqueue
+	{
+	    GA_constraint 0 eq {/x GA_value def} if
+	    GA_constraint 1 eq {/y GA_value def} if
+	    erasepage x0 y0 moveto x y /proc load exec stroke
+	    awaitevent begin
+	    Name /EnterEvent eq { framebuffer createoverlay setcanvas } if
+	      Action /UpTransition eq { end exit } if
+	      /x XLocation store /y YLocation store
+	    end
+	} loop
+	erasepage
+	/GA_constraint null store
+	/GA_value null store
+	[x y] 
+    } fork
+    end
+} def
+
+/getrect { 
+	{x0 y lineto lineto x y0 lineto closepath} getanimated 
+} def
+
+/getclick {		% -  =>  x y  (Pauses for a mouse click)
+    0 0 {moveto 40 -40 rect} getanimated
+    waitprocess 
+    aload pop
+} def
+
+/getwholerect { 
+    { getclick 
+      2 copy
+      getrect waitprocess aload pop 4 array astore
+    } fork
+} def
+
+/interactivemove {	% (currentcanvas) => -
+    dragframe? dragcanvas
+} def 
+
+/dragcanvas { 		% dragframe? (currentcanvas) => - 
+    20 dict begin
+        gsave
+            initmatrix % [1 0 0 1 0 0] setmatrix 
+            /Canvas currentcanvas def
+            /dragframe? exch def
+            /absmovecanvas {
+                gsave
+                    Canvas setcanvas % [1 0 0 1 0 0] setmatrix
+                    yo add exch xo add exch movecanvas
+	        grestore
+            } def
+
+            currentcursorlocation /yo exch neg def /xo exch neg def
+            clippath pathbbox /height exch def /width exch def pop pop
+
+            currentcanvas parentcanvas createoverlay setcanvas
+            0 0 dragframe? {{
+                moveto xo yo rmoveto
+                0 height rlineto width 0 rlineto 0 height neg rlineto
+		width neg 0 rlineto
+%		closepath
+            }} {{
+                absmovecanvas
+                newpath
+            }} ifelse 	% leave a proc on stack for getanimated
+            getanimated 
+            waitprocess 
+            aload pop
+            dragframe? {
+                absmovecanvas
+            } {
+                pop pop
+            } ifelse
+        grestore
+    end
+} def
+
+} if % systemdict /framebuffer known
+
+%%%%%%%%%%%%%%%%
+% forkeventmgr %
+%%%%%%%%%%%%%%%%
+% forkeventmgr and eventmgrinterest (and the other interest-procs)
+% form a pair: the latter creates interests with callback procedures
+% while the former loops over calling these callbacks when the assocaited
+% event occurs.  The callback is invoked with the event on the operand stack.
+% The callback MUST consume the event.
+%
+
+% These are provided for compatability with earlier EMgrs.
+% REMIND: move to compat.ps
+/CurrentEvent { % - => event|null
+    null 1 1 count 3 sub {		% .. result i; i = 1 1 stacksize
+	index dup type /eventtype eq 	%
+	    {exch pop exit} {pop} ifelse
+    } for
+} def
+/LiteEMgrCallback { % event => -; cleaning up if client doesn't consume event
+    count count 1 roll			% remember current stack depth
+    /EventMgrFore where {pop EventMgrFore} if
+    dup /Interest get /ClientData get /CallBack get exec
+    /EventMgrAft where {pop EventMgrAft} if
+    count -1 roll count exch sub {pop} repeat
+} def
+
+% ExpressEMgrInterests takes an array or dict of interests and expresses
+% interest in them.  These can nest: if the array or dict contains a value
+% that is an array or dict, it recurses.  It also can take a single event
+% as a degenerate case.
+%
+% There is also a special case: if the argument is a procedure, it is
+% executed.  This allows the interest creation to be deferred to after
+% the process is forked, thus will occur within the context of the
+% process itself.  This can also be used for initialization of the
+% forked process.  For example, the dict stack can be stripped back to
+% userdict, the operand stack can be cleared, and context can be set up
+% for the callbacks.
+%
+/ExpressEMgrInterest { %  event => -
+    dup isobject? {
+	nullevent /activate 3 -1 roll send
+    } {
+	expressinterest
+    } ifelse
+} def
+/ExpressEMgrInterests { %  array|dict|event|executable => -
+    dup type {
+	/eventtype { ExpressEMgrInterest }
+	/packedarraytype
+	/arraytype {
+	    dup xcheck {exec} {{ExpressEMgrInterests} forall} ifelse
+	}
+	/dicttype { {exch pop ExpressEMgrInterests} forall }
+    } case
+} def
+/EMgrEventLoop { /awaitevent load loop } def
+
+/forkeventmgr { % interests [see ExpressEMgrInterests] => process 
+		% (fork a process with these interests)
+    % We block input so that a process looking for a down event can fork a
+    % second tracking process that terminates on the corresponding up event.
+    % The block insures we don't "miss" the up.
+    null blockinputqueue	% Block input until my interests are expressed.
+    {	ExpressEMgrInterests
+    	% Lite compat: patch up oldstyle callbacks to use executable matches
+    	currentprocess /Interests get {			% int
+	    dup /ClientData get type /dicttype eq {	% int
+	    	% for speed, don't open dict until pretty sure it's oldstyle
+		begin
+	    	    ClientData /CallBack known {
+	    	    	{LiteEMgrCallback} EMgrStashProc
+	    	    } if
+	    	end
+	    } {
+	    	pop
+	    } ifelse
+	} forall
+	unblockinputqueue	% Unblock input: now my interests are expressed.
+	EMgrEventLoop		% loop on events
+    } fork
+    pause	% Pause to let forked process run & unblockinputqueue
+    exch pop	% pop the interests & return the process.
+    % REMIND: does this extend the process dict?
+    dup cvx /ProcessName (event manager) put
+} def
+/eventmgrinterest { % eventname eventproc action canvas => interest
+    createevent begin
+	/Canvas exch def			% name proc action
+	/Action exch def			% name proc
+	/Name 3 -1 roll def			% proc
+	EMgrStashProc
+	currentdict
+    end
+} def
+/syncheventmgrinterest { 
+    eventmgrinterest
+    dup /Exclusivity true put
+    dup /Synchronous true put
+} def
+/excleventmgrinterest { 
+    eventmgrinterest
+    dup /Exclusivity true put
+} def
+
+/EMgrStashProc { % proc => -
+    % Stash the proc as an executable match.  First try is to make Action an
+    % executable match dict; if Action is array, make each action call proc.
+    % If Action is already a dict, try Name.  If both are dicts, try the
+    % Canvas.  (This may require changing a null Canvas into a prechild match
+    % on the framebuffer, since null is not a legal dict key.)  The event is
+    % presumed to be on the dict stack.
+    cvx [/Action /Name /Canvas] {		% proc key
+    	dup load type {
+            /arraytype /packedarraytype {
+	    	dup load dup length dict begin	% proc key array
+	    	    {2 index cvx def} forall	% proc key
+	    	currentdict end			% proc key dict
+	    	store				% proc
+	    	exit
+	    }
+	    /dicttype {
+	    	pop				% proc
+	    }
+	    /nulltype {
+	    	1 dict begin			% proc key
+	    	    dup /Canvas eq {
+	    	    	/IsPreChild true put
+	    	    	framebuffer
+	    	    } {
+	    	    	/AnyValue
+	    	    } ifelse			% proc key dictkey
+	    	    2 index def
+	    	currentdict end			% proc key dict
+	    	store
+	    	exit
+	    }
+	    /Default {
+	    	1 dict dup 2 index load 	% proc key dict dict dictkey
+	    	4 index put			% proc key dict
+	    	store
+	    	exit
+	    }
+        } case					% proc
+    } forall pop
+} def
+
+% These are procedures for managing "DoItEvents".  These
+% are events that deliver a piece of code to be executed within
+% the context of the process. The doitproc is called after popping
+% the event. This means the event is no longer available.
+%
+/doitinterest { % action canvas ins|execproc|null => interest
+    /DoItEvent 1 index null eq {
+        {/ClientData get exec unblockinputqueue}
+    } {
+        {
+	    dup /ClientData get				% event doit
+	    exch /Interest get /ClientData get		% doit ins|proc
+	    dup isobject? {send} {exec} ifelse
+	    unblockinputqueue
+        }
+    } ifelse		% action canvas ins|execproc|null /DoItEvent proc
+    5 -2 roll eventmgrinterest	% ins|execproc|null interest
+    dup /ClientData 4 -1 roll put
+} def
+
+/calldoit { % action canvas process doitproc => -
+    createevent begin
+        /ClientData exch cvx def
+        /Process exch def
+        /Canvas exch def
+        /Action exch def
+        /Name /DoItEvent def
+	/TimeStamp lasteventtime def
+        currentdict
+    end sendevent
+} def
+%/callargdoit { % action canvas process argarray doitproc => -
+%    append cvx calldoit
+%} def
+
+%
+% Timer event management.
+% These are procedures similar to the doitinterest-calldoit pair,
+% but for timers.
+%
+% /timeoutinterest	callback canvas => interest
+%	Make an eventmgrinterest with name of TimeOutEvent
+%	and action of null.
+%
+% /sendtimeoutevent	event deltatime canvas process => -
+%	Modify the event to have name of TimeOutEvent and
+%	the canvas and process as given.  The TimeStamp
+%	is currenttime + deltatime.  Note: the event is
+%	part of the arg list because this is generally
+%	called within a callback, therefor has an event
+%	for use.  Use createevent initially.
+%
+% /timerinterest	callback canvas starttime => proc
+% 	Create an executable interest that both creates the
+% 	timeout interest and sends the first timeout event
+% 	to currentprocess using starttime as the deltatime.
+/timeoutinterest { % callback canvas => interest
+    null exch /TimeOutEvent 4 1 roll eventmgrinterest
+} def
+/timerinterest { % callback canvas starttime => proc
+    [4 1 roll] {				% proc can time
+	createevent exch 2 index 5 3 roll	% event time can proc can
+	timeoutinterest expressinterest		% event time can
+	currentprocess sendtimeoutevent
+    } append cvx
+} def
+/sendtimeoutevent { % event deltatime canvas process => -
+    3 index begin
+	/Process	exch def
+	/Canvas		exch def
+	% Note: The pause for delivering an event immediately is to
+	% avoid clogging the input queue, causing other event processing
+	% to fail.  This is because "sendevent" will not queue an event
+	% that is timestamped "now".
+	/TimeStamp	exch
+			TimeStamp dup 0 eq {pop currenttime} if add
+			dup currenttime le {pop currenttime pause} if def
+	/Name		/TimeOutEvent def
+    end sendevent
+} def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% buildsend / buildinterestsend %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Build a callback which sends a message to an instance.
+% Note: it builds a procedure on the fly that contains the
+% actual object.  This may create a memory cycle that needs
+% a corresponding /Obsolete handler.
+% Usage:
+%	/foo bar buildsend		=> {/foo bar send}
+%	[1 2 /foo] bar buildsend	=> {1 2 /foo bar send}
+%	{pop 1 /foo} bar buildsend	=> {pop 1 /foo bar send}
+%
+/buildsend { % name|array ins => proc
+    begin
+	[   exch
+	    dup isarray? {aload pop} if
+	    currentdict /send cvx
+	] cvx
+    end
+} def
+
+% Build a callback which sends to the interest instance belonging to
+% the current event (i.e., the event on the stack at the time the
+% callback is invoked).
+% Usage:
+%   /foo buildinterestsend         =>
+%	{/foo 1 index /Interest get send}
+%
+%   [1 2 /foo] buildinterestsend   =>
+%	{1 2 /foo 3 index /Interest get send}
+%
+%   {pop 1 /foo} buildinterestsend =>
+%	{{pop 1 /foo} {exec cvx exec} 2 index /Interest get send}
+%
+% Note that the executable array cannot use the standard array style
+% because {pop 1 /foo 3 index /Interest get /Canvas get send}
+% would fail: the "pop" would make the "3 index" get a stack underflow!
+% It would be possible to use the executable form for the standard array:
+% {{1 2 /foo} {exec cvx exec} 2 index /Interest get /Canvas get send}
+%
+/buildinterestsend { % name|array => proc
+    [	exch
+    	dup type /nametype eq {1} {
+    	    dup xcheck {{exec cvx exec} 2} {aload length} ifelse
+    	} ifelse
+    	{index /Interest get send} aload pop
+    ] cvx
+} def
+
+%
+% timefor & timeit: Time a test for count repetitions.
+% timefor returns the average time for the operation, in milliseconds.
+% timeit prints that value in a little report.
+% They go to extremes to factor out timing overhead, but are still
+% subject to interference from system processes, etc; treat them as a
+% simple way to compare different ways of doing similar things.
+% Usage
+%	<args for test> 1000 {..test..} timefor
+%	<args for test> 1000 {..test..} timeit
+% Generally the test should be careful to not leave things on the operand
+% stack; it will overflow quickly with large counts.  It works to set up
+% some constant args on the stack for the test to use.  Thus:
+%	1 1000 {1 add} timeit
+% will time repeated additions of 1; the result will be 1001.
+%
+/Temp 10 dict dup begin
+    /timeitms { % - => int
+	% (T2-T1)*60000/Count -or- (T2-T1)/(minim*Count)
+	T2 T1 sub
+	minim div
+	Count div
+	% truncate at third decimal.
+	1000 mul round 1000 div
+    } def
+end def
+/timefor { % count test => msecs
+    //Temp begin
+	/Proc 1 index def
+	/Count 2 index def
+	/T1 currenttime def
+    end
+    repeat currenttime
+    //Temp begin
+	/T2 exch def
+	timeitms
+    end
+} def
+
+/timeit { % count test => -
+    timefor
+    //Temp begin
+	[exch Count] (Time: % ms, Loops: %, Test: ) exch printf
+	/Proc load ==
+    end
+} def
+
+%%% REMIND %%%
+% If the framebuffer does not exist, sleep can not be defined because of
+% way that global events work. Also, for the //SLEEPSLOP to work it can
+% not be executed in the same { } if as /SLEEPSLOP's definition because
+% of delayed binding in { }'s. This should be removed when event distribution
+% works without a physical framebuffer.
+systemdict /framebuffer known {
+    %
+    % Do a blocking pause for the specified time interval (in minutes)
+    % If interval less than least time grain, simply pause.
+    %
+    /reallysleep { % stoptime  =>   --
+        {   createevent dup
+	    /Name 4 -1 roll put		% use the timeout for the name
+	    dup expressinterest		% leaves a copy on the stack
+	    createevent copy dup begin	% which gets copied into new one
+	        /TimeStamp Name def
+	        /Process currentprocess def
+	    end sendevent awaitevent pop
+        } fork waitprocess pop pop
+    } def
+    /SLEEPSLOP
+        100 {0 reallysleep} timefor .5 add cvi 256.0 div 256.0 div 5.0 mul
+    def
+} if
+systemdict /framebuffer known {
+    /sleep { % interval  =>   --
+        dup currenttime add			%  interval stoptime
+        1 index //SLEEPSLOP le {
+	    { dup currenttime le { exit } if pause } loop
+	    pop
+        } {
+	    reallysleep
+        } ifelse				%  interval
+        pop
+    } def
+    currentdict /SLEEPSLOP undef
+} if
+
+
+%%%%%%%%%%%%%%%%%%%
+% Synchronisation %
+%%%%%%%%%%%%%%%%%%%
+
+% synchid & synchdone: Allows a PS process to wait for a C client.
+%
+% Call synchid to register the current process in a special dict and to
+% obtain a unique id that is the key used in that dict.  Send the key to the
+% client (e.g., via typedprint).  Then execute a breakpoint (NeWS primitive).
+% When the C client wants the PS process to proceed, it sends a request (e.g.,
+% using CPS) to call synchdone with the previously supplied id.
+%
+% The id is NOT reusable.  This protects against errors such as having the
+% C client do a second synchdone before the PS process is ready for it.
+%
+% Once the id is sent over the wire, the PS process must not relinquish
+% the processor (e.g., via pause or awaitevent) before doing the breakpoint.
+% Otherwise it's possible that a particularly quick client could send the
+% synchdone before the breakpoint.  This can't happen as long as the process
+% in which the synchdone is performed never gets a chance to run.
+
+/Temp growabledict dup /id 0 put def
+
+/synchid {	% -- => id	registers process in Temp
+    //Temp begin
+	id 1 add dup 32767 eq {neg} if
+	/id 1 index def
+	dup currentprocess def
+    end
+} def
+
+/synchdone {	% id => --	wakes up suspended process
+    //Temp exch 2 copy get		% dict id process
+    continueprocess
+    undef
+} def
+
+currentdict /Temp undef
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Random Utilities...%
+%%%%%%%%%%%%%%%%%%%%%%
+
+% turn pointer motion compression on and off
+/compresspointermotion {        %  boolean => --
+    devicedict (/dev/mouse) get
+    /MotionCompression 2 index put
+    pop
+} def
+
+%
+% sort utilities: lets pick one.   quicksort is the fastest.
+%
+
+/quicksort { 		% array proc => array   ; sorted, reuses same storage
+			% from Don Woods
+    10 dict begin
+        /Bigger? exch cvx def               % a b bigger? => t if a<b
+        dup quickrecur                      % start recursion
+    end
+} def % quicksort
+
+/quickrecur { 		% array => -    ; sorts array in place, 
+			%               ; using Bigger? for comparisons
+
+    dup length dup 2 gt {               % A N
+	% the next lines (until but not incl /Key...) subsort three elements
+	% so we can use the median as the partitioning element; this improves
+	% performance for the case where the array is initially nearly sorted,
+	% but is not strictly necessary for the algorithm to work (it does
+	% seem to improve average runtime by about 10%)
+	2 copy 1 sub 2 copy 2 idiv 1 index 0    % A N A N-1 A (N-1)/2 A 0
+	6 copy get 5 1 roll get 3 1 roll get    % above & A[N-1] A[(N-1)/2] A[0]
+	2 copy Bigger? {exch} if                % subsort for three elements
+	3 1 roll 2 copy Bigger? {exch} if       %   ... (call them min mid max)
+	3 -1 roll 2 copy Bigger? {exch} if      %   ... subsort finished
+	9 index % A N A N-1 A (N-1)/2 A 0 min mid max N
+	3 eq {
+	    5 2 roll put 4 1 roll put put       % store min/mid/max back
+	    pop pop                             % pop A & N
+	} { % else store mid at 0, max at N-1, min at (N-1)/2, then partition
+	    3 -1 roll 5 2 roll put exch 4 1 roll put put        % A N
+	    /Key 2 index 0 get def              % partitioning value
+	    0                                   % A N 0, also known as A j i
+	    {   % main partitioning loop
+		% incr i until i=j or A[i]>=A[0]; note A[j] is rangecheck
+		{   1 add 2 copy gt {           % i++; A j i j>i?
+			dup 3 index exch get    % A j i A[i]
+			Key exch Bigger? not {exit} if
+		    } {exit} ifelse
+		} loop
+		% decr j until A[j]<=A[0]; happens at j=i-1 if not sooner
+		exch {                          % A i j
+		    1 sub dup 3 index exch get  % A i j A[j]
+		    Key Bigger? not {exit} if
+		} loop
+		2 copy gt {exit} if             % if i>=j, finished partition
+		% swap A[j] & A[i]; stack has: A i j
+		2 index 4 copy exch get         % A i j A A i A[j]
+		4 1 roll get                    % A i j A[j] A A[i]
+		3 index exch put                % A i j A[j]
+		4 copy exch pop put pop exch    % A j i
+	    } loop
+	    % finish partition by exchanging A[j] with A[0]; stack has: A i j
+	    exch pop 2 copy 4 copy get          % A j A j A j A[j]
+	    exch pop 0 exch put Key put         % A j
+	    % now recur on A[0..j-1] and A[j+1..N-1]
+	    2 copy 1 add 1 index length 1 index sub     % A j A j+1 N-1
+	    getinterval 3 1 roll 0 exch getinterval     % A[j+1..N-1] A[0..j-1]
+	    2 copy length exch length gt {exch} if      % put smaller on top
+	    quickrecur quickrecur       % tail recursion avoids deep stack
+	} ifelse 	% =3 or >3 elements
+    } { % handle 1- and 2-element cases specially for efficiency
+	2 eq {
+	    dup aload pop Bigger? {aload 3 1 roll exch 3 -1 roll astore} if
+	    } if
+	pop     % pop the array
+    } ifelse
+} def % quickrecur
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%@    routines that belong elsewhere      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%@ => class canvas:
+%
+/fillcanvas { %  grey  =>  -  (Fills current canvas w/ gray)
+    setshade clippath fill
+} def
+
+% Note: there is a fundamental conflict between clippingpath and the
+% path to stroke--when stroking the clippingpath half of the width of the line
+% will be clipped and this introduces a rounding problem.  
+% Solutions:
+% 1. stroke the inside of the path
+% 2. stroke a double width line
+% Problem:         (1)            (2)
+%                             ----------
+% ----------
+% ==========   ==clippath==   ==========
+% ----------
+%              ------------   ----------
+/strokecanvas { %  grey => -
+    clippath setshade strokebbox
+} def
+
+%
+%   This routine will modify the current graphics transformation
+%   context to match that of another canvas.  This is useful for creating
+%   overlays of rotated or scaled canvases that are clipped to a
+%   different shape.  Typical usage is
+%
+%           CanvasA createoverlay setcanvas
+%           CanvasB copytransform
+%
+
+/copytransform { % canvas => -; applies transformation matrix of canvas
+                 %            ; to currentcanvas.
+    dup
+    gsave
+        setcanvas
+        matrix currentmatrix
+    grestore
+    dup
+    matrix currentmatrix 4 2 getinterval
+    4 exch putinterval setmatrix
+    getcanvaslocation translate
+} def
+
+%
+% SunLogo
+% Fills the Sun logo at the given location and scale, with the current color.
+%
+/Uchar {
+    newpath
+    -.1 0 moveto
+    0 0 .1 180 360 arc
+    0 2.9 rlineto
+    .8 0 rlineto
+    0 -2.9 rlineto
+    0 0 .9 0 180 arcn
+    0 2.9 rlineto
+    .8 0 rlineto
+    closepath fill
+} def
+
+/2Uchar {
+    Uchar gsave 4 4 translate Uchar grestore
+} def
+
+/Sunlogo { % x y s => -
+    3 1 roll		% s x y
+    gsave translate	% s
+    dup scale		% -
+    45 rotate
+    4 { 2Uchar 6 0 translate 90 rotate } repeat
+    grestore
+} def
+
+% ============================= Utilities ==================================
+
+/RefreshAll { 
+    % De-install, then re-install the default colormap.
+    % This ensures that colormaps left over by errant X programs
+    % (or by screenload) get uninstalled.
+    framebuffer /Colormap get dup /Installed false put /Installed true put
+
+    % Damage the whole screen.
+    framebuffer setcanvas clippath extenddamageall
+} def
+
+/NoticeFrame (NeWS/notice.ps) autoload
+
+/ExitConfirmer {
+    2 dict begin
+	/ShutDown {
+	    unblockinputqueue
+	    % destroy all Lite windows
+	    createevent dup begin
+	        /Name /DoItEvent def
+	        /Action /Window def
+	        /ClientData { /destroy self send } def
+		/TimeStamp lasteventtime def
+	    end sendevent
+
+	    % destroy all NDE windows 
+	    /Frame null null { /destroy self send } calldoit
+ 
+	    % Wait 3 seconds for console to die so we don't logout.
+	    0.05 sleep
+
+	    % nuke the cursor
+	    framebuffer /Cursor 0 1 /newscursor findfont newcursor put
+
+	    % Reset the colormap to the default.
+	    framebuffer /Colormap get
+	    dup /Installed false put /Installed true put
+
+	    % map a canvas over everything and paint it white.
+	    framebuffer dup setcanvas newcanvas
+	    dup clippath reshapecanvas
+	    dup /Mapped true put
+	    setcanvas
+	    1 fillcanvas
+
+	    % Terminate the server
+	    shutdownserver
+	} def
+
+	/frame [
+	    (Please confirm exit from OpenWindows)
+	    [
+		[ (Exit) /ShutDown load (\r) ]
+		[ (Cancel) { } (\177) ]
+	    ]
+	] framebuffer /new NoticeFrame send def
+	1 /setdefault frame send
+	/place frame send
+	/activate frame send
+	/map frame send
+    end
+} def

@@ -1,0 +1,2993 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 11 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 9 /Palatino-Italic FMDEFINEFONT
+2 11 /Palatino-BoldItalic FMDEFINEFONT
+3 10 /Palatino-Roman FMDEFINEFONT
+4 13 /Palatino-Italic FMDEFINEFONT
+%%Page: "14" 14
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (14) 54 108.7 S
+1 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+0.11 (ClassSelection) 198 640.67 S
+3 F
+0.52 0.1 (ClassSelection is an abstract class designed to facilitate the passing of data ) 198.1 624.33 B
+0.08 0.1 (objects within an application\325s views, and between applications. ClassSelection ) 198 611.93 B
+0.52 0.1 (is always subclassed to manage application- speci\336c selections.) 198 599.53 B
+4 F
+-0.84 0.13 (Client side packages:) 198 567.13 B
+3 F
+0.52 0.1 (TNT pr) 198.1 550.13 B
+0.52 0.1 (ovides two client-side packages for applications to use, the W) 232.05 550.13 B
+0.52 0.1 (ir) 513.92 550.13 B
+0.52 0.1 (e ) 520.79 550.13 B
+0.52 0.1 (Service, and the Jot text package. W) 198 537.73 B
+0.52 0.1 (e will use the W) 361.17 537.73 B
+0.52 0.1 (ir) 435.05 537.73 B
+0.52 0.1 (e Service in both of our ) 441.92 537.73 B
+0.52 0.1 (example pr) 198 525.33 B
+0.52 0.1 (ograms that we constr) 249.26 525.33 B
+0.52 0.1 (uct, and we will also use Jot in our second ) 350.97 525.33 B
+0.52 0.1 (example pr) 198 512.93 B
+0.52 0.1 (ogram.) 249.26 512.93 B
+0.52 0.1 (The W) 198.1 492.53 B
+0.52 0.1 (ir) 227.79 492.53 B
+0.52 0.1 (e Service pr) 234.67 492.53 B
+0.52 0.1 (ovides a convenient encapsulation for r) 288.23 492.53 B
+0.52 0.1 (eceiving messages ) 468.25 492.53 B
+0.52 0.1 (and data fr) 198 480.13 B
+0.52 0.1 (om the server) 248.51 480.13 B
+0.52 0.1 (, triggering actions based upon those messages, and ) 310.61 480.13 B
+0.52 0.1 (storing and r) 198 467.73 B
+0.52 0.1 (etrieving data for passing messages back to the server via cps. A ) 257.21 467.73 B
+0.26 0.1 (typical application will de\336ne callback functions to be activated upon message ) 198 455.33 B
+0.52 0.1 (r) 198 442.93 B
+0.52 0.1 (eception, de\336ne tags to be used to index the callback functions, and r) 201.87 442.93 B
+0.52 0.1 (egister ) 518.42 442.93 B
+0.52 0.1 (those tags and callbacks with the W) 198 430.53 B
+0.52 0.1 (ir) 361.77 430.53 B
+0.52 0.1 (e Service. The application would then ) 368.65 430.53 B
+0.31 0.1 (r) 198 418.13 B
+0.31 0.1 (epeatedly call a noti\336er function. Then, when a particular tag is placed on the ) 201.87 418.13 B
+0.52 0.1 (wir) 198 405.73 B
+0.52 0.1 (e, the noti\336er function inter) 213.31 405.73 B
+0.52 0.1 (cepts that tag, and calls the pr) 339.24 405.73 B
+0.52 0.1 (eviously ) 476.97 405.73 B
+0.52 0.1 (r) 198 393.33 B
+0.52 0.1 (egister) 201.87 393.33 B
+0.52 0.1 (ed callback handler) 231.87 393.33 B
+0.52 0.1 (.) 320.11 393.33 B
+0.52 0.1 (The W) 198.1 372.93 B
+0.52 0.1 (ir) 227.79 372.93 B
+0.52 0.1 (e Service also pr) 234.67 372.93 B
+0.52 0.1 (ovides means to allocate tokens to r) 309.35 372.93 B
+0.52 0.1 (efer to server ) 472.93 372.93 B
+0.52 0.1 (objects. It does not r) 198 360.54 B
+0.52 0.1 (egister those tokens in the server; the application must ) 290.33 360.54 B
+0.02 0.1 (perform that chor) 198 348.14 B
+0.02 0.1 (e via a cps call. It does, however) 277.85 348.14 B
+0.02 0.1 (, pr) 422.4 348.14 B
+0.02 0.1 (ovide a way of r) 437.59 348.14 B
+0.02 0.1 (egistering ) 510.61 348.14 B
+0.52 0.1 (a token and associating it with a client-side data str) 198 335.73 B
+0.52 0.1 (uctur) 433.86 335.73 B
+0.52 0.1 (e; an application can ) 457.88 335.73 B
+0.52 0.1 (use this facility to associate a server object, via its token, with a C str) 198 323.33 B
+0.52 0.1 (uct or a ) 513.12 323.33 B
+0.37 0.1 (C++ instance, by r) 198 310.93 B
+0.37 0.1 (egistering the token with a pointer to the data str) 281.22 310.93 B
+0.37 0.1 (uctur) 505.44 310.93 B
+0.37 0.1 (e. See ) 529.45 310.93 B
+0.52 0.1 (the wir) 198 298.54 B
+0.52 0.1 (e service chapter of the TNT documentation for mor) 230.59 298.54 B
+0.52 0.1 (e details.) 469.67 298.54 B
+0.43 0.1 (Jot is a low-level text editing package. It pr) 198.1 278.14 B
+0.43 0.1 (ovides means for operations on the ) 394.4 278.14 B
+0.52 0.1 (text itself, selection capability) 198 265.73 B
+0.52 0.1 (, cut, copy) 331.74 265.73 B
+0.52 0.1 (, and paste, undo operations, r) 377.94 265.73 B
+0.52 0.1 (eading ) 517.88 265.73 B
+0.52 0.1 (and writing \336les, and sear) 198 253.34 B
+0.52 0.1 (ching. It also pr) 317.51 253.34 B
+0.52 0.1 (ovides multiple views of the text, ) 389.3 253.34 B
+0.52 0.1 (scr) 198 240.93 B
+0.52 0.1 (olling, visual feedback for selections. W) 210.74 240.93 B
+0.52 0.1 (e will use Jot to build a text-editing ) 391.38 240.93 B
+0.52 0.1 (pane as part of our second example pr) 198 228.53 B
+0.52 0.1 (ogram. The demo pr) 374.18 228.53 B
+0.52 0.1 (ogram jed, part of ) 468 228.53 B
+0.52 0.1 (the TNT 2.0 r) 198 216.14 B
+0.52 0.1 (elease, is a textedit lookalike that uses Jot.) 259.04 216.14 B
+FMENDPAGE
+%%EndPage: "14" 13
+5 10 /Times-Roman FMDEFINEFONT
+%%Page: "13" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+0 F
+0.09 (13) 548.83 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (Examples of notify and dependent inter) 198 641.33 B
+0.52 0.1 (est gr) 379.96 641.33 B
+0.52 0.1 (oups ar) 405.19 641.33 B
+0.52 0.1 (e:) 439.4 641.33 B
+54 606.95 59 607.44 R
+V
+5 F
+(  ) 54 608.53 T
+123 606.95 159.1 607.44 R
+V
+(Situation) 123 608.53 T
+216 606.95 272.07 607.44 R
+V
+(NotifyInterest) 216 608.53 T
+339 606.95 425.31 607.44 R
+V
+(Dependent Interest\050s\051) 339 608.53 T
+( ) 54 576.13 T
+(Press-drag-release) 123 576.13 T
+( mouse down) 216 576.13 T
+(mouse motion,) 339 576.13 T
+( mouse tracking) 123 564.13 T
+(mouse up) 339 564.13 T
+( ) 54 552.13 T
+(Transfer of ) 123 540.13 T
+(focus event) 216 540.13 T
+(interest in) 339 540.13 T
+( ) 54 528.13 T
+(keyboard focus) 123 528.13 T
+(receiving keystrokes) 339 528.13 T
+3 F
+0.52 0.1 (The notify inter) 198 508.13 B
+0.52 0.1 (est in each gr) 269.23 508.13 B
+0.52 0.1 (oup is expr) 330.06 508.13 B
+0.52 0.1 (essed in the GEM upon canvas ) 381.55 508.13 B
+0.52 0.1 (activation, and the dependent inter) 198 495.73 B
+0.52 0.1 (ests ar) 358.55 495.73 B
+0.52 0.1 (e expr) 387.55 495.73 B
+0.52 0.1 (essed in either the LEM or the ) 415.68 495.73 B
+0.52 0.1 (GEM depending on whether they themselves need to expr) 198 483.33 B
+0.52 0.1 (ess or r) 465.19 483.33 B
+0.52 0.1 (evoke ) 498.46 483.33 B
+0.52 0.1 (another inter) 198 470.93 B
+0.52 0.1 (est when matched. \050For example, in the mouse tracking case the ) 256.94 470.93 B
+0.41 0.1 (inter) 198 458.53 B
+0.41 0.1 (est in the mouse up event that is a dependent of the mouse down inter) 219.04 458.53 B
+0.41 0.1 (est ) 542.41 458.53 B
+0.52 0.1 (needs to be expr) 198 446.13 B
+0.52 0.1 (essed in the GEM because it must immediately r) 273.14 446.13 B
+0.52 0.1 (evoke two ) 494.77 446.13 B
+0.52 0.1 (inter) 198 433.73 B
+0.52 0.1 (ests: the mouse down and the mouse motion inter) 219.04 433.73 B
+0.52 0.1 (est.\051 ) 448.19 433.73 B
+0.52 0.1 (All this pr) 198 413.33 B
+0.52 0.1 (ocessing could be done in your LEM, but ther) 244.72 413.33 B
+0.52 0.1 (e ar) 454.45 413.33 B
+0.52 0.1 (e very lar) 471.42 413.33 B
+0.52 0.1 (ge space ) 514.85 413.33 B
+0.34 0.1 (savings to be had by expr) 198 400.93 B
+0.34 0.1 (essing all notify inter) 314.83 400.93 B
+0.34 0.1 (ests in the same pr) 410.86 400.93 B
+0.34 0.1 (ocess, and so ) 495.82 400.93 B
+0.52 0.1 (a globally shar) 198 388.54 B
+0.52 0.1 (ed pr) 265.17 388.54 B
+0.52 0.1 (ocess is used for this. ) 289.36 388.54 B
+0.07 0.1 (All this af) 198 368.14 B
+0.07 0.1 (fects TNT pr) 242.2 368.14 B
+0.07 0.1 (ogrammers only indir) 298.91 368.14 B
+0.07 0.1 (ectly) 397.88 368.14 B
+0.07 0.1 (. V) 418.22 368.14 B
+0.07 0.1 (ery few applications should ) 429.69 368.14 B
+-0.03 0.1 (r) 198 355.73 B
+-0.03 0.1 (equir) 201.87 355.73 B
+-0.03 0.1 (e the cr) 225.46 355.73 B
+-0.03 0.1 (eation and expr) 258.06 355.73 B
+-0.03 0.1 (ession of new types of notify/dependent inter) 328.37 355.73 B
+-0.03 0.1 (ests; ) 535.91 355.73 B
+0.52 0.1 (all the common cases have been handled for you by TNT) 198 343.33 B
+0.52 0.1 (. ) 459.06 343.33 B
+0.52 0.1 (The indir) 198 322.93 B
+0.52 0.1 (ect way in which application pr) 240.16 322.93 B
+0.52 0.1 (ograms ar) 385.24 322.93 B
+0.52 0.1 (e af) 430.94 322.93 B
+0.52 0.1 (fected is that certain ) 447.29 322.93 B
+0.4 0.1 (methods that you pr) 198 310.54 B
+0.4 0.1 (ovide when you subclass ClassCanvas ar) 291.24 310.54 B
+0.4 0.1 (e executed in the ) 477.87 310.54 B
+0.52 0.1 (GEM. This pr) 198 298.14 B
+0.52 0.1 (ocess, since it is shar) 259.79 298.14 B
+0.52 0.1 (ed by every application, will not have the ) 354.13 298.14 B
+0.52 0.1 (corr) 198 285.73 B
+0.52 0.1 (ect user) 216.01 285.73 B
+0.52 0.1 (dict or connection in place when it executes on behalf of any one ) 251.13 285.73 B
+0.25 0.1 (application. If your code r) 198 273.34 B
+0.25 0.1 (equir) 316.15 273.34 B
+0.25 0.1 (es access to the connection or user) 339.74 273.34 B
+0.25 0.1 (dict then you ) 494.91 273.34 B
+0.52 0.1 (should use the /DoInContext, /SendInContext, or /SendCanvasHandler ) 198 260.93 B
+0.52 0.1 (utilities to temporarily cr) 198 248.53 B
+0.52 0.1 (eate the corr) 312.48 248.53 B
+0.52 0.1 (ect envir) 369.12 248.53 B
+0.52 0.1 (onment.) 408.44 248.53 B
+2 F
+0.11 (ClassW) 198 219.47 S
+0.11 (ir) 236.37 219.47 S
+0.11 (eClient) 244.32 219.47 S
+3 F
+0.52 0.1 (ClassW) 198.1 203.14 B
+0.52 0.1 (ir) 231.61 203.14 B
+0.52 0.1 (eClient is a r) 238.49 203.14 B
+0.52 0.1 (ecent addition to TNT) 296.41 203.14 B
+0.52 0.1 (, specialized to manage server) 396.74 203.14 B
+0.52 0.1 (-) 534.27 203.14 B
+0.52 0.1 (client communication initiated fr) 198 190.73 B
+0.52 0.1 (om within the toolkit.) 347.69 190.73 B
+FMENDPAGE
+%%EndPage: "13" 12
+6 10 /Palatino-Bold FMDEFINEFONT
+7 9 /Helvetica FMDEFINEFONT
+%%Page: "12" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (12) 54 108.7 S
+1 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 (The Connection Reader:) 198 641.33 B
+3 F
+0.52 0.1 (This pr) 198 620.93 B
+0.52 0.1 (ocess is cr) 230.58 620.93 B
+0.52 0.1 (eated automatically by NeWS when a connection is ) 276.23 620.93 B
+0.52 0.1 (sucessfully made to the server) 198 608.53 B
+0.52 0.1 (. Its only purpose is to r) 335.67 608.53 B
+0.52 0.1 (ead PostScript fr) 445.58 608.53 B
+0.52 0.1 (om a ) 521.1 608.53 B
+0.52 0.1 (client pr) 198 596.13 B
+0.52 0.1 (ogram and execute it. It is this pr) 235.81 596.13 B
+0.52 0.1 (ocess that executes the PostScript ) 387.82 596.13 B
+0.52 0.1 (code to cr) 198 583.73 B
+0.52 0.1 (eate a class, instantiate some objects, and start the application. This ) 242.74 583.73 B
+-0.09 0.1 (pr) 198 571.33 B
+-0.09 0.1 (ocess will die automatically if the connection is closed by the client pr) 207.98 571.33 B
+-0.09 0.1 (ogram.  ) 520.99 571.33 B
+6 F
+0.52 0.1 (The Local Event Manager:) 198 550.93 B
+3 F
+0.52 0.1 (This is the one which you cr) 198 530.53 B
+0.52 0.1 (eate by executing ) 327.63 530.53 B
+7 F
+(/new ClassEventMgr send,) 198 514.8 T
+3 F
+0.21 0.1 ( and it will be r) 198 495.13 B
+0.21 0.1 (esponsible for r) 267.47 495.13 B
+0.21 0.1 (eceiving most of the events that will be handled ) 337.67 495.13 B
+0.31 0.1 (by the toolkit on behalf of your application.   All pr) 198 482.73 B
+0.31 0.1 (ocessing r) 432.02 482.73 B
+0.31 0.1 (esulting fr) 477.04 482.73 B
+0.31 0.1 (om the ) 523.54 482.73 B
+0.52 0.1 (noti\336cation or pr) 198 470.33 B
+0.52 0.1 (eviewing of a r) 275.28 470.33 B
+0.52 0.1 (eleasing a slider will be executed by this ) 344.13 470.33 B
+0.52 0.1 (pr) 198 457.93 B
+0.52 0.1 (ocess.  This pr) 207.98 457.93 B
+0.52 0.1 (ocess starts with the same execution envir) 273.05 457.93 B
+0.52 0.1 (onment as your ) 465.04 457.93 B
+0.52 0.1 (connection pr) 198 445.53 B
+0.52 0.1 (ocess. \050This is not surprising since it was forked fr) 260.29 445.53 B
+0.52 0.1 (om the ) 490.3 445.53 B
+0.52 0.1 (connection pr) 198 433.13 B
+0.52 0.1 (ocess, and in NeWS -- as in UNIX -- a forked pr) 260.29 433.13 B
+0.52 0.1 (ocess inherits its ) 479.17 433.13 B
+0.52 0.1 (par) 198 420.73 B
+0.52 0.1 (ent\325s envir) 213.07 420.73 B
+0.52 0.1 (onment.\051 The importance of this is that it shar) 260.99 420.73 B
+0.52 0.1 (es the same ) 471.27 420.73 B
+0.52 0.1 (user) 198 408.33 B
+0.52 0.1 (dict and standar) 217.22 408.33 B
+0.52 0.1 (d output \336le as the connection r) 291.67 408.33 B
+0.52 0.1 (eader) 437.92 408.33 B
+0.52 0.1 (. Thus, any objects ) 462.3 408.33 B
+0.26 0.1 (de\336ned into user) 198 395.93 B
+0.26 0.1 (dict will be accessible to this pr) 275.03 395.93 B
+0.26 0.1 (ocess and can be r) 417.03 395.93 B
+0.26 0.1 (eferr) 499.27 395.93 B
+0.26 0.1 (ed to in ) 520.39 395.93 B
+0.52 0.1 (the code that handles the noti\336cation or pr) 198 383.54 B
+0.52 0.1 (eview of a contr) 393.48 383.54 B
+0.52 0.1 (ol. Similarly) 467.12 383.54 B
+0.52 0.1 (, if a ) 521.4 383.54 B
+0.52 0.1 (tagprint or typedprint operator is invoked in this pr) 198 371.14 B
+0.52 0.1 (ocess, the value will be ) 436.26 371.14 B
+0.52 0.1 (written to the corr) 198 358.73 B
+0.52 0.1 (ect \336le and your client side will r) 281.45 358.73 B
+0.52 0.1 (eceive it. ) 433.2 358.73 B
+0.52 0.1 (Every canvas within your application keeps a r) 198 338.33 B
+0.52 0.1 (efer) 413.78 338.33 B
+0.52 0.1 (ence to its LEM, holding it ) 430.85 338.33 B
+0.52 0.1 (as the instance variable /EventMgr) 198 325.93 B
+0.52 0.1 (. Activating a canvas or a tr) 358.44 325.93 B
+0.52 0.1 (ee of canvases ) 485.07 325.93 B
+0.52 0.1 (and r) 198 313.54 B
+0.52 0.1 (egions will cause inter) 222.21 313.54 B
+0.52 0.1 (ests to be expr) 324.41 313.54 B
+0.52 0.1 (essed on behalf of your application ) 390.23 313.54 B
+0.52 0.1 (in this pr) 198 301.14 B
+0.52 0.1 (ocess and in the global event manager \050described below\051. ) 239.76 301.14 B
+6 F
+0.52 0.1 (Global Event Manager) 198 280.73 B
+3 F
+0.52 0.1 (This pr) 198 260.34 B
+0.52 0.1 (ocess is cr) 230.58 260.34 B
+0.52 0.1 (eated when TNT is \336rst initialized, and is used to r) 276.23 260.34 B
+0.52 0.1 (eceive ) 510.21 260.34 B
+0.52 0.1 (certain types of events on behalf of all TNT applications. Its purpose is to ) 198 247.93 B
+0.52 0.1 (synchr) 198 235.53 B
+0.52 0.1 (onise certain user actions and avoid race conditions. This is a common ) 228.23 235.53 B
+0.12 0.1 (situation, and ther) 198 223.14 B
+0.12 0.1 (e is a pair of subclasses of ClassInter) 281.05 223.14 B
+0.12 0.1 (est designed speci\336cally ) 445.73 223.14 B
+0.52 0.1 (to help with this pr) 198 210.73 B
+0.52 0.1 (oblem. They ar) 286.62 210.73 B
+0.52 0.1 (e called ClassNotifyInter) 355.11 210.73 B
+0.52 0.1 (est and ) 467.86 210.73 B
+0.52 0.1 (ClassDependentInter) 198 198.34 B
+0.52 0.1 (est. Sometimes the matching of one notify inter) 293.47 198.34 B
+0.52 0.1 (est can ) 509.6 198.34 B
+0.52 0.1 (cause the expr) 198 185.94 B
+0.52 0.1 (ession of multiple dependent inter) 263.5 185.94 B
+0.52 0.1 (ests. ) 420.85 185.94 B
+FMENDPAGE
+%%EndPage: "12" 11
+%%Page: "11" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+0 F
+0.09 (1) 549.33 108.7 S
+0.09 (1) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+4 F
+-0.84 0.13 ( Behind the scenes: some important toolkit classes) 198 639.33 B
+2 F
+0.11 (ClassCanvas) 198 613.67 S
+3 F
+0.49 0.1 ( ) 198 597.33 B
+0.49 0.1 (ClassCanvas is the basic drawing surface for most applications. It is her) 201.18 597.33 B
+0.49 0.1 (e that ) 529.21 597.33 B
+0.52 0.1 (the application pr) 198 584.93 B
+0.52 0.1 (ogrammer usually must interact with the dif) 279.17 584.93 B
+0.52 0.1 (fer) 482.69 584.93 B
+0.52 0.1 (ent services ) 494.88 584.93 B
+0.52 0.1 (pr) 198 572.53 B
+0.52 0.1 (ovided by the toolkit. ClassCanvas subclasses ar) 207.98 572.53 B
+0.52 0.1 (e wher) 428.79 572.53 B
+0.52 0.1 (e the pr) 459.91 572.53 B
+0.52 0.1 (ogrammer ) 495.17 572.53 B
+0.52 0.1 (must usually de\336ne speci\336c methods called by the dif) 198 560.13 B
+0.52 0.1 (fer) 444.5 560.13 B
+0.52 0.1 (ent services, dealing ) 456.69 560.13 B
+0.52 0.1 (with mouse tracking, keyboar) 198 547.73 B
+0.52 0.1 (d input and focus, making selections, r) 334.14 547.73 B
+0.52 0.1 (eceiving ) 511.94 547.73 B
+0.52 0.1 (selections, handling damage r) 198 535.33 B
+0.52 0.1 (epair) 334.26 535.33 B
+0.52 0.1 (, and activation to r) 356.66 535.33 B
+0.52 0.1 (eceive events. W) 446.42 535.33 B
+0.52 0.1 (e will ) 521.52 535.33 B
+0.52 0.1 (postpone detailed discussion until after we have tried out some of the other ) 198 522.93 B
+0.52 0.1 (featur) 198 510.53 B
+0.52 0.1 (es of TNT) 224.76 510.53 B
+0.52 0.1 (.) 269.33 510.53 B
+2 F
+0.11 (ClassBag) 198 490.13 S
+3 F
+0.52 0.1 (ClassBag is a descendant of ClassCanvas, with additional capability for ) 198.1 469.73 B
+0.52 0.1 (managing several canvas or r) 198 457.33 B
+0.52 0.1 (egion childr) 331.97 457.33 B
+0.52 0.1 (en. ClassBor) 386.66 457.33 B
+0.52 0.1 (derBag is a subclass of ) 442.77 457.33 B
+0.52 0.1 (ClassBag that is specialized to manage a central canvas or r) 198 444.93 B
+0.52 0.1 (egion client, and ) 470.02 444.93 B
+0.52 0.1 (several peripheral clients arranged ar) 198 432.53 B
+0.52 0.1 (ound the central client\325s \322edge\323. For ) 368.58 432.53 B
+-0.01 0.1 (instance, one might put a text pane and one or two scr) 198 420.13 B
+-0.01 0.1 (ollbars in a bor) 442.24 420.13 B
+-0.01 0.1 (derbag, to ) 509.78 420.13 B
+0.52 0.1 (manage them all as a unit.) 198 407.73 B
+2 F
+0.11 (ClassEventMgr) 198 378.67 S
+3 F
+0.52 0.1 (TNT pr) 198 362.33 B
+0.52 0.1 (ovides a class called ClassEventMgr) 231.95 362.33 B
+0.52 0.1 (. Instances of ClassEventMgr ar) 395.93 362.33 B
+0.52 0.1 (e ) 540.15 362.33 B
+0.52 0.1 (pr) 198 349.93 B
+0.52 0.1 (ocesses that ar) 207.98 349.93 B
+0.52 0.1 (e customized speci\336cally for r) 273.79 349.93 B
+0.52 0.1 (eceiving and pr) 410.42 349.93 B
+0.52 0.1 (ocessing NeWS ) 481.5 349.93 B
+0.52 0.1 (events.) 198 337.54 B
+0.52 0.1 ( These instances manage all the event handling for a client and its ) 229.83 337.54 B
+0.52 0.1 (descendants. Each active canvas tr) 198 325.14 B
+0.52 0.1 (ee has its own event manager) 355.11 325.14 B
+0.52 0.1 (, called the ) 490.13 325.14 B
+0.11 0.1 (local event manager \050LEM\051. In addition, ther) 198 312.73 B
+0.11 0.1 (e is a global event manager) 399.67 312.73 B
+0.11 0.1 (, which ) 522.17 312.73 B
+0.52 0.1 (is r) 198 300.33 B
+0.52 0.1 (esponsible for detecting raw input, and distributing the events to the ) 212.33 300.33 B
+0.52 0.1 (appr) 198 287.93 B
+0.52 0.1 (opriate local event managers.) 219.18 287.93 B
+0.52 0.1 (Application pr) 198 267.53 B
+0.52 0.1 (ograms can fork as many pr) 264.67 267.53 B
+0.52 0.1 (ocesses as they like, and can have ) 393.13 267.53 B
+0.52 0.1 (any number of event managers r) 198 255.14 B
+0.52 0.1 (unning simultaneously) 347.51 255.14 B
+0.52 0.1 (. Most TNT pr) 451.41 255.14 B
+0.52 0.1 (ograms ) 517.01 255.14 B
+0.52 0.1 (however will not bene\336t fr) 198 242.73 B
+0.52 0.1 (om a pr) 320.36 242.73 B
+0.52 0.1 (ofusion of pr) 356.15 242.73 B
+0.52 0.1 (ocesses and standar) 415.28 242.73 B
+0.52 0.1 (d ) 505.5 242.73 B
+0.22 0.1 (pr) 198 230.34 B
+0.22 0.1 (ogramming style r) 207.98 230.34 B
+0.22 0.1 (ecommends the use of exactly thr) 291.51 230.34 B
+0.22 0.1 (ee pr) 443.21 230.34 B
+0.22 0.1 (ocesses, only one of ) 465.77 230.34 B
+0.52 0.1 (which is cr) 198 217.93 B
+0.52 0.1 (eated explicity by the application. These thr) 247.8 217.93 B
+0.52 0.1 (ee pr) 448.02 217.93 B
+0.52 0.1 (ocesses ar) 470.89 217.93 B
+0.52 0.1 (e ) 515.85 217.93 B
+0.52 0.1 (descirbed below) 198 205.53 B
+0.52 0.1 (.) 271.46 205.53 B
+FMENDPAGE
+%%EndPage: "11" 10
+6 14 /Palatino-Italic FMDEFINEFONT
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (10) 54 108.7 S
+1 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+-0.88 (OPEN LOOK widgets and TNT classes) 126 638.67 P
+2 F
+0.11 (W) 198 608.67 S
+0.11 (indows:) 208.77 608.67 S
+5 F
+(Base Windows) 123 594.33 T
+(ClassBaseWindow) 389.49 594.33 T
+(PopUp Windows) 123 582.33 T
+(ClassPopupWindow) 383.38 582.33 T
+2 F
+-0.71 0.11 ( Contr) 198 553.67 B
+-0.71 0.11 (ols:) 228.78 553.67 B
+5 F
+(Messages) 123 539.33 T
+(ClassLabel) 420.58 539.33 T
+(Buttons) 123 527.33 T
+(ClassButtons) 412.24 527.33 T
+(Menu Buttons) 123 515.33 T
+(ClassMenuButtons) 388.92 515.33 T
+(Settings) 123 491.33 T
+(ClassSettings) 411.13 491.33 T
+(Exclusive) 158.98 479.33 T
+( type controlled by /setchoicemode) 325.1 479.33 T
+(Non-Exclusive) 158.98 467.33 T
+(Exclusive Variation) 158.98 455.33 T
+(Check Boxes) 123 443.33 T
+(ClassCheckBoxes) 392.82 443.33 T
+(Sliders) 123 431.33 T
+(ClassHSlider, ClassVSlider) 354.5 431.33 T
+(Gauges) 123 419.33 T
+(ClassHGauge, ClassVGauge) 350.08 419.33 T
+(Text Fields) 123 407.33 T
+(ClassTextField) 404.47 407.33 T
+(Numeric Fields) 123 395.33 T
+(ClassNumericField) 387.82 395.33 T
+(Scrollbars) 123 383.33 T
+(ClassHScrollbar, ClassVScrollbar) 328.98 383.33 T
+(Scrolling Lists) 123 371.33 T
+(ClassScrollList) 403.91 371.33 T
+2 F
+-0.71 0.11 ( Menus) 198 342.67 B
+5 F
+(Menu ) 123 328.33 T
+(ClassMenu) 339 328.33 T
+(Menu items: ) 123 316.33 T
+( attributes controlled by items) 360 316.33 T
+( ) 123 304.33 T
+(button, window, submenu) 158.98 304.33 T
+(passed to /setitemlist, other item) 360 304.33 T
+(Exclusive settings) 158.98 292.33 T
+(methods, and /setchoicemode) 360 292.33 T
+(NonExclusive settings) 158.98 280.33 T
+2 F
+0.11 (Notices) 198 251.67 S
+5 F
+(Notices) 123 237.34 T
+(ClassNotice) 416.7 237.34 T
+FMENDPAGE
+%%EndPage: "10" 9
+5 14 /Times-Bold FMDEFINEFONT
+%%Page: "9" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+0 F
+0.09 (9) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(\245) 198 641.33 T
+3 F
+0.52 0.1 (Br) 210.6 641.33 B
+0.52 0.1 (oadcast-style communication with other pr) 220.67 641.33 B
+0.52 0.1 (ograms \050=> server\051:) 416.95 641.33 B
+0.31 0.1 ( ) 198 620.93 B
+0.31 0.1 (The NeWS event mechanism is powerful and easy to use. If you have a gr) 201.01 620.93 B
+0.31 0.1 (oup ) 537.3 620.93 B
+0.04 0.1 (of applications that want to communicate by br) 198 608.53 B
+0.04 0.1 (oadcasting information without ) 411.72 608.53 B
+0.52 0.1 (r) 198 596.13 B
+0.52 0.1 (egar) 201.87 596.13 B
+0.52 0.1 (d to who is listening, then NeWS events ar) 221.38 596.13 B
+0.52 0.1 (e pr) 417.31 596.13 B
+0.52 0.1 (obably the easiest and ) 435.29 596.13 B
+0.52 0.1 (cheapest way to achieve this. ) 198 583.73 B
+5 F
+(\245) 198 565.33 T
+3 F
+0.52 0.1 (Computation intensive \050=> client\051: ) 210.6 565.33 B
+0.52 0.1 (Y) 198 544.93 B
+0.52 0.1 (our PostScript code is interpr) 203.85 544.93 B
+0.52 0.1 (eted, and your C code is compiled. Sorting an ) 337.57 544.93 B
+0.19 0.1 (array of strings for example, is going to go much faster in the client than in the ) 198 532.53 B
+0.52 0.1 (server) 198 520.13 B
+0.52 0.1 (. ) 225.21 520.13 B
+0.52 0.1 ( ) 231.03 520.13 B
+5 F
+(\245) 198 501.73 T
+3 F
+0.52 0.1 (Data intensive \050=> client\051: ) 210.6 501.73 B
+0.52 0.1 (PostScript data str) 198 481.33 B
+0.52 0.1 (uctur) 281.45 481.33 B
+0.52 0.1 (es ar) 305.47 481.33 B
+0.52 0.1 (e lar) 326.78 481.33 B
+0.52 0.1 (ge r) 346.76 481.33 B
+0.52 0.1 (efer) 364.29 481.33 B
+0.52 0.1 (ence- counted objects. While the ) 381.36 481.33 B
+0.52 0.1 (addition of a new integer \336eld in a C str) 198 468.93 B
+0.52 0.1 (uctur) 382.63 468.93 B
+0.52 0.1 (e may only cost you 4 bytes, for ) 406.64 468.93 B
+0.52 0.1 (example, the addition of an instance variable with an integer value to your ) 198 456.53 B
+0.52 0.1 (PostScript code will pr) 198 444.13 B
+0.52 0.1 (obably gr) 301.77 444.13 B
+0.52 0.1 (ow the server by 20-30 bytes.) 344.99 444.13 B
+5 F
+(\245) 198 425.73 T
+3 F
+0.52 0.1 (Access to system calls and UNIX libraries \050=> client\051: ) 210.6 425.73 B
+0.34 0.1 (NeWS pr) 198 405.33 B
+0.34 0.1 (ovides access to har) 239.64 405.33 B
+0.34 0.1 (dly any of the UNIX system calls and very few of ) 329.72 405.33 B
+0.18 0.1 (its standar) 198 392.93 B
+0.18 0.1 (d libraries. Application code that calls UNIX utilities must be placed ) 245.36 392.93 B
+0.52 0.1 (in the client pr) 198 380.54 B
+0.52 0.1 (ocess. ) 265.13 380.54 B
+5 F
+(\245) 198 362.14 T
+3 F
+0.52 0.1 (File r) 210.6 362.14 B
+0.52 0.1 (eading \050=> client\051: ) 234.15 362.14 B
+0.28 0.1 (Even though NeWS of) 198 341.73 B
+0.28 0.1 (fers the \336le primitive to open a UNIX \336le, its use should ) 299.45 341.73 B
+0.44 0.1 (be car) 198 329.33 B
+0.44 0.1 (efully consider) 225.06 329.33 B
+0.44 0.1 (ed. The pr) 292.54 329.33 B
+0.44 0.1 (oblem is caused by the \337exibility of NFS which ) 339.32 329.33 B
+0.52 0.1 (allows dif) 198 316.93 B
+0.52 0.1 (fer) 243.02 316.93 B
+0.52 0.1 (ent machines to have dif) 255.21 316.93 B
+0.52 0.1 (fer) 367.5 316.93 B
+0.52 0.1 (ent names for the same \336le \050and the ) 379.68 316.93 B
+0.52 0.1 (same name for dif) 198 304.54 B
+0.52 0.1 (fer) 280.92 304.54 B
+0.52 0.1 (ent \336les!\051. In the situation wher) 293.11 304.54 B
+0.52 0.1 (e your client pr) 436.57 304.54 B
+0.52 0.1 (ocess is ) 506.89 304.54 B
+0.35 0.1 (r) 198 292.14 B
+0.35 0.1 (unning on a dif) 201.97 292.14 B
+0.35 0.1 (fer) 272.39 292.14 B
+0.35 0.1 (ent machine fr) 284.57 292.14 B
+0.35 0.1 (om the window system it is generally agr) 350.22 292.14 B
+0.35 0.1 (eed ) 539.07 292.14 B
+0.52 0.1 (that the \336le name r) 198 279.73 B
+0.52 0.1 (esolution should be done on the client machine. ) 285.1 279.73 B
+0.52 0.1 ( ) 507.38 279.73 B
+0 0.1 (Finally) 198 259.34 B
+0 0.1 (, when in doubt you should err on the side of putting less into the server ) 228.24 259.34 B
+0.1 0.1 (rather than mor) 198 246.93 B
+0.1 0.1 (e. This is because interpr) 269.4 246.93 B
+0.1 0.1 (eted PostScript code is nearly an or) 381.22 246.93 B
+0.1 0.1 (der ) 540.16 246.93 B
+0.52 0.1 (of magnitude less space ef) 198 234.53 B
+0.52 0.1 (\336cient than compiled C code.) 318.31 234.53 B
+FMENDPAGE
+%%EndPage: "9" 8
+%%Page: "8" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (8) 54 108.7 S
+1 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 ( C-3. \050Allocation\051 Allocate a number of tags and tokens to be used in ) 198 641.33 B
+0.52 0.1 (communicating with the PostScript part of your application. T) 198 628.93 B
+0.52 0.1 (ags ar) 481.88 628.93 B
+0.52 0.1 (e used to ) 509.06 628.93 B
+0.52 0.1 (associate a PostScript contr) 198 616.53 B
+0.52 0.1 (ol ) 321.7 616.53 B
+0.52 0.1 (with its C callback function; tokens ar) 333.48 616.53 B
+0.52 0.1 (e handles ) 506.5 616.53 B
+0.52 0.1 (for the C side to PostScript objects. ) 198 604.13 B
+0.52 0.1 (C-4. \050Registration\051 Associate your tags with your callback functions.) 198 583.73 B
+0.52 0.1 ( C-5. \050Server Initialization\051 Send some PostScript to the NeWS server) 198 563.33 B
+0.52 0.1 (. Y) 512.11 563.33 B
+0.52 0.1 (ou do ) 523.67 563.33 B
+0.52 0.1 (this by making CPS calls that transmit code included in the.h \336les. ) 198 550.93 B
+0.52 0.1 ( Also ) 505.79 550.93 B
+0.52 0.1 (associate those server objects which ar) 198 538.53 B
+0.52 0.1 (e r) 373.34 538.53 B
+0.52 0.1 (eferr) 385.22 538.53 B
+0.52 0.1 (ed to by the client with tokens ) 406.33 538.53 B
+0.52 0.1 (allocated in C-3, and r) 198 526.13 B
+0.52 0.1 (egister tags in those server objects that initiate wir) 299.55 526.13 B
+0.52 0.1 (e ) 529.5 526.13 B
+0.1 (communication.) 198 513.73 S
+0.52 0.1 ( C-6. \050Noti\336cation\051 Enter the W) 198 493.33 B
+0.52 0.1 (ir) 340.83 493.33 B
+0.52 0.1 (e Service noti\336er) 347.71 493.33 B
+0.52 0.1 (, and wait for it to call the ) 423.48 493.33 B
+0.52 0.1 (functions you r) 198 480.93 B
+0.52 0.1 (egister) 267.63 480.93 B
+0.52 0.1 (ed in C-2. ) 297.64 480.93 B
+0.52 0.1 ( ) 345.42 480.93 B
+0.37 0.1 (The ability to str) 198.1 460.53 B
+0.37 0.1 (uctur) 273.37 460.53 B
+0.37 0.1 (e applications in this way is one of the unique aspects of ) 297.39 460.53 B
+0.52 0.1 (the NeWS envir) 198 448.13 B
+0.52 0.1 (onment. The next section focuses on how you can take ) 270.56 448.13 B
+0.52 0.1 (advantage of this ar) 198 435.73 B
+0.52 0.1 (chitectur) 288.99 435.73 B
+0.52 0.1 (e. This str) 328.59 435.73 B
+0.52 0.1 (ucturing of the client side of an ) 373.46 435.73 B
+0.52 0.1 (application is event-driven, without placing the bur) 198 423.33 B
+0.52 0.1 (den on the client code of ) 434.37 423.33 B
+0.52 0.1 (continually polling for events.) 198 410.93 B
+2 F
+0.57 0.11 (The Client-Server Split:) 198 390.54 B
+3 F
+0.52 0.1 (In deciding how to split your application between the client pr) 198 370.14 B
+0.52 0.1 (ocess and the ) 485.68 370.14 B
+0.52 0.1 (NeWS server the following considerations should apply:) 198 357.73 B
+5 F
+(\245) 198 339.33 T
+3 F
+0.52 0.1 ( Low latency r) 210.6 339.33 B
+0.52 0.1 (esponse \050=> server\051: ) 276.48 339.33 B
+0.52 0.1 (If you need the system to r) 198 318.93 B
+0.52 0.1 (espond in milliseconds to some particular user ) 321.29 318.93 B
+0.47 0.1 (action then you should pr) 198 306.54 B
+0.47 0.1 (obably write the code to implement that r) 316.28 306.54 B
+0.47 0.1 (esponse in ) 506.92 306.54 B
+-0.01 0.1 (PostScript and download it to the server) 198 294.14 B
+-0.01 0.1 (. In the example pr) 379.19 294.14 B
+-0.01 0.1 (ogram we will write ) 463.84 294.14 B
+0.52 0.1 (later) 198 281.73 B
+0.52 0.1 (, pr) 217.66 281.73 B
+0.52 0.1 (eviewing of contr) 233.35 281.73 B
+0.52 0.1 (ols will be done in the server) 313.36 281.73 B
+0.52 0.1 (, while \336nal noti\336cation ) 445.81 281.73 B
+0.52 0.1 (and painting will be done by the client.) 198 269.34 B
+5 F
+(\245) 198 250.93 T
+3 F
+0.52 0.1 (Hit detection over PostScript shapes \050=> server\051: ) 210.6 250.93 B
+0.52 0.1 (If you need to work out whether a mouse click or drag occurr) 198 230.53 B
+0.52 0.1 (ed inside any ) 481.62 230.53 B
+0.52 0.1 (shape mor) 198 218.14 B
+0.52 0.1 (e complex than a r) 245.81 218.14 B
+0.52 0.1 (ectangle you should pr) 330.71 218.14 B
+0.52 0.1 (obably leave that task to ) 435.88 218.14 B
+0.52 0.1 (NeWS. This can be done either with the pointinpath operator) 198 205.73 B
+0.52 0.1 (, or by making a ) 477.78 205.73 B
+0.52 0.1 (canvas that whose boundary is the path in question, and r) 198 193.34 B
+0.52 0.1 (equesting mouse ) 464.5 193.34 B
+0.52 0.1 (input over that canvas. ) 198 180.93 B
+FMENDPAGE
+%%EndPage: "8" 7
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+0 F
+0.09 (7) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.1 (when the user manipulates this contr) 198 641.33 S
+0.1 (ol. This pr) 365.44 641.33 S
+0.1 (ocedur) 411.26 641.33 S
+0.1 (e is written in PostScript, ) 442.44 641.33 S
+0.52 0.1 (but can \050via the NeWS tagprint and typedprint operators\051 send a message ) 198 628.93 B
+0.52 0.1 (acr) 198 616.53 B
+0.52 0.1 (oss the connection to the main body of your application. ) 211.5 616.53 B
+0.52 0.1 ( ) 473.22 616.53 B
+0.52 0.1 (PS-3. \050Composition\051 The stitching together of the objects instantiated in PS-2. ) 198.1 596.13 B
+0.52 0.1 (Objects can be inserted into the window dir) 198 583.73 B
+0.52 0.1 (ectly) 398.33 583.73 B
+0.52 0.1 (, but mor) 418.67 583.73 B
+0.52 0.1 (e often they ar) 460.96 583.73 B
+0.52 0.1 (e ) 527.14 583.73 B
+0.52 0.1 (inserted into a canvas that is specialized to manage layout \050these ar) 198 571.33 B
+0.52 0.1 (e called ) 506.96 571.33 B
+0.52 0.1 (bags in TNT\051, and this canvas is inserted into the window) 198 558.93 B
+0.52 0.1 (. This is a r) 462.92 558.93 B
+0.52 0.1 (ecursive ) 513.8 558.93 B
+0.52 0.1 (pr) 198 546.53 B
+0.52 0.1 (ocess: applications with complex layouts can have bags within bags within ) 207.98 546.53 B
+0.52 0.1 (bags... ) 198 534.13 B
+0.52 0.1 ( ) 229.83 534.13 B
+0.52 0.1 (PS-4. \050Start Up\051 The placement \050positioning the window on the scr) 198.1 513.73 B
+0.52 0.1 (een and ) 502.65 513.73 B
+0.52 0.1 (choosing an appr) 198 501.33 B
+0.52 0.1 (opriate starting size\051, activation \050making the window ) 276.92 501.33 B
+0.52 0.1 (r) 198 488.93 B
+0.52 0.1 (esponsive to input\051, and mapping \050making the window appear\051 of the ) 201.87 488.93 B
+-0.07 0.1 (window or windows. Changing the or) 198 476.53 B
+-0.07 0.1 (der of these steps is permissible, with the ) 370.24 476.53 B
+0.52 0.1 (obvious r) 198 464.13 B
+0.52 0.1 (estrictions that a class must be de\336ned befor) 240.95 464.13 B
+0.52 0.1 (e it can be instantiated, ) 444.15 464.13 B
+0.52 0.1 (and an object must be instantiated befor) 198 451.73 B
+0.52 0.1 (e it can be inserted into the window) 381.53 451.73 B
+0.52 0.1 (. ) 545.97 451.73 B
+0.52 0.1 (The example pr) 198 439.33 B
+0.52 0.1 (ogram that we will write later illustrates this str) 269.41 439.33 B
+0.52 0.1 (uctur) 489.15 439.33 B
+0.52 0.1 (e is a ) 513.17 439.33 B
+0.52 0.1 (simple color chooser) 198 426.93 B
+0.52 0.1 (. The pr) 291.32 426.93 B
+0.52 0.1 (ogram cr) 327.16 426.93 B
+0.52 0.1 (eates a single window which contains a ) 367.97 426.93 B
+0.52 0.1 (contr) 198 414.54 B
+0.52 0.1 (ol ar) 221.24 414.54 B
+0.52 0.1 (ea holding thr) 241.89 414.54 B
+0.52 0.1 (ee sliders,which ar) 306.52 414.54 B
+0.52 0.1 (e instances of a TNT class ) 391.74 414.54 B
+0.26 0.1 (corr) 198 402.14 B
+0.26 0.1 (esponding to OPEN LOOK slider contr) 216.01 402.14 B
+0.26 0.1 (ols, and a color display canvas. The ) 393.7 402.14 B
+0.52 0.1 (sliders contr) 198 389.73 B
+0.52 0.1 (ol the hue, saturation and brightness of the color shown in the ) 254.19 389.73 B
+-0.03 0.1 (color display canvas. As the user drags one of the sliders, a pr) 198 377.33 B
+-0.03 0.1 (eviewing method ) 476.46 377.33 B
+0.52 0.1 (installed in the slider instance changes the color shown. ) 198 364.93 B
+2 F
+-0.71 0.11 ( Client-side ar) 198 335.87 B
+-0.71 0.11 (chitectur) 267.8 335.87 B
+-0.71 0.11 (e:) 311.92 335.87 B
+3 F
+0.52 0.1 ( ) 198 319.54 B
+0.52 0.1 (The general str) 201.22 319.54 B
+0.52 0.1 (uctur) 269.65 319.54 B
+0.52 0.1 (e of the main application body) 293.67 319.54 B
+0.52 0.1 (, written in C or C++ is as ) 432.98 319.54 B
+0.52 0.1 (follows: ) 198 307.14 B
+0.49 0.1 (C-1. \050#includes\051 Include the.h \336les for the W) 198 286.73 B
+0.49 0.1 (ir) 399.85 286.73 B
+0.49 0.1 (e Service and any libraries \050such ) 406.72 286.73 B
+0.52 0.1 (as Jot\051 that you ar) 198 274.34 B
+0.52 0.1 (e using. Y) 279.71 274.34 B
+0.52 0.1 (ou will usually also include one or mor) 324.33 274.34 B
+0.52 0.1 (e.h \336le ) 504.67 274.34 B
+0.52 0.1 (containing encoded versions of the entir) 198 261.93 B
+0.52 0.1 (e PostScript part of your application ) 381.79 261.93 B
+0.52 0.1 (PS-1 to PS-4. ) 198 249.53 B
+0.52 0.1 ( ) 258.99 249.53 B
+0.52 0.1 (C-2. \050Callbacks\051 De\336ne a number of callback functions that will r) 198 229.14 B
+0.52 0.1 (eceive the ) 495.01 229.14 B
+0.52 0.1 (contr) 198 216.73 B
+0.52 0.1 (ol noti\336cation messages described in PS-2. ) 221.24 216.73 B
+0.52 0.1 ( Server) 417.82 216.73 B
+0.52 0.1 (-side objects, such as ) 449.72 216.73 B
+-0.05 0.1 (contr) 198 204.34 B
+-0.05 0.1 (ols, execute noti\336cation methods, which may be str) 221.24 204.34 B
+-0.05 0.1 (uctur) 451.41 204.34 B
+-0.05 0.1 (ed to place \322tags\323 ) 475.43 204.34 B
+0.52 0.1 (and data on the wir) 198 191.94 B
+0.52 0.1 (e connection to trigger client-side callbacks.) 288.4 191.94 B
+FMENDPAGE
+%%EndPage: "7" 6
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (6) 54 108.7 S
+1 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (For example, one might r) 198 641.33 B
+0.52 0.1 (eshape a canvas by executing) 313.6 641.33 B
+7 F
+(0 0 250 400 /reshape can send) 198 625.6 T
+3 F
+0.52 0.1 (This sends a message to the canvas asking it to r) 198 605.93 B
+0.52 0.1 (eshape itself accor) 420.22 605.93 B
+0.52 0.1 (ding to the ) 503.31 605.93 B
+0.52 0.1 (parameters 0, 0, 250, 400, de\336ning a r) 198 593.53 B
+0.52 0.1 (ectangle with lower) 368.5 593.53 B
+0.52 0.1 (-left corner at the ) 458.56 593.53 B
+0.52 0.1 (point \0500,0\051, with width and height given by 250 and 400.) 198 581.13 B
+0.16 0.1 (It is fr) 198.1 560.73 B
+0.16 0.1 (equently important to understand how the send mechanism works. Each ) 225.09 560.73 B
+0.18 0.1 (class in NeWS is implemented as a dictionary) 198 548.33 B
+0.18 0.1 (, as ar) 403.69 548.33 B
+0.18 0.1 (e instances of a class. When ) 430.24 548.33 B
+0.04 0.1 (a method send occurs, the par) 198 535.93 B
+0.04 0.1 (ent classes of the r) 333.45 535.93 B
+0.04 0.1 (eceiver) 415.72 535.93 B
+0.04 0.1 (\325s class ar) 448.46 535.93 B
+0.04 0.1 (e pushed onto ) 491.23 535.93 B
+0.52 0.1 (the dictionary stack, with the r) 198 523.53 B
+0.52 0.1 (eceiver) 338.48 523.53 B
+0.52 0.1 (\325s class on top, and the instance ) 371.22 523.53 B
+0.17 0.1 (dictionary itself is pushed last. The interpr) 198 511.13 B
+0.17 0.1 (eter then uses the method name as a ) 390.56 511.13 B
+0.52 0.1 (key) 198 498.73 B
+0.52 0.1 (, sear) 213.09 498.73 B
+0.52 0.1 (ching the dictionary stack fr) 237 498.73 B
+0.52 0.1 (om the top down. It loads and executes ) 365.35 498.73 B
+0.52 0.1 (the \336rst executable value it \336nds, corr) 198 486.33 B
+0.52 0.1 (esponding to that key) 370.89 486.33 B
+0.52 0.1 (. The state of the ) 469.57 486.33 B
+0.47 0.1 (dictionary stack at that moment is called the send context. Whenever the send ) 198 473.93 B
+0.52 0.1 (\336nishes executing, all those dictionaries ar) 198 461.53 B
+0.52 0.1 (e popped back of) 391.48 461.53 B
+0.52 0.1 (f the dictionary ) 470.42 461.53 B
+0.35 0.1 (stack. If, in the pr) 198 449.13 B
+0.35 0.1 (ocess of executing this method, the interpr) 277.95 449.13 B
+0.35 0.1 (eter encounters an ) 471.37 449.13 B
+0.31 0.1 (embedded method send, it will pop the curr) 198 436.73 B
+0.31 0.1 (ent send context, build a new one, ) 399.36 436.73 B
+0.52 0.1 (and r) 198 424.33 B
+0.52 0.1 (estor) 222.21 424.33 B
+0.52 0.1 (e the saved context after the embedded send completes. A very ) 244.21 424.33 B
+0.51 0.1 (important point to note is: although you have access to all your par) 198 411.93 B
+0.51 0.1 (ent classes ) 507.07 411.93 B
+0.52 0.1 (during a send execution, you don\325t necessarily have access to the pr) 198 399.54 B
+0.52 0.1 (ocess ) 509.26 399.54 B
+0.52 0.1 (under which you wer) 198 387.14 B
+0.52 0.1 (e cr) 296.89 387.14 B
+0.52 0.1 (eated; in particular) 313.3 387.14 B
+0.52 0.1 (, you must take car) 399.19 387.14 B
+0.52 0.1 (e that other ) 486.85 387.14 B
+0.52 0.1 (quantities de\336ned in your user) 198 374.73 B
+0.52 0.1 (dict, and your standar) 339.05 374.73 B
+0.52 0.1 (d output connection ar) 440.61 374.73 B
+0.52 0.1 (e ) 544.96 374.73 B
+0.52 0.1 (available, if you need to r) 198 362.33 B
+0.52 0.1 (efer) 315.23 362.33 B
+0.52 0.1 (ence them.) 332.3 362.33 B
+6 F
+-0.88 (Application Ar) 126 315.27 P
+-0.88 (chitectur) 210.24 315.27 P
+-0.88 (e) 260.25 315.27 P
+2 F
+-0.71 0.11 ( Server-side Ar) 198 285.27 B
+-0.71 0.11 (chitectur) 270.04 285.27 B
+-0.71 0.11 (e:) 314.16 285.27 B
+3 F
+0.52 0.1 (The general str) 198 268.93 B
+0.52 0.1 (uctur) 266.43 268.93 B
+0.52 0.1 (e of the PostScript part of an application is as follows:) 290.45 268.93 B
+0.52 0.1 (PS-1. \050De\336nition\051 The cr) 198.1 248.53 B
+0.52 0.1 (eation of application-speci\336c subclasses of ) 307.99 248.53 B
+0.52 0.1 (ClassCanvas and other classes. Any cor) 198 236.14 B
+0.52 0.1 (e or OPEN LOOK class may be ) 378.48 236.14 B
+0.52 0.1 (subclassed but most applications that want an input/output surface will ) 198 223.73 B
+0.52 0.1 (contain at least one subclass of ClassCanvas. ) 198 211.34 B
+0.52 0.1 (PS-2. \050Instantiation\051 The Instantiation of these classes, one or mor) 198.1 190.93 B
+0.52 0.1 (e windows, ) 497.29 190.93 B
+0.23 0.1 (some TNT) 198 178.53 B
+0.23 0.1 (-pr) 244.85 178.53 B
+0.23 0.1 (ovided OPEN LOOK contr) 258.25 178.53 B
+0.23 0.1 (ol classes, and per) 379.77 178.53 B
+0.23 0.1 (haps some classes to ) 462.05 178.53 B
+0.52 0.1 (manage the layout of these objects. ) 198 166.14 B
+0.52 0.1 (When you instantiate an OPEN LOOK ) 361.07 166.14 B
+0.1 0.1 (contr) 198 153.74 B
+0.1 0.1 (ol you pr) 221.24 153.74 B
+0.1 0.1 (ovide a ) 262.51 153.74 B
+0.1 0.1 (noti\336cation pr) 298.5 153.74 B
+0.1 0.1 (ocedur) 362.63 153.74 B
+0.1 0.1 (e to determine what should happen ) 393.81 153.74 B
+FMENDPAGE
+%%EndPage: "6" 5
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+0 F
+0.09 (5) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 ( ) 210.6 641.33 B
+0.52 0.1 (C++) 213.82 641.33 B
+0.52 0.1 (It is possible to pr) 210.7 620.93 B
+0.52 0.1 (ogram without using any OOP featur) 293.1 620.93 B
+0.52 0.1 (es.) 464.27 620.93 B
+0.52 0.1 (Multiple inheritance supported) 210.7 600.53 B
+0.52 0.1 (Run-time type and ar) 210.7 580.13 B
+0.52 0.1 (gument checking ar) 308.68 580.13 B
+0.52 0.1 (e possible.) 398.87 580.13 B
+0.52 0.1 (Fine-grained contr) 210.7 559.73 B
+0.52 0.1 (ol over access to data and methods) 294.77 559.73 B
+0.52 0.1 (No garbage collection) 210.7 539.33 B
+0.52 0.1 (No dynamic modi\336cation of classes) 210.7 518.93 B
+0.52 0.1 ( ) 210.7 478.13 B
+0.52 0.1 (Lisp / Flavors) 213.92 478.13 B
+0.52 0.1 (Multiple inheritance) 210.7 457.73 B
+0.52 0.1 (Run-time type and ar) 210.7 437.33 B
+0.52 0.1 (gument checking ar) 308.68 437.33 B
+0.52 0.1 (e possible.) 398.87 437.33 B
+0.52 0.1 (Fine-grained contr) 210.7 416.93 B
+0.52 0.1 (ol over access to data and methods) 294.77 416.93 B
+0.52 0.1 (Automatic garbage collection) 210.7 396.53 B
+0.52 0.1 (Dynamic modi\336cation of classes) 210.7 376.13 B
+0.52 0.1 ( ) 198 355.73 B
+0.52 0.1 (NeWS of) 201.22 355.73 B
+0.52 0.1 (fers many of the featur) 241.88 355.73 B
+0.52 0.1 (es common to OOP languages: the ability to ) 346.56 355.73 B
+0.07 0.1 (de\336ne classes and cr) 198 343.33 B
+0.07 0.1 (eate instances, automatic garbage collection, r) 290.23 343.33 B
+0.07 0.1 (un-time type ) 496.9 343.33 B
+0.52 0.1 (checking, and dynamic modi\336cation of methods and classes. It does not of) 198 330.93 B
+0.52 0.1 (fer ) 538.89 330.93 B
+0.16 0.1 (any compile-time or r) 198 318.54 B
+0.16 0.1 (un-time checking of ar) 296.14 318.54 B
+0.16 0.1 (guments passed to \050non-primitive\051 ) 398.12 318.54 B
+0.52 0.1 (functions, and it does not of) 198 306.14 B
+0.52 0.1 (fer access pr) 326.59 306.14 B
+0.52 0.1 (otection to instance or class data or ) 382.9 306.14 B
+0.52 0.1 (methods. ) 198 293.73 B
+6 F
+-0.88 ( ) 126 260.67 P
+-0.88 (The NeWS T) 128.62 260.67 P
+-0.88 (oolkit) 199.17 260.67 P
+3 F
+0.16 0.1 ( ) 198 239.34 B
+0.16 0.1 (TNT is a collection of classes that have been de\336ned on top of NeWS, together ) 200.86 239.34 B
+0.52 0.1 (with a service ar) 198 226.93 B
+0.52 0.1 (chitectur) 273.59 226.93 B
+0.52 0.1 (e to deliver dif) 313.19 226.93 B
+0.52 0.1 (fer) 380.6 226.93 B
+0.52 0.1 (ent messages to instances of these ) 392.78 226.93 B
+0.52 0.1 (classes. The \322leaf\323 classes of the toolkit closely parallel the set of widgets ) 198 214.53 B
+0.52 0.1 (r) 198 202.14 B
+0.52 0.1 (equir) 201.87 202.14 B
+0.52 0.1 (ed of an OPEN LOOK-compliant window system. TNT inherits its ) 225.46 202.14 B
+0.52 0.1 (syntax fr) 198 189.73 B
+0.52 0.1 (om NeWS: a typical method send is written as) 238.04 189.73 B
+7 F
+(<arguments> methodname object send.) 210.6 174 T
+FMENDPAGE
+%%EndPage: "5" 4
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (4) 54 108.7 S
+1 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+0.11 (Overriding:) 198 640.67 S
+3 F
+0.19 0.1 ( If B is a subclass of A, and a de\336nition for a method or variable foo appears in ) 198 624.33 B
+0.13 0.1 (B which is dif) 198 611.93 B
+0.13 0.1 (fer) 260.01 611.93 B
+0.13 0.1 (ent fr) 272.19 611.93 B
+0.13 0.1 (om a de\336nition of foo appearing in A, we say that class B ) 296.37 611.93 B
+0.52 0.1 (overrides the method or variable foo.) 198 599.53 B
+0.52 0.1 (Object-oriented pr) 198 579.13 B
+0.52 0.1 (ogramming could be described as writing a pr) 281.19 579.13 B
+0.52 0.1 (ogram by ) 493.45 579.13 B
+0.48 0.1 (designing classes, cr) 198 566.73 B
+0.48 0.1 (eating instances of those classes, and designing a pr) 290.3 566.73 B
+0.48 0.1 (otocol ) 527.34 566.73 B
+-0.12 0.1 (for instances to communicate with each other) 198 554.33 B
+-0.12 0.1 (. An object-oriented pr) 401.25 554.33 B
+-0.12 0.1 (ogramming ) 502.74 554.33 B
+0.52 0.1 (language is one which supports, to some degr) 198 541.93 B
+0.52 0.1 (ee, an object- oriented ) 408.61 541.93 B
+0.52 0.1 (pr) 198 529.53 B
+0.52 0.1 (ogramming style. In addition to the facility to design classes and cr) 207.98 529.53 B
+0.52 0.1 (eate ) 515.93 529.53 B
+0.52 0.1 (objects, an object-oriented language may pr) 198 517.13 B
+0.52 0.1 (ovide additional support such as ) 396.75 517.13 B
+0.52 0.1 (automatic r) 198 504.73 B
+0.52 0.1 (eclamation of storage \050garbage collection\051, strict type-checking, ) 250.05 504.73 B
+0.28 0.1 (polymorphism \050the same method name triggering dif) 198 492.33 B
+0.28 0.1 (fer) 440.61 492.33 B
+0.28 0.1 (ent actions in dif) 452.8 492.33 B
+0.28 0.1 (fer) 528.78 492.33 B
+0.28 0.1 (ent ) 540.96 492.33 B
+0.5 0.1 (instances\051, dif) 198 479.93 B
+0.5 0.1 (fering degr) 260.99 479.93 B
+0.5 0.1 (ees of access contr) 311.65 479.93 B
+0.5 0.1 (ol to an instance\325s data, formalized ) 395.02 479.93 B
+0.52 0.1 (ways of br) 198 467.53 B
+0.52 0.1 (oadcasting messages to a collection of objects, or dynamic ) 246.24 467.53 B
+0.52 0.1 (modi\336cation of the classes themselves.) 198 455.13 B
+4 F
+0.68 0.13 ( Examples:) 198 405.73 B
+3 F
+0.52 0.1 ( ) 210.6 352.54 B
+0.52 0.1 (Smalltalk) 213.82 352.54 B
+0.52 0.1 (Everything is an object \050even integers\051) 210.7 332.14 B
+0.52 0.1 (Single inheritance class str) 210.7 311.73 B
+0.52 0.1 (uctur) 331.44 311.73 B
+0.52 0.1 (e) 355.46 311.73 B
+0.52 0.1 (Run-time checking of method ar) 210.7 291.33 B
+0.52 0.1 (guments) 358.52 291.33 B
+0.52 0.1 (Message-passing is the only way to invoke an action) 210.7 270.93 B
+0.52 0.1 (All data is private unless an access method is pr) 210.7 250.53 B
+0.52 0.1 (ovided) 431.55 250.53 B
+0.52 0.1 (Automatic garbage collection) 210.7 230.14 B
+0.52 0.1 (Dynamic modi\336cation of classes) 210.7 209.73 B
+FMENDPAGE
+%%EndPage: "4" 3
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+0 F
+0.09 (3) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+-0.71 0.11 (Namespace Contr) 198 640.67 B
+-0.71 0.11 (ol.) 285.31 640.67 B
+3 F
+0.52 0.1 ( A persistent pr) 198 624.33 B
+0.52 0.1 (ogramming pr) 269.45 624.33 B
+0.52 0.1 (oblem occurs when methods compiled in one ) 335.33 624.33 B
+0.34 0.1 (context ar) 198 611.93 B
+0.34 0.1 (e executed in another) 242.77 611.93 B
+0.34 0.1 (, typically the Global Event Manager) 339.58 611.93 B
+0.34 0.1 (. Although ) 506.11 611.93 B
+0.52 0.1 (the toolkit pr) 198 599.53 B
+0.52 0.1 (ovides utilities to help with these situations, it is well to bear the ) 257.88 599.53 B
+0.52 0.1 (context issue in mind when pr) 198 587.13 B
+0.52 0.1 (ogramming with the toolkit.) 337.27 587.13 B
+4 F
+-0.84 0.13 (OOP concepts) 198.13 540.73 B
+3 F
+0.23 0.1 ( ) 198 523.73 B
+0.23 0.1 (First, let\325s agr) 200.92 523.73 B
+0.23 0.1 (ee on some terminology) 262.67 523.73 B
+0.23 0.1 (. These ar) 370.57 523.73 B
+0.23 0.1 (e not meant to be the last wor) 414.04 523.73 B
+0.23 0.1 (d ) 548.97 523.73 B
+0.52 0.1 (in axiomatic pr) 198 511.33 B
+0.52 0.1 (ecision; rather) 266.98 511.33 B
+0.52 0.1 (, they should be viewed as a means of opening ) 330.57 511.33 B
+0.1 (discussion.) 198 498.93 S
+0.52 0.1 (\322Object\323, loosely speaking, means some entity capable of holding data and ) 198.1 464.53 B
+0.52 0.1 (possessing capabilities of pr) 198 452.13 B
+0.52 0.1 (ocessing that data.) 325.88 452.13 B
+0.52 0.1 (\322Class\323 means some entity containing descriptions, as well as means of ) 198.1 417.73 B
+0.52 0.1 (cr) 198 405.33 B
+0.52 0.1 (eating objects matching those descriptions. W) 206.4 405.33 B
+0.52 0.1 (e sometimes think of a class as ) 414.22 405.33 B
+0.49 0.1 (pr) 198 392.93 B
+0.49 0.1 (oviding a template for the cr) 207.98 392.93 B
+0.49 0.1 (eation of objects. An object cr) 338.86 392.93 B
+0.49 0.1 (eated by a class is ) 473.06 392.93 B
+0.52 0.1 (called an instance of the class, and this act of cr) 198 380.53 B
+0.52 0.1 (eation is called instantiation.) 415.29 380.53 B
+0.52 0.1 (\322Message\323 is a r) 198.1 360.14 B
+0.52 0.1 (equest sent to an object to perform some action.) 272.72 360.14 B
+0.52 0.1 (A \322method\323 is some pr) 198.1 325.73 B
+0.52 0.1 (ocedur) 304.52 325.73 B
+0.52 0.1 (e known to an object.) 335.7 325.73 B
+2 F
+-0.71 0.11 ( Inheritance and subclassing: ) 198 282.67 B
+3 F
+0.52 0.1 (W) 198 266.34 B
+0.52 0.1 (e say that a class B is derived fr) 207.18 266.34 B
+0.52 0.1 (om a class A, or B is a subclass of A, or B ) 352.08 266.34 B
+0.52 0.1 (inherits fr) 198 253.93 B
+0.52 0.1 (om A if any datum or method known to an instance of A is also ) 242.9 253.93 B
+0.02 0.1 (known to any instance of B. If B is a subclass of A, we also say A is a super) 198 241.53 B
+0.02 0.1 (class ) 534.07 241.53 B
+0.2 0.1 (of B. A subclass may \050most likely will\051 possess additional data or methods. If a ) 198 229.14 B
+0.45 0.1 (class can have at most one super) 198 216.73 B
+0.45 0.1 (class, we call that single inheritance; if a class ) 347.11 216.73 B
+0.52 0.1 (may have mor) 198 204.34 B
+0.52 0.1 (e that one super) 263.91 204.34 B
+0.52 0.1 (class, we call that multiple inheritance.) 337.57 204.34 B
+FMENDPAGE
+%%EndPage: "3" 2
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (2) 54 108.7 S
+1 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+3 F
+0.52 0.1 (de\336nitions while the system is executing. \050Changing the TNT sour) 198 641.33 B
+0.52 0.1 (ce code ) 501.6 641.33 B
+0.52 0.1 (should be thought of as an act of last r) 198 628.93 B
+0.52 0.1 (esort however) 374.7 628.93 B
+0.52 0.1 (. The cost of doing this ) 438.75 628.93 B
+0.52 0.1 (will be that you will have to duplicate your changes, or at least r) 198 616.53 B
+0.52 0.1 (eexamine ) 494.9 616.53 B
+0.52 0.1 (them, with each subsequent r) 198 604.13 B
+0.52 0.1 (elease of TNT) 332.49 604.13 B
+0.52 0.1 (.\051 ) 394.93 604.13 B
+2 F
+-0.71 0.11 (Thin W) 198 575.07 B
+-0.71 0.11 (ir) 233.94 575.07 B
+-0.71 0.11 (e. ) 241.89 575.07 B
+3 F
+0.52 0.1 (TNT pr) 198 558.73 B
+0.52 0.1 (ograms perform well over low bandwidth client- server connections ) 231.95 558.73 B
+0.52 0.1 (such as telephone lines, or overloaded networks. This is because the OPEN ) 198 546.33 B
+0.52 0.1 (LOOK components live in the window server and interact with the user ) 198 533.93 B
+0.2 0.1 (without involving the client pr) 198 521.53 B
+0.2 0.1 (ogram at all. Application pr) 337.37 521.53 B
+0.2 0.1 (ogrammers can take ) 463.57 521.53 B
+0.52 0.1 (advantage of the pr) 198 509.13 B
+0.52 0.1 (ogrammable server in this way as well. For example, you ) 287.54 509.13 B
+0.52 0.1 (can download user) 198 496.73 B
+0.52 0.1 (-interaction code that animates some operation. ) 284.99 496.73 B
+2 F
+-0.71 0.11 (Imaging PostScript. ) 198 467.67 B
+3 F
+0.52 0.1 (The full PostScript imaging model is at your disposal when writing an ) 198 451.33 B
+0.52 0.1 (application under TNT) 198 438.93 B
+0.52 0.1 (. Not only can you draw using the har) 302.34 438.93 B
+0.52 0.1 (dwar) 478.11 438.93 B
+0.52 0.1 (e ) 501.72 438.93 B
+0.52 0.1 (independent, scalable and transformable NeWS primitives, but you can also ) 198 426.53 B
+0.52 0.1 (perform input hit detection over the shapes that you draw -- no matter how ) 198 414.13 B
+0.52 0.1 (complex they ar) 198 401.73 B
+0.52 0.1 (e. ) 271.3 401.73 B
+4 F
+-0.84 0.13 ( T) 198 369.33 B
+-0.84 0.13 (wo W) 207.4 369.33 B
+-0.84 0.13 (orlds ) 237.46 369.33 B
+3 F
+0.52 0.1 (The cost of all this \337exibility is that TNT pr) 198 352.33 B
+0.52 0.1 (ogrammers have to make mor) 396.51 352.33 B
+0.52 0.1 (e ) 533.95 352.33 B
+0.15 0.1 (decisions than the users of simpler toolkits. In particular) 198 339.93 B
+0.15 0.1 (, they have to consider ) 452.79 339.93 B
+0.52 0.1 (the pr) 198 327.54 B
+0.52 0.1 (oblem of splitting their application between two very dif) 225.26 327.54 B
+0.52 0.1 (fer) 485.12 327.54 B
+0.52 0.1 (ent ) 497.3 327.54 B
+0.24 0.1 (pr) 198 315.14 B
+0.24 0.1 (ogramming envir) 207.98 315.14 B
+0.24 0.1 (onments: the object-oriented PostScript world of the NeWS ) 287.03 315.14 B
+0.52 0.1 (server and the mor) 198 302.73 B
+0.52 0.1 (e conventional C or C++ client-side. Use of Devguide to ) 285.04 302.73 B
+0.52 0.1 (r) 198 290.33 B
+0.52 0.1 (eplace much hand-coded PostScript impr) 201.87 290.33 B
+0.52 0.1 (oves this situation somewhat, but ) 390.03 290.33 B
+0.52 0.1 (does not eliminate it.) 198 277.93 B
+2 F
+-0.71 0.11 ( Contr) 198 248.87 B
+-0.71 0.11 (ol PostScript. ) 228.78 248.87 B
+3 F
+-0.07 0.1 (The contr) 198 232.53 B
+-0.07 0.1 (ol str) 240.79 232.53 B
+-0.07 0.1 (uctur) 263.55 232.53 B
+-0.07 0.1 (es of the PostScript language ar) 287.57 232.53 B
+-0.07 0.1 (e rather dif) 428.77 232.53 B
+-0.07 0.1 (fer) 478.53 232.53 B
+-0.07 0.1 (ent fr) 490.71 232.53 B
+-0.07 0.1 (om other ) 514.7 232.53 B
+0.39 0.1 (languages that most pr) 198 220.14 B
+0.39 0.1 (ogrammers have been exposed to. The post\336x notation, ) 302.63 220.14 B
+0.52 0.1 (lack of explicit parameter passing, and dynamic scoping all contribute to ) 198 207.73 B
+0.52 0.1 (PostScript\325s r) 198 195.34 B
+0.52 0.1 (eputation as a har) 258 195.34 B
+0.52 0.1 (d language.) 340.18 195.34 B
+FMENDPAGE
+%%EndPage: "2" 1
+5 18 /Bookman-Light FMDEFINEFONT
+%%Page: "1" 1
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+0 F
+0.09 (1) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+5 F
+(Intr) 251.06 636 T
+(oduction) 283.94 636 T
+6 F
+-0.88 (General Overview of the T) 126 600.67 P
+-0.88 (oolkit) 270.2 600.67 P
+3 F
+0.19 0.1 (TNT2.0 is an OPEN LOOK user interface toolkit for NeWS. Most OPEN LOOK ) 198.1 579.33 B
+0.52 0.1 (UI components ar) 198 566.93 B
+0.52 0.1 (e implemented in and accessed thr) 279.64 566.93 B
+0.52 0.1 (ough the NeWS Object ) 438.36 566.93 B
+0.52 0.1 (Oriented PostScript \050OOP\051 system. C-based libraries ar) 198 554.53 B
+0.52 0.1 (e also pr) 448.58 554.53 B
+0.52 0.1 (ovided so that ) 487.68 554.53 B
+0.52 0.1 (applications can use the W) 198 542.13 B
+0.52 0.1 (ir) 320.22 542.13 B
+0.52 0.1 (e Service -- a lightweight noti\336er and connection ) 327.1 542.13 B
+0.52 0.1 (manager for NeWS -- and the Jot text package. ) 198 529.73 B
+0.52 0.1 (TNT is not meant to be a ) 414.64 529.73 B
+0.52 0.1 (complete application pr) 198 517.33 B
+0.52 0.1 (ogramming envir) 306.28 517.33 B
+0.52 0.1 (onment. It addr) 385.62 517.33 B
+0.52 0.1 (esses only the user ) 457.22 517.33 B
+0.52 0.1 (interface components of the pr) 198 504.93 B
+0.52 0.1 (oblem, and leaves such issues as application ) 337.86 504.93 B
+-0.16 0.1 (embedding, long-term persistence, and inter) 198 492.53 B
+-0.16 0.1 (-application linkage to higher) 397.64 492.53 B
+-0.16 0.1 (-level ) 530.59 492.53 B
+0.52 0.1 (toolkits. Nor is it a User Interface Management System. Pr) 198 480.13 B
+0.52 0.1 (ogrammers interact ) 464.51 480.13 B
+0.52 0.1 (dir) 198 467.73 B
+0.52 0.1 (ectly with the UI components. They ar) 211.08 467.73 B
+0.52 0.1 (e cr) 386.82 467.73 B
+0.52 0.1 (eated by sending the /new ) 403.23 467.73 B
+0.52 0.1 (method to a class, and destr) 198 455.33 B
+0.52 0.1 (oy themselves when the last r) 326.25 455.33 B
+0.52 0.1 (efer) 462.33 455.33 B
+0.52 0.1 (ence to them is ) 479.4 455.33 B
+0.52 0.1 (r) 198 442.93 B
+0.52 0.1 (emoved. ) 201.87 442.93 B
+0.52 0.1 (TNT is an interpr) 198.1 422.53 B
+0.52 0.1 (eted, object oriented system, and as such is particularly easy ) 277.87 422.53 B
+0.52 0.1 (to extend. For this r) 198 410.13 B
+0.52 0.1 (eason we pr) 288.25 410.13 B
+0.52 0.1 (ovide a fairly minimal set of components, and ) 343.58 410.13 B
+0.52 0.1 (r) 198 397.73 B
+0.52 0.1 (ely on applications or higher level toolkits to \337esh out a complete solution. ) 201.87 397.73 B
+0.52 0.1 (Our minimalist attitude is also borne of a r) 198 385.33 B
+0.52 0.1 (ealization that the majority of our ) 394.4 385.33 B
+0.52 0.1 (code is interpr) 198 372.93 B
+0.52 0.1 (eted PostScript r) 263.96 372.93 B
+0.52 0.1 (esident in the shar) 339.2 372.93 B
+0.52 0.1 (ed window system. It is ) 423.47 372.93 B
+0.52 0.1 (neither fast nor small when compar) 198 360.53 B
+0.52 0.1 (ed to client-side code pr) 360.98 360.53 B
+0.52 0.1 (ovided by our ) 471.21 360.53 B
+0.52 0.1 (customers. Apart fr) 198 348.13 B
+0.52 0.1 (om the full set of OPEN LOOK components, we pr) 286.73 348.13 B
+0.52 0.1 (ovide a ) 519.75 348.13 B
+0.52 0.1 (small set of \324cor) 198 335.73 B
+0.52 0.1 (e\325 classes that do little by themselves, but can be easily ) 270.14 335.73 B
+0.52 0.1 (customized via subclassing. ) 198 323.33 B
+4 F
+-0.84 0.13 ( ) 198 290.93 B
+-0.84 0.13 (The Str) 200.66 290.93 B
+-0.84 0.13 (engths and W) 239.81 290.93 B
+-0.84 0.13 (eaknesses of TNT ) 312.28 290.93 B
+-0.84 0.13 ( ) 406.23 290.93 B
+2 F
+-0.71 0.11 (Flexibility) 198 265.27 B
+-0.71 0.11 (. ) 249.86 265.27 B
+3 F
+0.51 0.1 (The best thing about TNT is its \337exibility) 198 248.93 B
+0.51 0.1 (. In a very r) 385.39 248.93 B
+0.51 0.1 (eal sense TNT is a toolkit ) 439.1 248.93 B
+0.52 0.1 (without brick walls. The same cor) 198 236.53 B
+0.52 0.1 (e classes that we used to build the OPEN ) 352.95 236.53 B
+0.52 0.1 (LOOK components, you can use to build your own application- speci\336c user ) 198 224.14 B
+0.31 0.1 (interface components. Furthermor) 198 211.73 B
+0.31 0.1 (e, it is very easy to modify one of our OPEN ) 353.07 211.73 B
+0.52 0.1 (LOOK components for your own needs. Y) 198 199.34 B
+0.52 0.1 (ou simply cr) 390.29 199.34 B
+0.52 0.1 (eate your own subclass ) 447.66 199.34 B
+0.4 0.1 (of our object, add new methods or override existing ones, and then instantiate ) 198 186.93 B
+0.52 0.1 (your new class. Finally) 198 174.53 B
+0.52 0.1 (, TNT is a sour) 302.14 174.53 B
+0.52 0.1 (ce code pr) 370.4 174.53 B
+0.52 0.1 (oduct: if you want to ) 417.23 174.53 B
+0.1 0.1 (signi\336cantly change the way the toolkit works the PostScript code is all at your ) 198 162.14 B
+0.38 0.1 (disposal. Our classing system is so dynamic that you can even change method ) 198 149.73 B
+FMENDPAGE
+%%EndPage: "1" 0
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 14 -1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Palatino-BoldItalic
+%%+ Times-Roman
+%%+ Palatino-Bold
+%%+ Helvetica
+%%+ Times-Bold
+%%+ Bookman-Light

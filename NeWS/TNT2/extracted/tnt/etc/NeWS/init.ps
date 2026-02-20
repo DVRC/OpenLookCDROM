@@ -1,0 +1,499 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) init.ps 23.15 91/02/11
+%
+%  NeWS is initialized by executing the PostScript fragment
+%  given it on the command line.  If there is no such fragment,
+%	"(NeWS/init.ps) (r) file cvx exec"
+%  is the default.
+%  This is the default init.ps file for NeWS.
+%  
+%  It performs several tasks:
+%	* Defines several unimplemented primitives by reading redbook.ps.
+%	* Defines several almost-primitives by reading basics.ps.
+%	* It performs standard initialization:
+%		- Framebuffer & keyboard/mouse
+%		- Defines and starts /server
+%	* Defines the user's defaults
+%	* Loads the rest of the *.ps files
+%
+
+/sharedvm (Shared VM) vm def
+currentprocess /CurrentVM sharedvm put
+
+% To obtain maximum space saving benefits, establishing a packing table
+% should be done as early as possible.
+
+(NeWS/pack.ps) (r) file cvx exec	% create the packing table
+true setpacking				% Pack system ps files.
+
+(NeWS/matchbits.ps) (r) file cvx exec	% input system caching...
+
+% Load some basics used by us such as /case /append ... (aughta-be primitives).
+(NeWS/basics.ps) (r) file cvx exec
+
+%
+% variables reflecting command line arguments
+%
+/NoBanner? false ?def
+
+%
+% Common env. vars.
+%
+/HOME (HOME) (.) ?getenv def
+/OPENWINHOME (OPENWINHOME) (/usr/openwin) ?getenv def
+
+% no assumptions should be made about the terminal type.
+(TERM) (unknown) putenv
+
+% Load redbook primitives implemented in PostScript.
+(NeWS/redbook.ps) (r) file cvx exec
+
+0 (NeWS/systoklst.ps) run {		% i primitive
+    % Note: (NeWS/systoklst.ps) run puts {arc ashow awidthshow ..} on stack
+    1 index setsysinputtoken 1 add	% i+1
+} forall pop				% pop the counter
+
+%
+% Setup framebuffer & other devices.
+%
+
+/rootcanvases [] def
+
+/devicedict 20 dict dup begin
+    (/dev/mouse) dup createdevice def
+    (/dev/kbd) dup createdevice def
+    /x 0 def
+    /y 0 def
+    /lastheight 0 def
+    /lastwidth 0 def
+    /thisheight 0 def
+    /thiswidth 0 def
+    0 3 FrameBuffers length 1 sub {
+	/fb exch def
+	FrameBuffers fb get			% string
+	dup createdevice			% string cv
+	dup false eq {
+	    pop (XNeWS: can't find the framebuffer device \(%\).\n) sprintf
+	    FatalError
+	} if
+	dup setcanvas def			% -
+	/rootcanvases rootcanvases [ currentcanvas ] append store
+	clippath pathbbox
+	/thisheight exch def
+	/thiswidth exch def
+	pop pop
+	FrameBuffers fb 2 add get		% /name | y
+	FrameBuffers fb 1 add get		% null | x
+	dup null eq {
+	    pop {
+		/Left { /x x thiswidth sub def }
+		/Right { /x x lastwidth add def }
+		/Top { /y y lastheight add def }
+		/Bottom { /y y thisheight sub def }
+	    } case
+	} {
+	   /x exch def /y exch def
+	} ifelse
+	/lastheight thisheight def
+	/lastwidth thiswidth def
+	x y currentcanvas
+	globalroot setcanvas
+	movecanvas
+    } for
+end def
+
+/framebuffer rootcanvases 0 get def
+/Framebuffer framebuffer def
+
+framebuffer setcanvas startkeyboardandmouse
+/SunView? { devicedict /SunView? get } def
+
+/createdevicecanvas { % devicename => device
+    devicedict begin
+	dup createdevice	% name device
+	dup 3 1 roll		% device name device
+	def			% device
+    end
+    /rootcanvases rootcanvases [ 3 index ] append def
+} def
+
+/UserProfile 100 dict def
+
+/PointButton		/LeftMouseButton def
+/AdjustButton		/MiddleMouseButton def
+/MenuButton		/RightMouseButton def
+
+% LoadFile is a standard usage of filepathrun used to initialize the
+% server's .ps files.  It currently tries the filename with no modification
+% (similar to using (.), but things like "~" work) and the user's $HOME
+% directory.  It also checks in $OPENWINHOME/lib/NeWS because of kruft in
+% the file code.  If this gets removed as it should, we need to add
+% OPENWINHOME (/lib/NeWS) append to the list below.
+/LoadFile { % filename => bool (execute file, return false if problems)
+    { () //HOME } filepathrun exch pop	% Note: {..} is simply a literal array.
+} def
+
+(NeWS/autoload.ps) LoadFile pop
+
+% Apply the standard auto loads from the tnt init.ps file, if it exists
+(NeWS/tnt/init.ps) LoadFile pop
+
+% For the alpha release DO include demo methods by default. User can override.
+systemdict /IncludeDemos? true put
+
+NoBanner? not {
+    % Get system's startup paint Root proc.
+    (NeWS/paintroot.ps) LoadFile pop
+} if
+
+% Read in user's startup file.
+% Note we undef the /InitPaintRoot as soon as we use it.
+%
+{
+    (.startup.ps) LoadFile pop
+} stopped {
+    console $error dup /errorname get exch /command get exch
+    (X11/NeWS: % error executing "%" in .startup.ps\n) fprintf
+} if
+
+% Paint the banner if so required
+%
+NoBanner? not {
+    rootcanvases {
+	/framebuffer exch def
+	InitPaintRoot
+    } forall
+    systemdict /InitPaintRoot undef
+} if
+
+systemdict /framebuffer Framebuffer put
+
+(NeWS/statdict.ps) LoadFile pop
+
+%
+% Don't load icon.ps unless something needs it.
+%
+[   /icondict	(NeWS/icon.ps)
+    /iconfont	(NeWS/icon.ps)
+    /showicon	(NeWS/icon.ps)
+] DefineAutoLoads
+
+% Create a graphics state dictionary to be used by the framebuffers
+/GcDict 10 dict def
+GcDict begin
+    rootcanvases {
+	dup setcanvas currentstate def
+    } forall
+end
+
+(NeWS/colors.ps) LoadFile pop
+
+(NeWS/cursor.ps) LoadFile not { 
+    (XNeWS: can't find cursor.ps.\n) FatalError
+} if
+
+/setstandardcursor { % /shape /mask canvas => - (set cursor from font)
+    3 1 roll				% canvas /shape /mask
+    cursordict begin
+	load exch load exch		% canvas shape mask
+	cursorfont			% canvas shape mask font
+    end
+    newcursor				% canvas cursor
+    /Cursor exch			% canvas /Cursor cursor
+    put					% -
+} def
+
+% Set root window cursor
+rootcanvases {
+    /busy /busy_m 3 -1 roll setstandardcursor
+} forall
+/busy /busy_m globalroot setstandardcursor
+
+(NeWS/util.ps) LoadFile pop
+
+(NeWS/class.ps) LoadFile pop
+(NeWS/eventmgr.ps) LoadFile pop
+(NeWS/interest.ps) LoadFile pop
+(NeWS/keyboard.ps) LoadFile pop	   %  Here's where translation gets changed
+(NeWS/repeat.ps) LoadFile pop
+(NeWS/obsolete.ps) LoadFile pop
+(NeWS/defaults.ps) LoadFile pop
+(NeWS/focus.ps) LoadFile pop
+(NeWS/keysint.ps) LoadFile pop
+(NeWS/selection.ps) LoadFile pop
+(NeWS/authorize.ps) LoadFile pop
+
+/localhostname localhostnamearray 0 get def
+
+% (NeWS/compat.ps) LoadFile pop
+
+% Define autoloads for the Lite toolkit: windows, menus, items.
+[
+    /DefaultWindow		(NeWS/litewin.ps)
+    /LiteWindow			(NeWS/litewin.ps)
+    /ScrollWindow		(NeWS/litewin.ps)
+    /DefaultMenu		(NeWS/litemenu.ps)
+    /LiteMenu			(NeWS/litemenu.ps)
+    /LitePullRightMenu		(NeWS/litemenu.ps)
+] DefineAutoLoads
+
+/NeWS_Unix_sockname (/tmp/.NeWS-unix/N) def
+%
+% Returns the 'file' used for client connections.
+%
+/registerserver {		    % s => file
+    {
+	(unix) eq {
+	    (%socketl) NeWS_Unix_sockname ConnectionNumber (    ) cvs
+	    append append (r) file
+	} {
+	    (%socketl) 2000 ConnectionNumber add (    ) cvs append (r) file
+	} ifelse
+    }
+    stopped {
+	ConnectionNumber
+	(XNeWS: there is already a NeWS server running on :%\n)
+	sprintf FatalError
+    } if
+} ?def
+
+% The server; note that the dict size is client's userdict!
+/server { % s => -
+    {	newprocessgroup
+	dup (unix) eq {
+	    registerserver
+	    currentprocess cvx /ProcessName (NeWS Listener unix) put
+	} {
+	    registerserver					% f
+	    dup getsocketlocaladdress (NEWSSERVER) exch putenv	% f
+	    currentprocess cvx /ProcessName (NeWS Listener tcp) put
+	} ifelse
+	{
+	{
+	  {   % This is the loop creating new clients.
+	    % Pause until new connection:
+	    (client) vm setvm
+	    dup mark exch acceptconnection			% f [ f'
+	    % Now fork the new client's process.
+	    {							% <new context>
+		false setpacking	% No packing is default
+		% copy the errordict for each connection
+		/errordict dup load dup maxlength dict copy store
+		% Establish userdict, initialize context
+		//DICTBEGINSIZE dict begin initmatrix newprocessgroup % f [ f'
+		exch pop exch pop				% f'
+
+		%
+		% Snapshot the devicecanvas under the mouse as the
+		% client's default framebuffer.
+		%
+		systemdict /framebuffer get 
+		currentdict /framebuffer 3 -1 roll put
+		framebuffer setcanvas
+
+                %
+                % get the socket name and set up the client's process name
+                %
+                dup {getsocketpeername} stopped {
+                    console (NeWS cannot resolve hostname) fprintf
+                } {
+                    /OriginatingHost exch def
+                    currentprocess cvx /ProcessName OriginatingHost
+                    ( NeWS client) append put
+
+		    %
+		    % See if we will even be checking the authentication
+		    % data. If not, then don't bother getting it from
+		    % the client. This provides backwards compatibility
+		    % with old NeWS clients.
+		    %
+		    /authdatachecked? ClassAuthorization send {
+                        %
+                        % Get the authorization method name.
+                        %
+                        dup token not {
+                            currentprocess killprocessgroup
+                        } if
+
+                        %
+                        % Get the authorization data.
+                        %
+                        1 index token not {
+                            currentprocess killprocessgroup
+                        } if
+		    } {
+			%
+			% Phony data for clientauthorized?.
+			%
+			null null
+		    } ifelse
+
+		    %
+		    % See if this client is authorized to connect.
+		    %
+                    /clientauthorized? ClassAuthorization send {
+                        cvx exec
+                    } if
+                } ifelse
+                currentprocess killprocessgroup
+	    } fork /Priority UserPriority put cleartomark
+	} loop
+       } stopped cleartomark closefile registerserver
+     } loop
+    } fork /Priority SystemPriority put
+} ?def
+
+(tcp) server pause pop		% pause to let the listener run
+(unix) server pause pop
+
+%   Start the news desktop manager
+systemdict /TraceSelect? false put
+% REMIND: bkm
+% (NeWS/NDE/desktop.ps) LoadFile pop
+
+% start X11 server
+(NeWS/Xcompat.ps) LoadFile pop
+(NeWS/Xlistener.ps) LoadFile pop
+pause	% pause to let the X listener run
+
+% Check for late user-specified modifications.
+{
+    (.user.ps) LoadFile pop
+} stopped { 
+    console $error dup /errorname get exch /command get exch
+    (X11/NeWS: % error executing "%" in .user.ps\n) fprintf
+} if
+
+%
+% Cleanup after initialization:
+%
+count 0 ne {
+    clear console (X11/NeWS: initial operand stack not clear!\n) fprintf
+} if
+
+countdictstack 1 ne {
+    countdictstack 1 sub { end } repeat
+    console (X11/NeWS: initial dictionary stack not clear!\n) fprintf
+} if
+
+rootcanvases {
+    /basic /basic_m 3 -1 roll setstandardcursor
+} forall
+/basic /basic_m globalroot setstandardcursor
+
+[
+    [ 3 4 ] 
+    1 dict dup begin
+	/EnterEvent {
+	    dup begin
+		systemdict /framebuffer Canvas put
+		(DISPLAY) XDisplayDict Canvas get putenv
+		GcDict Canvas get setstate
+	    end redistributeevent
+	} def
+    end					% action name
+    rootcanvases {
+	2 index 2 index			% action name canvas action name
+	/new ClassInterest send		% action name int
+	3 1 roll
+    } forall
+    pop pop
+] /addclients GlobalSystemEventMgr send
+
+/RootDamageInterests [
+    null 1 dict dup begin
+	/Damaged {
+	    gsave
+		GcDict 1 index 
+		begin 
+		    Canvas 
+		end 
+		get setstate
+		newprocessgroup
+		damagepath clipcanvas PaintRoot
+		newpath clipcanvas
+		pop				% pop the event
+	    grestore
+	} def
+    end						% action name
+    rootcanvases {
+	2 index 2 index
+	/new ClassInterest send
+	3 1 roll
+    } forall
+    pop pop
+] def
+/RootMenuInterests [
+    /DownTransition 1 dict dup begin
+	MenuButton {
+	    0.02 blockinputqueue
+	    { 
+		unblockinputqueue 
+		newprocessgroup /showat
+		RootMenuDict framebuffer get send
+	    } fork pop pop
+	} def
+    end						% action name
+    rootcanvases {
+	2 index 2 index
+	/new ClassInterest send
+	3 1 roll
+    } forall
+    pop pop
+] def
+
+% REMIND: bkm
+%    DesktopSelectionInterests
+%	/addclients GlobalEventMgr send
+
+/setpaintroot { % bool => -
+    {
+	RootDamageInterests
+	    /addclients GlobalSystemEventMgr send
+	false setxrootpattern
+    } { 
+	RootDamageInterests
+	    /removeclients GlobalSystemEventMgr send
+	true setxrootpattern
+    } ifelse
+} def
+
+NoBanner? {
+    false setpaintroot
+} {
+    UserProfile /UsePaintRoot? false ?get setpaintroot
+} ifelse
+
+% Install the NeWS colorcube for every non-GrayScale root canvas
+1 dict begin
+    /GrayScaleWindow? { 	% cv => bool
+        /Visual get /Class get 1 eq 
+    } def
+    rootcanvases {
+        newcanvas dup GrayScaleWindow? not {
+	    /Colormap get /Installed true put
+	} if
+    } forall
+end
+
+signalready
+
+rootcanvases {
+    NoBanner? not {
+	% Paint the default root bkgd for each root canvas
+	dup setcanvas clippath extenddamage
+    } if
+    % Install the default colormap for each root canvas
+    /Colormap get /Installed true put
+} forall
+
+% if used a different canvas for the banner, destroy it now
+systemdict /BannerCanvas known {
+    BannerCanvas /Mapped false put
+    systemdict /BannerCanvas undef
+} if 

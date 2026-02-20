@@ -1,0 +1,165 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+
+% @(#)statdict.ps 23.3 91/02/11
+% LaserWriter emulation of statusdict for NeWS
+
+systemdict begin
+ /statusdict 100 dict def
+end
+
+statusdict begin
+
+ /pagecount 				% - => int
+  1
+ def
+
+ /pagestackorder 			% - => bool
+  false
+ def
+
+ /PRINTERNAME (NeWS Server) def
+ /setprintername {			% string => -
+  statusdict /PRINTERNAME 3 -1 roll put
+ } def
+
+ /printername {				% string => substring
+  statusdict /PRINTERNAME get exch copy
+ } def
+
+ /setsccbatch {				% channel baud parity => -
+  pop pop pop
+ } def
+
+ /sccbatch {				% channel => baud parity
+  pop 9600 0
+ } def
+
+ /setsccinteractive {			% channel baud parity => -
+  pop pop pop
+ } def
+
+ /sccinteractive {			% channel => baud parity
+  pop 9600 0
+ } def
+
+ /setdostartpage {			% bool => -
+  pop
+ } def
+
+ /dostartpage 				% - => bool
+  false
+ def
+
+ /setmargins {				% top left => -
+  pop pop
+ } def
+
+ /margins {				% - => top left
+  0 0
+ } def
+
+ /setpagetype {				% int => -
+  /pagetype exch def
+ } def
+
+ /pagetype 				% - => int
+  0
+ def
+
+ /note { } def				% LaserWriter compatibility hacks.
+ /letter { } def
+ /legal { } def
+
+ /setdefaulttimeouts {			% job manualfeed wait => -
+  pop pop statusdict_setjobtimeout
+ } def
+
+ /defaulttimeouts {			% - => job manualfeed wait
+  statusdict_jobtimeout 60 30
+ } def
+
+ /setpassword {				% old new => bool
+  pop pop true
+ } def
+
+ /checkpassword {			% int => bool
+  pop true
+ } def
+
+ /setidlefonts {			% mark font Sx Sy rot nchars .. => -
+  cleartomark
+ } def
+
+ /idlefonts {				% - => mark font Sx Sy rot nchars ..
+  [
+ } def
+
+ /seteescratch {			% index value => -
+  pop pop
+ } def
+
+ /eescratch {                      	% index => value
+  pop 0
+ } def
+
+ /setjobtimeout {			% int => -
+  statusdict_setjobtimeout
+ } def
+
+ /jobtimeout {				% - => int
+  statusdict_jobtimeout
+ } def
+
+ /manualfeedtimeout 			% - => int
+  60
+ def
+
+ /waittimeout 				% - => int
+  30
+ def
+
+ /manualfeed 				% - => bool
+  false
+ def
+
+ /prefeed 				% - => bool
+  false
+ def
+
+ /jobname				% - => string
+  (foojob)
+ def
+
+ /printerror {				% status tries => -
+  pop pop
+ } def
+
+ /product				% - => string
+  (NeWS Server)
+ def
+
+ /revision				% - => int
+  0
+ def
+
+ /hyperview {				% (hyperviewtag) => -
+	% (syshelp:fsfull) /hyperview statusdict send
+    { 	statusdict begin 10 dict begin
+	/tag exch def
+	 {   hyperview_file status not { stop } if
+	     101 hyperview_file tagprint
+	     tag hyperview_file typedprint
+	     hyperview_file flushfile
+	 } stopped
+	 {   statusdict /hyperview_tag tag put
+	     (hyperview) runprogram
+	 } if
+    } fork pop pop
+ } def
+
+end
+

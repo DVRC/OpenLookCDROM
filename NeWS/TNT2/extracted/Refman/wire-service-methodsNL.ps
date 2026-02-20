@@ -1,0 +1,5746 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 20 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 10 /Palatino-Roman FMDEFINEFONT
+5 10 /Palatino-Italic FMDEFINEFONT
+6 9 /Courier FMDEFINEFONT
+7 15 /Palatino-Italic FMDEFINEFONT
+%%Page: "227" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (227) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (26-0) 158.58 672.33 S
+-0.12 (26-0) 158.58 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (The W) 199.01 509.03 B
+-2.3 -0.4 (ir) 248.16 509.03 B
+-2.3 -0.4 (e Service) 260.33 509.03 B
+3 F
+7 X
+1 K
+-3.12 (26) 536.13 508.36 S
+4 F
+0 X
+0 K
+0.52 0.1 (The purpose of the NeWS W) 198 459.68 B
+0.52 0.1 (ir) 329.22 459.68 B
+0.52 0.1 (e Service is a server) 336.09 459.68 B
+0.52 0.1 (-client communications ) 426.13 459.68 B
+0.08 0.1 (package of suf) 198 447.28 B
+0.08 0.1 (\336cient generality that diverse client applications and toolkits can ) 263.09 447.28 B
+0.52 0.1 (use it.) 198 434.88 B
+0.52 0.1 (The W) 198 414.48 B
+0.52 0.1 (ir) 227.69 414.48 B
+0.52 0.1 (e Service is almost completely independent of the PostScript ) 234.57 414.48 B
+0.52 0.1 (components of The NeWS T) 198 402.08 B
+0.52 0.1 (oolkit; it does not pr) 325.63 402.08 B
+0.52 0.1 (esume the existence of any ) 419.01 402.08 B
+0.42 0.1 (particular class. However) 198 389.68 B
+0.42 0.1 (, in or) 313.63 389.68 B
+0.42 0.1 (der to use the W) 340.62 389.68 B
+0.42 0.1 (ir) 415.83 389.68 B
+0.42 0.1 (e Service you must know the ) 422.7 389.68 B
+0.52 0.1 (NeWS client-side facility CPS and how to use. See the ) 198 377.28 B
+5 F
+0.52 0.1 (NeWS 2.1 Pr) 447.55 377.28 B
+0.52 0.1 (ogrammer) 503.65 377.28 B
+0.52 0.1 (\325) 545.91 377.28 B
+0.52 0.1 (s ) 548.24 377.28 B
+0.52 0.1 (Guide) 198 364.88 B
+4 F
+0.52 0.1 (, for an explanation of CPS.) 222.94 364.88 B
+0.52 0.1 (Also included in this chapter ar) 198 344.48 B
+0.52 0.1 (e the client-side functions that you use to ) 342.73 344.48 B
+0.52 0.1 (implement help facilities.) 198 332.08 B
+0.52 0.1 (At the end of the chapter ther) 198 311.68 B
+0.52 0.1 (e is an example called ) 334.24 311.68 B
+6 F
+1.08 (wire-demo) 438 311.68 P
+4 F
+0.52 0.1 (. This demo is ) 486.53 311.68 B
+0.04 0.1 (also included as part of the TNT distribution CD and can be found in the demo ) 198 299.28 B
+0.1 (dir) 198 286.88 S
+0.1 (ectory) 211.08 286.88 S
+0.1 (.) 238.02 286.88 S
+7 F
+-0.94 (Err) 54 253.15 P
+-0.94 (or handling) 74.56 253.15 P
+4 F
+0.52 0.1 (Most W) 198 231.48 B
+0.52 0.1 (ir) 233.47 231.48 B
+0.52 0.1 (e Service interface functions r) 240.35 231.48 B
+0.52 0.1 (eturn a value that can be coer) 375.39 231.48 B
+0.52 0.1 (ced to an ) 511.05 231.48 B
+0.52 0.1 (integer and tested for a 0 r) 198 219.08 B
+0.52 0.1 (eturn value. Many of them r) 319.82 219.08 B
+0.52 0.1 (eturn a boolean; ) 449.38 219.08 B
+6 F
+1.1 0.09 (TRUE) 526.42 219.08 B
+4 F
+0.52 0.1 ( ) 548.35 219.08 B
+0.52 0.1 (for success, ) 198 206.68 B
+6 F
+1.1 0.09 (FALSE) 252.97 206.68 B
+4 F
+0.52 0.1 ( for failur) 280.38 206.68 B
+0.52 0.1 (e. ) 324.19 206.68 B
+FMENDPAGE
+%%EndPage: "227" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+3 14 /Times-Bold FMDEFINEFONT
+%%Page: "228" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (228) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(wire_Errno) 54 642 T
+(int wire_Errno;) 198 642 T
+(wire_ErrorString) 54 613 T
+(char * wire_ErrorString\050\051;) 198 613 T
+(wire_Perror) 54 584 T
+(void) 198 584 T
+( ) 54 573 T
+(wire_Perror\050prefix\051) 198 573 T
+(char *prefix;) 198 563 T
+4 F
+0.52 0.1 (When an err) 198 544.33 B
+0.52 0.1 (or has occurr) 254.87 544.33 B
+0.52 0.1 (ed, its type is available in the ) 314.74 544.33 B
+6 F
+1.1 0.09 (wire_Errno) 451.98 544.33 B
+4 F
+0.52 0.1 ( global ) 506.8 544.33 B
+0.52 0.1 (variable, and a descriptive string is pointed to by ) 198 531.93 B
+6 F
+1.1 0.09 (wire_ErrorString) 426.54 531.93 B
+4 F
+0.52 0.1 (. Like its ) 514.26 531.93 B
+0.38 0.1 (UNIX equivalent, the err) 198 519.53 B
+0.38 0.1 (or condition is not clear) 310.76 519.53 B
+0.38 0.1 (ed immediately after an err) 418.93 519.53 B
+0.38 0.1 (or) 543.55 519.53 B
+0.38 0.1 (. ) 552.42 519.53 B
+0.2 0.1 (It r) 198 507.13 B
+0.2 0.1 (emains set until the next err) 211.49 507.13 B
+0.2 0.1 (or) 338.06 507.13 B
+0.2 0.1 (. The function ) 346.93 507.13 B
+6 F
+0.43 0.09 (wire_Perror) 412.81 507.13 B
+4 F
+0.2 0.1 ( prints the curr) 473.11 507.13 B
+0.2 0.1 (ent ) 541.04 507.13 B
+0.52 0.1 (err) 198 494.73 B
+0.52 0.1 (or string to standar) 210.8 494.73 B
+0.52 0.1 (d err) 298.88 494.73 B
+0.52 0.1 (or) 321.01 494.73 B
+0.52 0.1 (, pr) 329.88 494.73 B
+0.52 0.1 (e\336xed by the user) 345.57 494.73 B
+0.52 0.1 (-supplied string. ) 426.97 494.73 B
+7 F
+(Components) 54 461 T
+4 F
+0.52 0.1 (The components of the W) 198 439.33 B
+0.52 0.1 (ir) 315.3 439.33 B
+0.52 0.1 (e Service ar) 322.17 439.33 B
+0.52 0.1 (e: ) 374.72 439.33 B
+3 F
+(\245) 198 420.93 T
+4 F
+0.52 0.1 (A connection manager that handles multiple connections to one or mor) 210.6 420.93 B
+0.52 0.1 (e ) 536.77 420.93 B
+0.52 0.1 (servers \050discussed on page 228\051.) 210.6 408.53 B
+3 F
+(\245) 198 396.13 T
+4 F
+0.52 0.1 (Handle allocation and r) 210.6 396.13 B
+0.52 0.1 (egistration pr) 318.72 396.13 B
+0.52 0.1 (ocedur) 380.05 396.13 B
+0.52 0.1 (es that allow items on one side ) 411.23 396.13 B
+0.52 0.1 (of the wir) 210.6 383.73 B
+0.52 0.1 (e to be r) 255.29 383.73 B
+0.52 0.1 (eferr) 292.83 383.73 B
+0.52 0.1 (ed to fr) 313.95 383.73 B
+0.52 0.1 (om the other side \050discussed on page 234\051.) 347.49 383.73 B
+3 F
+(\245) 198 371.33 T
+4 F
+0.52 0.1 (A noti\336er on the C-side to allow asynchr) 210.6 371.33 B
+0.52 0.1 (onous messages fr) 397.26 371.33 B
+0.52 0.1 (om the server\050s\051 ) 480.76 371.33 B
+0.52 0.1 (to be dispatched to client functions \050discussed on page 238\051.) 210.6 358.93 B
+3 F
+(\245) 198 346.54 T
+4 F
+0.52 0.1 (A synchr) 210.6 346.54 B
+0.52 0.1 (onization package to allow server) 251.83 346.54 B
+0.52 0.1 (-based code to make RPC-style ) 405.65 346.54 B
+0.52 0.1 (calls acr) 210.6 334.14 B
+0.52 0.1 (oss the wir) 247.21 334.14 B
+0.52 0.1 (e \050discussed on page 241\051.) 297.15 334.14 B
+7 F
+-0.94 (Connection management) 54 300.4 P
+4 F
+0.52 0.1 (The connection management functions support multiple connections.) 198 278.73 B
+FMENDPAGE
+%%EndPage: "228" 3
+8 8 /Palatino-Roman FMDEFINEFONT
+9 7 /Palatino-Roman FMDEFINEFONT
+%%Page: "229" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (229) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(wire_Open) 54 642 T
+(wire_Wire) 198 642 T
+(wire_Open\050server\051) 198 631 T
+(char *server;) 198 621 T
+4 F
+0.52 0.1 (Opens a connection to a server) 198 602.33 B
+8 F
+0.42 0.08 (1) 339.05 606.33 B
+4 F
+0.52 0.1 ( which makes the wir) 343.13 602.33 B
+0.52 0.1 (e the curr) 441.8 602.33 B
+0.52 0.1 (ent connection ) 485.66 602.33 B
+0.52 0.1 (and enables it. All libcps calls use the curr) 198 589.93 B
+0.52 0.1 (ent connection. ) 391.49 589.93 B
+6 F
+1.1 0.09 (wire_Open) 463.68 589.93 B
+4 F
+0.52 0.1 ( takes an ) 513.03 589.93 B
+0.52 0.1 (ar) 198 577.53 B
+0.52 0.1 (gument to specify the particular server to connect to. If you use ) 206.96 577.53 B
+6 F
+1.1 0.09 (NULL) 501.41 577.53 B
+4 F
+0.52 0.1 ( as an ) 523.34 577.53 B
+0.16 0.1 (ar) 198 565.13 B
+0.16 0.1 (gument, ) 206.96 565.13 B
+6 F
+0.33 0.09 (wire_Open) 247.19 565.13 B
+4 F
+0.16 0.1 ( attempts to use the ) 296.53 565.13 B
+6 F
+0.33 0.09 (NEWSSERVER) 388.16 565.13 B
+4 F
+0.16 0.1 ( envir) 442.98 565.13 B
+0.16 0.1 (onment variable. If ) 469.16 565.13 B
+6 F
+1.1 0.09 (NEWSSERVER) 198 552.73 B
+4 F
+0.52 0.1 ( is unset, the envir) 252.82 552.73 B
+0.52 0.1 (onmental variable, ) 337.46 552.73 B
+6 F
+1.1 0.09 (DISPLAY) 425.48 552.73 B
+4 F
+0.52 0.1 ( is used. If ) 463.86 552.73 B
+6 F
+1.1 0.09 (DISPLAY) 514.73 552.73 B
+4 F
+0.52 0.1 ( ) 553.1 552.73 B
+0.39 0.1 (is not set, then the curr) 198 540.33 B
+0.39 0.1 (ent host is used with default port 2000. If the ar) 303.12 540.33 B
+0.39 0.1 (gument ) 520.14 540.33 B
+0.52 0.1 (is not ) 198 527.93 B
+6 F
+1.1 0.09 (NULL) 226.41 527.93 B
+4 F
+0.52 0.1 ( then it should be a hostname, a ) 248.34 527.93 B
+6 F
+1.1 0.09 (NEWSSERVER) 398.19 527.93 B
+4 F
+0.52 0.1 (-style string, or a ) 453.02 527.93 B
+6 F
+1.1 0.09 (DISPLAY) 198 515.53 B
+4 F
+0.52 0.1 (-style string. For mor) 235.46 515.53 B
+0.52 0.1 (e information on the ) 332.02 515.53 B
+6 F
+1.1 0.09 (NEWSSERVER) 428.84 515.53 B
+4 F
+0.52 0.1 ( and ) 483.67 515.53 B
+6 F
+1.1 0.09 (DISPLAY) 507.12 515.53 B
+4 F
+0.52 0.1 ( ) 545.5 515.53 B
+0.52 0.1 (variables and the corr) 198 503.13 B
+0.52 0.1 (ect format of their string values, see the ) 297.61 503.13 B
+5 F
+0.52 0.1 (X1) 482.35 503.13 B
+0.52 0.1 (1/NeWS ) 494.22 503.13 B
+0.52 0.1 (V) 198 490.73 B
+0.52 0.1 (ersion 2 Server Guide) 204.4 490.73 B
+4 F
+0.52 0.1 (.) 295.53 490.73 B
+6 F
+(wire_Close) 54 471 T
+(boolean) 198 471 T
+(wire_Close\050w\051) 198 460 T
+(wire_Wire w;) 198 450 T
+4 F
+0.52 0.1 (Closes an opened connection. If the ar) 198 431.33 B
+0.52 0.1 (gument is ) 372.41 431.33 B
+6 F
+1.1 0.09 (wire_ALLWIRES) 420.87 431.33 B
+4 F
+0.52 0.1 (, all the ) 492.14 431.33 B
+0.26 0.1 (connections ar) 198 418.93 B
+0.26 0.1 (e closed, however) 263.35 418.93 B
+0.26 0.1 (, ) 343.82 418.93 B
+6 F
+0.54 0.09 (FALSE) 349.27 418.93 B
+4 F
+0.26 0.1 ( is r) 376.68 418.93 B
+0.26 0.1 (eturned if ther) 393.6 418.93 B
+0.26 0.1 (e is an err) 459.21 418.93 B
+0.26 0.1 (or with ) 503.82 418.93 B
+5 F
+0.26 0.1 (any) 539.85 418.93 B
+4 F
+0.26 0.1 ( ) 555.15 418.93 B
+0.52 0.1 (of the connections. ) 198 406.53 B
+6 F
+(wire_SetCurrent) 54 386.8 T
+(boolean) 198 386.8 T
+(wire_SetCurrent\050w\051) 198 375.8 T
+(wire_Wire w;) 198 365.8 T
+4 F
+0.11 0.1 (Sets the curr) 198 347.14 B
+0.11 0.1 (ent wir) 254.1 347.14 B
+0.11 0.1 (e, i.e., it dir) 286.28 347.14 B
+0.11 0.1 (ects CPS to and fr) 337.04 347.14 B
+0.11 0.1 (om a the connection fr) 417.11 347.14 B
+0.11 0.1 (om now ) 518.19 347.14 B
+0.52 0.1 (on. ) 198 334.73 B
+6 F
+1.1 0.09 (wire_SetCurrent) 215.19 334.73 B
+4 F
+0.52 0.1 ( has the ef) 297.43 334.73 B
+0.52 0.1 (fect of moving the appr) 344.43 334.73 B
+0.52 0.1 (opriate \336le pointers ) 452.25 334.73 B
+0.52 0.1 (into the CPS global variables, \322PostScript\323 and \322PostScriptInput\323. All libcps ) 198 322.33 B
+0.52 0.1 (calls will ther) 198 309.93 B
+0.52 0.1 (eafter use this connection. The act of opening a wir) 259.72 309.93 B
+0.52 0.1 (e sets it to be ) 493.72 309.93 B
+0.52 0.1 (the curr) 198 297.54 B
+0.52 0.1 (ent wir) 233.86 297.54 B
+0.52 0.1 (e.) 266.45 297.54 B
+54 172 558 199 C
+198 179.49 342 179.49 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+9 F
+0 X
+0 K
+0.07 (1.) 198 167.33 S
+-0.45 0.07 (Implementation Note: The curr) 205.2 167.33 B
+-0.45 0.07 (ent implementation uses 2 \336le descriptors per connection. Thus, the number ) 302.17 167.33 B
+-0.45 0.07 (of available wir) 205.2 159.33 B
+-0.45 0.07 (es is determined by the number of available \336le descriptors in the system. This is highly ) 253.29 159.33 B
+-0.45 0.07 (implementation-speci\336c and may be changed in the futur) 205.2 151.33 B
+-0.45 0.07 (e.) 382.96 151.33 B
+FMENDPAGE
+%%EndPage: "229" 4
+8 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "230" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (230) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(wire_Current) 54 642 T
+(wire_Wire) 198 642 T
+(wire_Current\050\051) 198 631 T
+4 F
+0.02 0.1 (Returns the curr) 198 612.33 B
+0.02 0.1 (ent connection. Y) 271.43 612.33 B
+0.02 0.1 (our pr) 348.47 612.33 B
+0.02 0.1 (ogram may need to determine what the ) 376.8 612.33 B
+0.52 0.1 (curr) 198 599.93 B
+0.52 0.1 (ent wir) 216.58 599.93 B
+0.52 0.1 (e is because the noti\336er \050see The Noti\336er on page 238\051 may ) 249.17 599.93 B
+5 F
+0.52 0.1 (itself) 523.01 599.93 B
+4 F
+0.52 0.1 ( ) 543.05 599.93 B
+0.11 0.1 (change the curr) 198 587.53 B
+0.11 0.1 (ent connection ) 268.17 587.53 B
+0.11 0.1 (depending on where the next message has come ) 336.94 587.53 B
+0.52 0.1 (from. Clients that do not want to reply down the same connection as their up-) 198 575.13 B
+0.52 0.1 (coming message will have to call ) 198 562.73 B
+6 F
+1.1 0.09 (wire_SetCurrent) 352.11 562.73 B
+4 F
+0.52 0.1 ( again before they write.) 434.35 562.73 B
+6 F
+(wire_Valid) 54 543 T
+(boolean) 198 543 T
+(wire_Valid\050w\051) 198 532 T
+(wire_Wire w;) 198 522 T
+4 F
+0.52 0.1 (Indicates whether wir) 198 503.33 B
+0.52 0.1 (e ) 297.82 503.33 B
+6 F
+1.1 0.09 (w) 305.82 503.33 B
+4 F
+0.52 0.1 ( is valid.) 311.3 503.33 B
+8 F
+0.52 0.1 ( ) 350.55 503.33 B
+4 F
+0.52 0.1 (A valid wire represents a connection to a ) 353.67 503.33 B
+0.52 0.1 (NeWS server that is open and active.) 198 490.93 B
+6 F
+(wire_SetData) 54 471.2 T
+(boolean) 198 471.2 T
+(wire_SetData\050w, data\051) 198 460.2 T
+(wire_Wire w;) 198 450.2 T
+(caddr_t data;) 198 440.2 T
+4 F
+0.52 0.1 (Associates a client data pointer with a connection. Applications may associate ) 198 421.53 B
+0.3 0.1 (client data with each connection via the ) 198 409.13 B
+6 F
+0.63 0.09 (wire_SetData) 381.14 409.13 B
+4 F
+0.3 0.1 (. The most common use ) 446.92 409.13 B
+-0.09 0.1 (of ) 198 396.73 B
+6 F
+-0.18 0.09 (wire_SetData) 209.5 396.73 B
+4 F
+-0.09 0.1 ( will be to r) 275.29 396.73 B
+-0.09 0.1 (eestablish some per) 326.1 396.73 B
+-0.09 0.1 (-connection application context ) 414.16 396.73 B
+0.52 0.1 (when pr) 198 384.33 B
+0.52 0.1 (ocessing a message fr) 236.25 384.33 B
+0.52 0.1 (om a particular connection.) 334.36 384.33 B
+6 F
+(wire_Data) 54 364.6 T
+(caddr_t) 198 364.6 T
+(wire_Data\050w\051) 198 353.6 T
+(wire_Wire w;) 198 343.6 T
+4 F
+0.52 0.1 (Returns the client data pointer for a connection. ) 198 324.93 B
+6 F
+(wire_Disable) 54 305.2 T
+(boolean) 198 305.2 T
+(wire_Disable\050w\051) 198 294.2 T
+(wire_Wire w;) 198 284.2 T
+4 F
+0.52 0.1 (Disables a connection. Y) 198 265.53 B
+0.52 0.1 (ou can use ) 308.23 265.53 B
+6 F
+1.1 0.09 (wire_AllWires) 360.17 265.53 B
+4 F
+0.52 0.1 ( as the wir) 431.44 265.53 B
+0.52 0.1 (e ar) 479.7 265.53 B
+0.52 0.1 (gument to ) 496.68 265.53 B
+0.52 0.1 (disable all the wir) 198 253.14 B
+0.52 0.1 (es in a single call. An err) 280.11 253.14 B
+0.52 0.1 (or is r) 393.73 253.14 B
+0.52 0.1 (eported if ther) 420.79 253.14 B
+0.52 0.1 (e is a pr) 486.54 253.14 B
+0.52 0.1 (oblem ) 523.2 253.14 B
+0.14 0.1 (with any one of the connections.) 198 240.73 B
+6 F
+0.3 0.09 ( wire_Disable) 344.72 240.73 B
+4 F
+0.14 0.1 ( allows input fr) 416.29 240.73 B
+0.14 0.1 (om a particular ) 485.77 240.73 B
+0.52 0.1 (connection to be ignor) 198 228.34 B
+0.52 0.1 (ed temporarily) 299.98 228.34 B
+0.52 0.1 (, and later the wir) 366.79 228.34 B
+0.52 0.1 (e is r) 448.95 228.34 B
+0.52 0.1 (eactivated via ) 471.29 228.34 B
+6 F
+1.1 0.09 (wire_Enable) 198 215.93 B
+4 F
+0.52 0.1 ( \050see below\051) 258.31 215.93 B
+8 F
+0.52 0.1 (. ) 313.03 215.93 B
+4 F
+0.52 0.1 (While a connection is disabled, the noti\336er \050see ) 318.74 215.93 B
+5 F
+0.52 0.1 (The ) 537.84 215.93 B
+0.43 0.1 (Noti\336er) 198 203.53 B
+4 F
+0.43 0.1 ( on page 238\051 does not r) 230.07 203.53 B
+0.43 0.1 (ead any messages fr) 339.86 203.53 B
+0.43 0.1 (om it, and no functions ar) 431.56 203.53 B
+0.43 0.1 (e ) 549.99 203.53 B
+-0.03 0.1 (called on its behalf. The purpose of this function is to allow a client to negotiate ) 198 191.14 B
+0.52 0.1 (with one server) 198 178.73 B
+0.52 0.1 (, and guarantee that the client won\325t be interr) 268.53 178.73 B
+0.52 0.1 (upted by ) 476.83 178.73 B
+0.47 0.1 (messages fr) 198 166.34 B
+0.47 0.1 (om another) 250.83 166.34 B
+0.47 0.1 (. Disabling a wir) 302.42 166.34 B
+0.47 0.1 (e only af) 378.13 166.34 B
+0.47 0.1 (fects its input side; writes to a ) 417.63 166.34 B
+0.52 0.1 (disabled wir) 198 153.93 B
+0.52 0.1 (e will succeed.) 254.81 153.93 B
+FMENDPAGE
+%%EndPage: "230" 5
+9 13 /Palatino-Italic FMDEFINEFONT
+%%Page: "231" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (231) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(wire_Enable) 54 642 T
+(boolean) 198 642 T
+(wire_Enable\050w\051) 198 631 T
+(wire_Wire w;) 198 621 T
+4 F
+0.38 0.1 (Enables a connection. When \336rst opened, a connection is enabled. Y) 198 602.33 B
+0.38 0.1 (ou can use ) 506.37 602.33 B
+6 F
+0.15 0.09 (wire_AllWires) 198 589.93 B
+4 F
+0.07 0.1 ( as the wir) 269.27 589.93 B
+0.07 0.1 (e ar) 316.19 589.93 B
+0.07 0.1 (gument to enable all the wir) 332.72 589.93 B
+0.07 0.1 (es in a single call. An ) 459.87 589.93 B
+0.52 0.1 (err) 198 577.53 B
+0.52 0.1 (or is r) 210.8 577.53 B
+0.52 0.1 (eported if ther) 237.86 577.53 B
+0.52 0.1 (e is a pr) 303.61 577.53 B
+0.52 0.1 (oblem with any one of the connections.) 340.27 577.53 B
+6 F
+(wire_Enabled) 54 557.8 T
+(boolean) 198 557.8 T
+(wire_Enabled\050w\051) 198 546.8 T
+(wire_Wire w;) 198 536.8 T
+4 F
+0.52 0.1 (Returns whether a connection is enabled.) 198 518.13 B
+9 F
+-0.84 0.13 (Handling abnormal events on a connection) 198 485.73 B
+4 F
+0.52 0.1 (The wir) 198 468.73 B
+0.52 0.1 (e service has thr) 233.46 468.73 B
+0.52 0.1 (ee default functions that handle certain abnormal ) 307.65 468.73 B
+0.52 0.1 (events \050e.g., an unexpected termination of a connection\051. Y) 198 456.33 B
+0.52 0.1 (ou may \322override\323 ) 465.26 456.33 B
+0.5 0.1 (any or all of the default functions by supplying functions that the noti\336er will ) 198 443.93 B
+0.52 0.1 (call after these abnormal events. Y) 198 431.53 B
+0.52 0.1 (ou r) 354.3 431.53 B
+0.52 0.1 (egister your functions with the noti\336er ) 372.97 431.53 B
+0.52 0.1 (using the function ) 198 419.13 B
+6 F
+1.1 0.09 (wire_Problems) 284.41 419.13 B
+4 F
+0.52 0.1 (.The abnormal events and their associated ) 355.68 419.13 B
+0.52 0.1 (user) 198 406.73 B
+0.52 0.1 (-de\336ned functions ar) 217.22 406.73 B
+0.52 0.1 (e:) 312.29 406.73 B
+3 F
+(\245) 198 388.33 T
+4 F
+0.28 0.1 (If the connection is terminated, other than by a call to ) 210.6 388.33 B
+6 F
+0.6 0.09 (wire_Close) 457.18 388.33 B
+4 F
+0.28 0.1 (, ) 512 388.33 B
+6 F
+0.6 0.09 (death) 517.48 388.33 B
+4 F
+0.28 0.1 ( is ) 544.89 388.33 B
+0.52 0.1 (called. Y) 210.6 375.93 B
+0.52 0.1 (our de\336nition of this function should ) 248.91 375.93 B
+5 F
+0.52 0.1 (not) 421.96 375.93 B
+4 F
+0.52 0.1 ( attempt to close the ) 435.59 375.93 B
+0.52 0.1 (of) 210.6 363.54 B
+0.52 0.1 (fending wir) 219.4 363.54 B
+0.52 0.1 (e. ) 272.86 363.54 B
+3 F
+(\245) 198 351.14 T
+4 F
+0.52 0.1 (If the noti\336er \336nds data at the head of an input queue that is not ) 210.6 351.14 B
+0.52 0.1 (r) 210.6 338.73 B
+0.52 0.1 (ecognizable as a dispatching tag, the curr) 214.47 338.73 B
+0.52 0.1 (ent connection is pr) 403.59 338.73 B
+0.52 0.1 (eset) 493.62 338.73 B
+8 F
+0.52 0.1 ( ) 511.09 338.73 B
+4 F
+0.52 0.1 (to the ) 514.21 338.73 B
+0.52 0.1 (of) 210.6 326.33 B
+0.52 0.1 (fending one and ) 219.4 326.33 B
+6 F
+1.1 0.09 (disease) 297.36 326.33 B
+4 F
+0.52 0.1 ( is called. ) 335.74 326.33 B
+6 F
+1.1 0.09 (disease) 381.78 326.33 B
+4 F
+0.52 0.1 ( must consume the leading ) 420.16 326.33 B
+0.52 0.1 (non-tag values fr) 210.6 313.93 B
+0.52 0.1 (om the str) 288.27 313.93 B
+0.52 0.1 (eam. ) 334.71 313.93 B
+3 F
+(\245) 198 301.54 T
+4 F
+0.52 0.1 (If the noti\336er \336nds a dispatching tag which has not been r) 210.6 301.54 B
+0.52 0.1 (egister) 477.03 301.54 B
+0.52 0.1 (ed using ) 507.04 301.54 B
+6 F
+1.1 0.09 (wire_RegisterTag) 210.6 289.14 B
+4 F
+0.52 0.1 (, ) 298.32 289.14 B
+6 F
+1.1 0.09 (unknowtag) 304.04 289.14 B
+4 F
+0.52 0.1 ( is called. ) 353.38 289.14 B
+FMENDPAGE
+%%EndPage: "231" 6
+10 11 /Palatino-BoldItalic FMDEFINEFONT
+%%Page: "232" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (232) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+-0.71 0.11 (User-supplied functions) 198 640.67 B
+6 F
+(wire_Problems) 54 625 T
+(wire_Problems\050w, death, disease, unknowntag\051) 198 625 T
+(wire_Wire w;) 198 614 T
+(void \050*death\051\050\051;) 198 604 T
+(void \050*disease\051\050\051;) 198 594 T
+(void \050*unknowntag\051\050\051;) 198 584 T
+4 F
+0.52 0.1 (Registers functions that ar) 198 565.33 B
+0.52 0.1 (e called on connection death or r) 317.53 565.33 B
+0.52 0.1 (eading err) 467.48 565.33 B
+0.52 0.1 (ors. If ) 514.18 565.33 B
+6 F
+1.1 0.09 (wire_Problems) 198 552.93 B
+4 F
+0.52 0.1 ( is called with ) 269.27 552.93 B
+6 F
+1.1 0.09 (wire_ALLWIRES) 336.55 552.93 B
+4 F
+0.52 0.1 ( as the \336rst parameter) 407.83 552.93 B
+0.52 0.1 (, then the ) 507.5 552.93 B
+0.52 0.1 (same set of callbacks will be used for all of the existing connections. A ) 198 540.53 B
+6 F
+1.1 0.09 (NULL) 523.64 540.53 B
+4 F
+0.52 0.1 ( ) 545.57 540.53 B
+0.52 0.1 (ar) 198 528.13 B
+0.52 0.1 (gument to any of these thr) 206.96 528.13 B
+0.52 0.1 (ee ar) 328.53 528.13 B
+0.52 0.1 (guments to ) 350.39 528.13 B
+6 F
+1.1 0.09 (wire_Problems) 404.75 528.13 B
+4 F
+0.52 0.1 ( leaves that ) 476.02 528.13 B
+0.52 0.1 (function unchanged.) 198 515.73 B
+6 F
+(void) 198 496 T
+(death\050w\051) 198 485 T
+(wire_Wire w;) 198 475 T
+4 F
+0.52 0.1 (Called on abnormal connection termination.) 198 456.33 B
+6 F
+(void) 198 436.6 T
+(disease\050w\051) 198 425.6 T
+(wire_Wire w;) 198 415.6 T
+4 F
+0.52 0.1 (Called after connection pr) 198 396.93 B
+0.52 0.1 (otocol err) 316.73 396.93 B
+0.52 0.1 (or) 360.23 396.93 B
+0.52 0.1 (.) 369.1 396.93 B
+6 F
+(void) 198 377.2 T
+(unknowntag\050w\051) 198 366.2 T
+(wire_Wire w;) 198 356.2 T
+4 F
+0.52 0.1 (Called when an unr) 198 337.54 B
+0.52 0.1 (egister) 288.83 337.54 B
+0.52 0.1 (ed tag is found.) 318.83 337.54 B
+10 F
+-0.71 0.11 (Default functions) 198 308.47 B
+6 F
+(wire_DeathDefault) 54 292.8 T
+(void) 198 292.8 T
+(wire_DeathDefault\050\051;) 198 281.8 T
+4 F
+0.52 0.1 (Prints a message to ) 198 263.14 B
+6 F
+1.1 0.09 (stderr) 289.42 263.14 B
+4 F
+0.52 0.1 (.) 321.58 263.14 B
+6 F
+(wire_DiseaseDefault) 54 243.4 T
+(void) 198 243.4 T
+(wire_DiseaseDefault\050\051;) 198 232.4 T
+4 F
+0.52 0.1 (Cleans up the queue and prints a message to ) 198 213.73 B
+6 F
+1.1 0.09 (stderr) 406.76 213.73 B
+4 F
+0.52 0.1 (.) 438.91 213.73 B
+6 F
+(wire_UnknownTagDefault) 54 194 T
+(void) 198 194 T
+(wire_UnknownTagDefault\050\051;) 198 183 T
+4 F
+0.52 0.1 (Consumes the tag and any following ar) 198 164.34 B
+0.52 0.1 (guments, and prints a message to ) 378.69 164.34 B
+6 F
+0.09 (stderr) 198 151.93 S
+4 F
+0.1 (.) 230.15 151.93 S
+FMENDPAGE
+%%EndPage: "232" 7
+%%Page: "233" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (233) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(wire_SkipEvent) 54 642 T
+(boolean) 198 642 T
+(wire_SkipEvent\050\051 ) 198 631 T
+4 F
+0.52 0.1 (Consumes a token and skips to the next tag. ) 198 612.33 B
+6 F
+1.1 0.09 (wire_SkipEvent) 403.69 612.33 B
+4 F
+0.52 0.1 ( consumes the ) 480.44 612.33 B
+0.52 0.1 (initial token on the curr) 198 599.93 B
+0.52 0.1 (ent wir) 306.47 599.93 B
+0.52 0.1 (e and any r) 339.06 599.93 B
+0.52 0.1 (emaining input up to, but not ) 391.06 599.93 B
+0.52 0.1 (including, the next tag. If ther) 198 587.53 B
+0.52 0.1 (e is no next tag on the curr) 334.79 587.53 B
+0.52 0.1 (ent wir) 458.08 587.53 B
+0.52 0.1 (e, ) 490.67 587.53 B
+6 F
+1.1 0.09 (wire_SkipEvent) 198 575.13 B
+4 F
+0.52 0.1 ( will not block waiting for one. This function is useful when ) 274.75 575.13 B
+0.52 0.1 (writing \324disease\325 and \324unknowntag\325 functions.) 198 562.73 B
+9 F
+-0.84 0.13 (Indexing data structur) 198 530.33 B
+-0.84 0.13 (es by wir) 318.21 530.33 B
+-0.84 0.13 (es) 364.59 530.33 B
+4 F
+0.52 0.1 (Certain clients of the W) 198 513.33 B
+0.52 0.1 (ir) 305.72 513.33 B
+0.52 0.1 (e Service may want to build data str) 312.6 513.33 B
+0.52 0.1 (uctur) 478.58 513.33 B
+0.52 0.1 (es that ar) 502.59 513.33 B
+0.52 0.1 (e ) 544.75 513.33 B
+0.52 0.1 (indexed by a wir) 198 500.93 B
+0.52 0.1 (e. For this r) 275.42 500.93 B
+0.52 0.1 (eason a pair of pr) 328.01 500.93 B
+0.52 0.1 (ocedur) 408.59 500.93 B
+0.52 0.1 (es \050curr) 439.78 500.93 B
+0.52 0.1 (ently macr) 474.13 500.93 B
+0.52 0.1 (os\051 ar) 522.5 500.93 B
+0.52 0.1 (e ) 547.91 500.93 B
+0.52 0.1 (pr) 198 488.53 B
+0.52 0.1 (ovided that map a wir) 207.98 488.53 B
+0.52 0.1 (e into a unique small integer and back again. This is ) 310.33 488.53 B
+0.52 0.1 (meant to be used in those cases wher) 198 476.13 B
+0.52 0.1 (e a client does not want to use the client ) 368.29 476.13 B
+0.52 0.1 (data \336eld associated with the connection.) 198 463.73 B
+6 F
+(wire_WireToInt) 54 444 T
+(int) 198 444 T
+(wire_WireToInt\050w\051) 198 433 T
+(wire_Wire w;) 198 423 T
+4 F
+0.52 0.1 (Maps a wir) 198 404.33 B
+0.52 0.1 (e to a small integer) 249.74 404.33 B
+0.52 0.1 (.) 336.51 404.33 B
+6 F
+(wire_IntToWire) 54 384.6 T
+(wire_Wire) 198 384.6 T
+(wire_IntToWire\050i\051) 198 373.6 T
+(int i;) 198 363.6 T
+4 F
+0.52 0.1 (Maps a small integer into a wir) 198 344.93 B
+0.52 0.1 (e.) 341.29 344.93 B
+9 F
+-0.84 0.13 (Accessing the psio \336les) 198 312.54 B
+6 F
+1.1 0.09 (wire_PSinput) 198 295.54 B
+4 F
+0.52 0.1 ( and ) 263.79 295.54 B
+6 F
+1.1 0.09 (wire_PSoutput) 287.25 295.54 B
+4 F
+0.52 0.1 ( ar) 358.52 295.54 B
+0.52 0.1 (e accessor functions to the psio \336le ) 370.6 295.54 B
+0.52 0.1 (pointers. Use these functions if your pr) 198 283.14 B
+0.52 0.1 (ogram needs to access the psio \336les. ) 377 283.14 B
+0.52 0.1 (\050For an explanation of psio see the ) 198 270.73 B
+5 F
+0.52 0.1 (X1) 359.01 270.73 B
+0.52 0.1 (1/NeWS V) 370.88 270.73 B
+0.52 0.1 (ersion 2 Server Guide) 415.6 270.73 B
+4 F
+0.52 0.1 ( or the ) 506.73 270.73 B
+0.52 0.1 (psio\0503\051 man page.\051) 198 258.34 B
+6 F
+(wire_PSinput) 54 238.6 T
+(PSFILE *) 198 238.6 T
+(wire_PSinput\050w\051) 198 227.6 T
+(wire_Wire w;) 198 217.6 T
+4 F
+0.52 0.1 (Returns a pointer to the psio input \336le pointer) 198 198.93 B
+0.52 0.1 (.) 409.16 198.93 B
+FMENDPAGE
+%%EndPage: "233" 8
+11 14 /Palatino-Italic FMDEFINEFONT
+%%Page: "234" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (234) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(wire_PSoutput) 54 642 T
+(PSFILE *) 198 642 T
+(wire_PSoutput\050w\051) 198 631 T
+(wire_Wire w;) 198 621 T
+4 F
+0.52 0.1 (Returns a pointer to the psio output \336le pointer) 198 602.33 B
+0.52 0.1 (.) 415.28 602.33 B
+11 F
+-0.88 (Handle allocation and r) 126 569.27 P
+-0.88 (egistration) 255.91 569.27 P
+4 F
+0.52 0.1 (Both C and PostScript components of the T) 198 547.93 B
+0.52 0.1 (oolkit need to r) 394.62 547.93 B
+0.52 0.1 (efer) 464.8 547.93 B
+0.52 0.1 (ence r) 481.87 547.93 B
+0.52 0.1 (emote ) 509.09 547.93 B
+0.52 0.1 (objects. The C pr) 198 535.53 B
+0.52 0.1 (ogrammer may need to modify or query some PostScript ) 274.89 535.53 B
+0.52 0.1 (object cr) 198 523.13 B
+0.52 0.1 (eated earlier) 235.93 523.13 B
+0.52 0.1 (. Similarly) 291.73 523.13 B
+0.52 0.1 (, any PostScript object that wishes to notify the ) 337.44 523.13 B
+0.44 0.1 (client of a user event needs some way to specify the appr) 198 510.73 B
+0.44 0.1 (opriate C function to ) 459.82 510.73 B
+0.52 0.1 (invoke. Because r) 198 498.33 B
+0.52 0.1 (efer) 277.56 498.33 B
+0.52 0.1 (ences to PostScript objects cannot be passed acr) 294.63 498.33 B
+0.52 0.1 (oss the ) 511.85 498.33 B
+0.52 0.1 (wir) 198 485.93 B
+0.52 0.1 (e and C pointers cannot easily be stor) 213.31 485.93 B
+0.52 0.1 (ed in the server) 385.67 485.93 B
+0.52 0.1 (, the T) 456.42 485.93 B
+0.52 0.1 (oolkit pr) 484.72 485.93 B
+0.52 0.1 (ovides ) 523.96 485.93 B
+0.52 0.1 (two \322handle allocators\323 that generate and r) 198 473.53 B
+0.52 0.1 (emember unique identi\336ers.) 396.45 473.53 B
+9 F
+0.13 (T) 198 441.13 S
+0.13 (ags) 204.62 441.13 S
+4 F
+0.52 0.1 (The W) 198 424.13 B
+0.52 0.1 (ir) 227.69 424.13 B
+0.52 0.1 (e Service uses \322tags,\323 as pr) 234.57 424.13 B
+0.52 0.1 (ovided by CPS, to drive its noti\336er) 357.85 424.13 B
+0.52 0.1 (. Befor) 516.42 424.13 B
+0.52 0.1 (e ) 546.09 424.13 B
+0.38 0.1 (you can r) 198 411.73 B
+0.38 0.1 (egister a callback with the noti\336er) 240.71 411.73 B
+0.38 0.1 (, you must obtain a tag to associate ) 394.5 411.73 B
+0.52 0.1 (with it.) 198 399.33 B
+6 F
+(wire_AllocateTags) 54 379.6 T
+(int) 198 379.6 T
+(wire_AllocateTags\050count\051) 198 368.6 T
+(int count;) 198 358.6 T
+4 F
+0.52 0.1 (Reserves a range of client tags. ) 198 339.93 B
+6 F
+1.1 0.09 (wire_AllocateTags) 342.07 339.93 B
+4 F
+0.52 0.1 ( takes a number N and ) 435.27 339.93 B
+0.52 0.1 (r) 198 327.54 B
+0.52 0.1 (eturns another M, such that none of the integers M, M+1, ... M+N-1 ar) 201.87 327.54 B
+0.52 0.1 (e ) 523.15 327.54 B
+0.03 0.1 (alr) 198 315.14 B
+0.03 0.1 (eady allocated, i.e. it r) 209.97 315.14 B
+0.03 0.1 (eturns the number of tags allocated. These integers ar) 309.01 315.14 B
+0.03 0.1 (e ) 550.49 315.14 B
+0.52 0.1 (handles whose primary use is to dispatch messages fr) 198 302.73 B
+0.52 0.1 (om the server to client ) 444.28 302.73 B
+0.1 (functions.) 198 290.33 S
+6 F
+(wire_AllocateNamedTags) 54 270.6 T
+(boolean) 198 270.6 T
+(wire_AllocateNamedTags\050names\051) 198 259.6 T
+(int *names[];) 198 249.6 T
+4 F
+-0.06 0.1 (Assigns client tags to an array of addr) 198 230.93 B
+-0.06 0.1 (esses. ) 368.66 230.93 B
+6 F
+-0.12 0.09 (wire_AllocateNamedTags) 396.58 230.93 B
+4 F
+-0.06 0.1 ( is a thin ) 517.2 230.93 B
+0.52 0.1 (wrapper ar) 198 218.53 B
+0.52 0.1 (ound ) 248.81 218.53 B
+6 F
+1.1 0.09 (wire_AllocateTags) 275.74 218.53 B
+4 F
+0.52 0.1 (. It takes a ) 368.94 218.53 B
+6 F
+1.1 0.09 (NULL) 419.27 218.53 B
+4 F
+0.52 0.1 ( terminated array of ) 441.2 218.53 B
+0.14 0.1 (pointers to integers, and assigns a tag thr) 198 206.14 B
+0.14 0.1 (ough each of these pointers. A typical ) 384.28 206.14 B
+0.52 0.1 (use might look like:) 198 193.73 B
+FMENDPAGE
+%%EndPage: "234" 9
+%%Page: "235" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (235) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(int menu_tag, resize_tag;) 216 642 T
+(int *tag_pointers[] = {&menu_tag,&resize_tag, NULL};) 216 632 T
+(wire_AllocateNamedTags\050tag_pointers\051;) 216 612 T
+(wire_RegisterTag\050menu_tag, my_menu_callback, data\051;) 216 602 T
+(wire_RegisterTag\050resize_tag, my_resize_callback,data\051;) 216 592 T
+(wire_ReserveTags) 54 574 T
+(boolean) 198 574 T
+(wire_ReserveTags\050largest\051) 198 563 T
+(int largest;) 198 553 T
+4 F
+0.52 0.1 (Makes the tag allocator ignor) 198 534.33 B
+0.52 0.1 (e a range of integers.) 331.56 534.33 B
+6 F
+1.1 0.09 ( wire_ReserveTags) 427.3 534.33 B
+4 F
+0.52 0.1 ( is ) 521.6 534.33 B
+0.52 0.1 (pr) 198 521.93 B
+0.52 0.1 (ovided to allow dynamically-allocated tags to coexist with a pr) 207.98 521.93 B
+0.52 0.1 (evious ) 496.08 521.93 B
+0.52 0.1 (version of CPS that used constant tags. If you know that some piece of code ) 198 509.53 B
+0.52 0.1 (uses tag values 1..50, then befor) 198 497.13 B
+0.52 0.1 (e calling ) 343.13 497.13 B
+6 F
+1.1 0.09 (wire_AllocateTags) 384.49 497.13 B
+4 F
+0.52 0.1 ( you should call ) 477.69 497.13 B
+6 F
+1.1 0.09 (wire_ReserveTags\05050\051) 198 484.73 B
+4 F
+0.52 0.1 (. This facility can also be used to leave space for your ) 307.65 484.73 B
+0.37 0.1 (own private tag allocator if the one pr) 198 472.33 B
+0.37 0.1 (ovided by the W) 371.22 472.33 B
+0.37 0.1 (ir) 446.72 472.33 B
+0.37 0.1 (e Service doesn\325t meet ) 453.6 472.33 B
+0.52 0.1 (your needs. ) 198 459.93 B
+6 F
+1.1 0.09 (wire_ReserveTags) 254.46 459.93 B
+4 F
+0.52 0.1 ( must be called befor) 342.18 459.93 B
+0.52 0.1 (e any connections ar) 438.02 459.93 B
+0.52 0.1 (e ) 531.43 459.93 B
+0.1 (opened.) 198 447.53 S
+6 F
+(wire_RegisterTag) 54 427.8 T
+(boolean) 198 427.8 T
+(wire_RegisterTag\050tag, proc, data\051) 198 416.8 T
+(int tag;) 198 406.8 T
+(void \050*proc\051\050\051;) 198 396.8 T
+(caddr_t data;) 198 386.8 T
+4 F
+0.52 0.1 (Registers a client handler) 198 368.14 B
+0.52 0.1 (. ) 312.81 368.14 B
+6 F
+1.1 0.09 (wire_RegisterTag) 318.52 368.14 B
+4 F
+0.52 0.1 ( allows you to associate a ) 406.24 368.14 B
+0.52 0.1 (pr) 198 355.73 B
+0.52 0.1 (ocedur) 207.98 355.73 B
+0.52 0.1 (e pointer and a user data pointer with a tag. If this tag is ever found ) 239.16 355.73 B
+0.52 0.1 (on the wir) 198 343.33 B
+0.52 0.1 (e by the noti\336er) 245.18 343.33 B
+0.52 0.1 (, your pr) 317.05 343.33 B
+0.52 0.1 (ocedur) 357.25 343.33 B
+0.52 0.1 (e will be called. ) 388.43 343.33 B
+6 F
+(void) 216 321.6 T
+(\050*proc\051\050tag, data\051) 216 311.6 T
+(int tag;) 216 301.6 T
+(caddr_t data;) 216 291.6 T
+(wire_TagProc) 54 273.6 T
+(void \050*\051\050\051) 198 273.6 T
+(wire_TagProc\050tag\051) 198 262.6 T
+(int tag;) 198 252.6 T
+4 F
+0.52 0.1 (Retrieves a client function pointer) 198 233.93 B
+0.52 0.1 (.) 352.21 233.93 B
+6 F
+(wire_TagData) 54 214.2 T
+(caddr_t) 198 214.2 T
+(wire_TagData\050tag\051) 198 203.2 T
+(int tag;) 198 193.2 T
+4 F
+0.52 0.1 (Retrieves a client data pointer) 198 174.53 B
+0.52 0.1 (.) 334.12 174.53 B
+FMENDPAGE
+%%EndPage: "235" 10
+%%Page: "236" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (236) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (The envir) 198 641.33 B
+0.52 0.1 (onment in) 241.58 641.33 B
+0.52 0.1 ( ) 288.18 640.33 B
+0.52 0.1 (which your callback function \050*pr) 291.3 641.33 B
+0.52 0.1 (oc above\051 is called is as ) 444.78 641.33 B
+0.1 (follows:) 198 628.93 S
+3 F
+(\245) 198 610.53 T
+4 F
+0.52 0.1 (The curr) 210.6 610.53 B
+0.52 0.1 (ent wir) 249.33 610.53 B
+0.52 0.1 (e will be the wir) 281.92 610.53 B
+0.52 0.1 (e on which the given tag arrived. This ) 356.73 610.53 B
+0.52 0.1 (implies that normal CPS techniques for r) 210.6 598.13 B
+0.52 0.1 (eading values fr) 397.12 598.13 B
+0.52 0.1 (om a connection ) 470.63 598.13 B
+0.52 0.1 (can be used.) 210.6 585.73 B
+3 F
+(\245) 198 573.33 T
+4 F
+0.52 0.1 (By the time your function is called the tag will have alr) 210.6 573.33 B
+0.52 0.1 (eady been r) 463.79 573.33 B
+0.52 0.1 (emoved ) 517.06 573.33 B
+0.52 0.1 (fr) 210.6 560.93 B
+0.52 0.1 (om the wir) 217.9 560.93 B
+0.52 0.1 (e \050and handed to you as an ar) 268.09 560.93 B
+0.52 0.1 (gument\051.) 405.35 560.93 B
+0.52 0.1 (It is your r) 198 540.53 B
+0.52 0.1 (esponsibility to know how many ar) 246.78 540.53 B
+0.52 0.1 (guments follow this particular ) 409.14 540.53 B
+0.02 0.1 (tag, and to r) 198 528.13 B
+0.02 0.1 (ead them all fr) 252.58 528.13 B
+0.02 0.1 (om the wir) 318.14 528.13 B
+0.02 0.1 (e befor) 367.34 528.13 B
+0.02 0.1 (e r) 398.21 528.13 B
+0.02 0.1 (eturning fr) 409.59 528.13 B
+0.02 0.1 (om this function. Y) 458.43 528.13 B
+0.02 0.1 (ou ) 543.69 528.13 B
+0.52 0.1 (may do this either via CPS input functions, or the \322ease of use\323 pr) 198 515.73 B
+0.52 0.1 (ocedur) 502.01 515.73 B
+0.52 0.1 (es ) 533.2 515.73 B
+0.43 0.1 (described in ) 198 503.33 B
+5 F
+0.43 0.1 (Ease-of-use functions) 256.72 503.33 B
+4 F
+0.43 0.1 (. If you do not r) 345.22 503.33 B
+0.43 0.1 (emove all the ar) 417.64 503.33 B
+0.43 0.1 (guments fr) 490.96 503.33 B
+0.43 0.1 (om ) 540.49 503.33 B
+0.52 0.1 (your wir) 198 490.93 B
+0.52 0.1 (e, the disease handling function will be called.) 237.82 490.93 B
+0.52 0.1 (Since the W) 198 470.53 B
+0.52 0.1 (ir) 251.64 470.53 B
+0.52 0.1 (e Service is r) 258.52 470.53 B
+0.52 0.1 (eentrant it is admissable to call w) 316.43 470.53 B
+6 F
+1.1 0.09 (ire_Notify) 469.86 470.53 B
+4 F
+0.52 0.1 ( or ) 524.68 470.53 B
+6 F
+1.1 0.09 (Wire_EnterNoti\336er) 198 458.13 B
+4 F
+0.52 0.1 ( fr) 291.2 458.13 B
+0.52 0.1 (om within your callback function. This is sometimes ) 301.61 458.13 B
+0.52 0.1 (useful when synchr) 198 445.73 B
+0.52 0.1 (onizing with the user) 287.54 445.73 B
+0.52 0.1 (.) 384.6 445.73 B
+9 F
+0.13 (T) 198 413.33 S
+0.13 (okens) 204.62 413.33 S
+4 F
+0.52 0.1 (The W) 198 396.33 B
+0.52 0.1 (ir) 227.69 396.33 B
+0.52 0.1 (e Service uses \322usertokens\323, as pr) 234.57 396.33 B
+0.52 0.1 (ovided by CPS, as handles to ) 388.52 396.33 B
+0.52 0.1 (PostScript objects. These tokens ar) 198 383.93 B
+0.52 0.1 (e allocated on a per connection basis. The ) 354.54 383.93 B
+0.52 0.1 (application is r) 198 371.54 B
+0.52 0.1 (esponsible for the r) 266.25 371.54 B
+0.52 0.1 (egistration of the usertoken in the server) 354.34 371.54 B
+0.52 0.1 (. ) 539.51 371.54 B
+0.52 0.1 (These calls ar) 198 359.14 B
+0.52 0.1 (e similar to the calls for tag allocation, except that they ar) 259.45 359.14 B
+0.52 0.1 (e done ) 522.57 359.14 B
+0.52 0.1 (on a per) 198 346.73 B
+0.52 0.1 (-wir) 235.67 346.73 B
+0.52 0.1 (e basis and ther) 254.41 346.73 B
+0.52 0.1 (e is an additional call to fr) 326.31 346.73 B
+0.52 0.1 (ee up a range of user ) 446.59 346.73 B
+0.52 0.1 (tokens \050) 198 334.33 B
+6 F
+1.08 (Wire_DeallocateTokens) 234.26 334.33 P
+4 F
+0.52 0.1 (\051. ) 347.5 334.33 B
+54 308.26 558 324.6 C
+558 321.58 198 321.58 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+8 F
+(Note \320 ) 198 311.42 T
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (It is still up to the user to r) 231.84 311.59 B
+0.52 0.1 (emove the r) 355.17 311.59 B
+0.52 0.1 (efer) 409.44 311.59 B
+0.52 0.1 (ence to the server object in ) 426.51 311.59 B
+0.52 0.1 (the user token array \050by assigning null to that user token\051. Unlike ) 198 299.19 B
+6 F
+1.1 0.09 (wire_ReserveTags) 198 286.79 B
+4 F
+0.52 0.1 (, ) 285.72 286.79 B
+6 F
+1.1 0.09 (wire_ReserveTokens) 291.43 286.79 B
+4 F
+0.52 0.1 ( is called after the connection has ) 390.12 286.79 B
+54 263.07 558 271.06 C
+558 268.03 198 268.03 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (been opened.) 198 274.39 B
+6 F
+(wire_AllocateTokens) 54 246.67 T
+(int) 198 246.67 T
+(wire_AllocateTokens\050w, count\051) 198 235.67 T
+(wire_Wire  w;) 198 225.67 T
+(int count;) 198 215.67 T
+4 F
+0.52 0.1 (Reserves a range of client tokens on a speci\336c wir) 198 197 B
+0.52 0.1 (e.) 425.53 197 B
+FMENDPAGE
+%%EndPage: "236" 11
+%%Page: "237" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (237) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(wire_AllocateNamedTokens) 54 642 T
+(boolean) 198 642 T
+(wire_AllocateNamedTokens\050w, names\051) 198 631 T
+(wire_Wire w;) 198 621 T
+(int *names[];) 198 611 T
+4 F
+0.52 0.1 (Assigns tokens for a speci\336c wir) 198 592.33 B
+0.52 0.1 (e to an array of addr) 345.78 592.33 B
+0.52 0.1 (esses.) 440.5 592.33 B
+6 F
+(wire_ReserveTokens) 54 572.6 T
+(boolean) 198 572.6 T
+(wire_ReserveTokens\050w, largest\051) 198 561.6 T
+(wire_Wire w;) 198 551.6 T
+(int largest;) 198 541.6 T
+4 F
+0.52 0.1 (Makes the token allocator for a speci\336c wir) 198 522.93 B
+0.52 0.1 (e ignor) 395.17 522.93 B
+0.52 0.1 (e a range of integers.) 427.18 522.93 B
+6 F
+(wire_RegisterToken) 54 503.2 T
+(boolean) 198 503.2 T
+(wire_RegisterToken\050w, token, obj\051) 198 492.2 T
+(wire_Wire w;) 198 482.2 T
+(int token;) 198 472.2 T
+(wire_RefAny obj;) 198 462.2 T
+4 F
+0.52 0.1 (Associates a server) 198 443.53 B
+0.52 0.1 (-side object \050) 284.44 443.53 B
+6 F
+1.1 0.09 (token) 342.38 443.53 B
+4 F
+0.52 0.1 (\051 with a client-side one \050) 369.79 443.53 B
+6 F
+1.1 0.09 (obj) 481 443.53 B
+4 F
+0.52 0.1 (\051. ) 497.45 443.53 B
+6 F
+1.07 0.09 (wire_RegisterToken) 198 431.13 B
+4 F
+0.5 0.1 ( is a way to associate a client-side object \050or any piece of ) 296.68 431.13 B
+0.52 0.1 (data\051 with a usertoken. For example, a usertoken might r) 198 418.73 B
+0.52 0.1 (epr) 459.08 418.73 B
+0.52 0.1 (esent a server ) 473.94 418.73 B
+0.52 0.1 (canvas, and the client-side object that parallels that server object would be ) 198 406.33 B
+0.52 0.1 (r) 198 393.93 B
+0.52 0.1 (egister) 201.87 393.93 B
+0.52 0.1 (ed with ) 231.87 393.93 B
+6 F
+1.1 0.09 (wire_RegisterToken) 269.92 393.93 B
+4 F
+0.52 0.1 (. Then when that canvas makes a ) 368.6 393.93 B
+0.52 0.1 (callback, it will include the usertoken as an ar) 198 381.53 B
+0.52 0.1 (gument, and the client side will ) 407.98 381.53 B
+0.12 0.1 (look that up with ) 198 369.14 B
+6 F
+0.26 0.09 (wire_TokenData) 279.34 369.14 B
+4 F
+0.12 0.1 ( \050see below\051. ) 356.1 369.14 B
+6 F
+0.26 0.09 (wire_RegisterToken) 415.34 369.14 B
+4 F
+0.12 0.1 ( does not ) 514.02 369.14 B
+0.52 0.1 (r) 198 356.73 B
+0.52 0.1 (egister the usertoken in the server because this cannot be done fr) 201.87 356.73 B
+0.52 0.1 (om the C ) 499.21 356.73 B
+0.52 0.1 (pr) 198 344.33 B
+0.52 0.1 (ocess\321you need a r) 207.98 344.33 B
+0.52 0.1 (efer) 299.28 344.33 B
+0.52 0.1 (ence to the PostScript object to make it a usertoken. ) 316.36 344.33 B
+6 F
+(wire_TokenData) 54 324.6 T
+(wire_RefAny) 198 324.6 T
+(wire_TokenData\050w, token\051) 198 313.6 T
+(wire_Wire w;) 198 303.6 T
+(int token;) 198 293.6 T
+4 F
+0.52 0.1 (Given a server side object \050) 198 274.93 B
+6 F
+1.1 0.09 (token) 322.2 274.93 B
+4 F
+0.52 0.1 (\051; r) 349.61 274.93 B
+0.52 0.1 (etrieve the client-side one.) 362.63 274.93 B
+6 F
+(wire_DeallocateTokens) 54 255.2 T
+(boolean) 198 255.2 T
+(wire_DeallocateTokens\050w, first, count\051) 198 244.2 T
+(wire_Wire w;) 198 234.2 T
+(int first, count;) 198 224.2 T
+4 F
+0.52 0.1 (Fr) 198 205.53 B
+0.52 0.1 (ees up a range of allocated tokens.) 207.52 205.53 B
+0.52 0.1 (An example of the way you should use the usertoken facility for r) 198 185.14 B
+0.52 0.1 (egistering ) 500.5 185.14 B
+0.52 0.1 (your server) 198 172.73 B
+0.52 0.1 (-side objects is:) 250.28 172.73 B
+0.52 0.1 (In your C \336le:) 198 152.34 B
+FMENDPAGE
+%%EndPage: "237" 12
+12 9 /Helvetica FMDEFINEFONT
+%%Page: "238" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (238) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(struct canvas *c;) 198 642 T
+(c = canvas_create\050\051;) 198 622 T
+(c->token = wire_AllocateTokens\050wire_Current\050\051, 1\051;) 198 612 T
+(wire_RegisterToken\050wire_Current\050\051, c->token, \050caddr_t\051 c\051;) 198 602 T
+(ps_CreateMyCanvas\050c->token\051;) 198 592 T
+4 F
+0.52 0.1 (And in your CPS \336le:) 198 573.33 B
+6 F
+(cdef ps_CreateMyCanvas\050int token\051) 198 561.6 T
+(... /new MyCanvas send  ) 224.64 551.6 T
+(% canvas) 405 551.6 T
+(% /SaveToken defined in canvas subclass) 198 540.6 T
+(token /SaveToken 2 index send ) 224.64 529.6 T
+(% canvas ; save token) 405 529.6 T
+(token setfileinputtoken) 243 518.6 T
+4 F
+0.52 0.1 (Now if the canvas makes a callback to the client side, it sends the token ) 198 498.93 B
+0.52 0.1 (number over the wir) 198 486.53 B
+0.52 0.1 (e so the client side knows which canvas is making the ) 292.6 486.53 B
+0.5 0.1 (callback. For example, one of the canvas\325s methods might send a mouse event ) 198 474.13 B
+0.52 0.1 (acr) 198 461.73 B
+0.52 0.1 (oss the wir) 211.5 461.73 B
+0.52 0.1 (e.) 261.45 461.73 B
+0.52 0.1 (In your window class:) 198 441.33 B
+12 F
+(/sendmouseevent { % event => -) 198 425.6 T
+(MOUSE_EVENT tagprint  % event) 216 414.6 T
+-0.21 (/GetToken self send tagprint % event ; send token; /GetToken defined in canvas subcl.) 216 403.6 P
+(/EventToXY self send exch % y x) 216 392.6 T
+(tagprint tagprint   % - ; send coordinates) 216 381.6 T
+(} def) 198 370.6 T
+4 F
+0.52 0.1 (And in your client callback:) 198 350.93 B
+6 F
+(static void) 198 339.2 T
+(mouse_callback\050\051) 198 329.2 T
+({) 198 319.2 T
+(struct canvas *c;) 216 309.2 T
+(int  token_id;) 216 299.2 T
+(... /* get token_id from callback */) 216 279.2 T
+(c = \050struct canvas *\051 wire_TokenData\050wire_Current\050\051, token_id\051;) 216 269.2 T
+(}) 198 259.2 T
+11 F
+-0.88 (The Noti\336er) 126 227.87 P
+4 F
+0.05 0.1 (The purpose of the noti\336er is to r) 198 206.53 B
+0.05 0.1 (ead tags fr) 346.97 206.53 B
+0.05 0.1 (om one or mor) 394.21 206.53 B
+0.05 0.1 (e server connections, ) 460.97 206.53 B
+0.52 0.1 (and depending on their value, call the client functions that wer) 198 194.14 B
+0.52 0.1 (e pr) 486.99 194.14 B
+0.52 0.1 (eviously ) 504.97 194.14 B
+0.52 0.1 (r) 198 181.73 B
+0.52 0.1 (egister) 201.87 181.73 B
+0.52 0.1 (ed using ) 231.87 181.73 B
+6 F
+1.1 0.09 (wire_RegisterTag) 274.25 181.73 B
+4 F
+0.52 0.1 (. T) 361.97 181.73 B
+0.52 0.1 (wo styles of noti\336cation ar) 373.01 181.73 B
+0.52 0.1 (e pr) 494.47 181.73 B
+0.52 0.1 (ovided ) 512.45 181.73 B
+0.52 0.1 (\050The two styles can also be mixed in the same application.\051: ) 198 169.34 B
+0.1 (1.) 197.5 148.93 S
+0.52 0.1 (The noti\336er itself can handle the main loop.) 210.6 148.93 B
+FMENDPAGE
+%%EndPage: "238" 13
+%%Page: "239" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (239) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.1 (2.) 197.5 641.33 S
+0.52 0.1 (The client pr) 210.6 641.33 B
+0.52 0.1 (ogram can r) 268.56 641.33 B
+0.52 0.1 (epeatedly r) 323.5 641.33 B
+0.52 0.1 (equest the dispatching of a single ) 374.58 641.33 B
+0.52 0.1 (incoming message. ) 210.6 628.93 B
+6 F
+(wire_Notify) 54 609.2 T
+(boolean) 198 609.2 T
+(wire_Notify\050timeout\051) 198 598.2 T
+(struct timeval *timeout;) 198 588.2 T
+4 F
+0.51 0.1 (Reads and pr) 198 569.53 B
+0.51 0.1 (ocesses one message. ) 258.71 569.53 B
+6 F
+1.07 0.09 (wire_Notify) 358 569.53 B
+4 F
+0.51 0.1 ( causes a single tag to be r) 418.31 569.53 B
+0.51 0.1 (ead ) 538.7 569.53 B
+0.52 0.1 (fr) 198 557.13 B
+0.52 0.1 (om one of the active connections. \050Round-r) 205.3 557.13 B
+0.52 0.1 (obin scheduling is used when ) 402.07 557.13 B
+0.52 0.1 (mor) 198 544.73 B
+0.52 0.1 (e than one connection with data r) 216.35 544.73 B
+0.52 0.1 (eady for r) 370.14 544.73 B
+0.52 0.1 (eading exists.\051 The tag r) 415.12 544.73 B
+0.52 0.1 (ead is ) 524.59 544.73 B
+0.52 0.1 (used to look up the r) 198 532.33 B
+0.52 0.1 (egister) 294.11 532.33 B
+0.52 0.1 (ed pr) 324.11 532.33 B
+0.52 0.1 (ocedur) 348.3 532.33 B
+0.52 0.1 (es. The pr) 379.48 532.33 B
+0.52 0.1 (ocedur) 424.55 532.33 B
+0.52 0.1 (e is then called with ) 455.73 532.33 B
+0.52 0.1 (the handle and r) 198 519.93 B
+0.52 0.1 (egister) 273.64 519.93 B
+0.52 0.1 (ed data as ar) 303.64 519.93 B
+0.52 0.1 (guments. \050See the function ) 362.25 519.93 B
+6 F
+1.1 0.09 (my_slider_handler) 198 507.53 B
+4 F
+0.52 0.1 ( in the example at the end of the chapter) 291.2 507.53 B
+0.52 0.1 (.\051 ) 476.51 507.53 B
+6 F
+1.1 0.09 (wire_Notify) 485.65 507.53 B
+4 F
+0.52 0.1 ( ) 545.96 507.53 B
+0.52 0.1 (has the side-ef) 198 495.13 B
+0.52 0.1 (fect of setting the curr) 263.75 495.13 B
+0.52 0.1 (ent connection, which allows r) 364.69 495.13 B
+0.52 0.1 (egister) 504.24 495.13 B
+0.52 0.1 (ed ) 534.24 495.13 B
+0.52 0.1 (functions to r) 198 482.73 B
+0.52 0.1 (ead further ar) 259.21 482.73 B
+0.52 0.1 (guments fr) 322.41 482.73 B
+0.52 0.1 (om the wir) 372.03 482.73 B
+0.52 0.1 (e using CPS and psio ) 422.23 482.73 B
+0.08 0.1 (functions. If no data is available on any of the active connections, ) 198 470.33 B
+6 F
+0.17 0.09 (wire_Notify) 495.02 470.33 B
+4 F
+0.08 0.1 ( ) 555.32 470.33 B
+0.24 0.1 (blocks until a message arrives or the period speci\336ed in the timeout parameter ) 198 457.93 B
+0.52 0.1 (expir) 198 445.53 B
+0.52 0.1 (es. ) 221.13 445.53 B
+0.43 0.1 (If a timeout occurs ) 198 425.13 B
+6 F
+0.88 (wire_Notify) 286.45 425.13 P
+4 F
+0.43 0.1 ( r) 345.77 425.13 B
+0.43 0.1 (eturns ) 352.66 425.13 B
+6 F
+0.88 (FALSE) 384.36 425.13 P
+4 F
+0.43 0.1 (. When ) 411.32 425.13 B
+6 F
+0.88 (wire_Notify) 446.78 425.13 P
+4 F
+0.43 0.1 ( is blocked ) 506.1 425.13 B
+0.52 0.1 (waiting for input, and a signal interr) 198 412.73 B
+0.52 0.1 (upts it befor) 365.87 412.73 B
+0.52 0.1 (e the input arrives, ) 421.77 412.73 B
+6 F
+1.08 (wire_Notify) 198 400.33 P
+4 F
+0.52 0.1 ( r) 257.32 400.33 B
+0.52 0.1 (eturns ) 264.3 400.33 B
+6 F
+1.08 (FALSE) 296.1 400.33 P
+4 F
+0.52 0.1 ( and ) 323.06 400.33 B
+6 F
+1.08 (wire_Errno) 346.52 400.33 P
+4 F
+0.52 0.1 ( is set to ) 400.44 400.33 B
+6 F
+1.08 (wire_EINTR) 441.76 400.33 P
+4 F
+0.52 0.1 (. This ) 495.68 400.33 B
+0.52 0.1 (corr) 198 387.93 B
+0.52 0.1 (esponds to the UNIX system call err) 216.01 387.93 B
+0.52 0.1 (or ) 381.62 387.93 B
+6 F
+1.08 (EINTR) 394.34 387.93 P
+4 F
+0.52 0.1 ( \050interr) 421.3 387.93 B
+0.52 0.1 (upted system call\051. ) 453.04 387.93 B
+-0.06 0.1 (Pr) 198 375.54 B
+-0.06 0.1 (ograms ar) 208 375.54 B
+-0.06 0.1 (e often interr) 253.12 375.54 B
+-0.06 0.1 (upted, but that doesn\325t mean the pr) 311.42 375.54 B
+-0.06 0.1 (ogram should exit. ) 470.85 375.54 B
+0.52 0.1 (Ther) 198 363.14 B
+0.52 0.1 (efor) 218.9 363.14 B
+0.52 0.1 (e, when ) 236.64 363.14 B
+6 F
+1.08 (wire_Notify) 275.52 363.14 P
+4 F
+0.52 0.1 ( r) 334.83 363.14 B
+0.52 0.1 (eturns false, ) 341.82 363.14 B
+6 F
+1.08 (wire_Errno) 400.09 363.14 P
+4 F
+0.52 0.1 ( should be checked to ) 454.01 363.14 B
+0.33 0.1 (see if it is ) 198 350.73 B
+6 F
+0.69 (wire_EINTR) 243.99 350.73 P
+4 F
+0.33 0.1 (. If ) 297.92 350.73 B
+6 F
+0.69 (wire_Errno) 313.27 350.73 P
+4 F
+0.33 0.1 ( is set to ) 367.2 350.73 B
+6 F
+0.69 (wire_EINTR) 407.77 350.73 P
+4 F
+0.33 0.1 ( the pr) 461.7 350.73 B
+0.33 0.1 (ogram should ) 491.7 350.73 B
+0.52 0.1 (continue in the notify loop. ) 198 338.33 B
+6 F
+1.08 (wire_EnterNotifer\050\051) 325.74 338.33 P
+4 F
+0.52 0.1 ( ignor) 428.2 338.33 B
+0.52 0.1 (es interr) 455.32 338.33 B
+0.52 0.1 (upted system ) 492.85 338.33 B
+0.52 0.1 (calls, but will r) 198 325.93 B
+0.52 0.1 (eturn if ther) 266.38 325.93 B
+0.52 0.1 (e is an err) 321.42 325.93 B
+0.52 0.1 (or for another r) 366.83 325.93 B
+0.52 0.1 (eason.) 437.47 325.93 B
+6 F
+(wire_WouldNotify) 54 306.2 T
+(boolean) 198 306.2 T
+(wire_WouldNotify\050w\051) 198 295.2 T
+(wire_Wire w;) 198 285.2 T
+4 F
+0.52 0.1 (Indicates whether ther) 198 266.53 B
+0.52 0.1 (e ar) 300.53 266.53 B
+0.52 0.1 (e any messages to r) 317.5 266.53 B
+0.52 0.1 (ead on this wir) 406.79 266.53 B
+0.52 0.1 (e. ) 475.74 266.53 B
+6 F
+1.1 0.09 (wire_WouldNotify) 198 254.14 B
+4 F
+0.52 0.1 ( does not block. If you use ) 285.72 254.14 B
+6 F
+1.1 0.09 (wire_ALLWIRES) 409.94 254.14 B
+4 F
+0.52 0.1 ( as the wir) 481.21 254.14 B
+0.52 0.1 (e ) 529.47 254.14 B
+0.52 0.1 (ar) 198 241.73 B
+0.52 0.1 (gument, ) 206.96 241.73 B
+6 F
+1.1 0.09 (wire_WouldNotify) 247.55 241.73 B
+4 F
+0.52 0.1 ( indicates whether ther) 335.27 241.73 B
+0.52 0.1 (e ar) 440.46 241.73 B
+0.52 0.1 (e messages on any of ) 457.43 241.73 B
+0.52 0.1 (the active connections.) 198 229.34 B
+FMENDPAGE
+%%EndPage: "239" 14
+%%Page: "240" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (240) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(wire_EnterNotifier) 54 642 T
+(void) 198 642 T
+(wire_EnterNotifier\050\051) 198 631 T
+4 F
+0.52 0.1 (Descends into the main loop. ) 198 612.33 B
+6 F
+1.1 0.09 (wire_EnterNoti\336er) 334.32 612.33 B
+4 F
+0.52 0.1 ( will be the main-loop for ) 427.52 612.33 B
+0.46 0.1 (many client applications. It will be r) 198 599.93 B
+0.46 0.1 (eentrant, and can be intermixed with calls ) 363.05 599.93 B
+0.26 0.1 (to ) 198 587.53 B
+6 F
+0.56 0.09 (wire_Notify) 209.78 587.53 B
+4 F
+0.26 0.1 (. In fact, it will do little mor) 268.98 587.53 B
+0.26 0.1 (e than r) 394.59 587.53 B
+0.26 0.1 (epeatedly call ) 429.36 587.53 B
+6 F
+0.56 0.09 (wire_Notify) 494.83 587.53 B
+4 F
+0.26 0.1 ( ) 555.14 587.53 B
+0.52 0.1 (itself. A call to ) 198 575.13 B
+6 F
+1.1 0.09 (wire_EnterNoti\336er) 267.54 575.13 B
+4 F
+0.52 0.1 ( does not r) 360.74 575.13 B
+0.52 0.1 (eturn until the corr) 409.79 575.13 B
+0.52 0.1 (esponding ) 497.07 575.13 B
+6 F
+1.1 0.09 (wire_ExitNoti\336er) 198 562.73 B
+4 F
+0.52 0.1 ( is executed.) 285.72 562.73 B
+6 F
+(wire_ExitNotifier) 54 543 T
+(void) 198 543 T
+(wire_ExitNotifier\050\051) 198 532 T
+4 F
+0.52 0.1 (Emer) 198 513.33 B
+0.52 0.1 (ges fr) 221.89 513.33 B
+0.52 0.1 (om main loop. ) 247.18 513.33 B
+6 F
+1.1 0.09 (wire_ExitNoti\336er) 316.8 513.33 B
+4 F
+0.52 0.1 ( is called when the application ) 404.51 513.33 B
+0.52 0.1 (pr) 198 500.93 B
+0.52 0.1 (ogrammer wants to exit fr) 207.98 500.93 B
+0.52 0.1 (om a \050possibly nested\051 noti\336er loop. The ) 327.46 500.93 B
+0.52 0.1 (corr) 198 488.53 B
+0.52 0.1 (esponding ) 216.01 488.53 B
+6 F
+1.1 0.09 (wire_EnterNoti\336er) 266.72 488.53 B
+4 F
+0.52 0.1 ( will r) 359.92 488.53 B
+0.52 0.1 (eturn as soon as the r) 387.49 488.53 B
+0.52 0.1 (egister) 485.68 488.53 B
+0.52 0.1 (ed ) 515.69 488.53 B
+0.52 0.1 (pr) 198 476.13 B
+0.52 0.1 (ocedur) 207.98 476.13 B
+0.52 0.1 (e that called ) 239.16 476.13 B
+6 F
+1.1 0.09 (wire_ExitNoti\336er) 297.88 476.13 B
+4 F
+0.52 0.1 ( itself r) 385.59 476.13 B
+0.52 0.1 (eturns. Pending messages ar) 417.73 476.13 B
+0.52 0.1 (e ) 547.51 476.13 B
+0.52 0.1 (not pr) 198 463.73 B
+0.52 0.1 (ocessed in any way) 225.93 463.73 B
+0.52 0.1 (. ) 313.71 463.73 B
+6 F
+(wire_AddFileHandler) 54 444 T
+(boolean) 198 444 T
+(wire_AddFileHandler\050file, callback, data\051) 198 433 T
+(FILE *file;) 198 423 T
+(void \050*callback\051\050\051;) 198 413 T
+(caddr_t data;) 198 403 T
+4 F
+0.52 0.1 (Adds a \336le to the noti\336er) 198 384.33 B
+0.52 0.1 (\325s list of \336les to check. When data is detected on the ) 314.1 384.33 B
+0.52 0.1 (\336le, ) 198 371.93 B
+6 F
+1.08 (\050*callback\051\050\051) 217.76 371.93 P
+4 F
+0.52 0.1 ( is called and passed the data pointer) 287.86 371.93 B
+0.52 0.1 (. No r) 458.04 371.93 B
+0.52 0.1 (estrictions ar) 484.7 371.93 B
+0.52 0.1 (e ) 543.14 371.93 B
+0.19 0.1 (imposed on the \336le and it is up to the client to handle all operations within the ) 198 359.54 B
+0.52 0.1 (callback. ) 198 347.14 B
+6 F
+1.1 0.09 (wire_AddFileHandler) 240.29 347.14 B
+4 F
+0.52 0.1 ( takes a \336le pointer but if a \336le descriptor is ) 344.45 347.14 B
+0.52 0.1 (desir) 198 334.73 B
+0.52 0.1 (ed in the application pr) 220.31 334.73 B
+0.52 0.1 (ogram, a call to ) 327.74 334.73 B
+6 F
+1.1 0.09 (fdopen) 401.76 334.73 B
+4 F
+0.52 0.1 ( can be made with no ) 434.65 334.73 B
+0.52 0.1 (adverse side-ef) 198 322.33 B
+0.52 0.1 (fects.) 266.33 322.33 B
+6 F
+(wire_RemoveFileHandler) 54 302.6 T
+(boolean) 198 302.6 T
+(wire_RemoveFileHandler\050file\051) 198 291.6 T
+(FILE *file;) 198 281.6 T
+4 F
+0.52 0.1 (Removes a \336le fr) 198 262.93 B
+0.52 0.1 (om the noti\336er) 274.91 262.93 B
+0.52 0.1 (\325s list of \336les to check. The \336le is not a ) 343.45 262.93 B
+6 F
+1.1 0.09 (wire_Wire) 198 250.53 B
+4 F
+0.52 0.1 ( and cannot be enabled/disabled, etc. Ther) 247.34 250.53 B
+0.52 0.1 (e ar) 443.21 250.53 B
+0.52 0.1 (e no r) 460.18 250.53 B
+0.52 0.1 (estrictions) 486.65 250.53 B
+8 F
+0.52 0.1 ( ) 533.01 250.53 B
+4 F
+0.19 0.1 (imposed on the \336le and it is up to the client to handle all operations within the ) 198 238.14 B
+0.52 0.1 (callback. ) 198 225.73 B
+6 F
+1.1 0.09 (wire_RemoveFileHandler) 240.29 225.73 B
+4 F
+0.52 0.1 ( takes a \336le pointer) 360.9 225.73 B
+0.52 0.1 (, but If a \336le descriptor ) 447.99 225.73 B
+0.52 0.1 (is desir) 198 213.34 B
+0.52 0.1 (ed in the application pr) 230.77 213.34 B
+0.52 0.1 (ogram, a call to ) 338.2 213.34 B
+6 F
+1.1 0.09 (fdopen) 412.22 213.34 B
+4 F
+0.52 0.1 ( can be made with no ) 445.12 213.34 B
+0.52 0.1 (adverse side-ef) 198 200.93 B
+0.52 0.1 (fects.) 266.33 200.93 B
+FMENDPAGE
+%%EndPage: "240" 15
+%%Page: "241" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (241) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+11 F
+-0.88 (Ease-of-use functions) 126 638.67 P
+4 F
+0.42 0.1 (The following functions ar) 198 617.33 B
+0.42 0.1 (e pr) 318.81 617.33 B
+0.42 0.1 (ovided to enable data to be easily r) 336.69 617.33 B
+0.42 0.1 (ead fr) 496.82 617.33 B
+0.42 0.1 (om the ) 523.32 617.33 B
+0.52 0.1 (curr) 198 604.93 B
+0.52 0.1 (ent connection. It is assumed that the user of these functions knows the ) 216.58 604.93 B
+0.35 0.1 (type of the data on the wir) 198 592.53 B
+0.35 0.1 (e. Thus ther) 319.55 592.53 B
+0.35 0.1 (e is no type checking or err) 373.57 592.53 B
+0.35 0.1 (or r) 497.49 592.53 B
+0.35 0.1 (eporting. ) 513.91 592.53 B
+0.3 0.1 (If the data is of the wr) 198 580.13 B
+0.3 0.1 (ong type, garbage may be r) 299.02 580.13 B
+0.3 0.1 (eturned and the wir) 423.39 580.13 B
+0.3 0.1 (e may be ) 514.22 580.13 B
+0.52 0.1 (left in an undetermined state. The caveat to this is numeric ar) 198 567.73 B
+0.52 0.1 (guments ar) 479.98 567.73 B
+0.52 0.1 (e ) 531.28 567.73 B
+0.52 0.1 (converted by CPS \050\337oats to ints, ints to \337oats, etc.\051) 198 555.33 B
+8 F
+0.52 0.1 (.) 428.72 555.33 B
+6 F
+(wire_ReadInt) 54 535.6 T
+(int) 198 535.6 T
+( wire_ReadInt\050\051) 198 524.6 T
+(wire_ReadFloat) 54 506.6 T
+(float) 198 506.6 T
+( wire_ReadFloat\050\051) 198 495.6 T
+(wire_ReadString) 54 477.6 T
+(char *) 198 477.6 T
+(wire_ReadString\050str\051) 198 466.6 T
+(char *str;) 198 456.6 T
+(wire_GobbleAny) 54 438.6 T
+(void ) 198 438.6 T
+(wire_GobbleAny\050\051) 198 427.6 T
+11 F
+(Synchr) 126 396.27 T
+(onization) 166.44 396.27 T
+4 F
+0.52 0.1 (CPS pr) 198 374.93 B
+0.52 0.1 (ovides a mechanism for a client pr) 229.76 374.93 B
+0.52 0.1 (ocess to block pending noti\336cation ) 387.68 374.93 B
+0.4 0.1 (fr) 198 362.53 B
+0.4 0.1 (om a server pr) 205.3 362.53 B
+0.4 0.1 (ocess. The wir) 271.8 362.53 B
+0.4 0.1 (e service pr) 336.39 362.53 B
+0.4 0.1 (ovides a complementary mechanism ) 388.7 362.53 B
+0.15 0.1 (that allows a server pr) 198 350.13 B
+0.15 0.1 (ocess to block pending noti\336cation fr) 299.2 350.13 B
+0.15 0.1 (om a client pr) 466.37 350.13 B
+0.15 0.1 (ocess. ) 528.89 350.13 B
+0.52 0.1 (This pr) 198 337.73 B
+0.52 0.1 (ovides symmetric facilities for synchr) 230.58 337.73 B
+0.52 0.1 (onous communications.) 401.43 337.73 B
+0.52 0.1 (Server interface:) 198 317.33 B
+12 F
+(wire_Sync) 54 297.6 T
+(proc wire_Sync -) 198 297.6 T
+4 F
+0.52 0.1 (The pr) 198 277.93 B
+0.52 0.1 (oc is executed, and ) 228.12 277.93 B
+6 F
+1.1 0.09 (wire_Sync) 318 277.93 B
+4 F
+0.52 0.1 ( guarantees it will not r) 367.35 277.93 B
+0.52 0.1 (eturn until the C ) 474.88 277.93 B
+0.52 0.1 (client has acknowledged dealing with any data sent to it by the pr) 198 265.53 B
+0.52 0.1 (oc. That is, ) 501.67 265.53 B
+6 F
+1.1 0.09 (wire_Sync) 198 253.14 B
+4 F
+0.52 0.1 ( execs the pr) 247.34 253.14 B
+0.52 0.1 (oc, and sends a marker to the C client, then waits for ) 304.74 253.14 B
+0.31 0.1 (the client to acknowledge having seen the marker) 198 240.73 B
+0.31 0.1 (. For example, PostScript can ) 423.47 240.73 B
+0.04 0.1 (ask C to send it some value, or to do some painting, etc., and be sur) 198 228.34 B
+0.04 0.1 (e that C has ) 502.3 228.34 B
+0.52 0.1 (r) 198 215.93 B
+0.52 0.1 (esponded to the r) 201.87 215.93 B
+0.52 0.1 (equest befor) 282.27 215.93 B
+0.52 0.1 (e trying to do any mor) 338.05 215.93 B
+0.52 0.1 (e PostScript code. ) 441.88 215.93 B
+0.52 0.1 (Naturally) 198 203.53 B
+0.52 0.1 (, this makes some assumptions about the client; hence the ) 240.7 203.53 B
+0.52 0.1 (r) 198 191.14 B
+0.52 0.1 (equir) 201.87 191.14 B
+0.52 0.1 (ement that the client be built on the W) 225.46 191.14 B
+0.52 0.1 (ir) 401.81 191.14 B
+0.52 0.1 (e Service.) 408.68 191.14 B
+FMENDPAGE
+%%EndPage: "241" 16
+%%Page: "242" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (242) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.49 0.1 (Things can get rather tricky) 198 641.33 B
+8 F
+0.49 0.1 ( ) 324.5 641.33 B
+4 F
+0.49 0.1 (if ) 327.59 641.33 B
+6 F
+1.04 0.09 (wire_Sync) 337.12 641.33 B
+4 F
+0.49 0.1 ( is called fr) 386.46 641.33 B
+0.49 0.1 (om the \322listener\323 pr) 437.12 641.33 B
+0.49 0.1 (ocess, ) 528.65 641.33 B
+0.52 0.1 (i.e., the pr) 198 628.93 B
+0.52 0.1 (ocess that is r) 244.07 628.93 B
+0.52 0.1 (eading fr) 306.02 628.93 B
+0.52 0.1 (om the client connection. ) 347.21 628.93 B
+6 F
+1.1 0.09 (wire_Sync) 464.83 628.93 B
+4 F
+0.52 0.1 ( ) 514.17 628.93 B
+0.52 0.1 (guarantees that anything the client ships in r) 198 616.53 B
+0.52 0.1 (esponse to the pr) 402.88 616.53 B
+0.52 0.1 (oc will be ) 481.31 616.53 B
+0.31 0.1 (executed \050a\051 befor) 198 604.13 B
+0.31 0.1 (e ) 279.28 604.13 B
+6 F
+0.64 0.09 (wire_Sync) 287.07 604.13 B
+4 F
+0.31 0.1 ( r) 336.41 604.13 B
+0.31 0.1 (eturns and \050b\051 befor) 343.18 604.13 B
+0.31 0.1 (e any other tokens that the ) 433.64 604.13 B
+0.52 0.1 (client may have pr) 198 591.73 B
+0.52 0.1 (eviously shipped down the wir) 283.37 591.73 B
+0.52 0.1 (e.) 426.33 591.73 B
+0.52 0.1 (Client interface:) 198 571.33 B
+6 F
+(wire_InSync) 54 551.6 T
+(boolean ) 198 551.6 T
+(wire_InSync\050w\051) 198 540.6 T
+(wire_Wire w;) 198 530.6 T
+4 F
+0.52 0.1 (Indicates whether the wir) 198 511.93 B
+0.52 0.1 (e is r) 315.1 511.93 B
+0.52 0.1 (esponding to a synchr) 337.43 511.93 B
+0.52 0.1 (onized r) 438.63 511.93 B
+0.52 0.1 (equest.) 476.29 511.93 B
+6 F
+1.1 0.09 (wire_InSync) 198 491.53 B
+4 F
+0.52 0.1 ( simply checks to see if wir) 258.31 491.53 B
+0.52 0.1 (e ) 382.71 491.53 B
+6 F
+1.1 0.09 (w) 390.71 491.53 B
+4 F
+0.52 0.1 ( is r) 396.2 491.53 B
+0.52 0.1 (esponding to a synchr) 413.65 491.53 B
+0.52 0.1 (onized ) 514.84 491.53 B
+0.52 0.1 (r) 198 479.13 B
+0.52 0.1 (equest fr) 201.87 479.13 B
+0.52 0.1 (om the server) 241.58 479.13 B
+0.52 0.1 (, which means that PostScript code sent now may be ) 303.67 479.13 B
+0.52 0.1 (executed befor) 198 466.73 B
+0.52 0.1 (e PostScript code sent earlier) 264.63 466.73 B
+0.52 0.1 (. This is a subtle but important ) 395.72 466.73 B
+0.52 0.1 (point. ) 198 454.33 B
+9 F
+-0.84 0.13 (W) 198 421.93 B
+-0.84 0.13 (ir) 210.13 421.93 B
+-0.84 0.13 (e Service synchr) 218.82 421.93 B
+-0.84 0.13 (onization caveat.) 303.87 421.93 B
+4 F
+0.52 0.1 (The W) 198 404.93 B
+0.52 0.1 (ir) 227.69 404.93 B
+0.52 0.1 (e Service has some very obscur) 234.57 404.93 B
+0.52 0.1 (e pr) 376.96 404.93 B
+0.52 0.1 (oblems with client-server ) 394.94 404.93 B
+0.51 0.1 (synchr) 198 392.53 B
+0.51 0.1 (onization. These pr) 228.23 392.53 B
+0.51 0.1 (oblems ar) 315.8 392.53 B
+0.51 0.1 (e attributable to the \337exibility NeWS gives ) 360.21 392.53 B
+0.52 0.1 (you for having code on both sides of the wir) 198 380.13 B
+0.52 0.1 (e. In most cases the W) 402.14 380.13 B
+0.52 0.1 (ir) 503.68 380.13 B
+0.52 0.1 (e Service ) 510.56 380.13 B
+0.52 0.1 (will work \336ne but the following pr) 198 367.73 B
+0.52 0.1 (oblems ar) 357.64 367.73 B
+0.52 0.1 (e indications that you ar) 402.07 367.73 B
+0.52 0.1 (e ) 513.42 367.73 B
+0.52 0.1 (encountering synchr) 198 355.33 B
+0.52 0.1 (onization pr) 291.17 355.33 B
+0.52 0.1 (oblems:) 346.78 355.33 B
+3 F
+(\245) 198 336.93 T
+4 F
+0.52 0.1 ( Y) 210.6 336.93 B
+0.52 0.1 (ou start having symptoms like deadlock, e.g., your pr) 219.57 336.93 B
+0.52 0.1 (ogram is stuck in a ) 464.96 336.93 B
+0.52 0.1 (cps call that waits for r) 210.6 324.54 B
+0.52 0.1 (eturn values.) 315.69 324.54 B
+0.1 (or) 198 304.14 S
+3 F
+(\245) 198 285.73 T
+4 F
+0.52 0.1 (Y) 210.6 285.73 B
+0.52 0.1 (ou \336nd that when you use a user token, the value it turns into is a null. ) 216.45 285.73 B
+0.52 0.1 (If you ar) 198 265.34 B
+0.52 0.1 (e experiencing these symptoms then you should r) 237.44 265.34 B
+0.52 0.1 (evisit this section ) 465.3 265.34 B
+0.52 0.1 (and r) 198 252.93 B
+0.52 0.1 (ead it car) 222.21 252.93 B
+0.52 0.1 (efully) 264.5 252.93 B
+0.52 0.1 (.) 289.51 252.93 B
+10 F
+-0.71 0.11 (The pr) 198 223.87 B
+-0.71 0.11 (oblem) 228.57 223.87 B
+4 F
+0.52 0.1 (When the server) 198 207.53 B
+0.52 0.1 (-side code does a synchr) 272.99 207.53 B
+0.52 0.1 (onized callback to the client, it can ) 384.84 207.53 B
+0.52 0.1 (r) 198 195.14 B
+0.52 0.1 (esult in data being r) 201.87 195.14 B
+0.52 0.1 (ead fr) 293.71 195.14 B
+0.52 0.1 (om the wir) 320.31 195.14 B
+0.52 0.1 (e without that data being immediately ) 370.51 195.14 B
+0.52 0.1 (executed. In other wor) 198 182.73 B
+0.52 0.1 (ds, the server) 301.11 182.73 B
+0.52 0.1 (-side callback wants to get the r) 362.43 182.73 B
+0.52 0.1 (esponse ) 507.57 182.73 B
+0.08 0.1 (fr) 198 170.34 B
+0.08 0.1 (om the client befor) 205.3 170.34 B
+0.08 0.1 (e continuing. After getting the r) 290.05 170.34 B
+0.08 0.1 (esponse the callback wants ) 433.39 170.34 B
+0.52 0.1 (to execute anything else that came down the wir) 198 157.93 B
+0.52 0.1 (e while it was waiting.) 420.22 157.93 B
+FMENDPAGE
+%%EndPage: "242" 17
+%%Page: "243" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (243) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.52 0.1 (Ther) 198 641.33 B
+0.52 0.1 (e ar) 218.9 641.33 B
+0.52 0.1 (e two cases wher) 235.87 641.33 B
+0.52 0.1 (e the client needs to be sur) 313.77 641.33 B
+0.52 0.1 (e that the server is ) 436.24 641.33 B
+0.52 0.1 (executing what it r) 198 628.93 B
+0.52 0.1 (eceives, i.e., data isn\325t being cached for \322later execution\323. ) 284.03 628.93 B
+0.52 0.1 (These two cases ar) 198 616.53 B
+0.52 0.1 (e:) 283.12 616.53 B
+0.1 (1.) 197.5 596.13 S
+0.52 0.1 (The client is about to do a \322blocking cps call\323, i.e., one that r) 210.6 596.13 B
+0.52 0.1 (eturns a value.) 487.82 596.13 B
+0.15 0.1 (The client is about to send a snippet that includes a usertoken, and wants to be ) 198 575.73 B
+0.52 0.1 (sur) 198 563.33 B
+0.52 0.1 (e that the de\336nition of that usertoken will have been executed befor) 212.33 563.33 B
+0.52 0.1 (e T) 522.85 563.33 B
+0.52 0.1 (o ) 536.16 563.33 B
+0.52 0.1 (ensur) 198 550.93 B
+0.52 0.1 (e the server is executing what it r) 223.14 550.93 B
+0.52 0.1 (eceives, the application writer should ) 375.99 550.93 B
+0.52 0.1 (use the two functions: ) 198 538.53 B
+6 F
+1.08 (wire_ExpectSync) 302.12 538.53 P
+4 F
+0.52 0.1 ( and ) 383.01 538.53 B
+6 F
+1.08 (wire_DrainSync) 406.47 538.53 P
+4 F
+0.52 0.1 (.) 481.96 538.53 B
+6 F
+(wire_ExpectSync) 54 518.8 T
+(boolean ) 198 518.8 T
+(wire_ExpectSync\050wire\051 ) 198 507.8 T
+(wire_Wire wire;) 198 497.8 T
+1.08 (wire_ExpectSync\050\051) 198 479.13 P
+4 F
+0.52 0.1 ( is called after calling a cps function that might r) 289.67 479.13 B
+0.52 0.1 (esult in ) 512.39 479.13 B
+0.52 0.1 (the server executing some wir) 198 466.73 B
+0.52 0.1 (e_Sync callbacks. ) 335.24 466.73 B
+6 F
+(wire_DrainSync) 54 447 T
+(boolean) 198 447 T
+(wire_DrainSync\050wire, notify_proc\051 ) 198 436 T
+(wire_Wire wire; ) 198 426 T
+(void \050*notify_proc\051\050\051;) 198 416 T
+1.08 (wire_DrainSync) 198 397.33 P
+4 F
+0.52 0.1 ( is called when the client needs to make sur) 273.49 397.33 B
+0.52 0.1 (e the server is ) 473.73 397.33 B
+0.52 0.1 (actually executing what it r) 198 384.93 B
+0.52 0.1 (eceives. Thus you call it befor) 323.04 384.93 B
+0.52 0.1 (e making a blocking ) 458.86 384.93 B
+0.52 0.1 (cps call, and you call it somewher) 198 372.54 B
+0.52 0.1 (e between sending the de\336nition of a ) 353.33 372.54 B
+0.52 0.1 (usertoken and the \336rst time you try to use that token.) 198 360.14 B
+0.52 0.1 (In both cases, the purpose of ) 198 339.73 B
+6 F
+1.08 (wire_DrainSync) 332.67 339.73 P
+4 F
+0.52 0.1 ( is to make sur) 408.16 339.73 B
+0.52 0.1 (e ther) 475.79 339.73 B
+0.52 0.1 (e ar) 501.83 339.73 B
+0.52 0.1 (e no ) 518.8 339.73 B
+0.33 0.1 (pending ) 198 327.33 B
+12 F
+0.29 -0.27 (wire_Sync) 238.63 327.33 B
+4 F
+0.33 0.1 ( calls yet to come fr) 277.65 327.33 B
+0.33 0.1 (om the Listener pr) 366.32 327.33 B
+0.33 0.1 (ocess. ) 450.39 327.33 B
+6 F
+0.69 (wire_DrainSync) 479.57 327.33 P
+4 F
+0.33 0.1 ( ) 555.07 327.33 B
+0.52 0.1 (r) 198 314.93 B
+0.52 0.1 (epeatedly executes ) 201.87 314.93 B
+5 F
+0.52 0.1 (notify_pr) 290.48 314.93 B
+0.52 0.1 (oc) 328.96 314.93 B
+4 F
+0.52 0.1 ( in a loop until the number of expected syncs ) 337.66 314.93 B
+0.17 0.1 (goes to zer) 198 302.54 B
+0.17 0.1 (o. It is the r) 246.74 302.54 B
+0.17 0.1 (esponsibility of the ) 298.17 302.54 B
+5 F
+0.17 0.1 (notify_pr) 387.43 302.54 B
+0.17 0.1 (oc) 425.91 302.54 B
+4 F
+0.17 0.1 ( to execute at least one call ) 434.62 302.54 B
+0.52 0.1 (to ) 198 290.14 B
+6 F
+1.08 (wire_Notify\050\051) 210.03 290.14 P
+4 F
+0.52 0.1 (, in addition to anything else it wants to do \050like update ) 280.14 290.14 B
+0.52 0.1 (some other information\051. ) 198 277.73 B
+7 F
+-0.94 (Help facilities) 54 244 P
+4 F
+0.19 0.1 (The TNT help facilities assume that you will use the W) 198 222.34 B
+0.19 0.1 (ir) 446.66 222.34 B
+0.19 0.1 (e Service, in particular ) 453.54 222.34 B
+0.52 0.1 (the noti\336ers pr) 198 209.93 B
+0.52 0.1 (ovided by the W) 265.63 209.93 B
+0.52 0.1 (ir) 341.59 209.93 B
+0.52 0.1 (e Service. In addition ther) 348.47 209.93 B
+0.52 0.1 (e ar) 466.66 209.93 B
+0.52 0.1 (e server) 483.63 209.93 B
+0.52 0.1 (-side ) 519.41 209.93 B
+0.43 0.1 (methods used in conjunction with these client-side functions. Y) 198 197.53 B
+0.43 0.1 (ou can \336nd the ) 486.11 197.53 B
+0.52 0.1 (applicable methods in ClassCanvas, Help facilities on page 63.) 198 185.14 B
+FMENDPAGE
+%%EndPage: "243" 18
+%%Page: "244" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (244) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(Help_Initialize) 54 642 T
+(void) 198 642 T
+(Help_Initialize\050w\051;) 198 631 T
+(wire_Wire w:) 198 621 T
+4 F
+0.52 0.1 (Initializes the help system. The wir) 198 602.33 B
+0.52 0.1 (e passed to ) 358.31 602.33 B
+6 F
+1.08 (Help_Initialize) 412.44 602.33 P
+4 F
+0.52 0.1 ( should have ) 493.33 602.33 B
+0.52 0.1 (been opened with ) 198 589.93 B
+6 F
+1.08 (wire_Open\050\051) 282.95 589.93 P
+4 F
+0.52 0.1 (. The connection used to initialize the help ) 342.27 589.93 B
+0.52 0.1 (library should be the same connection used to load the de\336nitions of all ) 198 577.53 B
+0.52 0.1 (windows containing Helpable objects into the server) 198 565.13 B
+0.52 0.1 (. The user) 437.58 565.13 B
+0.52 0.1 (dict associated ) 482.66 565.13 B
+0.04 0.1 (with this connection will contain information necessary for TNT objects to pass ) 198 552.73 B
+0.52 0.1 (help r) 198 540.33 B
+0.52 0.1 (equests back to the client for message lookup and display) 224.9 540.33 B
+0.52 0.1 (.) 488.02 540.33 B
+0.52 0.1 (The Help library curr) 198 519.93 B
+0.52 0.1 (ently looks in the dir) 295.88 519.93 B
+0.52 0.1 (ectory wher) 391.46 519.93 B
+0.52 0.1 (e the application was ) 445.73 519.93 B
+0.52 0.1 (launched, and in ) 198 507.53 B
+6 F
+1.08 ($OPENWINHOME/lib/help) 277.8 507.53 P
+4 F
+0.52 0.1 ( for help message \336les. If you want ) 391.04 507.53 B
+0.52 0.1 (the message \336le to r) 198 495.13 B
+0.52 0.1 (eside elsewher) 289.59 495.13 B
+0.52 0.1 (e, you ar) 356.26 495.13 B
+0.52 0.1 (e r) 396.29 495.13 B
+0.52 0.1 (esponsible for setting up ) 408.16 495.13 B
+6 F
+1.08 (HELPPATH) 198 482.73 P
+4 F
+0.52 0.1 ( corr) 241.14 482.73 B
+0.52 0.1 (ectly ) 262.27 482.73 B
+5 F
+0.52 0.1 (befor) 286.83 482.73 B
+0.52 0.1 (e) 306.77 482.73 B
+4 F
+0.52 0.1 ( calling ) 310.76 482.73 B
+6 F
+1.08 (Help_HelpInitialize) 347.23 482.73 P
+4 F
+0.52 0.1 (.) 449.69 482.73 B
+6 F
+(Help_UpdateView) 54 442.6 T
+(void) 198 442.6 T
+(Help_UpdateView \050 \051;) 198 431.6 T
+4 F
+-0.03 0.1 (Updates the canvas that displays the help message. The r) 198 412.93 B
+-0.03 0.1 (ecommended style for ) 455.08 412.93 B
+0.52 0.1 (a noti\336cation loop involving help uses ) 198 400.53 B
+6 F
+1.08 (Help_UpdateView) 376.67 400.53 P
+4 F
+0.52 0.1 (. For example:) 456.64 400.53 B
+6 F
+(while \050 !quit && wire_Notify\050\050struct timeval *\051 NULL\051 \051 {) 210.6 384.8 T
+(if \050wire_WouldNotify\050thiswiire\051\051) 261 369.8 T
+(continue) 297 354.8 T
+(. . .) 243 339.8 T
+(Help_UpdateView\050\051;) 261 324.8 T
+(}) 210.6 309.8 T
+(Help_HelpRequestHandler) 54 290.8 T
+(void) 198 290.8 T
+(Help_RequestHelpHandler\050tag, data\051;) 198 279.8 T
+(int tag;) 198 269.8 T
+(caddr_t data;) 198 259.8 T
+4 F
+0.16 0.1 (Handles help requests transmitted from the server. Its default behavior) 198 241.14 B
+0.16 0.1 ( sets up ) 520.59 241.14 B
+0.52 0.1 (the pane, adds it to the help window) 198 228.73 B
+0.52 0.1 (, looks for the help text and displays it.) 366.45 228.73 B
+6 F
+1.08 (Help_RequestHelpHandler) 198 208.34 P
+4 F
+0.52 0.1 ( is the callback function that is r) 322.03 208.34 B
+0.52 0.1 (egister) 468.73 208.34 B
+0.52 0.1 (ed with the ) 498.73 208.34 B
+0.52 0.1 (W) 198 195.93 B
+0.52 0.1 (ir) 207.54 195.93 B
+0.52 0.1 (e Service. Replace it ) 214.42 195.93 B
+5 F
+0.52 0.1 (only) 308.51 195.93 B
+4 F
+0.52 0.1 ( if you want some kind of custom help display) 326.68 195.93 B
+0.52 0.1 (.) 539.88 195.93 B
+FMENDPAGE
+%%EndPage: "244" 19
+5 10 /Times-Bold FMDEFINEFONT
+8 10 /Times-Roman FMDEFINEFONT
+%%Page: "245" 19
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (245) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+11 F
+-0.88 (The help message \336le) 126 638.67 P
+4 F
+0.52 0.1 (The help library expects messages in a \336le to follow this format: ) 198 617.33 B
+3 F
+(\245) 198 598.93 T
+4 F
+0.52 0.1 (Keywor) 210.6 598.93 B
+0.52 0.1 (ds ar) 246.36 598.93 B
+0.52 0.1 (e lines that start with a colon \050:\051 character) 268.99 598.93 B
+0.52 0.1 (. ) 458.54 598.93 B
+3 F
+(\245) 198 586.53 T
+4 F
+0.52 0.1 (Any line beginning with a pound-sign \050#\051 is a comment line, and ignor) 210.6 586.53 B
+0.52 0.1 (ed.) 535.11 586.53 B
+3 F
+(\245) 198 574.13 T
+4 F
+0.52 0.1 (Messages ar) 210.6 574.13 B
+0.52 0.1 (e one or mor) 265.78 574.13 B
+0.52 0.1 (e lines in between keywor) 324.34 574.13 B
+0.52 0.1 (ds and/or comment ) 443.84 574.13 B
+0.52 0.1 (lines. Message \336les ar) 210.6 561.73 B
+0.52 0.1 (e or) 309.82 561.73 B
+0.52 0.1 (dinary text \336les following the format in the ) 327.25 561.73 B
+0.52 0.1 (example below) 210.6 549.33 B
+0.52 0.1 (. Messages containing no newline characters will be wor) 278.48 549.33 B
+0.52 0.1 (d-) 536.33 549.33 B
+0.52 0.1 (wrapped inside the help window) 210.6 536.93 B
+0.52 0.1 (.) 362.05 536.93 B
+0.52 0.1 (Thus a help \336le would contain entries similar to:) 198 516.53 B
+6 F
+1.08 (# Help for myslider ) 198 496.8 P
+(:myslider) 198 485.4 T
+1.08 (Moving the slider adjusts the value of the gauge.) 198 474 P
+(#) 198 462.6 T
+1.08 (#Help for Save button) 198 451.2 P
+(:savebutton) 198 439.8 T
+1.08 (Pressing this button will save your work before quitting. ) 198 428.4 P
+1.08 (# ) 198 417 P
+1.08 (# Help for Discard button ) 198 405.6 P
+1.08 (:discardbutton ) 198 394.2 P
+1.08 (Pressing this button will quit without saving changes. ) 198 382.8 P
+1.08 (# ) 198 371.4 P
+1.08 (# Help for Cancel button ) 198 360 P
+1.08 (:cancelbutton ) 198 348.6 P
+1.08 (Pressing this button will cancel the Quit operation. ) 198 337.2 P
+(#) 198 325.8 T
+11 F
+(Constants) 126 293.07 T
+4 F
+0.52 0.1 (The following constants ar) 198 271.73 B
+0.52 0.1 (e de\336ned in the wir) 319.34 271.73 B
+0.52 0.1 (e service:) 409.35 271.73 B
+5 F
+(Boolean values:) 216 254.34 T
+6 F
+0.09 (TRUE) 294 254.34 S
+0.09 (FALSE) 348 254.34 S
+8 F
+( ) 375.41 254.34 T
+5 F
+(Special Wires:) 216 237.34 T
+6 F
+0.09 (wire_INVALID_WIRE) 294 237.34 S
+0.09 (wire_ALLWIRES) 294 220.34 S
+5 F
+(Error values:) 216 203.34 T
+8 F
+( ) 273.46 203.34 T
+6 F
+0.09 (wire_EUNKNOWNHOST) 294 203.34 S
+0.09 (wire_ENOSUCHSERVER) 294 186.34 S
+0.09 (wire_EBADWIRE) 294 169.34 S
+0.09 (wire_ECONNECTIONDIED) 294 152.34 S
+FMENDPAGE
+%%EndPage: "245" 20
+%%Page: "246" 20
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (246) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+0.09 (wire_ENOWIRES) 294 641.33 S
+0.09 (wire_ETIMEOUT) 294 624.33 S
+0.09 (wire_EINTR) 294 607.33 S
+0.09 (wire_ERANGECHECK) 294 590.33 S
+0.09 (wire_EBADRESERVE) 294 573.33 S
+0.09 (wire_EFILEINUSE) 294 556.33 S
+0.09 (wire_ENOFILEHANDLER) 294 539.33 S
+0.09 (wire_ECONNECTIONREFUSED) 294 522.33 S
+FMENDPAGE
+%%EndPage: "246" 21
+%%Page: "247" 21
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (247) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+-0.94 (Sample Pr) 54 638 P
+-0.94 (ogram) 115.71 638 P
+6 F
+(/* wire.c) 54 619 T
+( * Sample program to illustrate the proposed NeWS Wire Service.) 54 603 T
+( * A slider is placed on the framebuffer, and values are notified) 54 587 T
+( * back to the client. If the slider is dragged to 0, the program) 54 571 T
+( * terminates.) 54 555 T
+( * The program consists of two files: this one, called wire.c and) 54 539 T
+( * the file called wire_demo_cps.cps, which starts at the top of) 54 523 T
+( * the page following the last line of wire.c.) 54 507 T
+( */) 54 491 T
+(#include <NeWS/wire.h>) 54 459 T
+(#include \322wire_demo_cps.h\323) 54 443 T
+(#if !defined \050lint\051) 54 411 T
+(static char sccsid[] = \322@\050#\051wire_demo.c 1.5 91/02/11 Copyright 1985 Sun Micro\323;) 54 395 T
+(#endif) 54 379 T
+(/*) 54 331 T
+( * Slider callback function.) 54 315 T
+( */) 54 299 T
+(void) 54 283 T
+(my_slider_handler\050tag, data\051) 54 267 T
+(int) 54 251 T
+(tag;) 99 251 T
+(caddr_t) 54 235 T
+(data;) 99 235 T
+({) 54 219 T
+( /* ) 81.21 203 T
+( * Let\325s assume that the client wants to know the new value of the) 81.21 187 T
+( * slider when it changes. He must read it himself in this procedure.) 81.21 171 T
+( * The data argument in this case holds the server handle provided to) 81.21 155 T
+FMENDPAGE
+%%EndPage: "247" 22
+%%Page: "248" 22
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (248) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+( * wire_RegisterTag\050\051.) 81.21 642 T
+( */) 81.21 626 T
+( float ) 81.21 610 T
+(value;) 126 610 T
+( ) 54 594 T
+( /* Take the value off the wire */) 81.21 578 T
+( value = wire_ReadFloat\050\051;) 81.21 562 T
+( ) 54 546 T
+( printf\050\322The value of the slider is now %f\134n\323, value\051;) 81.21 530 T
+( ) 54 514 T
+( if \050value == 10.0\051 {) 81.21 498 T
+(/*) 102 482 T
+( * Modify the slider if its value is now 10.0!) 102 466 T
+( */) 102 450 T
+(ps_grow_slider\050\050int\051 data, 10\051;) 102 434 T
+( }) 81.21 418 T
+(} /* my_slider_handler\050\051 */) 54 402 T
+(/*) 54 354 T
+( * Quit callback function.) 54 338 T
+( * Triggered from the Quit window menu item.) 54 322 T
+( */) 54 306 T
+(void) 54 290 T
+(my_quit_handler\050tag, data\051) 54 274 T
+(int) 54 258 T
+(tag;) 99 258 T
+(caddr_t) 54 242 T
+(data;) 99 242 T
+({) 54 226 T
+( /*) 81.21 210 T
+( * Assume that there is no application specific cleanup required.) 81.21 194 T
+( */) 81.21 178 T
+( wire_ExitNotifier\050\051;) 81.21 162 T
+FMENDPAGE
+%%EndPage: "248" 23
+%%Page: "249" 23
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (249) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(} ) 54 642 T
+(/* my_slider_handler\050\051 */) 81.21 642 T
+(/*) 54 594 T
+( * Wire demo main program.) 54 578 T
+( */) 54 562 T
+(main\050\051) 54 546 T
+({) 54 530 T
+( wire_Wire) 74.13 514 T
+(w;) 137.9 514 T
+(/* My connection */) 244.21 514 T
+( int) 74.13 498 T
+(slider_tag;) 137.9 498 T
+(/* Client-side handle */) 244.21 498 T
+( int) 74.13 482 T
+(quit_tag;) 137.9 482 T
+( int) 74.13 466 T
+(slider_token;) 137.9 466 T
+(/* Server-side handle */) 244.21 466 T
+( ) 54 450 T
+( /* Open a connection to your default NeWS server */) 74.13 434 T
+( w = wire_Open\050NULL\051;) 74.13 418 T
+(/*) 74.13 402 T
+( * Reserve a set of tokens \0501 in this case\051 by which) 74.13 386 T
+( * the client can refer to objects on the server. This will) 74.13 370 T
+( * only be necessary if 1\051 you need to refer to an object after) 74.13 354 T
+( * it has been created, and 2\051 you don\325t want to provide your) 74.13 338 T
+( * own set of names.) 74.13 322 T
+( */) 74.13 306 T
+( slider_token = wire_AllocateTokens\050w, 1\051;) 81.21 290 T
+( ) 54 274 T
+(/*) 81.21 258 T
+( * Reserve a set of tags \0502 in this case\051 by which) 81.21 242 T
+( * server-based objects can call functions on the client-side.) 81.21 226 T
+( * Then register my functions to be called when this tag is received.) 81.21 210 T
+( * The registration function also takes an arbitrary client data) 81.21 194 T
+( * value, which in this case we choose to use to store the server) 81.21 178 T
+( * handle.) 81.21 162 T
+FMENDPAGE
+%%EndPage: "249" 24
+%%Page: "250" 24
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (250) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+( */) 81.21 642 T
+( slider_tag = wire_AllocateTags\0501\051;) 81.21 626 T
+( wire_RegisterTag\050slider_tag, my_slider_handler, \050caddr_t\051 slider_token\051;) 81.21 610 T
+( ) 54 594 T
+( quit_tag = wire_AllocateTags\0501\051;) 81.21 578 T
+( wire_RegisterTag\050quit_tag, my_quit_handler, \050caddr_t\051 slider_token\051;) 81.21 562 T
+( ) 54 546 T
+( ) 54 530 T
+(/* ) 81.21 514 T
+( * Send PS to the server to create a slider on the framebuffer.) 81.21 498 T
+( * THIS IS NOT A FUNCTION PROVIDED BY THE WIRE SERVICE.) 81.21 482 T
+( * \050Implementation below\051.) 81.21 466 T
+( */) 81.21 450 T
+( ps_create_slider\050slider_tag, quit_tag, slider_token, 100, 100, 200\051;) 54 434 T
+( ) 54 418 T
+(/* ) 81.21 402 T
+( * Enter the read/dispatch loop. This function will not return) 81.21 386 T
+( * until after wire_ExitNotifier\050\051 has been called from inside) 81.21 370 T
+( * some callback function -- in this case my_quit_handler\050\051) 81.21 354 T
+( */) 81.21 338 T
+( wire_EnterNotifier\050\051;) 54 322 T
+( ) 54 306 T
+( /* Close and exit gracefully */) 54 290 T
+( wire_Close\050w\051;) 54 274 T
+( exit\0500\051;) 54 258 T
+(}) 54 242 T
+FMENDPAGE
+%%EndPage: "250" 25
+3 9 /Courier-Bold FMDEFINEFONT
+%%Page: "251" 25
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (251) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+(% This is the file wire_demo_cps.cps ) 54 642 T
+6 F
+(% */) 54 626 T
+(%) 54 610 T
+(% Create the slider and position it at \050x,y\051. Give it the standard) 54 594 T
+(% height and make it \322width\323 wide. The executable array is the) 54 578 T
+(% slider\325s notify proc. In this case it simply tagprints the) 54 562 T
+(% client tag, and typedprints its value.) 54 546 T
+(%) 54 530 T
+(% Note that the server_handle is passed in as an int because the) 54 514 T
+(% usertoken hasn\325t been initialized yet.) 54 498 T
+(%) 54 482 T
+(cdef ps_create_slider\050int client_handle, int quit_tag, int server_handle,) 54 466 T
+( ) 54 450 T
+(int x, int y, int width\051) 81.21 450 T
+( % Make a window with a calculated pane.) 81.21 418 T
+( /pan /Calculated framebuffer /new ClassPanel send def) 81.21 402 T
+( /win pan framebuffer /new ClassBaseWindow send def) 81.21 386 T
+( \050Wire Service Demo\051 /setlabel win send) 81.21 370 T
+( \050Value 10\051 \050extends slider\051 /setfooter win send) 81.21 354 T
+( ) 54 338 T
+( % Make a slider.) 81.21 322 T
+( /slider framebuffer /new ClassHSlider send def) 81.21 306 T
+( ) 54 290 T
+( % Turn on the end boxes. Don\325t bother with end labels.) 81.21 274 T
+( true /setendboxes slider send) 81.21 258 T
+( ) 54 242 T
+( % Let\325s start out with a range of 0..20) 81.21 226 T
+( 0 20 /setrange slider send) 81.21 210 T
+( ) 54 194 T
+( % And let\325s set tic marks every two units.) 81.21 178 T
+( 2 /settickmarks slider send) 81.21 162 T
+FMENDPAGE
+%%EndPage: "251" 26
+%%Page: "252" 26
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (252) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+( % Make values integers.) 81.21 626 T
+( { round cvi } /setnormalizer slider send) 81.21 610 T
+( ) 54 594 T
+( % Set up slider target, notifier, and previewer.) 54 578 T
+( win /settarget slider send) 54 562 T
+( ) 54 546 T
+( { % Notifier:) 54 530 T
+(% value slider) 288 530 T
+(client_handle tagprint) 81.21 514 T
+(1 index typedprint) 81.21 498 T
+(% Tell target \050our window\051 to set its footer.) 81.21 466 T
+(exch \050%\051 sprintf) 81.21 450 T
+(% s \050v\051) 288 450 T
+(\050Slider Notify\051 exch) 81.21 434 T
+(% s \050SN\051 \050v\051) 288 434 T
+(/setfooter /sendtarget 5 -1 roll) 81.21 418 T
+(% \050SN\051 \050v\051 /sf /st s) 288 418 T
+(send) 81.21 402 T
+(% -) 288 402 T
+( } /setnotifier slider send) 54 386 T
+( ) 54 370 T
+( { % Previewer:) 54 354 T
+(% value slider) 288 354 T
+(% Tell target \050our window\051 to set its footer.) 81.21 338 T
+(exch \050%\051 sprintf) 81.21 322 T
+(% s \050v\051) 288 322 T
+(\050Slider Preview\051 exch) 81.21 306 T
+(% s \050SN\051 \050v\051) 288 306 T
+(/setfooter /sendtarget 5 -1 roll) 81.21 290 T
+(% \050SN\051 \050v\051 /sf /st s) 288 290 T
+(send) 81.21 274 T
+(%) 288 274 T
+( } /setpreviewer slider send) 54 258 T
+( ) 54 242 T
+( % Put the slider in the center of the panel.) 54 226 T
+( /slider slider [/Center {/Center PARENT POSITION}]) 54 210 T
+( /addclient pan send) 54 194 T
+( ) 54 178 T
+FMENDPAGE
+%%EndPage: "252" 27
+%%Page: "253" 27
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The W) 198 108.7 B
+-0.58 0.09 (ir) 221.9 108.7 B
+-0.58 0.09 (e Service) 227.91 108.7 B
+0 F
+0.09 (253) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (26) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+( % Size it) 54 642 T
+( x y width /minsize slider send exch pop) 54 626 T
+( /reshape slider send) 54 610 T
+( ) 54 594 T
+( /QuitFromUser { % CallingControl => -) 54 578 T
+(pop) 81.21 562 T
+(quit_tag tagprint) 81.21 546 T
+(/QuitFromUser super send) 81.21 530 T
+( } /installmethod win send) 54 514 T
+( % Reshape and activate the window.) 54 482 T
+( 20 40 20 40 /setgaps win send) 54 466 T
+( /place win send) 54 450 T
+( /new ClassEventMgr send /activate win send) 54 434 T
+( /map win send) 54 418 T
+( % Now associate the server_handle token with the slider) 54 386 T
+( slider server_handle setfileinputtoken) 54 370 T
+(%) 54 354 T
+(% Grow the slider. Don\325t ask me why.) 54 338 T
+(%) 54 322 T
+(% Note that server_handle is declared as a token so that the usertoken) 54 306 T
+(% lookup will be performed.) 54 290 T
+(%) 54 274 T
+(cdef ps_grow_slider\050token server_handle, int delta\051) 54 258 T
+( /bbox server_handle send) 81.21 242 T
+( exch delta add exch) 81.21 226 T
+( /reshape server_handle send) 81.21 210 T
+( /bbox win send /preferredsize win send) 81.21 178 T
+( xymax /reshape win send) 81.21 162 T
+FMENDPAGE
+%%EndPage: "253" 28
+%%Page: "254" 28
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (26) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (254) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+FMENDPAGE
+%%EndPage: "254" 29
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 28 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Courier
+%%+ Times-Bold
+%%+ Palatino-Bold
+%%+ Palatino-BoldItalic
+%%+ Helvetica
+%%+ Times-Roman
+%%+ Courier-Bold

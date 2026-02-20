@@ -1,0 +1,3131 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 9 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Italic FMDEFINEFONT
+1 9 /Palatino-Roman FMDEFINEFONT
+2 18 /Bookman-Light FMDEFINEFONT
+3 14 /Palatino-Italic FMDEFINEFONT
+4 13 /Palatino-Italic FMDEFINEFONT
+5 11 /Palatino-BoldItalic FMDEFINEFONT
+6 10 /Palatino-Roman FMDEFINEFONT
+%%Page: "1" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (1) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+53.08 71.5 126.42 145 R
+7 X
+V
+0 X
+-53.08 -71.5 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+-1.44 (Lab 2: Building a T) 142.7 636 P
+-1.44 (oDo List, Using Jot) 305.6 636 P
+3 F
+-0.88 (Objective: Design and implement a todo list.) 126 600.67 P
+4 F
+-0.84 0.13 (Design \050minimal\051:) 198 546.93 B
+5 F
+-0.71 0.11 (UI Components:) 198.11 521.27 B
+6 F
+0.1 (Basewindow) 126.1 504.93 S
+0.1 (textpane) 126.1 484.53 S
+0.52 0.1 (scr) 126.1 464.13 B
+0.52 0.1 (olling list) 138.84 464.13 B
+0.52 0.1 (Insert button) 126.1 443.73 B
+0.52 0.1 (Delete button) 126.1 423.33 B
+4 F
+0.13 (Functionality:) 198.13 370.53 S
+6 F
+0.52 0.1 (Should be able to type into text pane.) 126.1 353.53 B
+0.52 0.1 (Should have some mnemonic to identify an item in the list) 126.1 333.13 B
+0.23 0.1 (The insert button should cause the text in the text pane to be ) 126.1 312.73 B
+0.23 0.1 (associated permanently with that ) 404.01 312.73 B
+0.52 0.1 (list item.) 126 300.33 B
+0.52 0.1 (Choosing an item in the scr) 126.1 279.93 B
+0.52 0.1 (olling list should display its ) 251.85 279.93 B
+0.52 0.1 (associated text.) 382.69 279.93 B
+0.52 0.1 (The delete button should permanently r) 126.1 259.53 B
+0.52 0.1 (emove an item and its ) 308.73 259.53 B
+0.52 0.1 (associated text.) 413.54 259.53 B
+0.52 0.1 ( ) 126 239.14 B
+0.52 0.1 (This suggests that each item be identi\336ed with some kind of ) 129.22 239.14 B
+0.52 0.1 (header) 408.49 239.14 B
+0.52 0.1 (, that the client should ) 438.8 239.14 B
+0.17 0.1 (keep track of the header string ) 126 226.73 B
+0.17 0.1 (and associated text, and that the scr) 267.44 226.73 B
+0.17 0.1 (olling list, insert, and ) 429 226.73 B
+0.17 0.1 (delete ) 528 226.73 B
+0.52 0.1 (buttons should all be capable of sending messages to the ) 126 214.34 B
+0.52 0.1 (client. The client should be ) 389.17 214.34 B
+0.52 0.1 (r) 126 201.93 B
+0.52 0.1 (esponsible for updating the text ) 129.87 201.93 B
+0.52 0.1 (displayed in the text pane. The client should also be ) 278.77 201.93 B
+0.52 0.1 (r) 126 189.53 B
+0.52 0.1 (esponsible ) 129.87 189.53 B
+0.52 0.1 (for updating the scr) 180.76 189.53 B
+0.52 0.1 (olling list when an item is inserted or deleted. ) 271.53 189.53 B
+FMENDPAGE
+%%EndPage: "1" 2
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (2) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+485.17 70.17 558.5 143.67 R
+7 X
+V
+0 X
+-485.17 -70.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 (Wher) 126.1 641.33 B
+0.52 0.1 (e will the header come fr) 150.87 641.33 B
+0.52 0.1 (om? W) 265.21 641.33 B
+0.52 0.1 (e could take the \336rst few ) 296.53 641.33 B
+0.52 0.1 (wor) 413.46 641.33 B
+0.52 0.1 (ds of the text fr) 431.32 641.33 B
+0.52 0.1 (om the text ) 501.64 641.33 B
+0.16 0.1 (pane. For purposes of illustration, ) 126 628.93 B
+0.16 0.1 (we will add an extra text\336eld, for a mnemonic header) 282.7 628.93 B
+0.16 0.1 (. What ) 525.31 628.93 B
+0.31 0.1 (if ) 126 616.53 B
+0.31 0.1 (our user doesn\325t type anything into the header \336eld? By default, ) 135.45 616.53 B
+0.31 0.1 (we\325ll use the index number ) 430.8 616.53 B
+0.52 0.1 (of the newly-inserted item. ) 126 604.13 B
+0.52 0.1 (What messages need to be passed to the client by our widgets? ) 126.1 583.73 B
+0.52 0.1 (The scr) 418.09 583.73 B
+0.52 0.1 (olling list needs to tell ) 450.98 583.73 B
+0.52 0.1 (the client which item has been chosen. ) 126 571.33 B
+0.52 0.1 (The insert and delete buttons need to tell the client ) 305.22 571.33 B
+0.52 0.1 (when they ) 126 558.93 B
+0.52 0.1 (have been activated. ) 177.31 558.93 B
+0.52 0.1 (What other information does the client need? ) 126.1 538.53 B
+0.52 0.1 (The text in the text pane, and the string in the ) 336.38 538.53 B
+0.52 0.1 (header) 126 526.13 B
+0.52 0.1 (. ) 156.3 526.13 B
+0.52 0.1 (Jot calls will take car) 162.12 526.13 B
+0.52 0.1 (e of the former) 256.89 526.13 B
+0.52 0.1 (, while cps can be used for ) 324.43 526.13 B
+0.52 0.1 (the latter) 449.85 526.13 B
+0.52 0.1 (. W) 490.15 526.13 B
+0.52 0.1 (e don\325t ) 505.04 526.13 B
+0.52 0.1 (particularly want either of these widgets to ) 126 513.73 B
+0.52 0.1 (notify the client on every state change, since their ) 327.12 513.73 B
+0.52 0.1 (behavior is ) 126 501.33 B
+0.52 0.1 (much mor) 179.57 501.33 B
+0.52 0.1 (e complicated.  ) 226.54 501.33 B
+4 F
+-0.84 0.13 (Layout with Devguide:) 198 468.93 B
+6 F
+0.1 (1.) 138.6 451.93 S
+0.52 0.1 (make a dir) 162.1 451.93 B
+0.52 0.1 (ectory) 211.08 451.93 B
+0.52 0.1 (, \322todo\323) 238.02 451.93 B
+0.1 (2.) 138.6 431.53 S
+0.52 0.1 (cd todo, then make a dir) 162.1 431.53 B
+0.52 0.1 (ectory \322gnt\323, and a dir) 274.54 431.53 B
+0.52 0.1 (ectory \322min\323.) 378.18 431.53 B
+0.1 (3.) 138.6 411.13 S
+0.52 0.1 (cd gnt, open up guide with \322guide &\323 in a shelltool or commandtool.) 162.1 411.13 B
+0.1 (4.) 138.6 390.73 S
+0.52 0.1 (Drag a basewindow out, and r) 162.1 390.73 B
+0.52 0.1 (esize it to take up about 1/4 scr) 301.66 390.73 B
+0.52 0.1 (een.) 447.08 390.73 B
+0.1 (5.) 138.6 370.33 S
+0.52 0.1 (Drag a textpane onto one half of the basewindow) 162.1 370.33 B
+0.52 0.1 (.) 387.59 370.33 B
+0.1 (6.) 138.6 349.93 S
+0.52 0.1 (T) 162.1 349.93 B
+0.52 0.1 (ry to drag a scr) 167.43 349.93 B
+0.52 0.1 (olling list dir) 237.37 349.93 B
+0.52 0.1 (ectly onto another part of the base.) 296.56 349.93 B
+0.1 (7.) 138.6 329.54 S
+0.52 0.1 (Make a contr) 162.1 329.54 B
+0.52 0.1 (ol ar) 221.87 329.54 B
+0.52 0.1 (ea to take up the r) 242.52 329.54 B
+0.52 0.1 (est of the basewindow) 326.27 329.54 B
+0.52 0.1 (.) 427.94 329.54 B
+0.1 (8.) 138.6 309.14 S
+0.52 0.1 (Put a scr) 162.1 309.14 B
+0.52 0.1 (olling list into the contr) 201.8 309.14 B
+0.52 0.1 (ol ar) 309.38 309.14 B
+0.52 0.1 (ea.) 330.03 309.14 B
+0.1 (9.) 138.6 288.73 S
+0.52 0.1 (Put 2 buttons into the contr) 162.1 288.73 B
+0.52 0.1 (ol ar) 287.93 288.73 B
+0.52 0.1 (ea.) 308.58 288.73 B
+0.1 (10.) 138.6 268.34 S
+0.3 0.1 (Finally) 162.1 268.34 B
+0.3 0.1 (, put a text \336eld somewher) 192.34 268.34 B
+0.3 0.1 (e in the contr) 314.06 268.34 B
+0.3 0.1 (ol ar) 373.97 268.34 B
+0.3 0.1 (ea. Feel fr) 394.4 268.34 B
+0.3 0.1 (ee ) 438.52 268.34 B
+0.3 0.1 (to move things ar) 451.3 268.34 B
+0.3 0.1 (ound ) 531.19 268.34 B
+0.52 0.1 (and r) 138.6 255.93 B
+0.52 0.1 (esize dif) 162.81 255.93 B
+0.52 0.1 (fer) 200.61 255.93 B
+0.52 0.1 (ent objects to get a visually ) 212.79 255.93 B
+0.52 0.1 (pleasing layout. ) 340.41 255.93 B
+5 F
+-0.71 0.11 (Using pr) 198.11 226.87 B
+-0.71 0.11 (operties:) 239.89 226.87 B
+6 F
+0.31 0.1 (W) 126 210.53 B
+0.31 0.1 (e will be able to let Devguide and gnt, the TNT code generator for Devguide, do most of the ) 135.18 210.53 B
+0.52 0.1 (work in setting up the server) 126 198.14 B
+0.52 0.1 (-side contr) 258.91 198.14 B
+0.52 0.1 (ol noti\336ers and the client-side callbacks. W) 307.13 198.14 B
+0.52 0.1 (e can ) 502.31 198.14 B
+0.52 0.1 (generate the basic framework thr) 126 185.73 B
+0.52 0.1 (ough setting pr) 277.21 185.73 B
+0.52 0.1 (operties in Devguide, and \336ll in application-) 347.2 185.73 B
+0.52 0.1 (speci\336c code in the stubs gnt will generate.) 126 173.34 B
+FMENDPAGE
+%%EndPage: "2" 3
+2 10 /Courier FMDEFINEFONT
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (3) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+53.08 71.5 126.42 145 R
+7 X
+V
+0 X
+-53.08 -71.5 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 (Select one of the buttons, then pr) 126.1 641.33 B
+0.52 0.1 (ess MENU and select Pr) 277.28 641.33 B
+0.52 0.1 (operties. Alternatively) 387.6 641.33 B
+0.52 0.1 (, double-click ) 488.25 641.33 B
+0.25 0.1 (SELECT on the button. ) 126 628.93 B
+0.25 0.1 (Change the name of the selected button to \322InsertButton\323, and its ) 233.05 628.93 B
+0.25 0.1 (label ) 533.52 628.93 B
+0.52 0.1 (to \322Insert\323. ) 126 616.53 B
+0.52 0.1 (In the bottom half of the Pr) 180.06 616.53 B
+0.52 0.1 (operties window) 305.3 616.53 B
+0.52 0.1 (, ther) 381.25 616.53 B
+0.52 0.1 (e is a text\336eld for the Notify ) 405 616.53 B
+0.11 0.1 (handler for the contr) 126 604.13 B
+0.11 0.1 (ol. T) 219.63 604.13 B
+0.11 0.1 (ype in the name InsertItemHandler in this \336eld. Then pr) 238.83 604.13 B
+0.11 0.1 (ess the Apply ) 493.3 604.13 B
+0.52 0.1 (button in the bottom of the window) 126 591.73 B
+0.52 0.1 (. When the code is generated, ther) 289.91 591.73 B
+0.52 0.1 (e will be a C function ) 446.3 591.73 B
+0.52 0.1 (stub with the name InsertItemHandler) 126 579.33 B
+0.52 0.1 (, and that function will be called, via the W) 301.12 579.33 B
+0.52 0.1 (ir) 499.46 579.33 B
+0.52 0.1 (e Service, ) 506.34 579.33 B
+0.52 0.1 (whenever the Insert button is pr) 126 566.93 B
+0.52 0.1 (essed.) 273.76 566.93 B
+0.52 0.1 (Similarly) 126 546.53 B
+0.52 0.1 (, select the other button in the list at the top of the Pr) 166 546.53 B
+0.52 0.1 (operties  ) 409.61 546.53 B
+0.52 0.1 (window) 452.14 546.53 B
+0.52 0.1 (. ) 488.78 546.53 B
+0.52 0.1 (Change the ) 494.6 546.53 B
+0.52 0.1 (name to \322DeleteButton\323, the label to \322Delete\323. ) 126 534.13 B
+0.52 0.1 (T) 340.21 534.13 B
+0.52 0.1 (ype in the name DeleteItemHandler in the ) 345.54 534.13 B
+0.52 0.1 (notify handler text\336eld. Hit the Apply button at bottom of window) 126 521.73 B
+0.52 0.1 (.) 433 521.73 B
+0.52 0.1 ( ) 126 501.33 B
+0.52 0.1 (Select the scr) 129.22 501.33 B
+0.52 0.1 (olling list in our layout, then \322Pr) 188.39 501.33 B
+0.52 0.1 (operties\323. ) 338.2 501.33 B
+0.52 0.1 (Change the name of the list to ) 385.31 501.33 B
+0.52 0.1 (\322T) 126 488.93 B
+0.52 0.1 (oDoList\323. Put a label on it if ) 136.4 488.93 B
+0.52 0.1 (desir) 268.51 488.93 B
+0.52 0.1 (ed. The height and width of the scr) 290.82 488.93 B
+0.52 0.1 (olling list can be ) 452.15 488.93 B
+0.52 0.1 (changed  ) 126 476.53 B
+0.52 0.1 (in its Pr) 170.55 476.53 B
+0.52 0.1 (operties window) 206.43 476.53 B
+0.52 0.1 (, height by specifying number of r) 282.37 476.53 B
+0.52 0.1 (ows. Since we also will ) 438.64 476.53 B
+0.07 0.1 (want the scr) 126 464.13 B
+0.07 0.1 (olling list to notify the client when an item is chosen fr) 181.05 464.13 B
+0.07 0.1 (om the list, we need a notify ) 427.13 464.13 B
+0.52 0.1 (handler her) 126 451.73 B
+0.52 0.1 (e, too. T) 178.87 451.73 B
+0.52 0.1 (ype the name ChooseItemHandler in the notify handler text\336eld.) 214.99 451.73 B
+0.11 0.1 (Select the text\336eld, then \322Pr) 126.1 431.33 B
+0.11 0.1 (operties\323, and change its name to ) 252 431.33 B
+0.11 0.1 (HeaderField, its label to Header) 405.91 431.33 B
+0.11 0.1 (.  ) 549.69 431.33 B
+0.52 0.1 (Finally) 126 410.93 B
+0.52 0.1 (, save the layout by choosing \322Save As\323 fr) 156.24 410.93 B
+0.52 0.1 (om guide\325s File menu. ) 349.38 410.93 B
+0.52 0.1 (Save in dir) 454.55 410.93 B
+0.52 0.1 (ectory ) 503.87 410.93 B
+0.52 0.1 (todo/gnt, name todo_min.) 126 398.54 B
+3 F
+-0.88 (Generating code:) 126 365.47 P
+6 F
+0.52 0.1 (Make sur) 126.1 344.14 B
+0.52 0.1 (e curr) 168.75 344.14 B
+0.52 0.1 (ent dir) 195.33 344.14 B
+0.52 0.1 (ectory is todo/gnt.) 225.7 344.14 B
+0.52 0.1 ( ) 126 323.73 B
+0.52 0.1 (Run) 129.22 323.73 B
+2 F
+( GNT -v todo_min ) 162 307.33 T
+6 F
+0.52 0.1 (Options v for verbose. GNT is a shell script that r) 126.1 287.33 B
+0.52 0.1 (uns gnt, telling it to generate C++ code.) 353.05 287.33 B
+4 F
+-0.84 0.13 (Examining the generated NeWS code:) 198 254.93 B
+6 F
+0.52 0.1 (W) 126 237.93 B
+0.52 0.1 (e will use this code nearly verbatim, with possibly one minor change. Depending on the ) 135.18 237.93 B
+0.52 0.1 (geometry of your individual layout, gnt may fail to generate code to cr) 126 225.53 B
+0.52 0.1 (eate a container object ) 450.82 225.53 B
+0.52 0.1 (to hold the Jot canvas and its scr) 126 213.14 B
+0.52 0.1 (ollbar for the scr) 275.34 213.14 B
+0.52 0.1 (ollable textpane you cr) 350.98 213.14 B
+0.52 0.1 (eated in Devguide. ) 455.14 213.14 B
+0.52 0.1 (Sear) 126 200.73 B
+0.52 0.1 (ch the \336le todo_min.ps for the de\336nition of /textpane1. If you \336nd a line that looks like:) 145.2 200.73 B
+2 F
+(/textpane1 window1 soften def) 162 186.34 T
+6 F
+0.52 0.1 (delete it, and insert:) 126 167.34 B
+FMENDPAGE
+%%EndPage: "3" 4
+3 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (4) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+485.17 70.17 558.5 143.67 R
+7 X
+V
+0 X
+-485.17 -70.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+(/textpane1_bbag framebuffer /new ClassBorderBag send def) 162 641.33 T
+(/Center textpane1_bbag /addclient window1 send) 162 628.33 T
+(/textpane1 textpane1_bbag soften def) 162 615.33 T
+6 F
+0.06 0.1 (W) 126 596.33 B
+0.06 0.1 (e just added a bor) 135.18 596.33 B
+0.06 0.1 (der bag to hold the Jot canvas and its scr) 215.71 596.33 B
+0.06 0.1 (ollbar) 398.68 596.33 B
+0.06 0.1 (. They will actually be added ) 424.29 596.33 B
+0.38 0.1 (in when the client side calls the function /ADDJ \050de\336ned near the bottom of todo_min.ps\051. ) 126 583.93 B
+3 F
+0.38 0.1 (Be ) 543.06 583.93 B
+0.52 0.1 (sure to copy todo_min.ps into the directory todo/min.) 126 571.53 B
+4 F
+-0.84 0.13 ( Examining the generated C++ code:) 198 539.13 B
+6 F
+0.51 0.1 (The client-side code is contained in todo_min.cc. ) 126.1 522.13 B
+0.51 0.1 (W) 351.45 522.13 B
+0.51 0.1 (e will modify this \336le fairly extensively) 360.62 522.13 B
+0.51 0.1 (, so ) 539.18 522.13 B
+-0 0.1 (copy todo/gnt/todo_min.cc to todo/min, and open it for editing. Let\325s examine the code to see ) 126 509.73 B
+0.52 0.1 (the elements of our client-side ar) 126 497.33 B
+0.52 0.1 (chitectur) 276.23 497.33 B
+0.52 0.1 (e.  ) 315.83 497.33 B
+0.52 0.1 (C-1: The pr) 126.1 476.93 B
+0.52 0.1 (oper #include \336les ar) 177.65 476.93 B
+0.52 0.1 (e alr) 273.74 476.93 B
+0.52 0.1 (eady her) 293.72 476.93 B
+0.52 0.1 (e, courtesy of GNT) 333.36 476.93 B
+0.52 0.1 (, with one exception: we will ) 419.31 476.93 B
+0.52 0.1 (be using Jot \322spans\323, so be sur) 126 464.53 B
+0.52 0.1 (e to add) 265.94 464.53 B
+2 F
+(#include <NeWS/jot/span.h>) 162 450.13 T
+6 F
+0.52 0.1 (at the top of the \336le, below the other jot #includes.) 126 431.13 B
+0.52 0.1 (C-2: Callbacks) 126 410.73 B
+0.52 0.1 (These) 126 390.33 B
+0.52 0.1 ( have alr) 152.36 390.33 B
+0.52 0.1 (eady been de\336ned for us by gnt as stubs. In addition to the thr) 192.21 390.33 B
+0.52 0.1 (ee handlers we ) 479.67 390.33 B
+0.52 0.1 (typed into the Pr) 126 377.93 B
+0.52 0.1 (operties windows, ther) 203.58 377.93 B
+0.52 0.1 (e will be a function called window1quit\050\051.) 308.53 377.93 B
+0.52 0.1 ( Each of the callbacks has a default section, marked by pr) 126 357.53 B
+0.52 0.1 (epr) 388.95 357.53 B
+0.52 0.1 (ocessor dir) 403.82 357.53 B
+0.52 0.1 (ectives and comments:) 453.28 357.53 B
+0.52 0.1 (#ifdef PROT) 126 337.14 B
+0.52 0.1 (O) 182.09 337.14 B
+0.1 (...) 126 316.73 S
+0.1 (#else) 126 296.33 S
+0.52 0.1 (/* Custom code Her) 126 275.93 B
+0.52 0.1 (e */) 219.35 275.93 B
+0.1 (#endif) 126 255.53 S
+0.11 0.1 (Most of our editing will be to \336ll in our own code between the #else and the #endif. W) 126 235.14 B
+0.11 0.1 (e will \336ll ) 515.17 235.14 B
+0.52 0.1 (in the code stubs after we\325r) 126 222.73 B
+0.52 0.1 (e done with the main loop. ) 250.54 222.73 B
+FMENDPAGE
+%%EndPage: "4" 5
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (5) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+53.08 71.5 126.42 145 R
+7 X
+V
+0 X
+-53.08 -71.5 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 (C-3: Allocate tags and tokens) 126.1 641.33 B
+0.52 0.1 (Most of this has been done for us by gnt. Recall that our design speci\336ed that whatever the ) 126 620.93 B
+0.48 0.1 (user had typed in the Header: \336eld would be used as the mnemonic label for the scr) 126 608.53 B
+0.48 0.1 (olling list ) 511.87 608.53 B
+0.3 0.1 (item. Hence, we need to be able to r) 126 596.13 B
+0.3 0.1 (efer to the Header \336eld fr) 289.26 596.13 B
+0.3 0.1 (om the client, so we will need an ) 405.17 596.13 B
+0.52 0.1 (extra token. Find the declarations of the tokens and tags at the top of the \336le, and add the ) 126 583.73 B
+0.1 (declaration) 126 571.33 S
+2 F
+(int tk_HeaderField;) 162 556.93 T
+6 F
+0.52 0.1 (below the declaration of tk_T) 126 537.93 B
+0.52 0.1 (oDoList. Next, \336nd the declaration of the array) 259.28 537.93 B
+2 F
+(int * tokenarray [] =) 162 523.53 T
+6 F
+0.52 0.1 (and add the line) 126 504.53 B
+2 F
+(&tk_HeaderField,) 162 490.13 T
+6 F
+0.52 0.1 (immediately above the null \0500\051. The tags and tokens will now be allocated when the pr) 126 471.13 B
+0.52 0.1 (ogram ) 523.78 471.13 B
+0.1 (r) 126 458.73 S
+0.1 (uns.) 129.97 458.73 S
+0.52 0.1 (C-4: Registration) 126.1 438.33 B
+0.52 0.1 (Again, most of this has been done for us by gnt. W) 126 417.93 B
+0.52 0.1 (e did add an extra token, tk_HeaderField, ) 358.96 417.93 B
+0.52 0.1 (above, so we must put in code to associate that token with a server object. Find the de\336nition ) 126 405.53 B
+0.52 0.1 (of the function Allocate_todo_min_tags\050\051, and insert the line) 126 393.13 B
+0.1 (PS_SetHeaderFieldT) 126 372.73 S
+0.1 (oken\050) 217.79 372.73 S
+2 F
+(tk_HeaderField) 243.24 372.73 T
+6 F
+0.1 (\051;) 327.19 372.73 S
+0.52 0.1 (immediately after the call to cps_setT) 126 352.33 B
+0.52 0.1 (oDoList\050\051. PS_SetHeaderFieldT) 296.08 352.33 B
+0.52 0.1 (oken is a simple cps ) 436.3 352.33 B
+0.52 0.1 (function that we will have to add to the \336le todo_min_cps.cps.) 126 339.93 B
+0.52 0.1 ( C-5: Server Initialization) 126.2 319.54 B
+0.52 0.1 (Find the de\336nition of the function r) 126 299.14 B
+0.52 0.1 (untodo_min\050\051, near ) 288.63 299.14 B
+0.52 0.1 (the bottom of the \336le. The lines: ) 380.04 299.14 B
+2 F
+-0.72 (if \050\050i = loadPostScript\050todo_min.ps\051\051 != 0\051/*Non-zero is an error*/) 162 284.73 P
+({) 180 271.73 T
+(#ifdef PROTO) 162 258.73 T
+(printf\050\322todo_min.ps failed to load\134n\323\051;) 180 245.73 T
+(#else) 162 232.73 T
+(/* Custom code for Handling File Load Error */) 180 219.73 T
+(#endif) 162 206.73 T
+(return\050i\051;) 180 193.73 T
+(/* Error condition from loadPostScript */) 252 193.73 T
+(}) 162 180.73 T
+6 F
+0.52 0.1 (load the NeWS code into the server) 126 161.73 B
+0.52 0.1 (.) 287.88 161.73 B
+FMENDPAGE
+%%EndPage: "5" 6
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (6) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+485.17 70.17 558.5 143.67 R
+7 X
+V
+0 X
+-485.17 -70.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 (The function r) 126.2 641.33 B
+0.52 0.1 (untodo_min\050\051 also initializes Jot, cr) 191.28 641.33 B
+0.52 0.1 (eates a Jot V) 351.37 641.33 B
+0.52 0.1 (iew) 407.49 641.33 B
+0.52 0.1 (, adds ) 422.91 641.33 B
+0.52 0.1 (a scr) 453.69 641.33 B
+0.52 0.1 (ollbar to the Jot ) 474.65 641.33 B
+0.35 0.1 (view) 126 628.93 B
+0.35 0.1 (, and sets up Jot mouse and keyboar) 147.16 628.93 B
+0.35 0.1 (d ) 312.53 628.93 B
+0.35 0.1 (handlers; it then calls cps_add_jot_pane to install it ) 321.79 628.93 B
+0.52 0.1 (all in our ) 126 616.53 B
+0.52 0.1 (basewindow) 171.23 616.53 B
+0.52 0.1 (. ) 227.81 616.53 B
+0.52 0.1 (C-6: Enter wir) 126.1 596.13 B
+0.52 0.1 (e service noti\336er) 190.38 596.13 B
+0.52 0.1 (.) 265.13 596.13 B
+0.52 0.1 (This is the main event pr) 126.2 575.73 B
+0.52 0.1 (ocessing loop in the client, ) 240.51 575.73 B
+0.52 0.1 (and should stay as is at the bottom of ) 365.07 575.73 B
+0.52 0.1 (main\050\051. Our only addition will be ) 126 563.33 B
+0.52 0.1 (to close the wir) 281.81 563.33 B
+0.52 0.1 (e connection once out of the loop. Add) 351.89 563.33 B
+2 F
+(wire_Close\050thiswire\051;) 162 548.93 T
+6 F
+0.52 0.1 (dir) 126.1 529.93 B
+0.52 0.1 (ectly above the r) 139.18 529.93 B
+0.52 0.1 (eturn statement at the bottom of main\050\051.  ) 214.93 529.93 B
+5 F
+-0.71 0.11 (De\336ning the Callbacks:) 198.11 500.87 B
+6 F
+0.19 0.1 (The function windowquit\050\051 is pr) 126.2 484.53 B
+0.19 0.1 (ovided by gnt, and needs no modi\336cation. It is r) 272.14 484.53 B
+0.19 0.1 (egister) 490.52 484.53 B
+0.19 0.1 (ed with ) 520.52 484.53 B
+0.52 0.1 (the wir) 126 472.13 B
+0.52 0.1 (e service to inter) 158.59 472.13 B
+0.52 0.1 (cept the Quit message sent to the client when the user chooses Quit ) 234.24 472.13 B
+0.52 0.1 (fr) 126 459.73 B
+0.52 0.1 (om the base window menu.) 133.3 459.73 B
+0.52 0.1 ( ) 126.2 439.33 B
+0.52 0.1 (In an ef) 129.52 439.33 B
+0.52 0.1 (fort to concentrate on the pieces of this pr) 164.29 439.33 B
+0.52 0.1 (ogram ) 355.62 439.33 B
+0.52 0.1 (dir) 388.12 439.33 B
+0.52 0.1 (ectly r) 401.21 439.33 B
+0.52 0.1 (elated to communication ) 429.64 439.33 B
+0.51 0.1 (with the toolkit, a data str) 126 426.93 B
+0.51 0.1 (uctur) 245.03 426.93 B
+0.51 0.1 (e ) 269.05 426.93 B
+0.51 0.1 (and associated manipulators ar) 277.14 426.93 B
+0.51 0.1 (e declar) 419.66 426.93 B
+0.51 0.1 (ed in the #include \336le ) 455.26 426.93 B
+0.52 0.1 (\322itementry) 126 414.53 B
+0.52 0.1 (.h\323 . List manipulation utilities ar) 174.03 414.53 B
+0.52 0.1 (e declar) 326.94 414.53 B
+0.52 0.1 (ed in an #include \336le  ) 362.55 414.53 B
+0.52 0.1 (\322todo\336le.h\323, and a ) 465.22 414.53 B
+0.52 0.1 (library) 126 402.13 B
+0.52 0.1 (, libT) 155.38 402.13 B
+0.52 0.1 (ODO.a, is pr) 178.79 402.13 B
+0.52 0.1 (ovided. ) 236.39 402.13 B
+3 F
+0.52 0.1 (These are located in TUTORIAL/labcode/todo/lib-min, and ) 273.72 402.13 B
+0.52 0.1 (should be copied into your directory) 126 389.73 B
+0.52 0.1 (, todo/min, before attempting to compile the program) 297.57 389.73 B
+6 F
+0.52 0.1 (. ) 548.95 389.73 B
+0.52 0.1 (Feel fr) 126 377.33 B
+0.52 0.1 (ee, ) 154.85 377.33 B
+0.52 0.1 (however) 170.45 377.33 B
+0.52 0.1 (, to write your own. This is an interactive tutorial!) 209.18 377.33 B
+0.52 0.1 (All of the r) 126.2 356.93 B
+0.52 0.1 (emaining handlers need access to the data ) 176.46 356.93 B
+0.52 0.1 (associated with dif) 372.69 356.93 B
+0.52 0.1 (fer) 458.54 356.93 B
+0.52 0.1 (ent items. ) 470.72 356.93 B
+0.52 0.1 (Consequently) 126 344.54 B
+0.52 0.1 (, the \336rst thing ) 187.43 344.54 B
+0.52 0.1 (we need is a global pointer) 258.51 344.54 B
+0.52 0.1 (. Add the dir) 381.86 344.54 B
+0.52 0.1 (ectives) 441.35 344.54 B
+2 F
+(#include \322itementry.h\323) 162 330.14 T
+(#include \322todofile.h\323) 162 317.14 T
+6 F
+0.52 0.1 (at the top of the \336le, and the declaration) 126.1 298.14 B
+2 F
+(ItemEntry * root = NULL;) 162 283.73 T
+6 F
+0.32 0.1 (befor) 126.1 264.73 B
+0.32 0.1 (e main\050\051. W) 149.47 264.73 B
+0.32 0.1 (e also need to keep track of how many items ) 201.78 264.73 B
+0.32 0.1 (ar) 408.05 264.73 B
+0.32 0.1 (e in the list, so that we can get ) 417.01 264.73 B
+0.52 0.1 (and set indices in items as ) 126 252.34 B
+0.52 0.1 (insertions or deletions occur) 249.39 252.34 B
+0.52 0.1 (. Add another global declaration) 377.96 252.34 B
+2 F
+(int numberItems = 0;) 162 237.93 T
+6 F
+0.38 0.1 ( ) 126 218.93 B
+0.38 0.1 (ChooseItemHandler needs to do the following: when it is ) 129.18 218.93 B
+0.38 0.1 (called, the index of the chosen item ) 393.88 218.93 B
+0.52 0.1 (is sitting on the wir) 126 206.53 B
+0.52 0.1 (e, so ) 215.41 206.53 B
+0.52 0.1 (it must be r) 239.13 206.53 B
+0.52 0.1 (ead. gnt also generates code to send the string actually ) 291.98 206.53 B
+0.52 0.1 (displayed in the list; however) 126 194.14 B
+0.52 0.1 (, we have no particular use for it. Note well that it must be ) 261.12 194.14 B
+0.38 0.1 (r) 126 181.73 B
+0.38 0.1 (emoved fr) 129.87 181.73 B
+0.38 0.1 (om the wir) 176.35 181.73 B
+0.38 0.1 (e; otherwise, all sorts of nasty things can happen to you. Once the index ) 226.27 181.73 B
+0.13 0.1 (is r) 126 169.34 B
+0.13 0.1 (ead, the handler needs to \336nd the client str) 139.94 169.34 B
+0.13 0.1 (uctur) 333.76 169.34 B
+0.13 0.1 (e with ) 357.78 169.34 B
+0.13 0.1 (the same index; FindItem, de\336ned in ) 388.94 169.34 B
+0.52 0.1 (\322todo\336le.h\323 does just that. ) 126 156.94 B
+0.52 0.1 (It must then update the text pane and header; Jot library calls ) 249.58 156.94 B
+0.52 0.1 (will ) 535.25 156.94 B
+FMENDPAGE
+%%EndPage: "6" 7
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (7) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+53.08 71.5 126.42 145 R
+7 X
+V
+0 X
+-53.08 -71.5 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.18 0.1 (pr) 126 641.33 B
+0.18 0.1 (ovide the needed functionality) 135.98 641.33 B
+0.18 0.1 (. The itementry accessors ) 273.73 641.33 B
+0.18 0.1 (will be needed to r) 390.29 641.33 B
+0.18 0.1 (etrieve strings for ) 475.15 641.33 B
+0.52 0.1 (the header and text. ) 126 628.93 B
+0.52 0.1 (W) 220.46 628.93 B
+0.52 0.1 (e must also de\336ne a cps function to set the value of the header) 229.63 628.93 B
+0.52 0.1 (, ) 515.76 628.93 B
+0.52 0.1 (PS_SetHeader) 126 616.53 B
+0.52 0.1 (. Her) 188.98 616.53 B
+0.52 0.1 (e is the handler; our custom code is inserted between the #else and #endif ) 211.86 616.53 B
+0.1 (dir) 126 604.13 S
+0.1 (ectives.) 139.08 604.13 S
+2 F
+(void ChooseItemHandler\050int , caddr_t \051) 162 576.73 T
+({) 162 563.73 T
+(int index;) 180 550.73 T
+(/* Index of selected item */) 239.97 550.73 T
+(   int state;) 162 537.73 T
+(/* Boolean of selected */) 239.96 537.73 T
+(   char buf[256];) 162 524.73 T
+(/* Buffer for string */) 263.94 524.73 T
+(   index = wire_ReadInt \050\051;) 162 511.73 T
+(   state = wire_ReadInt \050\051;) 162 498.73 T
+(   wire_ReadString \050buf\051;) 162 485.73 T
+(#ifdef PROTO) 162 459.73 T
+(   if \050state\051) 162 446.73 T
+-0.41 (       printf\050"Client callback invoked: ToDoList called with index ) 162 433.73 P
+(%d value %s true\134n", index, buf\051;) 162 422.73 T
+(    else) 162 409.73 T
+-0.79 (        printf\050"Client callback invoked: ToDoList called with index ) 162 396.73 P
+(%d value %s false\134n", index, buf\051;) 162 385.73 T
+(#else) 162 372.73 T
+(   if \050state\051 {       // An item was turned on in the list) 162 359.73 T
+(     ) 162 346.73 T
+(ItemEntry * which = FindItem\050root, index\051;) 198 346.73 T
+(     ) 162 333.73 T
+(if \050!which\051 return;) 198 333.73 T
+(JotText_Clear\050textpane1_text\051;) 198 320.73 T
+(      JotText_InsertString\050textpane1_text, 0, which->GetItem\050\051\051;) 162 307.73 T
+(PS_SetHeader\050tk_HeaderField,which->GetHeader\050\051\051;) 198 294.73 T
+(}) 180 281.73 T
+(// If an item was turned off, ignore it) 234 281.73 T
+(#endif) 162 268.73 T
+(}) 162 255.73 T
+6 F
+0.1 (InsertItemHandler must \336rst r) 162 203.73 S
+0.1 (etrieve the text fr) 298.54 203.73 S
+0.1 (om the ) 375.47 203.73 S
+-0.13 0.1 (Jot pane and the header) 409.51 203.73 B
+-0.13 0.1 (, and use ) 515.42 203.73 B
+0.1 (those strings to initialize an ) 162 192.74 S
+-0.62 0.1 (ItemEntry instance. It must also incr) 289.14 192.74 B
+-0.62 0.1 (ement the numberItems ) 449.42 192.74 B
+0.1 (variable, ) 162 181.74 S
+0.1 (and append the new ItemEntry to the end of the list pointed to by ) 203.82 181.74 S
+-1.1 0.1 (r) 503.25 181.74 B
+-1.1 0.1 (oot. Then it ) 507.12 181.74 B
+0.1 (must tell the scr) 162 170.74 S
+0.1 (olling list to insert the new ) 233.71 170.74 S
+0.1 (header and do appr) 357.14 170.74 S
+0.1 (opriate highlighting. ) 446.14 170.74 S
+FMENDPAGE
+%%EndPage: "7" 8
+%%Page: "8" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (8) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+485.17 70.17 558.5 143.67 R
+7 X
+V
+0 X
+-485.17 -70.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+(void InsertItemHandler\050int tag, caddr_t data\051) 162 641.33 T
+({) 162 628.33 T
+(#ifdef PROTO) 162 615.33 T
+(      printf\050"Client callback invoked: InsertButton called  \134n"\051;) 162 602.33 T
+(#else) 162 589.33 T
+(    /* Custom code goes here */) 162 576.33 T
+(  ) 162 563.33 T
+(char itemHeader[HDRSIZE];) 180 563.33 T
+(  ) 162 550.33 T
+(char buf[ENTRYSIZE];) 180 550.33 T
+(int howMany;) 180 537.33 T
+(  ) 162 524.33 T
+(JotSpan *span;) 180 524.33 T
+(  ) 162 511.33 T
+(ItemEntry * newItem;) 180 511.33 T
+(  ) 162 498.33 T
+(buf[0] = \325\1340\325;) 180 498.33 T
+(  ) 162 485.33 T
+(itemHeader[0] = \325:\325;  // Used as key in item file) 180 485.33 T
+(  ) 162 472.33 T
+(PS_GetHeader\050tk_HeaderField, &itemHeader[1], t_scratch\051;) 180 472.33 T
+(  ) 162 459.33 T
+(numberItems++;) 180 459.33 T
+(  ) 162 446.33 T
+(// If no header, put in the current index) 180 446.33 T
+( ) 162 433.33 T
+(if \050itemHeader[1] == \325\1340\325\051 {) 180 433.33 T
+(sprintf\050&itemHeader[1], "%d", numberItems\051;) 198 420.33 T
+(PS_SetHeader\050tk_HeaderField, &itemHeader[1]\051;) 198 407.33 T
+(  ) 162 394.33 T
+(}) 180 394.33 T
+(  ) 162 381.33 T
+(// Get the text from Jot) 180 381.33 T
+(  ) 162 368.33 T
+(howMany = JotText_Characters\050textpane1_text\051;) 180 368.33 T
+(  ) 162 355.33 T
+(span = JotSpan_New\050textpane1_text, 0, howMany\051;) 180 355.33 T
+(  ) 162 342.33 T
+(if \050\050howMany = JotSpan_Contents\050span, buf\051\051 == -1\051 {) 180 342.33 T
+(buf[0] = \325\1340\325;) 198 329.33 T
+(  ) 162 316.33 T
+(} else {) 180 316.33 T
+(buf[howMany] = \325\1340\325;) 198 303.33 T
+(  ) 162 290.33 T
+(}) 180 290.33 T
+(  ) 162 277.34 T
+(// Initialize a new ItemEntry) 180 277.34 T
+(  ) 162 264.34 T
+(newItem = new Itementry\050itemHeader, buf, NULL\051;) 180 264.34 T
+(  ) 162 251.34 T
+(newItem->SetIndex\050numberItems-1\051;) 180 251.34 T
+(  ) 162 238.34 T
+(// Append the new item) 180 238.34 T
+(  ) 162 225.34 T
+(AppendItem\050root, newItem\051;) 180 225.34 T
+(  ) 162 212.34 T
+(// Update the scrolling list) 180 212.34 T
+(  ) 162 199.34 T
+(PS_AppendItemToList\050tk_ToDoList, &itemHeader[1]\051;) 180 199.34 T
+(  ) 162 186.34 T
+(PS_SetDefaultItem\050tk_ToDoList, numberItems-1\051;) 180 186.34 T
+(JotSpan_Free\050span\051;) 180 173.34 T
+(#endif) 162 160.34 T
+(}) 162 147.34 T
+FMENDPAGE
+%%EndPage: "8" 9
+%%Page: "9" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (9) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+53.08 71.5 126.42 145 R
+7 X
+V
+0 X
+-53.08 -71.5 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 ( ) 126 641.33 B
+0.52 0.1 (The DeleteItemHandler must determine the index of the item to ) 129.32 641.33 B
+0.52 0.1 (be deleted, r) 425.27 641.33 B
+0.52 0.1 (emove the ) 481.92 641.33 B
+0.52 0.1 (corr) 126 628.93 B
+0.52 0.1 (esponding data in the client, clear ) 144.01 628.93 B
+0.52 0.1 (the text pane and the HeaderField, calculate a newitem ) 302.15 628.93 B
+0.52 0.1 (to display) 126 616.53 B
+0.52 0.1 (, ) 170.35 616.53 B
+0.52 0.1 (and have the text pane and HeaderField display their new values. ) 176.16 616.53 B
+2 F
+(void DeleteItemHandler\050 int tag, caddr_t data\051) 162 602.13 T
+({) 162 589.13 T
+(#ifdef PROTO) 162 576.13 T
+(      printf\050"Client callback invoked: DeleteButton called  \134n"\051;) 162 563.13 T
+(#else) 162 550.13 T
+(/* Custom code goes here */) 180 537.13 T
+(int whichItem;) 180 524.13 T
+(  ) 162 511.13 T
+(int newDefaultIndex;) 180 511.13 T
+(  ) 162 498.13 T
+(ItemEntry * newDefault;) 180 498.13 T
+(  ) 162 485.13 T
+(PS_GetListValue\050tk_ToDoList, &whichItem, t_scratch\051;) 180 485.13 T
+(  ) 162 472.13 T
+(if \050whichItem == -1\051 return;) 180 472.13 T
+(// Item not found!) 414 472.13 T
+(  ) 162 446.13 T
+(numberItems--;) 180 446.13 T
+(  ) 162 433.13 T
+(DeleteItem\050root, whichItem\051;) 180 433.13 T
+(  ) 162 420.13 T
+(PS_DeleteItemFromList\050tk_ToDoList, whichItem\051;) 180 420.13 T
+(      ) 162 407.14 T
+(  ) 162 394.14 T
+(// Find the new item to display) 180 394.14 T
+(  ) 162 381.14 T
+(newDefaultIndex = NewDefaultItem\050whichItem, numberItems\051;) 180 381.14 T
+(  ) 162 368.14 T
+(JotText_Clear\050textpane1_text\051;) 180 368.14 T
+(  ) 162 355.14 T
+(if \050newDefaultIndex >= 0\051 {) 180 355.14 T
+(PS_SetDefaultItem\050tk_ToDoList, newDefaultIndex\051;) 198 342.14 T
+(newDefault = FindItem\050root, newDefaultIndex\051;) 198 329.14 T
+(JotText_InsertString\050textpane1_text, 0, ) 198 316.14 T
+(newDefault->GetItem\050\051\051;) 414 303.14 T
+(PS_SetHeader\050tk_HeaderField,newDefault->GetHeader\050\051\051;) 198 290.14 T
+(  ) 162 277.14 T
+(} else {) 180 277.14 T
+(PS_ClearHeader\050tk_HeaderField\051;) 198 264.14 T
+(  ) 162 251.14 T
+(}) 180 251.14 T
+(#endif) 162 238.14 T
+(}) 162 225.14 T
+4 F
+-0.84 0.13 ( Editing the generated cps code:) 198 194.14 B
+6 F
+0.29 0.1 ( Fr) 126 177.14 B
+0.29 0.1 (om our work with the \336le todo_min.cc, ther) 138.41 177.14 B
+0.29 0.1 (e have appear) 337.37 177.14 B
+0.29 0.1 (ed ) 400.83 177.14 B
+0.29 0.1 (several necessary additions for ) 414.91 177.14 B
+0.52 0.1 (communicating with server objects. ) 126 164.74 B
+0.52 0.1 ( Copy the \336le todo_min_cps.cps fr) 291.16 164.74 B
+0.52 0.1 (om todo/gnt into ) 448.04 164.74 B
+0.52 0.1 (todo/min, and open it for editing. ) 126 152.34 B
+0.52 0.1 (Her) 285.92 152.34 B
+0.52 0.1 (e ar) 303.09 152.34 B
+0.52 0.1 (e the additional functions we must de\336ne:) 320.06 152.34 B
+FMENDPAGE
+%%EndPage: "9" 10
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (10) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+485.17 70.17 558.5 143.67 R
+7 X
+V
+0 X
+-485.17 -70.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+2 F
+(PS_SetHeader) 162 615.33 T
+(PS_GetHeader) 162 602.33 T
+(PS_AppendItemToList) 162 589.33 T
+(PS_DeleteItemFromList) 162 576.33 T
+(PS_SetDefaultItem) 162 563.33 T
+(PS_ClearHeader) 162 550.33 T
+(PS_GetListValue) 162 537.33 T
+(PS_SetHeaderFieldToken) 162 524.33 T
+6 F
+0.52 0.1 (T) 126.1 505.33 B
+0.52 0.1 (ype or paste these de\336nitions into todo_min_cps.cps, below the gnt-generated functions:) 131.43 505.33 B
+2 F
+(cdef PS_SetDefaultItem\050 token slist, int item\051) 162 490.93 T
+(    [item] /setvalue slist send) 162 477.93 T
+(cdef PS_AppendItemToList\050 token slist, string item \051) 162 464.93 T
+(    item /appenditem slist send) 162 451.93 T
+(    /validate slist send) 162 438.93 T
+(    gsave slist setcanvas /Paint slist send grestore) 162 425.93 T
+(cdef PS_DeleteItemFromList\050 token slist, int itemindex\051) 162 412.93 T
+(    itemindex /deleteitem slist send) 162 399.93 T
+(    /validate slist send) 162 386.93 T
+(    gsave slist setcanvas /Paint slist send grestore) 162 373.93 T
+(cdef PS_SetHeader\050token fieldobj, string header\051) 162 360.93 T
+(    header /setvalue fieldobj send) 162 347.93 T
+(cdef PS_ClearHeader\050token hfield\051) 162 334.93 T
+(    nullstring /setvalue hfield send) 162 321.93 T
+-0.72 (cdef PS_GetHeader\050token obj, string header, int tag\051 => tag\050header\051) 162 308.93 P
+(    /value obj send) 162 295.93 T
+(    tag tagprint) 162 282.93 T
+(    typedprint) 162 269.93 T
+(cdef PS_GetListValue\050token list, int i, int tag\051 => tag\050i\051) 162 256.93 T
+(    /value list send) 162 243.93 T
+( % [] | [index]) 281.93 243.93 T
+(    dup length 0 eq {pop [ -1]} if) 162 230.93 T
+(% [index]|[-1]) 414 230.93 T
+(    aload pop) 162 217.93 T
+( ) 239.96 217.93 T
+(% index|-1) 414 217.93 T
+(    tag tagprint) 162 204.93 T
+(    typedprint) 162 191.93 T
+(cdef PS_SetHeaderFieldToken\050 int tok \051) 162 178.94 T
+(HeaderField tok setfileinputtoken) 180 165.94 T
+FMENDPAGE
+%%EndPage: "10" 11
+%%Page: "11" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit) 316.27 108.7 B
+1 F
+0.09 (1) 549.33 108.7 S
+0.09 (1) 553.42 108.7 S
+54 72 126 144 R
+7 X
+V
+0 X
+-54 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+53.08 71.5 126.42 145 R
+7 X
+V
+0 X
+-53.08 -71.5 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 (The \336nal bit of editing is to change the ) 126.1 641.33 B
+0.52 0.1 (array in setup_T) 306.92 641.33 B
+0.52 0.1 (oDoList to a nullarray:) 381.25 641.33 B
+2 F
+(cdef setup_ToDoList \050\051) 198 626.93 T
+([] /setitemlist ToDoList send) 216 613.93 T
+6 F
+0.52 0.1 ( ) 126 594.93 B
+0.52 0.1 (The Make\336le:) 126 574.53 B
+0.52 0.1 (Since we have added a library of utility r) 126.1 554.13 B
+0.52 0.1 (outines, the Make\336le needs a  ) 314.29 554.13 B
+0.52 0.1 (minor change. Copy ) 453.62 554.13 B
+0.47 0.1 (todo/gnt/todo_min.make into todo/min, and r) 126 541.73 B
+0.47 0.1 (ename it as Make\336le. Then add -lT) 343.19 541.73 B
+0.47 0.1 (ODO to the ) 501.88 541.73 B
+0.52 0.1 (end of ) 126 529.33 B
+0.52 0.1 (the line de\336ning LDLIBS:) 158.33 529.33 B
+2 F
+(LDLIBS = -ljot -lwire -lALERT -lcps -lTODO) 198 514.93 T
+6 F
+0.52 0.1 (Save the Make\336le. W) 126.1 495.93 B
+0.52 0.1 (e\325r) 221.71 495.93 B
+0.52 0.1 (e r) 233.34 495.93 B
+0.52 0.1 (eady to r) 245.21 495.93 B
+0.52 0.1 (un. T) 286.18 495.93 B
+0.52 0.1 (ype) 309.27 495.93 B
+2 F
+(make clean) 162 481.53 T
+6 F
+0.52 0.1 (followed by ) 126 462.53 B
+2 F
+(make) 162 448.13 T
+6 F
+0.52 0.1 (then type ) 126 429.13 B
+2 F
+(todo_min) 162 414.73 T
+6 F
+0.52 0.1 ( Assuming all has gone well, you can now play with the pr) 126 395.73 B
+0.52 0.1 (ogram. ) 397.55 395.73 B
+0.52 0.1 (T) 432.65 395.73 B
+0.52 0.1 (ype some text in the text ) 437.98 395.73 B
+0.52 0.1 (pane, and in the Header \336eld. T) 126 383.33 B
+0.52 0.1 (ry out the ) 271.34 383.33 B
+0.52 0.1 (buttons, try choosing dif) 319.7 383.33 B
+0.52 0.1 (fer) 431.95 383.33 B
+0.52 0.1 (ent items fr) 444.13 383.33 B
+0.52 0.1 (om the list.  ) 496.35 383.33 B
+4 F
+-0.84 0.13 (Enhancing the pr) 198 350.93 B
+-0.84 0.13 (ogram:) 289.3 350.93 B
+6 F
+0.52 0.1 ( ) 126 333.93 B
+0.52 0.1 (After trying out the pr) 129.32 333.93 B
+0.52 0.1 (ogram, a number of de\336ciencies ) 232.21 333.93 B
+0.52 0.1 (should become obvious. Feel fr) 381.76 333.93 B
+0.52 0.1 (ee to ) 524.1 333.93 B
+0.52 0.1 (think of others, and add to or ) 126 321.54 B
+0.52 0.1 (subtract fr) 264.72 321.54 B
+0.52 0.1 (om this list. ) 311.63 321.54 B
+0.48 0.1 (1\051. The most obvious de\336ciency is that we can not save our work ) 126.1 301.14 B
+0.48 0.1 (to a \336le, nor load a list fr) 426.55 301.14 B
+0.48 0.1 (om ) 540.24 301.14 B
+0 0.1 (a \336le. This will r) 126 288.73 B
+0 0.1 (equir) 198.97 288.73 B
+0 0.1 (e additions ) 222.55 288.73 B
+0 0.1 (to the interface, as well as substantial client-side modi\336cation. ) 275.45 288.73 B
+0.52 0.1 (What additional interface components ar) 126 276.34 B
+0.52 0.1 (e needed? One possibility ) 312.64 276.34 B
+0.52 0.1 (would be to add another ) 433.4 276.34 B
+0.1 0.1 (text \336eld, wher) 126 263.93 B
+0.1 0.1 (e our user could type in the ) 194.22 263.93 B
+0.1 0.1 (name of a \336le to load, and which would display the ) 321.79 263.93 B
+0.52 0.1 (name of the ) 126 251.53 B
+0.52 0.1 (curr) 183.43 251.53 B
+0.52 0.1 (ently open \336le. W) 202.01 251.53 B
+0.52 0.1 (e would also need some way of communicating the ) 282.47 251.53 B
+0.52 0.1 (user) 521.37 251.53 B
+0.52 0.1 (\325s ) 541.51 251.53 B
+0.2 0.1 (desir) 126 239.14 B
+0.2 0.1 (ed action to the client-side. This suggests either another ) 148.31 239.14 B
+0.2 0.1 (contr) 403.55 239.14 B
+0.2 0.1 (ol gr) 426.78 239.14 B
+0.2 0.1 (oup, or per) 447.68 239.14 B
+0.2 0.1 (haps menus, ) 498.14 239.14 B
+0.52 0.1 (which implies the addition of one or ) 126 226.73 B
+0.52 0.1 (mor) 296.5 226.73 B
+0.52 0.1 (e client-side message handlers and supporting code. ) 314.85 226.73 B
+0.52 0.1 (2\051. Y) 126.1 206.34 B
+0.52 0.1 (ou may have noticed that, if mor) 146.19 206.34 B
+0.52 0.1 (e items ar) 296.5 206.34 B
+0.52 0.1 (e added to the list ) 341.1 206.34 B
+0.52 0.1 (than can be displayed ) 427.07 206.34 B
+0.52 0.1 (simultaneously) 126 193.93 B
+0.52 0.1 (, the newly-inserted items ar) 194.24 193.93 B
+0.52 0.1 (e not ) 324.94 193.93 B
+0.52 0.1 (visible. One possible solution is to have the ) 351 193.93 B
+0.52 0.1 (list scr) 126 181.53 B
+0.52 0.1 (oll to display ) 155.57 181.53 B
+0.52 0.1 (the inserted item immediately after the insertion. This would be a good ) 218.94 181.53 B
+0.52 0.1 (place to de\336ne a subclass of ClassScr) 126 169.14 B
+0.52 0.1 (ollList.) 294.52 169.14 B
+FMENDPAGE
+%%EndPage: "11" 12
+%%Page: "12" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (12) 54 108.7 S
+0 F
+-0.58 0.09 (Pr) 198 108.7 B
+-0.58 0.09 (ogramming with The NeWS T) 207.01 108.7 B
+-0.58 0.09 (oolkit ) 316.27 108.7 B
+486 72 558 144 R
+7 X
+V
+0 X
+-486 -72 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+485.17 70.17 558.5 143.67 R
+7 X
+V
+0 X
+-485.17 -70.17 73.33 73.5 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+6 F
+0.52 0.1 (3\051. It seems unwieldy to have to erase both the textpane and header ) 126.1 641.33 B
+0.52 0.1 (every time you want to ) 439.8 641.33 B
+0.08 0.1 (type in a new item. Per) 126 628.93 B
+0.08 0.1 (haps a NewItem button and/or ) 230.32 628.93 B
+0.08 0.1 (menu item should be added to clear the ) 375.64 628.93 B
+0.18 0.1 (text pane, clear the Header \336eld, ) 126 616.53 B
+0.18 0.1 (and de-highlight the selected entry in the scr) 276.38 616.53 B
+0.18 0.1 (olling list. Could ) 479.01 616.53 B
+0.52 0.1 (this ) 126 604.13 B
+0.52 0.1 (be done entir) 145.84 604.13 B
+0.52 0.1 (ely in the server? ) 206.2 604.13 B
+0.52 0.1 (4\051. Some people like keyboar) 126.1 583.73 B
+0.52 0.1 (d accelerators. Can we have our scr) 257.88 583.73 B
+0.52 0.1 (olling ) 420.44 583.73 B
+0.52 0.1 (list support up- and ) 449.81 583.73 B
+0.52 0.1 (down-arr) 126 571.33 B
+0.52 0.1 (ow keys? \050Hint: look at the NeWS noti\336er code for the scr) 168.56 571.33 B
+0.52 0.1 (olling list, and consider ) 433.83 571.33 B
+0.52 0.1 (subclassing\051. This is r) 126 558.93 B
+0.52 0.1 (elated to having ) 224.08 558.93 B
+0.52 0.1 (the list scr) 301.23 558.93 B
+0.52 0.1 (oll automatically to display the chosen item. ) 348.09 558.93 B
+0.52 0.1 (5\051. Printing the list in some r) 126.1 538.53 B
+0.52 0.1 (easonable format should be supported. ) 257.36 538.53 B
+0.52 0.1 (This would imply the ) 438.88 538.53 B
+0.42 0.1 (addition of a \322Print\323 contr) 126 526.13 B
+0.42 0.1 (ol and/or menu item, ) 246.42 526.13 B
+0.42 0.1 (and a corr) 348.78 526.13 B
+0.42 0.1 (esponding handler to do the actual ) 395.14 526.13 B
+0.52 0.1 (printing. ) 126 513.73 B
+0.52 0.1 (6\051. Add a hot key to quit the application. \050Easy) 126.1 493.33 B
+0.52 0.1 (, since thebase window alr) 339.99 493.33 B
+0.52 0.1 (eady knows how to ) 461.39 493.33 B
+0.1 (quit\051) 126 480.93 S
+FMENDPAGE
+%%EndPage: "12" 13
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 12 1
+%%DocumentFonts: Palatino-Italic
+%%+ Palatino-Roman
+%%+ Bookman-Light
+%%+ Palatino-BoldItalic
+%%+ Courier
+%%+ Palatino-Bold

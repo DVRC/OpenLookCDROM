@@ -1,0 +1,1648 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) window.ps 1.73 91/02/11
+%
+% Simple OpenLook windows.
+%
+
+/ClassWindow ClassBorderBag []
+classbegin
+
+% Canvas Initialization:
+    /Transparent	false def
+    /TextFont		/LucidaSans-Bold findfont 12 scalefont 
+			false printermatchfont
+			/ISOLatin1Encoding encodefont def
+
+    /Trackable?		true def
+    /Openable?		true def
+    /Frontable?		true def
+    /Helpable?		true def
+    
+    /FocusNoticeable?	true def
+    /FocusForwardable?	true def
+
+    % Whether to drag a frame or the whole canvas when moving
+    %
+    /DragFrame? true def
+
+%    /ForkFix?		true def
+%    /Selectable?	true def
+
+% Window Class Variables:
+    /FooterFont		/LucidaSans-Bold findfont 10 scalefont 
+			false printermatchfont def
+    /Freezable?		true def
+
+    % The subwindows for a base window are stored in the SubWindows array.
+    % Each subwindow promotes a handle back to its base (super) window.
+    %
+    /SubWindows		nullarray def
+    /SuperWindow	{self} def
+    /RootWindow		{SuperWindow dup self ne {/RootWindow exch send} if} def
+    
+    /SelectedWindows	growabledict def
+
+    % Promoted when this is a root window, on first help event received
+    % by the window or one of its subcanvases or regions
+    /HelpWindow null def 
+    /HelpOpened? false def
+    /NoHelp null def
+
+% Window Layout Parameters.
+%
+    /BorderEdge		6 def	% the window border without label and footer
+    /ReshapeSize	11 def	% the reshape "L" size
+    /BorderStroke	{Selected? {2} {1} ifelse} def
+    /HeaderGap		2 def	% Gap below header to Center.
+    /FooterGap		2 def	% Gap above footer to Center.
+% REMIND: Get rid of pads
+%    /FooterPad		2 def	% padding above & below footer.
+%    /HeaderPad		2 def	% padding above & below window label items.
+    /FooterPad		1 def	% padding above & below footer.
+    /HeaderPad		1 def	% padding above & below window label items.
+    /FooterFraction	.5 def	% how much of footer is used for "left" message.
+
+%    /HeaderHeight	18 def
+    /HeaderHeight	16 def
+%    /FooterHeight	14 def
+    /FooterHeight	11 def
+    /HeaderDeltaY	HeaderHeight BorderEdge add def
+    /ClosePad		10 def
+    /CloseX		BorderEdge ClosePad add def
+    /CloseSize		16 def
+    /PinPad		10 def
+    /PinX		BorderEdge PinPad add def
+    /PinSize		28 def
+
+    /WInset		BorderEdge def
+    /EInset		BorderEdge def
+    /NInset {
+	BorderEdge
+	% Note: Label? is a shortcut for: Label? Pin? Close? or or
+	Label? {HeaderHeight add HeaderGap add} if
+    } def
+    /SInset {
+	BorderEdge
+	Footer? {FooterHeight add FooterGap add} if
+    } def
+
+% Window State
+%
+    /Focus?		false def
+    /Changed?		false def
+    /Pinned?		false def
+    /Selected?		false def
+
+% Window attributes.  The 5 standard window attributes:
+%	/Close?		True to allow closing the window
+%	/Footer?	True to display a footer area
+%	/Label?		True to display a label area
+%	/Pin?		True to allow the window to stay up
+%	/Reshape?	True to allow the window to be reshaped
+% Table of default control usage by OpenLook.
+%                 |Head |Foot |Shape|Close| Pin |Menu |Icon |
+%   ---------------------------------------------------------
+%   BaseWindow     |  +  |  ?  |  ?  |  +  |  -  |  B  |  +  |
+%   ---------------------------------------------------------
+%   PropertyWindow |  +  |  ?  |  ?  |  -  |  +  |  P  |  -  |
+%   ---------------------------------------------------------
+%   CommandWindow  |  +  |  ?  |  ?  |  -  |  +  |  P  |  -  |
+%   ---------------------------------------------------------
+%   HelpWindow     |  +  |  -  |  ?  |  -  |  +  |  P  |  -  |
+%   ---------------------------------------------------------
+%   NoticeWindow   |  -  |  -  |  -  |  -  |  -  |  -  |  -  |
+%   ---------------------------------------------------------
+%   IconWindow     |  -  |  -  |  -  |  -  |  -  |  B  |  -  |
+%   ---------------------------------------------------------
+%   Legend: +: yes, -: no, ?: optional
+    /Close?		false def
+    /Footer?		false def
+    /Label?		false def
+    /Pin?		false def
+    /Reshape?		false def
+
+% Data associated with attributes.  Promoted when used.
+    /Label		nullstring def
+    /LeftFooter		nullstring def
+    /RightFooter	nullstring def
+    /UnZoomedSize	null def
+
+% Defaults:
+
+% Defaults:
+
+    /HandleDefaults { % name value => -
+	exch {
+	    /iconfont {
+		/font /convert ClassDefaultsService send {
+		    /IconFont exch store
+		} if
+	    }
+	    /titlefont {
+		/font /convert ClassDefaultsService send {
+		    /settextfont self send
+		} if
+	    }
+	    /dragwindow {
+		/boolean /convert ClassDefaultsService send {
+		    not /DragFrame? exch store
+		} if
+	    }
+	} case
+    } def
+
+    [ /iconfont /titlefont /dragwindow ] { self /addclient DefaultsService send } forall
+
+% Initialization/Destruction
+%
+    % /new: client parent => instance
+    % Override: Add the window client if non-null
+    %
+    /NewInit { % 
+	/NewInit super send
+	dup null eq {
+	    pop
+	}{
+	    /Center exch /addclient self send
+	} ifelse
+    } def
+
+    % Override
+    %
+    /destroy { % - => -
+%	% If we are selected, remove ourselves from the selection.
+%	%
+%	Selected? {
+%	    /PrimarySelection getselection
+%	    dup null ne
+%	    SelectedWindows self arraycontains? and {
+%		self /removefromselection 3 -1 roll send
+%	    }{
+%		pop
+%	    } ifelse
+%	} if
+	false /SetSelected self send
+	SuperWindow self ne {
+	    self /removesubwindow SuperWindow send
+	    % /SuperWindow unpromote % not needed; done by remove above.
+	} if
+	% We can't do the obvious:
+	%	SubWindows {/destroydependent exch send} forall
+	% because the SubWindows array is "shortened" by the destroydependent!
+	% REMIND : /destroydependent reference removed
+	SubWindows aload length {/destroy exch send} repeat
+	/SubWindows unpromote
+	/UnFreeze self send
+	/HelpWindow unpromote
+	/NoHelp unpromote
+	/destroy super send
+    } def
+
+    /MenuStart { % posname event => posname event <menu true> | false
+	/MenuStart super send dup {
+	    1 index Menu eq {
+		/CheckMenuState self send
+		Close? {
+		    gsave
+			self setcanvas
+			2 index InCloseArea? {
+			    4 -1 roll pop /NorthWest 4 1 roll
+			    2 index begin
+				{?validate size} 2 index send pop
+				CloseSize sub .5 mul CloseX exch sub
+				/XLocation exch def
+				/size self send exch pop
+				HeaderDeltaY sub 1 add
+				/YLocation exch def
+			    end
+			} if
+		    grestore
+	        } if
+	    } if
+%	} {	% "grab" menu events so won't fall thru to framebuffer
+%	    pop null true
+%	} ifelse
+	} if
+    } def
+
+    % Window attributes may be changed dynamically.  The five attributes are:
+    %     /Close? /Footer? /Label? /Pin? /Reshape?
+    % Example: To add a Footer:
+    %     /Footer? true /setattribute win send
+    %
+    /setattribute { % name bool => -
+	def
+	/invalidate self send
+    } def
+
+    % Return the value of one of the five window attributes
+    %
+    /attribute { % name => bool
+	cvx exec	% Don't use "load"; could be a proc!
+    } def
+
+    % See comments in ClassDrawable on VisualState
+    /setvisualstate { % state => -
+%	dup VisualState eq {pop} {
+	    /setvisualstate super send
+	    /valid? self send Label? and {
+		[{true PaintHeader}] /PaintWindow self send
+	    } if
+	    VisualState /Busy eq {
+		/Freeze self send
+	    } {
+		/UnFreeze self send
+	    } ifelse
+	    SubWindows {VisualState /setvisualstate 3 -1 roll send} forall
+%	} ifelse
+    } def
+
+% Selection management
+%
+    % Add (true) or remove (false) me to the list of selected frames.
+    %
+    /SetSelected { % bool => -
+	Selected? ne {
+	    /Selected? Selected? not def
+	    [	{BackgroundColor 2 StrokeCanvas}
+		/PaintBorder
+		Reshape? {/PaintReshape} if
+	    ] /PaintWindow self send
+	    Selected? {
+		SelectedWindows self soften dup put
+	    } {
+		SelectedWindows self undef
+	    } ifelse
+	} if
+    } def
+
+    % Clear selected frames.  If sent to an instance, will not remove it.
+    %
+    /ClearSelected { % - => bool
+	% We have to put the windows on the stack: removing them inside
+	% a forall over SelectedWindows would be modifying the forall
+	% array/dict; which, alas, is a very subtle PostScript bug.
+	SelectedWindows {pop} forall SelectedWindows length {
+	    dup self eq {pop} {false /SetSelected 3 -1 roll send} ifelse
+	} repeat
+    } def
+
+% Focus management
+%
+    % Set the focus for this window.  Only set the visual state, does
+    % not do any keyboard focus managment.
+    %
+    /SetFocus { % bool => -
+	Focus? ne {
+	    /Focus? Focus? not def
+	    /opened? self send {
+		[{
+		ClickToType? {
+		    Focus? not PaintHeader
+		} {
+		    Focus? {
+			PaintFocus
+		    } {
+			3 dict begin
+			    /BG0 BackgroundColor def
+			    /BG3 BG0 def
+			    /2DFG BackgroundColor def
+			    PaintFocus
+			end
+		    } ifelse
+		} ifelse
+		}] /PaintWindow self send
+	    } if
+	} if
+    } def
+
+    % Notice when the focus enters or leaves this window.
+    %
+    /HandleFocusNotice { % enter? => -
+    	dup {
+    	    Colormap /Installed true put
+    	} if
+    	/SetFocus self send
+    } def
+
+% Event management
+%
+    % Override: Activate subwindows if present.
+    %
+    /activate { % emgr => -
+	EventMgr null ne {pop} {
+	    /activate super send
+	    SubWindows {
+		EventMgr /activate 3 -1 roll send
+	    } forall
+	} ifelse
+    } def
+
+    % Override: Deactivate subwindows if present.
+    %
+    /deactivate { % - => -
+	EventMgr null ne {
+	    /deactivate super send
+	    SubWindows {
+		/deactivate exch send
+	    } forall
+	} if
+    } def
+
+    % Freeze or UnFreeze (make it non-receptive or receptive) the window
+    % for events. Used during notification to partially deactivate
+    % a window.
+    %
+    /FreezeFilter dictbegin
+	/Damaged	{redistributeevent} def
+	/LoseFocus	//Damaged def
+	/LoseSelection	//Damaged def
+	/Default	{pop} def
+    dictend def
+
+    /HandleFreeze {
+	dup /Name get FreezeFilter exch		% ev dict name
+	2 copy known not {pop /Default} if	% ev dict name
+	get exec
+    } def
+    
+    /Freeze { % - => -
+	Freezable? {self /addclient FreezeService send} if
+    } def
+
+    /UnFreeze { % - => -
+	Freezable? {self /removeclient FreezeService send} if
+    } def
+
+% Place.
+%
+    % Place the window at a default location.
+    % Current style: if window already reshaped, use its current size,
+    % otherwise use its preferred size.
+    % REMIND: this needs to be generalized to any parent and any
+    % framebuffer.
+    %
+    /PlaceInit [ gsave framebuffer setcanvas
+		    0 /size framebuffer send exch pop
+		grestore ] cvx def
+    /PlaceXY //PlaceInit def
+    /PlaceDelta {+10 -10} def
+
+    /place { % - => -
+	gsave framebuffer setcanvas
+	    /reshaped? self send		% bool
+	    PlaceXY PlaceDelta xyadd 2 copy	% bool lx ty lx ty
+	    4 index /size /preferredsize ifelse	% bool lx ty lx ty name	
+	    self send dup 4 -1 roll sub neg	% bool lx ty lx w h by
+	    dup 0 gt {				% bool lx ty lx w h by
+		7 -1 roll {			% lx ty lx w h by
+		    4 -1 roll exch /move self send
+		    pop pop
+		}{
+		    3 1 roll /reshape self send
+		} ifelse			% lx ty
+	    }{					% bool lx ty lx w h by
+		pop 5 2 roll pop pop pop	% bool w h
+		PlaceInit PlaceDelta xyadd	% bool w h lx' ty'
+		2 copy 6 2 roll			% bool lx' ty' w h lx' ty'
+		2 index sub exch 4 1 roll	% bool lx' ty' lx' w h by'
+		7 -1 roll {			% lx ty lx w h by
+		    4 -1 roll exch /move self send
+		    pop pop
+		}{
+		    3 1 roll /reshape self send
+		} ifelse			% lx ty    
+	    } ifelse
+	    2 array astore cvx /PlaceXY exch store
+	grestore
+    } def
+
+%  Open, Pin & Zoom.
+%
+    % Open this window and any subwindows it closed.
+    %
+    /open { % - => -
+	/opened? self send not {
+	    /ToggleOpened self send
+	    /totop self send
+	    /opensubwindows self send
+	    HelpWindow null ne 
+	    HelpOpened? and {
+		/open HelpWindow send
+	    } if
+	} if
+    } def
+    
+    % Close this window and any opened subwindows.
+    %
+    /close { % - => -
+	/opened? self send {
+	    /ToggleOpened self send
+	    /closesubwindows self send
+	    HelpWindow null ne
+	    HelpOpened? and {
+		/close HelpWindow send
+	    } if
+	} if
+    } def
+    
+    % Return whether or not the window is open.
+    %
+    /opened? { % - => bool
+	Mapped
+    } def
+    
+    % Reverse whether or not the window is pinned.
+    %
+    /toggleopened { % - => -
+	/opened? self send {/close self send} {/open self send} ifelse
+    } def
+
+    % Factored for subclassing ease: just toggle my open/close state.
+    %
+    /ToggleOpened { % - => -
+	/Mapped Mapped not def
+    } def
+
+    % Pin this window.
+    %
+    /pin { % - => -
+	/Pinned? true def
+    } def
+
+    % Unpin this window.
+    %
+    /unpin { % - => -
+	/Pinned? false def
+	Mapped {
+	    /close self send
+	} if
+    } def
+
+    % Return whether or not the window is pinned.
+    %
+    /pinned? { % - => bool
+	Pinned?
+    } def
+
+    % Reverse whether or not the window is pinned.
+    %
+    /togglepinned { % - => -
+	Pinned? {/unpin self send} {/pin self send} ifelse
+    } def
+
+    % Make the window full size.
+    %
+    /zoom { % - => -
+	/zoomed? self send not {
+	    gsave
+		Parent setcanvas
+		/UnZoomedSize [/bbox self send] def
+		UnZoomedSize 0 get 0 UnZoomedSize 2 get	% x 0 w
+		clippath pathbbox 4 1 roll pop pop pop	% x 0 w H
+		/totop self send
+		/reshape self send
+	    grestore
+	} if
+    } def
+
+    % Return the window to normal size.
+    %
+    /unzoom { % - => -
+	/zoomed? self send {
+	    gsave
+		Parent setcanvas
+		UnZoomedSize aload pop
+		/UnZoomedSize unpromote
+		/reshape self send
+	    grestore
+	} if
+    } def
+
+    % Return true if the window is currently full size.
+    %
+    /zoomed? { % - => bool
+	UnZoomedSize null ne
+    } def
+
+    % Reverse the full size - normal size state of the window.
+    %
+    /togglezoomed { % - => -
+	/zoomed? self send {/unzoom self send} {/zoom self send} ifelse
+    } def
+
+% Labels & Footers
+%
+    /setlabel { % str => -
+	/Label exch def
+	Label? /opened? self send and {
+%	    gsave
+%		self setcanvas
+%		true /PaintLabel self send
+%	    grestore
+	    [{true /PaintLabel self send}] /PaintWindow self send
+	} if
+    } def
+    /label { % - => str
+	/Label load
+    } def
+
+    /setfooter { % left right => -
+	/RightFooter exch def
+	/LeftFooter exch def
+	Footer? /opened? self send and {
+%	    gsave
+%		self setcanvas
+%		true /PaintFooter self send
+%	    grestore
+	    [{true /PaintFooter self send}] /PaintWindow self send
+	} if
+    } def
+    /footer { % - => left right
+	/LeftFooter load /RightFooter load
+    } def
+
+% Subwindows
+%
+% These methods manage "subwindows".  A window (the SuperWindow) can
+% have associated with it some number of SubWindows.  SubWindows can be
+% thought of as being in a hierarchy, with each non-leaf node being a
+% SuperWindow and the branches being SubWindows.  The RootWindow is the
+% SuperWindow that has no SuperWindow itself.  Behaivor:
+%   - Destroying a superwindow destroys its subwindows.
+%   - Subwindows share the event manager of their superwindow.
+%   - Activating/deactivating a superwindow does the same for its subwindows.
+%   - Freezing/unfreezing a superwindow does the same for its subwindows.
+%   - The /tofront & /toback methods operate on a window and its subwindows.
+
+
+    % Return the list of subwindows for this window.
+    /subwindows {
+	SubWindows
+    } def
+
+    % Add a subwindow to this window.  If this window is already
+    % activated, activate the subwindow.
+    %
+    /addsubwindow { % subwin => -
+	/SubWindows SubWindows 2 index arrayappend def	% subwin
+
+	EventMgr null ne {				% subwin
+	    EventMgr /activate 2 index send
+	} if						% subwin
+
+	/SuperWindow self soften put			% -
+    } def
+
+    % Remove this subwindow.  Deactivate the subwindow if it shares
+    % the superwindow's eventmgr.
+    %
+    /removesubwindow { % oldsubwindow => -
+	SubWindows 1 index arrayindex {			% subwin i
+	    SubWindows exch arraydelete			% subwin array
+	    /SubWindows 1 index def			% subwin array
+	    length 0 eq {/SubWindows unpromote} if	% subwin
+	% REMIND: why not simply always deactivate?
+	    /eventmgr 1 index send /eventmgr self send eq {
+		/deactivate 1 index send
+	    } if					% subwin
+
+	    dup /OpenedBy undef				% subwin
+	    /SuperWindow undef				% -
+	} {pop} ifelse
+    } def
+
+    % Open all previously closed subwindows.
+    %
+    /opensubwindows { % - => -
+    % REMIND - known bug:  When subwindows are closed then reopened their
+    % front to back ordering is not maintained.
+	SubWindows {
+	    dup /OpenedBy known {
+		/open 1 index send
+		/OpenedBy undef
+	    } {pop} ifelse
+	} forall
+    } def
+
+    % Close all open subwindows, and mark them.
+    %
+    /closesubwindows { % - => -
+	SubWindows {
+	    /opened? 1 index send {
+		/close 1 index send
+		/OpenedBy self soften put
+	    } {pop} ifelse
+	} forall
+    } def
+
+% Painting
+%
+    % Paint just the window's frame, not including the client.
+    % REMIND: should this be part of border bag?
+    %
+    /paintwindow { % - => -; paint just the window area, not client
+	[/Paint] /PaintWindow self send
+    } def
+
+    % Have the window draw attention to itself: flash it.
+    %
+    /flashwindow { % - => -
+	/Selected? Selected? not def /Focus? Focus? not def
+	/paintwindow self send
+	.5 60 div sleep
+	/Selected? Selected? not def /Focus? Focus? not def
+	/paintwindow self send
+    } def
+
+    /Paint { % - => -
+	/PaintBackground self send
+	/PaintBorder self send
+	Reshape? {/PaintReshape self send} if
+	Label?   {false /PaintHeader self send} if
+	Footer?  {false /PaintFooter self send} if
+    } def
+    /PaintWindow { % array => -
+	gsave
+	    self setcanvas
+	    {self send} forall
+	grestore
+    } def
+
+    /LabelBackgroundColor { % - => color
+	BackgroundColor
+	Focus? {
+	    ClickToType? {pop 3D? {BG2} {2DFG} ifelse} if
+	} if
+    } def
+    /LabelForegroundColor { % - => color
+	ForegroundColor
+	Focus? 3D? not and {
+	    ClickToType? {pop BackgroundColor} if
+	} if
+    } def
+    /CloseOrPinDepressed? false def
+
+    /PaintBackground { % - => -
+	% Note: this does not optimize the no clients case.
+	BackgroundColor setcolor
+	/bbox self send /path self send
+	/clientlist self send {
+	    {Mapped {/bbox self send /path self send} if} exch send
+%	    {/bbox self send /path self send} exch send
+	} forall
+	eofill
+    } def
+    /PaintBorder { % - => -
+	currentlinewidth
+	ForegroundColor setcolor BorderStroke 2 mul setlinewidth
+	/bbox self send /path self send stroke
+	setlinewidth
+    } def
+    /PaintReshape { % - => -
+	GraphicFont setfont
+	/size self send exch ReshapeSize sub exch % w-reshape h
+	0 1 index
+	3D? {
+	    BG0 setcolor 2 copy moveto (\130) show
+	    BG setcolor  2 copy moveto (\132) show
+	    BG3 setcolor moveto (\131) show
+	    2 copy
+	    BG0 setcolor 2 copy moveto (\133) show
+	    BG setcolor  2 copy moveto (\135) show
+	    BG3 setcolor moveto (\134) show
+	    1 index ReshapeSize
+	    BG0 setcolor 2 copy moveto (\136) show
+	    BG setcolor  2 copy moveto (\140) show
+	    BG3 setcolor moveto (\137) show
+	    0 ReshapeSize
+	    BG0 setcolor 2 copy moveto (\141) show
+	    BG setcolor  2 copy moveto (\143) show
+	    BG3 setcolor moveto (\142) show
+	} {
+	    2DFG setcolor
+	    moveto (\242) show
+	    2 copy moveto (\243) show
+	    1 index ReshapeSize
+	    moveto (\244) show
+	    0 ReshapeSize
+	    moveto (\245) show
+        } ifelse
+	pop pop
+    } def
+    /PaintHeader { % erase? => -
+	{PaintLabelBackground}if
+	Focus?   {/PaintFocus self send} if
+	false /PaintLabel self send
+	Pin?     {Pinned? CloseOrPinDepressed? xor /PaintPin self send} if
+	Close?   {CloseOrPinDepressed? /PaintClose self send} if
+    } def
+    /PaintLabelBackground { % - => -
+	/size self send						% w h
+	
+	BorderEdge 1 index NInset sub
+	3 index BorderEdge 2 mul sub 1 add NInset BorderEdge sub 1 add
+	BackgroundColor setcolor rectpath fill
+
+	ReshapeSize 1 index BorderEdge sub
+	3 index ReshapeSize 2 mul sub BorderEdge 2 sub
+	rectpath fill
+
+	pop pop
+    } def
+    /ClickToType? {/currentmode ClassFocus send /ClickFocus eq} def
+    /PaintFocus { % - => -
+	/size self send						% w h
+	
+	ClickToType? {
+	    BorderEdge 1 index HeaderDeltaY sub 1 sub
+	    3 index BorderEdge 2 mul sub 1 sub HeaderHeight 2 add
+	    3D? {true Paint3DBox} {2DFG setcolor rectpath fill} ifelse
+	} {
+	    Reshape? {ReshapeSize 1 add} {BorderEdge} ifelse	% Top line
+	    1 index BorderEdge sub 1 add
+	    3 index 2 index 2 mul sub
+	    3D? {Paint3DLine} {2 rectpath 2DFG setcolor fill} ifelse
+    
+	    BorderEdge 1 index NInset sub 			% Bottom line
+	    3 index BorderEdge 2 mul sub
+	    3D? {Paint3DLine} {2 rectpath fill} ifelse
+	} ifelse
+
+	pop pop
+    } def
+    /PaintLabel { % erase? => -
+	/Label load 
+	/size self send						% ? di w h
+	BorderEdge 2 add exch HeaderDeltaY sub			% ? di w x y
+	3 -1 roll 2 index 2 mul sub HeaderHeight		% ? di x y w h
+
+	VisualState /Busy eq {
+	    LabelForegroundColor setcolor
+	    Gray12Stipple 5 copy pop //rectpath StipplePath
+	} if
+
+	Close? Pin? or {
+	    Close? {CloseSize ClosePad add} {PinSize PinPad add} ifelse
+	    5 2 roll 3 index sub
+	    5 2 roll exch add
+	    4 1 roll
+	} if
+	gsave % for clip
+	    TextFont setfont					% ? di x y w h
+	    4 copy rectpath clip				% ? di x y w h
+	    6 -1 roll {
+	        LabelBackgroundColor setcolor clippath fill
+	    } if						% di x y w h
+	    4 2 roll						% di w h x y
+	    HeaderPad add moveto				% di w h
+	    pop 1 index DisplayItemSize pop			% di w swidth
+	    2 copy lt {pop pop} {
+		sub 2.2 div 0 rmoveto % note: 2++ to round toward left
+	    } ifelse						% di
+	    LabelForegroundColor
+	    setcolor DisplayItemPaint
+	grestore
+    } def
+    /PaintPin { % pinned? => -
+	% REMIND: simplify!
+	GraphicFont setfont
+	{103} {100} ifelse /size self send			% i w h
+	BorderEdge sub HeaderPad sub exch pop PinX exch		% i x y
+	2 copy PinSize HeaderHeight HeaderPad 2 mul sub neg	% i x y x y w h
+	rectpath
+	LabelBackgroundColor setcolor fill
+	3D? {
+%	    BG setcolor fill	% i x y
+	    BG0 setcolor 2 copy moveto 2 index cvis show
+	    BG2 setcolor 2 copy moveto 2 index 2 add cvis show
+	    BG3 setcolor moveto 1 add cvis show
+	} {
+%	    2DBG setcolor fill	% i x y
+	    ClickToType? Focus? and {2DBG} {2DFG} ifelse setcolor moveto
+	    100 eq { (\23) } { (\24) } ifelse show
+	} ifelse
+    } def
+    /PaintClose { % down? => -
+	GraphicFont setfont
+	/size self send						% bool w h
+	BorderEdge sub HeaderPad sub 1 add exch pop CloseX exch	% bool x y
+	3D? {
+	    3 copy moveto {BG3} {BG0} ifelse setcolor (\63) show
+	    3 copy moveto {BG0} {BG3} ifelse setcolor (\64) show
+	    3 copy moveto {BG2} {BG} ifelse setcolor (\65) show
+
+	    4 -4 xyadd
+
+	    2 copy moveto BG3 setcolor (\55) show
+	    2 copy moveto BG0 setcolor (\56) show
+	    2 copy moveto BG2 setcolor (\57) show
+	    pop pop pop
+	} {
+	    2DBG setcolor 1 index 1 add 1 index moveto (\164) show
+	    2DFG setcolor moveto { (\27) } { (\26) } ifelse show
+        } ifelse
+    } def
+    /PaintFooter { % erase? => -
+    % REMIND: needs work: clipping
+    % Performance: check for null footers? (2 copy null eq exch null eq and)
+	/LeftFooter load /RightFooter load			% ? l r
+	/size self send pop					% ? l r w
+	BorderEdge FooterPad add dup				% ? l r w x y
+	6 -1 roll {
+	    2 copy 4 index 2 index 2 mul sub FooterHeight
+	    BackgroundColor setcolor rectpath fill
+	} if
+
+	FooterFont setfont
+	ForegroundColor setcolor
+	2 copy moveto 5 -1 roll DisplayItemPaint		% r w x y
+	3 1 roll sub 2 index DisplayItemSize pop sub exch	% r x y
+	moveto DisplayItemPaint
+    } def
+
+% Tracking
+%
+
+    % Given an anchor point (x1,y1) and some other point (x2,y2)
+    % return an (x,y,w,h) tuple that specifies a shape no smaller than
+    % minsize and still has (x1,y1) as a corner. Interactive reshaping
+    % uses this function to minsize against a fixed corner.
+    %
+    /AnchorBox { % x1 y1 x2 y2 -> x y w h
+	10 dict begin
+	    /y2 exch def /x2 exch def
+	    /y1 exch def /x1 exch def
+	    /minsize self send					% minw minh
+	    y2 y1 sub abs max /height exch def			% minw
+	    x2 x1 sub abs max /width exch def			% -
+	    x1 dup x2 gt {width sub} if				% x
+	    y1 dup y2 gt {height sub} if			% x y
+	    width height					% x y w h
+	end
+    } def
+
+    /TrackDict		growabledict def
+    /TrackDictInit { % x0 y0 => -
+	TrackDict begin
+	    /Y0 exch def /X0 exch def
+	    /Can currentcanvas def
+    } def
+    /TrackDictBegin { % event => x y
+	begin
+	    TrackDict begin
+		Can setcanvas erasepage
+		XLocation X0 sub YLocation Y0 sub	% x y
+    } def
+    /TrackDictEnd { % - => -
+	    end
+	end
+    } def
+
+    /BBoxStart { % event => -
+	gsave
+	    Parent createoverlay setcanvas
+	    begin XLocation YLocation end		% x y
+	    2 copy /FarthestCorner self send		% x y x1 y1
+	    2 copy 6 2 roll				% x1 y1 x y x1 y1
+	    /FarthestCorner self send xysub		% x1 y1 x0 y0
+	    TrackDictInit
+		/Y1 exch def /X1 exch def
+	    end
+	grestore
+    } def
+    /BBoxMotion { % event => -
+	gsave
+	    TrackDictBegin		% x y
+		X1 Y1 points2rect	% x y w h
+	    TrackDictEnd
+%	    /minsize self send xymax /path self send stroke
+	    /path self send stroke
+	grestore
+    } def
+    /BBoxStop { % event => -
+	gsave
+	    TrackDictBegin
+		X1 Y1 % points2rect
+	    TrackDictEnd
+	    4 2 roll /AnchorBox self send /reshape self send
+	grestore
+	TrackDict cleanoutdict
+    } def
+
+    /InReshapeArea? { % event => bool
+	begin XLocation YLocation end		% X Y
+	/size self send ReshapeSize dup xysub	% X Y w h; (w-reshape) (h-reshape)
+
+	4 copy ReshapeSize dup pointinrect?			% X Y w h bool
+	4 index 4 index 0 0 ReshapeSize dup pointinrect? or
+	4 index 4 index 0 4 index ReshapeSize dup pointinrect? or
+	4 index 4 index 4 index 0 ReshapeSize dup pointinrect? or
+
+	5 1 roll pop pop pop pop
+    } def
+    /InCloseArea? { % event => bool
+	begin XLocation YLocation end			% X Y
+	/size self send HeaderDeltaY sub exch pop	% X Y y
+	Close? {
+	    CloseX exch CloseSize HeaderHeight		% X Y x y w h
+	} {
+	    PinX exch PinSize HeaderHeight
+	} ifelse
+	pointinrect?					% bool
+    } def
+
+    /CloseStart { % event => -
+	/CloseMotion self send
+    } def
+    /CloseMotion { % event => -
+	gsave
+	    self setcanvas
+	    InCloseArea? CloseOrPinDepressed? ne {
+		/CloseOrPinDepressed? CloseOrPinDepressed? not promote
+		CloseOrPinDepressed?		% bool
+		Close? {
+		    PaintClose			% -
+		} {
+		    Pinned? xor PaintPin	% -
+		} ifelse
+	    } if
+	grestore
+    } def
+    /CloseStop { % event => -
+	CloseOrPinDepressed? {
+	    Close? {
+		[{false PaintClose}] /PaintWindow self send
+		self /ExecuteDefault Menu send
+	    } {
+		/PinFromUser self send
+	    } ifelse
+	} {pop} ifelse
+	TrackDict cleanoutdict
+	/CloseOrPinDepressed? unpromote
+    } def
+
+    % REMIND: move these to the Move procs.
+    /TrackStartXY null def
+    /MoveThresh 2 def		% REMIND: UserProfile
+    /TrackHasMoved? false def
+    /WindowTracking? false def
+
+    /TrackStopTime 0 def
+    /HandleSingleClick { % event => -
+	/SelectFromUser self send
+    } def
+
+    /HandleDoubleClick { % event => -
+	Reshape? {
+	    /ZoomFromUser self send
+	}{
+	    pop
+	} ifelse
+    } def
+
+    /ConstrainedToRegion?	true def
+    /TrackStart { % event => false | [/label...] true | /name true
+	gsave self setcanvas
+	    dup /TrackStart super send		% ev <trackarg> bool
+	    /WindowTracking? 1 index not store
+	    {					% ev trackarg
+		exch pop true			% trackarg true
+	    } {					% ev
+		dup /Name get PointButton eq {
+		    dup InReshapeArea? Reshape? and {
+			/BBoxStart /BBoxMotion /BBoxStop
+		    } {
+			dup InCloseArea? Close? Pin? or and {
+			    /CloseStart /CloseMotion /CloseStop
+			} {
+			    dup /TimeStampMS get TrackStopTime sub
+			    UserProfile /MultiClickThresh get le {
+				/NullNotifyProc /NullNotifyProc /HandleDoubleClick
+			    } {
+				/MoveStart /MoveMotion /MoveStop
+			    } ifelse
+			} ifelse
+		    } ifelse
+		} {
+		    /NullNotifyProc /NullNotifyProc /HandleSingleClick
+		} ifelse
+		TrackDict begin
+		    /Stop exch def /Motion exch def /Start exch def
+		end
+		[exch TrackDict /Start get self] /sendmanager EventMgr send
+		/Default true
+	    } ifelse
+	grestore
+    } def
+    /TrackMotion { % event => -
+	WindowTracking? {
+	    TrackDict /Motion get self send
+	} {
+	    /TrackMotion super send
+	} ifelse
+    } def
+    /TrackStop { % event => -
+	WindowTracking? {
+	    [exch TrackDict /Stop get self] /sendmanager EventMgr send
+	} {
+	    /TrackStop super send
+	} ifelse
+    } def
+    /MoveStart { % event => -
+	/TrackHasMoved? false store
+	/TrackStartXY
+	    1 index begin XLocation YLocation end
+	    2 array astore cvx store
+
+	    gsave
+		Parent createoverlay setcanvas
+		begin XLocation YLocation end		% x y
+		/location self send xysub
+		TrackDictInit end
+	    grestore
+    } def
+
+    /MoveMotion { % event => -
+	TrackHasMoved? not {
+	    /TrackHasMoved?
+		1 index begin XLocation YLocation end TrackStartXY
+		xysub abs MoveThresh ge exch abs MoveThresh ge or store
+	} if
+	gsave
+	    TrackDictBegin TrackDictEnd			% x y
+	    DragFrame? {
+		/size self send /path self send
+		stroke
+	    } {
+		/move self send
+	    } ifelse
+	grestore
+    } def
+
+    /MoveStop { % event => -
+	TrackHasMoved? not {
+	    dup /HandleSingleClick self send
+	    dup /TimeStampMS get
+	} {
+	    0
+	} ifelse
+	/TrackStopTime exch store
+	gsave
+	    TrackDictBegin TrackDictEnd			% x y
+	    DragFrame? {
+	        /move self send
+	    } {pop pop} ifelse
+	grestore
+	TrackDict cleanoutdict
+
+    } def
+
+
+    /HandleFront { % event => -
+	% REMIND: temp grab service does not handle "shift"
+	% /Action get /Back eq Obscured? or
+	/Shift /modifierdown? ClassKeyboard send Obscured? not or {
+	    /tobottom self send
+	} {
+	    /totop self send
+	} ifelse
+	pop
+    } def
+
+    /HandleOpen { % event => -
+	/CloseFromUser self send
+    } def
+
+% Notify Procs
+%
+% REMIND: Simplify!
+%
+% These are the procs called by the controls and menu items corresponding
+% to various window attributes.  Each proc will be called with either
+% a control or a menu instance or an event on the stack.  An event is
+% passed in if the window itself is the "control".  This is done so that
+% error handling can find a location to "zoom" the notifier.
+% Removed from TNT1.0 set:
+%	/ApplyNotify /ResetNotify /OpenNotify /UnZoomNotify /ReshapeNotify
+%
+
+    /CloseFromUser { % ctl => -
+	pop /toggleopened self send
+    } def
+    /ZoomFromUser { % ctl => -
+	pop /togglezoomed self send
+    } def
+    /PinFromUser { % ctl => -
+	pop /togglepinned self send
+    } def
+    /RefreshFromUser { % ctl => -
+	% Note: damage used so that will work with non-TNT canvases
+	pop /damageall self send
+    } def
+    /BackFromUser { % ctl => -
+	pop /tobottom self send
+    } def
+    /SelectFromUser { % ctl => -
+    % REMIND: For 2.0 FCS, do not implement selections
+	/Name get PointButton eq {
+%	    /ClearSelected self send
+	    /totop self send
+%	    true /SetSelected self send
+	} {
+%	    Selected? not /SetSelected self send
+	} ifelse
+    } def
+    /QuitFromUser { % ctl => -
+	pop EventMgr /destroy self send /destroy exch send
+%	pop
+%	currentfile null eq {
+%	    console (Killing emgr\n) fprintf
+%	    EventMgr /destroy self send /destroy exch send
+%	} {
+%	    console (Closing connection\n) fprintf
+%	    currentfile closefile
+%	} ifelse
+%	pop EventMgr killprocessgroup
+    } def
+    /PropsFromUser { % ctl => -
+	pop console (Properties not implemented yet!\n) fprintf
+    } def
+    /OwnerFromUser { % ctl => -
+	pop /totop RootWindow send
+	/flashwindow RootWindow send
+    } def
+    /DismissFromUser { % ctl => -
+	pop /close self send
+    } def
+    /DismissAllFromUser { % ctl => -
+	/SubWindows SuperWindow send {			% ctl subwin
+	    dup /Mapped get {
+		1 index /DismissFromUser 3 -1 roll send
+	    } {pop} ifelse
+	} forall					% ctl
+	pop
+    } def
+
+    % Retrieve the nohelp notice for this window, creating if
+    % necessary
+    /nohelp { % - => notice
+	NoHelp null eq {
+	    null framebuffer
+	    /new ClassNoHelpNotice send 
+	    /NoHelp 1 index promote  	    	% notice
+	} {
+	    NoHelp
+	} ifelse
+    } def
+
+    % OVERRIDE-to give help on close box, pushpin, reshape corners
+    /helpkeyword  { % event => string
+	gsave self setcanvas
+	dup InReshapeArea? {	    	    	% event
+	    pop
+	    Reshape? {(OLhelp.info:resize_corner)} {HelpKeyword} ifelse
+	} {					% event
+	    InCloseArea? {
+		Close? {
+		    (OLhelp.info:close_button)
+		} {
+		    Pin? {
+			(OLhelp.info:push_pin)
+		    } {
+			HelpKeyword
+		    } ifelse
+		} ifelse
+	    } {
+		HelpKeyword
+	    } ifelse
+	} ifelse
+	grestore
+    } def
+
+IncludeDemos? {
+    /demo { % - => window instance
+	/demo ClassBaseWindow send
+    } def
+} if
+classend def
+
+/ClassBaseWindow ClassWindow
+dictbegin
+    /Opened?		true def
+dictend
+classbegin
+    /Close?		{Opened?} def
+    /Footer?		{Opened?} def
+    /Label?		{Opened?} def
+    /Pin?		false def
+    /Reshape?		{Opened?} def
+
+    /IconLabelY		4 def
+    /IconLabel		null def
+    /IconImage		null def
+    /IconFont		FooterFont def
+
+    /IconSize {/IconImage load DisplayItemSize dup 0 eq {pop pop 64 64} if} def
+    /IconXY   {/bbox super send exch pop add IconSize pop sub} def
+    /BaseWindowBBox	{PlaceXY /preferredsize super send} def
+
+    /PaintIcon { % - => -
+	PaintIconImage
+	PaintIconLabel
+    } def
+    /PaintIconLabel { % - => -
+	/IconLabel load dup null eq {pop} {
+	    ForegroundColor setcolor IconFont setfont
+	    IconSize pop					% dspitm w
+	    1 index DisplayItemSize pop sub 2 div 4 max		% dspitm x
+	    IconLabelY						% dspitm x y
+	    moveto DisplayItemPaint
+	} ifelse
+    } def
+    /PaintIconImage { % - => -
+	/IconImage load dup null eq {
+	    pop BackgroundColor FillCanvas
+	    ForegroundColor BorderStroke StrokeCanvas
+	} {
+	    BackgroundColor /FillCanvas self send
+	    ForegroundColor setcolor
+	    0 0 moveto DisplayItemPaint
+	} ifelse
+    } def
+    /HexStringToIcon { % kwd string => w h | - <paint>
+	exch /size eq {
+	    length 8 mul sqrt dup
+	} {
+	    gsave
+		currentpoint translate
+		dup length 8 mul sqrt dup
+		2 copy scale
+		false [] [6 -1 roll] cvx imagemask
+	    grestore
+	} ifelse
+    } def
+
+% Shared basewindow/iconwindow menu.
+%
+    /Menuable? true def
+    /Menu { % Lazy evaluate menu to break menu-window cross dependency
+	/Menu /Grid framebuffer /new ClassMenu send store
+	[
+	[(Close)	{exch pop /CloseFromUser   /sendtarget 2 index send}]
+	[(Full Size)	{exch pop /ZoomFromUser    /sendtarget 2 index send}]
+	[(Properties)	{exch pop /PropsFromUser   /sendtarget 2 index send}]
+	[(Back)		{exch pop /BackFromUser    /sendtarget 2 index send}]
+	[(Refresh)	{exch pop /RefreshFromUser /sendtarget 2 index send}]
+	[(Quit)		{exch pop /QuitFromUser    /sendtarget 2 index send}]
+	] /setitemlist Menu send
+	(Window) /setlabel Menu send
+	0 /setdefault Menu send
+	Menu
+    } def
+    /MenuOpened? true def
+    /MenuZoomed? false def
+
+    /CheckMenuState { % - => -
+	Opened? MenuOpened? ne {
+	    /MenuOpened? MenuOpened? not store % Note: store => class var
+	    0 [
+	        MenuOpened? {(Close)} {(Open)} ifelse
+	        {exch pop /CloseFromUser /sendtarget 2 index send}
+	    ] /replaceitem Menu send
+	} if
+	/zoomed? self send MenuZoomed? ne {
+	    /MenuZoomed? MenuZoomed? not store % Note: store => class var
+	    1 [
+	    	MenuZoomed? {(Restore Size)} {(Full Size)} ifelse
+	    	{exch pop /ZoomFromUser /sendtarget 2 index send}
+	    ] /replaceitem Menu send
+	} if
+    } def
+
+% Painting/Fixing
+%
+    /Paint { % - => -
+	Opened? {
+	    /Paint super send
+	} {
+	    /PaintIcon self send
+	} ifelse
+    } def
+    % Strictly speaking, these could be eliminated because the Border
+    % canvases have been moved, thus should be no-ops.  Doing so could
+    % be costly, however, if the app performs a lot of calcualtions
+    % which get clipped!
+    /PaintChildren { % - => -
+	Opened? {
+	    /PaintChildren super send
+	} if
+    } def
+    /FixChildren { % - => -
+	Opened? {
+	    /FixChildren super send
+	} if
+    } def
+
+% Open/Close
+%
+    /opened? { % - => bool
+	Opened?
+    } def
+
+    /ToggleOpened { % - => - 
+	/Opened? Opened? not def
+	gsave
+	    Parent setcanvas
+	    Opened? {
+		/IconXY [/location self send] cvx def
+		BaseWindowBBox /reshape self send
+		/clientlist self send {/map exch send} forall
+		/Valid? true def
+	    } {
+		/BaseWindowBBox [/bbox self send] cvx def
+		IconXY IconSize /reshape self send
+		/clientlist self send {/unmap exch send} forall
+	    } ifelse
+	grestore
+    } def
+
+    /Layout { % - => - 
+	Opened? {
+	    /Layout super send
+	} if
+    } def
+
+% Icon interfaces
+%
+    /seticonimage { % displayitem|hexstring => -
+	dup type /stringtype eq {[exch /HexStringToIcon cvx] cvx} if
+	/IconImage exch def
+	Opened? not {/paint self send} if
+    } def
+    /iconimage { % displayitem => -
+	/IconImage load
+    } def
+
+    /seticonlabel { % displayitem => -
+	/IconLabel exch def
+	Opened? not {/paint self send} if
+    } def
+    /iconlabel { % - => displayitem
+	/IconLabel load
+    } def
+
+% Icon over-rides
+%
+    /minsize { % - => w h
+	Opened? {/minsize super send} {IconSize} ifelse
+    } def
+    /preferredsize { % - => w h
+	Opened? {/preferredsize super send} {IconSize} ifelse
+    } def
+
+    /zoom { % - => -
+	Opened? not dup {/unmap self send /open self send} if
+	/zoom super send
+	{/map self send} if
+    } def
+    /unzoom { % - => -
+	Opened? not dup {/unmap self send /open self send} if
+	/unzoom super send
+	{/map self send} if
+    } def
+
+    /HandleDoubleClick { % event => -
+	Opened? {
+	    /HandleDoubleClick super send
+	} {
+	    /CloseFromUser self send
+	} ifelse
+    } def
+
+IncludeDemos? {
+    /demo { % - => instance instance
+    10 dict begin
+	% Begin by building my own region or canvas
+	/ClassMyCanvas ClassCanvas []
+	classbegin
+	    /Label 	(Hello World) def
+	    /TextFont	/Helvetica-Bold findfont 36 scalefont 
+			false printermatchfont def
+
+	    /FG		0 0 1 rgbcolor def
+
+	    /Paint { % - => -
+		/Paint super send
+		ForegroundColor setcolor TextFont setfont
+		/size self send	2 div exch 2 div exch 10 sub
+		moveto Label cshow
+	    } def
+
+	    /minsize { % - => w h
+		gsave
+		    TextFont setfont
+		    Label false getbbox 4 2 roll pop pop 6 6 xyadd
+		grestore
+	    } def
+	    /preferredsize {/minsize self send 64 128 xyadd} def
+	classend def
+
+	/can framebuffer /new ClassMyCanvas send def
+
+	% Build a window with my canvas as the central client
+	/win can framebuffer /new ClassBaseWindow send def
+	(ClassBaseWindow Demo) /setlabel win send
+	[(Error message!) 1 0 0 rgbcolor] (State message)  /setfooter win send
+	(Hi) /seticonlabel win send
+	/place win send
+	/new ClassEventMgr send /activate win send
+	/map win send
+	win win
+    end
+    } def
+} if
+classend def
+
+/ClassPopupWindow ClassWindow []
+classbegin
+    /Close?		false def
+    /Footer?		false def
+    /Label?		true def
+    /Pin?		true def
+    /Reshape?		true def
+
+%    /Pinned?		true def
+
+% Shared popup window menu.
+%
+    /Menuable? true def
+    /DismissMenu { % Lazy evaluate menu to break menu-window cross dependency
+	/DismissMenu /Grid framebuffer /new ClassMenu send store
+	[
+	[(This Window)	{exch pop /DismissFromUser    /sendtarget 2 index send}]
+	[(All Pop-ups)	{exch pop /DismissAllFromUser /sendtarget 2 index send}]
+	] /setitemlist DismissMenu send 
+	0 /setdefault DismissMenu send
+	DismissMenu
+    } def
+
+    /Menu { % Lazy evaluate menu to break menu-window cross dependency
+	/Menu /Grid framebuffer /new ClassMenu send store
+	[
+	[(Dismiss)	DismissMenu]
+	[(Back)		{exch pop /BackFromUser    /sendtarget 2 index send}]
+	[(Refresh)	{exch pop /RefreshFromUser /sendtarget 2 index send}]
+	[(Owner?)	{exch pop /OwnerFromUser   /sendtarget 2 index send}]
+	] /setitemlist Menu send
+	(Window) /setlabel Menu send
+	0 /setdefault Menu send
+	Menu
+    } def
+    /MenuChanged? false def
+
+    /CheckMenuState { % - => -
+	Changed? MenuChanged? ne {
+	    /MenuChanged? MenuChanged? not store % Note: store => class var
+	    0 [ MenuChanged? {(Cancel)} {(Dismiss)} ifelse DismissMenu ]
+	    /replaceitem Menu send
+	} if
+    } def
+
+IncludeDemos? {
+    /demo { % - => instance instance
+    10 dict begin
+	% Build the popup and a panel to live inside it:
+	/popup null framebuffer /new ClassPopupWindow send def
+	/panel /Calculated popup /new ClassPanel send def
+	/Paint {
+	    BackgroundColor /FillCanvas self send
+	    ForegroundColor 1 /StrokeCanvas self send
+	} /installmethod panel send
+	
+	% Build and insert the check box of window attributes:
+	/Checks /Grid framebuffer /new ClassCheckBoxes send def
+	[
+	    (Include a label) (Include a close box) (Include a pin)
+	    (Include a footer) (Include resize corners)
+	] /setitemlist Checks send
+        [false 5 1] /setlayoutparameters Checks send
+	[ 0 2 4 ] /setvalue Checks send
+        /Checks Checks [/North {/North PARENT POSITION 20 sub}] /addclient panel send
+
+	% Build and insert a button to apply the check box changes:
+	/Button /Grid framebuffer /new ClassButtons send def
+	[(Apply to this window)] /setitemlist Button send
+	popup /settarget Button send
+	/setats /setnotifier Button send
+	/Button Button [/South {/South PARENT POSITION 20 add}] /addclient panel send
+
+	% A method that changes the whole set of window atrributes...
+	/setats { % - => -
+	    /value /Checks /client /Center /client self send pop send pop send
+	    [false false false false false] exch	% [false...] [index...]
+	    { 1 index exch true put } forall 		% [false|true...]
+	    aload pop					% false|true ...
+	    [/Reshape? /Footer? /Pin? /Close? /Label?] {
+		exch /setattribute self send
+	    } forall
+	    /paint self send
+	} /installmethod popup send
+
+	% Insert the panel and go!
+	/Center panel /addclient popup send
+	(ClassPopupWindow Demo) /setlabel popup send
+	(Left Footer) (Right Footer) /setfooter popup send
+	/preferredsize {330 235} /installmethod popup send
+	/place popup send
+	/new ClassEventMgr send /activate popup send
+        /map popup send
+
+	popup dup
+    end
+    } def
+} if
+classend def
+
+% REMIND: Move to UI.ps.
+
+/ClassFreezeInterest ClassInterest []
+classbegin
+
+    /addclient { % canvas => -
+	Canvas
+	exch soften
+	/HandleFreeze 1 index /send load 3 packedarray cvx put
+    } def
+
+classend def
+
+/FreezeService growabledict null null
+/new ClassFreezeInterest send def
+    FreezeService /IsPreChild true put
+    FreezeService /Exclusivity true put
+FreezeService /addclient GlobalEventMgr send
+
+
+%    /ToggleOpened { % - => - 
+%	/Opened? Opened? not def
+%	gsave
+%	    Parent setcanvas
+%	    Opened? {
+%		/IconXY [/location self send] cvx def
+%		BaseWindowBBox /reshape self send
+%	    } {
+%		/BaseWindowBBox [/bbox self send] cvx def
+%		IconXY IconSize /reshape self send
+%	    } ifelse
+%	grestore
+%    } def
+%
+%    /Layout { % - => - 
+%	Opened? {
+%	    /Layout super send
+%	} {
+%	    /clientlist self send {
+%		10000 10000 /move 4 -1 roll send
+%	    } forall
+%	} ifelse
+%    } def
+%    /ClientsMoved? { % - => bool
+%	/clientlist self send dup length 0 eq {pop false} {
+%	    0 get /location exch send pop 0 lt
+%	} ifelse
+%(ClientsMoved? = %\n) [2 index] printf
+%    } def
+%    /Layout { % - => - 
+%	Opened? {
+%	    ClientsMoved? {
+%		/clientlist self send {
+%		    /location 1 index send	% client x y
+%		    10000 10000 xyadd
+%		    /move 4 -1 roll send
+%		} forall
+%	    } {
+%		/Layout super send
+%	    } ifelse
+%	} {
+%	    /clientlist self send {
+%		/location 1 index send	% client x y
+%		10000 10000 xysub
+%		/move 4 -1 roll send
+%	    } forall
+%	} ifelse
+%    } def
+
+%    /zoom { % - => -
+%	Opened? not {/open self send} if
+%	/zoom super send
+%    } def
+%    /unzoom { % - => -
+%	Opened? not {/open self send} if
+%	/unzoom super send
+%    } def

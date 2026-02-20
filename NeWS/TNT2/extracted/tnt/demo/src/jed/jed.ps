@@ -1,0 +1,272 @@
+%   @(#)jed.ps 1.21 91/02/21 Copyright 1990-91 Sun Microsystems
+%
+% This file is a product of Sun Microsystems, Inc. and is provided for
+% unrestricted use provided that this legend is included on all tape
+% media and as a part of the software program in whole or part.  Users
+% may copy or modify this file without charge, but are not authorized to
+% license or distribute it to anyone else except as part of a product
+% or program developed by the user.
+% 
+% THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
+% WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+% PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
+% 
+% This file is provided with no support and without any obligation on the
+% part of Sun Microsystems, Inc. to assist in its use, correction,
+% modification or enhancement.
+% 
+% SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
+% INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY THIS FILE
+% OR ANY PART THEREOF.
+% 
+% In no event will Sun Microsystems, Inc. be liable for any lost revenue
+% or profits or other special, indirect and consequential damages, even
+% if Sun has been advised of the possibility of such damages.
+% 
+% Sun Microsystems, Inc.
+% 2550 Garcia Avenue
+% Mountain View, California  94043
+
+currentprocess /ErrorDetailLevel 2 put
+
+/ChedEventMgr /new ClassEventMgr send def
+ChedEventMgr /ErrorDetailLevel 2 put
+%ChedEventMgr /Stderr console put
+
+/INITC { % win canvas => - 
+    dictbegin
+	/cv exch def
+	/win-id exch def
+
+	0 0 0 rgbcolor 1 1 1 rgbcolor /setcolors cv send
+
+	/sbar framebuffer /new ClassVScrollbar send def
+	sbar /ScrollbarInitialize cv send
+	/Scroll /setnotifier sbar send
+	/Scroll /setpreviewer sbar send
+
+	true /setmenuable cv send
+	true /wire_setautoflush cv send
+	cv /settarget sbar send
+	ChedMenu /setmenu cv send
+
+	/win cv framebuffer /new ChedBaseWindow send def
+	/East sbar /addclient win send
+	/-North- ChedMenuButtons /addclient win send
+	2 5 2 2 /setgaps win send
+	win /settarget ChedMenuButtons send
+
+	/Paint {
+	    /Paint super send
+	    /Center /client self send {
+		-.5 /bbox 3 -1 roll send insetrect
+		rectpath 0 setlinewidth 0 setgray stroke
+	    } if
+	} /installmethod win send
+
+	0 0 /preferredsize win send /reshape win send
+	/wire_initialize win send
+	win-id true /wire_settoken win send
+	ChedEventMgr /activate win send
+
+	win
+    end
+    /ChedWindow exch def
+} def
+
+/ChedTags growabledict def
+
+/ChedDefTag { % tag value => -
+    ChedTags 3 1 roll put
+} def
+
+/GetChedTag {	% tagname => tagnumber
+    ChedTags 1 index known {
+	ChedTags exch get true
+    } {
+	pop false
+    } ifelse
+} def
+
+/MenuCallback { % index menu tagname => -
+    3 1 roll pop pop			% tagname
+    GetChedTag {			% tag
+	tagprint
+    } {
+	console (jed: unknown tag\n) fprintf
+    } ifelse
+} def
+
+/FilterCallback { % menu <program> => -
+    exch				% <prog> menu
+    /target exch send			% <prog> client
+    /client-id 1 index send exch	% <prog> client-id client
+    {
+	/FilterSelection GetChedTag pop tagprint
+	typedprint typedprint		% 
+    } /send-client 3 -1 roll send pop
+} def
+
+/PrintIt { % JotCanvas => -
+    (/tmp/print.out) (w) file
+    [] []
+    /print 5 -1 roll send
+} def
+
+%/ChedMenu where not {
+    /Grid framebuffer /new ClassMenu send
+    [
+	[ (File)
+	    /Grid framebuffer /new ClassMenu send
+	    [	[ (Save Current File)	    { /SaveFile MenuCallback } ]
+		[ (Store as New File)	    { /WriteFile MenuCallback } ]
+		[ (Load File)		    { /LoadFile MenuCallback } ]
+		[ (Insert File)	    { /InsertFile MenuCallback } ]
+		[ (Set Directory)	    { /SetDirectory MenuCallback } ]
+		[ (Empty Document)	    { /EmptyBuffer MenuCallback } ]
+	    ] /setitemlist 2 index send
+	    0 /setdefault 2 index send
+%	    true /setpinnable 2 index send
+	]
+	[ (View)
+	    /Grid framebuffer /new ClassMenu send
+	    [	[ (Select line at number) { /SelectLineNumber MenuCallback } ]
+		[ (Position)		    { /Position MenuCallback } ]
+		[ (Caret to top)	    { /HereToTop MenuCallback } ]
+		[ (Move Caret to Top)	    { /CaretToTop MenuCallback } ]
+		[ (Move Caret to Bottom)  { /CaretToBottom MenuCallback } ]
+		[ (Line wrap)
+		  /Grid framebuffer /new ClassMenu send
+		  [ [ (Character)	    { /CharacterWrap MenuCallback } ]
+		    [ (Word)		    { /WordWrap MenuCallback } ]
+		    [ (Truncate)	    { /Truncate MenuCallback } ]
+		  ] /setitemlist 2 index send
+		  true /setpinnable 2 index send
+		]
+	    ] /setitemlist 2 index send
+	    0 /setdefault 2 index send
+%	    true /setpinnable 2 index send
+	]
+	[ (Edit)
+	    /Grid framebuffer /new ClassMenu send
+	    [ [ (Undo)
+		  /Grid framebuffer /new ClassMenu send
+		  [   [ (Last change)	    { /UndoLast MenuCallback } ]
+		      [ (All changes)	    { /UndoAll MenuCallback } ]
+		      [ (Redo)		    { /RedoLast MenuCallback } ]
+		  ] /setitemlist 2 index send
+		  true /setpinnable 2 index send
+		  0 /setdefault 2 index send
+	      ]
+	      [ (Copy)		    { pop pop createevent /selectioncopy ClassUI send } ]
+	      [ (Cut)		    { pop pop createevent /selectioncut ClassUI send } ]
+	      [ (Paste)		    { pop pop createevent /selectionpaste ClassUI send } ]
+	    ] /setitemlist 2 index send
+	    0 /setdefault 2 index send
+%	    true /setpinnable 2 index send
+	] 
+
+%	(Find) [
+%	    (Find and replace)	    { /FindAndReplace MenuCallback }
+%	    (Find selection) [
+%		(Forward)	    { /FindForward MenuCallback }
+%		(Backward)	    { /FindBackward MenuCallback }
+%	    ] framebuffer /new ClassMenu send 
+%	    (Replace field) [
+%		(Expand)	    { /ReplaceExpand MenuCallback }
+%		(Next)		    { /ReplaceNext MenuCallback }
+%		(Previous)	    { /ReplacePrevious MenuCallback }
+%	    ] framebuffer /new ClassMenu send 
+%	] framebuffer /new ClassMenu send 
+%	true /setpinnable 2 index send
+
+	[   (Extras)
+	    /Grid framebuffer /new ClassMenu send
+	    [	[   (Line style)
+		    /Grid framebuffer /new ClassMenu send
+		    [   [ (Left flush)	    { /LinesLeftFlush MenuCallback } ]
+			[ (Justified)	    { /LinesJustified MenuCallback } ]
+			[ (Right flush)	    { /LinesRightFlush MenuCallback } ]
+			[ (Centered)	    { /LinesCentered MenuCallback } ]
+			[ (Left right)	    { /LinesLeftRight MenuCallback } ]
+		    ] /setitemlist 2 index send
+		    true /setpinnable 2 index send
+		]
+		[ (Shift lines)	    { /ShiftLines MenuCallback } ]
+		[ (Print)	 { /target exch send //PrintIt exec } ]
+	    ] /setitemlist 2 index send
+	    0 /setdefault 2 index send
+	    1 1 2 {		% Menu  item-index
+		/Inactive /setvisualstate 3 index send
+	    } for
+	]
+    ] /setitemlist 2 index send
+
+%    systemdict begin
+%	/ChedMenu exch def
+%    end
+    /ChedMenu exch def
+    true /setpinnable ChedMenu send
+    /destroydependent {} /installmethod ChedMenu send
+%} {
+%    pop
+%} ifelse
+
+/ChedMenuButtons /Calculated framebuffer /new ClassMenuButtons send def
+[ 0 /item ChedMenu send [ /West { /West PARENT POSITION } ]
+  1 1 /itemcount ChedMenu send 1 sub {
+    /item ChedMenu send
+    [/West { /East PREVIOUS POSITION 10 0 xyadd } ]
+  } for
+] /setitemlist ChedMenuButtons send
+
+0 0 /preferredsize ChedMenuButtons send 0 15 xyadd
+    /reshape ChedMenuButtons send
+
+/ChedBaseWindow [ClassBaseWindow ClassWireClient] []
+classbegin
+    /Edge 6 def
+
+    /QuitFromUser { % ctl => -
+	/QUIT GetChedTag {
+	    { tagprint flush } /wire_Exec self send
+	} if
+    } def
+
+    /PaintIcon {
+	% Paint the background, and the picture of the page
+	%
+	0 0 /size self send rectpath BG setcolor fill
+	Edge Edge 64 64 Edge dup add sub exch Edge 20 add sub exch
+	rectpath 1 setgray gsave fill grestore FG setcolor stroke
+
+	% Paint some fake lines of text on the page
+	%
+	gsave
+	    Edge 5 add dup translate
+	    0 3 44 {
+		0 exch moveto
+		[3 random 4 mul add round cvi 2] random 5 mul round cvi setdash
+		28 0 rlineto stroke
+	    } for
+	grestore
+
+	% Now paint "Jed" on an angle, and with the letters squished a little.
+	%
+	gsave
+	    26 9 translate 65 rotate 0 0 moveto
+	    /Times-BoldItalic findfont 40 scalefont setfont (j) show
+	    currentpoint exch 2 sub exch moveto (e) show
+	    currentpoint exch 4 sub exch moveto (d) show
+	grestore
+	
+	% Finally, paint the icon label up the right hand side.
+	% If it is too long truncate the leading characters.
+	%
+	/LucidaSans findfont 12 scalefont setfont
+	64  Edge sub 2 add 0 translate 90 rotate
+	64 Edge sub /IconLabel load /DisplayItemSize self send pop sub 0 moveto
+	/IconLabel load /DisplayItemPaint self send	
+    } def
+
+classend def

@@ -1,0 +1,785 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)list.ps 1.33 91/02/11
+%
+
+/ClassScrollList [ClassControl ClassCanvas] []
+classbegin
+
+    /Top		0 def			% top item number visible
+    /Bottom		0 def			% bottom item number visible
+    /OccupiedRows	0 def			% number of occupied rows
+    /Width		0 def			% cached canvas width
+    /Height		0 def			% cached canvas height
+    /ScrollMinimum	4 def			% minimum rows to scroll
+
+    /BorderStroke	1 def
+    /ItemList		nullarray def		% item list
+    /ItemWidth		0 def			% maximum item width
+    /ItemHeight		0 def			% maximum item height
+    /ItemListValid?	false def		
+
+    /Value		nullarray def		% chosen item number list
+    /ChoiceMode		/NonExclusive def
+
+    /RowGap		2 def
+    /RowHeight		TextFont fontheight RowGap 2 mul add round def
+
+    /ItemInset		18 def
+    /ChoiceInset	14 def
+
+    /Scrollbar		null def		% scrollbar instance
+
+    % REMIND : copyarea does not cause damage on a transparent canvas
+    /Transparent	false def
+    /Mapped		true def
+
+    % Menu Service connections
+
+    /Menuable? true def
+
+    /MenuStart { % invoker posname event => invoker' posname' event' menu true |
+                 % invoker posname event => invoker posname event false
+	VisualState /Active eq {
+            ChoiceMode /NonExclusive eq {
+	        MenuNonExclusive 
+	    }{ 
+                MenuExclusive 
+            } ifelse
+            self /settarget 2 index send
+	}{
+	    null
+	} ifelse				% menu
+	    
+	true
+    } def
+
+    % The menus are instantiated during the first reference and then
+    % stored in the class.
+
+    /MenuExclusive {
+	/Grid framebuffer /new ClassMenu send
+	[[(Locate Choice) {exch pop /locatechoice /sendtarget 3 -1 roll send}]]
+	/setitemlist 2 index send
+	(Scrolling List) /setlabel 2 index send
+	dup /MenuExclusive exch store
+    } def
+
+    /MenuNonExclusive {
+	/Grid framebuffer /new ClassMenu send
+	[
+            [(Locate Next Choice)
+		{exch pop /locatechoice /sendtarget 3 -1 roll send}
+	    ]
+
+	    [(Clear All Choices)
+		{exch pop /clearchoice /sendtarget 3 -1 roll send}
+	    ]
+
+	] /setitemlist 2 index send
+	(Scrolling List) /setlabel 2 index send
+	dup /MenuNonExclusive exch store
+    } def
+
+    /Trackable? true def
+
+    /TrackStart { % event => false | [/label...] true | /name true
+	dup /Name get AdjustButton eq {
+	    pop nullarray true
+        }{  % no tracking is performed for inactive or invalid instances
+	    VisualState /Active ne /valid? self send not or {
+		pop
+	    }{
+		currentcanvas self setcanvas exch		% c e
+		/EventInItem? self send {
+		    dup /chosen? self send {
+			ChoiceMode /Exclusive eq {
+		            pop
+			}{
+			    dup /RemoveChoice self send
+			    false 2 array astore 
+			    /notifier self send
+			    /ExecuteNotifier self send
+			} ifelse
+		    }{
+			ChoiceMode dup /Exclusive eq
+			exch /ExclusiveVariation eq or {
+			    Value length 1 eq {
+				Value 0 get 
+				/RemoveChoice self send
+			    } if
+			} if
+			dup /AddChoice self send		 
+			true 2 array astore 
+			/notifier self send			
+			/ExecuteNotifier self send
+		    } ifelse
+		} if
+     
+		setcanvas
+	    } ifelse
+	    [] true
+        } ifelse
+    } def
+
+    /invalidate { % => -
+        /invalidate super send
+        /Bottom unpromote
+        /OccupiedRows unpromote
+    } def
+
+    /validate { % => -
+        /itemcount self send 0 gt {
+            /?ValidateItemList self send
+
+            /ValidateView self send
+            /ValidateScrollbar self send
+        } if
+
+	/validate super send
+    } def
+      
+    /?ValidateItemList { % - => -
+        ItemListValid? not {
+            /ValidateItemList self send
+        } if
+    } def
+
+    /ValidateItemList { % - => -
+        /ItemListValid? true promote
+        ItemList DisplayItemMaximumSize
+        /ItemHeight exch round promote
+        /ItemWidth exch round promote
+
+        /SetRowHeight self send
+    } def
+
+    /ValidateItem { % item => -
+        ItemListValid? {
+            ItemSize
+
+            dup ItemHeight gt {
+               /ItemHeight exch round promote
+                /SetRowHeight self send
+            }{
+                pop
+            } ifelse
+
+            dup ItemWidth gt {
+                /ItemWidth exch round promote
+            }{
+                pop
+            } ifelse
+        }{
+            pop
+        } ifelse
+    } def
+
+    /ValidateView { % - => -
+	Top dup
+        /rows self send add 1 sub dup	
+        /itemcount self send ge {
+            pop /itemcount self send 1 sub
+        } if
+
+        /Bottom 1 index promote
+        exch sub 1 add /OccupiedRows exch promote
+
+    } def
+
+    /ValidateScrollbar { % - => -
+        Scrollbar null ne {
+            Top
+            /rows self send
+            /itemcount self send
+            /setparameters Scrollbar send
+        } if
+    } def
+
+    /ValidateValue { % item-index adjust => -
+        Value length 1 sub -1 0 {
+            Value exch 2 copy get dup
+            5 index ge {
+                3 index add put
+            }{
+                pop pop pop exit
+            } ifelse
+        } for
+        pop pop
+    } def
+
+    % Item methods.
+
+    /itemlist { % - => [item item ...]
+        ItemList
+    } def
+
+    /setitemlist { % [item item ...] => -
+        /invalidate self send
+    
+        /Top unpromote
+        /Value unpromote
+        /ItemListValid? unpromote
+
+        dup length 0 gt {
+            /ItemList exch promote
+        }{
+            pop
+            /ItemList unpromote
+        } ifelse
+    } def
+
+    /item { % item-index => item
+        /itemlist self send exch get
+    } def
+
+    /itemcount { % - => number-of-items
+        /itemlist self send length
+    } def
+
+    /itemvisible? { % item-index => boolean
+        OccupiedRows 0 gt {
+            dup Top ge exch Bottom le and
+        }{
+            pop false
+        } ifelse
+    } def
+
+    % Item utilities
+    /ItemToYLocation { % item-index => item-y
+        Top sub 1 add
+        RowHeight mul
+        Height exch sub 
+        RowGap sub 
+        0 exch transform round exch round exch itransform exch pop
+    } def
+
+    /EventInItem? { % event => item-index true | false
+        begin YLocation end
+        Height RowGap sub 2 copy lt {
+            exch sub RowHeight div cvi Top add
+            dup Bottom le {
+                true
+            }{ % below bottom item
+                pop false
+            } ifelse
+         }{ % above top item
+            pop pop false
+         } ifelse
+    } def
+
+    /ItemSize { % item => item-width item-height
+        currentfont exch
+        TextFont setfont
+        DisplayItemSize round exch round exch
+        3 -1 roll setfont
+    } def
+
+    /appenditem { % item => -
+	/invalidate self send
+        dup ItemList exch arrayappend
+        /ItemList exch promote
+        
+        /ValidateItem self send
+    } def        
+
+    /insertitem { % item-index item => -
+        /invalidate self send
+        exch
+
+        dup Top lt {
+            /Top Top 1 add promote
+        } if
+
+        % The choice indices might need to be incremented.
+        dup 1 ValidateValue
+        
+        ItemList exch 2 index arrayinsert
+        /ItemList exch promote
+
+        /ValidateItem self send
+    } def
+
+
+    /deleteitem { % item-index => -
+        /invalidate self send
+
+        ItemList length 1 eq {
+            pop nullarray /setitemlist self send
+        }{
+            dup Top le Top 0 gt and {
+                /Top Top 1 sub promote
+            } if
+
+            dup /chosen? self send {
+                dup /RemoveChoice self send
+            } if
+
+            % The choice indices might need to be decremented.
+            dup -1 ValidateValue
+
+            ItemList 1 index get exch
+            ItemList exch arraydelete
+            /ItemList exch promote
+
+            % Did the deleted item determine the item height and width?
+            ItemListValid? {
+                ItemSize 
+                ItemHeight eq exch ItemWidth eq or {
+                    /ItemListValid? unpromote
+                } if
+            }{
+                pop
+            } ifelse
+        } ifelse
+    } def
+
+    /replaceitem { % item-index item => -
+        /invalidate self send
+
+        ItemList 3 -1 roll 2 copy get
+        
+        ItemListValid? {
+            ItemSize 
+            ItemHeight eq exch ItemWidth eq or {
+                /ItemListValid? unpromote
+            } if
+        }{
+            pop
+        } ifelse
+
+        2 index put
+        /ValidateItem self send
+
+    } def
+
+    /setvalue { % [value value ...] => -
+	dup length 0 eq {				% new-value
+	    pop /clearchoice self send			% -
+	}{
+	    {gt} quicksort				% new-value
+	    /valid? self send {
+		VisualState /Active eq {
+		    /value self send			% new-value old-value
+		    dup length array copy {		% 
+			% erase old choices not present in new value
+			2 copy arrayindex {		% 
+			    exch pop arraydelete
+			}{
+			    /RemoveChoice self send
+			} ifelse
+		    } forall
+
+		    {   % paint new choices not present in old value
+			/AddChoice self send
+		    } forall
+
+		}{  % simple repaint when instance is inactive and valid
+		    /setvalue super send
+		    /paint self send
+		} ifelse
+
+	    }{  % no repaint when instance is invalid
+		/setvalue super send
+	    } ifelse
+	} ifelse
+    } def
+
+    /setvisualstate { % state => -
+	/setvisualstate super send
+	/valid? self send {
+	    /paint self send
+	} if
+    } def
+
+    /setchoicemode { % mode => -
+        /ChoiceMode exch promote
+        /clearchoice self send
+    } def
+
+    /choicemode { % - => mode
+        ChoiceMode
+    } def
+
+    /chosen? { % item-index => boolean
+        Value exch arraycontains?
+    } def
+
+    /AddChoice { % item-index => -
+        dup /itemvisible? self send /valid? self send and {
+            gsave self setcanvas
+            BorderStroke /bbox self send insetrect rectpath clip newpath
+                dup ItemToYLocation dup /PaintChoice self send
+                1 index /PaintItem self send
+            grestore
+        } if
+
+        Value dup length 3 -1 roll arrayinsert
+        dup length 1 gt {
+            {gt} quicksort
+        } if
+        /Value exch promote
+    } def
+
+    /RemoveChoice { % item-index => -
+        dup /itemvisible? self send /valid? self send and {
+            gsave self setcanvas
+            BorderStroke /bbox self send insetrect rectpath clip newpath
+                dup ItemToYLocation dup /EraseChoice self send
+                1 index /PaintItem self send
+            grestore
+        } if
+
+        Value dup 3 -1 roll arrayindex pop arraydelete
+        /Value exch promote
+    } def
+
+    /clearchoice { % - => -
+        /valid? self send {
+            gsave self setcanvas
+            BorderStroke /bbox self send insetrect rectpath clip newpath
+                Value {
+                    dup /itemvisible? self send {
+                        dup ItemToYLocation dup /EraseChoice self send
+                        exch /PaintItem self send
+                    }{
+                        pop
+                    } ifelse
+                } forall
+            grestore
+        } if
+	/Value unpromote
+    } def
+
+    /locatechoice { % - => -
+        Value length 0 gt {
+            ChoiceMode /NonExclusive eq {
+                Value {
+                    dup Bottom gt {
+                        /scrolltohere self send
+                        /ValidateScrollbar self send
+                        exit
+                    }{
+                        pop
+                    } ifelse
+                } forall
+            }{
+                Value 0 get
+                dup /itemvisible? self send not {
+                    /scrolltohere self send
+                    /ValidateScrollbar self send
+                }{
+                    pop
+                } ifelse
+            } ifelse
+        } if
+    } def
+
+    /ChoiceBBox { % item-y => choice-x choice-y choice-width choice-height
+        ChoiceInset exch RowGap 2 div add
+        ItemWidth ItemInset ChoiceInset sub 2 mul add
+        RowHeight RowGap sub
+    } def
+
+    /PaintChoice { % item-y => -
+        /ChoiceBBox self send
+	3D? {
+          true /Paint3DBox self send
+        } {
+	  false /Paint2DBox self send
+        } ifelse
+    } def
+
+    /EraseChoice { % item-y => -
+        /ChoiceBBox self send
+        4 copy 
+        rectpath BackgroundColor setcolor fill
+        BotRightPath stroke
+    } def
+     
+    /minsize { % - => width height
+        /?validate self send
+        ItemWidth ItemInset 2 mul add RowHeight RowGap 2 mul add
+    } def
+
+     /reshape { % - => -
+        /reshape super send
+        /size self send
+        /Height exch promote
+        /Width exch promote
+    } def
+
+    /settextfont { % font => -
+	/settextfont super send
+	/ItemListValid? unpromote
+    } def
+
+    /destroy { % - => -
+	/Scrollbar unpromote
+	/destroy super send
+    } def
+
+    /Paint { % - => -
+        /Paint super send
+        .5 .5 Width 1 sub Height 1 sub
+	3D? {
+	    4 copy TopLeftPath BG3 setcolor stroke
+	    BotRightPath BG0 setcolor stroke
+	} {
+	    rectpath 2DFG setcolor stroke
+	} ifelse
+
+	% The background needs to be stippled to ensure that the
+	% borders are painted before the clip is initiated.
+	VisualState /Active ne {
+	    BackgroundColor setcolor
+	    /bbox self send StippleRect
+	} if
+
+        ItemListValid? {
+            BorderStroke /bbox self send insetrect rectpath clip newpath
+            Top OccupiedRows /PaintItems self send
+        } if            
+    } def
+
+    /PaintItems { % item-index number-to-paint => -
+        1 index ItemToYLocation 3 1 roll
+        1 index add 1 sub 1 exch {
+        
+          1 index exch
+            dup /chosen? self send {
+                1 index /PaintChoice self send
+            } if
+
+	    /PaintItem self send
+
+	    VisualState /Active ne {
+		0 1 index Width RowHeight
+		BackgroundColor setcolor StippleRect
+	    } if
+
+            RowHeight sub
+        } for
+        pop 
+    } def
+
+    /PaintItem { % item-y item-index => -
+        TextFont setfont
+        ForegroundColor setcolor
+        /item self send exch 1 index
+        DisplayItemSize exch pop
+        RowHeight exch sub 2 div add
+        ItemInset exch 
+        transform round exch round exch itransform moveto
+        DisplayItemPaint
+    } def
+
+    /setrowgap { % gap => -
+        /invalidate self send
+        /RowGap exch promote
+        /SetRowHeight self send
+    } def
+
+    /rowgap { % - => gap
+        RowGap
+    } def
+
+    /SetRowHeight { % - => -
+	/RowHeight ItemHeight RowGap 2 mul add round promote
+    } def
+
+    /rows { % - => rows
+	Height RowHeight div round cvi
+    } def
+
+    /heightfromrows { % rows => height
+        RowHeight mul RowGap 2 mul add
+    } def
+
+    /setscrollbar { % scrollbar => -
+        dup null eq {
+            pop /Scrollbar unpromote
+        }{
+            /Scrollbar exch soften promote
+            ItemListValid? {
+                /ValidateScrollbar self send
+            } if
+        } ifelse
+    } def
+
+    % REMIND : Top is checked because the scrollbar notifies on mouse
+    % down in drag box.           
+    /scroll { % item-index scrollbar => -
+        pop round cvi dup Top ne {
+            /scrolltohere self send
+        }{
+            pop
+        } ifelse
+    } def
+
+    /Scroll? { % - => boolean
+	/valid? self send not {
+	    false
+	}{
+	    OccupiedRows ScrollMinimum ge {
+		Top PreviousBottom gt Bottom PreviousTop lt or not
+	    }{
+		false
+	    } ifelse
+	} ifelse
+    } def
+
+    /scrolltohere { % item-index => -
+	/PreviousTop Top promote
+	/PreviousBottom Bottom promote
+	/Top exch promote
+        /ValidateView self send
+
+        gsave self setcanvas
+        BorderStroke /bbox self send insetrect rectpath clip newpath
+
+	    /Scroll? self send {
+		ItemWidth ItemInset ChoiceInset sub 2 mul add 1 add
+		Width ChoiceInset sub BorderStroke sub
+		2 copy gt {
+		    exch pop
+		}{
+		    pop
+		} ifelse
+		/CopiedWidth exch promote
+		Top PreviousTop lt {
+		    /ScrollBackward self send
+		}{
+		    /ScrollForward self send
+		} ifelse
+                /CopiedWidth unpromote
+	    }{
+		/?validate self send
+		/Paint super send
+		Top OccupiedRows
+	    } ifelse
+ 
+            /PaintItems self send
+	grestore
+	/PreviousTop unpromote
+	/PreviousBottom unpromote
+    } def
+
+    /ScrollForward { % - => item-index number-to-paint
+       10 dict begin
+            % calculate copied items
+            PreviousBottom Top sub dup RowHeight mul
+            /CopiedHeight exch def
+            /CopiedItems exch def
+
+            % rectangle containing copied items
+            ChoiceInset				% x
+            Height RowGap sub
+            PreviousBottom PreviousTop sub
+            RowHeight mul sub			% x y
+	    CopiedWidth CopiedHeight		% x y w h
+            rectpath
+
+            % the "scrolling" effect
+            0 Top PreviousTop sub RowHeight mul
+            copyarea
+
+            % background fill the rectangle for new items
+            ChoiceInset 			% x	
+            BorderStroke			% x y 
+            CopiedWidth				% x y w
+            Height RowGap sub CopiedHeight sub BorderStroke sub 
+            rectpath BackgroundColor setcolor fill
+
+            % return parameters for /PaintItems
+            Top CopiedItems add OccupiedRows CopiedItems sub
+        end
+    } def
+
+    /ScrollBackward { % - => item-index number-to-paint
+        10 dict begin
+            % calculate copied items
+            Bottom PreviousTop sub 1 add dup
+            RowHeight mul
+            /CopiedHeight exch def
+            /CopiedItems exch def
+
+            % rectangle containing copied items
+            ChoiceInset				% x
+            Height RowGap sub
+            CopiedHeight sub			% x y
+	    CopiedWidth CopiedHeight		% x y w h
+            rectpath
+
+            PreviousTop Top sub RowHeight mul
+            /MovedHeight exch def
+            % the "scrolling" effect
+            0 MovedHeight neg copyarea
+
+            % fill the rectangle where items will be repainted
+            ChoiceInset				% x
+            Height  RowGap sub 
+            MovedHeight sub 			% x y
+            CopiedWidth 			% x y w
+            MovedHeight 			% x y w h
+            rectpath BackgroundColor setcolor fill
+
+            % return parameters for /PaintItems
+            Top OccupiedRows CopiedItems sub 
+        end
+    } def
+    
+
+    IncludeDemos? {
+        /demo { % - => window instance
+           growabledict begin 
+                % instantiate a scrolling list
+                /list framebuffer /new ClassScrollList send def
+
+                % create and assign the itemlist -- all the class names
+		[ systemdict {
+		    isclass? {
+			40 string cvs
+		    }{
+			pop
+		    } ifelse
+		} forall ] {gt} quicksort
+
+		/setitemlist list send
+		(GillSans) findfont 20 scalefont /settextfont list send
+		/minsize list send pop
+		5 /heightfromrows list send 2 array astore cvx
+		/preferredsize exch /promote list send
+
+                % instantiate a vertical scrollbar
+                /scrollbar framebuffer /new ClassVScrollbar send def
+               
+                % ensure that the scrollbar notifies the scrolling list
+                list /settarget scrollbar send
+                /scroll /setnotifier scrollbar send
+                /scroll /setpreviewer scrollbar send
+
+                % ensure that the scrolling list can move the scrollbar
+                scrollbar /setscrollbar list send
+
+                % instantiate a window and insert the list
+                /win list framebuffer /new ClassBaseWindow send def
+                /West scrollbar /addclient win send
+                0 0 0 5 /setgaps win send
+
+                /place win send
+                (Scrolling List Demo) /setlabel win send
+		(Items are the classes in systemdict!) () /setfooter win send
+                /new ClassEventMgr send /activate win send
+		/map win send
+                win list
+            end
+        } def
+    } if
+ 
+
+classend def

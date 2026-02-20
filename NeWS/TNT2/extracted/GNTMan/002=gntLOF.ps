@@ -1,0 +1,1704 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 4 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 20 /Palatino-Italic FMDEFINEFONT
+2 10 /Palatino-Roman FMDEFINEFONT
+%%Page: "ix" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (ix) 550.57 108.7 S
+197 482 558 482 2 L
+0.5 H
+2 Z
+N
+1 F
+(Figures) 199 489 T
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+(Figure 1-1) 198 459.68 T
+(Devguide Tools and Files.) 261 459.68 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 377.29 459.68 T
+(1) 553 459.68 T
+(Figure 1-2) 198 439.68 T
+(The Application Environment) 261 439.68 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . ) 394.78 439.68 T
+(2) 553 439.68 T
+(Figure 1-3) 198 419.68 T
+(GNT Generated Files) 261 419.68 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 354.8 419.68 T
+(4) 553 419.68 T
+(Figure 2-1) 198 399.68 T
+(C Shell Path Set Up) 261 399.68 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 347.31 399.68 T
+(6) 553 399.68 T
+(Figure 2-2) 198 379.68 T
+(Bourne Shell Path Set Up) 261 379.68 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 372.3 379.68 T
+(6) 553 379.68 T
+(Figure 2-3) 198 359.68 T
+(Unsaved-edits notice) 261 359.68 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 354.8 359.68 T
+(7) 553 359.68 T
+(Figure 2-4) 198 339.68 T
+(The Devguide Window) 261 339.68 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 367.3 339.68 T
+(7) 553 339.68 T
+(Figure 2-5) 198 319.68 T
+(The Devguide Controls) 261 319.68 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 364.8 319.68 T
+(8) 553 319.68 T
+(Figure 2-6) 198 299.68 T
+(The Devguide Element Information) 261 299.68 T
+(. . . . . . . . . . . . . . . . . . . . . . ) 419.77 299.68 T
+(9) 553 299.68 T
+(Figure 2-7) 198 279.68 T
+(The Devguide Element Glyphs) 261 279.68 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . ) 399.78 279.68 T
+(10) 548.01 279.68 T
+(Figure 2-8) 198 259.68 T
+(The File menu-button help window) 261 259.68 T
+(. . . . . . . . . . . . . . . . . . . . . . ) 419.77 259.68 T
+(12) 548.01 259.68 T
+(Figure 3-1) 198 239.68 T
+(The Finished Jot Editor Base Window) 261 239.68 T
+( . . . . . . . . . . . . . . . . . . . . ) 427.27 239.68 T
+(14) 548.01 239.68 T
+(Figure 3-2) 198 219.68 T
+(The Finished Load Pop-up Window) 261 219.68 T
+( . . . . . . . . . . . . . . . . . . . . . ) 422.27 219.68 T
+(14) 548.01 219.68 T
+(Figure 3-3) 198 199.68 T
+(The Finished Save As Pop-up Window) 261 199.68 T
+(. . . . . . . . . . . . . . . . . . . ) 434.76 199.68 T
+(14) 548.01 199.68 T
+(Figure 3-4) 198 179.68 T
+(The Base Window from a Base Window Glyph) 261 179.68 T
+( . . . . . . . . . . . . ) 467.24 179.68 T
+(16) 548.01 179.68 T
+(Figure 3-5) 198 159.68 T
+(Base Window with Control Area.) 261 159.68 T
+(. . . . . . . . . . . . . . . . . . . . . . . . ) 409.77 159.68 T
+(17) 548.01 159.68 T
+FMENDPAGE
+%%EndPage: "ix" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+%%Page: "x" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (x) 54 108.7 S
+1 F
+0.09 (GNT for Devguide) 198 108.7 S
+0 F
+0.09 ( \321) 267.85 108.7 S
+1 F
+0.09 ( Mar) 279.27 108.7 S
+0.09 (ch 1991) 297.68 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+(Figure 3-6) 198 641.33 T
+(Base Window with Control Area and Button) 261 641.33 T
+(. . . . . . . . . . . . . . ) 459.75 641.33 T
+(18) 548.01 641.33 T
+(Figure 3-7) 198 621.33 T
+(Base Window with Control Area, Button and Text Pane) 261 621.33 T
+( . . . . ) 507.22 621.33 T
+(18) 548.01 621.33 T
+(Figure 3-8) 198 601.33 T
+(The Pop-up Window from a Pop-up Window Glyph) 261 601.33 T
+(. . . . . . . ) 494.73 601.33 T
+(19) 548.01 601.33 T
+(Figure 3-9) 198 581.33 T
+(Pop-up Window with Control Area.) 261 581.33 T
+( . . . . . . . . . . . . . . . . . . . . . ) 422.27 581.33 T
+(20) 548.01 581.33 T
+(Figure 3-10) 198 561.33 T
+(Pop-up Window with Two Text Fields.) 261 561.33 T
+(. . . . . . . . . . . . . . . . . . . ) 434.76 561.33 T
+(20) 548.01 561.33 T
+(Figure 3-11) 198 541.33 T
+(Pop-up Window with Two Text Fields and a Button.) 261 541.33 T
+(. . . . . . . ) 494.73 541.33 T
+(21) 548.01 541.33 T
+(Figure 3-12) 198 521.33 T
+(The Base Windows Property Window) 261 521.33 T
+(. . . . . . . . . . . . . . . . . . . . ) 429.76 521.33 T
+(22) 548.01 521.33 T
+(Figure 3-13) 198 501.33 T
+(Edited Base Window) 261 501.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 354.8 501.33 T
+(23) 548.01 501.33 T
+(Figure 3-14) 198 481.33 T
+(The Completed Base window.) 261 481.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . ) 394.78 481.33 T
+(24) 548.01 481.33 T
+(Figure 3-15) 198 461.33 T
+(The Buttons Property Window.) 261 461.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . ) 399.78 461.33 T
+(25) 548.01 461.33 T
+(Figure 3-16) 198 441.33 T
+(The Menus Property Window.) 261 441.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . ) 397.28 441.33 T
+(27) 548.01 441.33 T
+(Figure 3-17) 198 421.33 T
+(The Sized and Labeled Pop-up Window.) 261 421.33 T
+( . . . . . . . . . . . . . . . . . ) 442.26 421.33 T
+(28) 548.01 421.33 T
+(Figure 3-18) 198 401.33 T
+(The Pop-up Windows Property Window.) 261 401.33 T
+(. . . . . . . . . . . . . . . . . ) 444.76 401.33 T
+(29) 548.01 401.33 T
+(Figure 3-19) 198 381.33 T
+(The Pop-up Window with Edited Text Fields) 261 381.33 T
+(. . . . . . . . . . . . . . ) 459.75 381.33 T
+(30) 548.01 381.33 T
+(Figure 3-20) 198 361.33 T
+(The Text Fields Property Window.) 261 361.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . ) 414.77 361.33 T
+(31) 548.01 361.33 T
+(Figure 3-21) 198 341.33 T
+(The Completed Load File Pop-up Window) 261 341.33 T
+( . . . . . . . . . . . . . . . ) 452.25 341.33 T
+(33) 548.01 341.33 T
+(Figure 3-22) 198 321.33 T
+(The Buttons Property Window with LoadFileButton Selected) 261 321.33 T
+(34) 548.01 321.33 T
+(Figure 4-1) 198 301.33 T
+(Calling GNT on the jot_editor GIL File.) 261 301.33 T
+(. . . . . . . . . . . . . . . . . . . ) 434.76 301.33 T
+(37) 548.01 301.33 T
+(Figure 4-2) 198 281.33 T
+(Using GNT with the Verbose Flag Set) 261 281.33 T
+( . . . . . . . . . . . . . . . . . . . . ) 427.27 281.33 T
+(38) 548.01 281.33 T
+(Figure 4-3) 198 261.34 T
+(Starting the Prototype Version of jot_editor) 261 261.34 T
+( . . . . . . . . . . . . . . . ) 452.25 261.34 T
+(39) 548.01 261.34 T
+(Figure 4-4) 198 241.34 T
+(GNT Prototype-Code Messages in Shell Window) 261 241.34 T
+(. . . . . . . . . . ) 479.74 241.34 T
+(39) 548.01 241.34 T
+(Figure 4-5) 198 221.34 T
+(GNT Prototype-Code Messages in Console Window) 261 221.34 T
+( . . . . . . . ) 492.23 221.34 T
+(39) 548.01 221.34 T
+(Figure 4-6) 198 201.34 T
+(The File Menu-Button Menu) 261 201.34 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 387.29 201.34 T
+(41) 548.01 201.34 T
+(Figure 4-7) 198 181.34 T
+(The LoadFileMenuItemHandler Skeleton) 261 181.34 T
+(. . . . . . . . . . . . . . . . . ) 444.76 181.34 T
+(41) 548.01 181.34 T
+(Figure 4-8) 198 161.34 T
+(The LoadFileMenuItemHandler Code) 261 161.34 T
+(. . . . . . . . . . . . . . . . . . . . ) 429.76 161.34 T
+(42) 548.01 161.34 T
+FMENDPAGE
+%%EndPage: "x" 3
+%%Page: "xi" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Figur) 198 108.7 S
+0.09 (es) 218.77 108.7 S
+0 F
+0.09 (xi) 550.57 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+(Figure 4-9) 198 641.33 T
+(The Load-File Pop-up Window) 261 641.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . ) 399.78 641.33 T
+(42) 548.01 641.33 T
+(Figure 4-10) 198 621.33 T
+(Setting the Next Focus) 261 621.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 362.3 621.33 T
+(43) 548.01 621.33 T
+(Figure 4-11) 198 601.33 T
+(The LoadFileButtonHandler Skeleton) 261 601.33 T
+( . . . . . . . . . . . . . . . . . . . . ) 427.27 601.33 T
+(44) 548.01 601.33 T
+(Figure 4-12) 198 581.33 T
+(The LoadFileButtonHandler Code) 261 581.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . ) 412.27 581.33 T
+(45) 548.01 581.33 T
+(Figure 4-13) 198 561.33 T
+(Global Variable Definitions for the Text File) 261 561.33 T
+(. . . . . . . . . . . . . . . ) 454.75 561.33 T
+(46) 548.01 561.33 T
+(Figure 4-14) 198 541.33 T
+(Defining cps_get_text) 261 541.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 357.3 541.33 T
+(47) 548.01 541.33 T
+(Figure 4-15) 198 521.33 T
+(Defining cps_close_window) 261 521.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 387.29 521.33 T
+(48) 548.01 521.33 T
+(Figure 4-16) 198 501.33 T
+(The LoadFileTextFieldNotifyHandler Code) 261 501.33 T
+(. . . . . . . . . . . . . . . ) 454.75 501.33 T
+(48) 548.01 501.33 T
+(Figure 4-17) 198 481.33 T
+(Defining cps_create_generic_notice) 261 481.33 T
+( . . . . . . . . . . . . . . . . . . . . . . ) 417.27 481.33 T
+(49) 548.01 481.33 T
+(Figure 4-18) 198 461.33 T
+(Creating and Defining a New Event Manager) 261 461.33 T
+( . . . . . . . . . . . . . ) 462.25 461.33 T
+(50) 548.01 461.33 T
+(Figure 4-19) 198 441.33 T
+(Defining cps_call_confirm_notice) 261 441.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . ) 409.77 441.33 T
+(50) 548.01 441.33 T
+(Figure 4-20) 198 421.33 T
+(A Notice) 261 421.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 302.33 421.33 T
+(51) 548.01 421.33 T
+(Figure 4-21) 198 401.33 T
+(The SaveFileMenuItemHandler Code) 261 401.33 T
+( . . . . . . . . . . . . . . . . . . . . ) 427.27 401.33 T
+(52) 548.01 401.33 T
+(Figure 4-22) 198 381.33 T
+(Editing the jot_editor.make File) 261 381.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . ) 402.28 381.33 T
+(53) 548.01 381.33 T
+(Figure 4-23) 198 361.33 T
+(Compiling the Application Files) 261 361.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . ) 404.78 361.33 T
+(53) 548.01 361.33 T
+(Figure 4-24) 198 341.33 T
+(Testing PostScript Code Outside a Application) 261 341.33 T
+( . . . . . . . . . . . . ) 467.24 341.33 T
+(54) 548.01 341.33 T
+(Figure 5-1) 198 321.33 T
+(The Devguide Window) 261 321.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 367.3 321.33 T
+(57) 548.01 321.33 T
+(Figure 5-2) 198 301.33 T
+(The File Menu) 261 301.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 327.32 301.33 T
+(58) 548.01 301.33 T
+(Figure 5-3) 198 281.33 T
+(The Load Window) 261 281.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 344.81 281.33 T
+(58) 548.01 281.33 T
+(Figure 5-4) 198 261.34 T
+(The Save As Window) 261 261.34 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 357.3 261.34 T
+(60) 548.01 261.34 T
+(Figure 5-5) 198 241.34 T
+(The Edit Menu) 261 241.34 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 327.32 241.34 T
+(62) 548.01 241.34 T
+(Figure 5-6) 198 221.34 T
+(The Properties Menu) 261 221.34 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 354.8 221.34 T
+(64) 548.01 221.34 T
+(Figure 5-7) 198 201.34 T
+(A Selected Window, Control Area, and UI Button Element) 261 201.34 T
+(. . ) 519.71 201.34 T
+(68) 548.01 201.34 T
+(Figure 5-8) 198 181.34 T
+(Selecting Using a Bounding Box) 261 181.34 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . ) 404.78 181.34 T
+(69) 548.01 181.34 T
+(Figure 5-9) 198 161.34 T
+(The Devguide UI Element Pop-up Menu) 261 161.34 T
+( . . . . . . . . . . . . . . . . . ) 442.26 161.34 T
+(70) 548.01 161.34 T
+FMENDPAGE
+%%EndPage: "xi" 4
+%%Page: "xii" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xii) 54 108.7 S
+1 F
+0.09 (GNT for Devguide) 198 108.7 S
+0 F
+0.09 ( \321) 267.85 108.7 S
+1 F
+0.09 ( Mar) 279.27 108.7 S
+0.09 (ch 1991) 297.68 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+(Figure 5-10) 198 641.33 T
+(The Base Windows Property Window) 261 641.33 T
+(. . . . . . . . . . . . . . . . . . . . ) 429.76 641.33 T
+(71) 548.01 641.33 T
+(Figure 5-11) 198 621.33 T
+(The Pop-up Windows Property Window) 261 621.33 T
+( . . . . . . . . . . . . . . . . . ) 442.26 621.33 T
+(73) 548.01 621.33 T
+(Figure 5-12) 198 601.33 T
+(The Control Areas Property Window) 261 601.33 T
+( . . . . . . . . . . . . . . . . . . . . ) 427.27 601.33 T
+(74) 548.01 601.33 T
+(Figure 5-13) 198 581.33 T
+(The Grid Submenu) 261 581.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 347.31 581.33 T
+(75) 548.01 581.33 T
+(Figure 5-14) 198 561.33 T
+(Using the Grid to Align Controls) 261 561.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . ) 407.28 561.33 T
+(76) 548.01 561.33 T
+(Figure 5-15) 198 541.33 T
+(The Align Submenu) 261 541.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 352.31 541.33 T
+(76) 548.01 541.33 T
+(Figure 5-16) 198 521.33 T
+(The Canvas Panes Property Window) 261 521.33 T
+(. . . . . . . . . . . . . . . . . . . . . ) 424.77 521.33 T
+(78) 548.01 521.33 T
+(Figure 5-17) 198 501.33 T
+(The Text Panes Property Window) 261 501.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . ) 412.27 501.33 T
+(79) 548.01 501.33 T
+(Figure 5-18) 198 481.33 T
+(The Buttons Property Window) 261 481.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . ) 397.28 481.33 T
+(80) 548.01 481.33 T
+(Figure 5-19) 198 461.33 T
+(The Messages Property Window) 261 461.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . ) 407.28 461.33 T
+(81) 548.01 461.33 T
+(Figure 5-20) 198 441.33 T
+(The Settings Property Window \320 Top Half) 261 441.33 T
+(. . . . . . . . . . . . . . . . ) 449.75 441.33 T
+(82) 548.01 441.33 T
+(Figure 5-21) 198 421.33 T
+(The Settings Property Window \320 Bottom Half) 261 421.33 T
+(. . . . . . . . . . . . . ) 464.74 421.33 T
+(83) 548.01 421.33 T
+(Figure 5-22) 198 401.33 T
+(The Text Fields Property Window) 261 401.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . ) 412.27 401.33 T
+(84) 548.01 401.33 T
+(Figure 5-23) 198 381.33 T
+(The Sliders Property Window) 261 381.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . ) 394.78 381.33 T
+(85) 548.01 381.33 T
+(Figure 5-24) 198 361.33 T
+(The Gauges Property Window) 261 361.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . ) 397.28 361.33 T
+(86) 548.01 361.33 T
+(Figure 5-25) 198 341.33 T
+(The Scrolling Lists Property Window) 261 341.33 T
+( . . . . . . . . . . . . . . . . . . . . ) 427.27 341.33 T
+(87) 548.01 341.33 T
+(Figure 5-26) 198 321.33 T
+(The Help Editor Window) 261 321.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 374.79 321.33 T
+(88) 548.01 321.33 T
+(Figure 5-27) 198 301.33 T
+(A Menu Button, Its Menu and Submenu) 261 301.33 T
+(. . . . . . . . . . . . . . . . . . ) 439.76 301.33 T
+(90) 548.01 301.33 T
+(Figure 5-28) 198 281.33 T
+(The Menus Property Window \320 Menu Controls) 261 281.33 T
+( . . . . . . . . . . . ) 472.24 281.33 T
+(91) 548.01 281.33 T
+(Figure 5-29) 198 261.34 T
+(The Menus Property Window \320 Item Controls) 261 261.34 T
+(. . . . . . . . . . . . . ) 464.74 261.34 T
+(92) 548.01 261.34 T
+(Figure 5-30) 198 241.34 T
+(A Multicolumn Menu) 261 241.34 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 359.8 241.34 T
+(102) 543.01 241.34 T
+(Figure 5-31) 198 221.34 T
+(The Color Chooser Window) 261 221.34 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 387.29 221.34 T
+(107) 543.01 221.34 T
+(Figure 6-1) 198 201.34 T
+(Client-Server Split and Application Components) 261 201.34 T
+( . . . . . . . . . . ) 477.24 201.34 T
+(110) 543.01 201.34 T
+(Figure 6-2) 198 181.34 T
+(GNT Command-Line Format) 261 181.34 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 392.28 181.34 T
+(111) 543.01 181.34 T
+(Figure 6-3) 198 161.34 T
+(The Portable Function Header) 261 161.34 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . ) 394.78 161.34 T
+(112) 543.01 161.34 T
+FMENDPAGE
+%%EndPage: "xii" 5
+%%Page: "xiii" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Figur) 198 108.7 S
+0.09 (es) 218.77 108.7 S
+0 F
+0.09 (xiii) 545.16 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+(Figure 6-4) 198 641.33 T
+(Overview of GNT Files) 261 641.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 364.8 641.33 T
+(114) 543.01 641.33 T
+(Figure 6-5) 198 621.33 T
+(Main-Event-Loop-Driven Program) 261 621.33 T
+( . . . . . . . . . . . . . . . . . . . . . . ) 417.27 621.33 T
+(118) 543.01 621.33 T
+(Figure 6-6) 198 601.33 T
+(Tags and Tokens) 261 601.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 337.32 601.33 T
+(119) 543.01 601.33 T
+(Figure 6-7) 198 581.33 T
+(Tag and Token Name Declarations) 261 581.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . ) 414.77 581.33 T
+(120) 543.01 581.33 T
+(Figure 6-8) 198 561.33 T
+(Obtaining a Calling Object\325s Token Value) 261 561.33 T
+(. . . . . . . . . . . . . . . . . ) 444.76 561.33 T
+(120) 543.01 561.33 T
+(Figure 6-9) 198 541.33 T
+(C-side Headers) 261 541.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 329.82 541.33 T
+(121) 543.01 541.33 T
+(Figure 6-10) 198 521.33 T
+(Creating a Notify Handler) 261 521.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 379.79 521.33 T
+(122) 543.01 521.33 T
+(Figure 6-11) 198 501.33 T
+(Setting the User-Data Pointer) 261 501.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 392.28 501.33 T
+(122) 543.01 501.33 T
+(Figure 6-12) 198 481.33 T
+(Switching on a Tag in the Callback Body) 261 481.33 T
+( . . . . . . . . . . . . . . . . . ) 442.26 481.33 T
+(123) 543.01 481.33 T
+(Figure 6-13) 198 461.33 T
+(Registering User Data to be Passed to the Callback) 261 461.33 T
+(. . . . . . . . . ) 484.73 461.33 T
+(124) 543.01 461.33 T
+(Figure 6-14) 198 441.33 T
+(The cdef Command Syntax) 261 441.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 382.29 441.33 T
+(128) 543.01 441.33 T
+(Figure 6-15) 198 421.33 T
+( cdef Send-Only Template) 261 421.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 377.29 421.33 T
+(129) 543.01 421.33 T
+(Figure 6-16) 198 401.33 T
+(Defining a Send-Only cdef Function) 261 401.33 T
+( . . . . . . . . . . . . . . . . . . . . . ) 422.27 401.33 T
+(130) 543.01 401.33 T
+(Figure 6-17) 198 381.33 T
+(Calling a Send-Only cdef Function) 261 381.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . ) 414.77 381.33 T
+(130) 543.01 381.33 T
+(Figure 6-18) 198 361.33 T
+( Set Specific Gauge) 261 361.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 347.31 361.33 T
+(131) 543.01 361.33 T
+(Figure 6-19) 198 341.33 T
+( Set Any Gauge) 261 341.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 332.32 341.33 T
+(131) 543.01 341.33 T
+(Figure 6-20) 198 321.33 T
+(cdef Template for Obtaining PostScript Values) 261 321.33 T
+( . . . . . . . . . . . . ) 467.24 321.33 T
+(131) 543.01 321.33 T
+(Figure 6-21) 198 301.33 T
+(Defining a cdef Function that Returns Values) 261 301.33 T
+( . . . . . . . . . . . . . ) 462.25 301.33 T
+(132) 543.01 301.33 T
+(Figure 6-22) 198 281.33 T
+(Calling a cdef Function that Returns Values) 261 281.33 T
+(. . . . . . . . . . . . . . . ) 454.75 281.33 T
+(133) 543.01 281.33 T
+(Figure 6-23) 198 261.34 T
+(Where the Load File Pop-up is Called from) 261 261.34 T
+( . . . . . . . . . . . . . . . ) 452.25 261.34 T
+(134) 543.01 261.34 T
+(Figure 6-24) 198 241.34 T
+(Declaring the Tag t_MyFunction) 261 241.34 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . ) 404.78 241.34 T
+(135) 543.01 241.34 T
+(Figure 6-25) 198 221.34 T
+(Adding the New Tag to the Tag Array) 261 221.34 T
+( . . . . . . . . . . . . . . . . . . . ) 432.26 221.34 T
+(135) 543.01 221.34 T
+(Figure 6-26) 198 201.34 T
+(Associating the New Tag with a Function) 261 201.34 T
+(. . . . . . . . . . . . . . . . . ) 444.76 201.34 T
+(136) 543.01 201.34 T
+(Figure 6-27) 198 181.34 T
+(Defining a Registered Function) 261 181.34 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . ) 399.78 181.34 T
+(136) 543.01 181.34 T
+(Figure 6-28) 198 161.34 T
+(The Notify Handler Text Field in a Property Window) 261 161.34 T
+( . . . . . . ) 497.23 161.34 T
+(137) 543.01 161.34 T
+FMENDPAGE
+%%EndPage: "xiii" 6
+%%Page: "xiv" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xiv) 54 108.7 S
+1 F
+0.09 (GNT for Devguide) 198 108.7 S
+0 F
+0.09 ( \321) 267.85 108.7 S
+1 F
+0.09 ( Mar) 279.27 108.7 S
+0.09 (ch 1991) 297.68 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+(Figure 6-29) 198 641.33 T
+(A PostScript only Callback.) 261 641.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 382.29 641.33 T
+(137) 543.01 641.33 T
+(Figure 6-30) 198 621.33 T
+(Testing Server-Side Code) 261 621.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 374.79 621.33 T
+(138) 543.01 621.33 T
+(Figure 6-31) 198 601.33 T
+(The Class Names GNT Usually Uses) 261 601.33 T
+(. . . . . . . . . . . . . . . . . . . . . ) 424.77 601.33 T
+(139) 543.01 601.33 T
+(Figure 6-32) 198 581.33 T
+(Adding a Level of Subclasses) 261 581.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 392.28 581.33 T
+(140) 543.01 581.33 T
+(Figure 6-33) 198 561.33 T
+(OPEN LOOK Class Redefinitions.) 261 561.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . ) 412.27 561.33 T
+(141) 543.01 561.33 T
+(Figure 6-34) 198 541.33 T
+(Loading User-Defined Subclasses) 261 541.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . ) 409.77 541.33 T
+(142) 543.01 541.33 T
+(Figure 6-35) 198 521.33 T
+(A Subclassing Example) 261 521.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 364.8 521.33 T
+(143) 543.01 521.33 T
+(Figure 6-36) 198 501.33 T
+(The Devguide Settings Property Window) 261 501.33 T
+(. . . . . . . . . . . . . . . . . ) 444.76 501.33 T
+(144) 543.01 501.33 T
+(Figure 6-37) 198 481.33 T
+(Devguide-Generated Window with Color-Settings) 261 481.33 T
+(. . . . . . . . . ) 484.73 481.33 T
+(145) 543.01 481.33 T
+(Figure 6-38) 198 461.33 T
+(GNT-Generated Window with Color Settings) 261 461.33 T
+( . . . . . . . . . . . . . ) 462.25 461.33 T
+(145) 543.01 461.33 T
+(Figure 6-39) 198 441.33 T
+(Switching Between Subclasses) 261 441.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . ) 397.28 441.33 T
+(146) 543.01 441.33 T
+(Figure 6-40) 198 421.33 T
+(Creating an Instance of GuideSettings) 261 421.33 T
+(. . . . . . . . . . . . . . . . . . . . ) 429.76 421.33 T
+(146) 543.01 421.33 T
+(Figure 6-41) 198 401.33 T
+(Defining an Initializing cdef) 261 401.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 387.29 401.33 T
+(148) 543.01 401.33 T
+(Figure 6-42) 198 381.33 T
+(Calling an Initialized Function) 261 381.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . ) 397.28 381.33 T
+(148) 543.01 381.33 T
+(Figure 6-43) 198 361.33 T
+(Disadvantages of Redefining NeWS Operators) 261 361.33 T
+( . . . . . . . . . . . . ) 467.24 361.33 T
+(149) 543.01 361.33 T
+(Figure A-1) 198 341.33 T
+(A Basic Interface) 252 341.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 327.32 341.33 T
+(152) 543.01 341.33 T
+(Figure B-1) 198 321.33 T
+(The Base Windows Property Window) 252 321.33 T
+(. . . . . . . . . . . . . . . . . . . . . . ) 419.77 321.33 T
+(168) 543.01 321.33 T
+(Figure B-2) 198 301.33 T
+(The Buttons Property Window) 252 301.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 389.79 301.33 T
+(169) 543.01 301.33 T
+(Figure B-3) 198 281.33 T
+(The Canvas Panes Property Window) 252 281.33 T
+( . . . . . . . . . . . . . . . . . . . . . . ) 417.27 281.33 T
+(170) 543.01 281.33 T
+(Figure B-4) 198 261.34 T
+(The Control Areas Property Window) 252 261.34 T
+( . . . . . . . . . . . . . . . . . . . . . . ) 417.27 261.34 T
+(171) 543.01 261.34 T
+(Figure B-5) 198 241.34 T
+(The Gauges Property Window) 252 241.34 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 387.29 241.34 T
+(172) 543.01 241.34 T
+(Figure B-6) 198 221.34 T
+(The Help Editor Window) 252 221.34 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 364.8 221.34 T
+(173) 543.01 221.34 T
+(Figure B-7) 198 201.34 T
+(The Menu Editor Window \320 Top Half) 252 201.34 T
+(. . . . . . . . . . . . . . . . . . . . . . ) 419.77 201.34 T
+(174) 543.01 201.34 T
+(Figure B-8) 198 181.34 T
+(The Menu Editor Window \320 Bottom Half) 252 181.34 T
+(. . . . . . . . . . . . . . . . . . . ) 434.76 181.34 T
+(175) 543.01 181.34 T
+(Figure B-9) 198 161.34 T
+(The Messages Property Window) 252 161.34 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . . ) 397.28 161.34 T
+(176) 543.01 161.34 T
+FMENDPAGE
+%%EndPage: "xiv" 7
+%%Page: "xv" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Figur) 198 108.7 S
+0.09 (es) 218.77 108.7 S
+0 F
+0.09 (xv) 548.1 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+(Figure B-10) 198 641.33 T
+(The Pop-up Windows Property Window) 252 641.33 T
+( . . . . . . . . . . . . . . . . . . . ) 432.26 641.33 T
+(177) 543.01 641.33 T
+(Figure B-11) 198 621.33 T
+(The Scrolling Lists Property Window) 252 621.33 T
+( . . . . . . . . . . . . . . . . . . . . . . ) 417.27 621.33 T
+(178) 543.01 621.33 T
+(Figure B-12) 198 601.33 T
+(The Settings Property Window \320 Top Half) 252 601.33 T
+(. . . . . . . . . . . . . . . . . . ) 439.76 601.33 T
+(179) 543.01 601.33 T
+(Figure B-13) 198 581.33 T
+(The Settings Property Window \320 Bottom Half) 252 581.33 T
+(. . . . . . . . . . . . . . . ) 454.75 581.33 T
+(180) 543.01 581.33 T
+(Figure B-14) 198 561.33 T
+(The Sliders Property Window) 252 561.33 T
+(. . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 384.79 561.33 T
+(181) 543.01 561.33 T
+(Figure B-15) 198 541.33 T
+(The Term Pane Property Window) 252 541.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . ) 402.28 541.33 T
+(182) 543.01 541.33 T
+(Figure B-16) 198 521.33 T
+(The Text Fields Property Window) 252 521.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . ) 402.28 521.33 T
+(183) 543.01 521.33 T
+(Figure B-17) 198 501.33 T
+(The Text Panes Property Window) 252 501.33 T
+( . . . . . . . . . . . . . . . . . . . . . . . . . ) 402.28 501.33 T
+(184) 543.01 501.33 T
+FMENDPAGE
+%%EndPage: "xv" 8
+%%Page: "xvi" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xvi) 54 108.7 S
+1 F
+0.09 (GNT for Devguide) 198 108.7 S
+0 F
+0.09 ( \321) 267.85 108.7 S
+1 F
+0.09 ( Mar) 279.27 108.7 S
+0.09 (ch 1991) 297.68 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+FMENDPAGE
+%%EndPage: "xvi" 9
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 8 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic

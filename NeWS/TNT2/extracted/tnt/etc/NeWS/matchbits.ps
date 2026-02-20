@@ -1,0 +1,105 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)matchbits.ps 23.3 91/02/11
+%
+%
+% event match bits
+%
+%	This is data for speeding event distribution.  What goes in this
+%	list has been tuned heavily.  In addition, there are X11 dependencies
+%	on the assignments.  It really should be moved into C.
+%
+%		DON'T MESS WITH THIS FILE!
+%
+
+% Reserved bits: (Don't use these!)
+%	Bit 0 is reserved for the 'Other' values.
+%	Bit 1 is reserved for keystroke values
+%	Bit 31 for Null values.
+
+%
+% Name match dict
+%
+/MouseDragged		2	/Name		setmatchbit
+/EnterEvent		3	/Name		setmatchbit
+/GrabEnterNotify	3	/Name		setmatchbit
+/ExitEvent		4	/Name		setmatchbit
+/GrabExitNotify		4	/Name		setmatchbit
+/LeftMouseButton	5	/Name		setmatchbit
+/MiddleMouseButton	6	/Name		setmatchbit
+/RightMouseButton	7	/Name		setmatchbit
+/4thMouseButton		7	/Name		setmatchbit
+/5thMouseButton		7	/Name		setmatchbit
+/ProcessDied		8	/Name		setmatchbit
+/Obsolete		9	/Name		setmatchbit
+/Damaged		10	/Name		setmatchbit
+/LoseFocus		11	/Name		setmatchbit
+/GrabFocusOutNotify	11	/Name		setmatchbit
+/AcceptFocus		12	/Name		setmatchbit
+/RestoreFocus		13	/Name		setmatchbit
+/GrabFocusInNotify	13	/Name		setmatchbit
+/DoItEvent		14	/Name		setmatchbit
+/KeymapNotify		15	/Name		setmatchbit
+
+% structure notification
+/UnmapNotify		16	/Name		setmatchbit
+/MapNotify		16	/Name		setmatchbit
+/ReparentNotify		16	/Name		setmatchbit
+/ConfigureNotify	16	/Name		setmatchbit
+/GravityNotify		16	/Name		setmatchbit
+/CirculateNotify	16	/Name		setmatchbit
+/DestroyNotify		16	/Name		setmatchbit
+
+% substructure notification
+/SubCreateNotify	17	/Name		setmatchbit
+/SubUnmapNotify		17	/Name		setmatchbit
+/SubMapNotify		17	/Name		setmatchbit
+/SubReparentNotify	17	/Name		setmatchbit
+/SubConfigureNotify	17	/Name		setmatchbit
+/SubGravityNotify	17	/Name		setmatchbit
+/SubCirculateNotify	17	/Name		setmatchbit
+/SubDestroyNotify	17	/Name		setmatchbit
+
+% misc.
+/PropertyNotify		18	/Name		setmatchbit
+/Exposure		19	/Name		setmatchbit
+/VisibilityNotify	20	/Name		setmatchbit
+
+% substructure-redirect
+/MapRequest		21	/Name		setmatchbit
+/ConfigureRequest	21	/Name		setmatchbit
+/CirculateRequest	21	/Name		setmatchbit
+
+% resize-redirect
+/ResizeRequest		22	/Name		setmatchbit
+
+% misc.
+/ColormapNotify		23	/Name		setmatchbit
+/TransferSelection	24	/Name		setmatchbit
+/ClientMessage		25	/Name		setmatchbit
+
+% X selections
+/SelectionClear		26	/Name		setmatchbit
+/SelectionRequest	26	/Name		setmatchbit
+
+
+%
+% Action match dict
+%
+/UpTransition		2	/Action		setmatchbit
+/DownTransition		3	/Action		setmatchbit
+/Window			4	/Action		setmatchbit
+/PrimarySelection	5	/Action		setmatchbit
+/EventMgr		6	/Action		setmatchbit
+/Frame			7	/Action		setmatchbit
+/WMglobal		8	/Action		setmatchbit
+/WindowMgrDoIt		9	/Action		setmatchbit
+
+% the integers 0..7 mapped to bits 23..30
+0 1 7 {
+    dup                       23 add  /Action         setmatchbit
+} for

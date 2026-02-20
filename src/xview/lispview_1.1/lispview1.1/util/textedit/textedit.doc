@@ -1,0 +1,236 @@
+;;;	(c) Copyright 1989, 1990, 1991 Sun Microsystems, Inc. 
+;;;	Sun design patents pending in the U.S. and foreign countries. 
+;;;	See LEGAL_NOTICE file for terms of the license.
+
+
+	LispView Interface for the XView Textsw Module 
+
+
+Most of this interface is only a thinly disguised LispView version 
+if the XView Textsw (textedit sub window) package.  In particular most of 
+the Textsw attributes only differ in name, e.g. TEXTSW_AUTO_INDENT
+becomes an accessor called textedit-auto-indent in LispView.
+A list of the textedit attibutes that are identical for LispView
+and XView, there are about 25, appears near the end of this document.
+
+[Note (31-oct-91): You cannot use the LispView textedit-window menu
+to save the current file; see "BUGS" below.]
+
+TEXTEDIT-LOCATION                                               [Type]
+
+A textedit-location represents this position of a character as the 
+offset of the character from the beginning of the buffer.  The value
+of textedit-location must be one of :first, :last, or a positive integer.
+
+
+initialize-instance ((x TEXTEDIT-MARK)                           [Method]
+  &key
+
+
+initialize-instance ((x TEXTEDIT-WINDOW)                         [Method]
+  &key
+    contents
+  &allow-other-keys
+
+The value of contents can be a pathname or a string.  
+Initargs that correspond to all of the textedit attribtues 
+listed in the table at the end of this section are also supported.  
+The names of the initargs are the same as the accessor without 
+the "textedit-" prefix.
+
+
+READ-ONLY ((x textedit-window))                                  [Method]
+
+Returns nil if the contents of the textedit-window can be edited
+by the user.  Change with setf.
+
+
+TEXTEDIT-CONTENTS (x textedit-window)                            [Method]
+   &key
+     start
+     end
+
+Return the contents of the textedit-window between :start and :end 
+as string.
+
+
+(SETF TEXTEDIT-CONTENTS) value (x textedit-window)               [Method]
+   &key 
+     insertion-point
+
+Value must be a string or a pathname.  The string or the contents of 
+the file specified by pathname are inserted begining at the specified
+insertion-point which defaults to the current insertion point.
+
+
+TEXTEDIT-CONTENTS-LENGTH (x textedit-window)                     [Method]
+
+Returns the number of characters in the textedit-windows contents.
+
+
+
+TEXTEDIT-INSERTION-POINT ((x textedit-window))                   [Method]
+
+Returns the current insertion-point, a textedit-location, or changes 
+it with setf.   
+
+
+TEXTEDIT-INSERT ((x textedit-window) value)                      [Method]
+
+Value must be a string or a pathname.  The string or the contents of
+the file are inserted at the current insertion point.
+
+
+TEXTEDIT-DELETE ((x textedit-window) start end                   [Method]
+   &key update-clipboard 
+
+Remove the text between textedit-locations start and end.  If 
+update-clipboard is non nil then the deleted text is copied to the 
+clipboard.  The default value for update-clipboard is nil.
+
+
+TEXTEDIT-VISIBLE-TEXT-OFFSET (x textedit-window)                 [Method]
+   &optional unit
+
+Multiple-value returns the first and last visible line numbers if unit
+is :line, or character locations is unit is :char.  The default value of unit 
+is :char.  The first visible line or character can be changed with setf.
+
+
+TEXTEDIT-MODIFIED-P ((x textedit-window))                        [Method]
+
+Returns non nil if there are any outstanding edits for this file.
+
+
+TEXTEDIT-FILENAME ((x textedit-window))                          [Method]
+
+If the contents of the textedit-window are backed up by a file, e.g. 
+because they were loaded from a file, then return the files name.
+The value of textedit-filename can be changed with setf.
+
+
+TEXTEDIT-INSERT-MAKES-VISIBLE ((x textedit-window))	         [Method]
+
+Value must be one of :always :if-auto-scroll.
+
+
+TEXTEDIT-LINE-BREAK-ACTION ((x textedit-window))                 [Method]
+
+Value must be one of :clip :wrap-at-char :wrap-at-word.
+
+
+
+TEXTEDIT-SAVE ((x textedit-window)                               [Method]
+   &key 
+     filename
+     notice-x
+     notice-y
+
+Save the contents of the textedit-window.  If no filename was specified,
+the textedit-windows contents didn't come from a file, and no file has
+ever been associated with this textedit-window via (setf textedit-filename),
+then prompt the user with a notice.  The upper left hand corner of the
+notice will appear at :notice-x and :notice-y relative to the 
+textedit-window, :notice-x and :notice-y default to zero.  Textedit-save
+returns the filename the contents of the textedit-window were saved to
+if successful and nil otherwise.
+
+
+TEXTEDIT-RESET ((x textedit-window)                               [Method]
+   &key 
+     notice-x
+     notice-y
+
+Discard the contents of the textedit-window.
+
+
+
+TEXTEDIT-FIND-STRING ((x textedit-window) string                  [Method]
+   &key 
+     start 	
+     end
+     from-end
+
+Seach the contents of the textedit-window from :start to :end (or, if 
+the value of :from-end is non nil from :end to :start) for the 
+first occurence of string.  If an exact match is found the position 
+of the leftmost element of the match is returned unless :from-end 
+is non nil, then the rightmost element of the match is returned.
+
+
+The table below identifies all of the LispView textedit-window accessors
+that map one to one XView textsw attribute.  The semantics of the LispView 
+accessors are the same as for XView; the O'Reilly "XView Programming Manual" 
+should be used as a reference.  The accessors for attributes whose type is 
+boolean are non standard: the reader always returns NIL or T even if the
+attribute has been set to a non nil value other than T.  This was done
+to avoid the overhead required to cache Lisp values for each boolean attribute.
+
+LispView Accessor                 XView Attribute                 Type                                
+-----------------                 ---------------                 ----                                
+textedit-left-margin              XV_LEFT_MARGIN                  (integer 0 *)                       
+textedit-right-margin             XV_RIGHT_MARGIN                 (integer 0 *)                       
+textedit-bottom-margin            XV_BOTTOM_MARGIN                (integer 0 *)                       
+textedit-top-margin               XV_TOP_MARGIN                   (integer 0 *)                       
+textedit-margin                   XV_MARGIN                       (integer 0 *)                       
+textedit-font                     XV_FONT                         font                                
+textedit-again-recording          TEXTSW_AGAIN_RECORDING          boolean                             
+textedit-auto-indent              TEXTSW_AUTO_INDENT              boolean                             
+textedit-auto-scroll-by           TEXTSW_AUTO_SCROLL_BY           (integer 0 *)                       
+textedit-blink-caret              TEXTSW_BLINK_CARET              boolean                             
+textedit-browsing                 TEXTSW_BROWSING                 boolean                             
+textedit-checkpoint-frequency     TEXTSW_CHECKPOINT_FREQUENCY     (integer 0 *)                       
+textedit-confirm-overwrite        TEXTSW_CONFIRM_OVERWRITE        boolean                             
+textedit-control-chars-use-font   TEXTSW_CONTROL_CHARS_USE_FONT   boolean                             
+textedit-disable-cd               TEXTSW_DISABLE_CD               boolean                             
+textedit-disable-load             TEXTSW_DISABLE_LOAD             boolean                             
+textedit-history-limit            TEXTSW_HISTORY_LIMIT            (integer 0 *)                       
+textedit-ignore-limit             TEXTSW_IGNORE_LIMIT             (integer 0 *)                       
+textedit-insert-makes-visible     TEXTSW_INSERT_MAKES_VISIBLE     (member :always :if-auto-scroll)    
+textedit-line-break-action        TEXTSW_LINE_BREAK_ACTION        (member :wrap-at-char :wrap-at-word)
+textedit-lower-context            TEXTSW_LOWER_CONTEXT            (integer -1 *)                      
+textedit-memory-maximum           TEXTSW_MEMORY_MAXIMUM           (integer 0 *)                       
+textedit-multi-click-space        TEXTSW_MULTI_CLICK_SPACE        (integer 0 *)                       
+textedit-multi-click-timeout      TEXTSW_MULTI_CLICK_TIMEOUT      (integer 0 *)                       
+textedit-store-changes-file       TEXTSW_STORE_CHANGES_FILE       boolean                             
+textedit-submenu-edit             TEXTSW_SUBMENU_EDIT             menu                                
+textedit-submenu-file             TEXTSW_SUBMENU_FILE             menu                                
+textedit-submenu-find             TEXTSW_SUBMENU_FIND             menu                                
+textedit-submenu-view             TEXTSW_SUBMENU_VIEW             menu                                
+textedit-upper-context            TEXTSW_UPPER_CONTEXT            (integer -1 *)                      
+textedit-read-only                TEXTSW_READ_ONLY                boolean                             
+
+
+BUGS:
+
+- *** Attempt to save current file from LispView textedit-window menu
+      causes signal stack error
+"Save Current File" (from the "File" submenu) does NOT work;
+attempting to use it causes a stack pointer error which effectively ends
+the Lisp session.  "Store as New File..." has the same problem in the
+case where the specified "new" file is the current file.
+The current file can be saved by invoking (lv:textedit-save ew),
+where ew is the textedit-window.
+
+- Accessors for the textedit-submenus attributes have not been implemented 
+although the corresponding initargs should work.
+
+
+- The  (textedit-line-break-action (member :wrap-at-char :wrap-at-word))
+accessor fails - XView bug #1047539
+
+
+- The interface for Textsw notifications, e.g. CAPS_LOCK, hasn't been finished.
+It's of dubious value anyway.
+
+
+- visible-text-offset fails if viewing the end of a file, (setf visible-text-offset)
+fails if value is :last
+
+
+- No support for the following Textsw features has been included:
+
+   Setting the primary selection.
+
+   Dealing with multiple views.
+

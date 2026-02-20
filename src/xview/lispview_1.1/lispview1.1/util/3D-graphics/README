@@ -1,0 +1,47 @@
+
+		Directions for Generating a Lisp/XGL Interface
+
+		      Conal Elliott  (conal@eng.sun.com)
+
+		   Last Modified: Thu Oct 24 14:35:59 1991
+
+Note: steps 0 and 1 are unnecessary for the publicly distributed version,
+which contains the Lisp interface and not the tool that generated it.
+
+  0. Unpack the compressed tar file, as follows:
+
+       % mkdir <destination directory>
+       % cd <destination directory>
+       % uncompress < <dir of .tar.Z file>/lisp-xgl-2.0.tar.Z | tar xvf -
+
+  1. In gnuemacs, load etranslate.elc, visit include-xgl.h, fix the include
+     paths if necessary (consistently with XGLHOME, as used in step 2), and do
+     Meta-x etranslate-buffer.  Say XGL when asked for the package name.
+
+  2. In a shell: Make sure that your XGLHOME environment variable is set to
+     the right place.  (The directory that contains XGL's demo, lib, include,
+     and man directories.)  If you aren't already in the directory containing
+     this README, cd to it.  Then say "make".  This will create several files
+     needed for the lisp/xgl interface.
+
+  3. If you want to build a Lisp image with the xgl interface built in, now
+     say "make lisp-xgl".  This will take a while.  See create-lisp-xgl to
+     find out what's going on.  Try out your new image, which is left in
+     lisp-xgl.  This script assumes that the base lisp image is called
+     "lisp-view", so edit create-lisp-xgl if that's not appropriate.
+
+     On the other hand, if you don't want to make an image, just say (load
+     "build.lisp") in a Lisp image.
+
+  4. As a demo of the interface, see the directory "polyhedra".
+
+
+Notes:
+
+  - It would be better if we didn't have to specify the include path twice.
+    Maybe etranslate-buffer should prompt for it and put it where
+    after-etranslate can get to it.
+
+  - The generated image has libxglut.a as well as libxgl.a.  See
+    $XGLHOME/demo/xgl/README.xglut.  For now, I've only made interfaces to
+    a very few functions (the double buffering ones).

@@ -1,0 +1,837 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)capture.ps 23.6 91/02/11
+%
+
+%  PostScript Capture (printing) Facility
+% 
+%  Load PSC utilities and operators into ClassCanvas
+%
+ClassCanvas begin
+
+    % Utilities:
+    %
+    /PSCprivate dictbegin
+	 
+	% add a line to PSC file.
+	%
+	/AddLine { % string => -
+	    (\n) append PSCfile exch writestring
+	    % REMIND:  flushfile should probably be turned off for
+	    %	       production code.
+    	    PSCfile flushfile
+	} def
+	 
+	% add a string to the PSC file.
+	% 
+	/AddString { % string => -
+	    PSCfile exch writestring
+	    % REMIND:  flushfile should probably be turned off for
+	    %	       production code.
+    	    PSCfile flushfile
+	} def
+	 
+	% do a pathforall to get current path
+	%
+	/GetPath { % - => -
+    	    emptypath not {
+	 	mark
+    		{ % moveto 
+		    counttomark 2 gt { 4 2 roll pop pop } if 
+		} 
+		{ % lineto 
+		    counttomark 2 gt { 
+		    	4 2 roll CTM transform
+		    	2 Emit (moveto) AddLine 
+		    } if
+     		    CTM transform 2 Emit (lineto) AddLine
+		}
+		{ % curveto
+		    counttomark 6 gt { 
+		    	8 2 roll CTM transform
+		    	2 Emit (moveto) AddLine 
+		    } if
+    		    3 { 6 -2 roll CTM transform } repeat 
+	  	    6 Emit (curveto) AddLine
+		}
+    		{ % closepath
+		    counttomark 2 eq {
+		    	CTM transform
+		    	2 Emit (moveto) AddLine 
+		    } if
+		    (closepath) AddLine
+		}
+        	pathforall
+		counttomark 2 eq Show? and { 
+		    CTM transform
+                    2 Emit (moveto) AddLine
+		    /Show? false def
+                } if
+		cleartomark
+    	    }{
+		(newpath) AddLine
+    	    } ifelse
+	} def
+	 
+	% output the top n arg's on the stack
+	%
+	/Emit { % args => -
+    	    -1 1 {
+		-1 roll 32 string cvs AddString ( ) AddString
+    	    } for 
+	} def
+	 
+	% exec the bound version of an operator
+	%
+	/UnOverride { % operator => -
+	    systemdict exch get exec
+	} def
+	 
+	% output a string
+	%
+	/DoString { % string => -
+	    (\() AddString ScanString (\) ) AddString
+	    %/oldstdout currentprocess /Stdout get put
+            %currentprocess /Stdout PSCfile put
+            %==
+            %currentprocess /Stdout oldstdout put
+   	} def
+	 
+	% scan string to find \, (, )
+	%
+	/ScanString { % string => -
+    	    {
+        	(\\) search {
+            	    ScanString
+            	    AddString (\\) AddString
+            	    ScanString
+            	    exit
+        	}{
+            	    (\() search {
+                	ScanString
+                	(\\) AddString AddString
+                	ScanString
+                	exit
+            	    }{
+                	(\)) search {
+                    	    ScanString
+                    	    (\\) AddString AddString
+                    	    ScanString
+                    	    exit
+                	}{
+                    	    AddString
+                    	    exit
+                	} ifelse
+            	    } ifelse
+        	} ifelse
+    	    } loop
+	} def
+	 
+	% output the elements of an array
+	%
+	/DoArray { % array => -
+    	    { 
+		Types 1 index type 2 copy known not { pop /default } if 
+      	        get exec
+    	    } forall
+	} def
+ 	 
+	% output a dictionary (probably a font dictionary)
+	%
+	/DoDict { % dict => -
+    	    dup length 1 add 1 Emit (dict begin) AddLine
+    	    {
+        	exch dup
+		/WidthArray eq 1 index 
+		/PrinterMatched eq 2 index 
+		/FontName eq 3 index
+		%/SizePercentOfButHeight eq 4 index
+		%/SizePercentOfOutHeight eq 5 index
+		%/PercentWidth eq or or or or or {
+		/FontInfo eq or or or {
+            	    pop pop
+        	}{
+            	    (/) AddString 1 Emit
+            	    dup
+            	    Types 1 index type 2 copy known not { pop /default } if
+            	    get exec
+            	    (def) AddLine
+        	} ifelse
+    	    } forall
+    	    (currentdict end) AddLine
+	} def	
+	 
+	% dictionary for outputing various argument types
+	%	
+	/Types dictbegin
+
+    	    /arraytype { 
+		dup xcheck {
+		    ({ ) AddString DoArray (} ) AddString
+		}{ 
+		    ([ ) AddString DoArray (] ) AddString
+		} ifelse
+	    } def 
+
+	    /packedarraytype /arraytype load def
+
+    	    /stringtype { 
+		DoString
+	    } def
+
+	    /dicttype {
+                DoDict
+            } def
+                  
+    	    /operatortype { 
+		30 string cvs dup length 2 sub 1 exch
+		getinterval AddString ( ) AddString
+	    } def
+
+	    /nulltype {
+                pop (null ) AddString
+            } def
+
+            /booleantype {
+                { (true ) AddString } { (false ) AddString } ifelse
+            } def
+
+            /nametype {
+                dup xcheck {
+                    1 Emit
+		}{
+		    (/) AddString 1 Emit
+		} ifelse
+            } def
+
+    	    /default { 
+		1 Emit
+	    } def
+       
+	dictend def
+	 
+	% hex translation table
+	%
+	/HexChars [
+            {
+	  	0 1 255 {
+              	    dup 16 4 string cvrs exch 16 lt {
+                    	(0) exch append
+                    } if
+                } for
+            } exec
+        ] def
+	 
+	% do image{mask}
+	%
+	/DoImage { % width height bits/sample|invert matrix proc bool => - 
+            CheckGraphicsState
+	    /ImageProc 3 -1 roll def
+            CTM ([ ) AddString DoArray (] ) AddString (concat) AddLine
+            4 index dup dup 8 mod 0 eq {
+                8 idiv
+            }{
+                8 idiv 1 add
+            } ifelse
+            (/PSCstring ) AddString 1 Emit (string def) AddLine
+            4 index 2 Emit
+            2 index dup type /booleantype eq {
+                { (true ) AddString } { (false ) AddString } ifelse
+            }{
+                1 Emit
+            } ifelse
+            1 index ([ ) AddString DoArray (]) AddLine
+            {
+                ({ currentfile PSCstring readhexstring pop } imagemask) AddLine
+                { ImageProc exec dup FormatHexString } Imagemask
+            }{
+                ({ currentfile PSCstring readhexstring pop } image) AddLine
+                { ImageProc exec dup FormatHexString } Image
+            } ifelse
+            () AddLine
+        } def
+	 
+	% format hex string into 40-character lines and write it out
+  	%
+	/FormatHexString { % string => -
+    	    0 1 2 index length 40 idiv 1 sub {
+        	1 index exch 40 mul 40 getinterval 
+		PSCfile exch writehexstring
+	        () AddLine
+    	    } for
+    	    dup length dup 40 mod dup 3 -2 roll sub exch getinterval
+	    PSCfile exch writehexstring
+    	    () AddLine
+	} def
+
+	% do image{mask}canvas
+	%
+	/DoImageCanvas { % bool canvas bool => -
+			 % canvas bool => -
+            CheckGraphicsState
+	    framebuffer /setcanvas UnOverride 
+	    CurrentCanvas false getbbox
+	    4 2 roll pop pop 3 -1 roll { 	% <bool> canvas w h bool
+	        % do imagemaskcanvas
+	        cvi 4 -3 roll 3 index		% h bool canvas w h
+	        2 index /Color get dup		% h bool canvas w h mono? mono?
+	        6 -5 roll {8}{1} ifelse 	% h mono? bool canvas w h b
+            	CurrentCanvas /setcanvas UnOverride 
+		matrix currentmatrix		% h mono? canvas w h b matrix
+		dup 5 get 3 index eq
+		1 index 0 get 1.0 eq
+		2 index 3 get -1.0 eq and and { pop [] } if
+		null buildimage /setcanvas UnOverride % h mono? bool canvas
+                /ImageFile (/tmp/PSCimage) (w) file def
+                currentcanvas /SharedFile (/tmp/PSCimage) put
+	        /imagemaskcanvas UnOverride 		 % h mono?
+	    }{ 
+		% do imagecanvas 
+	    	cvi 3 -2 roll 2 index		% h canvas w h
+	    	2 index /Color get dup		% h canvas w h mono? mono?
+	    	5 -4 roll {8}{1} ifelse 	% h mono? canvas w h b
+            	CurrentCanvas /setcanvas UnOverride 
+		matrix currentmatrix		% h mono? canvas w h b matrix
+		dup 5 get 3 index eq
+		1 index 0 get 1.0 eq
+		2 index 3 get -1.0 eq and and { pop [] } if
+		null buildimage /setcanvas UnOverride % h mono? canvas
+            	/ImageFile (/tmp/PSCimage) (w) file def
+            	currentcanvas /SharedFile (/tmp/PSCimage) put
+	    	/imagecanvas UnOverride			 % h mono? 
+	    } ifelse    
+            currentcanvas /SharedFile () put
+            ImageFile closefile
+            CTM ([ ) AddString DoArray (] ) AddString (concat) AddLine
+            currentcanvas /RowBytes get dup
+            (/PSCstring ) AddString 1 Emit (string def) AddLine  % h mono? w
+	    1 index not { 8 mul } if 2 index 2 copy 2 Emit 	 % h mono? w h
+            2 index { (8 ) } { (true ) } ifelse AddString 	 % h mono? w h
+            ([ ) AddString exch 1 Emit 0 0 3 -1 roll dup neg exch 0 exch 5 Emit
+            (]) AddLine	 					 % h mono?
+            ({ currentfile PSCstring readhexstring pop } ) AddString 
+	    { (image) } { (imagemask) } ifelse AddLine		 % h
+            /ImageFile (/tmp/PSCimage) (r) file def
+            1 1 currentcanvas /RowBytes get 4 3 roll mul { 	 % n 
+                ImageFile read {
+	 	    HexChars exch get AddString
+                }{
+                    exit
+                } ifelse
+                40 mod 0 eq { () AddLine } if
+            } for
+	    ImageFile closefile
+	    CurrentCanvas /setcanvas UnOverride
+        } def
+	 
+	% compare two matrices for equality
+	%
+	/MatrixEqual? { % matrix matrix => bool
+    	    0 1 5 {
+        	dup 3 index exch get exch
+		2 index exch get eq
+	  	3 -2 roll
+    	    } for
+    	    pop pop 5 { and } repeat
+	} def
+	 
+	% check for changes in current transform matrix
+	%
+	/CheckCTMState { % - => - 
+    	    CurrentCTM matrix currentmatrix MatrixEqual? not {
+		/CurrentCTM matrix currentmatrix def
+        	/CTM CurrentCTM InvertCTM matrix concatmatrix def
+    	    } if
+	} def
+	 
+	% check for changes in color state
+	%
+	/CheckColorState { % - => - 
+	    currentcolor CurrentColor ne {
+		/CurrentColor currentcolor def
+		mark currentrgbcolor 1 1 1 3 {
+	    	    dup 4 index eq 8 1 roll 6 1 roll
+		} repeat
+		cleartomark and and {
+            	    (1 setgray) AddLine
+        	}{
+	    	    mark currentrgbcolor 0 0 0 3 {
+			dup 4 index eq 8 1 roll 6 1 roll
+	    	    } repeat
+            	    cleartomark and and {
+                	(0 setgray) AddLine
+            	    }{
+                	currentrgbcolor 3 Emit (setrgbcolor) AddLine
+            	    } ifelse
+        	} ifelse
+    	    } if
+	} def 
+	 
+	% check for changes in font state
+	%
+	/CheckFontState { % - => -
+    	    CheckCTMState
+    	    %CheckColorState
+	    % REMIND: Kludge to handle re-encoded fonts until server
+            %         bugs are fixed.
+            currentfont dup /Encoding get dup null ne {
+		systemdict /StandardEncoding get 1 index arraysequal? not {
+               	    exch /FontName get UDFonts 1 index known {
+                    	UDFonts 1 index get 2 index arraysequal? {
+                            false
+                    	}{
+                            true
+                    	} ifelse
+                    }{
+                    	true
+                    } ifelse
+                    {
+                    	dup (/) AddString 1 Emit dup (/) AddString 1 Emit
+                    	(findfont dup length dict begin) AddLine
+              	    	({ 1 index /FID ne { def } { pop pop } ifelse } forall)
+                    	AddLine (/Encoding [ ) AddString
+                    	exch 0 1 255 {                      % font encoding
+                            2 copy get exch
+                            8 mod 0 eq { () AddLine } if
+                            (/) AddString 1 Emit
+                     	} for
+                    	( ] def) AddLine
+                    	(currentdict end definefont pop) AddLine
+                    	UDFonts 3 -2 roll put
+                    }{
+                    	pop pop
+                    } ifelse
+		}{
+		    pop pop
+		} ifelse
+            }{
+                pop pop
+            } ifelse
+            % REMIND: end of kludge
+    	    currentfont dup /FontName get CurrentFontName ne 
+    	    exch /FontMatrix get CurrentFontMatrix arraysequal? not or {
+        	currentfont dup /FontName get dup /CurrentFontName exch def
+		%UDFonts 1 index known {
+                %    UDFonts 1 index get dup type /booleantype eq {
+		%	% it's a Type 1 re-encoded
+		%	{ % it's not been dumped yet
+		%	  dup (/) AddString 1 Emit dup (/) AddString 1 Emit
+		%	  currentfont dup length 1 Emit (dict begin) AddLine
+		%	  ({ 1 index /FID ne { def } { pop pop } ifelse } forall) AddLine
+		%	  /Encoding get (/Encoding [ ) AddString
+		%	  DoArray ( ] def) AddLine
+		%	  (currentdict end definefont pop) AddLine
+		%	  UDFonts 1 index false put
+		%	} if
+		%    }{
+		%	% it's a Type 3 (dict)
+		%	UDFonts 1 index false put
+		%    } ifelse
+                %} if
+        	(/) AddString 1 Emit (findfont ) AddString
+        	/FontMatrix get dup /CurrentFontMatrix exch def
+	        aload pop pop pop 3 1 roll
+		0 eq exch 0 eq and {
+		    2 copy eq {
+			1 index 0 ge exch 0 ge and {
+			    1 Emit (scalefont setfont) AddLine false
+			}{
+			    pop true
+		 	} ifelse
+		    }{
+			pop pop true
+		    } ifelse
+		}{
+		    pop pop true
+		} ifelse
+		{ 
+		    CurrentFontMatrix ([ ) AddString DoArray (] ) AddString
+		    (makefont setfont) AddLine
+		} if
+    	    } if
+	} def
+	 
+	% check for changes in graphics state
+	%
+	/CheckGraphicsState { % - => - 
+    	    CheckCTMState
+    	    %CheckColorState
+    	    currentlinewidth dup LineWidth ne {
+        	dup /LineWidth exch def
+        	1 Emit (setlinewidth) AddLine
+    	    }{
+		pop
+    	    } ifelse
+    	    currentlinecap dup LineCap ne {
+        	dup /LineCap exch def
+        	1 Emit (setlinecap) AddLine
+    	    }{
+		pop
+    	    } ifelse
+    	    currentlinejoin dup LineJoin ne {
+        	dup /LineJoin exch def
+        	1 Emit (setlinejoin) AddLine
+    	    }{
+		pop
+    	    } ifelse
+    	    currentmiterlimit dup MiterLimit ne {
+        	dup /MiterLimit exch def
+        	1 Emit (setmiterlimit) AddLine
+    	    }{
+		pop
+    	    } ifelse
+    	    currentdash 2 copy 
+      	    DashPhase ne exch DashPattern arraysequal? not or {
+        	2 copy /DashPhase exch def /DashPattern exch def
+        	exch ([ ) AddString DoArray (] ) AddString
+		1 Emit (setdash) AddLine
+    	    }{
+		pop pop
+    	    } ifelse
+    	    currentflat dup Flat ne {
+    		dup /Flat exch def
+    		1 Emit (setflat) AddLine
+    	    }{
+		pop
+    	    } ifelse
+    	    currenttransfer dup
+    	    currentdict /TransferProc get ne {
+	    	dup currentdict /TransferProc 3 2 roll put
+	    	({ ) AddString DoArray (} settransfer) AddLine
+    	    }{
+	    	pop
+    	    } ifelse
+	} def        
+	 
+	% save some default operator definitions
+	%
+	/Image { % w h bits matrix proc 
+	    buildimage 
+	    /imagecanvas UnOverride
+	} def
+
+	/Imagemask { % w h bool matrix proc
+	    1 3 1 roll 4 -1 roll                % w h 1 matrix proc bool
+    	    6 1 roll                            % bool w h 1 matrix proc
+    	    buildimage                          % bool canvas
+	    /imagemaskcanvas UnOverride
+	} def
+
+    dictend def % PSCprivate
+
+    % Captured Operators
+    %
+    /PSCoverrides dictbegin
+	
+	% Painting Operators
+	%
+	/ashow { % ax ay string => - 
+	    //PSCprivate begin
+	    	CheckFontState
+	    	/Show? true def
+	    	GetPath
+	    	3 copy 3 1 roll 2 Emit 
+	    	DoString (ashow) AddLine
+	    	/ashow UnOverride
+	    end
+	} def
+
+    	/awidthshow { % cx cy char ax ay string => - 
+	    //PSCprivate begin
+	    	CheckFontState
+	    	/Show? true def
+	    	GetPath
+	    	6 copy 6 1 roll 5 Emit 
+	    	DoString (awidthshow) AddLine
+	    	/awidthshow UnOverride
+	    end
+    	} def
+
+    	/eofill { % - => - 
+	    //PSCprivate begin
+	    	CheckGraphicsState
+	    	GetPath
+	    	newpath
+	    	(eofill) AddLine 
+	    end
+    	} def
+
+    	/erasepage { % - => -
+	    //PSCprivate begin
+	    	(erasepage) AddLine
+            	/erasepage UnOverride
+	    end
+    	} def
+
+    	/fill { % - => - 
+	    //PSCprivate begin
+	    	CheckGraphicsState
+	    	GetPath
+	    	newpath
+	    	(fill) AddLine 
+	    end
+    	} def
+
+	/imagecanvas { % canvas => -
+	    //PSCprivate begin
+	    	false DoImageCanvas
+	    end
+	} def
+
+	/imagemaskcanvas { % bool canvas => -
+	    //PSCprivate begin
+	    	true DoImageCanvas
+	    end
+	} def
+
+	/image { % width height bits/sample matrix proc => -
+	    //PSCprivate begin
+	    	false DoImage
+	    end
+	} def
+
+	/imagemask { % width height invert matrix proc => -
+	    //PSCprivate begin
+	    	true DoImage
+	    end
+	} def
+
+    	/kshow { % proc string => - 
+	    //PSCprivate begin
+	    	CheckFontState
+	    	/Show? true def
+	    	GetPath
+	    	2 copy exch ({ ) AddString DoArray (} ) AddString
+	    	DoString (kshow) AddLine
+	    	/kshow UnOverride
+	    end
+    	} def
+
+    	/show { % string => - 
+	    //PSCprivate begin
+	    	CheckFontState
+	    	/Show? true def
+	    	GetPath
+	    	dup DoString (show) AddLine
+	    	/show UnOverride
+	    end
+    	} def
+
+    	/stroke { % - => -
+	    //PSCprivate begin
+	    	CheckGraphicsState
+	    	GetPath
+	    	newpath
+	    	(stroke) AddLine 
+	    end
+    	} def
+
+    	/widthshow { % cx cy char string => - 
+	    //PSCprivate begin
+	    	CheckFontState
+	    	/Show? true def
+	    	GetPath
+	    	4 copy 4 1 roll 3 Emit 
+	    	DoString (widthshow) AddLine
+	    	/widthshow UnOverride
+	    end
+    	} def
+
+    	 
+    	% Graphics State Operators
+    	%
+    	/clipcanvas { % - => -
+	    //PSCprivate begin
+    	    	CheckGraphicsState
+	    	GetPath
+  	    	(clip) AddLine
+            	/clipcanvas UnOverride
+	    end
+    	} def
+
+    	/clip { % - => -
+	    //PSCprivate begin
+            	/clip UnOverride
+    	    	CheckGraphicsState
+	    	GetPath
+  	    	(clip) AddLine
+	    end
+    	} def
+
+    	/eoclip { % => -
+	    //PSCprivate begin
+            	/eoclip UnOverride
+ 	    	CheckGraphicsState
+	    	GetPath
+  	    	(eoclip) AddLine
+	    end
+    	} def
+
+    	/setcanvas { % canvas => -
+	    //PSCprivate begin
+	    	dup dup /CurrentCanvas exch def
+		framebuffer /setcanvas UnOverride
+	    	getcanvaslocation translate
+	    	false getbbox 4 2 roll pop pop dup
+	    	newpath
+	    	0 0 moveto
+	    	0 exch rlineto
+	    	exch 0 rlineto
+	    	neg 0 exch rlineto	
+	    	closepath
+       	    	/clip UnOverride
+	    	newpath
+	    end
+    	} def	
+
+ 	/setscreen { % freq angle proc => -
+	    //PSCprivate begin
+	    	3 -2 roll 2 Emit
+	    	({ ) AddString DoArray (} setscreen) AddLine
+	    end
+	} def	
+
+	%
+	% REMIND:  the gsave/grestore and set*color operators are
+	%          included to work around a bug in current*color.
+	/gsave { % - => -
+	    //PSCprivate begin
+            	/gsave UnOverride
+	    	currentcolorbug? {
+	    	    (gsave) AddLine
+	    	} if
+	    end
+	} def
+
+	/grestore { % - => -
+	    //PSCprivate begin
+            	/grestore UnOverride
+	    	currentcolorbug? {
+	    	    (grestore) AddLine
+	    	} if
+	    end
+	} def
+
+	/setcolor { % color => -
+	    //PSCprivate begin
+	    	dup 21 string cvs 6 14 getinterval
+            	dup 4 32 put dup 9 32 put
+            	AddString
+            	( setrgbcolor) AddLine
+            	/setcolor UnOverride
+	    end
+    	} def
+
+	/setgray { % num => -
+	    //PSCprivate begin
+            	dup
+            	1 Emit (setgray) AddLine
+            	/setgray UnOverride
+	    end
+    	} def
+
+	/sethsbcolor { % hue saturation brightness => -
+	    //PSCprivate begin
+            	3 copy
+            	3 Emit (sethsbcolor) AddLine
+            	/sethsbcolor UnOverride
+	    end
+    	} def
+
+	/setrgbcolor { % red green blue => -
+	    //PSCprivate begin
+            	3 copy
+            	3 Emit (setrgbcolor) AddLine
+            	/setrgbcolor UnOverride
+	    end
+    	} def
+
+    	
+    	% Output Operators
+    	%
+    	/copypage { % - => -
+	    //PSCprivate begin
+            	(copypage) AddLine 
+	    end
+    	} def
+
+    	/showpage { % - => -
+	    //PSCprivate begin
+            	(showpage) AddLine
+            	/showpage UnOverride
+	    end
+    	} def
+
+    dictend def % PSCoverrides
+
+    % The PostScript capture procedure.  PSCapture loads re-defined
+    % printing operators into userdict, sets the PSC output file, 
+    % initializes various state information, turns off BindOverride
+    % for the current process, and calls the Print method (which
+    % ultimately calls Paint).  On return from Print, BindOverride
+    % is turned back on and the PSC definitions and data are cleaned out
+    % of userdict.
+    %
+    /PSCapture { % file proc => -
+	% load printing operators into userdict
+	userdict begin
+	    PSCoverrides { def } forall
+	end
+	% initialize PSC file and state info
+	PSCprivate begin
+	    /PSCfile 3 -1 roll def	% the PSC output destination
+            /CurrentCanvas null def	% the current canvas being printed
+            /ImageProc null def		% the proc operand for image ops
+            /ImageFile null def		% the shared file for image ops
+            /Show? false def		% show op indicator (for GetPath)
+	    /UDFonts 20 dict def	% temp dict for re-encoded fonts
+	    gsave
+		framebuffer setcanvas
+                initgraphics
+		/CurrentCTM matrix currentmatrix def
+		/InvertCTM matrix currentmatrix matrix invertmatrix def
+		/CTM matrix currentmatrix InvertCTM matrix concatmatrix def
+		/CurrentColor currentcolor def
+                currentfont dup /FontName get /CurrentFontName exch def
+                /FontMatrix get /CurrentFontMatrix exch def
+                /LineWidth currentlinewidth def
+                /LineCap currentlinecap def
+                /LineJoin currentlinejoin def
+                /MiterLimit currentmiterlimit def
+                /Flat currentflat def
+                currentdash /DashPhase exch def /DashPattern exch def
+                /TransferProc currenttransfer def
+            grestore
+            %
+            % REMIND: remove this when currentcolor bug is fixed
+            %
+            /currentcolorbug? false def
+	end
+	% capture the PostScript
+        currentprocess /BindOverride true put
+	exec
+        currentprocess /BindOverride false put
+	% clean up
+	PSCprivate /PSCfile undef
+	PSCprivate /CurrentCanvas undef
+	PSCprivate /ImageProc undef
+	PSCprivate /ImageFile undef
+	PSCprivate /UDFonts undef
+	PSCprivate /CurrentCTM undef
+        PSCprivate /InvertCTM undef
+        PSCprivate /CTM undef
+	PSCprivate /CurrentColor undef
+	PSCprivate /CurrentFontMatrix undef
+	PSCprivate /DashPattern undef
+	PSCprivate /TransferProc undef
+	PSCoverrides { 
+	    pop userdict exch undef 
+	} forall
+    } def
+
+end % ClassCanvas
+

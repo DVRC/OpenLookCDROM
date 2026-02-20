@@ -1,0 +1,204 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%     @(#) selutils.ps 23.6 91/02/11
+%	selutils.ps:	utility interests for making
+%       		and transferring selections
+%       Copyright (c) 1989 Sun Microsystems, Inc.
+
+
+
+% TransferInterest is an interest in a given canvas being the destination
+% of a /TransferSelection event.  The client supplies a method to be called
+% when a transfer event is matched.  After the method returns, the
+% TransferInterest automatically deals with the the /DeleteSource? flag.
+%
+% The client's method takes an event and a selection source.  It leaves the
+% event unchanged (it is there for examination if needed but should not be
+% consumed).  It consumes the selection and returns a bool which is
+% true if the client performed the transfer.  If the selection is not of
+% a type acceptable to the client, the client should return false to cause
+% the event to be redistributed further up the canvas tree.
+%
+% The expected semantics of the event are that the selection should be
+% inserted at the "focus" if the event's Canvas field matches the client;
+% if the event's Canvas is null, the selection should be inserted at the
+% coordinates given in the event.  Some clients may, however, choose to
+% ignore the event (again, leaving it on the stack); e.g., an emulator
+% might not permit insertions anywhere except at the typein point.
+%
+/TransferInterest [ClassInterest /DefaultClass ClassUI send] [/Method]
+classbegin
+
+% Class Variables:
+
+    /TransferNameDict dictbegin
+	/TransferSelection { % ev => -
+	    dup /Interest get /DoTransfer exch send
+	} def
+    dictend def
+
+% Methods:
+
+    %
+    /NewInit { % canvas method => -
+	/Method exch def				% canvas
+	null TransferNameDict /NewInit super send
+    } def
+
+    % Handle a transfer event.
+    %
+    /DoTransfer { % event => -
+	dup /Action get /Source get		% event sel
+	/SendToClient self send {		% event
+	    /Action get				% tdict
+	    /TransferFinished self send
+	} {
+	    redistributeevent
+	} ifelse
+    } def
+    
+    % Subclasser method for passing the selection to the client.
+    %
+    /SendToClient { % event sel => event bool
+    	Method /Canvas self send send
+    } def
+
+classend def	% TransferInterest
+
+
+% AsciiTransferInterest is a special case of TransferInterest for canvases
+% that require simple text selections.  If the selection does not respond
+% to a request for /ContentsAscii, the AsciiTransferInterest refuses to
+% accept the transfer.  If /ContentsAscii works, the resulting text is
+% given to the client-supplied method.  The client can also specify that
+% the method must be called once per character instead of being called once
+% with the entire string.
+%
+/AsciiTransferInterest TransferInterest [/StringOK?]
+classbegin
+
+    % Override: The client supplies a canvas, a method name of that
+    % canvas, and a bool that is true if the method will accept a string
+    % instead of requiring the selection be broken into single characters.
+    %
+    /NewInit { % canvas method string-ok? => -
+	/StringOK? exch def
+	/NewInit super send
+    } def
+    
+    % Override: Require /ContentsAscii.
+    %
+    /SendToClient { % event sel => event bool
+    	/ContentsAscii /query 3 -1 roll send {		% event text
+    	    StringOK? {
+    	    	Method /Canvas self send send
+    	    } {
+    	    	{Method /Canvas self send send} forall
+    	    } ifelse					% event
+    	    true
+    	} {						% event; (no text)
+    	    false
+    	} ifelse
+    } def
+
+classend def	% AsciiTransferInterest
+
+
+% A DragTextSelectable provides assistance for clients whose selections are
+% characters strings, and which want to use an overlay canvas to display the
+% selection during a drag-move or drag-copy operation.  Subclassers must
+% provide a /CurrentFont override, and will generally wish to override the
+% /CurrentText method for greater efficiency.
+%
+/DragTextSelectable /DefaultClass ClassSelectable send []
+classbegin
+
+% Class Variables:
+
+    /DragCanvas null def        % overlay for use while dragging
+    /DragFont null def          % font for displaying dragged text
+    /Margin 3 def		% gap between text and outline box
+    /MaxChars 15 def		% max length of drag-text before truncation
+
+    % Override
+    %
+    /dragat { % event selection => -
+	/DragCanvas framebuffer createoverlay promote
+	/DragFont /CurrentFont self send promote
+	/dragto self send
+    } def
+
+    % Override
+    %
+    /dragto { % event selection => -
+	gsave
+	    DragCanvas setcanvas erasepage
+	    /Preview? 1 index send {                    % ev sel
+		0 setgray
+		DragFont setfont
+		/CurrentText self send			% ev string
+		/Truncate? self send			% ev string
+		exch begin XLocation YLocation end      % string x y
+		2 copy
+		4 index stringwidth pop Margin 2 mul add
+		DragFont fontheight Margin 2 mul add
+		rectpath stroke                         % string x y
+		moveto Margin dup DragFont fontdescent add rmoveto
+		show
+	    }{
+		pop pop
+		/DragCanvas unpromote
+		/DragFont unpromote
+	    } ifelse
+	grestore
+    } def
+
+    % Called when we are "starting over" whatever that means.  For
+    % us it just means clear up and free the overlay plane if we're
+    % in the middle of dragging text.
+    %
+    /ClearState {
+	/ClearState super send
+	/DragCanvas promoted? {
+	    gsave
+		DragCanvas setcanvas erasepage
+		/DragCanvas unpromote
+		/DragFont unpromote
+	    grestore
+	} if
+    } def
+
+    % Obtain the font to use for the overlay image.
+    %
+    /CurrentFont { % - => font
+    	/TextFont Canvas send
+    } def
+
+    % Obtain the text to display in the overlay.  Default is to send a
+    % /ContentsAscii request to the selection, but subclassers may override
+    % this with faster, specific access methods.
+    %
+    /CurrentText { % selection => string
+    	/ContentsAscii /query 3 -1 roll send		% str true -or- false
+    	not {(???)} if
+    } def
+    
+    % Truncate the string if it's too long.  Default behavior is to replace
+    % the middle section with an ellipsis if the total length is > MaxChars.
+    %
+    /Truncate? { % string => string'
+    	dup length MaxChars gt {			% str
+    	    % round up for length of front half, down for length of rear,
+    	    % by using (Max-2)/2 for former and (Max-3)/2 for latter
+    	    dup 0 MaxChars 2 sub 2 idiv getinterval	% str front
+    	    (...) 3 -1 roll				% front (...) str
+    	    dup length MaxChars 3 sub 2 idiv
+    	    exch 1 index sub exch getinterval		% front (...) rear
+    	    append append				% front...rear
+    	} if
+    } def
+
+classend def

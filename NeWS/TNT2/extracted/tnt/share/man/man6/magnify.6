@@ -1,0 +1,52 @@
+.\" @(#)magnify.6 1.3 91/02/11
+.ds Dc 02/01/91
+.TH MAGNIFY 6 "\*(Dc" "" "TNT Demos"
+.SH NAME
+magnify \- screen bitmap magnifier
+.SH DISCLAIMER
+.LP
+This program is furnished on an AS IS basis as a demonstration
+of TNT applications programming.
+.SH SYNOPSIS
+.B magnify
+.SH DESCRIPTION
+.B Magnify
+is a NeWS/TNT demonstration program that implements a window containing a
+single canvas which provides a magnified (or reduced) view of any area on
+the screen.  The magnification (or reduction) is accomplished by obtaining
+a bitmap image of the desired area of the screen, then performing pixel
+replication (or merge) via the PostScript `scale' operator.
+
+The degree of magnification (reduction) may be changed through the use
+of a pop-up menu.  The source location is chosen by pressing the
+.I Select
+mouse button over the magnification canvas, then moving the mouse cursor
+over the area to be displayed before releasing
+.I Select.
+The magnification canvas will dynamically to show the area under the
+cursor while the mouse is being dragged.
+.LP
+.B Magnify
+demonstrates the use of the Track service and simple menus in addition
+to the standard window header and footers.  It also demonstrates the
+use of the PostScript scale operator.
+.SH Menu
+.IP "Zoom In"
+Increase the magnification ratio.
+.IP "Zoom Out"
+Reduce the magnification ratio.  Note that it is possible to reduce the
+magnification level below 1:1
+.IP "Reset"
+Reset the magnification ratio to 2:1.
+.SH BUGS
+As the zoom level is reduced beyond the point where the entire screen
+occupies only a small portion of the
+.I magnify
+window, the server will allocate more and more memory to represent
+the off-screen areas.  It is possible to crash the server by zooming
+out far enough to exhaust virtual memory.
+.SH LEGAL STUFF
+.I PostScript
+is a trademark of Adobe Systems, Inc.
+.I NeWS
+is a trademark of Sun Microsystems, Inc.

@@ -1,0 +1,58 @@
+;;;	(c) Copyright 1989, 1990, 1991 Sun Microsystems, Inc. 
+;;;	Sun design patents pending in the U.S. and foreign countries. 
+;;;	See LEGAL_NOTICE file for terms of the license.
+
+
+	LispView Interface for the XView Ttysw Module 
+
+
+This interface is just a thinly disguised LispView version of the
+XView Ttysw or TTY package.  The names/semantics of the TTY attributes
+have not been changed, the O'Reilly "XView Programming Manual" 
+should be used as a reference.  
+
+For each attribute that supports it there is a make-instance initarg,
+a reader method, and a setf method.  Note that when a LispView
+attribute is used as an initarg the "tty-" prefix is dropped, e.g. the
+initarg for tty-left-margin would be :left-margin.  The type
+argv-sequence is a sequence of strings (without a terminating NULL at
+the end of the sequence), this is a Lisp version of the C argument
+vector.
+
+The accessors for attributes whose type is boolean are non standard:
+the reader always returns NIL or T even if the attribute has been set
+to a non nil value other than T.  This was done to avoid the overhead
+required to cache Lisp values for each boolean attribute.
+
+
+LispView Attribute        XView Attribute           Type            Usage
+------------------        ---------------           ----            -----
+tty-left-margin           XV_LEFT_MARGIN            (integer 0 *)   initarg, accessor
+tty-right-margin          XV_RIGHT_MARGIN           (integer 0 *)   initarg, accessor
+tty-bottom-margin         XV_BOTTOM_MARGIN          (integer 0 *)   initarg, accessor
+tty-top-margin            XV_TOP_MARGIN             (integer 0 *)   initarg, accessor
+tty-margin                XV_MARGIN                 (integer 0 *)   initarg, accessor
+tty-rows                  WIN_ROWS                  (integer 0 *)   initarg, accessor
+tty-columns               WIN_COLUMNS               (integer 0 *)   initarg, accessor
+tty-font                  XV_FONT                   font            initarg, accessor
+tty-console               TTY_CONSOLE               boolean         initarg, writer
+tty-argv                  TTY_ARGV                  argv-sequence   initarg
+tty-argv-do-not-fork      TTY_ARGV_DO_NOT_FORK      argv-sequence   initarg
+tty-page-mode             TTY_PAGE_MODE             boolean         initarg, accessor
+tty-pid                   TTY_PID                   integer         initarg, accessor
+tty-quit-on-child-death   TTY_QUIT_ON_CHILD_DEATH   boolean         initarg, writer
+tty-tty-fd                TTY_TTY_FD                integer         reader
+
+
+
+BUGS/LIMITATIONS
+
+- The build.lisp file for the tty software should be loaded BEFORE starting the
+notifier process, i.e. before making an instance of a LV:display.  Actually
+it's only really neccessary to load the notifier file early.
+
+- According to the "Revised for Version 2" XView programming manual (bottom of
+page 210), "you can have only one tty subwindow per process".  Additionally it
+appears that you can not destroy your one tty window and then create another.
+
+- There's probably not much Lisp applications can do with tty-pid.

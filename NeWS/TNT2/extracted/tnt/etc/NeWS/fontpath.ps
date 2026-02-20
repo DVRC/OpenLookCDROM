@@ -1,0 +1,103 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)fontpath.ps 23.3 91/02/11
+%
+% fontpath manipulation
+%
+
+
+/setdefaultfontpath	{
+    systemdict /fontpath
+	{ (FONTPATH) getenv } stopped
+	{ pop (OPENWINHOME) (/home/openwin) ?getenv (/lib/fonts) append } if
+    put
+} def
+
+%
+% Note that this also wipes out any existing font aliases
+% set up in fontsyns.ps
+%
+% this isn't exactly desirable, but reloading it may not be either
+%
+
+/setfontpath	{
+    % clean out the existing one
+%
+% since undefing during a forall has the same undefined results as
+% adding during a forall, so we have to be sure we really did it.
+% hence the following, which can be pretty slow, but doesn't
+% require any extra memory to copy the dict or copy the keys
+%
+% this loops through the FontDirectory forall'ing and undef'ing
+% until the dict length is the same for two succesive runs
+%
+    FontDirectory begin
+	{
+	    systemdict /fontdictsize FontDirectory length put
+
+	    FontDirectory {
+		dup type /dicttype eq {	% key value
+		    dup /FontType get
+		    % undef all fonts that aren't user-defined
+		    % Type 3 -- see redbook 5.3 (page 91)
+		    3 eq not {
+			pop			% key
+			currentdict exch undef
+		    } {
+			pop pop
+		    } ifelse
+		} {
+		    pop
+		    currentdict exch undef
+		} ifelse
+	    } forall
+
+	    FontDirectory length fontdictsize eq { exit } if
+	} loop
+    end
+
+    systemdict /fontdictsize undef
+
+    FontDirectory begin
+	systemdict /fontpath get (:)
+	{ 	search
+	    exch /THIS exch def
+	    THIS (/Families.list) append
+	    mark exch { run } stopped cleartomark
+	    not { exit } if
+	} loop
+	currentdict /THIS undef
+    end
+} def
+
+/BuildFontPath	{	% path => -
+    systemdict /fontpath 3 -1 roll put
+    setfontpath
+} def
+
+/BuildDefaultFontPath	{
+    setdefaultfontpath
+    setfontpath
+} def
+
+systemdict /_FontDirectoryFAM { 
+    FontDirectory 2 index known { 
+	1 index load type /keywordtype eq
+    } 
+    true ifelse
+    { 
+	THIS exch append def
+    } {
+	pop pop 
+    } ifelse
+} put
+
+systemdict /_FontDirectorySYN { 
+    FontDirectory 2 index known
+    { pop pop } { def } ifelse
+} put
+

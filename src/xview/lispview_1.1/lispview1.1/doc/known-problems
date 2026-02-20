@@ -1,0 +1,135 @@
+Known Problems in LispView 1.1
+October 1991.
+
+
+You cannot change the owner of a popup-window dynamically.  This is a
+limitation of XView 2.0.
+
+If you click the MENU button to popup a floating menu that remains 
+visible, LispView ignores the use of the SELECT button when 
+operating on the menu. Instead, you must use the MENU button to pin 
+the menu or select an item. 
+
+The CUT, COPY and PASTE keys do not operate in text and numeric 
+fields.
+
+Dashed lines of width 0 do not render correctly when running under 
+Open Windows 2.0. This is fixed in a subsequent version of 
+OpenWindows.
+
+
+A Change operation from the Edit menu in an editable scrolling list
+gives the appearance of working correctly on the display, but internally
+seems to do an Insert (without Delete) instead of a Change.  After the
+operation, the CHOICES accessor reports the edited version of the item
+as a new choice, with the original item still present as a separate choice.
+But the original item is not shown in the display; and if a SELECT is done
+on an item below the changed item, the VALUE reported will be out of sync
+with the apparent selection.
+
+It is not possible to change the background of a window on a 
+monochrome display to black, e.g.,
+  (make-instance 'base-window :background (find-color :name :black))
+generates a window with a white background. The problem is due to 
+an XView bug.
+
+It is not possible to destroy a display.
+
+The value of border-width for all windows can only be 0 or 1. This is 
+a consequence of an XView limitation that we expect to be lifted in the 
+future.
+
+If you use a window manager that does not handle window footers (such as
+twm), setting the left and right footers of top level windows will have no
+visual effect. The olwm window manager, available with OpenWindows (also
+available on the XView distribution at MIT), does support these attributes.
+The olvwm window manager also supports footers.  The next version of the
+XView toolkit will support footers as a toolkit component instead.
+
+If you start a program that creates images (e.g., the spirals demo)
+on a "fresh" OpenWindows 2.0 server (one that has not been "warmed up"),
+your program may cause the server to exit.  You can avoid this by running
+the Open Windows 3.0 server, where the problem is fixed.  (Alternatively,
+a patched version of the OpenWindows 2.0 server that fixes this problem
+and others, is available from the Sun Patch Database.  Request the latest
+revision of Sun Patch ID 100176.)
+
+Deleting items from an exclusive scrolling-list which does not require
+a selection, and then selecting an item in the shortened list, can
+sometimes cause a segmentation fault.  This is a problem in XView 2.0;
+it is fixed in XView 3.0.  One way to avoid the problem in LispView is
+to set  :selection-required t  for the scrolling list.  Alternatively,
+you can fix the problem with a patch that is included in the "xview"
+subdirectory of the LispView source release.  To apply the patch, cd
+to that subdirectory and load the patch into your LispView image with
+(load-foreign-files "p_list.o")
+
+The scrollbar of a scrolling list may become separated from the list
+in the display.  For example, when the bounding region of the scrolling
+list's panel is changed, the list will be properly realigned, but its
+scrollbar will remain in its old position (it can still be used to scroll
+the list).  This is believed to be an XView problem.
+A workaround which applies at least to examples like the preceding is
+to follow the panel change with a trivial setf on an attribute of the
+scrolling list, e.g.,
+(setf (lv:mapped <scrlist>) (lv:mapped <scrlist>))
+
+MAKE-REGION does not work properly with :RIGHT and :BOTTOM in some cases.
+Example:
+> (setf r (make-region :right 20 :bottom 30))
+#<REGION 0x0 at (0,0) 1B6FE26>
+The "test-region-default" test of the test suite shows the problem.
+[Look at the macro with-default-region-dimensions, file region.lisp]
+
+If you disksave a LispView image after a opening a connection to the
+display (e.g., by making an instance of any window resource), the new
+image will not run properly.  To create a LispView that starts up
+running a window-based application, disksave with a restart function
+that does all the necessary window initialization.
+
+The Notifier process sometimes does not refresh windows properly.
+This has been seen, for example, in the "green" part of
+test-pseudo-colormaps in the test suite.  In such cases, an explicit
+"Refresh" (from the menu) will give the correct display.
+
+Text field word replacement when at the end of a field fails.
+When you double click on a word in a text field that has been scrolled,
+typing new characters to replace the selection could result in
+characters being out of order.  This is an XView 2.0 problem.
+
+Setting a base-window to "busy" will discard the previously set cursor
+for that canvas.  The workaround is to set the cursor again after
+(setf (lv:busy bw) nil).
+
+"char-metrics" returns zero for lower case characters in fixed-width
+lucida fonts on the MIT X11 Server.
+
+Every alternate press of menu button in a popup window will cause the
+popup-window to dismiss.  A workaround would be to "(setf (mapped p) t)"
+as part of the menu command, which will cause the popup to reappear.
+
+Code generated by GLV shows LV symbols "panel" and "menu" qualified by
+the XV package.  This is a cosmetic issue.
+
+The documented symbol LV:display-colors is now internal.  For more
+information, see the Programming Manual section on Colormaps.
+
+The variable lv::*default-colormap-allocation* determines how much of
+the colormap is pre-allocated when LispView starts up and is currently
+set to 0.4.  If you connect more than one LispView session to a single
+X server, you may need to ensure this value does not exceed 1.0.  For
+example, if you must connect three LispView sessions to the same
+server, you should set this value to less than a third.
+
+If you "click" the MENU button to popup and retain a floating menu,
+LispView ignores the use of the SELECT button to continue the
+operation you started.  Instead, you must use the MENU button to pin
+or select an item.
+
+When the OpenWindows AutoRaise resource is set to "true", LispView windows
+raise inconsistently.  Depending on the application, the window may raise
+whenever the mouse enters the window (as it should) or may not raise until
+a mouse button is pressed.
+
+The "clear" method for viewports is not documented (but it is provided).
+

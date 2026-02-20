@@ -1,0 +1,132 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)control.ps 23.17 91/02/11
+%
+
+/ClassControl ClassObject []
+classbegin
+
+    /Value		null def    
+    /Target		null def
+
+    /Notifier		null def
+    /Previewer		null def
+
+    /value { % => Value
+        Value
+    } def
+
+    /setvalue { % value => -
+        /Value exch promote
+    } def
+
+    /setnotifier { % notifier|null => -
+        dup null eq {
+            pop
+           /Notifier unpromote
+        }{
+            /Notifier exch promote
+        } ifelse
+    } def
+
+    /notifier { % - => notifier
+        /Notifier load
+    } def
+
+    /setpreviewer { % null | notifier => -
+        dup null eq {
+            pop
+            /Previewer unpromote
+        }{
+            /Previewer exch promote
+        } ifelse
+    } def
+
+    /previewer { % - => previewer
+        /Previewer load
+    } def
+
+    % Cause the given notifier (or previewer) to be performed.  If the
+    % notifier is executable, it is simply executed; otherwise it is taken
+    % to be a method name to be sent to the control's Target.  In either
+    % case, the notifier is expected to consume two arguments: the value
+    % given to ExecuteNotifier, and the control instance (self).  Because
+    % this method might be called (a) from another process or (b) while the
+    % input queue is blocked, the notification is queued by sending an event
+    % to the control's LEM.
+    %
+    /ExecuteNotifier { % value notifier => -
+    	dup null ne {
+	    NotificationObject exch		% value object notifier
+	    dup xcheck {
+	        /exec cvx 4 array astore cvx	% {value object proc exec}
+	        /callmanager
+	    }{
+	        /target self send 		% value object /meth target
+	        4 array astore /sendmanager	
+	    } ifelse				% array /emgrmethod
+	    /eventmgr self send send		% -	    	    
+	}{					% value null
+	    pop pop
+	} ifelse
+    } def
+    
+    % Return the object that should be placed on the stack before calling
+    % the notifier.  Usually self, but may be a different object.  This is
+    % a subclassing hook needed for menus.
+    %
+    /NotificationObject { % - => object
+    	self
+    } def
+
+    % Return the target object.
+    %
+    /target { % - -> object
+	Target
+    } def
+
+    % Set this object to be the target.  Null clears the target.
+    %
+    /settarget { % object|null -> -
+	dup Target ne {
+	    Target null ne {Target self /removeclient ObsoleteService send} if
+	    /Target exch soften def
+	    Target null ne {Target self /addclient ObsoleteService send} if
+	} {
+	    pop
+	} ifelse
+    } def
+	
+    % Send a method and its arguments to the current target.
+    %
+    /sendtarget { % args /method -> results
+    	/target self send send % REMIND: should we just use "Target send"
+    } def
+    
+    /HandleObsoleteTarget { % object => -
+        dup /cleartarget self send
+        /HandleObsoleteTarget super send
+    } def
+
+    % Overridden.
+    %
+    /destroy { % -> -
+    	null /settarget self send
+    	/destroy super send
+    } def
+
+    % Clear the target.  If an object is specified, clear the target
+    % only if the target is the object.  If null is specified, clear
+    % the target unconditionally.
+    %
+    /cleartarget { % object|null -> -
+        dup null eq exch Target eq or {
+            null /settarget self send
+        } if
+    } def
+
+classend def

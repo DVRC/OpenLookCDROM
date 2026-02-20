@@ -1,0 +1,40 @@
+/GuideBaseWindow [ClassBaseWindow ClassWireClient] []
+classbegin
+	
+	/QuitFromUser {
+		/wire_token promoted? {
+			pop [] /QUIT /wire_sendclient self send
+		} {
+			/QuitFromUser super send
+		} ifelse
+	} def
+classend def
+
+/GuideScrollList [ClassScrollList ClassWireClient] []
+classbegin
+	/NewInit {
+		/NewInit super send
+		self /settarget self send
+		/ItemDisplayChoiceNotifier /setnotifier self send
+		/ExclusiveVariation /setchoicemode self send
+	} def
+	/ItemDisplayChoiceNotifier { % value object
+		/wire_token promoted? {
+			exch dup length 2 eq { % object value
+				aload pop pop  % obj index
+				[exch]		% obj [item]
+				/CHOOSEITEM /wire_sendclient 
+				4 -1 roll send
+			} {
+				pop pop
+			} ifelse
+		} {
+			pop pop
+		} ifelse
+	} def
+classend def
+
+/GuideButtons [ClassButtons ClassWireClient] [] classbegin classend def
+
+/GuideTextField [ClassTextField ClassWireClient] [] 
+classbegin classend def

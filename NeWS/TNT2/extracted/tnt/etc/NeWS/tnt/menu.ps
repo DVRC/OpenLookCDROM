@@ -1,0 +1,2905 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) menu.ps 1.62 91/02/11
+%
+
+/ClassMenu ClassBorderBag
+[
+    /paintmenu
+    /LayoutArgCount
+]
+classbegin
+
+% Canvas defaults:
+
+    /SaveBehind		false def       % Default Canvas SaveBehind value
+    /Transparent	false def
+    /Mapped		false def
+    /Retained		false def
+    /CursorImage	null def
+    
+    /Trackable?		false def	% Menus have their own tracker API
+    /Menuable?		true def	% For pinned menus (see /MenuStart)
+
+% Menu defaults:
+
+    /ChoiceMode		/Command def
+    /VisualState	/Active def
+
+    /BaseMenu?		false def
+    /Border		6 def
+    /SkipNextDamage?	false def
+
+    /Invoker		null def	% Object that invoked the menu
+    /SecondaryInvoker	null def	% promoted if invoker is a pinned menu
+    /Original		null def	% promoted for pinned copies
+    /PinnedCopy		null def	% promoted in original when pinned
+    /LastPinnedCoords	null def	% promoted if ever pinned
+    /PinnedLabel	null def	% overrides /Label for pinned copy
+
+    % Initial values only; passed to northern client during initialisation.
+    % Subclassers can override these values in ClassMenu to change the
+    % initial values.
+    %
+    /Label		null def
+    /Pinnable?		false def
+    /Justification	/Left def
+
+% Fonts and glyphs:
+
+    % Define this here so subclassers don't need to know about ClassMenuHeader.
+    /LabelFont
+        /LucidaSans-Bold findfont 12 scalefont false printermatchfont
+    def
+
+% Methods
+
+    /NewInit {	% placementname => -
+	/NewInit super send				% placementname
+	/CreateMenuClient self send			%
+	/CreateMenuHeader self send
+	Border dup dup dup /setinsets self send
+	/HeaderChanged self send
+	/SaveBehind Parent /Retained get not def
+	GlobalEventMgr /activate self send
+    } def
+
+    /CreateMenuClient { % placementname => -
+         dup /Absolute eq 1 index /Calculated eq or
+	 { 1 } { 0 } ifelse
+        /LayoutArgCount exch def
+
+        ChoiceMode /Command eq {
+	    self /new ClassCommandMenu send
+	} {
+	    self /new ClassSettingsMenu send
+	} ifelse
+	/Center exch /addclient self send
+    } def
+
+    /CreateMenuHeader { % - => -
+	Pinnable? Label self /new ClassMenuHeader send
+	/North exch /addclient self send
+    } def
+
+    /destroy { % - => -
+    	PinnedCopy null ne {
+    	    /destroy PinnedCopy send
+    	    /PinnedCopy null def
+    	} if
+    	Original null ne {
+    	    /Original null def
+    	    self /removepinnedclient MenuService send
+    	} if
+    	null /setinvoker self send
+    	/SecondaryInvoker unpromote
+    	/destroy super send
+    } def
+
+    % Pass various methods through to the central client.  This loop
+    % constructs (at class definition time) several methods of the form
+    %    /foo {/foo SendClient} def
+    % 
+    [ /itemlist /item /itemcount
+      /value /default
+      /visualstate /layoutparameters /placement /textfont
+      /itemhelpkeyword /setitemhelpkeyword
+      /notifier /target /sendtarget
+    ] {
+    	dup /SendClient cvx 2 packedarray cvx def
+    } forall
+
+    % Utilities that send a method to the central or northern client.
+    %
+    /SendClient { % <args> /methodname => <results>
+	/Center /client self send pop send
+    } def
+    
+    % Same as above but for the header (northern client).
+    %
+    [ /pinnable? /label
+    ] {
+    	dup /SendHeader cvx 2 packedarray cvx def
+    } forall
+
+    /SendHeader { % <args> /methodname => <results>
+    	/North /client self send pop send
+    } def
+
+    /setcolors { % fg bg => -
+	self isinstance? {
+	    /valid? self send 3 1 roll
+	    /invalidate SendClient
+	    2 copy /setcolors SendClient
+	    PinnedCopy null ne {
+		2 copy /setcolors /Center /client PinnedCopy send pop send 
+	    } if
+	    /invalidate SendHeader
+	    2 copy /setcolors SendHeader
+	    /setcolors super send
+	    {/paint self send} if
+	}{
+	    2 copy /setcolors ClassSettingsMenu send
+	    2 copy /setcolors ClassCommandMenu send
+	    2 copy /setcolors ClassMenuHeader send
+	   /setcolors super send
+	} ifelse
+    } def
+
+    /setallcolors { % 2dfg 2dbg fg bg0 bg bg2 bg3  => -
+    	7 copy /setallcolors SendClient
+    	7 copy /setallcolors SendHeader
+    	/setallcolors super send
+	/invalidate self send
+    } def
+
+    % When a menu is pinned, the pinned copy gets /MenuStart events when
+    % the menu button goes down over it, just like any other menuable canvas.
+    % But the menu returns itself as its menu, and the MenuService spots this
+    % as a special case.
+    %
+    /MenuStart { % invoker posname event => invoker posname event menu true
+    	self true
+    } def
+
+    /showat { % posname event => -
+	/BaseMenu? true def
+	Parent setcanvas
+	dup 3 1 roll begin
+	    XLocation YLocation
+	end					% event posname x y
+	/popup self send			% event
+	/MenuTrackStart self send
+    } def
+
+    % Position the menu correctly, map it, and paint it.  Assumes we've
+    % already setcanvas to the Parent.
+    /popup { % posname x y => -
+        /?validate self send
+	Parent setcanvas
+	clippath pathbbox			% pn x y x' y' w' h'
+
+	3 index 3 index xyadd
+	/size self send xysub			% pn x y x' y' x'' y''
+
+	6 -1 roll 5 -1 roll 4 -1 roll		% pn y y' y'' x x' x''
+
+	dup 3 index le {
+	    3 1 roll pop pop dup true		% pn y y' y'' x x true
+	} {
+	    pop 2 copy lt {			% pn y y' y'' x x'
+		exch pop dup true		% pn y y' y'' x' x' true
+	    } {
+		pop dup false			% pn y y' y'' x x false
+	    } ifelse
+	} ifelse
+
+	6 3 roll				% pn x px false y y' y''
+
+	2 index
+	8 -1 roll /NorthWest eq {		% x ps false y y' y'' y
+	    /size self send exch pop
+	}{ 
+	    /?validate self send
+	    /default self send dup null eq { pop 0 } if
+	    {  dup /itemcount self send ge {
+	            pop /bbox self send
+		} {
+		    /itembbox self send
+		} ifelse
+		exch pop .5 mul add exch pop
+		/location self send exch pop add
+	    } SendClient
+	} ifelse
+        sub					% ... y y' y'' cy
+
+	dup 2 index gt {
+	    1 index sub				% ... y y' y'' (cy-y'')
+	    4 2 roll pop			% ... y'' (cy-y'') y
+	    exch sub true			% ... y py true
+	} {
+	    dup 3 index lt {
+		exch pop			% ... y y' cy
+		1 index sub			% ... y y' (cy-y')
+		3 -1 roll exch sub true		% ... y py true
+	    } {
+		4 1 roll pop pop false
+	    } ifelse
+	} ifelse				% x px bool y py bool
+
+	4 -1 roll or {
+	    3 -1 roll exch			% x y px py
+	    setcursorlocation
+	} {
+	    3 -1 roll pop pop			% x y
+	} ifelse
+	/move self send
+	/totop self send
+	/SkipNextDamage? true promote
+	/map self send
+	/paint super send % so as not to also paint pinned menu
+    } def
+
+    /popdown { % event notify? => -
+	{ /TrackStop self send } { /TrackCancel self send } ifelse
+	Original null eq {/unmap self send} if
+	BaseMenu? {
+	    currentcanvas
+		/CurrentClient MenuService send dup setcanvas
+		self /MenuStop 3 -1 roll send
+		/BaseMenu? unpromote
+	    setcanvas
+	} if
+    } def
+
+    % Copy this menu for pinning.  Factored out to keep the pinning code
+    % easier to read.  The clone has a few important differences, such as
+    % no pin or label regardless of the pin/label of the original, but is
+    % otherwise as close a copy as we can manage.
+    %
+    /Clone { % - => menu
+	/placement self send
+	Parent
+	/new /class self send send
+
+	false /setpinnable 2 index send
+	null /setlabel 2 index send
+	dup /SaveBehind false put
+
+	/properties self send dup nulldict eq {	pop }{	% menu' props
+	    /Properties exch /promote 3 index send
+	} ifelse
+
+	ChoiceMode /Command ne {
+	    ChoiceMode /setchoicemode 2 index send
+	    Justification /setjustification 2 index send
+	} if
+
+	/layoutparameters self send dup null ne {
+	    /setlayoutparameters 2 index send
+	}{
+	    pop
+	} ifelse
+
+	/textfont 1 index send /textfont self send ne {
+	    /textfont self send /settextfont 2 index send
+	} if
+
+	/colors 1 index send /colors self send
+	3 -1 roll ne 3 1 roll ne or {
+	    /allcolors self send /setallcolors 8 index send
+	} if
+
+	/itemlist+layout self send /setitemlist 2 index send
+	/notifier self send /setnotifier 2 index send
+	/default self send /setdefault 2 index send
+	/value self send /setvalue 2 index send
+	/helpable? self send /sethelpable 2 index send
+	0 1 /itemcount self send 1 sub {
+	    dup /visualstate self send			% menu' index state
+	    dup /Active ne {
+		/setvisualstate 3 index send		% menu'
+	    }{
+		pop pop
+	    } ifelse
+	} for
+	self /setinvoker 2 index send
+	0 0 0 0 /setinsets 5 index send
+    } def
+    
+    /FindBaseWindow { % - => window true | false
+    	/invoker self send {
+    	    dup null eq {exit} if
+    	    dup /descendantof? ClassMenu send not {exit} if
+    	    /invoker exch send
+    	} loop
+    	dup null eq {pop false} {
+    	    dup type /canvastype ne {/Parent get} if
+    	    /parentdescendant ClassWindow send
+	} ifelse
+    } def
+
+    % Public method that lets a client programmatically control the position
+    % of the northwest corner of the pinned window.
+    %
+    /pin { % x y => -
+	PinnedCopy null eq { /unpin self send } if
+    	2 array astore /LastPinnedCoords exch promote
+    	/Pin self send
+    } def
+
+    /Pin { % - => -
+	/Clone self send
+
+	% stick the clone into a popup window
+	Parent setcanvas	% (presumably the framebuffer)
+	dup Parent /new ClassPinnedMenu send		% menu' window
+	% link this menu with the clone
+	/PinnedCopy exch promote			% menu'
+  	false /setdamageable 2 index send
+	/map 1 index send
+	dup /addpinnedclient MenuService send		% menu'
+	/Original self soften /promote 4 -1 roll send	% -
+
+	/minsize PinnedCopy send			% w h
+	LastPinnedCoords dup null ne {			% w h [oldx oldy+oldh]
+	    aload pop 2 index sub
+	}{
+	    pop /location self send
+	} ifelse
+	4 2 roll /reshape PinnedCopy send
+    	PinnedLabel dup null eq {pop /label self send} if
+    	/setlabel PinnedCopy send
+	/FindBaseWindow self send {
+	    % /addsubwindow automatically activates using basewin's emgr
+	    PinnedCopy soften /addsubwindow 3 -1 roll send
+	}{
+	    /eventmgr self send /activate PinnedCopy send
+	} ifelse
+	/open PinnedCopy send
+
+	true /setpinned SendHeader
+    } def
+
+    % Returns true if this menu has a pinned version.  Can be sent to either
+    % the original menu or the pinned copy (assuming you can somehow get a
+    % handle on the latter).
+    %
+    /pinned? { % - => boolean
+	PinnedCopy null ne Original null ne or
+    } def
+
+    /unpin { % - => -
+	PinnedCopy null ne {
+	    PinnedCopy
+	    /UnpinNotify self send
+	    /unpin exch send
+	} if
+    } def
+    	    
+    % Called by the pinned copy when it's been unpinned or dismissed.
+    %
+    /UnpinNotify { % - => -
+    	/LastPinnedCoords [
+    	    gsave
+    	    	Parent setcanvas
+    	    	/bbox PinnedCopy send exch pop add	% x y+h
+    	    grestore
+    	] promote
+    	/PinnedCopy unpromote
+    	false /setpinned SendHeader
+    } def
+
+    /submenu { % event => false | menu true
+	ChoiceMode /Command eq {
+	    /submenu /sendtranslated SendClient
+	}{
+	    pop false
+	} ifelse
+    } def
+
+    /HeaderChanged { % - => -
+    	{location minsize dup 5 1 roll reshape} SendHeader	% headerHeight
+	0 gt { Border 2 mul } { 0 } ifelse
+	0 0 0 /setgaps self send
+    } def
+
+    /setpinnable { % boolean => -
+	/setpinnable SendHeader
+	/HeaderChanged self send
+    } def
+
+    % Change the label at the top of the menu.  Use 'null' to have no label;
+    % 'nullstring' gives no text but does still draw a separator line.  If
+    % the menu is pinned, sending /setlabel to the original changes both
+    % labels (unless there is an explicit PinnedLabel), but sending /setlabel
+    % to the pinned copy is treated the same as calling /setpinnedlabel (q.v.).
+    %
+    /setlabel { % displayitem => -
+	PinnedCopy null ne PinnedLabel null eq and {
+	    dup /setlabel PinnedCopy send
+	} if
+	/setlabel SendHeader
+	/HeaderChanged self send
+    } def
+
+    % Set the label to be used for the pinned window if this menu gets
+    % pinned.  If the menu is already pinned the new label takes effect
+    % immediately.  Use 'null' to get the pinned window to use the same
+    % label as the original menu (this is the default).  Note that Open
+    % Look requires that every pinned menu have a label, which means the
+    % client is expected to call either /setlabel or /setpinnedlabel for
+    % every pinnable menu; however, the toolkit does not enforce this.
+    %
+    /setpinnedlabel { % displayitem|null => -
+	/PinnedLabel exch promote
+	PinnedCopy null ne {
+	    PinnedLabel dup null eq {pop /label self send} if
+	    /setlabel PinnedCopy send
+	} if
+    } def
+
+    % Get the label to be used for the pinned window.  If null, the pinned
+    % window will use the same label as the original, but this method still
+    % returns the null.
+    %
+    /pinnedlabel { % - => displayitem|null
+	PinnedLabel
+    } def
+
+    /choicemode { % - => mode
+	ChoiceMode
+    } def
+
+    /setchoicemode { % mode => -
+
+	PinnedCopy null ne {
+	    dup /setchoicemode /Center /client PinnedCopy send pop send
+	} if
+
+	/ChoiceMode exch def				%
+	/itemlist+layout self send			% [items]
+	/placement self send				% [items] p
+
+	/Center /removeclient self send pop		% [items] p c
+	exch /CreateMenuClient self send		% [items] c
+
+	ChoiceMode /Command ne {
+	    ChoiceMode /setchoicemode SendClient
+	    Justification /setjustification SendClient
+	} if
+	exch /setitemlist self send			% c
+	/notifier 1 index send /setnotifier self send
+	% It doesn't make much sense to copy the value...
+	/default 1 index send /setdefault self send
+	/properties 1 index send dup nulldict eq { pop } {
+	    /Properties exch /promote SendClient
+	} ifelse
+	/layoutparameters 1 index send dup null eq { pop } {
+	    /setlayoutparameters self send
+	} ifelse
+	/textfont 1 index send dup /textfont SendClient eq { pop } {
+	    /settextfont SendClient
+	} ifelse
+	/colors 1 index send /colors SendClient
+	3 -1 roll ne 3 1 roll ne or {
+	    /allcolors 1 index send /setallcolors SendClient
+	} if
+
+	/destroy exch send				%
+    } def
+
+    % Obtain the item descriptions PLUS the layout info (if any), i.e. the
+    % original argument to /setitemlist.
+    % REMIND: This probably ought to be a utility in ClassItemGroup.
+    %
+    /itemlist+layout { % - => [item item...] | [item layout item layout...]
+	/placement self send dup /Absolute eq exch /Calculated eq or {
+	    {   /itemcount self send 2 mul dup array
+		0 2 4 -1 roll 2 sub {
+		    2 copy 2 idiv 2 copy
+		    /Item self send /LayoutData self send % a i a i/2 a lay
+		    4 index 1 add exch put	% array index array index/2
+		    /item self send		% array index array item
+		    exch 4 1 roll		% array array index item 
+		    put				% array
+		    pause
+		} for
+	    } SendClient
+	} {
+	    /itemlist self send
+	} ifelse
+    } def
+
+    % Execute the default notifier for this menu, with the given object as
+    % the invoker (for determining the LEM and maybe the target).  Used by
+    % menu-buttons.
+    %
+    /ExecuteDefault { % invoker => -
+	/default self send dup null eq {pop pop} {	% invoker index
+	    dup /visualstate SendClient /Active ne {pop pop} {
+		exch /setinvoker self send		% index
+		/NotifyItem SendClient
+	    } ifelse
+	} ifelse
+    } def
+
+    % Return the object which caused this menu to be shown this or the
+    % last time.  Can be a canvas, instance of ClassMenuButtons, or a
+    % parent menu.
+    %
+    /invoker { % - => object
+	Invoker
+    } def
+
+    % Set the invoking object of this menu.  The last invoker is remembered
+    % *after* the menu comes down, so we need to be careful about dangling
+    % references here.
+    %
+    /setinvoker { % object|null => -
+	dup Invoker ne {
+	    Invoker null ne {
+		Invoker self /removeclient ObsoleteService send
+	    } if
+	    /Invoker exch soften def
+	    Invoker null ne {
+	    	Invoker self /addclient ObsoleteService send
+	    	% if invoker is pinned menu, remember its original also,
+	    	% in case the pinned menu later goes away
+	    	Invoker /descendantof? ClassMenu send
+	    	Invoker /Original known and {
+	    	    /SecondaryInvoker Invoker /Original get promote
+	    	} if
+	    } if
+	} {
+	    pop
+	} ifelse
+    } def
+
+    % Override: null out the Invoker if it becomes obsolete.
+    %
+    /HandleObsoleteTarget { % object => -
+	dup Invoker eq {
+	    SecondaryInvoker /setinvoker self send
+	    /SecondaryInvoker unpromote
+	} if
+	/HandleObsoleteTarget super send
+    } def
+
+    % We define the local event manager for a menu to be the local event
+    % manager of whatever its invoker is.
+    %
+    /eventmgr { % - => process
+	/eventmgr Invoker send
+    } def
+
+    % The target of a menu is defined as follows: If the application programmer
+    % has set the target, then it stays that way.  If not, then the target is
+    % the target of the menu's invoker if the invoker understands about targets
+    % (i.e. is a control).  If not then the target is the invoker itself.  This
+    % method is used by the region client to handle the latter two cases when
+    % /settarget has not been called.
+    %
+    /DefaultTarget { % - => object
+	Invoker null eq {null} {
+	    /target /understands? Invoker send {
+		/target Invoker send
+	    }{
+		Invoker
+	    } ifelse
+	} ifelse
+    } def
+
+    /FixAll { % - => -
+	SkipNextDamage? {
+	    /SkipNextDamage? unpromote
+	    damagepath newpath
+	} {
+	    /FixAll super send
+        } ifelse
+    } def
+
+    /Paint {
+        /paintmenu self send
+    } def
+
+    % /paintmenu { % - => -
+
+    /ValidatePaintMenu { % - => -
+	/paintmenu [
+	    BackgroundColor /setcolor load
+	    /clippath load /fill load
+	    
+	    % paint the border if not inside a pinned window
+	    Original null eq {
+	    	3D? {
+		    BG0 /setcolor load
+		    0 0 /moveto load
+		    0 /size self send /rlineto load	% 0 w h rlineto
+		    3 -1 roll 0 /rlineto load
+		    /stroke load
+
+		    BG3 /setcolor load
+		    0 1 /moveto load
+		    /size self send exch 1 sub 0 /rlineto load
+		    0 5 -1 roll /rlineto load
+		    /stroke load
+	    	} {
+		    2DFG /setcolor load
+		    0 0 /moveto load
+		    0 /size self send /rlineto load
+		    3 -1 roll 1 sub 0 /rlineto load
+		    0 /size self send 1 sub neg /rlineto load
+		    3 -1 roll 1 sub neg 0 /rlineto load
+		    /stroke load
+	        } ifelse
+	    } if
+
+	    % paint the dividing line if there's a label
+	    /label self send null ne {
+	    	/bbox SendHeader pop			% hdrX hdrY hdrW
+	    	3 1 roll Border sub 2 add		% lineW lineX lineY
+	    	3D? {					% w x y
+		    3 -1 roll /Paint3DLine cvx
+	    	} {					% w x y
+	    	    /moveto load
+	    	    0 /rlineto load /stroke load
+	    	} ifelse
+	    } if
+
+	counttomark packedarray cvx exch pop store
+    } def
+
+    /paint {
+	PinnedCopy null ne {
+	    /paintpinned PinnedCopy send
+	} if
+	/paint super send % so as not to also paint pinned menu
+    } def
+
+    % Override to force reshape to minsize, and to precompute the paint procs.
+    %
+    /validate { % - => -
+	/Resize self send
+% XXX: This is where we might look to see if the menu is narrower than
+% the label, and set the minimum menu item label width however appropriate.
+% Or what if we adjusted the insets so the menu client is centered? (making
+% the header the -North- client)
+        /validate super send
+	/ValidatePaintMenu self send
+    } def
+
+    /Resize {
+	gsave
+	    Parent setcanvas
+	    /size self send /minsize self send
+	    3 -1 roll ne 3 1 roll ne or {
+		/location self send /minsize self send
+		/reshape self send
+	    } if
+	grestore
+    } def
+
+% Tracking:
+
+    % These two methods are implemented as new methods that invoke the
+    % standard ones, rather than overriding the standard ones and calling
+    % super.  This is because the return values are significantly different
+    % from the standard methods, so overriding could lead to stack confusion.
+
+    /TrackRegion? { % event => bool
+        /Name get dup PointButton eq exch MenuButton eq or
+    } def
+
+    % Same as TrackStart except it discards the return values.
+    %
+    /MenuTrackStart { % event => -
+    	/TrackStart self send {pop} if
+    } def
+
+    % Same as TrackMotion, except it also checks the pullright status.
+    % Returns false if it didn't change; <menu bool true> if it did change.
+    % <menu> is the menu that changed status, and bool is true if the menu
+    % just popped up, false if down.  Menus popping up are detected by
+    % looking for special info from the region; menus popping down are
+    % detected directly by the X coord going negative.
+    %
+    /MenuTrackMotion { % event => false | menu bool true
+    	dup /TrackMotion self send
+
+	% NOTE: The following is sort of dirty, since it accesses (and
+	% unpromotes!) a region instance var directly, but to do it
+	% properly would add a cross-object send per mouse-motion.
+	% Let's do it this way and maybe later see if the "clean" way
+	% is snappy enough.
+	self setcanvas
+	dup /XLocation get 0 lt BaseMenu? not and
+	Original null eq and {		      		% event
+	    false /popdown self send
+	    self false true
+	}{
+	    pop
+	    /Center /client self send pop
+	    /NewPullRight 2 copy known {
+		2 copy get 3 1 roll undef
+		true true
+	    }{
+		pop pop false
+	    } ifelse
+	} ifelse
+    } def
+
+    % OVERRIDE: our root window is the root window of our first invoker
+    /FindRootWindow { % false | window true
+	/FindBaseWindow self send
+    } def
+
+    /TrackDefaultKey { % keydown? => -
+        /TrackDefaultKey SendClient
+    } def
+
+    /setvisualstate { % index|null state => -
+        1 index null eq {
+	    dup /setvisualstate super send
+            dup /setvisualstate SendHeader
+	} if
+	PinnedCopy null ne {
+	    2 copy /setvisualstate
+	    /Center /client PinnedCopy send pop
+	    send
+	} if
+	/setvisualstate SendClient
+    } def
+
+    /HelpKeyword { % - => string
+        Original null eq {nullstring} {
+	    /HelpKeyword Original send
+	} ifelse
+    } def
+
+    /SendClients { % arg1..n /method n+1 => -
+        PinnedCopy null eq { pop } {	% arg1..n /method n+1
+	    copy			% arg1..n /method arg1..n method
+		/Center /client
+		/Center /client
+		PinnedCopy send pop send pop
+					% arg1..n /method arg1..n method client
+	    send			% arg1..n /method
+	} ifelse
+	/Center /client self send pop	% arg1..n /method client
+	send				%
+    } def
+
+    /setitemlist { % list => -
+        /setitemlist 2 SendClients
+    } def
+
+    /insertitem { % index item [layout] => -
+        /insertitem 3 LayoutArgCount add SendClients
+    } def
+
+    /replaceitem { % index item => -
+        /replaceitem 3 SendClients
+    } def
+
+    /deleteitem { % index => -
+        /deleteitem 2 SendClients
+    } def
+
+    /appenditem { % item [layout] => -
+        /appenditem 2 LayoutArgCount add SendClients
+    } def
+
+    /setvalue { % value => -
+        /setvalue 2 SendClients
+    } def
+
+    /setdefault { % default => -
+        /setdefault 2 SendClients
+    } def
+
+    /setlayoutparameters { % [parameters] => -
+        /setlayoutparameters 2 SendClients
+    } def
+
+    /settextfont { % font => -
+	dup /settextfont super send
+        /settextfont 2 SendClients
+    } def
+
+    /setnotifier { % notifier => -
+        /setnotifier 2 SendClients
+    } def
+
+    /settarget { % target => -
+        /settarget 2 SendClients
+    } def
+
+    /cleartarget { % target => -
+        /cleartarget 2 SendClients
+    } def
+
+    /setjustification { % /Left|/Centered => -
+	/Justification exch promote
+	ChoiceMode /Command ne {
+            Justification /setjustification 2 SendClients
+        } if
+    } def
+
+    /justification { % - => /Left|/Centered
+        Justification
+    } def
+
+    /chosen? { % item => bool
+        ChoiceMode /Command eq {pop false} {
+	    /chosen? SendClient
+	} ifelse
+    } def
+
+IncludeDemos? {
+    /demo {
+    dictbegin
+        % Make a submenu in which all the items share the one callback.
+	% Demonstrates how to use a display item to specify a menu item.
+	/submenu1 /Grid framebuffer /new ClassMenu send def
+        [
+	    [[(Text in Red)   1 0 0 rgbcolor]]
+	    [[(Text in Green) 0 1 0 rgbcolor]]
+	    [[(Text in Blue)  0 0 1 rgbcolor]]
+	] /setitemlist submenu1 send
+	/changecolor /setnotifier submenu1 send
+	2 /setdefault submenu1 send
+    
+        % A submenu using /Calculated placement.  Illustrates a placement
+        % style that requires per-item layout data.  Note the alternating
+	% format: <item specification> alternates with <layout data>.  In
+	% this submenu, all the items are simple strings without per-item
+	% notifiers, so they don't need to be wrapped inside arrays.  (The
+	% last item is inside an array just to show how it would look.)
+        /submenu2 /Calculated framebuffer /new ClassMenu send def
+        [
+            (North)	[/South {/Center PARENT POSITION 0 10 xyadd}]
+            (West)	[/East  {/Center PARENT POSITION 10 0 xysub}]
+            (East)	[/West  {/Center PARENT POSITION 10 0 xyadd}]
+            [(South)]	[/North {/Center PARENT POSITION 0 10 xysub}]
+        ] /setitemlist submenu2 send
+        (Directions) /setlabel submenu2 send
+	true /setpinnable submenu2 send
+        /changedirection /setnotifier submenu2 send
+        
+	% Make a submenu of exclusive settings. 
+        /submenu3 /Grid framebuffer /new ClassMenu send def
+	/NonExclusive /setchoicemode submenu3 send
+	/font12 /ZapfDingbats findfont 12 scalefont false printermatchfont def
+	/font20 /ZapfDingbats findfont 20 scalefont false printermatchfont def
+	/font32 /ZapfDingbats findfont 32 scalefont def
+        (NonExclusive) /setlabel submenu3 send
+	font32 /settextfont submenu3 send
+        [ 16 {
+	    rand 95 mod 33 add cvis
+	  } repeat
+	] /setitemlist submenu3 send
+	[true 4 4] /setlayoutparameters submenu3 send
+	true /setpinnable submenu3 send
+	10 /setdefault submenu3 send
+	/dingbat /setnotifier submenu3 send
+
+    	% Make the main menu. It contains two submenus and two regular items.
+    	/menu /Grid framebuffer /new ClassMenu send def
+	[
+    	    [(Change Text Color)	submenu1]
+    	    [(Flood Canvas)		/flood]
+    	    [(More Directions)		submenu2]
+	    [[(Dingbats) font12]	submenu3]
+        ] /setitemlist menu send
+	
+	% Give it a label, and make it pinnable.
+	(Demo Menu) /setlabel menu send
+	true /setpinnable menu send
+	
+	% Create a canvas class whose methods will be called by our menu.
+    	/MyCanvas ClassPanel []
+    	classbegin
+            /NewInit { % - => -
+            	/Calculated /NewInit super send
+            	/Text
+            	    (What's on the menu today?) self /new ClassLabel send
+            	    /Times-Bold findfont 20 scalefont false printermatchfont
+            	    	/settextfont 2 index send
+            	    [/Center {/Center PARENT POSITION}]
+            	    /addclient self send
+            } def
+
+	    /flood { % itemindex menu => -
+		pop pop
+		/Center /setdirection self send
+		gsave self setcanvas
+	    	    ForegroundColor /FillCanvas self send
+		grestore
+	    } def
+	    
+	    /changecolor { % itemindex menu => -
+	    	/item exch send			% [[(Text in foo) colorfoo]]
+		0 get 1 get			% colorfoo
+		/colors self send exch pop	% colorfoo BackgroundColor
+		2 copy /setcolors self send
+	    	/setcolors /Text /client self send pop send
+		/paint self send
+	    } def
+
+	    /changedirection { % itemindex menu => -
+	    	/item exch send			% [(Direction) /notifier]
+	    	0 get cvn				% /direction
+	    	/setdirection self send
+	    	/paint self send
+	    } def
+	    
+	    /setdirection { % /direction => -
+	    	/Text /removeclient self send pop	% /direction label
+	    	/Text exch [ 4 -1 roll			% /Text label [ /dir
+	    	dup {PARENT POSITION} aload pop
+	    	3 packedarray cvx ]		% /Text label [/dir {...}]
+	    	/addclient self send
+	    } def
+	    
+	    /dingbat { % [index bool] menu => -
+	        pop					% [index bool]
+	    	self /parentdescendant ClassWindow send { % [i b] window
+	    	    ([% %]) 3 -1 roll sprintf null	% window left right
+	    	    /setfooter 4 -1 roll send
+	    	}{
+	    	    pop
+	    	} ifelse
+	    } def
+    	classend def
+    	
+    	% Make one of these canvases.
+    	/can framebuffer /new MyCanvas send def
+	/preferredsize {270 100} /promote can send
+        
+        % Make our menu the default menu for this canvas, and target
+        % the menu at this canvas.
+        menu /setmenu can send
+        true /setmenuable can send
+	/win can framebuffer /new ClassBaseWindow send def
+	(Menu Demo) /setlabel win send
+	/place win send
+	/new ClassEventMgr send /activate win send
+        /map win send
+
+	win [menu submenu1 submenu2 submenu3] 
+    dictend pop  % Get rid of local variables.
+    } def
+} if
+
+classend def
+
+/ClassMenuHeader [ClassItemGroup ClassControl]
+[
+    /paintheader
+    /paintpinin
+    /paintpinout
+]
+classbegin
+
+% Class Variables
+
+    /PinIndex		0 def	% item index for the pin
+    /LabelIndex		1 def	% item index for the label
+
+    /TextFont /LucidaSans-Bold findfont 12 scalefont false printermatchfont def
+
+    /MonoPinOut		(\023) def
+    /MonoPinIn		(\024) def
+    /3DPinOutTop	(\144) def
+    /3DPinOutBot	(\145) def
+    /3DPinOutMid	(\146) def
+    /3DPinInTop		(\147) def
+    /3DPinInBot		(\150) def
+    /3DPinInMid		(\151) def
+
+    /PinPad		10 def
+
+% Methods
+
+    % Assumes /Calculated placement.
+    %
+    /NewInit { % pinnable? label parent => -
+	/Calculated exch /NewInit super send
+	dictbegin	% temp for initialisation only
+	    /Label exch def
+	    /Pinnable? exch def
+	[
+	    [/Pinnable? dup load]   [/West {/West PARENT POSITION}]
+	    [/Label dup load]	    [/West {/East PREVIOUS POSITION 10 0 xyadd
+					    /Center PARENT POSITION
+					      CURRENT WIDTH .5 mul 0 xysub
+					    xymax}]
+	]
+	dictend pop				% [item-list]
+	/setitemlist self send
+    } def
+
+    % Override to specify zero width, so the header will be truncated if
+    % it's wider than the menu itself needs to be.  Otherwise we'd have to
+    % figure out some clever way to make the menu items wider when the
+    % header's minsize widens the menu.
+    %
+    /minsize { % - => w h
+    	/minsize super send exch pop 0 exch
+    } def
+
+    % REQUIRED OVERRIDE: If region goes invalid, must also validate
+    % parent canvas so it'll reshape itself.
+    %
+    /invalidate { % - => -
+    	/invalidate Parent send
+    	/invalidate super send
+    } def
+
+    % REQUIRED OVERRIDE: The notifier wants the menu on the stack, not the
+    % region client!
+    %
+    /NotificationObject { % - => object
+    	Parent
+    } def
+
+    % REQUIRED OVERRIDE: ClassRegion tries to be speedy by accessing the
+    % Parent's instance variable /EventMgr; that fails for menu clients!
+    %
+    /eventmgr { % - => emgr
+    	/eventmgr Parent send
+    } def
+
+    % For this private subclass, each item descriptor is just an array
+    % containing a name/value pair to be defined into the itemdict.
+    %
+    /NewItem { % item-descriptor => itemdict
+	dictbegin
+	    currentfont exch
+	    aload pop 2 copy def
+	    pop /Label eq {
+		Label null eq { 0 0 } {
+		    TextFont setfont
+		    Label DisplayItemSize
+		} ifelse
+	    }{
+		Pinnable? {
+		    GraphicFont setfont
+		    MonoPinOut stringbbox 4 2 roll pop pop
+		    MonoPinIn stringbbox 4 2 roll pop pop
+		    xymax 1 add
+		    exch PinPad add exch
+		} { 0 0 } ifelse
+	    } ifelse
+	    /ItemHeight exch def
+	    /ItemWidth exch def
+	    setfont
+	dictend
+    } def
+
+    /pinnable? { % - => boolean
+	//PinIndex /Item self send /Pinnable? get
+    } def
+
+    /setpinnable { % boolean => -
+	[/Pinnable? 3 -1 roll]			% [/Pinnable? boolean]
+	//PinIndex exch /replaceitem self send
+    } def
+
+    % If the bool is true, sets the pin's state to /Inactive regardless of
+    % the overall state of the header; else allows the pin's state to revert
+    % to that of the header.  This is for deactivating the pin when a pinned
+    % copy already exists.
+    %
+    /setpinned { % bool => -
+    	//PinIndex /Item self send exch {
+    	    /VisualState /Inactive put
+    	}{
+    	    /VisualState undef
+    	} ifelse
+    } def
+    	
+    /label { % - => displayitem|null
+	//LabelIndex /Item self send /Label get
+    } def
+
+    /setlabel { % displayitem|null => -
+	[/Label 3 -1 roll]			% [/Label dpyitem]
+	//LabelIndex exch /replaceitem self send
+    } def
+
+    /Paint { % - => -
+	/paintheader self send
+    } def
+
+    % /paintheader { % - => -
+
+    /ValidatePaintHeader { % - => -
+	/paintheader [
+	    /pinnable? self send {
+		/paintpinout load /exec load
+	    	//PinIndex /Item self send
+	    	/begin load /VisualState cvx /end load
+	    	/Active /ne load [
+	    	    BackgroundColor /setcolor load
+	    	    //PinIndex /itembbox self send
+	    	    4 -1 roll round 4 -1 roll round 4 2 roll
+	    	    /StippleRect cvx
+	    	counttomark packedarray cvx exch pop /if load
+	    } if
+
+	    % code for painting label
+	    /label self send null ne {
+	        TextFont setfont
+		TextFont /setfont load
+		//LabelIndex /itemlocation self send
+		/moveto load
+	        ForegroundColor /setcolor load
+		/label self send
+		DisplayItemInlinePaint aload pop
+	    } if
+	    
+	    VisualState /Active ne {
+	    	0 0 /size self send dup 0 eq {
+	    	    pop pop pop pop
+	    	} {
+	    	    BackgroundColor /setcolor load
+	    	    /StippleRect cvx
+	    	} ifelse
+	    } if
+
+	counttomark packedarray cvx exch pop store
+    } def
+
+
+    % /paintpinin { % - => -
+    % /paintpinout { % - => -
+
+    /ValidatePaintPin { % - => -
+    	10 dict begin
+	GraphicFont setfont
+
+	/pinclear [ % - => -
+	    BackgroundColor /setcolor load
+	    //PinIndex /itembbox self send
+	    4 -1 roll round 4 -1 roll round 4 2 roll
+	    /rectpath load /exec load /fill load
+	    GraphicFont /setfont load
+	counttomark packedarray cvx exch pop def
+
+	/paintpinin [
+	    /pinclear load /exec load
+	    //PinIndex /itemlocation self send
+	    round exch PinPad add round exch
+	    MonoPinIn stringbbox pop pop exch pop sub
+	    3D? {
+		BG2 /setcolor load
+		2 /copy load /moveto load
+		3DPinInMid /show load
+
+		BG0 /setcolor load
+		2 /copy load /moveto load
+		3DPinInTop /show load
+
+		BG3 /setcolor load
+		/moveto load
+		3DPinInBot /show load
+	    } {
+	        2DFG /setcolor load
+	        /moveto load
+	        MonoPinIn /show load
+	    } ifelse
+	counttomark packedarray cvx exch pop store
+
+	/paintpinout [
+	    /pinclear load /exec load
+	    //PinIndex /itemlocation self send
+	    round exch PinPad add round exch
+	    MonoPinOut stringbbox pop pop exch pop sub
+	    3D? {
+		BG2 /setcolor load
+		2 /copy load /moveto load
+		3DPinOutMid /show load
+
+		BG0 /setcolor load
+		2 /copy load /moveto load
+		3DPinOutTop /show load
+
+		BG3 /setcolor load
+		/moveto load
+		3DPinOutBot /show load
+	    } {
+	        2DFG /setcolor load
+	        /moveto load
+	        MonoPinOut /show load
+	    } ifelse
+	counttomark packedarray cvx exch pop store
+	end % of 10 dict (used to store /pinclear)
+    } def
+
+    /validate { % - => -
+	currentfont
+	/validate super send
+	/ValidatePaintPin self send
+	/ValidatePaintHeader self send
+	setfont
+    } def
+
+    /item { % index => item-descriptor
+	dup //PinIndex eq {/Pinnable?} {/Label} ifelse
+	exch /Item self send			% key itemdict
+	1 index get				% key value
+	2 array astore
+    } def
+
+    /ItemStart { % index => -
+	//PinIndex eq {
+	    /paintpinin self send
+	} if
+    } def
+
+    /ItemCancel { % index => -
+	//PinIndex eq {
+	    /paintpinout self send
+	} if
+    } def
+
+    /ItemStop { % index => -
+	//PinIndex eq {
+	    /Pin Parent send
+	} if
+    } def
+
+    % Our root window is the root window of our Parent's invoker!
+    /FindRootWindow {
+	/FindRootWindow Parent send
+    } def
+
+    % Let the menu decide the default keyword for the menu header
+    /ItemHelpKeyword { % - => keyword
+	/HelpKeyword Parent send
+    } def 
+
+    /helpkeyword { % event => keyword
+	/HelpKeyword Parent send exch		    % str event
+	/pinnable? self send {			    % str event
+	    gsave
+	    Parent setcanvas
+	    /location self send translate
+	    begin Coordinates aload pop end         % str x y
+	    /pointtoitem self send 		    % str false|index true
+	    {
+		//PinIndex eq {	    	    	    % str
+		    pop (OLhelp.info:push_pin)	    % str'
+		} if				    % str | str'
+	    } if				    % str | str'
+	    grestore				    % str | str'
+	} if					    % str | str'
+    } def
+
+    /sethelpkeyword { % keyword-string => -
+	/sethelpkeyword Parent send
+    } def    
+classend def
+
+/ClassCommandMenu [ClassItemGroup ClassControl]
+[
+    /paintmenubutton
+    /invertmenubutton
+    /paintmenudefault
+    /paintcontents
+    /submenuregionX
+]
+classbegin
+
+% Menu Defaults
+
+    /Default		null def
+    /PullRightDelta	16 def
+    /TextFont /LucidaSans findfont 12 scalefont false printermatchfont def
+
+% Override layout defaults
+
+    /LayoutByRow?	false def
+    /Columns		1 def
+    /Rows		{List length} def
+
+    /MinX		0 def		% used in menu tracking
+    /TrackingXY		[0 0] def	% used in menu tracking
+
+    %   These are the glyphs used for the middle part of the button.
+    %   Each key in the dictionary refers to how many pixels wide the
+    %   corresponding glyphs are.  For each width there are three
+    %   glyphs for the top, middle, and bottom portions of the button
+    %   in that order.
+    %
+    /MenuGlyphs 5 dict dup begin
+	16 [ (\042) (\054) (\047) ] def
+	8  [ (\041) (\053) (\046) ] def
+	4  [ (\040) (\052) (\045) ] def
+	2  [ (\037) (\051) (\044) ] def
+	1  [ (\036) (\050) (\043) ] def
+    end def
+
+    %
+    % these may want to get put into MenuGlyphs
+    %
+    /MonoMenuPullRight	(\060\061) def
+    /3DMenuPullRightTop (\060) def
+    /3DMenuPullRightBot (\061) def
+    /3DMenuPullRightMid (\062) def
+
+% Methods:
+
+    % Convert polymorphic input form into an itemdict.
+    %
+    /NewItem { % string | [di <notify|submenu>*] => itemdict
+	dictbegin
+	    dup type /stringtype eq {			% string
+		/DisplayItem exch def			% -
+	    }{						%  [ di stuff(opt.) ]
+		dup 0 get /DisplayItem exch def
+		dup length 1 eq {pop}{
+		    1 get dup isobject? {
+			/SubMenu exch def
+		    }{
+			/Notifier exch def
+		    } ifelse
+		} ifelse
+            } ifelse
+	dictend
+    } def
+
+    % REQUIRED OVERRIDE: If region goes invalid, must also validate
+    % parent canvas so it'll reshape itself.
+    %
+    /invalidate { % - => -
+    	/invalidate Parent send
+    	/invalidate super send
+    } def
+
+    % Return the item specification for the given index.
+    /item { % index => string|[di <notify|submenu>*]
+	/Item self send					% dict
+	dup /DisplayItem get /stringtype ne		% dict bool1
+	1 index /Notifier known				% dict bool1 bool2
+	2 index /SubMenu known				% dict bool1 bool2 bool3
+	2 copy 5 2 roll or or {				% dict bool2 bool3
+	    2 copy or {					% dict bool2 bool3
+		pop exch dup 3 -1 roll			% dict dict bool2
+		/Notifier /SubMenu ifelse get		% dict notify|submenu
+		exch /DisplayItem get			% notify|submenu di
+		exch 2 array astore			% [di notify|submenu]
+	    }{						% dict false false
+		pop pop /DisplayItem get 1 array astore	% [di]
+	    } ifelse
+	}{						% dict bool2 bool3
+	    pop pop
+	    /DisplayItem get				% string
+	} ifelse
+    } def
+
+    /setvisualstate { % index state => -
+        exch dup null ne {				% state index
+	    /Item self send				% state child
+	    /VisualState 3 -1 roll put			%
+	}{						% state nullindex
+	    pop						% state
+	    /VisualState exch promote
+	    /List self send {/VisualState undef} forall
+	} ifelse	
+	/invalidate self send
+    } def
+
+    /visualstate { % index => state
+        dup null eq {
+	    /visualstate super send
+	} {
+	    /Item self send
+	    begin VisualState end
+	} ifelse
+    } def
+
+    % Set the default to be the specified item.  The first item is at
+    % index 0.  Specifying null will turn off the default for this menu.
+    %
+    /setdefault { % index|null => -
+    	Default /Default 2 index promote		% new old
+    	Valid? {
+    	    gsave
+		Parent setcanvas X Y translate
+		dup null eq {pop} {
+		    /ItemExpand self send /paintmenubutton self send
+		} ifelse
+		dup null eq {pop} {
+		    /itemlocation self send /paintmenudefault self send
+		} ifelse
+    	    grestore
+    	} {pop pop} ifelse
+    } def
+
+    % Return the index that represents the current default.
+    %
+    /default { % - => index|null
+        Default
+    } def
+
+    % Override: Return size of a single button.
+    /CellSize {0 0} def		% promoted during ValidateItemList
+    /ItemWidth {CellSize pop} def
+    /ItemHeight {CellSize exch pop} def
+
+    % /dopullright { % x y => x y	(but only in tempdict, not in instance)
+    % /paintmenubutton { %  displayitem pullright? x y => -
+    % /invertmenubutton { % displayitem pullright? x y => -
+    % /paintmenudefault { % x y => -
+
+    /ValidatePaintButtons { % tempdict => -
+    	begin
+	/dopullright [
+	    MidStr stringwidth pop
+	    subitemstrwidth add
+	    2 /index load /add load
+
+	    MidStr stringbbox 4 1 roll pop pop pop
+% XXX: constant MonoMenuPullRightWidth
+	    MonoMenuPullRight stringbbox 4 1 roll pop pop pop
+	    add .5 mul
+	    2 /index load /add load
+
+	    3D? {
+		/currentcolor load 3 1 /roll load
+		BG3 /setcolor load
+		2 /copy load /moveto load
+		3DMenuPullRightTop /show load
+
+		BG0 /setcolor load
+		2 /copy load /moveto load
+		3DMenuPullRightBot /show load
+
+		BG2 /setcolor load
+		/moveto load
+		3DMenuPullRightMid /show load
+		/setcolor load
+	    } {
+		/moveto load
+		MonoMenuPullRight /show load
+	    } ifelse
+	counttomark packedarray cvx exch pop def
+	% NOT store; /dopullright lives only in the tempdict!
+
+	/paintmenubutton [
+	    GraphicFont /setfont load
+	    BackgroundColor /setcolor load
+
+	    2 /copy load 1 /sub load
+	    /moveto load
+	    /CellSize self send
+	    neg 0 exch 3 -1 roll 1 add 0 0 3 index neg		% 0 -h w 0 0 h
+	    /rlineto load dup dup /closepath load /fill load
+
+	    ForegroundColor /setcolor load
+
+	    3 -1 /roll load
+		/dopullright load
+	    /if load
+	    
+	    TextFont /setfont load
+	    /moveto load
+	    endcapwidth olglyphoffset
+	    2 /index load /DisplayItemSize cvx /exch load /pop load
+	    /sub load .5 /mul load
+	    /rmoveto load
+
+            /DisplayItemPaint cvx
+	counttomark packedarray cvx exch pop store
+
+	/invertmenubutton [
+	    GraphicFont /setfont load
+
+	    2 /copy load 1 /sub load
+	    olglyphoffset 0 ne {
+		olglyphoffset /add load
+	    } if
+
+	    3D? {
+	        BG2 /setcolor load
+		2 /copy load /moveto load MidStr /show load
+	        BG3 /setcolor load
+		2 /copy load /moveto load TopStr /show load
+	        BG0 /setcolor load
+	        /moveto load BotStr /show load
+		FG /setcolor load
+	    } {
+	        2DFG /setcolor load
+	        /moveto load MidStr /show load
+		2DBG /setcolor load
+	    } ifelse
+
+	    3 -1 /roll load
+		/dopullright load
+	    /if load
+
+	    TextFont /setfont load
+	    /moveto load
+	    endcapwidth olglyphoffset
+	    2 /index load /DisplayItemSize cvx /exch load /pop load
+	    /sub load .5 /mul load
+	    /rmoveto load
+
+	    /DisplayItemPaint cvx
+	counttomark packedarray cvx exch pop store
+
+	/paintmenudefault [
+	    GraphicFont /setfont load
+	    ForegroundColor /setcolor load
+
+	    olglyphoffset 0 ne {
+	        olglyphoffset /add load
+	    } if
+	    1 /sub load 2 /copy load
+	    /moveto load TopStr /show load
+	    /moveto load BotStr /show load
+	counttomark packedarray cvx exch pop store
+	end % of tempdict
+    } def
+
+    % /paintcontents { % - => -
+
+    /ValidatePaintContents { % tempdict => -
+    	begin
+    	/paintcontents [
+	    % code for painting pullright marks
+	    GraphicFont /setfont load
+	    ForegroundColor /setcolor load
+	    
+	    GraphicFont setfont
+	    
+	    % Some of the pieces of this displaylist are wrapped inside
+	    % nested arrays to keep the operand stack from overflowing
+	    % as we construct them.
+	    
+	    [
+	    0 1 /itemcount self send 1 sub {		% index
+	    	dup /Item self send			% index child
+		/SubMenu known {			% index
+		    /itemlocation self send
+		    /dopullright load /exec load
+		    /pop load dup
+		} {
+		    pop
+		} ifelse
+	    } for
+	    counttomark packedarray exch pop
+	    dup length 0 eq { pop }{ cvx /exec load } ifelse
+
+	    % code for painting default; this 'if' is done at paint-time
+	    % so we don't have to revalidate when the default changes
+	    /Default cvx null /ne load {
+		Default /itemlocation self send
+		/paintmenudefault self send
+	    } /if load
+
+	    ForegroundColor /setcolor load
+	    TextFont /setfont load
+
+	    % code for painting menu text
+	    TextFont setfont
+	    [
+	    0 1 /itemcount self send 1 sub {		% index
+		dup /itemlocation self send		% index x y
+		2 index /Item self send begin		% index x y
+		    endcapwidth olglyphoffset
+		    DisplayItem
+		    DisplayItemSize exch pop sub .5 mul
+		    xyadd
+		    /moveto load 4 -1 roll		% x y moveto index
+		    DisplayItem
+                    DisplayItemInlinePaint		% ...index [displaylist]
+		    VisualState /Active eq {
+		    	exch pop aload pop
+		    } {
+		    	aload length 1 add -1 roll	% ...displaylist index
+		    	/itembbox self send
+		    	BackgroundColor /setcolor load
+		    	/StippleRect cvx
+		    	ForegroundColor /setcolor load
+		    } ifelse
+		end
+		% wrap up one nested array if it's getting too large
+		counttomark dup 100 lt { pop }{
+		    packedarray cvx /exec load		% ... [ {...} exec
+		    3 -1 roll
+		} ifelse
+	    } for
+	    counttomark packedarray exch pop
+	    dup length 0 eq { pop }{ cvx /exec load } ifelse
+
+	counttomark packedarray cvx exch pop store
+    	end % of tempdict
+    } def
+
+    % Create a dict with various values used to construct the paint procs.
+    %
+    /ValidationTempDict { % - => tempdict
+% XXX: This gets called 2 times when we pop up a menu,
+% and 3 times when we pin a menu!!!
+	dictbegin
+	/TopStr (\030) def
+	/BotStr (\031) def
+	/MidStr (\032) def
+
+% REMIND: this should also calculate the height, but until we get
+% fonts that will scale, it is pretty meaningless.
+
+	% Calculate the width of the menu buttons
+	0 /List self send {
+	    begin
+		currentdict /SubMenu known {
+		    GraphicFont setfont
+% XXX: constant MonoMenuPullRightWidth
+		    MonoMenuPullRight stringbbox 4 2 roll pop pop pop
+		    ceiling 8 add
+		} {
+		    0
+		} ifelse
+		TextFont setfont
+		DisplayItem DisplayItemSize pop add
+		max
+	    end
+	} forall
+
+% XXX: Here we might use some trick to widen the menu buttons
+% if called for by a wide label.
+
+	% Construct the strings for painting the button outlines.
+	2 dict begin
+	    /w exch def
+
+	    [16 8 4 2 1 ] {
+		/gw exch def
+		{
+		    w gw lt {
+			exit
+		    } if
+		    /w w gw sub store
+		    MenuGlyphs gw get aload pop
+		    BotStr exch append /BotStr exch store
+		    MidStr exch append /MidStr exch store
+		    TopStr exch append /TopStr exch store
+		} loop
+	    } forall
+	end
+	/BotStr BotStr  (\033) append store
+	/TopStr TopStr  (\034) append store
+	/MidStr MidStr  (\035) append store
+	GraphicFont setfont
+	/endcapwidth (\030) stringwidth pop def
+	/olglyphoffset (\030) stringbbox pop pop exch pop neg def
+% XXX: constant MonoMenuPullRightWidth
+	/subitemstrwidth MonoMenuPullRight stringbbox 4 2 roll pop pop pop
+		endcapwidth add neg def
+
+	dictend		% leave temp dict on stack
+    } def
+
+    % Override to compute /CellSize based on /MidStr.
+    %
+    /ValidateItemList { % - => -
+        currentfont
+    	/ValidationTempDict self send
+   	/MidStr get stringbbox 4 2 roll pop pop
+    	2 packedarray cvx /CellSize exch promote
+    	/ValidateItemList super send
+	setfont
+    } def
+
+    /OriginalParent { % - => menu
+        Parent
+	dup /Original known { /Original get } if
+    } def
+
+    /validate { % - => -
+        % We're doing this checking here, because the user may have
+	% changed the default, without the application knowing about
+	% it. It's easier to take care of that case here, than leaving
+	% it up to applications to make sure the default is always valid.
+	Default null ne {
+	    Default ItemList length ge {
+	        /PaintedDefault unpromote
+		ItemList length 1 sub
+		dup 0 lt { pop null } if
+		/setdefault OriginalParent send
+	    } if
+	} if
+	currentfont
+	/validate super send
+
+	% pass temp dict in to each of these menu-specific subprocs
+	
+    	/ValidationTempDict self send
+	dup /ValidatePaintButtons self send
+	dup /ValidatePaintContents self send
+
+	/subitemstrwidth get	% (last use of temp dict)
+	ItemWidth add
+	/submenuregionX exch def
+	setfont
+    } def
+
+    /Paint { % - => -
+    	/paintcontents self send
+    } def
+
+    /NotifyItem { % index => -
+	dup /Item self send				% index child
+	dup /SubMenu known { 				% index child
+	    /SubMenu get exch pop			% sub
+            Parent /ExecuteDefault 3 -1 roll send	% -
+	}{ 						% index child
+	    begin /Notifier load end			% index proc
+	    /ExecuteNotifier self send			% -
+	} ifelse
+    } def
+
+    % REQUIRED OVERRIDE: The notifier wants the menu on the stack, not the
+    % region client!
+    %
+    /NotificationObject { % - => object
+    	Parent
+	dup /Original known { /Original get } if
+    } def
+
+    % REQUIRED OVERRIDE: ClassRegion tries to be speedy by accessing the
+    % Parent's instance variable /EventMgr; that fails for menu clients!
+    %
+    /eventmgr { % - => emgr
+    	/eventmgr Parent send
+    } def
+
+    % Given an event, return submenu if the coords are over a submenu item.
+    % Assumes we've been translated to a 0,0 origin.  Used for evaluating
+    % clicks on a stay-up menu.  (Clicking on a command item executes it;
+    % clicking on a submenu item pops up the submenu.)  Also sets our value
+    % to be this item in case the submenu's notifier proc wants to know the
+    % item index.
+    %
+    /submenu { % event => false | menu true
+    	begin XLocation YLocation end
+	/pointtoitem self send {			% index
+	    [1 index] /setvalue self send
+	    /Item self send
+	    dup /SubMenu known {
+	    	begin VisualState /Active eq {
+	    	    SubMenu true
+	    	} {
+	    	    false
+	    	} ifelse
+	    	end
+	    } {
+		pop false
+	    } ifelse
+	} {
+	    false
+	} ifelse
+    } def
+
+    % If target has not been explicitly set, use default as defined by
+    % ClassMenu.
+    %
+    /target { % - => object
+	/target super send dup null eq {
+	    pop /DefaultTarget Parent send
+	} if
+    } def
+
+    % Tracking:
+    
+    % Override: (a) Make coords available to /ItemFoo methods; (b) call
+    % /ItemMotion for motion within an item (to check for pullrights).
+    % REMIND: Had to copy code from ClassItemGroup; maybe ClassItemGroup
+    % could be factored better?
+    %
+    /TrackMotion { % event => -
+        /Coordinates get
+        aload /TrackingXY exch store
+        CurrentItem null ne {
+            2 copy CurrentItem /pointinitem? self send {
+		% motion within current item
+                pop pop
+                CurrentItem /ItemMotion self send
+            }{
+		CurrentItem /ItemCancel self send
+		/pointtoitem self send {
+		    % crossing between items
+		    /ItemTrack self send
+		}{
+		    % exit from item into background
+		    Default null ne {
+			Default /itemlocation self send
+			/paintmenudefault self send
+		    } if
+		    /CurrentItem unpromote
+		} ifelse
+            } ifelse
+        }{
+            % entrance into item from background
+            /pointtoitem self send {
+		/ItemTrack self send
+	    } if
+        } ifelse
+    } def
+    
+    /TrackCancel { % event => -
+	% exit from region into background
+	/TrackCancel super send
+	Default null ne {
+	    gsave
+		Parent setcanvas X Y translate
+		Default /itemlocation self send
+		/paintmenudefault self send
+	    grestore
+	} if
+    } def
+
+    % Override: Again, just to stash the x-coord.  REMIND
+    %
+    /TrackStart { % event => -
+	/TrackingXY 1 index /Coordinates get store
+	/TrackStart super send
+    } def
+
+    /TrackStop { % event => -
+        /TrackStop super send
+	Default null ne {
+	    gsave
+		Parent setcanvas X Y translate
+		Default /itemlocation self send
+		/paintmenudefault self send
+	    grestore
+	} if
+    } def
+
+    % Utility to expand an item index into the parameters needed for the
+    % various private painting methods.
+    /ItemExpand { % index => dpyitem submenu? x y
+    	dup /Item self send			% index item
+    	dup /DisplayItem get			% index item dpyitem
+    	exch /SubMenu known			% index dpyitem submenu?
+    	3 -1 roll /itemlocation self send	% dpyitem submenu? x y
+    } def
+
+    /ItemTrack { % <item index> => -
+	dup /Item self send 			% index item
+	begin VisualState end			% index state
+	/Active eq {				% index
+	    CurrentItem null ne {
+		CurrentItem /ItemCancel self send
+	    } if
+	    dup null ne  % CurrentItem null ne  and
+	    Default null ne  and {
+	        Default /ItemExpand self send
+		/paintmenubutton self send
+	    } if
+	    dup null eq  Default null ne  and {
+	      Default /itemlocation self send
+	      /paintmenudefault self send
+	    } if
+	    /CurrentItem 1 index promote
+	    /ItemStart self send		% -
+	}{
+	    CurrentItem null ne {
+	      CurrentItem /ItemCancel self send
+	      /CurrentItem unpromote
+	    } if
+	    Default null ne {
+	      Default /itemlocation self send
+	      /paintmenudefault self send
+	    } if
+	    pop					% -
+	} ifelse
+    } def
+
+    /ItemStart { % index => -
+    	/MinX TrackingXY 0 get store
+	/ItemExpand self send
+	DefaultKeyDown? {
+	    2 copy 6 2 roll
+	    /paintmenubutton self send
+	    /paintmenudefault self send
+	} {
+	    /invertmenubutton self send
+	} ifelse
+    } def
+
+    /ItemCancel { % index => -
+    	dup /ItemExpand self send		% index dpyitem submenu? x y
+    	2 copy 7 2 roll				% x y index di sub? x y
+    	/paintmenubutton self send		% x y index
+    	Default ne				% x y bool
+	DefaultKeyDown? or {pop pop} {		% x y
+    	    /paintmenudefault self send
+    	} ifelse				%
+    } def
+
+    /ItemStop { % index => -
+	[1 index] /setvalue self send
+	dup /ItemCancel self send
+	/NotifyItem self send
+    } def
+
+    /ItemMotion { % index => -
+    	/MinX MinX TrackingXY 0 get min store
+    	dup /Item self send			% index child
+    	dup /SubMenu known {
+    	    TrackingXY 0 get dup MinX sub
+    	    PullRightDelta ge exch		% index child bool X
+    	    3 index /itemlocation self send	% index child bool X iX iY
+    	    pop sub submenuregionX gt or {	% index child
+    	    	[3 -1 roll] /setvalue self send
+    	    	/SubMenu get
+    	    	dup /Parent get setcanvas
+    	    	/Default
+    	    	/location self send
+    	    	/location Parent send xyadd
+    	    	TrackingXY aload pop xyadd	% submenu /Default x y
+    	    	/MinX 2 index store
+		   % else might pop up immediately after popping down!
+    	    	/popup 4 index send		% submenu
+		/NewPullRight exch promote
+    	    }{
+    	    	pop pop
+    	    } ifelse
+    	}{
+    	    pop pop
+    	} ifelse
+    } def
+
+    % Our root window is the root window of our Parent's invoker!
+    /FindRootWindow {
+	/FindRootWindow Parent send
+    } def
+
+    % Let the menu decide the default keyword for the command menu item group
+    /HelpKeyword { % - => keyword
+	/HelpKeyword Parent send
+    } def 
+
+    /itemhelpkeyword { % item => string
+        Parent /Original known {
+	    /itemhelpkeyword Parent /Original get send
+	} {
+	    /itemhelpkeyword super send
+	} ifelse
+    } def
+
+    /DefaultKeyDown? {
+        /defaultkeydown? MenuService send
+	/DefaultKeyDown? 1 index promote
+    } def
+
+    /TrackDefaultKey { % keydown? => -
+        /DefaultKeyDown? 1 index promote
+	gsave
+	    Parent setcanvas X Y translate
+	    TextFont setfont
+	    {   Default null ne  CurrentItem null ne  and {
+		    Default /ItemExpand self send
+		    /paintmenubutton self send
+		} if
+		CurrentItem null ne {
+		    CurrentItem /ItemExpand self send
+		    /paintmenubutton self send
+		    CurrentItem /itemlocation self send
+		    /paintmenudefault self send
+		} if
+	    } {
+		Default CurrentItem ne  CurrentItem null ne  and {
+		    CurrentItem /setdefault OriginalParent send
+		} if
+		CurrentItem null ne {
+		    CurrentItem /ItemExpand self send
+		    /invertmenubutton self send
+		} if
+	    } ifelse
+	grestore
+    } def
+
+classend def
+
+/ClassSettingsMenu ClassSettings []
+classbegin
+    /LayoutByRow? false def
+    /Columns	1 def
+    /Rows	{List length} def
+
+    % Convert polymorphic input form into an itemdict.
+    %
+    /NewItem { % string | [di <notify>*] => itemdict
+	dictbegin
+	    dup type /stringtype eq {			% string
+		/DisplayItem exch def			% -
+	    }{						%  [ di stuff(opt.) ]
+		dup 0 get /DisplayItem exch def
+		dup length 1 eq {pop}{
+		    /Notifier exch 1 get def
+		} ifelse
+            } ifelse
+	    /Chosen? false def
+	dictend
+    } def
+
+    % Return the item specification for the given index.
+    /item { % index => string|[di <notify|submenu>*]
+	/Item self send					% dict
+	dup /DisplayItem get /stringtype ne		% dict bool1
+	1 index /Notifier known				% dict bool1 bool2
+	dup 3 1 roll or {				% dict bool2
+	    {						% dict
+		[ exch dup /DisplayItem get
+		  exch /Notifier get
+		]
+	    }{						% dict
+		/DisplayItem get 1 array astore		% [di]
+	    } ifelse
+	}{						% dict bool2
+	    pop
+	    /DisplayItem get				% string
+	} ifelse
+    } def
+
+    /OriginalParent { % - => menu
+        Parent
+	dup /Original known { /Original get } if
+    } def
+
+    /validate {
+        % We're doing this checking here, because the user may have
+	% changed the default, without the application knowing about
+	% it. It's easier to take care of that case here, than leaving
+	% it up to applications to make sure the default is always valid.
+	Default null ne {
+	    Default ItemList length ge {
+	        /PaintedDefault unpromote
+		ItemList length 1 sub
+		dup 0 lt { pop null } if
+		/setdefault OriginalParent send
+	    } if
+	} if
+        /validate super send
+    } def
+
+    % REQUIRED OVERRIDE: If region goes invalid, must also validate
+    % parent canvas so it'll reshape itself.
+    %
+    /invalidate { % - => -
+    	/invalidate Parent send
+    	/invalidate super send
+    } def
+
+    /NotificationObject { % - => object
+	Parent
+	dup /Original known { /Original get } if
+    } def
+
+    /ExecuteSettingNotify { % i /name => -
+        exch ItemList 1 index get begin		% /name i
+	    exch load exch PaintChosen?		% proc i bool
+	    2 array astore exch			% [i bool] proc
+	    ExecuteNotifier
+	end
+    } def
+
+    /NotifyItem { % index => -
+	gsave
+	    Parent setcanvas X Y translate
+	    TextFont setfont
+	    ChoiceMode /NonExclusive eq {
+		dup /ToggleButton self send
+		/value self send
+	    } {
+		ChoiceMode /ExclusiveVariation eq
+		ItemList 2 index get /Chosen? get and {
+		    nullarray
+		} {
+		    [1 index]
+		} ifelse
+	    } ifelse
+	    /setvalue OriginalParent send
+	grestore
+	/Notifier /ExecuteSettingNotify self send
+    } def
+
+    /eventmgr { % - => emgr
+	/eventmgr Parent send
+    } def
+
+    % If target has not been explicitly set, use default as defined by
+    % ClassMenu.
+    %
+    /target { % - => object
+	/target super send dup null eq {
+	    pop /DefaultTarget Parent send
+	} if
+    } def
+
+    /Default null def
+
+    /setdefault { % index|null => -
+    	Default /Default 3 -1 roll promote		% oldval
+    	Valid? {
+    	    gsave
+		Parent setcanvas X Y translate
+		TextFont setfont
+		[exch PaintedDefault] {
+		    dup null eq {pop} {
+			/Item self send begin
+			    currentdict /PaintItem self send
+			end
+		    } ifelse
+		} forall
+    	    grestore
+    	} { pop } ifelse
+    } def
+    
+    /default { % - => index
+    	Default
+    } def
+
+    /setvisualstate { % index|null state => -
+        exch dup null ne {				% state index 
+	    /Item self send				% state child
+	    /VisualState 3 -1 roll put			%
+	} {						% state index
+	    pop
+	    /VisualState exch promote
+	    /List self send {/VisualState undef} forall
+	} ifelse
+	/invalidate self send
+    } def
+
+    /visualstate { % index => -
+        dup null eq {
+            pop /visualstate super send
+	} {
+	    /Item self send
+	    begin VisualState end
+	} ifelse
+    } def
+
+    /PaintedDefault { Default } def
+
+    /PaintItem { % item => -
+	begin
+	    TextFont setfont
+	    ItemX ItemY .5 -.5 xyadd
+	    ItemWidth ItemHeight
+	    3D? {
+		1 1 xysub
+		PaintChosen? Paint3DBox
+	    } {
+		PaintChosen? Paint2DBox
+	    } ifelse
+	    ItemX ItemY moveto
+	    /DisplayItem load
+	    Justification /Centered eq {
+		dup DisplayItemSize
+		    ItemHeight sub -.5 mul exch
+		    ItemWidth sub -.5 mul exch rmoveto
+	    } {
+		ItemHOrigin ItemVOrigin rmoveto
+	    } ifelse
+	    ForegroundColor setcolor
+	    DisplayItemPaint
+
+	    PaintedDefault dup null eq { pop } {
+	        ItemList exch get currentdict eq {
+		    ItemX ItemY 2.5 1.5 xyadd
+		    ItemWidth ItemHeight
+		    3D? { 5 5 } { 4 4 } ifelse xysub
+		    rectpath ForegroundColor setcolor stroke
+		} if
+	    } ifelse
+
+	    VisualState /Inactive eq {
+		BackgroundColor setcolor
+		ItemX ItemY ItemWidth ItemHeight StippleRect
+	    } if
+	end
+    } def
+
+    /ItemStart { % index => -
+        DefaultKeyDown? {
+	    Default dup null ne  exch PaintedDefault eq  and
+	    /PaintedDefault 2 index promote
+	    { ItemList Default get /PaintItem self send } if
+	    /Item self send /PaintItem self send
+	} {
+	    /ItemStart super send
+	} ifelse
+    } def
+
+    /ItemCancel { % index => -
+        DefaultKeyDown? {
+	    /PaintedDefault null def
+	    /Item self send /PaintItem self send
+	    /PaintedDefault unpromote
+	} {
+	    /ItemCancel super send
+	} ifelse
+    } def
+
+    /TrackMotion { % event => -
+	/TrackMotion super send
+	DefaultKeyDown? {
+	    CurrentItem null eq
+	    /PaintedDefault promoted? not  and {
+	        /PaintedDefault Default promote
+		Default null ne {
+		    ItemList Default get /PaintItem self send
+		} if
+	    } if
+        } if
+    } def
+
+    /RestoreDefault {
+	DefaultKeyDown?  Default null ne  and {
+	    ItemList Default get /PaintItem self send
+	} if
+    } def
+
+    /TrackStop {
+        /PaintedDefault unpromote
+        /TrackStop super send
+	/RestoreDefault self send
+	/value self send /setvalue OriginalParent send
+    } def
+
+    /TrackCancel { % event => -
+        /PaintedDefault unpromote
+        /TrackCancel super send
+	/RestoreDefault self send
+    } def
+
+    % Our root window is the root window of our Parent's invoker!
+    /FindRootWindow {
+	/FindRootWindow Parent send
+    } def
+
+    % Let the menu decide the default keyword for the settings menu item group
+    /HelpKeyword { % - => keyword
+	/HelpKeyword Parent send
+    } def 
+
+    /itemhelpkeyword { % item => string
+        Parent /Original known {
+	    /itemhelpkeyword Parent /Original get send
+	} {
+	    /itemhelpkeyword super send
+	} ifelse
+    } def
+
+    /DefaultKeyDown? {
+        /defaultkeydown? MenuService send
+	/DefaultKeyDown? 1 index promote
+    } def
+
+    /TrackDefaultKey { % keydown? => -
+        /DefaultKeyDown? 1 index promote
+	gsave
+	    Parent setcanvas X Y translate
+	    {   CurrentItem null ne {
+		    /PaintedDefault CurrentItem promote
+		    CurrentItem RestoreItem
+		    Default null ne {
+			Default RestoreItem
+		    } if
+		} if
+		TrackStartValue dup null eq
+		1 index CurrentItem eq  or {pop} {
+		    RestoreItem
+		} ifelse
+	    } {
+		/PaintedDefault unpromote
+		CurrentItem dup null ne  exch Default ne  and {
+		    CurrentItem /setdefault OriginalParent send
+		} if
+		CurrentItem null ne {
+		    /TrackBackground? true store
+		    CurrentItem /ItemStart self send
+		} if
+	    } ifelse
+	grestore
+    } def
+
+classend def
+
+%
+% ClassMenuService
+%
+% This is a service that implements menu event handling.  It is basically
+% just a notify interest that sits on all "menuable" canvases, and a bunch
+% of code that implements the OpenLook menu state machine.  There is one
+% notify interest, and a couple of dependent interests that manage all
+% menus in the system.  When a tree of menus is being manipulated, no
+% processes are forked, and no additional interests (besides the single
+% set of dependents) are expressed.
+%
+% In fact, the code is almost literally a finite state machine.  Six
+% tracker states are defined, each corresponding to a method, and each
+% state(method) sets up the states(methods) to which the FSM goes in
+% response to the various mouse actions.  The states are:
+%	FirstTrack
+%	DetermineMode
+%	PullrightTrack
+%	CheckClick
+%	ClickDown
+%	ExecDone
+% There is also a no-op methods for transitions that do not change the state:
+%	NullActionUnblock
+%
+% The transition diagram is shown below.
+% REMIND: Currently does not support ctrl-modifier for setting the default.
+%
+%				(start)
+%				   |
+%				   | /Down
+%				   V
+%			(popup, activate dependents)
+%			   |			|
+%		       /Up |			| /Drag
+%			   V			V
+%		[DetermineMode]		     [FirstTrack]
+%		if "click": stayup	     if < threshhold: ignore
+%		else => ExecDone	     else => PullrightTrack
+%			   |			:
+%		     /Down |			:
+%			   V			V
+%	     +----> [ClickDown]		     [PullrightTrack]
+%	     |	    highlight item --------> highlight item,
+%	     |		   |		     if submenu: popup
+%      /Down |		   | /Up		|
+%	     |		   V		<-------+ /MenuUp (=> CheckClick if
+%	     |	    [CheckClick]		|	   via ClickDown)
+%	     +----- if submenu and used	     	V
+%		    menubutton: popup	     [ExecDone]
+%		    else => ExecDone	     {exec, *DONE*}
+
+/ClassMenuService [
+    ClassNotifyInterest ClassFullScreenInterest
+] [
+    /CurrentMenu	% which canvas we're currently tracking in
+    /MenuList		% array of active menus not including CurrentMenu
+    /ButtonDict		% which up/downs to watch for during tracking
+    /PoppedUpAt		% [x y] of cursor after menu first popped up
+
+    % The state machine:
+    /MouseDragged
+    /UpTransition
+    /DownTransition
+]
+classbegin
+
+% Class variables:
+
+    /MenuName MenuButton def		% for popping up menus
+    /PointName PointButton def		% alternative button if stayup/pinned
+
+    % Defaults
+    /ClickTime
+    	UserProfile /MenuClickThresh 500 ?get	% milliseconds
+    def
+    /DragThresh
+    	UserProfile /DragThresh 5 ?get		% in framebuffer coords
+    def
+
+    % Secondary interest used to detect initial point-downs in pinned menus.
+    % Note that this interest is a private class var in the MenuService.
+    %
+    /PinnedMenuService
+    	growabledict /DownTransition dictbegin
+    	    PointName {
+    	    	{/trigger MenuService send}
+    	    	/SendInContext 2 index /Interest get send
+    	    } def
+    	dictend /new ClassInterest send
+    	dup /Synchronous true put
+    	dup /Priority MenuButtonPriority .1 sub put
+    	def
+    PinnedMenuService /addclient GlobalEventMgr send
+    
+% Methods:
+
+    % intialize the menu interest; create and install its dependents
+    %
+    /NewInit { % - => -
+	/Exclusivity true def
+	/Priority MenuButtonPriority .1 sub def
+		% ensures that dependent interest in mouse-down is higher
+	growabledict /DownTransition TriggerName
+	    /NewInit super send
+
+	/CurrentMenu null def
+	/MenuList nullarray def
+	/ButtonDict 2 dict def
+	CreateDependents
+
+	self /addclient GlobalEventMgr send
+    } def
+
+    % Override: Deactivate the PinnedMenuService since a new one is about
+    % to be created.  This strands existing pinned menus if this file is
+    % reloaded, but that shouldn't happen in a normal environment.
+    %
+    /cleanoutclass { % - => -
+    	/deactivate PinnedMenuService send
+    	/cleanoutclass super send
+    } def
+
+    % Methods called from ClassMenu to add/remove pinned menus from the
+    % private interest in point-down.
+    %
+    /addpinnedclient { % canvas => -
+    	/addclient PinnedMenuService send
+    } def
+    /removepinnedclient { % canvas => -
+    	/removeclient PinnedMenuService send
+    } def
+    
+    % the Default NotifyInterest name
+    %
+    /TriggerName 1 dict dup begin
+	MenuName {
+	    /trigger /SendInContext 2 index /Interest get send
+	} def
+    end def
+
+    % Override: Popdown all menus, remove any references to them.
+    %
+    /CancelNotify { % - => -
+	CurrentMenu null ne {
+	    createevent false /popdown CurrentMenu send
+	    /CurrentMenu null def
+	} if
+	MenuList {
+	    createevent false /popdown 4 -1 roll send
+	} forall
+	/MenuList nullarray def
+    	/CancelNotify super send
+    } def
+
+    /NullActionUnblock { % event => -
+	pop unblockinputqueue
+    } def
+
+    % Include the stopped/Unwind stuff in the executable matches rather
+    % than having to include it in every procedure that might get stored
+    % as one of the DownTransition/UpTransition/MouseDragged methods.
+    %
+    /MenuAction 2 dict dup begin
+	/DownTransition {
+	    {{gsave DownTransition grestore} stopped {grestore Unwind} if}
+	    1 index /Interest get /NotifyInterest get send
+	} def
+	/UpTransition {
+	    {{gsave UpTransition grestore} stopped {grestore Unwind} if}
+	    1 index /Interest get /NotifyInterest get send
+	} def
+    end def
+
+    /MotionName 1 dict dup begin
+	/MouseDragged {
+	    {{gsave MouseDragged grestore} stopped {grestore Unwind} if}
+	    1 index /Interest get /NotifyInterest get send
+	} def
+    end def
+
+    /SetDefaultAction 2 dict dup begin
+	/UpTransition { % event => -
+	    /DefaultKey 1 index /Interest get
+	    /NotifyInterest get send
+	    unblockinputqueue
+	} def
+	/DownTransition //UpTransition def
+    end def
+
+    /SetMenuDefaultKeys [
+	UserProfile /SetMenuDefaultModifier [/LeftControl /RightControl] ?get
+	{   /keyforsymbol ClassKeyboard send
+	    dup null eq { pop } if
+	} forall
+    ] def
+
+    % Create a set of dependent interests that can manage a menu
+    %
+    /CreateDependents { % - => -
+	/MenuClick
+	    null MenuAction ButtonDict DepCreate
+	    dup /Priority MenuButtonPriority put
+	    dup /Synchronous true put
+	    dup /Exclusivity true put
+	    pop
+	/MenuMotion
+	    null null MotionName DepCreate
+	    dup /Priority MenuButtonPriority put
+	    dup /Synchronous true put
+	    dup /Exclusivity true put
+	    pop
+	/MenuSetDefault
+	    null SetDefaultAction SetMenuDefaultKeys DepCreate
+	    dup /Priority FunctionKeyPriority put
+	    dup /Synchronous true put
+	    dup /Exclusivity true put
+	    pop
+    } def
+
+    % Utility that ensures ButtonDict contains only the given name.
+    %
+    /ButtonDictDef { % name => -
+    	ButtonDict MenuName undef
+    	ButtonDict PointName undef
+    	ButtonDict exch dup put
+    } def
+
+    /ActivateDependents { % event => -
+	CurrentClient /Default 3 -1 roll	% invoker posname event
+	/MenuStart CurrentClient send {		% invoker posname event menu
+	    % REMIND: Placeholder for null menu.  For now, just swallow the
+	    % event.  Later, want to change it to start a tracker with no
+	    % menu showing, and add an interface to allow belated installation
+	    % of the menu associated with this mouse-down event.
+	    dup null ne {
+		/activatefullscreen self send
+		1 index 5 1 roll		% ev invoker posname ev menu
+		/StartMenuTracking self send	% event
+		/ActivateDependents super send	% -
+	    }{					% invoke posname event null
+	    	pop pop pop pop
+	    	/CancelNotify self send
+	    } ifelse
+	}{					% invoker posname event
+	    /CancelNotify self send
+	    dup /Canvas null put
+	    % Let event continue up the canvas tree; the Canvas field got
+	    % set to this particular canvas when it was distributed to it.
+	    % REMIND: Do we need to be hairy like the ReceptionService and
+	    % avoid having modified the Canvas field in the first place (to
+	    % avoid marking the event as /Synthetic)?
+	    redistributeevent
+	    pop pop
+	} ifelse
+    } def
+
+    /DeactivateDependents { % - => -
+	/deactivatefullscreen self send
+	/DeactivateDependents super send
+    } def
+
+    % If the menu == invoker, we're actually triggering on a pinned menu,
+    % in which case we don't need to call /showat and instead want to enter
+    % the state machine as if we'd clicked to get a stay-up menu and have
+    % now moused-down again.
+    %
+    /StartMenuTracking { % invoker posname event menu => -
+	/CurrentMenu exch def
+	/MenuList 0 array def			% invoker posname event
+
+    	SetMenuDefaultKeys /modifierdown? ClassKeyboard send	% i p ev bool
+	/DefaultKeyDown? 1 index promote {
+	    true /TrackDefaultKey CurrentMenu send
+	} if					% invoker posname event
+
+	gsave
+	2 index CurrentMenu ne {
+	    dup /Name get ButtonDictDef
+	    dup /TimeStampMS get 3 1 roll	% invoker time posname event
+	    /showat CurrentMenu send		% invoker time
+	
+	    % Remember cursor loc; note that /showat may have moved it.
+	    framebuffer setcanvas
+	    currentcursorlocation 3 array astore
+	    /PoppedUpAt exch def		% invoker
+	
+	    /setinvoker CurrentMenu send	% -
+
+	    /MouseDragged /FirstTrack load def
+	    /UpTransition /DetermineMode load def
+	    /DownTransition /NullActionUnblock load def
+	}{					% invoker(==menu) posname event
+	    3 1 roll pop pop			% event
+	    /ClickDownInternal self send
+	} ifelse
+	grestore
+    } def
+
+    /PullrightTrack { % event => -
+	CurrentMenu setcanvas
+	dup /MenuTrackMotion CurrentMenu send {		% ev submenu up?
+	    {   % new menu was just popped up		% event submenu
+		CurrentMenu /setinvoker 2 index send
+		/MenuList MenuList CurrentMenu arrayappend def
+		/CurrentMenu exch def			% event
+		DefaultKeyDown? {
+		    true /TrackDefaultKey CurrentMenu send
+		} if
+		dup /MenuTrackStart CurrentMenu send	% event 
+		/PullrightTrack self send		% -
+	    } { % new menu was just popped down
+		MenuList dup length 1 sub get
+		/CurrentMenu exch def
+		/MenuList
+		    MenuList 0 1 index
+		    length 1 sub
+		    getinterval def
+		pop
+		/PullrightTrack self send
+	    } ifelse
+	} {
+	    pop
+	    unblockinputqueue	% do it here so only once despite recursion
+	} ifelse
+    } def
+
+    /FirstTrack { % event => -
+    	PoppedUpAt aload pop				% ev time oldx oldy
+    	framebuffer setcanvas
+    	3 index begin XLocation YLocation end		% ev time oldx oldy x y
+    	xysub abs exch abs max exch pop			% ev maxdelta
+    	DragThresh ge {
+	    /UpTransition /ExecDone load def
+	    /MouseDragged /PullrightTrack load def
+	    /PullrightTrack self send
+	} {
+	    pop
+	} ifelse
+	unblockinputqueue
+    } def
+
+    /ExecDone { % event => -
+	CurrentMenu setcanvas
+	DefaultKeyDown? {
+	    false /TrackDefaultKey CurrentMenu send
+	    dup false /popdown CurrentMenu send
+	    dup MenuList arrayreverse {			% ev ev menu
+		{ % batched send to menu
+		    false /TrackDefaultKey self send
+		    false /popdown self send
+		} exch send				% ev
+		dup
+	    } forall					% ev ev
+	} {
+	    dup true /popdown CurrentMenu send
+	    dup MenuList arrayreverse {			% ev ev menu
+		false /popdown 3 -1 roll send		% ev
+		dup
+	    } forall					% ev ev
+	} ifelse
+	pop						% ev
+
+	/MenuList nullarray def
+	/CurrentMenu null def
+	/untrigger self send
+    } def
+
+    /DetermineMode { % event => -
+	dup /TimeStampMS get
+	PoppedUpAt 0 get sub ClickTime le {
+	    pop
+	    /MouseDragged /NullActionUnblock load def
+	    /DownTransition /ClickDown load def
+	    /UpTransition /NullActionUnblock load def
+	    % add pointbutton interest; note only menubutton uses this proc
+	    ButtonDict PointName dup put
+	    unblockinputqueue
+	} {
+	    /ExecDone self send
+	} ifelse
+    } def
+
+    /ClickDown { % event => -
+    	ClickDownInternal
+    	unblockinputqueue
+    } def
+
+    /ClickDownInternal { % event => -
+	/MouseDragged /PullrightTrack load def
+	/UpTransition /CheckClick load def
+	/DownTransition /NullActionUnblock load def
+	% Watch for uptransitions only on the button that just went down
+	dup /Name get ButtonDictDef
+	CurrentMenu
+	dup setcanvas
+	1 index begin XLocation YLocation end		% ev cv x y
+
+	canvasesunderpoint 0 get			% ev cv cv'
+	dup 2 index ne {
+	    MenuList 1 index arrayindex {		% ev cv cv' i
+		1 add
+		MenuList dup length 2 index sub		% ev cv cv' i arr l
+		2 index exch getinterval		% ev cv cv' i subarray
+		CurrentMenu arrayappend arrayreverse {	% ev cv cv' i submenu
+		    4 index
+		    false /popdown 4 -1 roll send
+		} forall				% ev cv cv' i
+		MenuList 0 3 -1 roll 1 sub getinterval
+		/MenuList exch def			% ev cv cv'
+		exch pop /CurrentMenu 1 index def	% ev cv'
+		dup setcanvas
+		2 copy /TrackCancel exch send
+		null
+	    } if
+	} if
+	pop
+	DefaultKeyDown? {
+	    true /TrackDefaultKey CurrentMenu send
+	} if
+	/MenuTrackStart exch send		% -
+    } def
+
+    /CheckClick { % event => -
+	/MouseDragged /NullActionUnblock load def
+	/UpTransition /NullActionUnblock load def
+	/DownTransition /ClickDown load def
+	% If we keep tracking we want to watch for either button going down
+	ButtonDict PointName dup put
+	ButtonDict MenuName dup put
+
+	CurrentMenu setcanvas
+	dup /Name get MenuName eq {				% event
+	    dup /submenu CurrentMenu send
+	}{
+	    % never bring up submenu on point-up, only on menu-up
+	    false
+	} ifelse				% ev submenu true | ev false
+	{				    			% event submenu
+	    CurrentMenu /setinvoker 2 index send		% event submenu
+	    /MenuList MenuList CurrentMenu arrayappend def
+	    /CurrentMenu exch def				% event
+
+	    DefaultKeyDown? {
+		true /TrackDefaultKey CurrentMenu send
+	    } if
+
+	    framebuffer setcanvas
+            begin XLocation YLocation end
+	    /Default 3 1 roll /popup CurrentMenu send
+	    unblockinputqueue
+	} {
+	    /ExecDone self send
+	} ifelse
+    } def
+
+    /DefaultKeyDown? false def
+
+    /defaultkeydown? { % - => bool
+      DefaultKeyDown?
+    } def
+
+    /DefaultKey { % event => -
+	/Action get /DownTransition eq
+	/DefaultKeyDown? 1 index promote
+	MenuList {
+	    1 index /TrackDefaultKey 3 -1 roll send
+	} forall
+	/TrackDefaultKey CurrentMenu send
+    } def
+
+classend def
+
+
+% Menu service; only created the first time this file is loaded (so reloading
+% to modify the classes won't strand existing menu clients).
+%
+systemdict /MenuService 2 copy known {
+    2 copy get type /eventtype ne
+}{
+    true
+} ifelse			% sysdict /MS buildIt?
+{
+    /new ClassMenuService send put
+}{
+    pop pop
+} ifelse
+
+
+% Subclass for the window that gets wrapped around a pinned menu.
+%
+/ClassPinnedMenu ClassPopupWindow []
+classbegin
+
+% Class variables
+
+    /Reshape? false def
+    /HeaderDeltaY 21 def
+    /HeaderPad 1 def
+    /SkipNextDamage? false def
+    /NGap 8 def
+
+% Methods
+
+    /open {
+        Mapped not {
+	    /SkipNextDamage? true promote
+	    /open super send
+	    /paint self send
+	} {
+	    /open super send
+	} ifelse
+    } def
+
+    /Resize {
+	gsave
+	    Parent setcanvas
+	    /size self send /minsize self send
+	    3 -1 roll ne 3 1 roll ne or {
+		/location self send /minsize self send
+		/reshape self send
+	    } if
+	grestore
+    } def
+
+    /paintpinned {
+	/Resize self send
+	/damage self send
+    } def
+
+    /invalidate {
+        /invalidate super send
+	/invalidate /Center /client self send pop send
+    } def
+
+    /FixAll { % - => -
+	SkipNextDamage? {
+	    /SkipNextDamage? unpromote
+	    damagepath newpath
+	} {
+	    /FixAll super send
+	} ifelse
+    } def
+
+    /NewInit { % client => -
+    	/NewInit super send
+    	/pin self send
+    } def
+    
+    % SetFocus is overridden to prevent the focus "feedback" from
+    % being painted 
+    /SetFocus { % bool => -
+	pop
+    } def
+
+    % Notify the original menu when the pinned copy goes away, whether it's
+    % via being unpinned or via the Dismiss window-menu item.  The original
+    % menu should: cache the latest coords of the pinned window; make its
+    % pin active again; and unpromote its handle to the pinned window.
+    %
+    /NotifyOriginal { % - => -
+	/Center /client self send pop
+	/Original exch send dup null ne {
+	    /UnpinNotify exch send
+	    /Original null def
+	}{
+	    pop
+	} ifelse
+    } def
+
+    /PinFromUser { % ctl => -
+	/NotifyOriginal self send
+	/PinFromUser super send
+    } def
+    
+    /DismissFromUser { % ctl => -
+	/NotifyOriginal self send
+    	/DismissFromUser super send
+    } def
+
+    /HelpKeyword {
+        /HelpKeyword /Center /client self send pop send
+    } def
+
+classend def

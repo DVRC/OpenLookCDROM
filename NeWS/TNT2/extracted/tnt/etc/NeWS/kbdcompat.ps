@@ -1,0 +1,492 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+
+%     @(#)kbdcompat.ps 23.4 91/02/11
+%
+% liteUI compatibility suite -
+%	Mimic liteUI functions.
+%	Also has forkeventmgr utilities that used these.
+%	Sun Aug 21 17:08:43 PDT 1988
+%
+
+%
+% this file will be autoloaded from liteUI.ps.  All externally visible
+% routines should be defined with a store.
+%
+
+
+%
+% these may want to be moved to a more central location.  Presently
+% this is the only code that uses them.  Note: don't use ?def since
+% we might be autoloaded in a context that defines these names in a
+% dict other than UserProfile.
+%
+UserProfile
+    dup /Char	[ /DELkey ]					?put
+    dup /Column	[ (K) /toChar ClassKeyboard send /LeftControl ]	?put
+    dup /Word	[ (W) /toChar ClassKeyboard send /LeftControl ]	?put
+    dup /Line	[ (U) /toChar ClassKeyboard send /LeftControl ]	?put
+    dup /Field	[ /HTkey /LeftControl ] 			?put
+pop
+
+
+%
+% this file defines many things into this temporary dict, but destroys
+% it at the end of the file.  All of the objects are included in other
+% routines that are stored in permanent dicts (such as systemdict).
+%
+100 dict begin				% temporary storage dict
+
+
+/keyboard_positions /KeyTable ClassKeyboard send store
+
+%
+% the ascii_keymap becomes simply a dict of all the interesting characters
+%
+/ascii_keymap dictbegin
+    /DefaultKeyDicts ClassKeysInterest send {
+	{ exch pop dup def } forall
+    } forall
+dictend store
+
+/func_key_names_maps [
+    dictbegin
+	/FKeyNames ClassKeyboard send { def } forall
+    dictend
+] def
+
+/func_key_strings_maps [
+    dictbegin
+	/FKeyStrings ClassKeyboard send { def } forall
+    dictend
+] def
+
+% dicts for shift-key tracking
+/shift_key_Name dictbegin
+    [
+    {	/LeftMeta keyforsymbol	    /Meta
+	/LeftShift keyforsymbol	    /Shift
+	/RightShift keyforsymbol    /Shift
+	/LeftControl keyforsymbol   /Control
+	/RightControl keyforsymbol  /Control
+    } ClassKeyboard send
+    counttomark 2 idiv {
+	1 index null ne { def } { pop pop } ifelse
+    } repeat
+    pop
+dictend def
+
+shift_key_Name {
+    /Meta eq {
+	func_key_names_maps 0 get 1 index undef
+	func_key_strings_maps 0 get 1 index undef
+	UIprivate /IncNonRepeater get exec
+    } {
+	pop
+    } ifelse
+} forall
+
+/shift_key_Action dictbegin
+    /UpTransition /sendevent load def
+    /DownTransition /sendevent load def
+dictend def
+
+
+% shove canvas into event and redistribute
+%
+/HandleKbdInput {	%  event => --
+    dup /Canvas 1 index /Interest get		%  evt evt /Canvas interest
+    /NotifyInterest get /Canvas get put		%  evt
+    redistributeevent
+} def
+
+/LoseFocusHandler {		%  event => --
+    begin
+	/Name	/DeSelect def
+	/Action	/InputFocus def
+    currentdict end
+    redistributeevent				%  --
+} def
+
+/addkbdinterests {		%  cv => [ interest interest interest ]
+    dup /KbdCompat known not {			%  cv
+	dup cvx /KbdCompat 10 dict dup		%  cv cv /KBC d d
+	/KbdManager /new ClassEventMgr send	%  cv cv /KBC d d /KBM em
+	put put					%  cv
+    } if					%  cv
+
+    dup /KbdCompat get begin			%  cv
+	{ clear } /callmanager KbdManager send
+	dup [ exch soften			%  cv [ cv
+	/new ClassFocusSelfInterest send	%  cv [ Nint
+	dup /NotifyInterest 1 index def		%  cv [ Nint Nint
+	//HandleKbdInput dup
+	  null null
+	  /new ClassKeysInterest send		%  cv [ Nint Nint Kint1
+	/addsuite exch send			%  cv [ Nint
+
+	createevent begin
+	    /Name dictbegin
+		/LoseFocus //LoseFocusHandler def
+	    dictend def
+	    /Canvas 3 index def
+	currentdict end				%  cv [ Nint Fint
+	
+      ] /addclients KbdManager send
+
+      [	createevent begin
+	  /Name dictbegin
+	      /Obsolete {
+		  dup /Action get /KbdCompat undef
+		  [ exch /Interest get ]
+		      /removeclients /GlobalEventMgr ClassUI send send
+	      } def
+	  dictend def
+	  /Action 2 index soften def
+	  currentdict end
+      ] /addclients /GlobalEventMgr ClassUI send send
+
+    end	% KbdCompat				%  cv
+
+    [ exch						%  [ cv
+	createevent begin
+	    /Name	ascii_keymap def
+	    /Canvas	1 index def
+	    /Action	/DownTransition def
+	    /Exclusivity true def
+	currentdict end dup expressinterest exch	%  [ int cv
+
+	createevent begin
+	    /Name		/InsertValue def
+	    /Canvas		1 index soften def
+	currentdict end dup expressinterest
+	/InsertValueInterest 1 index def
+	exch						%  [ int int cv
+
+	createevent begin
+	    /Name		[ /AcceptFocus
+				  /RestoreFocus
+				  /DeSelect ] def
+	    /Canvas		exch def
+	currentdict end dup expressinterest		%  [ int int int
+    ]
+    UIprivate begin
+	GlobalEventMgr /ShiftTracker known {
+	    GlobalEventMgr /ShiftTracker get
+	    /references 2 copy get 1 add put
+	} {
+	    GlobalEventMgr /ShiftTracker
+	    null //shift_key_Action //shift_key_Name
+	    /new ClassInterest send
+	    dup /references 1 put
+	    [ 1 index ] /addclients GlobalEventMgr send
+	    put
+	    
+	} ifelse
+    end % UIprivate
+} store
+
+/revokekbdinterests {		%  [ int int int ] canvas => --
+    dup /KbdCompat known {				%  [...] cv
+	dup /KbdCompat get begin			%  [...] cv
+	    currentdict /EditKeysSuite known {
+		UIprivate begin
+		    EditKeysSuite /ShiftInterest get /Name get {
+			pop DecNonRepeater
+		    } forall
+		end % UIprivate
+	    } if
+	/destroy KbdManager send
+	end						%  [...] cv
+	/KbdCompat undef				%  [...]
+    } {
+	pop
+    } ifelse						%  [int int int]
+    { revokeinterest } forall
+    UIprivate begin
+	GlobalEventMgr /ShiftTracker known {
+	    GlobalEventMgr /ShiftTracker get		%  STint
+	    /references 2 copy get 1 sub dup		%  STint /r r-- r--
+	    4 1 roll put 0 le {
+	    	[ GlobalEventMgr /ShiftTracker get ]
+	    	/removeclients GlobalEventMgr send
+	    	GlobalEventMgr /ShiftTracker undef
+	    } if
+	} if
+    end % UIprivate
+} store
+
+/addfunctionnamesinterest {	% canvas => interest
+    dup /KbdCompat known {			%  cv
+        dup /KbdCompat get begin		%  cv
+	    /redistributeevent load dup		%  cv proc proc
+    	      //func_key_names_maps nulldict	%  cv proc proc map sdict
+	      /new ClassKeysInterest send  	%  cv keysuite
+	    dup /Exclusivity true put
+	    dup /Priority 3 put			%  cv keysuite
+	    /FunctionNamesSuite 1 index def
+	    NotifyInterest /addsuite 3 -1 roll send	%  cv
+
+	    createevent begin			% cv
+		/Name dictbegin
+		    //func_key_names_maps 0 get
+		    { exch pop dup def } forall
+		dictend def
+		/Canvas		exch def
+		/Exclusivity	true def
+	    currentdict end dup expressinterest
+	    /FunctionNamesInterest 1 index def
+	end
+    } {
+	pop
+    } ifelse
+} store
+
+/FunctionStringsCallback {	% event => --
+    dup begin
+	Name
+	/Name	/InsertValue def
+	/Action exch def
+    end redistributeevent
+} def
+
+/addfunctionstringsinterest {	% canvas => interest
+    dup /KbdCompat known {			%  cv
+        dup /KbdCompat get begin
+	    //FunctionStringsCallback null
+	    //func_key_strings_maps nulldict
+	    /new ClassKeysInterest send		%  cv keysuite
+	    dup /Exclusivity true put
+	    dup /Priority 3 put			%  cv keysuite
+	    /FunctionStringsSuite 1 index def
+	    NotifyInterest /addsuite 3 -1 roll send	%  cv
+
+	    currentdict /InsertValueInterest known {
+		pop
+		InsertValueInterest
+	    } {
+		createevent begin
+		    /Name	 /InsertValue def
+		    /Canvas	 exch soften def
+		    /Exclusivity true def
+		currentdict end dup expressinterest
+		/InsertValueInterest 1 index def
+	    } ifelse				%  interest
+	end
+    } {
+	pop
+    } ifelse
+} store
+
+
+%
+% This array is used for an interest, and as a lookup table.  Please don't
+% rearrange the order of the entries unless you want some very strange bugs.
+%
+% Note that the Field entries are supposed to be in a different order.  Shift
+% has the opposite meaning for the field key than for the rest
+%
+/EditKeys [
+	/EditBackChar
+	/EditFwdChar
+	/MoveBackChar
+	/MoveFwdChar
+	/EditBackWord
+	/EditFwdWord
+	/MoveBackWord
+	/MoveFwdWord
+	/EditFwdField
+	/EditBackField
+	/MoveFwdField
+	/MoveBackField
+	/EditBackLine
+	/EditFwdLine
+	/MoveBackLine
+	/MoveFwdLine
+	/EditBackColumn
+	/EditFwdColumn
+	/MoveBackColumn
+	/MoveFwdColumn
+] def
+
+% Build a shiftdict that has /Shift, /Meta, and whatever else is needed
+% to support the keys defined in UserProfile.
+%
+/BuildEditShiftDict {		%  -- => count sdict
+  UIprivate begin
+    dictbegin
+	/LeftShift /keyforsymbol ClassKeyboard send
+	    dup IncNonRepeater
+	    1 def
+	/RightShift /keyforsymbol ClassKeyboard send
+	    dup IncNonRepeater
+	    1 def
+	/LeftMeta /keyforsymbol ClassKeyboard send
+	    dup IncNonRepeater
+	    2 def
+	/RightMeta /keyforsymbol ClassKeyboard send
+	    dup IncNonRepeater
+	    2 def
+
+	4						%  4(bit)
+	[ /Char /Column /Word /Line /Field ] {		%  bit kwd
+	    UserProfile exch get aload length		%  bit elmts len
+	    1 sub array astore exch pop {		%  bit mod
+	        /keyforsymbol ClassKeyboard send	%  bit keycode
+		currentdict 1 index known not {		%  bit keycode
+		    dup IncNonRepeater
+		    1 index def				%  bit
+	            1 bitshift				%  bit*2
+		} {					%  bit keycode
+		    pop
+		} ifelse				%  bit
+	    } forall
+	} forall
+    dictend
+  end  % UIprivate
+} def
+
+%
+% Build a KeyMapArray reflecting the edit keys in UserProfile.
+%	This is evil code.
+%
+/BuildEditKeyMap {		%  count shiftdict => shiftdict maparray
+    exch					%  sd length
+    [ 1 1 4 -1 roll { pop nulldict } for ]	%  sd ma:[nulldict...]
+    [ /Char /Word /Column /Line /Field ]	%  sd ma na
+    0 1 4 {					%  sd ma na i
+	2 copy get				%  sd ma na i kwd
+	UserProfile exch get aload length	%  sd ma na i elmts len
+	1 sub array astore			%  sd ma na i keysym [mods]
+	exch /keyforsymbol ClassKeyboard send	%  sd ma na i [mods] key
+	exch 0 exch {				%  sd ma na i key n mod
+	    /keyforsymbol ClassKeyboard send	%  sd ma na i key n key
+	    6 index exch get or			%  sd ma na i key n
+	} forall
+	0 1 3 {					%  sd ma na i key n m
+	    5 index 2 index 2 index add get	%  sd ma na i key n m map
+	    dup nulldict eq {			%  sd ma na i key n m map
+	        pop 10 dict 6 index 		%  sd ma na i key n m map md
+		3 index 3 index add 2 index put	%  sd ma na i key n m map
+	    } if				%  sd ma na i key n m map
+	    begin					%  sd ma na i key n m
+		3 index 4 mul add //EditKeys exch get	%  sd ma na i key n kwd
+		2 index exch def			%  sd ma na i key n
+	    end
+	} for						%  sd ma na i key n
+	pop pop pop					%  sd ma na
+    } for pop						%  sd ma
+} def
+
+/addeditkeysinterest {		% canvas => interest
+    dup /KbdCompat known {			%  cv
+	dup /KbdCompat get begin
+	    /redistributeevent load null	%  cv dnproc null
+	    //BuildEditShiftDict exec		%  cv dnproc null Sdict
+	    //BuildEditKeyMap exec		%  cv dnproc null Sdict [maps ]
+	    exch /new ClassKeysInterest send	%  cv keysuite
+	    dup /Exclusivity true put
+	    dup /Priority 3 put			%  cv keysuite
+	    /EditKeysSuite 1 index def
+
+	    NotifyInterest /addsuite 3 -1 roll send	%  cv
+    
+	    createevent begin
+		/Name		//EditKeys def
+		/Canvas		exch def
+	    currentdict end dup expressinterest
+	    /EditKeysInterest 1 index def
+	end						%  interest
+    } {
+	pop
+    } ifelse
+} store
+
+%
+% REMIND: getting LiteSelectDict out of UIprivate is bogus, but we are
+% already pretty incestuous
+%
+/KbdCompatSelectionDict dictbegin
+    % Note: can't do "UIprivate /LiteSelectDict get" because /LSD is autoloaded
+    UIprivate begin LiteSelectDict end {
+	% leave an event on the stack
+	{ createevent dup /Name /Ignore put } append cvx def
+    } forall
+dictend def
+
+/addselectioninterests {	%  canvas => [interest interest]
+    dictbegin
+	/SetSelectionAt		dup def
+	/ExtendSelectionTo	dup def
+	/ShelveSelection	dup def
+	/DeSelect		dup def
+	/InsertValue		dup def
+	/SelectionRequest	dup def
+    dictend
+    selectionsinterests				%  [ evt evt ]
+    aload 3 1 roll				%  [ evt evt ] evt evt
+    dup /Exclusivity true put expressinterest
+    dup /Name //KbdCompatSelectionDict put expressinterest
+} store
+
+end					% of temporary storage
+
+%
+% These are the forkeventmgr utilities that are now obsolete.
+%
+
+% These are several LiteUI-oriented interest-creation procedures.
+% They produce procedures which will be executed in the forked
+% process by ExpressEMgrInterests.
+% We actually create the interest procedure here on the fly!  Thus:
+% "callback can [3 1 roll] { .. } append cvx" produces the executable
+% array {callback can ..}.  It is up to .. to express interest for us.
+/InstallEMgrCallBack { % interest proc => -
+    cvx exch begin					% p
+	Action dup isarray? not {			% p a
+	    dup null eq {pop /AnyValue} if		% p a:null->/AnyValue
+	    1 dict dup 4 2 roll exch put		% callback-dict
+	} {						% p a-array
+	    dup length dict begin			% p a-array
+	    	{1 index def} forall pop		% -
+	        currentdict				% callback-dict
+	    end
+	} ifelse
+	/Action exch def
+    end
+} def
+/asciiinterest { % callback can => proc
+    [3 1 roll] {
+	addkbdinterests				% p [e e e]
+	{1 index InstallEMgrCallBack} forall	% p
+	pop
+    } append cvx
+} def
+/editkeysinterest { % callback can => proc
+    [3 1 roll] {
+	addeditkeysinterest			% p e
+	exch InstallEMgrCallBack
+    } append cvx
+} def
+/functionnamesinterest { % callback can => proc
+    [3 1 roll] {
+	addfunctionnamesinterest		% p e
+	exch InstallEMgrCallBack
+    } append cvx
+} def
+/functionstringsinterest { % callback can => proc
+    [3 1 roll] {
+	addfunctionstringsinterest		% p e
+	exch InstallEMgrCallBack
+    } append cvx
+} def
+/selectionsinterest { % callback can => proc
+    [3 1 roll] {
+	addselectioninterests			% p [e e]
+	{1 index InstallEMgrCallBack} forall	% p
+	pop
+    } append cvx
+} def

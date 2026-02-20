@@ -1,0 +1,1951 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#) textfield.ps 23.59 91/02/11
+%
+
+/ClassTextField [ClassControl ClassTextCanvas]
+dictbegin
+    /Right              0	def	% # of chars to the left of caret
+    /Left               0	def	% # of chars to the right of caret
+    /LeftEdge           0	def	% # of chars to left of left edge view
+    /ButtonWidth	0	def	% width of a scroll button
+    /ButtonTop		0	def	% top position for drawing buttons
+    /Caret		null	def	% instance of ClassForCaret
+    /PendingDelete?	null	def	% dict[/Rank: bool] copied from Sel'ns
+    /QueuedEvent	null	def	% event to turn on caret
+    /LeftArrowShown?	false	def	% is the backward scrollbutton visible?
+    /RightArrowShown?	false	def	% ditto for forward scrolling
+dictend
+classbegin
+
+% Defaults:
+
+    % Override canvas defaults
+    /Keyable?		true def
+    /Receptible?	true def
+
+    % Class vars not expected to be promoted.
+    %
+    /CaretDelay	  	100	def  % ms betw stop typing & caret appearing
+    /AutoScrollPosition 2 3 div def  % where to position caret on auto-scroll
+
+    % Class to instantiate to create the caret.  Override this if you want
+    % to supply a different implementation for the caret.
+    %
+    /ClassForCaret	ClassCaret	def
+
+    % Promoted to instance variables if changed.
+    %
+    /ReadOnly?		false	def  % true if a readonly text field
+    /MinimumVisible	5	def  % minimum # of chars to leave room for
+    /ActiveButton	null	def  % /Left or /Right while button held down
+    /InsideButton?	true	def  % false if exited button while tracking
+    /AnyTimerEvents?	false	def  % true if button held down long enough
+    /NextFocus		null	def  % next canvas to get input focus
+    /PreviousFocus	null	def  % canvas for which this one is NextFocus
+
+    % Delay before starting to scroll if a scroll button is held down, and
+    % interval between scrolls.
+    %
+    /ScrollThresh
+    	UserProfile /ScrollThresh get	def
+    /ScrollDelay
+    	UserProfile /ScrollDelay get	def
+
+    % Selection ranges (needed for painting); promoted if changed.
+    % Keys must match the selection ranks that affect painting.
+    %
+    /PrimarySelection	[0 0] def	% [left rightPlusOne]
+    /SecondarySelection PrimarySelection def
+
+    % Selection ranks that affect painting.  Value is true if it also
+    % affects caret position.
+    %
+    /InterestingRankDict dictbegin
+	/PrimarySelection true def
+	/SecondarySelection false def
+    dictend def
+
+    % Dict that defines characters that are considered to be part of a word
+    % for defining word-level selections.  We could instead use a 256-char
+    % string and test it via "<char> get 0 ne" rather than "<char> known";
+    % this would save about 1K but might lead to trouble if int'lisation
+    % involves 16-bit chars.
+    %
+    /AlphaNumericTable dictbegin
+	[(AZ) (az) (09) (__)] {			% s
+	    {} forall				% startchar endchar
+	    1 exch { null def } for
+	} forall
+    dictend def
+
+    % Define a dictionary with control characters.
+    %
+    /SpecialActions dictbegin
+	1 {0 setcaret} def			% ^A	move to beginning
+	2 {caret 1 sub 0 max setcaret} def	% ^B	move backward
+	4 {1 deletecharacters} def		% ^D	delete forward
+	5 {characters setcaret} def		% ^E	move to end
+	6 {caret 1 add characters min
+		setcaret} def			% ^F	move forward
+	8 {-1 deletecharacters} def		% ^H	delete backward
+	9 {gotonextfocus} def			% TAB	go to next focus canvas
+	10 {gotonextfocus} def			% LF	go to next focus canvas
+	13 {gotonextfocus} def			% CR	go to next focus canvas
+	14 {gotonextfield} def			% ^N	go to next field
+	16 {gotopreviousfield} def		% ^P	go to previous field
+	21 {caret neg deletecharacters} def	% ^U	delete to beginning
+	23 {-1 deletewords} def			% ^W	delete previous word
+	127 {-1 deletecharacters} def		% DEL	delete backward
+    dictend def
+
+    % Interest shared by all instances of ClassTextField, used to trigger
+    % the reappearance of the caret after a period of typing.
+    %
+    /TextFieldCaretService
+    	growabledict null dictbegin
+    	    % REMIND: Should this use deliverevent instead?
+    	    /StartTextFieldCaret {/Canvas get /CaretEvent exch send} def
+    	dictend /new ClassInterest send def
+    TextFieldCaretService /addclient GlobalEventMgr send
+
+% Methods:
+
+% ***********************************************************************
+% *  The methods are separated according to the following categories.	*
+% *  The start of each section is marked with a banner comment.	 Note	*
+% *  that each category includes a mix of subclassed/client methods.	*
+% * 	Basic Overrides (NewInit, activate, classdestroy, etc.)		*
+% *	Value and State (value, setcaret, readonly?, etc.)		*
+% *	Notification and Links (ExecuteNotifier, setnextfocus, etc.)	*
+% *	Text-Painting (Paint, painttext, etc.)				*
+% *	Button-Painting (PaintArrowBox, ShowNamedButton, etc.)		*
+% *	Button-Tracking (TrackStart, DoButtonAction, etc.)		*
+% *	Caret-Painting (Visiblecaret, CaretEvent, etc.)			*
+% *	Editing (insertcharacter, deletespan, etc.)			*
+% *	Scrolling (scroll, fitcaret, etc.)				*
+% *	Input (KeyStart, AsciiReception, etc.)				*
+% *	Selection (SelectionStart, SelectionAdjust, etc.)		*
+% *	Miscellaneous Utilities (TextBegin, TextEnd, etc.)		*
+% ***********************************************************************
+
+% **********************
+% ********************** Basic Overrides
+% **********************
+
+    % /new { % parent => instance
+
+    % Override: Create the caret and some initial string storage (so double
+    % click on empty field doesn't die with rangecheck).
+    %
+    /NewInit { % - => -
+	/Value 10 string def
+	/NewInit super send
+	/Caret /new ClassForCaret send def
+	/PendingDelete? dictbegin
+	    InterestingRankDict {pop false def} forall
+	dictend def
+	ScaleGraphicFont
+	/CheckModifiable self send
+    } def
+
+    % Override: Remove our caret service from the global eventmgr.  But don't
+    % do it if we're just cleaning out a subclass!
+    %
+    /cleanoutclass { % - => -
+    	self /TextFieldCaretService known {
+    	    /deactivate TextFieldCaretService send
+    	} if
+    	/cleanoutclass super send
+    } def
+
+    % Override
+    %
+    /validate { % - => -
+	gsave
+	    self setcanvas
+	    GraphicFont setfont
+	    ArrowOffsets /ButtonWidth exch def
+	    pop pop
+	    /ButtonTop ButtonWidth 2 add def
+	    /LeftEdge 0 def
+	grestore
+	/validate super send
+    } def
+
+    % Override
+    %
+    /invalidate { % - => -
+	/FontOffset unpromote
+	/CachedDims unpromote
+	/ArrowOffsets unpromote
+	/invalidate super send
+    } def
+
+    % Override: Register interest in caret.
+    %
+    /activate { % emgr => -
+    	/activate super send
+    	self /addclient TextFieldCaretService send
+    } def
+    
+    % Override: Remove interest in caret.
+    %
+    /deactivate { % - => -
+    	self /removeclient TextFieldCaretService send
+    	/QueuedEvent null def
+    	/deactivate super send
+    } def
+
+    % Override
+    %
+    /minsize { % - => minwidth minheight
+	TextBegin
+	ArrowOffsets /ButtonWidth exch def pop pop
+	/minsize super send			% w1 h1
+	TextFont fontascent FontOffset add	% w1 h1 h2
+	ButtonWidth 3 add			% w1 h1 h2 h3
+	(M) stringwidth pop			% w1 h1 h2 h3 Mwidth
+	dup MinimumVisible mul exch		% w1 h1 h2 h3 w2 Mwidth
+	ButtonWidth 1 add 2 mul add		% w1 h1 h2 h3 w2 w3
+	6 -1 roll max max ceiling		% h1 h2 h3 midwidth
+	4 1 roll max max ceiling		% minwidth minheight
+	TextEnd
+    } def
+
+% **********************
+% ********************** Value and State
+% **********************
+
+    % Override: The current value is the textstring.
+    %
+    /value { % - => string
+	Value 0 Left Right add getinterval
+    } def
+
+    % Return the length in characters of the current value.
+    %
+    /characters {   % - => n
+	Left Right add
+    } def
+
+    % Set the value of this field.  Clear any selections in the old
+    % text, and put the caret at the end.
+    %
+    /setvalue { % string => -
+    	/ClearMySelections self send
+	/Left 1 index length def
+	/Value Left 20 add string def
+	Value 0 3 -1 roll putinterval
+	/Right 0 def
+	/LeftEdge 0 def
+	/valid? self send {-1 /painttext self send} if
+	% don't send /paint; it also paints the buttons in Numeric subclass
+    } def
+
+    % Get the current caret position.  Returns the number of characters
+    % to the left of the caret.
+    %
+    /caret { % - => n
+    	Left
+    } def
+
+    % Set the caret position in the text.
+    %
+    /setcaret { % n => -
+	TextBegin
+	dup Left ne {
+	    InvisibleCaret
+	    /Right Left Right add 2 index sub def
+	    Left /Left 3 -1 roll def
+	    /setcaret /FitCaret self send { pop -1 } if
+	    /PaintText self send
+	    true VisibleCaret
+	}{
+	    pop
+	} ifelse
+	TextEnd
+    } def
+
+    % Set the readonly attribute of the text field.  True means
+    % readonly, false means readwrite.
+    %
+    /setreadonly { % bool => -
+    	TextBegin
+    	InvisibleCaret
+	/ReadOnly? exch promote
+	/CheckModifiable self send
+	true VisibleCaret
+	TextEnd
+    } def
+    
+    % Obtain the readonly attribute of the text field.
+    %
+    /readonly? { % - => bool
+    	ReadOnly?
+    } def
+
+    % Override: Add/remove from services as necessary.
+    %
+    /setvisualstate { % state => -
+    	/setvisualstate super send
+	/CheckModifiable self send
+	/valid? self send {/paint self send} if
+    } def
+    
+    % Set the minimum number of characters to display.
+    %
+    /setminimumvisible { % n => -
+	/MinimumVisible exch promote
+    } def
+
+    % Return the number of characters that minsize leaves room for.
+    %
+    /minimumvisible { % - => n
+    	MinimumVisible
+    } def
+
+% **********************
+% ********************** Notification and Links
+% **********************
+
+    % Tentative name for client-callable method that executes the notifier.
+    % This interface is not yet locked down.  REMIND
+    %
+    /executenotifier { % - => -
+    	/value self send
+	/notifier self send
+	/ExecuteNotifier self send
+    } def
+    
+    % Set the canvas to which focus moves when this field sees RETURN.
+    %
+    /setnextfocus { % canvas => -
+    	NextFocus dup null ne {
+    	    dup self /removeclient ObsoleteService send
+    	    dup /descendantof? ClassTextField send {
+    	    	dup /PreviousFocus get self eq {
+    	    	    dup /PreviousFocus null put
+    	    	} if
+    	    } if
+    	} if
+    	pop
+    	dup null ne {
+    	    /NextFocus 1 index soften promote
+    	    dup self /addclient ObsoleteService send
+    	    dup /descendantof? ClassTextField send {
+    	    	/PreviousFocus self soften put
+    	    } {
+    	    	pop
+    	    } ifelse
+    	}{
+    	    pop /NextFocus unpromote
+    	} ifelse
+    } def
+
+    % Override: Remove pointer to next focus if it goes obsolete.
+    %
+    /HandleObsoleteTarget { % object => -
+    	dup NextFocus eq {
+    	    null /setnextfocus self send
+    	} if
+    	/HandleObsoleteTarget super send
+    } def
+    
+    % Override: Clear the forward and back pointers.  No need to tell the
+    % previous focus field to clear its NextFocus pointer, since it
+    % should've done that automatically when this object went obsolete.
+    %
+    /destroy { % - => -
+    	null /setnextfocus self send
+    	/PreviousFocus null def
+    	/destroy super send
+    } def
+
+    % Return the canvas to which focus moves when this field sees RETURN.
+    %
+    /nextfocus { % - => canvas
+    	NextFocus
+    } def
+
+    % Return the text field for which this one is /nextfocus.
+    /previousfocus { % - => canvas
+    	PreviousFocus
+    } def
+
+    % Call the notifier, then go to next focus.
+    %
+    /gotonextfocus { % - => -
+    	/executenotifier self send
+    	NextFocus null ne {
+    	    NextFocus setinputfocus
+    	} if
+    } def
+    
+    % Go to the next focus if it's a text field; else go to the first focus.
+    % Do NOT call the notifier.
+    %
+    /gotonextfield { % - => -
+    	NextFocus dup null ne {
+    	    dup /descendantof? ClassTextField send
+    	} {
+    	    false
+    	} ifelse				% next useNext?
+    	not {
+    	    pop self {				% this
+    	    	/PreviousFocus 2 copy known {
+    	    	    2 copy get null ne {	% this /PF
+    	    	    	get
+    	    	    } {
+    	    	    	pop exit
+    	    	    } ifelse
+    	    	} {
+    	    	    pop exit
+    	    	} ifelse
+    	    } loop
+    	} if
+    	dup self ne {setinputfocus} {pop} ifelse
+    } def
+    
+    % Go to the previous focus (which is always a text field if non-null);
+    % if null, go to the last text-field focus.  Do NOT call the notifier.
+    %
+    /gotopreviousfield { % - => -
+    	PreviousFocus dup null eq {
+    	    pop self {				% this
+    	    	/NextFocus 2 copy known not {pop exit} if
+    	    	2 copy get dup null eq {pop pop exit} if
+    	    	/descendantof? ClassTextField send not {pop exit} if
+    	    	get
+    	    } loop
+    	} if
+    	dup self ne {setinputfocus} {pop} ifelse
+    } def
+
+% **********************
+% ********************** Text-Painting
+% **********************
+
+    % Override: Paint all the text and decorations.  Pretends that the
+    % scrollbuttons are not currently visible, so they'll get painted again
+    % if they're supposed to be present.  (The lower level routine tries to
+    % be economical and not repaint the buttons if their state hasn't
+    % changed.)
+    %
+    /Paint {   % - => -
+    	/LeftArrowShown? false def
+    	/RightArrowShown? false def
+	/PaintLine self send
+	-1 /painttext self send
+    } def
+
+    % Paint the baseline below the text. In 3D, the baseline is 2
+    % points high.  In 2D, it's one point high (with its top edge
+    % coincident with that of the 3D baseline), but also paint a 1
+    % point background line below it, to erase the the cursor (which
+    % overlaps the baseline).
+    %
+    /PaintLine {
+	CachedDims pop
+	3D? {
+	    0 exch 0 exch
+	    /Paint3DLine self send
+	} {
+	    0 2 moveto
+	    1 sub dup 0 rlineto
+	    2DFG setcolor stroke
+	    0 1 moveto 0 rlineto
+	    2DBG setcolor stroke
+	} ifelse
+    } def
+
+    % Paint the text starting at the specified character.
+    % Shared by selection routines and /Paint, but not intended as a
+    % public method.  (Name is lower-case only to fit the model of using
+    % lower-case for the method that does the TextBegin/TextEnd.)
+    %
+    /painttext { % n => -
+	TextBegin
+	InvisibleCaret
+	/PaintText self send
+	true VisibleCaret
+	/visualstate self send /Active ne {
+	    BackgroundColor setcolor
+	    /bbox self send /StippleRect self send
+	} if
+	TextEnd
+    } def
+
+    % Paint the text starting at the specified character.  This is the
+    % internal interface so it assumes it is executing in the right context.
+    % If n<0 it paints all the text and also clears the rest of the canvas.
+    % This routine uses clipping to avoid painting over the arrows, and does
+    % not paint the arrows if they've been previously painted.  (For fixing
+    % damage etc., the /Paint method clears the "previously painted" flags.)
+    %
+    /PaintText { % n => -
+    	% figure out if arrows need to be present; if so, paint them if
+    	% they weren't already painted, then clip
+    	0 CachedDims pop false
+    	LeftOverflow? dup {
+%    	    pop pop exch pop ButtonWidth 1 add exch 1 index sub true true
+    	    pop pop exch pop ButtonWidth exch 1 index sub true true
+    	    LeftArrowShown? not {/ShowLeftArrow self send} if
+    	} if
+    	/LeftArrowShown? exch def
+    	RightOverflow? dup {
+%    	    pop pop ButtonWidth sub 1 sub true true
+    	    pop pop ButtonWidth sub true true
+    	    RightArrowShown? not {/ShowRightArrow self send} if
+    	} if
+    	/RightArrowShown? exch def		% n clipX clipW clip?
+    	{
+    	    0 exch CachedDims exch pop		% n clipX Y clipW H
+	    clippath rectpath clip
+    	    true
+    	} {
+    	    pop pop false
+    	} ifelse				% n clipped?
+    	exch					% clipped? n
+    	
+    	% compute true starting point (N); back up one to redraw char that
+    	% may have been obscured by caret, but don't back up past left edge
+	dup 1 sub LeftEdge max			% n N
+
+	dup LeftEdge gt {			% n N
+	    Value LeftEdge 2 index LeftEdge sub getinterval
+	    stringwidth pop
+	}{
+	    0
+	} ifelse				% n N x
+	FontOffset 2 copy moveto		% n N x y
+
+	PrimarySelection aload pop 2 copy lt	% n N x y leftsel rightsel bool
+	1 index 6 index gt and {		% n N x y leftsel rightsel
+	    % at least part of the primary selection comes after position N
+	    4 index 3 -1 roll			% n N x y rightsel start leftsel
+	    /DeHighlight self send		% n N x y rightsel start'
+	    exch /Highlight self send		% n N x y start''
+	}{
+	    pop pop 2 index			% n N x y N
+	} ifelse				% n N x y start''
+	/characters self send
+	/DeHighlight self send pop		% n N x y
+
+	SecondarySelection aload pop 2 copy lt	% n N x y leftsel rightsel bool
+	1 index 6 index gt and {		% n N x y leftsel rightsel
+	    % need to go back and mark a secondary selection
+	    currentpoint 7 2 roll 4 2 roll	% n x' y' N leftsel rightsel x y
+	    PendingDelete? /SecondarySelection get {
+	    	TextFont fontascent -3 div round
+	    } {
+	    	3
+	    } ifelse
+	    sub moveto				% n x' y' N leftsel rightsel
+	    3 1 roll				% n x' y' rightsel start leftsel
+	    2 copy max 3 1 roll
+	    1 index sub dup 0 gt {
+		Value 3 1 roll getinterval
+		stringwidth rmoveto
+	    }{
+		pop pop
+	    } ifelse				% n x' y' rightsel start'
+	    exch 1 index sub Value 3 1 roll getinterval
+	    stringwidth pop 0 rlineto
+	    currentrasteropcode 5 setrasteropcode stroke setrasteropcode
+	    % REMIND: should use foreground color, except then it would have to
+	    % check and use background color where primary/secondary overlap;
+	    % too much hassle for first release.
+	    moveto
+	}{
+	    pop pop pop pop pop
+	} ifelse				% clipped? n
+	0 lt {
+	    currentpoint
+	    /ClearToEnd self send
+	    moveto
+	} if					% clipped?
+	
+	{ initclip } if				% -
+	
+	% turn tracking on or off as arrows appear/disappear
+	/AnyArrows? self send Trackable? ne {
+	    Trackable? not /settrackable self send
+	} if
+    } def
+
+    % Return true if any buttons are visible, i.e. if control needs to be
+    % trackable.
+    %
+    /AnyArrows? { % - => bool
+    	RightArrowShown? LeftArrowShown? or
+    } def
+
+    % Paint highlit characters from start to end-1. The arguments are
+    % integers.  Returns index of next char to be painted.
+    %
+    /Highlight { % start end => last
+	BackgroundColor ForegroundColor 4 2 roll /PaintSpan self send
+    } def
+
+    % Paint normal characters from start to end-1. The arguments are
+    % integers.  Returns index of next char to be painted.
+    %
+    /DeHighlight { % start end => last
+	ForegroundColor BackgroundColor 4 2 roll /PaintSpan self send
+    } def
+
+    % Paint characters.  The arguments are the textcolor, the backgroundcolor,
+    % the start character's index, and 1 greater than the last char's index.
+    % Returns index of next char to be painted ( => max(end,start) ).
+    % Assumes TextFont is current font (via TextBegin).
+    %
+    /PaintSpan { % textcolor backcolor start end => last
+	2 copy max 5 1 roll			% last textcolor backcolor start end
+	1 index sub dup 0 gt {			% last textcolor backcolor start len
+	    Value 3 1 roll getinterval
+	    exch setcolor			% last textcolor (str)
+	    currentpoint
+	    1 index 2				% last textcolor (str) x y x 0
+	    4 index stringwidth pop		% last textcolor (str) x y x 0 w
+	    CachedDims exch pop 2 sub		% last textcolor (str) x y x 0 w h
+	    newpath rectpath fill		% last textcolor (str) x y
+	    moveto				% last textcolor (str)
+	    exch setcolor			% last (str)
+	    show				% last
+	}{					% last textcolor backcolor start end-start
+	    pop pop pop pop			% last
+	} ifelse				% last
+    } def
+
+    % Clear from currentpoint to right edge of field, preserving baseline.
+    %
+    /ClearToEnd { % - => -
+    	currentpoint pop 2 CachedDims 2 sub exch 3 index sub exch
+	1 index 0 le { pop pop pop pop } {
+    	    /ClearRect self send
+	} ifelse
+    } def
+
+    % Clear a region to the background color.
+    %
+    /ClearRect { % x y w h => -
+    	rectpath BackgroundColor setcolor fill
+    } def
+
+    % Position the field so as to place the text at the given coordinates.
+    %
+    /movebaseline { % x y => -
+        gsave % Make sure currentcanvas is self, so caret caches correct state
+	    self setcanvas
+	    FontOffset sub
+	grestore
+    	/move self send
+    } def
+
+% **********************
+% ********************** Button-Painting
+% **********************
+
+    % Display an empty arrow-box and adjust coords to the arrow position.
+    % Box is "inverted" if ActiveButton matches the given name.
+    %
+    /PaintArrowBox { % x y buttonname => x' y'
+    	ActiveButton eq InsideButton? and 3 1 roll  % down? x y
+    	2 copy ArrowOffsets 5 1 roll		    % dn? x y size x y dx dy
+    	xyadd 6 2 roll 1 sub			    % x' y' down? x y size
+    	dup 3 1 roll sub exch dup		    % x' y' dn? x y-sz sz sz
+    	5 -1 roll /Paint3DBox self send		    % x' y'
+    } def
+    
+    /ArrowOffsets { % - => dx dy size
+        currentfont				% font
+	GraphicFont setfont
+	<E4> stringbbox 5 1 roll pop pop pop
+	setfont					% h
+	dup { % ARGH! Magic numbers!
+	    13 { pop 3 -3 13 }
+	    15 { pop 4 -4 15 }
+	    17 { pop 3 -3 17 }
+	    25 { pop 6 -6 25 }
+	    /Default { 3 -3 3 -1 roll }
+	} case
+	3 copy 3 packedarray cvx		% dx dy size {dx dy size}
+	/ArrowOffsets exch promote		% dx dy size
+    } def
+
+    % Display the left arrow.
+    %
+    /ShowLeftArrow { % - => -
+    	gsave
+	    GraphicFont setfont
+	    0 2 ButtonWidth CachedDims 2 sub exch pop ClearRect
+	    0 ButtonTop
+	    3D? {
+		/Left PaintArrowBox
+		2 copy moveto BG2 setcolor <cf> show
+		2 copy moveto BG0 setcolor <ce> show
+		       moveto FG  setcolor <cd> show
+	    } {
+		2DBG setcolor
+		2 copy moveto <74> show
+		2 copy moveto <77> show
+		2DFG setcolor
+	        moveto
+		ActiveButton /Left eq InsideButton? and
+		{ <e6> } { <e4> } ifelse
+		show
+	    } ifelse
+	grestore
+    } def
+
+    % Display the right arrow.
+    %
+    /ShowRightArrow { % - => -
+    	gsave
+	    GraphicFont setfont
+	    CachedDims pop ButtonWidth sub
+	    dup 2 ButtonWidth 1 add CachedDims 2 sub exch pop ClearRect
+	    ButtonTop
+	    3D? {
+		/Right PaintArrowBox
+		2 copy moveto BG2 setcolor <32> show
+		2 copy moveto BG0 setcolor <31> show
+		       moveto FG  setcolor <30> show
+            } {
+		2DBG setcolor
+		2 copy moveto <74> show
+		2 copy moveto <77> show
+		2DFG setcolor
+		moveto
+	        ActiveButton /Right eq InsideButton? and
+		{ <e7> } { <e5> } ifelse
+		show
+	    } ifelse
+	grestore
+    } def
+
+    % Paint the button whose name is given.  Assumes TextBegin has been called.
+    %
+    /ShowNamedButton { % name => -
+    	{
+    	    /Left {
+    	    	LeftArrowShown? {/ShowLeftArrow self send} if
+    	    }
+    	    /Right {
+    	    	RightArrowShown? {/ShowRightArrow self send} if
+    	    }
+    	} case
+    } def
+    
+% **********************
+% ********************** Button-Tracking
+% **********************
+
+    % Initiate tracking on a scroll button.  If button-down is not within
+    % a scroll button, return false to redistribute event to the selection
+    % service.
+    %
+    /TrackStart { % event => false | [/label...] true
+	TextBegin
+	/visualstate self send /Active ne { pop false } {
+	    dup /ButtonForEvent self send		% event name|null
+	    dup null ne {				% event name
+		exch /Name get PointButton eq {
+		    /ActiveButton 1 index promote
+		    /ShowNamedButton self send
+		    [/TrackStop /TrackTimer /TrackMotion] true
+		    ScrollThresh ScrollDelay /starttracktimer self send
+		} {
+		    % consume adjust-button transactions but don't act on them
+		    pop nullarray true
+		} ifelse
+	    } {
+		pop begin XLocation YLocation end
+		0 0 CachedDims pointinrect? {
+		    % allow other code (e.g. selection) to handle this
+		    false
+		} {
+		    % consume events outside of text
+		    nullarray true
+		} ifelse
+	    } ifelse
+	} ifelse
+	TextEnd
+    } def
+
+    % Examine the coordinates of an event and return the name of the button
+    % that the mouse is over, or null if not over a button.  Assumes
+    % TextBegin has been called.
+    %
+    /ButtonForEvent { % event => name|null
+    	begin XLocation YLocation end
+    	ButtonTop exch sub dup 0 ge exch	% x y<=top? top-y
+    	ArrowOffsets 3 1 roll pop pop le and {
+	    % if (0 <= top-y <= size)...
+	    /ButtonForX self send
+	    exch pop
+	} {
+	    pop null
+	} ifelse
+    } def
+
+    % Resolve X-coordinate to a (visible) button, if any.  Return the name
+    % of the button, or null if X is outside range of all buttons.  This
+    % method is factored from ButtonForEvent to facilitate subclassing.
+    %
+    /ButtonForX { % x => x name|null
+    	null
+    	LeftArrowShown? {
+	    1 index dup 0 ge exch ButtonWidth le and {
+		pop /Left
+	    } if
+	} if
+	RightArrowShown? {
+	    CachedDims pop 2 index sub dup 0 ge exch ButtonWidth le and {
+		pop /Right
+	    } if
+	} if
+    } def
+
+    % Finish tracking a scroll button.
+    %
+    /TrackStop { % event => -
+    	pop
+    	ActiveButton InsideButton? AnyTimerEvents? not and
+    	/ActiveButton unpromote
+    	/InsideButton? unpromote
+    	/AnyTimerEvents? unpromote		% button-name scroll?
+    	{ dup /DoButtonAction self send } if
+    	TextBegin
+    	/ShowNamedButton self send
+    	TextEnd
+    } def
+
+    % Cancel tracking: pretend we got a timer event (so we won't do any
+    % scrolling on mouse-up) and then treat it as a TrackStop.
+    %
+    /TrackCancel { % event => -
+    	/AnyTimerEvents? true promote
+    	/TrackStop self send
+    } def
+    
+    % Turn off highlighting and stop timer when tracking outside button.
+    %
+    /TrackMotion { % event => -
+    	TextBegin
+    	/ButtonForEvent self send ActiveButton eq	% insideNow?
+    	dup InsideButton? ne {				% insideNow?
+    	    % insideness changed, i.e. moved into or out of the active button
+    	    /InsideButton? 1 index promote {
+    	    	ScrollThresh ScrollDelay /starttracktimer self send
+    	    } {
+    	    	/stoptracktimer self send
+    	    } ifelse
+    	    ActiveButton /ShowNamedButton self send
+    	} {
+    	    pop
+    	} ifelse
+    	TextEnd
+    } def
+
+    % Scroll if button is held down long enough.
+    %
+    /TrackTimer { % event => -
+	pop
+	ActiveButton dup /DoButtonAction self send
+	/AnyTimerEvents? true promote
+	ActiveButton /Left eq { LeftArrowShown? } {
+	    ActiveButton /Right eq { RightArrowShown? } {
+		true
+	    } ifelse
+	} ifelse
+	not { /stoptracktimer self send } if	    
+    } def
+
+    % Perform the action associated with the named button.  Subclasser hook
+    % for numeric fields.
+    %
+    /DoButtonAction { % name => -
+    	/Left eq {1} {-1} ifelse
+    	/scroll self send
+    } def
+
+% **********************
+% ********************** Caret-Painting
+% **********************
+
+    %   These procedures should be used when moving the caret or when
+    %   moving the entire text field.  The caret should be invisible
+    %   at those times in case the caret implementation does not lend
+    %	itself to smooth movement.
+
+    % Make caret invisible.
+    %
+    /InvisibleCaret { % - => -
+	QueuedEvent dup null ne {
+	    recallevent
+	    /QueuedEvent null def
+	} {
+	    pop
+	    /stopcaret Caret send
+	    /PaintLine self send
+	} ifelse
+    } def
+
+    % Queue event that will make caret visible.  If argument is true, make
+    % the caret visible right now.
+    %
+    /VisibleCaret {  % bool => -
+    	QueuedEvent dup null ne {
+    	    recallevent
+    	} {
+    	    pop
+    	} ifelse
+    	{	% don't use event, do it now
+    	    StartCaret
+    	}
+    	{	% queue event    
+    	    /QueuedEvent createevent dup dup begin
+    	    	/Name /StartTextFieldCaret def
+    	    	/Canvas self def
+    	    	/TimeStampMS lasteventtimems CaretDelay add def
+    	    end				% /QE ev ev
+    	    sendevent def
+    	} ifelse
+    } def
+
+    % Make caret visible.
+    %
+    /CaretEvent { % - => -
+	/QueuedEvent null ne {
+	    TextBegin
+	    StartCaret
+	    TextEnd
+	} if
+    } def
+
+    % Utility for actually starting the caret; checks whether the caret would
+    % be painting through a button.  Assumes TextBegin/TextEnd already done.
+    %
+    /StartCaret { % - => -
+    	/QueuedEvent null def
+    	/CaretPosition self send
+    	dup ButtonWidth le LeftArrowShown? and {pop -1} if
+    	dup CachedDims pop RightArrowShown? {ButtonWidth sub} if
+    	ge {pop -1} if
+    	dup 0 ge ReadOnly? not and {
+    	    FontOffset
+    	    { startcaretat Active? } Caret send
+	    not { /PaintLine self send } if % paint line over inactive cursor
+    	}{
+    	    pop
+    	} ifelse
+    } def
+
+    % X-position of caret relative to left edge.
+    %
+    /CaretPosition { % - => x
+    	Value
+	LeftEdge Left min dup LeftEdge Left max exch sub
+	getinterval stringwidth pop
+	LeftEdge Left gt {neg} if
+    } def
+    
+% **********************
+% ********************** Editing
+% **********************
+
+    % Insert a single character into the text.  If the previewer is non-null,
+    % feed the character to the previewer.  Otherwise, if the char is defined
+    % in SpecialActions, execute the corresponding proc in place of inserting
+    % the character.
+    %
+    /insertcharacter { % char => -
+    	/previewer self send dup null ne {		% char previewer
+    	    /ExecuteNotifier self send
+	} {						% char previewer
+    	    pop
+    	    SpecialActions 1 index known {
+		SpecialActions exch get exec
+    	    } {
+		1 string dup 0 4 -1 roll put
+		/insertstring self send
+    	    } ifelse
+    	} ifelse
+    } def
+
+    % Insert a string into the text.
+    %
+    /insertstring { % string => -
+	TextBegin
+	InvisibleCaret
+	PendingDelete? /PrimarySelection get {
+	    PendingDelete? /PrimarySelection false put
+	    PrimarySelection aload pop
+	    2 copy 2 copy lt 3 1 roll
+	    Left ge exch Left le and and {	% leftsel rightsel
+		1 index true 5 2 roll		% lsel true text lsel rsel
+		1 index sub			% lsel true text lsel length
+		/DeleteSpan self send		% paintpos true text
+	    } {
+		% don't delete selection if insertion is outside it
+		pop pop false exch		% false text
+	    } ifelse
+	} {
+	    false exch
+	} ifelse					% delpaintpos true text
+							% -or-	     false text
+	Left exch /InsertString self send		% [delpos] bool inspos
+	exch {
+	    min
+	    /insertstring /FitCaret self send { pop 0 } if
+	    /PaintText self send
+	    /ClearToEnd self send
+	} {
+	    /insertstring /FitCaret self send { pop -1 } if
+	    /PaintText self send
+	} ifelse
+	false VisibleCaret
+	TextEnd
+    } def
+
+    % Insert a string into the text.  Do not do any painting, nor worry
+    % about turning off the caret or deleting a pending-delete selection.
+    % Assume TextBegin has already been called.
+    %
+    /InsertString { % string => -
+	% check for textbuf overflow
+	dup length Left Right add add Value length gt {
+	    /Value Value 2 index length 50 max string append def
+	} if						% str
+	% shift over characters to the right of the caret, if any;
+	% if there are, also check whether selections need to shift over
+	Right 0 ne {
+	    Value
+		Left 2 index length add
+		Value Left Right getinterval
+	    putinterval
+	    InterestingRankDict {			% str /rank bool
+	    	pop dup load aload pop dup 0 ne {	% str /rank lsel rsel
+	    	    2 { dup Left ge {3 index length add} if exch } repeat
+	    	    2 array astore def
+	    	} {
+	    	    pop pop pop
+	    	} ifelse
+	    } forall
+	} if						% str
+	% now slap the new text into place
+	Value Left 2 index putinterval
+	/Left Left 3 -1 roll length add def
+    } def
+
+    % Delete characters from the field, starting at the caret.
+    % If n is negative, delete before the caret, otherwise after it.
+    %
+    /deletecharacters {  % n => -
+    	Left add Left Right add min 0 max
+    	Left 2 copy gt {exch} if
+    	1 index sub
+    	/deletespan self send
+    } def
+
+    % Delete back from caret until (a) at least one alphanumeric has been
+    % deleted and (b) the char ahead of the caret is not alphanumeric.
+    %
+    /DeletePreviousWord {  % - => -
+    	0 false
+    	Left 1 sub -1 0 {		% delpos anyalpha? pos
+    	    dup /AlphaNumeric? self send {
+    	    	pop pop true
+    	    } {
+    	    	exch {1 add exch exit} {pop false} ifelse
+    	    } ifelse
+    	} for pop			% delpos
+    	Left 1 index sub /deletespan self send
+    } def
+    
+    % Delete forward from caret until (a) at least one alphanumeric has been
+    % deleted and (b) the char ahead of the caret is not alphanumeric.
+    %
+    /DeleteNextWord {  % - => -
+    	/characters self send
+	false
+    	Left  1  3 index {		% delpos anyalpha? pos
+    	    dup /AlphaNumeric? self send {
+    	    	pop pop true
+    	    } {
+    	    	exch {exch exit} {pop false} ifelse
+    	    } ifelse
+    	} for pop			% delpos
+    	Left exch 1 index sub /deletespan self send
+    } def
+    
+    /deletewords { % n => -
+    	dup 0 lt {
+	    neg {/DeletePreviousWord self send} repeat
+	} {
+	    {/DeleteNextWord self send} repeat
+	} ifelse
+    } def
+
+    % Delete an arbitrary span of characters.
+    %
+    /deletespan {  % first length => -
+    	dup 0 gt {
+    	    TextBegin
+    	    InvisibleCaret
+    	    2 copy /DeleteSpan self send pop			% first
+    	    /deletespan /FitCaret self send { pop 0 } if
+    	    /PaintText self send
+    	    /ClearToEnd self send
+    	    false VisibleCaret
+    	    TextEnd
+    	} {
+    	    pop pop
+    	} ifelse
+    } def
+    
+    % Delete an arbitrary span of characters from the field.  This is the
+    % internal routine; it does no painting.
+    %
+    /DeleteSpan {  % first length => -
+    	1 index add					% left rightPlusOne
+    	Value 1 index /characters self send
+    	1 index sub getinterval				% l r (str)
+    	Value 3 index 3 -1 roll putinterval		% l r
+    	Left Right add 3 1 roll
+    	Left AdjustChar /Left exch def			% L+R l r
+    	2 copy /Right 6 -3 roll				% l r /R L+R l r
+    	sub add Left sub def				% l r
+    	LeftEdge AdjustChar /LeftEdge exch def
+    	InterestingRankDict {		% l r /rank bool
+    	    pop dup 4 1 roll load {	% /rank l r selpos
+    	    	AdjustChar 3 1 roll
+    	    } forall			% /rank leftsel rightsel l r
+    	    5 2 roll dup 0 ne {
+    	    	2 array astore def
+    	    } {
+    	    	pop pop unpromote
+    	    } ifelse			% l r
+    	} forall
+    	pop pop
+    } def
+
+    % Adjust a character index to account for a given range being deleted.
+    %
+    /AdjustChar {  % left rightplusone n => left rightplusone n'
+    	dup 3 index gt {			% l r n
+    	    % no effect unless char is beyond left edge of deleted range
+    	    dup 2 index ge {			% l r n
+    	    	% char is beyond deleted range; reduce by amount deleted
+    	    	3 copy pop sub add
+    	    } {
+    	    	% char is within deleted range; moves to left edge of range
+    	    	pop 1 index
+    	    } ifelse
+    	} if
+    } def
+    
+% **********************
+% ********************** Scrolling
+% **********************
+
+    % Scroll by n characters.  A positive number scrolls to the left,
+    % a negative number scrolls to the right. Repaint after scrolling.
+    %
+    /scroll { % n => -
+	/Scroll self send
+	-1 /painttext self send  % don't repaint the scrollbuttons
+    } def
+
+    % Scroll by n characters.  A positive number scrolls to the left,
+    % a negative number scrolls to the right.
+    %
+    /Scroll { % n => -
+	/LeftEdge LeftEdge 3 -1 roll sub
+		  0 max
+		  Left Right add 1 sub min def
+    } def
+
+    % Force the current caret position to be within the visible portion,
+    % if the subclass supports it.  (I.e., generic /FitCaret.)
+    %
+    /fitcaret { % - => -
+    	TextBegin
+    	/fitcaret /FitCaret self send {
+    	    InvisibleCaret
+    	    -1 /PaintText self send
+    	    true VisibleCaret
+    	} if
+    	TextEnd
+    } def
+    
+    % Force the current caret position to be within the visible portion of
+    % the field.  The parameter is the name of the method that called
+    % /FitCaret, in case a subclass wants to force the caret only for
+    % certain operations.  Return true if any scrolling was done.
+    %
+    /FitCaret { % /method => bool
+    	pop false
+	RightOverflow? {
+	    /MoveCaretToLeft self send  or
+	} if
+	dup not LeftOverflow? and {
+	    /MoveCaretToRight self send or
+	} if
+    } def
+
+    % Scroll the text right, if necessary, so that the caret stays inside
+    % the visible part of the text.  Return true if any scrolling done.
+    % Assumes that LeftOverflow? is true.
+    %
+    /MoveCaretToRight  { % - => bool
+    	/CaretPosition self send dup ButtonWidth le {		% caret
+	    CachedDims pop AutoScrollPosition mul sub		% needX
+	    0 exch						% chars needX
+	    LeftEdge 1 sub -1 0 {
+    	    	    Value exch 1 getinterval stringwidth pop add
+    	    	    exch 1 add exch
+    	    	    dup 0 ge {exit} if
+	    } for						% chars needX
+	    pop /Scroll self send				% -
+	    true
+    	} {							% caret
+	    pop false
+    	} ifelse						% bool
+    } def
+
+    % Scroll the text left, if necessary, so that the caret stays inside
+    % the visible part of the text.  Return true if any scrolling done.
+    % Assumes that RightOverflow? is true.
+    %
+    /MoveCaretToLeft { % - => bool
+	/CaretPosition self send
+	dup CachedDims pop ButtonWidth sub ge {			% caret
+	    CachedDims pop AutoScrollPosition mul sub		% needX
+	    0 exch						% chars needX
+	    LeftEdge 1 Left Right add 1 sub {
+	    	Value exch 1 getinterval stringwidth pop sub
+	    	exch 1 sub exch
+	    	dup 0 le {exit} if
+	    } for						% chars needX
+	    pop /Scroll self send				% -
+	    true
+	} {							% caret
+	    pop false
+	} ifelse						% bool
+    } def
+
+    % Return true, if the text is overflowing at the left edge.
+    %
+    /LeftOverflow? { % - => bool
+	LeftEdge 0 gt
+    } def
+
+    % Return true, if the text is overflowing at the right edge.
+    %
+    /RightOverflow? { % - => bool
+	Value LeftEdge Left Right add LeftEdge sub getinterval
+	stringwidth pop CachedDims pop ge
+    } def
+
+% **********************
+% ********************** Input
+% **********************
+
+    % Return the input focus to this field and change the caret.
+    %
+    /KeyStart { % event => false | /name true | [/labels] true
+	pop
+	% test state in case of race between disabling vs user actions
+	/visualstate self send /Active eq ReadOnly? not and
+	dup {
+	    TextBegin
+	    /activate Caret send
+	    TextEnd
+	    /Default exch
+	} if
+    } def
+
+    % Remove the input focus from this field and change the caret.
+    %
+    /KeyStop {  % event => -
+	pop
+	TextBegin
+	/deactivate Caret send
+	/PaintLine self send
+	TextEnd
+    } def
+
+    % Override: Pass keystrokes/draggings to /insert* methods.
+    %
+    /StandardKey { % event => -
+	/Name get /insertcharacter self send
+    } def
+    /NumPadKey { % event => -
+	/Name get /insertcharacter self send
+    } def
+    /AsciiReception { % event string => -
+	exch dup /Name get {			% str ev
+	    /CopyToLocation
+	    /MoveToLocation {
+		/ResolveToChar self send	% str index
+		/setcaret self send		% str
+	    }
+	    /CopyToCaret
+	    /MoveToCaret
+	    /Default	{pop}			% str
+	} case
+	/insertstring self send
+    } def
+
+% **********************
+% ********************** Selection
+% **********************
+
+    % Cause a specified range of characters to become the /PrimarySelection.
+    % The selection can be adjusted by later user actions just as if the user
+    % had made the selection via the standard UI (using single-click, i.e.,
+    % character-level).
+    %
+    /setselection { % first length => -
+    	0 max 1 index add 1 add 2 array astore		% [left right+1]
+    	dup 0 get					% [l r+1] paintfrom
+    	/PrimarySelection SelectionOwner? {
+    	    PrimarySelection 0 get min
+    	} {
+    	    nullevent /PrimarySelection /NewSelection self send
+    	    /setselection exch send
+    	} ifelse					% [l r+1] paintfrom
+    	/PrimarySelection 3 -1 roll promote		% paintfrom
+	PendingDelete? /PrimarySelection true put
+        /PrimarySelection getselection
+        begin
+	    /Level 1 def
+	    /PendingDelete? true def
+	end						% paintfrom
+    	/painttext self send
+    } def
+
+    % Return the range of characters in the /PrimarySelection, or false if
+    % this field doesn't own the selection.
+    %
+    /selection { % - => first length true | false
+    	/PrimarySelection SelectionOwner? {
+    	    PrimarySelection aload pop 1 index sub true
+    	} {
+    	    false
+    	} ifelse
+    } def
+
+    % Return true if /Rank is one that we keep track of.
+    %
+    /InterestingRank { % rank => bool
+	InterestingRankDict exch known
+    } def
+
+    % Return the current selection.
+    %
+    /CurrentSelection { % rank => string
+	dup /InterestingRank self send {	% rank
+	    % use Value, not value, to avoid problems with numeric override
+	    % of latter; also value's getinterval is superseded anyway
+	    load Value exch			% value [left right]
+	    aload pop 1 index sub 0 max getinterval
+	} {
+	    pop nullstring
+	} ifelse
+    } def
+
+    % Delete the characters spanned by the selection.
+    %
+    /DeleteSelection { % rank => -
+    	/visualstate self send /Active eq ReadOnly? not and {
+    	    dup /InterestingRank self send {	% rank
+		load aload pop
+		1 index sub /deletespan self send
+    	    } {
+		pop
+	    } ifelse
+	} {
+	    pop
+    	} ifelse
+    } def
+    
+    % Overrides for Selectable canvas and ClassTextCanvas
+
+    % Create an instance of our type of Selection
+    %
+    /NewSelection { % event rank => selection
+	dup InterestingRank {
+	    % Set initial selection to be an empty selection
+	    % at the caret.  /SelectionStart will use the /Pin
+	    % value to decide whether to keep this span or clear
+	    % it, and do the appropriate highlighting.
+	    %
+	    dup [ Left Left ] promote
+
+	    Holder /new TextFieldSelection send	    % event sel
+	    exch pop	    	    	    	    % sel
+	} {
+	    % No point starting a selection we don't know how to handle...
+	    pop pop null
+	} ifelse
+    } def
+
+    % Get text for feedback while dragging; overridden to get
+    % selection directly instead of via /request.
+    %
+    /CurrentText { % selection => string
+	/Rank exch send /CurrentSelection self send
+    } def
+	
+
+    %	Start a selection at the location of the event, or start
+    %	an adjustment to the existing selection.  Since /NewSelection
+    %	initialized the selection to extend from the caret to the
+    %	cursor (with no visual feedback), and the UI code will set
+    %	/Pin to be /AtPoint or /FarEnd depending upon whether SELECTing
+    %	or ADJUSTING, all we really have to do is call /AdjustSelection.
+    %
+    /SelectionStart { % event selection => bool
+	{PendingDelete? Rank} 1 index send	% event sel pending rank
+
+	% REMIND: Is this test necessary?  See /NewSelection.
+	dup /InterestingRank self send {	% event sel pending rank
+	    /AdjustSelection self send
+	    true
+	} {
+	    pop pop pop pop false
+	} ifelse
+    } def
+
+	
+    %	Utility function used by /SelectionStart, /SelectionStop,
+    %	and /SelectionAdjust.
+    %
+    %	event  selection  pending?  rank  =>  -
+    /AdjustSelection {	%   event  selection  pending?  rank  =>  -
+        PendingDelete? 1 index 4 -1 roll put
+	dup load aload pop			% event sel rank left right
+
+	2 copy ge {
+	    % selection was empty, use caret position instead (if primary);
+	    % this arises in two cases: (1) /InsertString doesn't update
+	    % the selection ranges when insertion is at the end (for
+	    % speed), so the caret can leave selection behind; (2) edit
+	    % chars (^B...) can move the caret without changing the
+	    % selection.  E.g.: click at end, type some chars, adjust
+	    % to middle => should select all the way to the end.
+	    InterestingRankDict 3 index get {
+		pop pop Left dup
+	    } if
+	} if
+
+	2 copy 7 2 roll				% l r ev sel rank l r
+	5 -1 roll /ResolveToChar self send	% l r sel rank l r n
+	/computerange 5 index send		% l r sel rank l' r'
+	4 -1 roll /SelectionLevel self send     % l r rank l' r'
+	2 copy 7 2 roll 2 array astore promote  % l' r' l r
+	% if l changed, repaint from min(l,l'), else from min(r,r')
+	3 index 2 index ne {		% l' r' l r
+	    pop exch pop min true		% min(l,l') true
+	} {
+	    exch pop 2 copy ne {
+		min exch pop true		% min(r,r') true
+	    } {
+		pop pop false			% l' false
+	    } ifelse
+	} ifelse
+	{ /painttext self send } { pop } ifelse
+    } def
+	
+    % Extend a selection to the current point.
+    %
+    /SelectionStop { % event selection => -
+	{PendingDelete? Rank} 1 index send	% event sel pending rank
+
+	% REMIND: Is this test necessary?
+	dup /InterestingRank self send {	% event sel pending rank
+	    InterestingRankDict 1 index get {	% ev sel pend rank
+		2 index /InsertionPoint get 	% ev sel pend rank pos
+		1 index load aload pop		% ev sel pend rank pos l r
+		6 index /ResolveToChar self send    % ... pos left right cur
+		4 -1 roll /ComputeNamedPosition 7 index send
+		5 1 roll /AdjustSelection self send
+		/setcaret self send
+	    } {
+	        /AdjustSelection self send
+	    } ifelse
+	} {
+	    pop pop pop pop
+	} ifelse
+    } def
+
+    % Preview extension of the selection to the current point.
+    %
+    /SelectionAdjust {	%   event  selection  =>  -
+	{PendingDelete? Rank} 1 index send	% event sel pending rank
+
+	% REMIND: Is this test necessary?
+	dup /InterestingRank self send {	% event sel pending rank
+	    /AdjustSelection self send
+	} {
+	    pop pop pop pop
+	} ifelse
+    } def
+
+    % Adjust the endpoints of a selection based on the selection's Level.
+    %
+    /SelectionLevel { % left right sel => left' right'
+	/Level exch send
+	[   nullproc			% level 0 => zero-length
+	    nullproc			% level 1 => characters
+	    {/SelectWords self send}	% level 2
+	    {/SelectAll self send}	% level 3 or greater
+	] dup length 1 sub
+	3 -1 roll min get exec
+    } def
+
+    % Adjust a selection to word level.
+    %
+    /SelectWords { % left right => left' right'
+	exch -1 0 /FindWordBoundary self send
+	exch 1 sub 0 max
+	1 /characters self send 1 sub /FindWordBoundary self send
+	1 add /characters self send min
+    } def
+
+    % Adjust a position to the edge of a word.  Pos is the starting position,
+    % dir is the increment specifying the direction to scan, limit is the end
+    % of the available text.  If the starting position is an alphanumeric,
+    % scanning continues until a non-alphanumeric, and inversely.
+    %
+    /FindWordBoundary { % pos dir limit => pos'
+	2 index /AlphaNumeric? self send	% pos dir lim bool
+	3 index 5 2 roll {			% bool pos nextpos
+	    dup /AlphaNumeric? self send	% bool pos nextpos nextbool
+	    3 index eq { exch pop } { pop exit} ifelse
+	} for					% bool pos'
+	exch pop
+    } def
+
+    % Determine whether the character at the specified index is part of
+    % a word.  Default tests for alphanumeric and underscore.
+    %
+    /AlphaNumeric? { % n => bool
+	Value exch get AlphaNumericTable exch known
+    } def
+
+    % Adjust a selection to include all the text.
+    %
+    /SelectAll { % left right => left' right'
+	pop pop
+	0 /characters self send
+    } def
+
+    % See if event's coords are within the current selected range.
+    %
+    /SelectionContext { % event selection => name
+	dup null eq {
+	    pop pop false
+	} {
+	    /Rank exch send dup /InterestingRank self send {
+		load exch				% [left right] event
+		{lt} /EventToChar self send		% [left right] n
+		exch aload pop 2 index			% n left right n
+		gt 3 1 roll ge and
+	    } {
+		pop pop false
+	    } ifelse
+	} ifelse
+	{ /SelectedObject }{ /UnselectedObject } ifelse
+    } def
+
+    % Deselect a given selection.
+    %
+    /DeSelect { % selection => -
+	/Rank exch send dup /InterestingRank self send {
+	    dup load 0 get exch				% left rank
+	    unpromote
+	    /painttext self send
+	} if
+    } def
+
+    % Return true if this field owns the specified globally-registered
+    % selection.
+    %
+    /SelectionOwner? { % rank => bool
+    	getselection dup null ne {
+    	    /Holder get Holder eq
+    	} {
+    	    pop false
+    	} ifelse
+    } def
+    
+    % Clear any global registered selections owned by this field.
+    %
+    /ClearMySelections { % - => -
+    	InterestingRankDict {
+    	    pop dup SelectionOwner? {clearselection} {pop} ifelse
+    	} forall
+    } def
+
+% **********************
+% ********************** Miscellaneous Utilities
+% **********************
+
+    % Get the environment ready to write text.
+    %
+    /TextBegin { % - => -
+	gsave
+	self setcanvas
+	TextFont setfont
+    } def
+
+    % Restore environment to prior state.
+    %
+    /TextEnd { % - => -
+	grestore
+    } def
+
+    % Override
+    %
+    /settextfont { % font => -
+	/settextfont super send
+	/invalidate Caret send
+	ScaleGraphicFont
+    } def
+
+    % Override: notify caret.
+    %
+    /set3D { % bool => -
+	/invalidate Caret send
+        /set3D super send
+    } def
+
+    % Scale GraphicFont to match size of TextFont.
+    %
+    /ScaleGraphicFont { % - => -
+    	/GraphicFont unpromote
+	TextFont fontscale GraphicFont fontscale ne {
+	    null TextFont fontscale null GraphicFont modifyfont
+     	    /GraphicFont exch promote
+     	} if
+    } def
+    
+    % Override: notify caret.
+    %
+    /setcolors { % FG BG => -
+	self isinstance? {
+	    /invalidate Caret send
+	} if
+    	/setcolors super send
+    } def
+
+    /setallcolors { % 2dfg 2dbg fg bg0 bg bg2 bg3 => -
+	/invalidate Caret send
+        /setallcolors super send
+    } def
+
+    % Promote a cached copy of our canvas dims in our own CTM.  (Cannot
+    % override /size because that would screw anyone else who calls it
+    % in a different CTM.)  We assume we're executing in the context of
+    % a TextBegin/TextEnd pair.
+    %
+    /CachedDims { % - => w h
+    	/size self send 2 copy 2 array astore cvx
+    	/CachedDims exch promote
+    } def
+    
+    % Override: Unpromote cached dims.
+    %
+    /reshape { % x y w h => -
+    	/reshape super send
+    	/invalidate self send
+    } def
+
+    % Utility: Setkeyable/receptible/selectable based on the combination of 
+    % the ReadOnly and VisualState flags.  I.e., the text does not accept
+    % focus or typein unless it is ReadWrite and "active" (in the OL sense),
+    % and does not accept selections unless active (though it can be ReadOnly).
+    %
+    /CheckModifiable { % - => -
+    	/visualstate self send /Active eq
+    	dup Selectable? ne {
+	    dup /setselectable self send
+	    /ClearMySelections self send
+    	} if					% activestate?
+    	ReadOnly? not and
+    	dup Keyable? ne {dup /setkeyable self send} if
+    	dup Receptible? ne {dup /setreceptible self send} if
+    	pop
+    } def
+
+    % Set the FontOffset and cache the value in the instance. The
+    % FontOffset is the y value for drawing characters at the bottom
+    % of the canvas without cutting them off, and with enough room for
+    % the caret. Make sure currentcanvas is self, when calling
+    % FontOffset, because the caret depends on it, to cache the
+    % correct font size and colors.
+    %
+    /FontOffset { % - => int
+	currentfont
+	    TextFont fontdescent
+	    2 add
+	    TextFont /FontMatrix get 3 get dup abs div mul
+	    /minsize Caret send exch pop max
+	    ceiling cvi
+	    /FontOffset 1 index promote
+	exch setfont
+    } def
+
+    % Override
+    %
+    /EventToXY { % event => x y
+	gsave self setcanvas
+	    begin XLocation YLocation end
+	grestore
+    } def
+
+    % Return an index to the character nearest to x y of event.
+    %
+    /ResolveToChar { % event => index
+	dup /Name get /TrackTimer eq 
+	RightArrowShown? LeftArrowShown? or
+	and {
+	    TextBegin
+		dup /EventToXY self send pop
+		LeftArrowShown? {
+		    dup 0 lt {
+			4 /scroll self send
+		    } if
+		} if
+		RightArrowShown? {
+		    dup CachedDims pop gt {
+			-4 /scroll self send
+		    } if
+		} if
+		pop
+	    TextEnd
+	} if
+	{2 div le} /EventToChar self send
+	Left Right add min 0 max
+    } def
+
+    % Subroutine used by ResolveToChar and SelectionContext (which doesn't
+    % want balance-beam interpretation).  Uses client supplied proc to
+    % decide whether to keep looking to the right.  Proc takes x and
+    % charwidth and returns bool.
+    %
+    /EventToChar { % event proc => index
+    	exch /EventToXY self send pop			% proc x
+    	TextBegin
+	LeftEdge exch					% proc pos x
+	Value LeftEdge Left Right add LeftEdge sub
+	getinterval {					% proc pos x char
+	    cvis stringwidth pop			% proc pos x charwidth
+	    2 copy 5 index exec {pop exit} if
+	    sub						% proc pos x'
+	    exch 1 add exch				% proc pos' x'
+	} forall					% proc pos x
+	pop exch pop
+	TextEnd
+    } def
+    
+    IncludeDemos? {
+        %   Create some demonstration text fields in a pane.
+        %
+        /demo { % - => window [fields]
+	    20 dict begin
+	    	/panel /Calculated framebuffer /new ClassPanel send def
+	    	/win panel framebuffer /new ClassBaseWindow send def
+	    	[/NorthWest {/SouthWest PREVIOUS POSITION 0 5 xysub}]
+	    	    /setlayoutparameters panel send
+	    	
+	    	/text1 panel /new self send def
+	    	{
+		    () (Field 1: %) [5 -1 roll] sprintf
+		    /setfooter /sendtarget 5 -1 roll send
+		} /setnotifier text1 send
+	    	(Sample Text) /setvalue text1 send
+		11 /setminimumvisible text1 send
+	    	6 /setcaret text1 send
+		win /settarget text1 send
+	    	/text1 text1 [/NorthWest {/NorthWest PARENT POSITION}]
+	    	    /addclient panel send
+
+	    	/text2 panel /new self send def
+	    	{
+		    () (Field 2: %) [5 -1 roll] sprintf
+		    /setfooter /sendtarget 5 -1 roll send
+		} /setnotifier text2 send
+	    	(More Sample Text) /setvalue text2 send
+		16 /setminimumvisible text2 send
+	    	11 /setcaret text2 send
+		win /settarget text2 send
+	    	text2 dup [] /addclient panel send
+
+	    	/text3 panel /new self send def
+	    	{
+		    () (Field 3: %) [5 -1 roll] sprintf
+		    /setfooter /sendtarget 5 -1 roll send
+		} /setnotifier text3 send
+	    	(Still More Sample Text) /setvalue text3 send
+		21 /setminimumvisible text3 send
+	    	17 /setcaret text3 send
+		win /settarget text3 send
+	    	text3 dup [] /addclient panel send
+
+	    	/text4 panel /new self send def
+	    	{
+		    () (Field 4: %) [5 -1 roll] sprintf
+		    /setfooter /sendtarget 5 -1 roll send
+		} /setnotifier text4 send
+	    	(Readonly Field) /setvalue text4 send
+		10 /setminimumvisible text4 send
+	    	0 /setcaret text4 send
+	    	true /setreadonly text4 send
+		win /settarget text4 send
+	    	text4 dup [/NorthEast {/SouthEast PREVIOUS POSITION 0 20 xysub}]
+	    	    /addclient panel send
+
+	    	/text5 panel /new self send def
+	    	{
+		    () (Field 5: %) [5 -1 roll] sprintf
+		    /setfooter /sendtarget 5 -1 roll send
+		} /setnotifier text5 send
+	    	(Inactive Field) /setvalue text5 send
+		10 /setminimumvisible text5 send
+	    	0 /setcaret text5 send
+	    	/Inactive /setvisualstate text5 send
+		win /settarget text5 send
+	    	text5 dup [] /addclient panel send
+
+		text2 /setnextfocus text1 send
+		text3 /setnextfocus text2 send
+		text1 /setnextfocus text3 send
+		
+		(ClassTextField Demo) /setlabel win send
+		10 20 0 20 /setgaps win send
+		/place win send
+	    	/new ClassEventMgr send /activate win send
+	    	/map win send
+	    	win [text1 text2 text3 text4 text5]
+	    end
+        } def
+    } if
+
+classend def
+
+
+/TextFieldSelection ClassSelection []
+classbegin
+    % Override cursor choices.  The text cursor is a composite of a
+    % custom box with text in it and one of the valid/invalid/pointer
+    % cursors.
+    %
+    % REMIND:	The Valid and Invalid cursors don't meet OL spec yet
+    /NeutralCursor	/basic /Cursors ClassCanvas send exch get   def
+    
+    false {
+	% Emulate V3 D&D cursors as best as possible...
+	/ValidCursor	/beye  /Cursors ClassCanvas send exch get   def
+	/InvalidCursor	/stop  /Cursors ClassCanvas send exch get   def
+    } {
+	% Since V2 XView doesn't do the new D&D cursors, it would be
+	% confusing for us to...
+	/ValidCursor	/basic /Cursors ClassCanvas send exch get   def
+	/InvalidCursor	/basic /Cursors ClassCanvas send exch get   def
+    } ifelse
+
+    %	Put the rendering procs into the CanRenderAs dict to make it easier
+    %	for applications (or subclasses of ClassTextField) to add different
+    %	interpretations (i.e. file name).
+    %
+    /CanRenderAs 10 dict dup begin
+	/ContentsAscii {   	%   oldval  =>  newval
+	    pop
+	    Rank /CurrentSelection Holder send
+	    dup length string copy
+	} def
+	
+    	/ContentsPostScript //ContentsAscii def
+	
+	/SelectionObjsize {   	%   oldval  =>  newval
+	    pop
+	    Rank /CurrentSelection Holder send
+	    length
+	} def
+    end def
+
+
+    %	Also provide a dict of action targets.
+    /ActionRequests 10 dict dup begin
+	/DeleteContents {   	%   oldval  =>  newval
+	    Rank /DeleteSelection Holder send
+	    /Level 0 store
+	} def
+
+	%   Ok, /Canvas is really a rendering request, but we don't want
+	%   it to be executed when copying to the clipboard (that might
+	%   leave a dangling reference to the canvas which would keep a
+	%   window hanging around on the screen after the application
+	%   exits.)  So we will pretend that it is an action request...
+	/Canvas	{   	    	%   oldval  =>  newval
+	    pop Holder
+	} def
+    end def
+
+% Methods
+
+    % Override: Tell the field that the selection is going away.
+    %
+    /Deselect { % - => -
+	self /DeSelect Holder send
+    } def
+
+    % Override
+    %
+    /SingleRequest { % oldval key => newval
+	CanRenderAs exch {    	    	    	    	    %  oldval dict key
+	    ActionRequests 1 index {
+		% Extra braces because we want to return a proc...
+		{ pop /UnknownRequest }
+	    } ?get
+	} ?get	    	    	    	    	    	    % proc
+	exec	    	    	    	    	    	    % newvl
+    } def
+
+
+    % REMIND:  There should be a method to build a new cursor font object
+    %	       containing the text.  (For full OL compliance.)
+
+    % override
+    %	Set the cursor to indicate whether the dragged object is
+    %	over neutral area, a valid drop site, or an invalid drop
+    %	site.  A null parameter indicates neutral area, a canvas
+    %	parameter will always be Receptible.
+    %
+    %	event canvas  =>  -
+    %	event null    =>  -
+    /SetDragCursor {	%   event  canvas|null  =>  -
+	dup null eq {	    	    	    	    	    %  event  null
+	    pop pop
+	    NeutralCursor
+	} { 	    	    	    	    	    	    %  event  canvas
+	    self /DropTarget? 3 -1 roll send {      	    %  -
+	        ValidCursor
+	    } {	    	    	    	    	    	    %  -
+	        InvalidCursor
+	    } ifelse	    	    	    	    	    %  {} {}
+	} ifelse	    	    	    	    	    %  {} {}
+	grabcursor
+    } def
+    
+classend def	    %-%	    TextFieldSelection

@@ -1,0 +1,1054 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)liteitem.ps 23.6 91/02/11
+%
+%  Simple item (dialog) class.
+%
+
+systemdict /Item known not { systemdict begin
+
+/Item Object
+dictbegin
+% instance variables
+    /ItemWidth		null def	% item's width,
+    /ItemHeight		null def	% ..& height,
+    /ItemParent		null def	% ..& parent canvas (from "new")
+    /ItemCanvas		null def	% the canvas we created for the item
+    /ItemValue		null def	% the canvas' current value
+    /ItemInitialValue	null def	% the value it started out with
+    /ItemPaintedValue	null def	% the value it currently shows
+    /TrackInterests	null def	% interests to track activated item
+    /ItemEventMgr	null def	% ..the tracking process
+    /NotifyUser		null def	% the notification procedure
+    /ReshapeNeeded?	false def	% compatibility!
+dictend
+classbegin
+% default variables
+    /ItemFont	/Times-Roman findfont 14 scalefont def	% the item's font
+    /ItemTextColor	0 0 0 rgbcolor def	% ..& text color
+    /ItemBorderColor	ItemTextColor def	% ..& border color
+    /ItemFillColor	1 1 1 rgbcolor def	% ..& background color
+% class variables
+    /StopOnUp?		true def	% deactivate on up event?
+    /ItemButton		PointButton def	% Which mouse button to use.
+% std client procs
+    /PaintItem		nullproc def	% the core of the /paint method
+    /ClientDown		nullproc def	% procedures installed in
+    /ClientEnter	nullproc def	%   process
+    /ClientExit		nullproc def
+    % X-NeWS interaction fix: make sure to catch the drag events:
+    /ClientDrag		{1 pop} def	%   the activated (tracking)
+    % This may also have to be a gawd awful no-op too, but as yet
+    % this is not the case!
+    /ClientUp		nullproc def
+
+% Utilities
+    /iconstring {icondict exch get cvis} def  % iconname  =>  str (one char)
+    /ThingSize { % thing textfont => width height
+    gsave
+	setfont
+	dup type {
+	    /stringtype {stringwidth pop currentfont fontheight}
+	    /nametype {
+		dup { load } stopped pop xcheck {
+		    false exch cvx exec
+		} {
+		    iconfont setfont iconstring stringbbox 4 2 roll pop pop
+		} ifelse
+	    }
+	    /nulltype {0 0}
+	    /Default {0 0}
+	} case
+    grestore
+    } def
+    /ShowThing { % thing color x y textfont => -
+    gsave
+	setfont translate setcolor
+	0 0 moveto % moveto establishs current pt.
+	dup type {
+	    /stringtype {0 currentfont fontdescent rmoveto show}
+	    /nametype {
+		dup { load } stopped pop xcheck {
+		    true exch cvx exec
+		} {
+		    iconfont setfont iconstring show
+		} ifelse
+	    }
+	    /nulltype {pop}
+	    /Default {pop}
+	} case
+    grestore
+    } def
+    /EraseThing { % thing color x y textfont => -
+    gsave
+	4 index dup type /nametype eq exch { load } stopped pop xcheck and {
+	    5 -1 roll exch ThingSize rectpath setcolor fill
+	} {
+	    ShowThing
+	} ifelse
+    grestore
+    } def
+
+    /ItemBegin { % - => -  (sets state & implements defered initialization)
+        gsave ItemCanvas setcanvas ItemFont setfont
+    } def
+    /ItemEnd {grestore} def
+
+% methods
+    /ItemPath {0 0 ItemWidth ItemHeight rectpath} def
+
+    /StartItem { % - => - ; activates an item
+        ItemBegin
+	ItemEventMgr null eq {
+	    /ItemInitialValue ItemValue store
+	    ClientDown
+	    /ItemEventMgr TrackInterests forkeventmgr def
+	    pause unblockinputqueue
+	} {
+	    ClientDown
+	} ifelse
+        ItemEnd
+    } def
+    /StopItem {ItemEventMgr /ItemEventMgr null store killprocess} def
+
+    /new { % parentcanvas <width height> => instance
+        /new super send
+        begin
+	    dup type /canvastype ne {
+		/ItemHeight exch def
+		/ItemWidth exch def
+		/ReshapeNeeded? true def
+	    } if
+	    /ItemParent exch def
+	    /ItemCanvas ItemParent newcanvas dup /Mapped true put def
+	    % probably should install cursor here.
+	    % possably should be retained? ..opaque?
+	    
+	    /maketrackinterests self send % Note:"self" now is the new instance!
+	    currentdict
+	end
+    } def
+    /reshape { % x y w h => -
+        gsave
+	/ItemHeight exch def /ItemWidth exch def
+        ItemParent setcanvas translate ItemPath
+	ItemCanvas reshapecanvas
+        grestore
+    } def
+    /setvalue { % value => -
+        dup ItemValue ne {
+            /ItemValue exch def
+            /paint self send
+        } {pop} ifelse
+    } def
+    /getvalue { % - => value
+	ItemValue
+    } def
+    /map { % - => - (Causes the item to be mapped)
+	ItemCanvas /Mapped true put
+    } def
+    /unmap { % - => - (Causes the item to be unmapped)
+	ItemCanvas /Mapped false put
+    } def
+    /makestartinterests { % - => interests (returns the start interests)
+    % Note: we do NOT store the start interests in the item dict.
+    % This is to avoid circularity: the interest must have self in it!
+	[
+	    self /ItemText known {
+		/maketextinterest self send
+	    } {
+		ItemButton [self] {/StartItem exch send pop} append cvx
+		/DownTransition ItemCanvas syncheventmgrinterest
+	    } ifelse
+
+	    /Damaged [self] {/paint exch send pop} append cvx
+	    null ItemCanvas eventmgrinterest
+	]
+    } def
+    /maketrackinterests { % initializes the tracking interests
+	/TrackInterests 10 dict dup begin
+	    /ClientUp load length 0 ne {
+	        /Up ItemButton {
+	            ItemBegin ClientUp ItemEnd
+	            StopOnUp? {StopItem} if
+	            pop
+	        } /UpTransition null excleventmgrinterest def
+	    } if
+	    /ClientDrag load length 0 ne {
+	        /Drag /MouseDragged {ItemBegin ClientDrag ItemEnd pop}
+	        null null excleventmgrinterest def
+	    } if
+	    /ClientEnter load length 0 ne {
+	        /Enter /EnterEvent {ItemBegin ClientEnter ItemEnd pop}
+	        null ItemCanvas eventmgrinterest def
+	    } if
+	    /ClientExit load length 0 ne {
+	        /Exit /ExitEvent {ItemBegin ClientExit ItemEnd pop}
+	        null ItemCanvas eventmgrinterest def
+	    } if
+	end def
+    } def
+
+    /move { % x y  =>  -  (Moves item to x y)
+	ItemBegin
+	ReshapeNeeded? { % compatibility!
+	    ItemWidth ItemHeight /reshape self send
+	    /ReshapeNeeded? false def
+	} {
+	    movecanvas % ItemCanvas mapcanvas
+	} ifelse
+	ItemEnd
+    } def
+    /moveinteractive { % items backgroundcolor => - (interactively move item)
+	ItemBegin
+	ItemCanvas /Transparent get {
+	    fillcanvas					% items 
+	    /bbox self send				% items x y w h
+	    true dragcanvas currentcanvas mapcanvas
+	
+	    % paint all items overlapping old item bbox & newly moved item
+	    % the mark ugly is just to avoid a local var dict; mainly
+	    % because of the self call above.
+	    mark 6 -1 roll {			% x y w h mark <k> item
+		counttomark 2 eq {exch pop} if	% x y w h mark item
+		exch pop			% x y w h item
+		5 copy				% x y w h item x y w h item
+		/bbox exch send rectsoverlap 1 index self eq or
+		    {/paint exch send} {pop} ifelse
+		mark				% x y w h mark
+	    } forall
+	    5 {pop} repeat
+	} {
+	    true dragcanvas currentcanvas mapcanvas
+	    pop pop
+	} ifelse
+	ItemEnd
+    } def
+    /paint { % -  =>  -  ([Re]paints item)
+	ItemBegin
+	PaintItem /ItemPaintedValue ItemValue store
+	ItemEnd
+    } def
+    /location { % - => x y
+	gsave
+	ItemParent setcanvas ItemCanvas getcanvaslocation
+	grestore
+    } def
+    /bbox { % - => x y w h
+	/location self send ItemWidth ItemHeight
+    } def
+
+classend def
+
+% ============================= ScrollbarItem =============================
+/ScrollbarItem Item
+dictbegin
+    /BarMax		null def
+    /BarMin		null def
+    /BarLineValue	null def
+    /BarPageValue	null def
+    /BarScale		null def
+    /BarVertical?	true def
+    /ScrollMotion	null def
+    /BarViewPercent	null def
+dictend
+classbegin
+    /ItemButton	[/LeftMouseButton /MiddleMouseButton /RightMouseButton ] def
+    /ItemFrame		1 def
+
+    /ButtonSize		16 ItemFrame 2 mul add def	% height of button
+%    /BoxSize		ButtonSize def			% height of box
+
+%    /ItemFillColor	.75 .75 .75 rgbcolor def
+%    /BoxFillColor	1 1 1 rgbcolor def
+%    /ButtonFillColor	1 1 1 rgbcolor def
+
+    /ItemPath {
+	BarVertical? not {
+	    0 ItemHeight translate -90 rotate
+	    ItemHeight ItemWidth /ItemHeight exch def /ItemWidth exch def
+	} if
+	/ItemPath super send
+    } def
+
+    /new { % [min max dLine dPg dView] initvalue notify parent => item
+        /new super send begin
+            /NotifyUser exch cvx def
+            /ItemValue exch def
+            /setrange self send % note: self now = instance, not class.
+            currentdict
+        end
+    } def
+    /reshape { % x y w h => -
+        /reshape super send
+        SetScale
+    } def
+    /setrange { % [min max dLine dPg dView] => -
+        aload pop
+        /BarViewPercent exch def
+        /BarPageValue exch def
+        /BarLineValue exch def
+        /BarMax exch def
+        /BarMin exch def
+        BarMax BarMin le {
+	    /BarPageValue BarPageValue neg def
+	    /BarLineValue BarLineValue neg def
+        } if
+        ItemHeight null ne {SetScale} if
+    } def
+    /PaintItem { % - => - (Paint the bar, buttons, and box.)
+        ItemCanvas setcanvas PaintBar PaintButtons PaintBox
+    } def
+
+    /ClientDown { % - => -
+        SetScrollMotion
+        DoScroll
+    } def
+    /ClientUp { % - => - 
+        ItemValue ItemInitialValue ne {NotifyUser} if
+    } def
+    /ClientDrag { % - => -
+        ScrollMotion /ScrollAbsolute eq {DoScroll} if
+    } def
+    /DoScroll { % - => -
+        SetScrollValue
+        ItemValue ItemPaintedValue ne {EraseBox PaintBox} if
+    } def
+    
+    % Utilities.
+    /PaintBar { % - => - (paint bar)
+        SubClassResponsibility
+    } def
+    /PaintButtons { % - => - (paint buttons)
+        SubClassResponsibility
+    } def
+    /PaintBox { % - => - (paint box)
+        SubClassResponsibility
+    } def
+    /EraseBox { % - => - (fill painted box with background color)
+        SubClassResponsibility
+    } def
+    /SetScrollMotion { % - => - (set ScrollMotion from event location)
+        SubClassResponsibility
+    } def
+    
+    /SetScrollValueDict 10 dict dup begin
+%	/ScrollAbsolute		{CurrentEvent /YLocation get YToValue} def
+	/ScrollAbsolute		{currentcursorlocation exch pop YToValue} def
+	/ScrollLineForward	{ItemValue BarLineValue add} def
+	/ScrollLineBackward	{ItemValue BarLineValue sub} def
+	/ScrollPageForward	{ItemValue BarPageValue add} def
+	/ScrollPageBackward	{ItemValue BarPageValue sub} def
+    end def
+    /SetScrollValue { % - => - (set ItemValue from ScrollMotion & event loc)
+	SetScrollValueDict begin
+	    /ItemValue ScrollMotion cvx exec CheckValueBounds store
+	end
+    } def
+    
+    % Geometry utilities:
+    /SetScale { % - => - (set BarScale from size)
+        /BarScale	% barsize / range
+            ItemHeight ButtonSize 2 mul sub
+            BarMax BarMin sub div def
+    } def
+    /ValueToY { % value -> y
+        BarMin sub BarScale mul ButtonSize add
+    } def
+    /YToValue { % y -> value
+        ButtonSize sub
+        BarScale div BarMin add
+        CheckValueBounds
+    } def
+    /CheckValueBounds { % value => value (in range)
+        BarScale 0 ge {BarMin max BarMax min} {BarMax max BarMin min} ifelse
+    } def
+classend def
+
+% ============================= SimpleScrollbar =============================
+/SimpleScrollbar ScrollbarItem []
+classbegin
+    /BoxSize		{ButtonSize} def		% height of box
+    /ArrowSize		16 def				% height of btn arrow
+    /ScrollDownArrow 16 16 1 [] { <
+        07F8 0FF8 0818 0818 0818 0818 781F F81F
+        8002 4004 2008 1010 0820 0440 0280 0100
+	> } buildimage def
+
+    /ItemFillColor	.75 .75 .75 rgbcolor def
+    /BoxFillColor	1 1 1 rgbcolor def
+    /ButtonFillColor	1 1 1 rgbcolor def
+
+    % SubClassResponsibility:
+    /PaintBar { % - => - (paint bar)
+        ItemFillColor fillcanvas
+	ItemFrame 0 0 ItemWidth ItemHeight rectframe
+	ItemBorderColor setcolor eofill
+    } def
+    /PaintArrow { % color xscale yscale x y
+    gsave
+	translate scale setshade true ScrollDownArrow imagemaskcanvas
+    grestore
+    } def
+    /PaintButtons { % - => - (paint buttons)
+        ItemFrame 0 0 ItemWidth ButtonSize rectframe
+        ButtonFillColor setcolor gsave fill grestore
+        ItemBorderColor setcolor eofill
+        ItemBorderColor 16 16
+        ItemWidth ArrowSize sub 2 div ItemFrame PaintArrow
+        
+
+        ItemFrame 0 ItemHeight ButtonSize sub ItemWidth ButtonSize rectframe
+        ButtonFillColor setcolor gsave fill grestore
+        ItemBorderColor setcolor eofill
+        ItemBorderColor 16 -16
+        ItemWidth ArrowSize sub 2 div ItemHeight ItemFrame sub PaintArrow
+    } def
+    /PaintBox { % - => - (paint box)
+        ItemValue BoxPath
+        BoxFillColor setcolor gsave fill grestore
+        ItemBorderColor setcolor eofill
+        /ItemPaintedValue ItemValue def
+    } def
+    /EraseBox { % - => - (fill painted box with background color)
+        ItemPaintedValue BoxPath ItemFillColor setcolor fill
+    } def
+    /BoxPath { % value => - (Make a box path for the given value)
+        ValueToY ItemFrame dup 3 -1 roll		% dx x y
+%        BoxSize 2 div sub				% adjust for box
+%        ButtonSize max ItemHeight ButtonSize sub BoxSize sub min % "
+        ItemWidth ItemFrame 2 mul sub BoxSize rectframe
+    } def
+    /SetScrollMotion { % - => - (set ScrollMotion from event location)
+%	CurrentEvent /YLocation get			% y
+	currentcursorlocation exch pop
+	dup ButtonSize le {
+	    /ScrollMotion /ScrollLineBackward def
+	} {
+	dup ItemHeight ButtonSize sub ge {
+	    /ScrollMotion /ScrollLineForward def
+	} {
+	    ItemPaintedValue ValueToY			% y yPainted
+	    2 copy le {
+%	    2 copy BoxSize 2 div sub le {
+		/ScrollMotion /ScrollPageBackward def
+	    } {
+	    2 copy BoxSize add ge {
+%	    2 copy BoxSize 2 div add ge {
+		/ScrollMotion /ScrollPageForward def
+	    } {
+		/ScrollMotion /ScrollAbsolute def
+	    } ifelse % 2 copy BoxSize add ge
+	    } ifelse % 2 copy le
+	    pop % pop yPainted
+
+	} ifelse % dup ItemHeight ButtonSize sub ge
+	} ifelse % dup ButtonSize le
+	pop % pop y
+    } def
+    
+    % Geometry:  Factor out the box size.
+    /SetScale { % - => - (set BarScale from size)
+        /BarScale	% barsize / range
+            ItemHeight BoxSize sub ButtonSize 2 mul sub
+            BarMax BarMin sub div def
+    } def
+    /YToValue { % y -> value
+        BoxSize 2 div sub ButtonSize sub % use super!
+        BarScale div BarMin add
+        CheckValueBounds
+    } def
+classend def
+% ============================= LabeledItems =============================
+% Several items are composed of 2 parts, a label & an object.
+% These are their sizes & locations within the item canvas.
+% (The ItemFont is bound to the ItemObject, the ItemLabelFont to the ItemLabel)
+/LabeledItem Item
+dictbegin
+    /ItemObject		nullstring def	% The item's "object"
+    /ObjectX		0 def		% and bounding rect:
+    /ObjectY		0 def
+    /ObjectWidth	0 def
+    /ObjectHeight	0 def
+    /ItemLabel		nullstring def	% The item's "label"
+    /LabelX		0 def		% and bounding rect:
+    /LabelY		0 def
+    /LabelWidth		0 def
+    /LabelHeight	0 def
+    /ObjectLoc		null def	% Label-Object position
+    /ItemBorder		2 def		% Extra space around the item
+    /ItemGap		5 def		% Distance between object & label
+    /ItemFrame		0 def		% Draw frame if not zero
+    /ItemRadius		0 def		% Radius of frame
+    					%   (fract => ratio of shorter side)
+dictend
+classbegin
+    /ItemLabelFont /Times-Bold findfont 14 scalefont def
+
+    /new { % label object loc notifyproc parentcanvas => instance
+        /new super send
+        begin
+            /NotifyUser exch cvx def /ObjectLoc exch def
+            /ItemObject exch def /ItemLabel exch def
+	    currentdict
+	end
+    } def
+    /PaintItem {
+	ItemRadius 0 0 ItemWidth ItemHeight rrectpath
+	ItemFillColor setcolor fill
+        ItemFrame 0 gt {
+	    ItemFrame ItemRadius 0 0 ItemWidth ItemHeight rrectframe
+	    ItemBorderColor setcolor eofill
+        } if
+        ShowLabel
+    } def
+% utilities used by this class
+    /LabelSize {ItemLabel ItemLabelFont ThingSize} def
+%   /ObjectSize {ItemObject ItemFont ThingSize} def
+    /ShowLabel
+        {ItemLabel ItemTextColor LabelX LabelY ItemLabelFont ShowThing} def
+    /ShowObject
+        {ItemObject ItemTextColor ObjectX ObjectY ItemFont ShowThing} def
+    /EraseObject
+        {ItemObject ItemFillColor ObjectX ObjectY ItemFont EraseThing} def
+
+    /AdjustItemSize { % - => - [uses item context]
+	% Probably should not adjust if initial value not zero.
+	% calculate ItemHeight & ItemWidth
+	ItemWidth ItemHeight % put on stack for max calcs later.
+	ObjectLoc {
+	/Right /Left {
+	    /ItemWidth ItemBorder 2 mul ItemGap add
+		LabelWidth add ObjectWidth add def
+	    /ItemHeight ItemBorder 2 mul LabelHeight
+		ObjectHeight max add def
+	}
+	/Top /Bottom {
+	    /ItemWidth ItemBorder 2 mul LabelWidth ObjectWidth max add def
+	    /ItemHeight ItemBorder 2 mul ItemGap add
+		LabelHeight add ObjectHeight add def
+	}
+	} case
+	/ItemHeight exch ItemHeight max def
+	/ItemWidth exch ItemWidth max def
+    } def
+    /CalcObj&LabelXY { % - => - [uses item context]
+	% Probably should extend Object to edge like text does.
+	% calculate Label & Object X & Y
+	ObjectX ObjectY LabelX LabelY % put on stack for adjustments later.
+	ObjectLoc {
+	/Right {
+	    /LabelX ItemBorder def
+	    /LabelY ItemHeight LabelHeight sub 2 div def
+	    /ObjectX ItemBorder ItemGap add LabelWidth add def
+	    /ObjectY ItemHeight ObjectHeight sub 2 div def
+	}
+	/Left {
+	    /LabelX ItemBorder ItemGap add ObjectWidth add def
+	    /LabelY ItemHeight LabelHeight sub 2 div def
+	    /ObjectX ItemBorder def
+	    /ObjectY ItemHeight ObjectHeight sub 2 div def
+	}
+	/Top {
+	    /LabelX ItemWidth LabelWidth sub 2 div def
+	    /LabelY ItemBorder def
+	    /ObjectX ItemWidth ObjectWidth sub 2 div def
+	    /ObjectY ItemBorder ItemGap add LabelHeight add def
+	}
+	/Bottom {
+	    /LabelX ItemWidth LabelWidth sub 2 div def
+	    /LabelY ItemBorder ItemGap add ObjectHeight add def
+	    /ObjectX ItemWidth ObjectWidth sub 2 div def
+	    /ObjectY ItemBorder def
+	}
+	} case
+	/LabelY exch LabelY add def /LabelX exch LabelX add def
+	/ObjectY exch ObjectY add def /ObjectX exch ObjectX add def
+    } def
+classend def
+% ============================= Cycle Item =============================
+/CycleItem LabeledItem
+dictbegin
+    /EraseToUpdate	true def % whether to erase when switching state
+    /Cycle		nullarray def
+dictend
+classbegin
+    /new { % label array loc notifyproc parentcanvas => instance
+        /new super send begin
+            /Cycle ItemObject def
+	    /ItemValue 0 def
+            currentdict
+        end
+    } def
+    /reshape { % x y w h
+	/ItemHeight exch def /ItemWidth exch def
+        BindCycleObject
+
+        % calculate Label & Object Height & Width:
+        Cycle { % calculate bbox for all the cycle objects
+            ItemFont ThingSize
+            /ObjectHeight exch ObjectHeight max def
+            /ObjectWidth exch ObjectWidth max def
+        } forall
+        LabelSize /LabelHeight exch def /LabelWidth exch def
+
+        AdjustItemSize
+	CalcObj&LabelXY
+	
+	ItemWidth ItemHeight /reshape super send
+    } def
+    /PaintItem {/PaintItem super send false PaintCycle} def
+    /SetCycleValue { % Bump? => - (Set ItemValue to initial or bumped value)
+        /ItemValue
+            ItemInitialValue 3 -1 roll {1 add Cycle length mod} if store
+        ItemValue ItemPaintedValue ne {
+            true PaintCycle
+	    /ItemPaintedValue ItemValue store
+        } if
+    } def
+    /BindCycleObject {/ItemObject Cycle ItemValue get store} def
+    /ClientDown {true SetCycleValue} def
+    /ClientUp {ItemValue ItemInitialValue ne {NotifyUser} if StopItem} def
+    /ClientEnter {true SetCycleValue} def
+    /ClientExit {false SetCycleValue} def
+    
+    /PaintCycle { % updating? => -
+	EraseToUpdate and {EraseObject} if
+	BindCycleObject ShowObject
+    } def
+classend def
+% ============================= Message Item =============================
+/MessageItem CycleItem []
+classbegin
+    /new { % label initstring loc notify parentcanvas => instance
+        dup type /canvastype eq % get string in array for CycleItem
+            {4 -1 roll [exch] 4 1 roll} {6 -1 roll [exch] 6 1 roll} ifelse
+        /new super send
+    } def
+    /printstring { % string => -
+    ItemBegin
+	/ItemValue exch def NotifyUser Cycle 0 ItemValue put /ItemValue 0 def
+	ItemFrame 0 gt
+	    {ItemFrame 0 0 ItemWidth ItemHeight insetrect rectpath clip} if
+	true PaintCycle
+    ItemEnd
+    } def
+    /printf {sprintf /printstring self send} def % item formatstr argarray => -
+classend def
+% ============================= Slider Item =============================
+/SliderItem LabeledItem
+dictbegin
+    /SliderMax		null def
+    /SliderMin		null def
+    /SliderZone		null def % used in PaintSliderValue
+    /Scale		null def
+dictend
+classbegin
+    /Round		true def
+    /SliderWidth	2 def
+    /SliderHeight	5 def
+    /BarHeight		2 def
+    /ItemFont		/Times-Roman findfont 10 scalefont def
+
+    /new {% label [min max initvalue] loc notify parent => instance
+          % Change: add "increment" to object.
+        /new super send begin
+            ItemObject aload pop
+            /ItemValue exch def /SliderMax exch def /SliderMin exch def
+	    /SliderZone  % area for c/r/l show
+	        SliderMax SliderMin sub 3 div def
+            currentdict
+        end
+    } def
+    /reshape { % x y w h
+	/ItemHeight exch def /ItemWidth exch def
+
+        LabelSize /LabelHeight exch def /LabelWidth exch def
+	/ObjectWidth SliderMax SliderMin sub SliderWidth add def
+	/ObjectHeight
+	    SliderHeight BarHeight add 2 add ItemFont fontascent add def
+
+        AdjustItemSize
+	/ObjectWidth ItemWidth 2 ItemBorder mul sub def
+	ObjectLoc /Right eq ObjectLoc /Left eq or {
+	    /ObjectWidth ObjectWidth LabelWidth sub ItemGap sub def
+	} if
+	CalcObj&LabelXY
+	
+	/Scale ObjectWidth SliderWidth sub SliderMax SliderMin sub div def
+	
+	ItemWidth ItemHeight /reshape super send
+    } def
+
+    /PaintItem {
+        /PaintItem super send
+	ItemBorderColor setcolor
+	ObjectX ObjectY SliderHeight add 1 add
+	    ObjectWidth BarHeight rectpath fill
+	ItemValue ItemBorderColor PaintSliderValue
+    } def
+    /ClientDown {
+        SetSliderValue
+        ItemValue ItemPaintedValue ne {
+            ItemPaintedValue ItemFillColor PaintSliderValue
+            ItemValue ItemBorderColor PaintSliderValue
+        } if
+    } def
+    /ClientDrag	{ClientDown} def
+    /ClientUp {ClientDown NotifyUser StopItem} def
+
+    /XToValue { % x -> value
+        ObjectX sub
+        0 max ObjectWidth SliderWidth sub min
+        Scale div SliderMin add Round {round} if
+    } def
+    /ValueToX { % value -> x
+	SliderMin sub Scale mul ObjectX add
+    } def
+    /PaintSliderValue {  % value color => -
+	setcolor /ItemPaintedValue 1 index store ValueToX dup
+	ObjectY SliderWidth SliderHeight rectpath fill
+	SliderWidth 2 div add
+	ObjectY SliderHeight add BarHeight add 2 add moveto
+	ItemPaintedValue 16 string cvs
+	
+	ItemPaintedValue SliderMin SliderZone add le {show}
+	{ItemPaintedValue SliderMax SliderZone sub ge {rshow}
+	{cshow} ifelse} ifelse
+    } def
+    /SetSliderValue {
+%	/ItemValue CurrentEvent /XLocation get XToValue store
+        /ItemValue currentcursorlocation pop XToValue store
+    } def
+classend def
+% ============================= Text Items =============================
+/TextItem LabeledItem [/ItemBaseline /ItemText] % /CurrentTextItem
+classbegin
+    /new { % label initialvalue loc notify parent =>  instance
+        /new super send begin
+            /ItemValue ItemObject def
+            currentdict
+        end
+    } def
+    /reshape { % x y w h
+	/ItemHeight exch def /ItemWidth exch def
+
+        LabelSize /LabelHeight exch def /LabelWidth exch def
+        ItemValue ItemFont ThingSize
+            /ObjectHeight exch def /ObjectWidth exch def
+        
+        AdjustItemSize
+	/ObjectWidth ItemWidth 2 ItemBorder mul sub def
+	ObjectLoc /Right eq ObjectLoc /Left eq or {
+	    /ObjectWidth ObjectWidth LabelWidth sub ItemGap sub def
+	} if
+	
+	CalcObj&LabelXY
+	/ItemBaseline ObjectY ItemFont fontdescent add def
+	
+	ItemWidth ItemHeight /reshape super send
+
+	ItemFont setfont % this is so the text caret will be right!
+	TextBegin
+	    /ItemText
+	        ItemCanvas ObjectX ItemBaseline ItemValue
+	        /new LiteText send store
+	TextEnd
+    } def
+    /SetCurrentTextItem { % item -> - (Install item as CurrentTextItem)
+	/CurrentTextItem 1 index store
+	/ItemParent exch send setinputfocus
+    } def
+    /TextItemSelectionsDict dictbegin
+	/SetSelectionAt	{
+	    begin
+		Action /Rank get /PrimarySelection eq {
+		    Interest /MyItem get /StartItem exch send
+		} if
+	    end
+	} def
+	/LeftMouseButton {
+	    redistributeevent
+	} def
+    dictend def
+    /TextItemOtherDict dictbegin
+	/AcceptFocus {
+	    /restorefocus CurrentTextItem send pop
+	} def
+	/RestoreFocus /AcceptFocus load def
+	/LoseFocus {
+	    /removefocus CurrentTextItem send pop
+	} def
+	/InsertValue {
+	    dup /Action get /inserttext CurrentTextItem send
+	} def
+	/Default {
+	    console (Default Focus kbd event! Name=%\n) [4 -1 roll] fprintf
+	} def
+    dictend def
+    /maketextinterest { % - => - (make selectionsinterest)
+	ItemCanvas /TextItemSelectionsDict self send selectionsinterests
+	dup { cvx /MyItem self put } forall
+	createevent dup cvx begin
+	    /Name TextItemOtherDict def
+	    /Canvas ItemParent def
+	    /MyItem self def
+	end
+    } def
+    /makesharedtextinterests { % - => [interest proc] (make asciiinterest)
+    [
+	{ /Name get /inserttext CurrentTextItem send }
+	ItemParent /defaultkeys ClassKeysInterest send		%  Nint
+	[self] {/CurrentTextItem exch def} append cvx
+    ]
+    } def
+    /restorefocus {TextBegin /starttext ItemText send TextEnd} def % - -> -
+    /removefocus {TextBegin /stoptext ItemText send TextEnd} def % - -> -
+    /inserttext { % str/char -> -
+    TextBegin
+	%ItemFrame 0 gt {
+	%    2 0 0 ItemWidth ItemHeight insetrect rectpath clip
+	%} if
+	dup type /stringtype eq {
+	    {/inserttext ItemText send} forall
+	} {
+	    /inserttext ItemText send
+	} ifelse
+	SetTextValue NotifyUser
+    TextEnd
+    } def
+
+    /PaintItem {
+	/PaintItem super send
+        /ItemObject ItemValue store
+        ShowObject
+        ItemBorderColor setcolor
+        ObjectX ObjectY moveto ObjectWidth 0 rlineto stroke
+    } def
+    /StartItem { % - => -
+    TextBegin
+    	CurrentTextItem null ne {
+	    /stoptext CurrentTextItem /ItemText get send
+    	} if
+	self SetCurrentTextItem
+	/starttext ItemText send
+%	CurrentEvent begin XLocation YLocation end /settextxy ItemText send
+	currentcursorlocation /settextxy ItemText send
+    TextEnd
+    } def
+    /SetTextValue {/ItemValue ItemText /TextStr get store} def
+    /TextBegin {ItemBegin} def
+    /TextEnd {ItemEnd} def
+classend def
+% ============================= Button Items =============================
+/ButtonItem LabeledItem []
+classbegin
+    /new { % label notifyproc parentcanvas  =>  instance
+        % fake a labeled item.
+        dup type /canvastype eq
+            {() /Center 4 2 roll} {() /Center 6 2 roll} ifelse
+        /new super send
+        begin
+	    /ItemRadius		.5 def
+	    /ItemFrame		4 def
+	    /ItemBorder		null def %
+	    /ItemGap		6 def
+            currentdict
+        end
+    } def
+    /reshape { % x y w h
+	/ItemHeight exch def /ItemWidth exch def
+
+        LabelSize /LabelHeight exch def /LabelWidth exch def
+        ItemBorder null eq {/ItemBorder ItemFrame def} if
+        
+        /ItemWidth ItemWidth
+            ItemBorder ItemGap add 2 mul LabelWidth add max def
+        /ItemHeight ItemHeight
+            ItemBorder ItemGap add 2 mul LabelHeight add max def
+
+	/LabelX ItemWidth LabelWidth sub 2 div LabelX add def
+	/LabelY ItemHeight LabelHeight sub 2 div LabelY add def
+	ItemLabel type /stringtype eq { % adjust for descenders
+	    /LabelY LabelY ItemFont fontdescent 2 div sub ItemBorder max def
+	} if
+	
+	ItemRadius 0 gt ItemRadius .5 le and {
+	    /ItemRadius ItemWidth ItemHeight min ItemRadius mul def
+	} if
+
+	ItemWidth ItemHeight /reshape super send
+    } def
+
+    /PaintItem {
+        ItemValue null eq {/PaintItem super send} {HiLightButton} ifelse
+    } def
+    /SetButtonValue { % bool => -
+        /ItemValue exch store
+        ItemValue ItemPaintedValue ne {/paint self send} if
+    } def
+    /ClientDown {true SetButtonValue} def
+    /ClientUp {
+        ItemValue {NotifyUser} if
+        false SetButtonValue
+        /ItemValue null store
+        StopItem
+    } def
+    /ClientEnter {true SetButtonValue} def
+    /ClientExit {false SetButtonValue} def
+    
+    /HiLightButton {
+        ItemBorder ItemRadius 0 0 ItemWidth ItemHeight insetrrect
+        rrectpath 0 setgray 5 setrasteropcode fill
+    } def
+    /PaintButton {
+	ItemRadius 0 0 ItemWidth ItemHeight rrectpath
+	ItemFillColor setcolor fill
+	ItemBorder ItemRadius 0 0 ItemWidth ItemHeight rrectframe
+	ItemBorderColor setcolor eofill
+    } def
+classend def
+% ============================= Array Items =============================
+/ArrayItem LabeledItem
+dictbegin
+    /Array	null def
+    /CellRows	null def
+    /CellCols	null def
+
+    /CellHeight	0 def
+    /CellWidth	0 def
+    /CellGap	5 def
+    /StrokeArraySelection false def
+dictend
+classbegin
+    /new { % label array loc notifyproc parentcanvas => instance
+        /new super send begin
+            /Array	ItemObject def
+	    /CellRows	Array length def
+	    /CellCols	Array 0 get length def
+
+	    /ItemValue	[0 0] def % [col row]
+	    /ItemFrame	1 def % Array items generally are framed.
+
+            currentdict
+        end
+    } def
+    /reshape { % x y w h
+	/ItemHeight exch def /ItemWidth exch def
+
+        Array { % calculate bbox for all the array objects
+            {   ItemFont ThingSize
+		/CellHeight exch CellHeight max def % round?? ceiling??
+		/CellWidth exch CellWidth max def
+            } forall
+        } forall
+        /ObjectHeight
+            CellRows CellHeight CellGap add mul CellGap add ceiling def
+        /ObjectWidth
+            CellCols CellWidth CellGap add mul CellGap add ceiling def
+        LabelSize /LabelHeight exch def /LabelWidth exch def
+
+        AdjustItemSize
+	CalcObj&LabelXY
+	
+	ItemWidth ItemHeight /reshape super send
+    } def
+    
+    /PaintItem {
+        /PaintItem super send
+        PaintArray ItemValue HilightCell
+    } def
+    /ClientDown {SetArrayValue} def
+    /ClientUp {
+	ItemValue ItemInitialValue ValuesDiffer {NotifyUser} if
+	StopItem
+    } def
+    /ClientDrag {SetArrayValue} def
+
+    /SetArrayValue { % - => - (CurrentEvent used to set ItemValue)
+%	/ItemValue [CurrentEvent begin XLocation YLocation end XYToColRow] def
+	/ItemValue [currentcursorlocation XYToColRow] def
+        ItemValue ItemPaintedValue ValuesDiffer {
+            ItemPaintedValue HilightCell
+            ItemValue HilightCell
+	    /ItemPaintedValue ItemValue store
+        } if
+    } def
+    /PaintArray {
+        0 1 CellRows 1 sub { % row
+            0 1 CellCols 1 sub { % row col
+                1 index 2 copy			% row col row col row
+                ColRowToThing ItemTextColor	% row col row thing color
+                4 2 roll ColRowToXY ItemFont ShowThing
+            } for
+            pop
+        } for
+    } def
+    /HilightCell { % [col row]  =>  -
+%        dup null ne {
+	    CellGap neg exch aload pop
+	    ColRowToXY CellWidth CellHeight
+	    insetrect
+	    rectpath
+	    5 setrasteropcode StrokeArraySelection {stroke} {fill} ifelse
+%        } {pop} ifelse
+    } def
+    /ColRowToThing {Array exch get exch get} def % col row => thing
+    /ColRowToXY { % col row => x y
+        exch CellGap CellWidth add mul CellGap add ObjectX add
+        exch CellRows 1 sub exch sub % flip to top-to-bottom!
+            CellGap CellHeight add mul CellGap add ObjectY add
+    } def
+    /XYToColRow { % x y => col row
+        exch ObjectX sub CellGap sub CellGap CellWidth add div floor
+            0 max CellCols 1 sub min
+        exch ObjectY sub CellGap sub CellGap CellHeight add div floor
+            0 max CellRows 1 sub min CellRows 1 sub exch sub
+    } def
+    /ValuesDiffer { % val1 val2 => bool
+        aload pop 3 2 roll aload pop exch 3 1 roll ne 3 1 roll ne or
+    } def
+classend def
+
+% ============================= Utilities =============================
+
+/iteminterests { % dict/array => interests
+10 dict begin
+    /items exch def
+    /dict? items type /dicttype eq def
+    /firsttextitem? true def
+    [
+        items {
+	    dict? {exch pop} if
+	    % Add an executable "interest" for first text item.
+	    dup /ItemText known firsttextitem? and {
+	        /firsttextitem? false def
+		/makesharedtextinterests 1 index send
+	        exch
+	    } if
+	    /makestartinterests exch send aload pop
+        } forall
+    ]
+end
+} def
+/forkitems { % dict/array => process (forks event mgr for these items)
+    iteminterests forkeventmgr
+} def
+/paintitems { % dict/array => - (paints these items)
+    mark exch { % mark dict/array
+	/paint exch send pause
+	cleartomark mark
+    } forall
+    pop % ..the mark
+} def
+
+systemdict /textpackage known not systemdict /LiteText known not and
+    {(NeWS/litetext.ps) run} if
+
+end } if  %  systemdict /Item known not { systemdict begin ...
+
+

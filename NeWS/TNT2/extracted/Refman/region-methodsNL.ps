@@ -1,0 +1,4138 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 15 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 9 /Palatino-Italic FMDEFINEFONT
+5 10 /Palatino-Roman FMDEFINEFONT
+6 14 /Times-Bold FMDEFINEFONT
+7 10 /Palatino-Italic FMDEFINEFONT
+8 9 /Helvetica-Bold FMDEFINEFONT
+%%Page: "137" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (137) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (17-0) 158.58 672.33 S
+-0.12 (17-0) 158.58 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (ClassRegion) 199.01 509.03 S
+3 F
+7 X
+1 K
+-3.12 (17) 536.13 508.36 S
+4 F
+0 X
+0 K
+0.47 0.09 (Figur) 198 381.6 B
+0.47 0.09 (e 17-1) 218.77 381.6 B
+0 F
+0.47 0.09 (The ClassRegion subtr) 248.4 381.6 B
+0.47 0.09 (ee) 340.44 381.6 B
+5 F
+0.52 0.1 (Regions ar) 198 356.93 B
+0.52 0.1 (e the T) 246.22 356.93 B
+0.52 0.1 (oolkit\325s lightweight canvas r) 276.82 356.93 B
+0.52 0.1 (eplacement but ther) 406.35 356.93 B
+0.52 0.1 (e ar) 497.33 356.93 B
+0.52 0.1 (e some ) 514.31 356.93 B
+0.52 0.1 (dif) 198 344.53 B
+0.52 0.1 (fer) 210.46 344.53 B
+0.52 0.1 (ences between canvases and r) 222.65 344.53 B
+0.52 0.1 (egions:) 358.73 344.53 B
+6 F
+(\245) 198 326.13 T
+5 F
+0.52 0.1 (Regions can only be r) 210.6 326.13 B
+0.52 0.1 (ectangular in shape.) 309.29 326.13 B
+6 F
+(\245) 198 313.73 T
+5 F
+0.52 0.1 (Regions cannot be made Selectable \050See ) 210.6 313.73 B
+7 F
+0.52 0.1 (Selectables) 394.66 313.73 B
+5 F
+0.52 0.1 ( on page 65 in ) 438.88 313.73 B
+0.1 (ClassCanvas.\051) 210.6 301.33 S
+6 F
+(\245) 198 288.93 T
+5 F
+0.52 0.1 (Regions have par) 210.6 288.93 B
+0.52 0.1 (ents, but they don\325t have childr) 289.7 288.93 B
+0.52 0.1 (en.) 433.43 288.93 B
+6 F
+(\245) 198 276.53 T
+5 F
+0.52 0.1 (Regions generally ar) 210.6 276.53 B
+0.52 0.1 (e r) 304.11 276.53 B
+0.52 0.1 (equir) 315.98 276.53 B
+0.52 0.1 (ed to be clients of a Bag \050e.g., bor) 339.57 276.53 B
+0.52 0.1 (der bags and ) 491.95 276.53 B
+0.52 0.1 (panels\051 to be useful. Bags pr) 210.6 264.13 B
+0.52 0.1 (ovide the canvas \322glue\323 to captur) 340.19 264.13 B
+0.52 0.1 (e events and ) 493.96 264.13 B
+0.52 0.1 (forwar) 210.6 251.73 B
+0.52 0.1 (d them to the appr) 241.03 251.73 B
+0.52 0.1 (opriate r) 327.06 251.73 B
+0.52 0.1 (egion client.) 366.1 251.73 B
+0.52 0.1 (Regions support the menu and tracking interfaces found in ClassCanvas. The ) 198 231.33 B
+0.52 0.1 (T) 198 218.93 B
+0.52 0.1 (oolkit uses r) 203.31 218.93 B
+0.52 0.1 (egions to cr) 259.25 218.93 B
+0.52 0.1 (eate such objects as buttons and settings. ) 312.17 218.93 B
+54 144 558 466.34 C
+198 396 558 456.34 C
+198 396 558 456.34 R
+7 X
+0 K
+V
+8 F
+0 X
+(ClassObject) 270 446.58 T
+(ClassDrawable) 345.02 446.08 T
+(ClassRegion) 412.92 411.38 T
+322.78 448.53 342.79 448.53 2 L
+7 X
+V
+0.5 H
+2 Z
+0 X
+N
+468.71 415.19 495.71 415.19 2 L
+7 X
+V
+0 X
+N
+468.12 414.4 505.67 398.34 2 L
+7 X
+V
+0 X
+N
+408.67 448.24 413.64 418.79 2 L
+7 X
+V
+0 X
+N
+467.7 414.9 496.67 443.34 2 L
+7 X
+V
+0 X
+N
+54 144 558 466.34 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "137" 2
+1 15 /Palatino-Italic FMDEFINEFONT
+3 9 /Helvetica FMDEFINEFONT
+9 14 /Palatino-Italic FMDEFINEFONT
+10 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "138" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (17) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (138) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+1 F
+(Cr) 54 638 T
+(eation) 69.57 638 T
+3 F
+(/new) 54 617 T
+(parentcanvas ) 198 617 T
+8 F
+(/new) 254.45 617 T
+3 F
+( instance) 274.43 617 T
+5 F
+0.52 0.1 (Cr) 198 597.33 B
+0.52 0.1 (eates a new r) 209.05 597.33 B
+0.52 0.1 (egion instance.) 269.18 597.33 B
+1 F
+-0.94 (Region appearance) 54 563.6 P
+9 F
+(Colors) 126 529.27 T
+5 F
+0.52 0.1 (The NeWS T) 198 507.93 B
+0.52 0.1 (oolkit\325s OPEN LOOK components ar) 255.31 507.93 B
+0.52 0.1 (e drawn in a \3223-D\323 style ) 423.39 507.93 B
+0.52 0.1 (using \336ve dif) 198 495.53 B
+0.52 0.1 (fer) 258.53 495.53 B
+0.52 0.1 (ent brightness values to r) 270.71 495.53 B
+0.52 0.1 (epr) 386.43 495.53 B
+0.52 0.1 (esent light and dark shading of ) 401.29 495.53 B
+0.14 0.1 (beveled edges \050T) 198 483.13 B
+0.14 0.1 (able 17-1\051.  \050For a complete explanation of how these shadings ) 273.45 483.13 B
+0.52 0.1 (ar) 198 470.73 B
+0.52 0.1 (e used to display 3-D objects see the ) 206.96 470.73 B
+7 F
+0.52 0.1 (OPEN LOOK Graphical User Interface ) 376.07 470.73 B
+0.52 0.1 (Functional Speci\336cations) 198 458.33 B
+5 F
+0.52 0.1 (.\051) 302.53 458.33 B
+0.52 0.1 (However) 198 437.93 B
+0.52 0.1 (, the 3-D ef) 239.24 437.93 B
+0.52 0.1 (fect is unusable on a black and white display when gray ) 289.85 437.93 B
+0.52 0.1 (values ar) 198 425.53 B
+0.52 0.1 (e appr) 239.29 425.53 B
+0.52 0.1 (oximated by stipple patterns. In or) 268.47 425.53 B
+0.52 0.1 (der to make the OPEN ) 426.97 425.53 B
+0.52 0.1 (LOOK components usable in two colors \050i.e. black and white\051, the T) 198 413.13 B
+0.52 0.1 (oolkit ) 508.05 413.13 B
+0.52 0.1 (pr) 198 400.73 B
+0.52 0.1 (ovides 2-D colors and interfaces to switch between 3-D and 2-D looks.) 207.98 400.73 B
+3 F
+(/setcolors) 54 381 T
+(foreground-color background-color ) 198 381 T
+8 F
+(/setcolors) 338.36 381 T
+3 F
+( -) 380.81 381 T
+5 F
+0.52 0.1 (Sets the for) 198 361.33 B
+0.52 0.1 (egr) 249.18 361.33 B
+0.52 0.1 (ound and backgr) 263.59 361.33 B
+0.52 0.1 (ound colors for the r) 341.3 361.33 B
+0.52 0.1 (egion. ) 435.69 361.33 B
+8 F
+0.45 -0.27 (/setcolors) 466.43 361.33 B
+5 F
+0.52 0.1 ( examines ) 506.19 361.33 B
+-0.01 0.1 (the ) 198 348.93 B
+8 F
+-0.01 -0.27 (/3D?) 214.75 348.93 B
+5 F
+-0.01 0.1 ( variable \050see ) 233.14 348.93 B
+7 F
+-0.01 0.1 (Switching between 3-D and 2-D looks) 294.96 348.93 B
+5 F
+-0.01 0.1 (\051 to determine whether ) 451.74 348.93 B
+0.52 0.1 (to set ) 198 336.54 B
+3 F
+0.45 -0.27 (/FG) 225.74 336.54 B
+5 F
+0.52 0.1 ( and ) 239.91 336.54 B
+3 F
+0.45 -0.27 (/BG) 263.36 336.54 B
+5 F
+0.52 0.1 ( \0503-D colors\051 or ) 278.04 336.54 B
+3 F
+0.45 -0.27 (/2DFG) 350.38 336.54 B
+5 F
+0.52 0.1 ( and ) 375.5 336.54 B
+3 F
+0.45 -0.27 (/2DBG) 398.95 336.54 B
+5 F
+0.52 0.1 ( \0502-D colors\051. If ) 424.58 336.54 B
+8 F
+0.45 -0.27 (/3D?) 496.8 336.54 B
+5 F
+0.52 0.1 ( is tr) 515.2 336.54 B
+0.52 0.1 (ue, ) 536.11 336.54 B
+8 F
+0.45 -0.27 (/setcolors) 198 324.14 B
+5 F
+0.52 0.1 ( also computes and sets ) 237.76 324.14 B
+3 F
+0.5 (BG0) 349.33 324.14 P
+5 F
+0.52 0.1 (, ) 367.31 324.14 B
+3 F
+0.5 (BG2) 373.03 324.14 P
+5 F
+0.52 0.1 (, and ) 391.01 324.14 B
+3 F
+0.5 (BG3) 417.07 324.14 P
+5 F
+0.52 0.1 (, based on the value of ) 435.05 324.14 B
+3 F
+0.27 -0.27 (background-color) 198 311.73 B
+5 F
+0.31 0.1 (. See) 262.37 311.73 B
+10 F
+0.31 0.1 ( ) 283 311.73 B
+5 F
+0.31 0.1 (T) 285.92 311.73 B
+0.31 0.1 (able 17-1) 291.22 311.73 B
+10 F
+0.31 0.1 ( ) 331.48 311.73 B
+5 F
+0.31 0.1 (for an explanation of these colors. If the instance ) 334.39 311.73 B
+0.52 0.1 (is valid, it is r) 198 299.33 B
+0.52 0.1 (epainted immediately using the new colors. If the instance is ) 261.07 299.33 B
+0.52 0.1 (invalid the colors ar) 198 286.93 B
+0.52 0.1 (e r) 289.52 286.93 B
+0.52 0.1 (eset but the instance is not painted automatically) 301.39 286.93 B
+0.52 0.1 (. See ) 524.51 286.93 B
+7 F
+0.52 0.1 (V) 198 274.53 B
+0.52 0.1 (alidation) 204.58 274.53 B
+5 F
+0.52 0.1 ( for mor) 241.01 274.53 B
+0.52 0.1 (e information.) 278.63 274.53 B
+0.52 0.1 (Send) 198 254.14 B
+8 F
+0.45 -0.27 ( /setcolors) 220.36 254.14 B
+5 F
+0.52 0.1 ( to a class to change the class defaults or an instance to change ) 262.79 254.14 B
+0.52 0.1 (just the instance.) 198 241.73 B
+3 F
+(/colors) 54 222 T
+(- ) 198 222 T
+8 F
+(/colors) 203.49 222 T
+3 F
+( foreground-color background-color) 232.96 222 T
+5 F
+0.33 0.1 (Returns the for) 198 202.34 B
+0.33 0.1 (egr) 266.32 202.34 B
+0.33 0.1 (ound and backgr) 280.73 202.34 B
+0.33 0.1 (ound colors for the r) 358.06 202.34 B
+0.33 0.1 (egion. ) 451.69 202.34 B
+8 F
+0.28 -0.27 (/colors) 482.25 202.34 B
+5 F
+0.33 0.1 ( examines ) 509.83 202.34 B
+0.52 0.1 (the value of ) 198 189.93 B
+8 F
+0.45 -0.27 (/3D?) 255.37 189.93 B
+5 F
+0.52 0.1 ( to determine whether to r) 273.76 189.93 B
+0.52 0.1 (eturn ) 394.63 189.93 B
+3 F
+0.45 -0.27 (/FG) 422.08 189.93 B
+5 F
+0.52 0.1 ( and ) 436.25 189.93 B
+3 F
+0.45 -0.27 (/BG) 459.71 189.93 B
+5 F
+0.52 0.1 ( or ) 474.39 189.93 B
+3 F
+0.45 -0.27 (/2DFG) 490.23 189.93 B
+5 F
+0.52 0.1 ( and ) 515.35 189.93 B
+3 F
+0.45 -0.27 (/2DBG) 198 177.53 B
+5 F
+0.52 0.1 (. V) 223.62 177.53 B
+0.52 0.1 (alues r) 235.74 177.53 B
+0.52 0.1 (eturned ar) 266.18 177.53 B
+0.52 0.1 (e the NeWS color objects.) 313.69 177.53 B
+FMENDPAGE
+%%EndPage: "138" 3
+11 13 /Palatino-Italic FMDEFINEFONT
+%%Page: "139" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassRegion) 198 108.7 S
+0 F
+0.09 (139) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (17) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+(/BackgroundColor) 54 642 T
+(- ) 198 642 T
+8 F
+(/BackgroundColor) 203.49 642 T
+3 F
+( background-color) 281.89 642 T
+5 F
+0.52 0.1 (Returns) 198 622.33 B
+3 F
+0.45 -0.27 ( BG) 233.45 622.33 B
+5 F
+0.52 0.1 ( or ) 248.57 622.33 B
+3 F
+0.45 -0.27 (2DBG) 264.41 622.33 B
+5 F
+0.52 0.1 (, accor) 287.81 622.33 B
+0.52 0.1 (ding to the dimensionality) 317.12 622.33 B
+0.52 0.1 (. ) 437.12 622.33 B
+8 F
+0.45 -0.27 (/BackgroundColor) 442.84 622.33 B
+5 F
+0.52 0.1 ( checks ) 516.92 622.33 B
+0.13 0.1 (to see what the dimensional state of the framebuf) 198 609.93 B
+0.13 0.1 (fer is befor) 421.24 609.93 B
+0.13 0.1 (e r) 469.76 609.93 B
+0.13 0.1 (eturning a color) 481.24 609.93 B
+0.13 0.1 (. ) 552.68 609.93 B
+0.52 0.1 (Thus you should use ) 198 597.53 B
+8 F
+0.45 -0.27 (/BackgroundColor) 296.92 597.53 B
+5 F
+0.52 0.1 ( instead of ) 371 597.53 B
+3 F
+0.45 -0.27 (/BG) 422.15 597.53 B
+5 F
+0.52 0.1 ( so your application will ) 436.83 597.53 B
+0.52 0.1 (use the appr) 198 585.13 B
+0.52 0.1 (opriate 2-D or 3-D color) 254.93 585.13 B
+0.52 0.1 (.) 363.76 585.13 B
+3 F
+(/ForegroundColor) 54 565.4 T
+(- ) 198 565.4 T
+8 F
+(/ForegroundColor) 203.49 565.4 T
+3 F
+( foreground-color) 279.88 565.4 T
+5 F
+0.15 0.1 (Returns) 198 545.73 B
+3 F
+0.13 -0.27 ( FG) 233.45 545.73 B
+5 F
+0.15 0.1 ( or ) 247.75 545.73 B
+3 F
+0.13 -0.27 (2DFG) 262.84 545.73 B
+5 F
+0.15 0.1 (, accor) 285.73 545.73 B
+0.15 0.1 (ding to the dimensionality) 314.67 545.73 B
+0.15 0.1 (. ) 433.56 545.73 B
+8 F
+0.13 -0.27 (/ForegroundColor) 438.9 545.73 B
+5 F
+0.15 0.1 ( checks to ) 510.98 545.73 B
+0.52 0.1 (see what the dimensional state of the framebuf) 198 533.33 B
+0.52 0.1 (fer is befor) 412.35 533.33 B
+0.52 0.1 (e r) 461.67 533.33 B
+0.52 0.1 (eturning a color) 473.54 533.33 B
+0.52 0.1 (. ) 545.76 533.33 B
+0.52 0.1 (Thus you should use ) 198 520.93 B
+8 F
+0.45 -0.27 (/ForegroundColor) 296.92 520.93 B
+5 F
+0.52 0.1 ( instead of ) 369 520.93 B
+3 F
+0.45 -0.27 (/FG) 420.15 520.93 B
+5 F
+0.52 0.1 ( so your application will ) 434.32 520.93 B
+0.52 0.1 (use the appr) 198 508.53 B
+0.52 0.1 (opriate 2-D or 3-D color) 254.93 508.53 B
+0.52 0.1 (.) 363.76 508.53 B
+11 F
+-0.84 0.13 (Region color class variables) 198 476.13 B
+5 F
+0.52 0.1 (TNT u) 198 459.13 B
+0.52 0.1 (ses slightly dif) 228.1 459.13 B
+0.52 0.1 (fer) 294.32 459.13 B
+0.52 0.1 (ent names for its 3-D colors than ar) 306.5 459.13 B
+0.52 0.1 (e found in the ) 468.05 459.13 B
+7 F
+0.52 0.1 (OPEN LOOK Graphical User Interface Functional Speci\336cations) 198 446.73 B
+5 F
+0.52 0.1 (. T) 470.86 446.73 B
+0.52 0.1 (able 17-1 shows ) 481.88 446.73 B
+0.52 0.1 (how the TNT color variables map into the OPEN LOOK names as well as the ) 198 434.33 B
+0.52 0.1 (names of the 2-D class variables.) 198 421.93 B
+4 F
+0.47 0.09 (T) 198 402.2 B
+0.47 0.09 (able 17-1) 202.58 402.2 B
+0 F
+0.47 0.09 (T) 241.2 402.2 B
+0.47 0.09 (oolkit color variables and their OPEN LOOK names) 245.97 402.2 B
+54 387.74 558 392.2 C
+54 389.9 558 389.9 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+10 F
+0 X
+0 K
+0.52 0.1 (TNT Class) 54 381.07 B
+0.52 0.1 (OPEN LOOK) 167.98 381.07 B
+54 360.87 558 365.34 C
+54 363.03 558 363.03 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+10 F
+0 X
+0 K
+0.1 (V) 54 368.67 S
+0.1 (ariable) 60.77 368.67 S
+0.1 (name) 167.98 368.67 S
+0.1 (Explanation) 336.1 368.67 S
+3 F
+-0.27 (/FG) 54 347.81 S
+5 F
+0.1 (For) 168 347.81 S
+0.1 (egr) 183.08 347.81 S
+0.1 (ound) 197.49 347.81 S
+0.5 (Foreground color. Used for text and the border of the ) 312 347.81 P
+0.5 (region. Default is black.) 312 335.41 P
+3 F
+-0.27 (/BG0) 54 319.01 S
+5 F
+0.1 (Backgr) 168 319.01 S
+0.1 (ound) 199.02 319.01 S
+0.52 0.1 (B) 312 319.01 B
+0.5 (ackground color 0. Slightly darker than white, the ) 318.21 319.01 P
+0.5 (OPEN LOOK color that it replaces.) 312 306.61 P
+3 F
+-0.27 (/BG) 54 290.21 S
+5 F
+0.1 (BG1) 168 290.21 S
+0.52 0.1 (Backgr) 312 290.21 B
+0.52 0.1 (ound color 1. Slightly darker than bg0. ) 343.02 290.21 B
+0.52 0.1 (Replaces the OPEN LOOK color) 312 277.81 B
+0.52 0.1 (, BG1. Used for the ) 458.42 277.81 B
+0.52 0.1 (backgr) 312 265.41 B
+0.52 0.1 (ound of the r) 342.44 265.41 B
+0.52 0.1 (egion.) 402.62 265.41 B
+3 F
+-0.27 (/BG2) 54 249.01 S
+5 F
+0.1 (BG2) 168 249.01 S
+0.52 0.1 (Backgr) 312 249.01 B
+0.52 0.1 (ound color 2. Slightly darker than bg. Used as ) 343.02 249.01 B
+0.52 0.1 (the backgr) 312 236.61 B
+0.52 0.1 (ound of \322indented\323 choices.) 359.72 236.61 B
+3 F
+-0.27 (/BG3) 54 220.21 S
+5 F
+0.1 (BG3) 168 220.21 S
+0.52 0.1 (Backgr) 312 220.21 B
+0.52 0.1 (ound color 3. Used for the shadow of 3-D ) 343.02 220.21 B
+0.1 (objects.) 312 207.81 S
+3 F
+(/2DFG) 54 191.41 T
+5 F
+0.1 (Black) 168 191.41 S
+0.52 0.1 (Used for the for) 312 191.41 B
+0.52 0.1 (egr) 384.71 191.41 B
+0.52 0.1 (ound of 2-D r) 399.12 191.41 B
+0.52 0.1 (egions. Defaults to ) 461.5 191.41 B
+0.1 (black.) 312 179.01 S
+3 F
+(/2DBG) 54 162.61 T
+5 F
+0.1 (White) 168 162.61 S
+0.52 0.1 (Used for the for) 312 162.61 B
+0.52 0.1 (egr) 384.71 162.61 B
+0.52 0.1 (ound of 2-D r) 399.12 162.61 B
+0.52 0.1 (egions. Defaults to ) 461.5 162.61 B
+0.1 (white.) 312 150.21 S
+FMENDPAGE
+%%EndPage: "139" 4
+%%Page: "140" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (17) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (140) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+11 F
+-0.84 0.13 (Switching between 3-D and 2-D looks) 198 639.33 B
+3 F
+(/3D?) 54 622.33 T
+8 F
+(/3D?) 198 622.33 T
+3 F
+( boolean ) 217.48 622.33 T
+5 F
+(\050Variable\051) 254.45 622.33 T
+0.52 0.1 (Determ) 198 602.33 B
+0.52 0.1 (ines whether the r) 231.94 602.33 B
+0.52 0.1 (egion is drawn in 3-D or 2-D \050i.e., the r) 314.93 602.33 B
+0.52 0.1 (egion\325s ) 493.47 602.33 B
+0.52 0.1 (dimensionality\051. The default is tr) 198 589.93 B
+0.52 0.1 (ue\321use 3-D colors. 3-D r) 348.21 589.93 B
+0.52 0.1 (egions ar) 463.37 589.93 B
+0.52 0.1 (e drawn ) 504.82 589.93 B
+0.34 0.1 (using the 5 colors, ) 198 577.53 B
+3 F
+0.29 -0.27 (FG) 283.7 577.53 B
+5 F
+0.34 0.1 ( ) 295.64 577.53 B
+3 F
+0.29 -0.27 (BG) 298.58 577.53 B
+5 F
+0.34 0.1 ( ) 311.02 577.53 B
+3 F
+0.29 -0.27 (BG0) 313.96 577.53 B
+5 F
+0.34 0.1 ( ) 331.14 577.53 B
+3 F
+0.29 -0.27 (BG2) 334.07 577.53 B
+5 F
+0.34 0.1 ( and ) 351.25 577.53 B
+3 F
+0.29 -0.27 (BG3) 374.34 577.53 B
+5 F
+0.34 0.1 ( . 2-D r) 391.51 577.53 B
+0.34 0.1 (egions ar) 423.15 577.53 B
+0.34 0.1 (e drawn using the 2 ) 464.42 577.53 B
+0.52 0.1 (colors, ) 198 565.13 B
+3 F
+0.45 -0.27 (2DFG) 230.76 565.13 B
+5 F
+0.52 0.1 ( and ) 253.65 565.13 B
+3 F
+0.45 -0.27 (2DBG) 277.11 565.13 B
+5 F
+0.52 0.1 (. If you the T) 300.5 565.13 B
+0.52 0.1 (oolkit to be in 2-D mode when it is \336rst ) 359.28 565.13 B
+0.2 0.1 (loaded you can set the dimensionality by doing a /3D? false put in UserPr) 198 552.73 B
+0.2 0.1 (o\336le.) 535.6 552.73 B
+3 F
+(/set3D) 54 533 T
+(boolean /) 198 533 T
+8 F
+(set3D) 234.97 533 T
+3 F
+( -) 259.45 533 T
+5 F
+0.52 0.1 (Sets the dimensionality of the r) 198 513.33 B
+0.52 0.1 (egion. ) 340.59 513.33 B
+8 F
+0.45 -0.27 (/set3D) 371.33 513.33 B
+5 F
+0.52 0.1 ( does not cause the r) 396.69 513.33 B
+0.52 0.1 (egion to ) 491.11 513.33 B
+0.52 0.1 (r) 198 500.93 B
+0.52 0.1 (epaint, but it does invalidate instances of the following r) 201.87 500.93 B
+0.52 0.1 (egion subclasses ) 460.7 500.93 B
+0.52 0.1 (\050because they have cached drawing information that needs to be updated\051: ) 198 488.53 B
+0.52 0.1 (ClassButtons and ClassMenuButtons.) 198 476.13 B
+9 F
+(Painting) 126 443.07 T
+5 F
+0.52 0.1 (TNT uses the following r) 198 421.73 B
+0.52 0.1 (endering model for painting r) 312.63 421.73 B
+0.52 0.1 (egions: ) 449.18 421.73 B
+8 F
+0.45 -0.27 (/paint) 484.26 421.73 B
+5 F
+0.52 0.1 ( initiates ) 506.61 421.73 B
+0.07 0.1 (the painting r) 198 409.33 B
+0.07 0.1 (ecursion by making the r) 259.44 409.33 B
+0.07 0.1 (egion\325s canvas par) 372.12 409.33 B
+0.07 0.1 (ent the curr) 455.51 409.33 B
+0.07 0.1 (ent canvas ) 507.76 409.33 B
+0.52 0.1 (and then calling ) 198 396.93 B
+8 F
+0.45 -0.27 (/PaintAll) 274.89 396.93 B
+5 F
+0.52 0.1 (. ) 308.42 396.93 B
+8 F
+0.45 -0.27 (/PaintAll) 314.13 396.93 B
+5 F
+0.52 0.1 ( sets up the context of the curr) 347.66 396.93 B
+0.52 0.1 (ent object ) 487.4 396.93 B
+7 F
+0.52 0.1 (r) 198 384.53 B
+0.52 0.1 (elative) 201.81 384.53 B
+5 F
+0.52 0.1 ( ) 228.6 384.53 B
+7 F
+0.52 0.1 (to t) 231.72 384.53 B
+5 F
+0.52 0.1 (hat of the par) 246.23 384.53 B
+0.52 0.1 (ent. For r) 308.18 384.53 B
+0.52 0.1 (egions the context is established by ) 350.31 384.53 B
+0.52 0.1 (translating t) 198 372.14 B
+0.52 0.1 (he coor) 253.28 372.14 B
+0.52 0.1 (dinate system so 0,0 is at the lower left corner of the ) 286.72 372.14 B
+0.52 0.1 (af) 198 359.73 B
+0.52 0.1 (fected r) 206.35 359.73 B
+0.52 0.1 (egion. ) 240.64 359.73 B
+8 F
+0.45 -0.27 (/PaintAll) 271.38 359.73 B
+5 F
+0.52 0.1 ( also validates the object. \050See ) 304.91 359.73 B
+7 F
+0.52 0.1 (Validation) 444.08 359.73 B
+5 F
+0.52 0.1 ( on page 44.\051 ) 487.83 359.73 B
+8 F
+0.45 -0.27 (/PaintAll) 198 347.33 B
+5 F
+0.52 0.1 ( calls ) 231.53 347.33 B
+8 F
+0.45 -0.27 (/Paint) 257.75 347.33 B
+5 F
+0.52 0.1 ( and ) 280.61 347.33 B
+8 F
+0.45 -0.27 (/PaintChildren) 304.06 347.33 B
+5 F
+0.52 0.1 (. ) 361.21 347.33 B
+8 F
+0.45 -0.27 (/Paint) 366.93 347.33 B
+5 F
+0.52 0.1 ( paints the object itself. Clients ) 389.78 347.33 B
+0.52 0.1 (should override ) 198 334.93 B
+8 F
+0.45 -0.27 (/Paint) 273.78 334.93 B
+5 F
+0.52 0.1 ( \050unless the default ) 296.63 334.93 B
+8 F
+0.45 -0.27 (/Paint) 387.42 334.93 B
+5 F
+0.52 0.1 ( method is suitable, which is ) 410.27 334.93 B
+0.52 0.1 (rar) 198 322.54 B
+0.52 0.1 (e\051. ) 211.01 322.54 B
+8 F
+0.45 -0.27 (/PaintChildren) 225.04 322.54 B
+5 F
+0.52 0.1 ( sends ) 282.19 322.54 B
+8 F
+0.45 -0.27 (/PaintAll) 314.11 322.54 B
+5 F
+0.52 0.1 ( to each Mapped child.) 347.64 322.54 B
+3 F
+(/paint) 54 302.8 T
+(- ) 198 302.8 T
+8 F
+(/paint) 203.49 302.8 T
+3 F
+( -) 227.46 302.8 T
+5 F
+-0.02 0.1 (Sent to a r) 198 283.14 B
+-0.02 0.1 (egion to initiate painting. ) 243.13 283.14 B
+8 F
+-0.02 -0.27 (/paint) 359.7 283.14 B
+5 F
+-0.02 0.1 ( sets up the context for the painting by ) 382.05 283.14 B
+0.52 0.1 (making the r) 198 270.73 B
+0.52 0.1 (egion\325s canvas par) 256.53 270.73 B
+0.52 0.1 (ent the curr) 340.81 270.73 B
+0.52 0.1 (ent canvas. Calls ) 393.95 270.73 B
+8 F
+0.45 -0.27 (/PaintAll) 473.44 270.73 B
+5 F
+0.52 0.1 (.) 506.97 270.73 B
+3 F
+(/PaintAll) 54 251 T
+(- ) 198 251 T
+8 F
+(/PaintAll) 203.49 251 T
+3 F
+( - ) 239.45 251 T
+5 F
+(Subclasser method:) 216 235.34 T
+(/Paint) 318.02 235.34 T
+(/PaintChildren) 318.02 221.34 T
+0.52 0.1 (Paints the entir) 198 201.34 B
+0.52 0.1 (e r) 267.29 201.34 B
+0.52 0.1 (egion. Y) 279.17 201.34 B
+0.52 0.1 (ou should neither call nor override ) 315.76 201.34 B
+8 F
+0.45 -0.27 (/PaintAll) 478.89 201.34 B
+5 F
+0.52 0.1 (. Checks ) 512.41 201.34 B
+0.52 0.1 (to see if the r) 198 188.93 B
+0.52 0.1 (egion is valid and if it isn\325t, validates it. Uses the ) 257.97 188.93 B
+8 F
+0.45 -0.27 (/Paint) 485.14 188.93 B
+5 F
+0.52 0.1 ( and ) 507.99 188.93 B
+8 F
+0.45 -0.27 (/PaintChildren) 198 176.53 B
+5 F
+0.52 0.1 ( methods for painting. Subclassers should override ) 255.15 176.53 B
+8 F
+0.45 -0.27 (/Paint) 491.1 176.53 B
+5 F
+0.52 0.1 ( and/or ) 513.95 176.53 B
+8 F
+0.45 -0.27 (/PaintChildren) 198 164.14 B
+5 F
+0.52 0.1 ( to change the default painting behavior) 255.15 164.14 B
+0.52 0.1 (.) 438.27 164.14 B
+FMENDPAGE
+%%EndPage: "140" 5
+10 12 /Palatino-Roman FMDEFINEFONT
+%%Page: "141" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassRegion) 198 108.7 S
+0 F
+0.09 (141) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (17) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+(/Paint) 54 642 T
+(- ) 198 642 T
+8 F
+(/Paint) 203.49 642 T
+3 F
+( - ) 227.96 642 T
+5 F
+0.52 0.1 (Paints the interior of a r) 198 622.33 B
+0.52 0.1 (egion. Y) 307.39 622.33 B
+0.52 0.1 (ou can assume that ) 343.98 622.33 B
+8 F
+0.45 -0.27 (/Paint) 435.13 622.33 B
+5 F
+0.52 0.1 ( is operating inside a ) 457.98 622.33 B
+0.52 0.1 (gsave/gr) 198 609.93 B
+0.52 0.1 (estor) 239.41 609.93 B
+0.52 0.1 (e and with the r) 261.42 609.93 B
+0.52 0.1 (egion\325s canvas par) 334.74 609.93 B
+0.52 0.1 (ent set as the curr) 419.03 609.93 B
+0.52 0.1 (ent canvas. ) 500.42 609.93 B
+0.1 0.1 (Mor) 198 597.53 B
+0.1 0.1 (eover) 216.98 597.53 B
+0.1 0.1 (, you also can assume that a translate has been done so that the lower ) 241.37 597.53 B
+0.52 0.1 (left corner of the r) 198 585.13 B
+0.52 0.1 (egion is located at \0500,0\051. The default painting done is to \336ll ) 281.16 585.13 B
+0.52 0.1 (the r) 198 572.73 B
+0.52 0.1 (egion with its backgr) 219.15 572.73 B
+0.52 0.1 (ound color; subclassers should override ) 315.39 572.73 B
+8 F
+0.45 -0.27 (/Paint) 500.32 572.73 B
+5 F
+0.52 0.1 ( to ) 523.18 572.73 B
+0.52 0.1 (perform their own r) 198 560.33 B
+0.52 0.1 (egion painting.) 289.35 560.33 B
+3 F
+(/PaintChildren) 54 540.6 T
+(- ) 198 540.6 T
+8 F
+(/PaintChildren) 203.49 540.6 T
+3 F
+( -) 264.42 540.6 T
+5 F
+0.52 0.1 (A no-op for ClassRegion.) 198 520.93 B
+11 F
+-0.84 0.13 (Utility Painting Methods) 198 488.53 B
+5 F
+0.52 0.1 (The methods in this section ar) 198 471.53 B
+0.52 0.1 (e utility methods and ar) 335.92 471.53 B
+0.52 0.1 (e pr) 446.18 471.53 B
+0.52 0.1 (ovided because of ) 464.16 471.53 B
+0.52 0.1 (their usefulness. These ar) 198 459.13 B
+0.52 0.1 (e ) 313.79 459.13 B
+7 F
+0.52 0.1 (not ) 321.79 459.13 B
+5 F
+0.52 0.1 (subclasser methods. The methods should be ) 338.53 459.13 B
+-0.05 0.1 (called fr) 198 446.73 B
+-0.05 0.1 (om within gsaves and gr) 234.59 446.73 B
+-0.05 0.1 (estor) 345.7 446.73 B
+-0.05 0.1 (es and the r) 367.7 446.73 B
+-0.05 0.1 (egion\325s canvas par) 419.81 446.73 B
+-0.05 0.1 (ent must be ) 502.94 446.73 B
+0.52 0.1 (set. If you\325r) 198 434.33 B
+0.52 0.1 (e using these methods inside your ) 250.4 434.33 B
+8 F
+0.45 -0.27 (/Paint) 410.37 434.33 B
+5 F
+0.52 0.1 ( de\336nition you don\325t have ) 433.23 434.33 B
+0.52 0.1 (to set the canvas yourself, TNT does this for you. See the r) 198 421.93 B
+0.52 0.1 (endering model ) 466.05 421.93 B
+0.52 0.1 (discussion above.) 198 409.53 B
+3 F
+(/BotRightPath) 54 389.8 T
+(x y width height ) 198 389.8 T
+8 F
+(/BotRightPath) 262.44 389.8 T
+3 F
+( -) 322.35 389.8 T
+5 F
+0.24 0.1 (Constr) 198 370.13 B
+0.24 0.1 (ucts a path of the bottom and right edges of the box de\336ned by) 228.32 370.13 B
+10 F
+0.29 0.12 ( ) 514.99 370.13 B
+3 F
+0.23 (x y) 518.4 370.13 P
+10 F
+0.29 0.12 ( ) 530.11 370.13 B
+3 F
+0.23 (width) 533.52 370.13 P
+10 F
+0.29 0.12 ( ) 554.49 370.13 B
+5 F
+0.52 0.1 (and ) 198 357.73 B
+3 F
+0.5 (height) 218.34 357.73 P
+10 F
+0.62 0.12 (.) 242.82 357.73 B
+3 F
+(/Paint3DBox) 54 338 T
+(x y width height down? ) 198 338 T
+8 F
+(/Paint3DBox) 291.42 338 T
+3 F
+( -) 344.35 338 T
+5 F
+0.52 0.1 (Paints a 3-D box using ) 198 318.33 B
+8 F
+0.45 -0.27 (/BG) 304.39 318.33 B
+5 F
+0.52 0.1 (* colors whose bounding box is de\336ned by the ) 319.56 318.33 B
+0.52 0.1 (ar) 198 305.93 B
+0.52 0.1 (guments. When ) 206.96 305.93 B
+3 F
+0.5 (down?) 281.82 305.93 P
+5 F
+0.52 0.1 ( is tr) 308.3 305.93 B
+0.52 0.1 (ue the box appears r) 329.21 305.93 B
+0.52 0.1 (ecessed. When ) 422.85 305.93 B
+3 F
+0.5 (down?) 492.58 305.93 P
+5 F
+0.52 0.1 ( is false ) 519.06 305.93 B
+0.52 0.1 (the box appears raised.) 198 293.54 B
+3 F
+(/Paint3DLine) 54 273.8 T
+(x y width ) 198 273.8 T
+8 F
+(/Paint3DLine -) 235.46 273.8 T
+5 F
+0.52 0.1 (Draws a 3-D line with a 1-point light line above a 1-point dark line having ) 198 254.14 B
+0.52 0.1 (endcaps either all light or all dark.) 198 241.73 B
+3 F
+(/Paint2DBox) 54 222 T
+(x y w h bold? ) 198 222 T
+8 F
+(/Paint2DBox) 252.95 222 T
+3 F
+( -) 305.89 222 T
+5 F
+0.52 0.1 (Paints a 2-D box using the ) 198 202.34 B
+3 F
+0.45 -0.27 (2DFG) 321.67 202.34 B
+5 F
+0.52 0.1 ( and ) 344.56 202.34 B
+3 F
+0.45 -0.27 (2DBG) 368.02 202.34 B
+5 F
+0.52 0.1 ( colors, whose bounding box is ) 391.41 202.34 B
+0.52 0.1 (de\336ned by the ar) 198 189.93 B
+0.52 0.1 (guments. When ) 276.02 189.93 B
+3 F
+0.45 -0.27 (bold?) 350.88 189.93 B
+5 F
+0.52 0.1 ( is tr) 371.51 189.93 B
+0.52 0.1 (ue the box appears str) 392.42 189.93 B
+0.52 0.1 (oked with a ) 493.75 189.93 B
+0.52 0.1 (double thick line. ) 198 177.53 B
+FMENDPAGE
+%%EndPage: "141" 6
+%%Page: "142" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (17) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (142) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(/TopLeftPath) 54 642 T
+(x y width height ) 198 642 T
+8 F
+(/TopLeftPath) 262.44 642 T
+3 F
+( -) 317.36 642 T
+5 F
+0.52 0.1 (Constr) 198 622.33 B
+0.52 0.1 (ucts a path of the top and left edges of the box de\336ned by ) 228.32 622.33 B
+3 F
+0.45 -0.27 (x) 497.08 622.33 B
+5 F
+0.52 0.1 ( ) 501.31 622.33 B
+3 F
+0.45 -0.27 (y) 504.43 622.33 B
+5 F
+0.52 0.1 ( ) 508.65 622.33 B
+3 F
+0.45 -0.27 (width) 511.77 622.33 B
+5 F
+0.52 0.1 ( and ) 531.4 622.33 B
+3 F
+-0.27 (height) 198 609.93 S
+5 F
+0.1 (.) 220.86 609.93 S
+9 F
+(Fonts) 126 576.87 T
+3 F
+(/TextFont) 54 556.2 T
+8 F
+(/TextFont ) 198 556.2 T
+3 F
+(font) 240.94 556.2 T
+5 F
+-0.18 0.1 (The default font used for the r) 198 536.53 B
+-0.18 0.1 (egion. The default value is /LucidaSans 12 point.  ) 332.51 536.53 B
+0.28 0.1 (Setting this variable does not automatically make ) 198 524.13 B
+3 F
+0.24 -0.27 (font) 425.08 524.13 B
+5 F
+0.28 0.1 ( the curr) 438.99 524.13 B
+0.28 0.1 (ent font. In or) 477.5 524.13 B
+0.28 0.1 (der ) 539.97 524.13 B
+0.52 0.1 (to make ) 198 511.73 B
+3 F
+0.45 -0.27 (font) 237.72 511.73 B
+5 F
+0.52 0.1 ( the r) 251.63 511.73 B
+0.52 0.1 (egion\325s curr) 275.9 511.73 B
+0.52 0.1 (ent font you could do:) 329.84 511.73 B
+3 F
+(TextFont setfont) 216 498 T
+(/settextfont) 54 466 T
+(font ) 198 466 T
+8 F
+(/settextfont) 215.49 466 T
+3 F
+( - ) 263.92 466 T
+5 F
+0.52 0.1 (Subclasser method: /ModifyFont) 198 446.33 B
+0.52 0.1 (De\336nes the text font for a r) 198 425.93 B
+0.52 0.1 (egion. /) 322 425.93 B
+8 F
+0.45 -0.27 (settextfont) 358.9 425.93 B
+5 F
+0.52 0.1 ( can be sent to a class or an ) 401.87 425.93 B
+0.06 0.1 (instance. For example to change the r) 198 413.53 B
+0.06 0.1 (egion\325s text font you would do something ) 366.01 413.53 B
+0.1 (like:) 198 401.13 S
+3 F
+(/TimesRoman findfont 12 scalefont /settextfont yourcanvas send) 216 387.4 T
+5 F
+0.24 0.1 (As with ) 198 367.73 B
+8 F
+0.21 -0.27 (/T) 236.61 367.73 B
+0.21 -0.27 (extFont) 243.4 367.73 B
+5 F
+0.24 0.1 (, the code above doesn\325t make ) 273.96 367.73 B
+3 F
+0.21 -0.27 (font) 413.58 367.73 B
+5 F
+0.24 0.1 ( the curr) 427.49 367.73 B
+0.24 0.1 (ent font. In or) 465.91 367.73 B
+0.24 0.1 (der to ) 528.26 367.73 B
+0.52 0.1 (have the PostScript show operator use the text font sent in the example you ) 198 355.33 B
+0.52 0.1 (would have to make the font the curr) 198 342.93 B
+0.52 0.1 (ent font using the PostScript ) 369.45 342.93 B
+8 F
+0.45 -0.27 (setfont) 502.47 342.93 B
+5 F
+0.52 0.1 ( ) 530.54 342.93 B
+0.1 (operator) 198 330.54 S
+0.1 (.) 235.92 330.54 S
+3 F
+(/textfont) 54 297.8 T
+(- ) 198 297.8 T
+8 F
+(/textfont) 203.49 297.8 T
+3 F
+( font ) 238.94 297.8 T
+5 F
+0.52 0.1 (Returns the text font of the r) 198 278.14 B
+0.52 0.1 (egion. ) 328.46 278.14 B
+3 F
+(/ModifyFont) 54 258.4 T
+(font) 198 258.4 T
+8 F
+( /ModifyFont ) 212.99 258.4 T
+3 F
+(font\325 ) 268.91 258.4 T
+5 F
+0.14 0.1 (Returns a font that is the same as the given font except it is not printermatched ) 198 238.73 B
+0.52 0.1 (and it uses ISOLatin1 encoding. If you want to use printermatched fonts ) 198 226.34 B
+0.52 0.1 (and/or some encoding other than ISOLatin1 you should override ) 198 213.93 B
+8 F
+0.45 -0.27 (/ModifyFont) 500.83 213.93 B
+5 F
+0.52 0.1 (. ) 548.79 213.93 B
+0.52 0.1 (\050For an explanation of printermatched font see the ) 198 201.53 B
+7 F
+0.52 0.1 (NeWS 2.1 Pr) 431.68 201.53 B
+0.52 0.1 (ogrammer) 487.78 201.53 B
+0.52 0.1 (\325) 530.04 201.53 B
+0.52 0.1 (s ) 532.37 201.53 B
+0.52 0.1 (Guide) 198 189.14 B
+5 F
+0.52 0.1 ( and the ) 222.94 189.14 B
+7 F
+0.52 0.1 (X1) 263.67 189.14 B
+0.52 0.1 (1/NeWS Server Guide) 275.54 189.14 B
+5 F
+0.52 0.1 (.\051) 368.63 189.14 B
+FMENDPAGE
+%%EndPage: "142" 7
+%%Page: "143" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassRegion) 198 108.7 S
+0 F
+0.09 (143) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (17) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+-0.94 (The r) 54 638 P
+-0.94 (egion tr) 84.88 638 P
+-0.94 (ee) 130.75 638 P
+3 F
+(/framebufferof) 54 617 T
+(- ) 198 617 T
+8 F
+(/framebufferof) 203.49 617 T
+3 F
+( framebuffer) 264.41 617 T
+5 F
+0.52 0.1 (Returns the framebuf) 198 597.33 B
+0.52 0.1 (fer on which the r) 295.24 597.33 B
+0.52 0.1 (egion is located.) 377.39 597.33 B
+3 F
+(/map) 54 577.6 T
+(- ) 198 577.6 T
+8 F
+(/map) 203.49 577.6 T
+3 F
+( -) 224.47 577.6 T
+5 F
+0.52 0.1 (Maps the r) 198 557.93 B
+0.52 0.1 (egion. For the purposes of mapping, r) 247.36 557.93 B
+0.52 0.1 (egions r) 420.9 557.93 B
+0.52 0.1 (esemble transpar) 457.25 557.93 B
+0.52 0.1 (ent ) 534.75 557.93 B
+0.41 0.1 (canvases in that unmapping a r) 198 545.53 B
+0.41 0.1 (egion does not cause it to disappear\321a r) 341.5 545.53 B
+0.41 0.1 (efr) 527.66 545.53 B
+0.41 0.1 (esh ) 539.84 545.53 B
+0.52 0.1 (is r) 198 533.13 B
+0.52 0.1 (equir) 212.33 533.13 B
+0.52 0.1 (ed.) 235.92 533.13 B
+3 F
+(/mapped?) 54 513.4 T
+(- ) 198 513.4 T
+8 F
+(/mapped?) 203.49 513.4 T
+3 F
+( boolean) 245.94 513.4 T
+5 F
+0.52 0.1 (Returns whether the r) 198 493.73 B
+0.52 0.1 (egion is curr) 298.29 493.73 B
+0.52 0.1 (ently mapped onto the scr) 355.47 493.73 B
+0.52 0.1 (een.) 475.4 493.73 B
+3 F
+(/unmap) 54 474 T
+(- ) 198 474 T
+8 F
+(/unmap) 203.49 474 T
+3 F
+( -) 235.45 474 T
+5 F
+0.52 0.1 (Unmaps the r) 198 454.33 B
+0.52 0.1 (egion. Unmapped r) 260.53 454.33 B
+0.52 0.1 (egions ar) 349.38 454.33 B
+0.52 0.1 (e not painted in bags.) 390.82 454.33 B
+3 F
+(/Parent) 54 433.93 T
+8 F
+(/Parent) 198 433.93 T
+3 F
+( parentcanvas ) 228.47 433.93 T
+5 F
+(\050Variable\051) 287.42 433.93 T
+0.52 0.1 (The r) 198 413.93 B
+0.52 0.1 (egion\325s parent canvas.) 222.02 413.93 B
+3 F
+(/reparent) 54 394.2 T
+(parentcanvas ) 198 394.2 T
+8 F
+(/reparent) 254.45 394.2 T
+3 F
+( -) 292.91 394.2 T
+5 F
+0.52 0.1 (Changes the par) 198 374.53 B
+0.52 0.1 (ent of the r) 272.47 374.53 B
+0.52 0.1 (egion so that ) 323 374.53 B
+3 F
+0.45 -0.27 (parentcanvas) 385.01 374.53 B
+5 F
+0.52 0.1 ( is it\325s par) 435.72 374.53 B
+0.52 0.1 (ent.) 481.07 374.53 B
+1 F
+(Geometry) 54 340.8 T
+5 F
+0.52 0.1 (All coor) 198 319.13 B
+0.52 0.1 (dinates ar) 234.53 319.13 B
+0.52 0.1 (e r) 279.42 319.13 B
+0.52 0.1 (elative to the r) 291.3 319.13 B
+0.52 0.1 (egion\325s canvas par) 357.59 319.13 B
+0.52 0.1 (ent, i.e., not the CTM.) 441.88 319.13 B
+3 F
+(/bbox) 54 299.4 T
+(- ) 198 299.4 T
+8 F
+(/bbox) 203.49 299.4 T
+3 F
+( x y width height) 227.46 299.4 T
+5 F
+0.52 0.1 (Returns the bounding box of the r) 198 279.73 B
+0.52 0.1 (egion.) 353.79 279.73 B
+3 F
+(/location) 54 260 T
+(- ) 198 260 T
+8 F
+(/location) 203.49 260 T
+3 F
+( x y) 240.45 260 T
+5 F
+0.52 0.1 (Returns the coor) 198 240.34 B
+0.52 0.1 (dinates of the origin of the r) 273.37 240.34 B
+0.52 0.1 (egion.) 402.25 240.34 B
+3 F
+(/minsize) 54 220.6 T
+(- ) 198 220.6 T
+8 F
+(/minsize) 203.49 220.6 T
+3 F
+( width height ) 238.96 220.6 T
+5 F
+0.52 0.1 (Returns the minimum size of the r) 198 200.93 B
+0.52 0.1 (egion. If the data your r) 355.5 200.93 B
+0.52 0.1 (egion manages ) 464.79 200.93 B
+0.17 0.1 (r) 198 188.53 B
+0.17 0.1 (equir) 201.87 188.53 B
+0.17 0.1 (es you to enfor) 225.46 188.53 B
+0.17 0.1 (ce some minimum r) 292.9 188.53 B
+0.17 0.1 (egion size override ) 383.04 188.53 B
+8 F
+0.15 -0.27 (/minsize) 472.09 188.53 B
+5 F
+0.17 0.1 ( to pr) 505.4 188.53 B
+0.17 0.1 (ovide ) 529.83 188.53 B
+0.52 0.1 (an appr) 198 176.14 B
+0.52 0.1 (opriate value.) 233.31 176.14 B
+FMENDPAGE
+%%EndPage: "143" 8
+%%Page: "144" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (17) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (144) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(/move) 54 642 T
+(x y ) 198 642 T
+8 F
+(/move) 211.98 642 T
+3 F
+( -) 237.96 642 T
+5 F
+0.52 0.1 (Moves the origin of the r) 198 622.33 B
+0.52 0.1 (egion to x,y) 312.05 622.33 B
+0.52 0.1 (.) 364.63 622.33 B
+3 F
+(/path) 54 602.6 T
+(x y width height ) 198 602.6 T
+8 F
+(/path) 262.44 602.6 T
+3 F
+( -) 283.91 602.6 T
+5 F
+0.52 0.1 (Sets the curr) 198 582.93 B
+0.52 0.1 (ent path to be the r) 254.91 582.93 B
+0.52 0.1 (ectangle that is de\336ned by the ar) 342.6 582.93 B
+0.52 0.1 (guments. ) 492.4 582.93 B
+0.52 0.1 (Regions always have a r) 198 570.53 B
+0.52 0.1 (ectangular path.) 308.86 570.53 B
+3 F
+(/preferredsize) 54 550.8 T
+(- ) 198 550.8 T
+8 F
+(/preferredsize) 203.49 550.8 T
+3 F
+( width height) 262.43 550.8 T
+5 F
+0.52 0.1 (Returns the pr) 198 531.13 B
+0.52 0.1 (eferr) 263.82 531.13 B
+0.52 0.1 (ed size for the r) 284.94 531.13 B
+0.52 0.1 (egion. The pr) 356.9 531.13 B
+0.52 0.1 (eferr) 417.77 531.13 B
+0.52 0.1 (ed size is some ideal ) 438.89 531.13 B
+0.13 0.1 (starting size that you determine. The T) 198 518.73 B
+0.13 0.1 (oolkit uses ) 372.59 518.73 B
+8 F
+0.11 -0.27 (/preferredsize) 423.88 518.73 B
+5 F
+0.13 0.1 ( when clients ar) 479.04 518.73 B
+0.13 0.1 (e ) 550.39 518.73 B
+0.52 0.1 (added to panels and bor) 198 506.33 B
+0.52 0.1 (der bags; unr) 309.62 506.33 B
+0.52 0.1 (eshaped r) 370.23 506.33 B
+0.52 0.1 (egions ar) 414.65 506.33 B
+0.52 0.1 (e r) 456.1 506.33 B
+0.52 0.1 (eshaped to their ) 467.97 506.33 B
+8 F
+-0.27 (/preferredsize) 198 493.93 S
+5 F
+0.1 (.) 253.16 493.93 S
+0.52 0.1 (One way to de\336ne ) 198 473.53 B
+8 F
+0.45 -0.27 (/preferredsize) 285.38 473.53 B
+5 F
+0.52 0.1 ( in a subclass is:) 340.54 473.53 B
+3 F
+(/preferredsize { width height } def) 210.6 457.8 T
+5 F
+0.52 0.1 (By default ) 198 438.13 B
+8 F
+0.45 -0.27 (/preferredsize) 248.21 438.13 B
+5 F
+0.52 0.1 ( r) 303.37 438.13 B
+0.52 0.1 (eturns the r) 310.36 438.13 B
+0.52 0.1 (egion\325s ) 363.3 438.13 B
+8 F
+0.45 -0.27 (/minsize) 398.66 438.13 B
+5 F
+0.52 0.1 (.) 431.96 438.13 B
+3 F
+(/reshape) 54 418.4 T
+(x y width height ) 198 418.4 T
+8 F
+(/reshape) 262.44 418.4 T
+3 F
+( -) 299.4 418.4 T
+5 F
+0.52 0.1 (Reshapes the r) 198 398.73 B
+0.52 0.1 (egion to \336t the bounding box de\336ned by the ar) 264.61 398.73 B
+0.52 0.1 (guments.) 479.4 398.73 B
+3 F
+(/reshaped?) 54 379 T
+(- ) 198 379 T
+8 F
+(/reshaped?) 203.49 379 T
+3 F
+( boolean) 251.44 379 T
+5 F
+0.52 0.1 (Returns whether the r) 198 359.33 B
+0.52 0.1 (egion has been r) 298.29 359.33 B
+0.52 0.1 (eshaped.) 373.2 359.33 B
+3 F
+(/size) 54 339.6 T
+(- ) 198 339.6 T
+8 F
+(/size) 203.49 339.6 T
+3 F
+( width height) 222.98 339.6 T
+5 F
+0.52 0.1 (Returns the size of the r) 198 319.93 B
+0.52 0.1 (egion.) 307.55 319.93 B
+1 F
+(V) 54 286.2 T
+(alidation) 63.72 286.2 T
+5 F
+0.52 0.1 (The NeWS T) 198 264.53 B
+0.52 0.1 (oolkit uses a validation scheme to determine whether an object ) 255.31 264.53 B
+0.52 0.1 (needs to have its visual pr) 198 252.14 B
+0.52 0.1 (esentation updated. One way to understand this is ) 318.39 252.14 B
+0.52 0.1 (thr) 198 239.73 B
+0.52 0.1 (ough the model-view portion of the model-view-contr) 211.14 239.73 B
+0.52 0.1 (oller paradigm. ) 458.82 239.73 B
+0.52 0.1 (Remember) 198 227.34 B
+0.52 0.1 (, the model is a data object, r) 246.22 227.34 B
+0.52 0.1 (epr) 378.47 227.34 B
+0.52 0.1 (esenting application information ) 393.33 227.34 B
+0.13 0.1 (and the view pr) 198 214.93 B
+0.13 0.1 (esents its model in a graphical fashion. TNT has several objects ) 269.63 214.93 B
+0.52 0.1 (that manage other objects. For example, menus manage a list of items, and ) 198 202.53 B
+0.52 0.1 (bags manage a collection of clients. The list of items in a menu and the ) 198 190.14 B
+0.52 0.1 (collection of clients in a bag ar) 198 177.73 B
+0.52 0.1 (e the model. How they ar) 337.49 177.73 B
+0.52 0.1 (e displayed on the ) 454.51 177.73 B
+0.52 0.1 (scr) 198 165.34 B
+0.52 0.1 (een is the view) 210.74 165.34 B
+0.52 0.1 (.) 278.46 165.34 B
+FMENDPAGE
+%%EndPage: "144" 9
+%%Page: "145" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassRegion) 198 108.7 S
+0 F
+0.09 (145) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (17) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (Y) 198 641.33 B
+0.52 0.1 (our application may allow the user to alter the model, by adding or deleting ) 203.85 641.33 B
+0.14 0.1 (menu items, for example. When the user alters the list of items, TNT marks the ) 198 628.93 B
+0.35 0.1 (menu as invalid by sending it the ) 198 616.53 B
+8 F
+0.3 -0.27 (/invalidate) 353.64 616.53 B
+5 F
+0.35 0.1 ( method. Saying a menus is invalid ) 394.63 616.53 B
+0.52 0.1 (is the same as saying that the model has changed but the view hasn\325t been ) 198 604.13 B
+0.52 0.1 (updated to r) 198 591.73 B
+0.52 0.1 (e\337ect those changes.) 255.01 591.73 B
+0.46 0.1 (The ) 198 571.33 B
+8 F
+0.39 -0.27 (/paint) 218.09 571.33 B
+5 F
+0.46 0.1 ( method is used to initiate the pr) 240.44 571.33 B
+0.46 0.1 (ocess that causes an object\325s view to ) 390.27 571.33 B
+0.52 0.1 (match its model. But, in or) 198 558.93 B
+0.52 0.1 (der to be ef) 319.95 558.93 B
+0.52 0.1 (\336cient, TNT doesn\325t automatically ) 372.01 558.93 B
+0.52 0.1 (r) 198 546.53 B
+0.52 0.1 (epaint objects when they become invalid, i.e., TNT doesn\325t call ) 201.87 546.53 B
+8 F
+0.45 -0.27 (/paint) 491.5 546.53 B
+5 F
+0.52 0.1 ( on ) 513.85 546.53 B
+0.52 0.1 (invalid objects, you do. This optimization allows you to change several ) 198 534.13 B
+0.52 0.1 (attributes of an object and only perform one r) 198 521.73 B
+0.52 0.1 (epaint.) 407.14 521.73 B
+0.52 0.1 (Certain operations ar) 198 501.33 B
+0.52 0.1 (e consider) 294.58 501.33 B
+0.52 0.1 (ed \322basic\323 enough that they automatically ) 340.9 501.33 B
+0.52 0.1 (update the view) 198 488.93 B
+0.52 0.1 (. ) 271.34 488.93 B
+8 F
+0.45 -0.27 (/setvalue) 277.06 488.93 B
+5 F
+0.52 0.1 ( and ) 313.09 488.93 B
+8 F
+0.45 -0.27 (/setcolors) 336.55 488.93 B
+5 F
+0.52 0.1 ( ar) 376.31 488.93 B
+0.52 0.1 (e examples of methods that do the ) 388.39 488.93 B
+0.52 0.1 (automatic update. However) 198 476.53 B
+0.52 0.1 (, if the view is alr) 324.92 476.53 B
+0.52 0.1 (eady invalid for other r) 405.11 476.53 B
+0.52 0.1 (easons ) 512.09 476.53 B
+0.52 0.1 (\050such as adding items\051 then these methods do not update the view) 198 464.13 B
+0.52 0.1 (.) 502.47 464.13 B
+3 F
+(/Valid?) 54 423.33 T
+8 F
+(/Valid? ) 198 423.33 T
+3 F
+(boolean) 229.97 423.33 T
+5 F
+( \050Variable\051) 261.95 423.33 T
+0.52 0.1 (Determines whether the r) 198 403.33 B
+0.52 0.1 (egion is valid. An invalid r) 314.93 403.33 B
+0.52 0.1 (egion is one that needs ) 438.21 403.33 B
+0.48 0.1 (some operations executed befor) 198 390.93 B
+0.48 0.1 (e it can be r) 342.34 390.93 B
+0.48 0.1 (epainted; a valid r) 395.86 390.93 B
+0.48 0.1 (egion is one that ) 479.21 390.93 B
+0.52 0.1 (is r) 198 378.54 B
+0.52 0.1 (eady to be painted. ClassRegion does not interpr) 212.33 378.54 B
+0.52 0.1 (et what it means for a ) 435.4 378.54 B
+0.52 0.1 (r) 198 366.14 B
+0.52 0.1 (egion to be invalid and what should be done to an invalid r) 201.87 366.14 B
+0.52 0.1 (egion is left to ) 475.79 366.14 B
+0.52 0.1 (subclasses. Subclasses can interpr) 198 353.73 B
+0.52 0.1 (et what to do by overriding the validation ) 350.98 353.73 B
+-0.05 0.1 (methods \050/) 198 341.33 B
+8 F
+-0.04 -0.27 (invalidate) 249.32 341.33 B
+5 F
+-0.05 0.1 (, ) 288.08 341.33 B
+8 F
+-0.04 -0.27 (/valid?) 293.23 341.33 B
+5 F
+-0.05 0.1 (, ) 319.82 341.33 B
+8 F
+-0.04 -0.27 (/?validate) 324.97 341.33 B
+5 F
+-0.05 0.1 ( and ) 363.73 341.33 B
+8 F
+-0.04 -0.27 (/validate) 386.05 341.33 B
+5 F
+-0.05 0.1 (\051. Subclassers should call ) 419.59 341.33 B
+3 F
+-0.04 -0.27 (super) 534.32 341.33 B
+5 F
+-0.05 0.1 ( ) 555.45 341.33 B
+0.52 0.1 (in their override of the validation methods, e.g.,) 198 328.93 B
+3 F
+(/?validate {) 210.6 313.2 T
+(. . .) 224.64 298.2 T
+(/?validate super send) 224.64 283.2 T
+(} def) 210.6 268.2 T
+(/invalidate) 54 249.2 T
+(- ) 198 249.2 T
+8 F
+(/invalidate) 203.49 249.2 T
+3 F
+( -) 247.45 249.2 T
+5 F
+0.52 0.1 (Marks the r) 198 229.53 B
+0.52 0.1 (egion as invalid. ) 250.96 229.53 B
+3 F
+(/valid?) 54 209.8 T
+(- ) 198 209.8 T
+8 F
+(/valid?) 203.49 209.8 T
+3 F
+( boolean ) 231.96 209.8 T
+5 F
+0.52 0.1 (Returns whether the r) 198 190.14 B
+0.52 0.1 (egion is valid.) 298.29 190.14 B
+3 F
+(/?validate) 54 170.4 T
+(- ) 198 170.4 T
+8 F
+(/?validate) 203.49 170.4 T
+3 F
+( - ) 244.95 170.4 T
+5 F
+0.52 0.1 (V) 198 150.73 B
+0.52 0.1 (alidates the r) 204.4 150.73 B
+0.52 0.1 (egion if it is curr) 263.66 150.73 B
+0.52 0.1 (ently invalid.) 339.89 150.73 B
+FMENDPAGE
+%%EndPage: "145" 10
+%%Page: "146" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (17) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (146) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(/validate) 54 642 T
+(- ) 198 642 T
+8 F
+(/validate) 203.49 642 T
+3 F
+( - ) 239.46 642 T
+5 F
+0.52 0.1 (Causes the r) 198 622.33 B
+0.52 0.1 (egion to be marked as valid. ) 254.24 622.33 B
+1 F
+-0.94 (Region damage handling) 54 588.6 P
+5 F
+0.52 0.1 (Regions ar) 198 566.93 B
+0.52 0.1 (e generally contained in bags and don\325t get the T) 246.22 566.93 B
+0.52 0.1 (oolkit\325s damage ) 469.98 566.93 B
+0.52 0.1 (handler method, ) 198 554.53 B
+8 F
+0.45 -0.27 (/HandleDamage) 276.77 554.53 B
+5 F
+0.52 0.1 (, directly) 340.68 554.53 B
+0.52 0.1 (. Instead, the bag holding the r) 380 554.53 B
+0.52 0.1 (egion ) 521.02 554.53 B
+0.52 0.1 (gets the ) 198 542.13 B
+8 F
+0.45 -0.27 (/HandleDamage) 236.64 542.13 B
+5 F
+0.52 0.1 ( message and then sends ) 300.55 542.13 B
+8 F
+0.45 -0.27 (/FixAll) 417.26 542.13 B
+5 F
+0.52 0.1 ( to the r) 442.34 542.13 B
+0.52 0.1 (egions in the ) 478.64 542.13 B
+-0.01 0.1 (damage path. As with canvases, ) 198 529.73 B
+8 F
+-0.01 -0.27 (/FixAll) 345.37 529.73 B
+5 F
+-0.01 0.1 ( sends ) 370.45 529.73 B
+8 F
+-0.01 -0.27 (/Fix) 401.31 529.73 B
+5 F
+-0.01 0.1 ( and ) 415.71 529.73 B
+8 F
+-0.01 -0.27 (/FixChildren) 438.11 529.73 B
+5 F
+-0.01 0.1 ( to each r) 486.81 529.73 B
+-0.01 0.1 (egion. ) 527.79 529.73 B
+0.52 0.1 (\050See ) 198 517.33 B
+8 F
+0.45 -0.27 (/HandleDamage) 219.67 517.33 B
+5 F
+0.52 0.1 ( in ClassCanvas on page 53.\051) 283.58 517.33 B
+3 F
+(/FixAll) 54 497.6 T
+(- ) 198 497.6 T
+8 F
+(/FixAll) 203.49 497.6 T
+3 F
+( -) 230.46 497.6 T
+5 F
+(Subclasser methods:) 216 481.93 T
+(/Fix) 318.02 481.93 T
+(/FixChildren) 318.02 467.93 T
+0.52 0.1 (Paints the damaged ar) 198 447.93 B
+0.52 0.1 (ea of the r) 300.41 447.93 B
+0.52 0.1 (egion. ) 346.77 447.93 B
+8 F
+0.45 -0.27 (/FixAll) 377.51 447.93 B
+5 F
+0.52 0.1 ( is called for you. It is not ) 402.59 447.93 B
+0.52 0.1 (necessary for you to call ) 198 435.53 B
+8 F
+0.45 -0.27 (/FixAll) 312.24 435.53 B
+5 F
+0.52 0.1 ( yourself. ) 337.32 435.53 B
+8 F
+0.45 -0.27 (/FixAll) 198 415.13 B
+5 F
+0.52 0.1 ( calls ) 223.08 415.13 B
+8 F
+0.45 -0.27 (/Fix) 249.31 415.13 B
+5 F
+0.52 0.1 ( and ) 263.71 415.13 B
+8 F
+0.45 -0.27 (/FixChildren) 287.17 415.13 B
+5 F
+0.52 0.1 (; override these methods in your ClassRegion ) 335.87 415.13 B
+0.52 0.1 (subclass rather than ) 198 402.73 B
+8 F
+0.45 -0.27 (/FixAll) 292.41 402.73 B
+5 F
+0.52 0.1 (.) 317.49 402.73 B
+0.1 ( ) 54 382.33 S
+3 F
+(/Fix) 56.6 382.33 T
+(- ) 198 382.33 T
+8 F
+(/Fix) 203.49 382.33 T
+3 F
+( - ) 218.98 382.33 T
+5 F
+0.52 0.1 (Handles the r) 198 362.33 B
+0.52 0.1 (epainting of the damaged portions of a r) 260.14 362.33 B
+0.52 0.1 (egion. By default it ) 445.98 362.33 B
+0.52 0.1 (simply calls ) 198 349.93 B
+8 F
+0.45 -0.27 (/Paint) 255.27 349.93 B
+5 F
+0.52 0.1 (, which simply paints the damaged section of the r) 278.12 349.93 B
+0.52 0.1 (egion ) 510.32 349.93 B
+0.52 0.1 (without trying to be ef) 198 337.54 B
+0.52 0.1 (\336cient. ) 301.44 337.54 B
+0.52 0.1 (Despite the fact that only the damaged ar) 198 317.14 B
+0.52 0.1 (ea of the r) 387.9 317.14 B
+0.52 0.1 (egion is painted, all the ) 434.26 317.14 B
+0.52 0.1 (code in your ) 198 304.73 B
+8 F
+0.45 -0.27 (/Paint) 258.86 304.73 B
+5 F
+0.52 0.1 ( de\336nition is executed. If your ) 281.71 304.73 B
+8 F
+0.45 -0.27 (/Paint) 422.8 304.73 B
+5 F
+0.52 0.1 ( has complicated, time-) 445.65 304.73 B
+0.13 0.1 (consuming calculations, you may want to override ) 198 292.33 B
+8 F
+0.11 -0.27 (/Fix) 430.38 292.33 B
+5 F
+0.13 0.1 ( so you can execute only ) 444.78 292.33 B
+-0.07 0.1 (the painting code that applies to the damaged ar) 198 279.93 B
+-0.07 0.1 (ea. If your painting pr) 416.04 279.93 B
+-0.07 0.1 (ocedur) 515.06 279.93 B
+-0.07 0.1 (es ) 546.25 279.93 B
+0.18 0.1 (ar) 198 267.53 B
+0.18 0.1 (e simple and not time-consuming, you can just use your painting pr) 206.96 267.53 B
+0.18 0.1 (ocedur) 514.82 267.53 B
+0.18 0.1 (es ) 546 267.53 B
+0.52 0.1 (\322as is\323 and allow the server to clip away the bits that ar) 198 255.14 B
+0.52 0.1 (en\325t necessary) 453.89 255.14 B
+0.52 0.1 (.) 516.64 255.14 B
+3 F
+(/FixChildren) 54 235.4 T
+(-) 198 235.4 T
+8 F
+( /FixChildren) 200.99 235.4 T
+3 F
+( -) 255.43 235.4 T
+5 F
+0.52 0.1 (Handles the r) 198 215.73 B
+0.52 0.1 (epainting of damaged r) 260.14 215.73 B
+0.52 0.1 (egion childr) 367.38 215.73 B
+0.52 0.1 (en. Sends ) 422.07 215.73 B
+8 F
+0.45 -0.27 (/FixAll) 468.4 215.73 B
+5 F
+0.52 0.1 ( to all the ) 493.48 215.73 B
+0.52 0.1 (childr) 198 203.34 B
+0.52 0.1 (en. ) 224.54 203.34 B
+8 F
+0.45 -0.27 (/FixChildren) 241.07 203.34 B
+5 F
+0.52 0.1 ( is a no-op in ClassRegion.) 289.77 203.34 B
+FMENDPAGE
+%%EndPage: "146" 11
+%%Page: "147" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassRegion) 198 108.7 S
+0 F
+0.09 (147) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (17) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+-0.94 (Mouse tracking) 54 638 P
+5 F
+0.52 0.1 (Regions ar) 198 616.33 B
+0.52 0.1 (e not themselves T) 246.22 616.33 B
+0.52 0.1 (rackable. If the canvas on which they sit is ) 330.92 616.33 B
+0.52 0.1 (T) 198 603.93 B
+0.52 0.1 (rackable then a r) 203.33 603.93 B
+0.52 0.1 (egion will r) 279.68 603.93 B
+0.52 0.1 (eceive the methods in this section when the ) 332.28 603.93 B
+0.52 0.1 (condition\050s\051, described under each method, ar) 198 591.53 B
+0.52 0.1 (e met.) 408.23 591.53 B
+3 F
+(/TrackStart) 54 571.8 T
+(event ) 198 571.8 T
+8 F
+(/TrackStart) 222.48 571.8 T
+3 F
+( -) 269.43 571.8 T
+5 F
+0.52 0.1 (Sent to a r) 198 552.13 B
+0.52 0.1 (egion when: ) 244.74 552.13 B
+6 F
+(\245) 198 533.73 T
+5 F
+0.52 0.1 ( SELECT is pr) 210.6 533.73 B
+0.52 0.1 (essed in the r) 274.65 533.73 B
+0.52 0.1 (egion;) 335.62 533.73 B
+0.52 0.1 (or ) 198 513.33 B
+6 F
+(\245) 198 494.93 T
+5 F
+0.52 0.1 ( when SELECT is pr) 210.6 494.93 B
+0.52 0.1 (essed in the backgr) 302.93 494.93 B
+0.52 0.1 (ound and, with SELECT still down, ) 390.47 494.93 B
+0.52 0.1 (the mouse is dragged into the r) 210.6 482.53 B
+0.52 0.1 (egion. ) 354.28 482.53 B
+8 F
+0.45 -0.27 (/T) 198 462.13 B
+0.45 -0.27 (rackStart) 204.96 462.13 B
+5 F
+0.52 0.1 ( executes in the local event manager) 241.49 462.13 B
+0.52 0.1 (. The ) 406.45 462.13 B
+8 F
+0.45 -0.27 (/T) 432.32 462.13 B
+0.45 -0.27 (rackStart) 439.28 462.13 B
+5 F
+0.52 0.1 ( method in ) 475.81 462.13 B
+0.15 0.1 (ClassRegion is mor) 198 449.73 B
+0.15 0.1 (e indiscriminate that its counterpart in ClassCanvas. It does ) 284.96 449.73 B
+0.52 0.1 (not r) 198 437.33 B
+0.52 0.1 (eturn information to indicate whether tracking should occur) 219.82 437.33 B
+0.52 0.1 (.) 494.69 437.33 B
+3 F
+(/TrackStop) 54 417.6 T
+(event ) 198 417.6 T
+8 F
+(/TrackStop) 222.48 417.6 T
+3 F
+( -) 268.93 417.6 T
+5 F
+0.52 0.1 (Sent to a r) 198 397.93 B
+0.52 0.1 (egion when the SELECT button is r) 244.74 397.93 B
+0.52 0.1 (eleased inside the r) 406.33 397.93 B
+0.52 0.1 (egion.) 494.4 397.93 B
+3 F
+(/TrackMotion) 54 378.2 T
+(event ) 198 378.2 T
+8 F
+(/TrackMotion) 222.48 378.2 T
+3 F
+( -) 278.41 378.2 T
+5 F
+0.52 0.1 (Sent to a r) 198 358.53 B
+0.52 0.1 (egion when SELECT is pr) 244.74 358.53 B
+0.52 0.1 (essed and the mouse is being dragged ) 362.1 358.53 B
+0.52 0.1 (inside the r) 198 346.13 B
+0.52 0.1 (egion.) 249.63 346.13 B
+3 F
+(/TrackCancel) 54 326.4 T
+(event ) 198 326.4 T
+8 F
+(/TrackCancel) 222.48 326.4 T
+3 F
+( -) 278.43 326.4 T
+5 F
+0.01 0.1 (Sent to a r) 198 306.73 B
+0.01 0.1 (egion when SELECT is pr) 243.21 306.73 B
+0.01 0.1 (essed and the mouse is dragged outside the ) 358.52 306.73 B
+0.52 0.1 (r) 198 294.33 B
+0.52 0.1 (egion or when ) 201.87 294.33 B
+8 F
+0.45 -0.27 (/T) 271.01 294.33 B
+0.45 -0.27 (rackCancel) 277.96 294.33 B
+5 F
+0.52 0.1 ( is r) 323.22 294.33 B
+0.52 0.1 (eceived in the bag instance.) 340.67 294.33 B
+1 F
+-0.94 (Region menus) 54 260.6 P
+5 F
+0.52 0.1 (Regions ar) 198 238.93 B
+0.52 0.1 (e, by default, Menuable but their menus do not appear unless the ) 246.22 238.93 B
+0.52 0.1 (canvas on which they sit is Menuable. \050See ) 198 226.53 B
+7 F
+0.52 0.1 (Canvas menus) 397.09 226.53 B
+5 F
+0.52 0.1 ( on page 53.\051) 457.96 226.53 B
+3 F
+(/Menu) 54 206.14 T
+8 F
+(/Menu) 198 206.14 T
+3 F
+( menu ) 223.96 206.14 T
+5 F
+(\050Variable\051) 251.44 206.14 T
+0.52 0.1 (The menu that is managed by the r) 198 186.14 B
+0.52 0.1 (egion.) 358.89 186.14 B
+FMENDPAGE
+%%EndPage: "147" 12
+%%Page: "148" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (17) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (148) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(/setmenu) 54 642 T
+(menu | null ) 198 642 T
+8 F
+(/setmenu) 244.29 642 T
+3 F
+( - ) 283.75 642 T
+5 F
+0.27 0.1 (Installs or r) 198 622.33 B
+0.27 0.1 (emoves a popup menu for the r) 249.74 622.33 B
+0.27 0.1 (egion. The menu is activated by the ) 393.32 622.33 B
+0.52 0.1 (user pr) 198 609.93 B
+0.52 0.1 (essing the MENU button when the pointer is over the r) 230.49 609.93 B
+0.52 0.1 (egion. Y) 483.78 609.93 B
+0.52 0.1 (ou ) 520.37 609.93 B
+0.52 0.1 (shouldn\325t send ) 198 597.53 B
+8 F
+0.45 -0.27 (/setmenu) 268.89 597.53 B
+5 F
+0.52 0.1 ( to a r) 306.19 597.53 B
+0.52 0.1 (egion that is on a canvas that hasn\325t been made ) 333.42 597.53 B
+0.52 0.1 (Menuable. ) 198 585.13 B
+8 F
+0.45 -0.27 (/setmenu) 248.82 585.13 B
+5 F
+0.52 0.1 ( can be sent to a class or an instance. ) 286.12 585.13 B
+3 F
+(/menu) 54 565.4 T
+8 F
+(- /menu ) 198 565.4 T
+3 F
+-0.27 (menu) 232.46 565.4 S
+5 F
+0.52 0.1 (Returns the value of ) 198 545.73 B
+8 F
+0.45 -0.27 (/Menu) 293.94 545.73 B
+5 F
+0.52 0.1 (.) 318.55 545.73 B
+3 F
+(/MenuStart) 54 526 T
+(invoker posname event ) 198 526 T
+8 F
+(/MenuStart) 293.41 526 T
+3 F
+(invoker posname event menu true ) 342 526 T
+-0.27 (| invoker posname event false) 338.4 515 S
+(| invoker posname event null true) 338.4 504 T
+5 F
+0.52 0.1 (Determines which menu \050if any\051 should be shown over this object, and wher) 198 484.33 B
+0.52 0.1 (e ) 549.17 484.33 B
+0.52 0.1 (it should be positioned. Y) 198 471.93 B
+0.52 0.1 (ou can change wher) 314.89 471.93 B
+0.52 0.1 (e the menu pops up by:) 406.61 471.93 B
+6 F
+(\245) 198 453.53 T
+5 F
+-0.07 0.1 (Overriding ) 210.6 453.53 B
+8 F
+-0.06 -0.27 (/MenuStart) 263.61 453.53 B
+5 F
+-0.07 0.1 ( and modifying the ) 307.35 453.53 B
+3 F
+-0.06 -0.27 (XLocation) 396.23 453.53 B
+5 F
+-0.07 0.1 (, ) 433.77 453.53 B
+3 F
+-0.06 -0.27 (YLocation) 438.9 453.53 B
+5 F
+-0.07 0.1 ( pair of the event; ) 476.43 453.53 B
+0.52 0.1 (and/or ) 198 433.13 B
+6 F
+(\245) 198 414.73 T
+5 F
+0.52 0.1 (Changing ) 210.6 414.73 B
+3 F
+0.45 -0.27 (posname) 258.07 414.73 B
+5 F
+0.52 0.1 (. ) 293.15 414.73 B
+3 F
+0.45 -0.27 (posname) 198 394.33 B
+5 F
+0.52 0.1 ( defaults to ) 233.07 394.33 B
+3 F
+0.45 -0.27 (/Default) 287.8 394.33 B
+5 F
+0.52 0.1 (, which means that the default item \050or the item at ) 316.61 394.33 B
+0.52 0.1 (index 0 if ther) 198 381.93 B
+0.52 0.1 (e is no default\051 is aligned beside the location of ) 262.2 381.93 B
+3 F
+0.45 -0.27 (event) 481.89 381.93 B
+5 F
+0.52 0.1 (. Curr) 502.53 381.93 B
+0.52 0.1 (ently) 529.47 381.93 B
+0.52 0.1 (, ) 551.19 381.93 B
+0.52 0.1 (the only other legal ) 198 369.53 B
+3 F
+0.45 -0.27 (posname) 290.2 369.53 B
+5 F
+0.52 0.1 ( is ) 325.27 369.53 B
+3 F
+0.45 -0.27 (/NorthW) 338.86 369.53 B
+0.45 -0.27 (est) 369.76 369.53 B
+5 F
+0.52 0.1 (, which corr) 380.94 369.53 B
+0.52 0.1 (esponds to the top-left ) 435.6 369.53 B
+0.52 0.1 (corner of the menu. \050) 198 357.13 B
+3 F
+0.45 -0.27 (posname) 294.5 357.13 B
+5 F
+0.52 0.1 ( is used by menu buttons for positioning their ) 329.57 357.13 B
+0.1 (menus.\051) 198 344.73 S
+3 F
+0.45 -0.27 (invoker) 198 324.33 B
+5 F
+0.52 0.1 ( is the object that most r) 225.08 324.33 B
+0.52 0.1 (ecently caused the menu to be displayed. The ) 335.48 324.33 B
+3 F
+0.45 -0.27 (invoker) 198 311.93 B
+5 F
+0.52 0.1 ( also determines the local event manager in which the menu\325s noti\336er ) 225.08 311.93 B
+0.52 0.1 (executes and is the default tar) 198 299.54 B
+0.52 0.1 (get of the menu \050see ) 335.03 299.54 B
+7 F
+0.52 0.1 (The invoker mechanism) 431.07 299.54 B
+5 F
+0.52 0.1 ( on ) 529.35 299.54 B
+0.52 0.1 (page 1) 198 287.14 B
+0.52 0.1 (17 in ClassMenu\051.) 227.41 287.14 B
+0.52 0.1 (By default ) 198 266.73 B
+8 F
+0.45 -0.27 (/MenuStart) 248.21 266.73 B
+5 F
+0.52 0.1 ( r) 291.95 266.73 B
+0.52 0.1 (eturns the menu held in the ) 298.94 266.73 B
+8 F
+0.45 -0.27 (/Menu) 429.44 266.73 B
+5 F
+0.52 0.1 ( class/instance ) 454.06 266.73 B
+0.52 0.1 (variable, and does not modify the positioning ar) 198 254.34 B
+0.52 0.1 (guments.) 419.33 254.34 B
+0.52 0.1 (Returning ) 198 233.93 B
+3 F
+0.45 -0.27 (invoker posname event false) 246.81 233.93 B
+5 F
+0.52 0.1 ( causes ) 355.25 233.93 B
+3 F
+0.45 -0.27 (event) 390.81 233.93 B
+5 F
+0.52 0.1 ( to be r) 411.45 233.93 B
+0.52 0.1 (edistributed allowing ) 444.1 233.93 B
+0.52 0.1 (some other object to open a menu.) 198 221.53 B
+0.52 0.1 (The) 198 201.14 B
+3 F
+0.45 -0.27 ( invoker posname event null true) 215.03 201.14 B
+5 F
+0.52 0.1 ( r) 338.5 201.14 B
+0.52 0.1 (eturn is pr) 345.48 201.14 B
+0.52 0.1 (ovided so that you can r) 393.38 201.14 B
+0.52 0.1 (espond to ) 504.96 201.14 B
+0.52 0.1 (MENU down over your canvas or r) 198 188.73 B
+0.52 0.1 (egion by not opening any menu and ) 360.7 188.73 B
+0.52 0.1 (pr) 198 176.34 B
+0.52 0.1 (eventing anyone else \050e.g., the window under r) 207.98 176.34 B
+0.52 0.1 (egion\051 fr) 423.88 176.34 B
+0.52 0.1 (om opening a menu ) 462.74 176.34 B
+0.52 0.1 (in r) 198 163.93 B
+0.52 0.1 (esponse to the MENU.) 213.91 163.93 B
+FMENDPAGE
+%%EndPage: "148" 13
+%%Page: "149" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassRegion) 198 108.7 S
+0 F
+0.09 (149) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (17) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+(/MenuStop) 54 642 T
+(event ) 198 642 T
+8 F
+(/MenuStop) 222.48 642 T
+3 F
+( -) 268.42 642 T
+5 F
+0.52 0.1 (Sent to a r) 198 622.33 B
+0.52 0.1 (egion when MENU is r) 244.74 622.33 B
+0.52 0.1 (eleased. Use ) 350.66 622.33 B
+8 F
+0.45 -0.27 (/MenuStop) 409.9 622.33 B
+5 F
+0.52 0.1 ( to clean up anything ) 453.41 622.33 B
+0.52 0.1 (you cr) 198 609.93 B
+0.52 0.1 (eated in ) 226.86 609.93 B
+8 F
+0.45 -0.27 (/MenuStart) 266.46 609.93 B
+5 F
+0.52 0.1 (.) 310.2 609.93 B
+1 F
+-0.94 (Obsolescence and destruction) 54 576.2 P
+3 F
+(/destroy) 54 555.2 T
+(- ) 198 555.2 T
+8 F
+(/destroy) 203.49 555.2 T
+3 F
+( -) 238.45 555.2 T
+5 F
+0.52 0.1 (Destr) 198 535.53 B
+0.52 0.1 (oys the r) 222.29 535.53 B
+0.52 0.1 (egion.In a garbage collected system you get rid of an object by ) 262.11 535.53 B
+-0.03 0.1 (dr) 198 523.13 B
+-0.03 0.1 (opping any r) 208.07 523.13 B
+-0.03 0.1 (efer) 266.1 523.13 B
+-0.03 0.1 (ences you cr) 283.17 523.13 B
+-0.03 0.1 (eated to it. If the toolkit holds r) 338.62 523.13 B
+-0.03 0.1 (efer) 478.36 523.13 B
+-0.03 0.1 (ences to your ) 495.43 523.13 B
+0.52 0.1 (objects, they will be dr) 198 510.73 B
+0.52 0.1 (opped when you dr) 301.68 510.73 B
+0.52 0.1 (op your r) 392.47 510.73 B
+0.52 0.1 (efer) 435.63 510.73 B
+0.52 0.1 (ences: you don\325t need ) 452.7 510.73 B
+0.52 0.1 (to worry about what r) 198 498.33 B
+0.52 0.1 (efer) 299.57 498.33 B
+0.52 0.1 (ence the toolkit maintains.) 316.64 498.33 B
+0.21 0.1 (Y) 198 477.93 B
+0.21 0.1 (ou should override ) 203.85 477.93 B
+8 F
+0.18 -0.27 (/destroy) 293.5 477.93 B
+5 F
+0.21 0.1 ( in your subclasses when instances of these classes ) 326.3 477.93 B
+0.06 0.1 (hold r) 198 465.53 B
+0.06 0.1 (efer) 225.22 465.53 B
+0.06 0.1 (ences that dir) 242.29 465.53 B
+0.06 0.1 (ectly or indir) 303 465.53 B
+0.06 0.1 (ectly point back to the instance. The par) 361.38 465.53 B
+0.06 0.1 (ent ) 541.17 465.53 B
+0.52 0.1 (-> child -> par) 198 453.13 B
+0.52 0.1 (ent cir) 264.27 453.13 B
+0.52 0.1 (cle between a bag and its r) 292.97 453.13 B
+0.52 0.1 (egions is an example of this ) 415.38 453.13 B
+0.52 0.1 (kind of r) 198 440.73 B
+0.52 0.1 (efer) 237.88 440.73 B
+0.52 0.1 (ence. In this case your ) 254.95 440.73 B
+8 F
+0.45 -0.27 (/destroy) 359.62 440.73 B
+5 F
+0.52 0.1 ( should br) 392.42 440.73 B
+0.52 0.1 (eak the cir) 439.31 440.73 B
+0.52 0.1 (cle and call:) 486.76 440.73 B
+3 F
+( /destroy super send.) 216 427 T
+5 F
+0.25 0.1 (Y) 198 407.33 B
+0.25 0.1 (ou can also override ) 203.85 407.33 B
+8 F
+0.21 -0.27 (/destroy) 298.85 407.33 B
+5 F
+0.25 0.1 ( to send ) 331.65 407.33 B
+8 F
+0.21 -0.27 (/destroy) 370.45 407.33 B
+5 F
+0.25 0.1 ( to other objects you\325r) 403.25 407.33 B
+0.25 0.1 (e managing ) 502.15 407.33 B
+0.52 0.1 (in or) 198 394.93 B
+0.52 0.1 (der to minimize the generation of obsolete events.) 219.47 394.93 B
+8 F
+0.45 -0.27 (/destroy) 198 374.53 B
+5 F
+0.52 0.1 ( is executed in the global event manager) 230.8 374.53 B
+0.52 0.1 (.) 414.85 374.53 B
+1 F
+(Miscellaneous) 54 340.8 T
+3 F
+(/pointinregion?) 54 319.8 T
+(x y) 198 319.8 T
+8 F
+( /pointinregion?) 209.49 319.8 T
+3 F
+( boolean) 277.39 319.8 T
+5 F
+0.52 0.1 (Indicates whether the point r) 198 300.14 B
+0.52 0.1 (epr) 330.72 300.14 B
+0.52 0.1 (esented by ) 345.58 300.14 B
+3 F
+0.45 -0.27 (x) 397.58 300.14 B
+5 F
+0.52 0.1 ( and ) 401.8 300.14 B
+3 F
+0.45 -0.27 (y) 425.26 300.14 B
+5 F
+0.52 0.1 ( is located within the ) 429.48 300.14 B
+0.52 0.1 (r) 198 287.73 B
+0.52 0.1 (egion\325s boundaries.) 201.87 287.73 B
+3 F
+(/eventmgr) 54 268 T
+(- ) 198 268 T
+8 F
+(/eventmgr) 203.49 268 T
+3 F
+( event-manager ) 246.44 268 T
+5 F
+0.52 0.1 (Returns the event manager for the r) 198 248.34 B
+0.52 0.1 (egion\325s canvas par) 361.81 248.34 B
+0.52 0.1 (ent. ) 446.09 248.34 B
+FMENDPAGE
+%%EndPage: "149" 14
+%%Page: "150" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (17) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (150) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+FMENDPAGE
+%%EndPage: "150" 15
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 14 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Times-Bold
+%%+ Helvetica-Bold
+%%+ Helvetica
+%%+ Palatino-Bold

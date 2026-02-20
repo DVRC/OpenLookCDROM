@@ -1,0 +1,12111 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 8 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 10 /Palatino-Roman FMDEFINEFONT
+5 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "167" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (167) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (B-0) 159.29 672.33 S
+-0.12 (B-0) 159.29 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (Graphical Pr) 199.01 509.03 B
+-2.3 -0.4 (operty-W) 295.73 509.03 B
+-2.3 -0.4 (indow Index) 368.73 509.03 B
+3 F
+7 X
+1 K
+-3.12 (B) 539.24 508.36 S
+4 F
+0 X
+0 K
+-0.04 0.1 (This appendix lists all the pr) 198 459.68 B
+-0.04 0.1 (operty sheets in alphabetic or) 326.17 459.68 B
+-0.04 0.1 (der with sections and ) 458.74 459.68 B
+0.52 0.1 (page r) 198 447.28 B
+0.52 0.1 (efer) 226.73 447.28 B
+0.52 0.1 (ences to simplify looking up individual pr) 243.8 447.28 B
+0.52 0.1 (operties when you start ) 437.38 447.28 B
+0.52 0.1 (fr) 198 434.88 B
+0.52 0.1 (om the pr) 205.3 434.88 B
+0.52 0.1 (operty sheet.) 250.15 434.88 B
+54 408.8 558 425.14 C
+558 422.12 198 422.12 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+5 F
+(Note \320 ) 198 411.97 T
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.07 0.1 (On the pr) 231.84 412.13 B
+0.07 0.1 (operty windows for the seven contr) 275.18 412.13 B
+0.07 0.1 (ol element glyphs \050button, ) 436.24 412.13 B
+0.52 0.1 (message, setting, slider) 198 399.73 B
+0.52 0.1 (, gauge, text \336eld, and scr) 302.84 399.73 B
+0.52 0.1 (olling list\051 the Keyboar) 420.73 399.73 B
+0.52 0.1 (d ) 525.59 399.73 B
+54 376.01 558 384 C
+558 380.98 198 380.98 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (Events and Mouse Events options ar) 198 387.33 B
+0.52 0.1 (e permanently grayed out.) 364.99 387.33 B
+FMENDPAGE
+%%EndPage: "167" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+3 15 /Palatino-Italic FMDEFINEFONT
+%%Page: "168" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (168) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (Base W) 54 638 P
+-0.94 (indows ) 98.17 638 P
+1 F
+0.47 0.09 (Figur) 198 177.88 B
+0.47 0.09 (e B-1) 218.77 177.88 B
+0 F
+0.47 0.09 (The Base W) 248.4 177.88 B
+0.47 0.09 (indows Pr) 296.37 177.88 B
+0.47 0.09 (operty W) 338.26 177.88 B
+0.47 0.09 (indow) 376.27 177.88 B
+54 600.85 153.43 632.32 C
+54 600.85 153.43 632.32 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  293      
+70 37 50.4 26.64 0 54.86 603.88 BEGINBITMAPBWc
+
+
+"b"
+E01F"<#
+EF03DF7"P"
+7FFB#;"
+EC47F8#;"
+EDD7FE#<"
+E1C71F#;#
+E7FFFF9F"a"
+E601"R
+E7
+
+
+
+
+
+8"
+F88#
+FB7F9$
+78F1E39$
+776EDD8$
+F87F6F8%
+FBB871C19$
+B77EDF:#
+6EDD8%
+F87871E38%
+FFFFFFFF
+"<#
+E1FE1F"="
+EDDF#;"
+EC7FF8"<"
+EFFB7a"
+03"<#
+E0001FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 193.88 557.42 585.2 C
+54 193.88 557.42 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  6946     
+450 536 324 385.92 0 197.5 197.34 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#>$
+2FBF5F3F39FFFCF7$F">"9#
+FEDFDF8307F3F3J":"9":#
+499FF3333FF7"H.8'
+FD9CE1CCE0E67383873F338783879C9E0E1CFCC18#G$80
+CFBFCCCCCC33333F37333F33F9279C4CCCCCCC9F8#J%:&
+E73F8FF0FF31FCCCCCE498F7#H#:);"
+FCE0C0E503FF37838703F807C37$G$9):#
+FEF87FCFE5C83FFF3333E33FFCCF01F18"G*8#:%
+3C99CEF3E4E473233B3FF33B8CCF33F97$F.9&
+FC00FF83E1F3FCF27393873F07890787CE4E1F33838"G%Z
+C3FFFFFFCC17#J"
+FFFF4E1J"
+7FF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz$
+?AA60003F@$:"Z$
+F3FFF9FE?EFFFBF:"9$<"J"
+E0FE7E73FF?6F:#9#<"J"
+E67F667FFE?EF;$8)J"
+70F0707393C1C39F9833FF?6F;.J$
+E667E67F24F38999999993F3FE?E0003F:$:"8%J$
+E1FE6399C931FFFF?7FFFFF:';$J"
+E6F070E07F00387FFE?FF;&:%J$
+667C67FF99C03E3FFF?70007F<$9'J$
+7E677F9199E67F33FE?EFFF3F:&9)j$
+E0F120F0FFC9C3E67073FFFFF8;01FF6F:X$Z$
+FEFFFB;FDFFEFG"J"
+FF?6FG"9$J#
+FEDFFFDF9EFBFG">"J#
+FFDF66F5FG"9":"J#
+FEFF1F6EEAFG+J#
+FFFFF9FDDD3E1E77F7DF66D57G"8'J#
+FEDDDCDDDDB7777EEAFG*J#
+FFFFFADBDDDDDBDB6F76FFFG"8"9#J"
+FEABDAAF7EFG"J"
+FF?6FG%8$J"
+FEFFFB779DBDDF7EFG":$J"
+FFDE5E7D86FG"8RJ#
+FE6E000G"J#
+FF?6FFFG"J"
+FE?EFG"J"
+FF?6FG$j$
+FEFFF8;01FFEFGZ"
+@6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6000G"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6C03G"J"
+FE?ECG"J#
+FF?6E07G"J#
+FE?EF0FG"J#
+FF?6F9FG"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J#
+FE?E000G"J$
+FF?70007FG"J$
+FE?FFFFFFG"J#
+FF?7F8FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J#
+FF?7FFFG"J"
+FE?FFG"J$
+FF?60003FG"J$
+FE?EFFFBFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"z$
+FE?5560003FGZ
+C
+
+
+
+
+
+
+
+
+
+
+I$
+EFFFEFA#A"
+F8EFEFI":"
+FF8FA/
+FA6E1E4CF0E7FEFEEE9F0F3BFBEFB-
+6CCE226667FEEEEE6EEEDBBBB-
+2FCE66667FFF6DEEEEEDEDB7A&8":"
+FB2E0E66605557B&
+8CCE6667FFF$8$
+67FFBBCEDEEFB&9$
+CE266670E7EF2F3EAY
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C%<$
+FE7FFF3FEFFFEFA#;"8#
+FE7F0FFEFEH":"
+77FFB&8*
+7E1E4F0F331E38FEEEEE9F0F3BFBB%8%8%
+7CCE266776EDF77E6EEEDBBBB(8(
+7FCE66673FFF0F7F55EEEEEDEDB7B%8$<"
+7E0E6607770E7057B%8%
+7CCE667F76EFB7FFE#:#8$
+77337FBBCEDEEFB%8%8$
+06260F0F0F1478FFEF2F3EAZ
+1
+
+G"j"
+FE=01GZ
+?
+
+
+
+
+
+
+
+
+
+D#
+FE7F>"8";(8'
+83BFFE7E7FFF0F9F9FE73FFFEF8787>"8"<';$
+993F667FFEF76F6F8F7B7B?)8&9%
+C3C20C3C9E0E70E767FFF6F6F733FFEFFB>-
+9B9999399C4CCE6667FF24E7>'8"8$:#8#
+87999F3F9CCC7FFFFFEEE03FF787>&8"8"8":"9#
+93819F3C1C6000DEE7EF7B?+8">"
+9F9F399CCC8E67FFFF99BEDF>$8%8&9"8"
+999D9DCE4E6767E7FF7F6F6F33BF>*9%<#
+98C3C38C4CCFCE70E7FE079F9F0387>P#T8Q
+FCCFC#
+FE1FC#
+FFFFJ'8'
+4FC000000000FFE0000000007JQ8Q
+4
+
+
+
+G"g"
+FC7FJ"Q
+701HP"
+F9
+
+
+>%F"
+CFF3FF9F7F<$9$:":"
+F3FFCEC3DFFE0FFE>#8$9#>"
+FCFF999FFCFEF7FF=18%
+93C833879F9F061830E7FCFDFBA78F4FF1CF4F78=+9$8%
+89CCF3339F8F9CCCE6679B7737EFB73777="8%8"9$8%
+99F39FC39F7FBB7777DF7B776F@';"
+839FF19E0CE007@(:"
+339FF99CCCE7FF7FB"9'9%
+9967FCFEF7BB77EFB77777>/9%
+CE33899FC3C62630E7FCFF0F878FF1CF7778<V8&P
+FFBFFFFFF9
+J"
+4FF
+
+H`"
+01Jb
+7GY
+
+G"j"
+FE21FJ"U"
+907DFH"Q"
+7FE7
+
+
+
+A%:":(9"
+E07FFFDF0FBFE7FBDFFBFC3FFEA%:"<"8#
+E7FFFF9F77F9FDDFB&8'8*
+C3C3061C937698F1C7A70FDE70FDDA63C71E9C3FB%:1
+99999CCC776FBB9BBFE7FADDBBFDD9DDBEEE6EFFA":"9"8"9%9"
+E07FF7BB5BDBFDDBEEA"9#8%9"8&
+E70CFF0EF07383FBFC3BC1CE0EE"9%:(
+FC7EF7FDBF9BDBFDFBDFF6FEE#:#:#8$
+ECF37DBB9DBBDDF6EEB%:&8#8&
+C3C3C61CF8E3C7BBCFDE7CE38F1EEF3FAQ8Q"U
+E7
+
+
+
+Hb"
+07Jf"
+91FGZ
+4
+G"j
+FE0JP"
+<FEH"S"
+7FFC
+
+
+D";#8#9"8"
+9FF77FFDFDFEFBC";"9";"
+879FDF0EC#<"="
+33FFFF7FC%8)8%
+3F9838736F877771863D3DC77EDDC7C3C%9(:#
+1F9F333377776FDDDCDDBBBBBBC%<#:#
+879E733FDFDD0EEBC$8#8&8$
+E39C707E0773DE1DDD837EF783C%8"8&9#
+F39CF3FFF77DDDDDDDBFEBBFC%9#:"9$
+3399F3B36776BBDDBBB3C%9(:#
+87983873977963E62C3DC7C7CBC*P8%
+FFFFFFFFFE7FFFFF7FFFFFFFFFJ#
+4FCFFJ"
+4FF
+
+He
+Ja
+<GZ
+1
+
+
+
+
+
+
+
+B#
+FE7F
+C%
+70E1E4E7C%
+664CE267C%
+67CCE67F
+
+D$
+4CE667C#
+70E1BP
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j
+FE1HR"
+C0J"S"
+9CFFC
+
+
+J":$
+87FDFFFDF>"9#;"<"
+CFC03F7BC3B#;"<"
+F9FF3BDD>*9%9(
+CE1C3C9FF9E7327873CE9A678FE74E1C74DC78E3>%8$8&9(
+CCC99C4F3133335BB6799B77DB3DDBB3DBB7DF?$8$8&8&
+F99CCF73333F4B7AFBBBF7C3BD7DDBB7C$9"9"8"8&
+F273306B87DDD837D839E7D$8"9";&
+F333FF7377DBF7DBFEFB?"9"8"9"<'
+E9F8B3B6DB7D9BB7DBBE>$8%8#8"8)
+CE1C3CF9F078737BCE8BC3E77E5C77DC71C7>P%8Q"S
+F3F3FFFFCF
+C#
+FFFF
+
+J"d
+9C0Hc
+GZ
+2
+
+
+
+
+
+
+E"
+F3=#9#
+FE7F1C7F
+>$8%
+70E1E470F07327>*
+664CE27F4A6667F367>$8%
+67CCE67E63F2FFC$
+7070F0B&
+66667C727F?":$
+4C7E7327>#8%
+70E17E7120F3=U
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C#
+F9CF:#8$
+F81FFDFE73:#8"
+F9FFF9;-
+F33879307E738793C1CE1C93<+
+333899FE73338999CCCC:%8$9"
+F833333903F3997F:$9#9#
+F9F97073830CFF<#9"9"
+73F933FC;$;%
+FCF3B991CCECF3:-
+F81CF8799C7E738999C9CE1C:X
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+G"b*`(
+FE01FFC0000000007FF00FFE0000000003HR*P(
+FDFFDFFFFFFFFF7FF7EFFEFFFFFFFFFB
+
+
+
+;"9"@"?":$
+F3FCFB9FFBFF7F8#<#9"9">$9#8"8#
+E73FFE077F0FEFFF7BF87B7FFE038#="8":#C#;#
+E67F7FFE77FFFBBFFFDF9/8':#:%:#
+F0E73278787260FE7CCE1E4C1833769BA678E9778E10BB874E1F9E9F8)8&9%;#;$:#
+E5E667313333324CCCCE2673F37B99B767777B77377F6E6F8"8(8$9%@%:$
+E173333F31CCFE0C6671FFFBBBBF6FF87B7777DEF6EF8$8#8'8"8$:":"
+E4E07238337E5C0E66787F0EB86FAF07FB9&;%8"8"<";#
+67F2F33333FE667E3F7EB77FBB678$:)=":"<";#
+E66778C8FE7F3CEE667F33DF7797DF6E80;#:$;$:#
+E730F9F0787893E4FE073E1E671073B8AFE18F7CF7779F9E1F8$W8P"9$9&9$
+FFFFF3BFFFFFFFFFFFF7FFFFFFFEFFJ"A"
+83F8F:"I"A"<"
+FFFFFFFF
+
+
+Hb*`(
+01FFC0000000007FF00FFE0000000003GZ
+=
+G"b#a)`#`"
+FE07FFFFE0000000003FF87FF00FHR1P#P"
+F7FF7FFFFFFFFFFEFFEFFFFFFFFFBFFB7FF7EF
+
+
+
+J"
+EDF:#:#9"8%<$:$9#;#
+FC71FE077FFE1FFEF707FF7FE0FFDDF83FFBEFA"8":">"<$9#;#
+7FFEEF7FEFFFFDFBDFF9CF<,8':$:$9$;$
+C3CCE0E1FE7CCE1E4C1833EEEC21CF4F1F4E18E9DDD87FED31E19DDC7F:'8&9&:$;#9$9&
+FD2999CCCFCCCCCE2673F3EEF7B736FF377767DDFFECEEDDFAAF6DDBBF>"8"8$8"8#:%9#;#;#
+C70C6671FF1E7B760F77776FE1EBEDFEAEF5>*8"9#9$:#<":&
+E1C0FE7E5C0E66787FEE773F7F7770EFF7F0FB6EF6B83F;"8#9%=";#:"<#<#
+99F8CFFE667E3FDF77EFEBEED9BBFF=+9$>":";$:%
+C8FCCEFE7F3CEE667F33CEF7B76FDDDDEEE5EF6F7BBF;-8'9%9%8%;$
+F9C3E4C1E1FE073E1E6710731F2F39CF763F077798EFE0DDDE7FF83DF17D9F7C7F:X"R9%9%8%9P
+FEFFFFFFFFFFFFFFFFFFFFFFFDJ"
+LE3J"
+LFF
+
+
+Hb#a)`#`"
+07FFFFE0000000003FF87FF00FGZ
+E
+
+
+
+
+
+
+
+
+
+
+;"e"
+FC7F;"U"
+F39F;"@"
+EFEF;">$
+DFF7FFF7;#?"
+BFE1FB<"?"
+EFF9;-
+7FEFE74C7869CF774F87FFFD=+
+DB3BB767B7773777FFFC<)
+E1BD7BB76F7B7777<%
+EFBD7837>#
+7BF6=*
+DB7BB96FB7677766DB=)
+E77C7F6FCF977796;'P"
+BFFFFFFFFF7FF8?#;#j
+F8FFF9FF>;"9"<"Z
+DFFFF1?;"@"
+EFE3;"@"
+F387;"e"
+F80F;"@"
+FC3F;W
+
+
+
+
+;"e"
+FC3F;"U"
+F3CF;"@"
+EFF7;"8";$
+DFFEFBFFFB;#?"
+BFC3FD<"?"
+DDFC;-
+7FDDC7C6EC34E7BBA7C3FFFE=)8"
+BBBEDBB3DBBB9BBB7F<)
+C3FB7EBBB7BDBBBB<%
+DDC37E3B=%
+BB7EDB37>)
+BECCB7DBB3BBB36D<*
+C3C5C6EFB7E7CBBBCB;'P"
+BFFFFFFFFFBFFC?#<"j
+FC7FFF>;"9#;"Z
+DFFFFFF8?;"@"
+EFF1;"@"
+F3C3;"e"
+F807;"@"
+FC1F;W
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J'8'
+6C0000000003FE0000000007FJ'8'
+63FFFFFFFFFCF9FFFFFFFFF9FJ#:"8":"
+5FEFFF77FEFJ"9':"
+5FDFEFFFBFFFEFFF7J$9&8#
+5FBFF3FFDFFFDFF0FF7FBJ"9"9"
+;FC77F9J*8%
+5F7FEDE9E9EDDFEFFFB1E38E1FDJ#8"8&
+86E6E7F76EDF777FCJ#;"
+8EEEE0EJ#8":$
+6FC0EEB6E0E70J#=%
+6FDEE76FFB7F7J";$
+:F7EFB777J#;%
+81E1E771C78F9J*P"
+5FBFFFEFEFFEFFC7FFDF8J$<"
+:CFFCFFF9J"P$;"
+5FDF8FFFEF1J";%:"
+5FEF1FFFF7FE3J#:"8":"
+5FF3FC39F87J'8'
+6800000000007C0000000000FJ":"8":"
+6C01FE03FJQ8Q
+6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+59.98 547.18 192.82 558.63 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 74.52 551.97 T
+59.98 489.22 192.82 500.67 R
+7 X
+V
+0 X
+(Name p.94) 144.18 494.01 T
+59.98 471.22 192.82 482.67 R
+7 X
+V
+0 X
+(Label/Title p.95) 120.72 476.01 T
+59.98 454.66 192.82 466.11 R
+7 X
+V
+0 X
+(Rectangle p.95) 127.87 459.45 T
+59.98 433.78 192.82 445.23 R
+7 X
+V
+0 X
+(Initial State p.98) 120.89 438.57 T
+59.98 413.19 192.82 424.64 R
+7 X
+V
+0 X
+(Footer p.96) 142.63 417.97 T
+59.98 398.07 192.82 409.52 R
+7 X
+V
+0 X
+(Size p.97) 153.16 402.85 T
+59.98 382.95 192.82 394.4 R
+7 X
+V
+0 X
+(Icon p.98) 152.02 387.73 T
+59.98 362.79 192.82 374.24 R
+7 X
+V
+0 X
+(Icon Type p.99) 127.04 367.57 T
+59.98 343.35 192.82 354.8 R
+7 X
+V
+0 X
+(Icon Mask p.99) 125.27 348.13 T
+59.98 322.47 192.82 333.92 R
+7 X
+V
+0 X
+(Event Handler p.105) 101.11 327.25 T
+59.98 301.66 192.82 313.11 R
+7 X
+V
+0 X
+(Keyboard Events p.105) 90.11 306.45 T
+59.98 283.66 192.82 295.11 R
+7 X
+V
+0 X
+(Mouse Events p.106) 103.79 288.45 T
+59.98 264.22 192.82 275.67 R
+7 X
+V
+0 X
+(Foreground p.106) 113.44 269.01 T
+59.98 243.34 192.82 254.79 R
+7 X
+V
+0 X
+(Background p.106) 112.09 248.13 T
+59.98 213.18 192.82 224.62 R
+7 X
+V
+0 X
+(Apply p.108) 137.85 217.96 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "168" 3
+%%Page: "169" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (169) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+(Buttons) 54 638 T
+1 F
+0.47 0.09 (Figur) 198 215.03 B
+0.47 0.09 (e B-2) 218.77 215.03 B
+0 F
+0.47 0.09 (The Buttons Pr) 248.4 215.03 B
+0.47 0.09 (operty W) 309.67 215.03 B
+0.47 0.09 (indow) 347.69 215.03 B
+54 598.77 170.14 627.28 C
+54 598.77 170.14 627.28 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  233      
+64 33 46.08 23.76 0 55.51 601.21 BEGINBITMAPBWc
+
+
+
+
+7`"
+03"P"
+FCFC";#
+FBFF7F"<"
+F7BF
+"<"
+EFCF
+
+7"
+E37%
+EDFFDFBF8&
+DD870F1D3F7'
+E1DDDFBEECDF7"9"
+EEED
+8$
+D9DBB67&
+E1E5E7CF1D7Q
+
+
+"<"
+F79F
+"<"
+FB3F";#
+FCFC7F"a"
+FFFF<"
+037Q
+
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 231.03 557.42 585.2 C
+54 231.03 557.42 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  8191     
+450 486 324 349.92 0 196.92 233.91 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#
+2FBF8E7E77$I"=%
+FEDFDF07FE0FFFBDJ":"9$
+733FF67FF397"J1
+FD539C399C1CCE7070E7E67320061E4F07F8#J0
+CFBF4999999CCE666667E6F3339CCE267FF8#J$9#
+E73F:67FE1FE6637#J#:$:"
+FCE0581CB07FE6F707$J$9$:#
+FEF87F49FCB917FFE677C7F8"J,9"
+3C4339DE7C9C8E646767E67237E7$I1
+FC00FF07C3E7F9E4E7270E7E0F938C61E660FF8"J%V
+C34FFFFFF997#J"
+FFFF7C3J"
+:FF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz%
+>5554C0007FG"Z#
+FD?DFFF?%:"J"
+FE0FFFBDFF>FE@$:"J"
+67FF39FD>FFA(J"
+320061E4F067FF>FE@)J$
+6F3339CCE267E7FD>FFC000@"9%J%
+1FE663FFFF>FEFFFFFF@":$J"
+6F70FFFD>FF@":$J$
+677C7FFF>FEE000A"9$J%
+237E67FD>FFDFFE7F@+j#
+0F938C61E660E7FFFFF0;03FE?S$Z#
+FDFFF7;FBFFG"J"
+FF>FEG$J$
+FDFFF5<FFDF7EG"9#8"J$
+FFFDEFBF6FEDEBEG"<#J$
+FDFE3F6FFDD5EG"8'J$
+FF3DD8439E9FBF6FEDAAEG)J$
+FDFFF4DDDDEF6E6F7FFDD5EG$8$J$
+FFFFF5EEF6EF7FEDFFEG"J"
+FD>FFG"J"
+FF>FEG"9$J"
+FD9DEF6E8FFG(J"
+FFFFF43E5E739E8FEG$QJ$
+FDFFF76FFC000G"J$
+FF>FEDFFEG"J"
+FD>FFG"J"
+FF>FEG$j#
+FDFFF0;03FFGZ"
+?FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEC000G"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FED806G"J"
+FD>FFG"J$
+FF>FEDC0EG"J$
+FD>FFDE1EG"J$
+FF>FEDF3EG"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J$
+FD>FFC000G"J%
+FF>FEE000FFG"J$
+FD>FFFFFFG"J$
+FF>FEFF1FG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEFFFFG"J"
+FD>FFG"J%
+FF>FEC0007FG"J$
+FD>FFDFFFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"z#
+FC?AAC000GZ
+C
+
+
+
+
+
+
+
+
+
+
+H"
+7FA#="8"
+F8EF7BEFJ"
+78FA.
+FA6E1E4CF0E7FF4F7610E7A7EFB,
+6CCE226667FF37777BDB9BB(8#
+2FCE66667FFF77BDBBA&
+FB2E0E6660B&
+8CCE6667FFF"8$
+67677BDBB+
+CE266670E7FF0F979CE7AX
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C%
+FCFFFE7FA";%
+FCFE1FFEF7H"
+EFB,
+FC3C9E1E67FEEEEC21CF4FB%9%
+F99C4CCEEEF7B737B(8#
+FF9CCCCE7FFE1E7B77B%8"
+FC1CCC0EEEB%
+F99CCCFEE#8$
+EE67CEF7B7B%8%
+0C4C1E1E1F2F39CFAW
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j
+FC3J"W"
+77FFEH&
+FFFFFFFFFE
+
+
+A$A$8"
+F9FFFCDFFFFB77?":#8%8":"
+F9FE7FFC07FFFBC387H#:":#
+FFBFBDBFF7@(8$8-
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C7@(8$:+
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB@#9#9#:%8$
+FF3963FFDD7BBBBBBF87EFDDDD@'9$8$8(
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83@(8$?&
+F33999FCFE7C7FBDFD7BFEEDDDDDBFC%9#8$:"9"
+DCFE7E67DBBBBDDEFBEEBB?)8$8%8'
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC7?S8$8$T
+FFFFFFFFFDFBJ"
+9F9J#
+9FFFF
+
+H`
+Ji
+7GZ
+4
+
+
+
+
+
+
+C"
+FC?"9":&9&
+CFBC9CFFFE1F9FF3CFFFC3C3C"<$<#
+3FFDEF5FBDBD@.9%
+C3C3860CE1E4E7FFC9CFFDFEDFF9D9FFFD@*8";"
+9999333CCCE267FFC3FD99A#8(:&
+9FF3E67FFFE3FFFC1BFCBFFFFBC3B";&9&
+83C9FFFDE80FFE7FFFF7BDB">#<"
+33EFDFEFA":%=$
+9D67FF9CCF79FFDF?';#=#
+C0C3C3898CE1FE1F81C3?Y9P
+
+
+J'9&
+4F8000000001F0000000003JQ9P
+4
+
+
+
+G"j"
+FC87FJ"Z
+:3F/HS
+
+
+
+J%:#8"9"
+4FDDFFFBFDFDFFB7FB#:#8":"<"8"
+807FFE1FC3E77F7DB#;"8#>":"
+F3FFFFBFFFFF39C%8#8#8*8$
+CE64F0E7FDDDB071DBD3D3A63BBB8E18F8E3D3DDD$;$9-
+6266679FBF6ECDCD9DDBBB7777777F55DDCDD$8"8$9$8";"
+E6667F1DC7BEEEDDDDBDF7DDC$9"8$8"8&8#
+E4E660FDF3BDE081BC1D7B87706DC1C%;$8"8'8"
+E5E667FFFBBBEFBDBDFD7B7777F7DFC"8"9"8#<#8'
+F1679DB7EEDEFB767F7DDDDDD9C%8'9)8$
+F3E0F0E7FE5DDF87B071C3C3BE3EFB8B98F9E3DDE5B'R8Y
+FFE7E7FFFFFC
+C#
+FFFF
+
+Hc
+Jj
+:0GZ
+:
+G"j"
+FC003J"P"
+<03FBHU"
+F3
+
+
+A$<(9"8"
+3F3FCFF7FFEFFFFDFDFEFBEF9%8(8":%8#
+E0FFFBDFE7E73F3BCFFE7FFEDFDDFDDEFC3B9%8%A":#
+E67FF39FE667FF33DFFDFF:&8'8*8%
+7320061E4F3820C9FE7067F8F4F1EFDDDDE1869FFB771F0F:.8$9$9$
+F3339CCE27F24F3333C4FE67E7F7736EDDDE6F76EEEF9":":%8#8#8&
+E167CCFE63FFFF77EABDEFF3FC3BAE9";#:"9$=%
+E6F00F70F87760FDFBDE0E:":#:#8$?#
+73F99F7C7FF7776FAEFE:"<"9#:&;$
+72327E676EEFF77DD976EECF9&9#8#8$9#:$
+E0F938C61E393860E718B0F1E5E6771F2F9Y"U"P
+FCF3
+
+J(
+EEAAAAAAAAAAABFJR
+EHe"
+03Ja"
+<03GZ
+2
+
+
+
+
+
+
+
+
+
+
+
+
+<#9#
+E38FF8EF
+=+
+8E1E4F33FA6E1E4CF0E7<%8&
+E94CCE276CCE226667?"8&
+672FCE66667F>"8&
+0EFB2E0E6660<$9&
+ECCCFE8CCE6667FF>$;"
+EE672367<,
+EFCE1E6793FBCE266670E7<V
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+<#;#
+FE78F39F:(
+1DFFDE73FFFCE7<#
+9FF3:&8'
+4DC306609C0F27839C3927;$8'
+999E73E66713339999:"9&8#
+459DFC07E73398FF:"9%8#
+65C9FCE7079819:"9%8#
+71CBFCE66799F9>":%
+E32399D9E7:-
+79C3C673E7FCE71333939C39:&S
+FFFFFFFFCF
+>"
+FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"R*P(
+FEFBFFEFFFFFFFFEFFFBEFFEFFFFFFFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7;"9"=%:$8'9$9"
+FBFEFEFFFFFBFBFFEFBFFEFFFBFFFBEFFEFFFB8%9$9':$8.8"
+F77FFFF7FDFF577FFFFF7F5FFFFDFFDF7FFF7FF7FD7FFF7F7FDFFF7F57F78%9$8';38"
+EEFFFFFBFEFEFFFEFFFFFEFFFFFBFFEFEFFFFBFEFFFBFBBFFFFFFFEFFEFFFFFB85
+LF7F5F7777D7D7775FF7DDF5F5D5D77FF7F77DFF77DFD77FDFFDFFFDF55FF7FF7FFFFD75F5FDFFF7FDFDFDFF785
+LEFEEEFBBBBBBBAEEFEFEEEEEAEFBFBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBFFBFFFEFFEFFFFEEEFFB85
+LF5F77777777F75DDFF5DDDDF7775FFFF7F77FFFFFF7F77FDFFDFFF777FFF7FF7FD7F77777FDFFF7FDFF7FFF785
+LEEEAFAFBBBBABBEEFEFEFEAEEEFAFFFEFFAEFBBBBAEFAFFBFFEFEFAFFBFEFFFBFBFBFFFFFFEFFEFFFEFEEFFB85
+LF577F7F7777777DDFF7F5DFF777F7FFF7F7FFFFFF77FFFFDFFDFFF7F7FFF7FF7FFFF77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEAFEFFBEEEEEFFBBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBBFFFFFEFFEFFFFEEEFFB85
+LF775FDF57D7DD7F5FF577F5F775577FF7F7FFFFFFDFFDFFDFFDFF5DF7DFF7FF7FFFFF777DFDFFF7FDFDF5FF78$W$8-8+
+FFFFFBFEFFFFFFFFBFFBFFEFFFFFFFFEFFFBFFFFFFEFFEFFFFFEFFFB:"B#;%9$8"8(
+F7FF7F7FFDFFDFFF7FF7DFDFFF7FFFFFFFF7:"B#;%9$8"8$9"
+FFFEFFFFFBFFEFFEFFFBFFEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABGZ
+=
+Hr5
+55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG#Q1P#P"
+FF7FF7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFD7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$8%:$;"
+FF7FF7FF7FFDFFF7DFFF7FFDFF7FF7DF:#:#;%:%9,8&9"
+FEFBFEAFFEFEBFFEEFFFBFAFFEFFEFEAFFFFFFBFFBFABFFEFFFBFBEFEF:#:#9(938&9"
+FD75FF7F7FFFFF7FFFFFF7F7FF7F7FFF7FFFFDFFF7FFFFFDFF7FFDFFDFFF7FF7FDDFDF:5
+O$FEFBEBEEEAEBFEFEEEBEEEBABBFEFEEEEEABEFEFBFEFFFBFFFEEBAEBFEFFEFEFFFFAFFBFFBFBEFBBEBFEFFFBFBEFBFFEFFEF:5
+O$FD7DDDDDDFDDFF7DDDDF7777F7FF7FFFFFF7F777FFF7FF7F7F777777FDFFF7FFDDDDFF7FFDFFFDFFDDFF7FF7FFFF7DDFFFDF:5
+O$FFABBBEEEFEEFEAEEEEEEEFBFFFEFEBEEEFFFBFEFFEFFFBFAFFFFFEFFEFFEFEBEBFFFFBFFBFBEFFEFFFEFFFBFAAEFFFBBFEF:5
+O$FD7DDDDDF5D5FF7F5D5F777D7FFF7FFFFFF77F777FF7FF7F7F77757FFDFFF7FFF7DDFF7FFDFFFDF5DDFF7FF7FF7FF7FD7FDF:5
+O$FFBBBBEEFAEFFEFEFEFEEEFEBFFEFEEEEEFFFBFFFFEFFFBFFFFFFFEFFEFFEFEFEBFFFFBFFBFBEFEEFBFEFFFBFBEEFEBBFFEF:5
+O$FDDDDDDDFDDFFF7F7DFF777F77FF7FFFDFF7F777DFF7FF7F7F77777FFDFFF7FFDDDDFF7FFDFFDDFFF5FF7FF7FFFF7F7FFFDF:5
+O$FFFBEBEEEBEBFEAFBEBEEFBAFBFEFEBFAFBBEFFEBFEFFFBFAFFFBAEFFEFFEFEAFFFEFFBFFBFABFFBFFFEFFFBFBEFBFFEFFEF;X"Q5P"
+7F7F7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFDFFFFFFFDFF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBEBFEFFFBEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDFFFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FHZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+60.26 546.18 193.1 557.62 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 74.81 550.96 T
+60.26 485.05 193.1 496.5 R
+7 X
+V
+0 X
+(Name p.94) 144.47 489.83 T
+60.26 451.35 193.1 462.8 R
+7 X
+V
+0 X
+(Label Is p.95) 136.95 456.13 T
+60.26 432.63 193.1 444.08 R
+7 X
+V
+0 X
+(Location p.96) 132.95 437.41 T
+60.26 413.91 193.1 425.36 R
+7 X
+V
+0 X
+(Type \050Button\051 p.100) 104.83 418.69 T
+60.26 338.74 193.1 350.19 R
+7 X
+V
+0 X
+(Event Handler p.105) 101.39 343.53 T
+60.26 279.06 193.1 290.5 R
+7 X
+V
+0 X
+(Color p.106) 141.53 283.84 T
+60.26 395.34 193.1 406.78 R
+7 X
+V
+0 X
+(Button Width Is p.100) 95.78 400.12 T
+60.26 252.34 193.1 263.79 R
+7 X
+V
+0 X
+(Apply p.108) 138.13 257.13 T
+59.69 235.78 192.53 247.23 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 85.2 240.57 T
+59.98 469.57 192.82 481.02 R
+7 X
+V
+0 X
+(Label/Title p.95) 120.72 474.35 T
+59.69 375.03 192.53 386.48 R
+7 X
+V
+0 X
+(Menu Name p.99) 115.31 379.81 T
+59.69 355.59 192.53 367.04 R
+7 X
+V
+0 X
+(Notify Handler p.105) 97.62 360.37 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "169" 4
+%%Page: "170" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (170) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (Canvas Panes) 54 638 P
+1 F
+0.47 0.09 (Figur) 198 215.75 B
+0.47 0.09 (e B-3) 218.77 215.75 B
+0 F
+0.47 0.09 (The Canvas Panes Pr) 248.4 215.75 B
+0.47 0.09 (operty W) 334.86 215.75 B
+0.47 0.09 (indow) 372.88 215.75 B
+54 590.56 146.59 623.75 C
+54 590.56 146.59 623.75 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  355      
+68 38 48.96 27.36 0 55.66 594.23 BEGINBITMAPBWc
+
+
+
+"b"
+C03F"R"
+DFBF="
+F1
+:%
+FC03FFFB:%
+FEFBFFFF8'
+F1FFFF7BFFFB8"8"
+EEBB9$
+F007DB9$
+F7F7EB8"8$
+F1F3FFF18"8$
+FFFBFFF5;$
+FFFFF19#8"
+F007F59#8"
+FFFFF1="
+FB
+
+
+7#
+FE3F7#:"
+FDDFFF8'
+DC74EEE3C7FB8'
+FBB36EDDBBFF8'
+FFB76EFDBFFB8'
+FC3775E1C7FF8'
+DBB775DDFBFB:%
+7BDDBBFF7(
+FE3C377BE1C7F17Q
+="
+FF
+"b"
+C03FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 231.75 557.42 585.2 C
+54 231.75 557.42 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  7545     
+470 481 338.4 346.32 0 197.93 235.71 BEGINBITMAPBWc
+j"
+O,03
+"Z"
+3FO+F3
+
+
+8"
+F88#
+C73F8#J#
+2FBF73F3F7$G#=#;"
+FEDFDFF83FFC3FC1J#:"8#;"
+5F99FFFF99FCC7"J5
+FD44CE1CCE0E67383873F3F879399C3C1FCCC3C9E1E08#H5
+CFBF4CCCCCCCE67333333F3F338999999FFCC99C4CCCF8#J.
+E73F93FF3FF39999F98FFCDF9CCCCC77#J#9"8,
+FCE040E5C30F8399CBC1C3FC3C1CCC0E17$I$8%8)
+FEF87FFE5C8E33FFF3F3B99F1FCF99CCCFF88"I09#
+3C9CEF3E4E473233B3F9D3399E799F9FCEFC7$G5
+FC00FF5F83E1F3FCF27393873FC38999E7C483FCFC4CCE1C18"H&Z
+C3FFFFFFFCCF07#J#
+FFFF5FE1FJ#
+8FFFF
+
+
+
+
+"j"
+38O+73"Z"
+3FO+F3
+
+
+
+
+
+
+
+J"z$
+4F5>554C0007J"Z$
+4DF>FDFFF7=";#;"J"
+E1FE0FFF>ED="<";"J"
+CC67DF>FD=/J"
+9FC3C9CCE1E0FE661E4F0F067FFF>ED>.J$
+99C4CCCCCFFE64CE26667E7FDF>FC0007>.J$
+F9CCCCFCC7FE6FCE66663FFFFF>EFFFFF>.J"
+C1CCE5E0E1FE1E0E66070FFFDF>FF>"8+J$
+99CCF8FE7CCE667FC7FFFF>EE000F="8$:%J$
+CEF3CCFC77E67FDF>FDFFE7=#8,j#
+E1C4E241FE7E26670E0E7FFFFF<3FED=X$Z#
+DFFF7F;BFFDJ"J"
+4FF>EDJ"J#
+4DF>FDF7J"<"J#
+4FFFB7EDEBJ"<"J#
+4DFE37FDD5J)J#
+4FFFF631E9DDC78FB7EDAAJ(J#
+4DFFF5EEE6DDBB78FDD5J'J#
+4FFFF3FEEEDDF9EDFFJ"8%J"
+4DF0EEEBC398FDJ(J"
+4FFFF3EEEEEBBBE8EDJ'J"
+4DFFF5EEEEF7B9FDJ(J"
+4FFFF6316EF7C518EDJ$PJ$
+4DFFF7F7FC0007J"J$
+4FF>EDFFE7J"J"
+4DF>FDJ"J"
+4FF>EDJ#j#
+4DFFF<3FFDJZ"
+4?EDJ"J"
+4DF>FDJ"J"
+4FF>EDJ"J"
+4DF>FDJ"J"
+4FF>EDJ"J"
+4DF>FDJ"J"
+4FF>EDJ"J"
+4DF>FDJ"J"
+4FF>EDJ"J"
+4DF>FDJ"J$
+4FF>EC0007J"J$
+4DF>FDFFE7J"J"
+4FF>EDJ"J"
+4DF>FDJ"J"
+4FF>EDJ"J"
+4DF>FDJ"J$
+4FF>ED8067J"J"
+4DF>FDJ"J$
+4FF>EDC0E7J"J#
+4DF>FDE1J"J#
+4FF>EDF3J"J#
+4DF>FDFFJ"J"
+4FF>EDJ"J"
+4DF>FDJ"J"
+4FF>EDJ"J$
+4DF>FC0007J"J$
+4FF>EE000FJ"J$
+4DF>FFFFFFJ"J#
+4FF>EFF1J"J"
+4DF>FFJ"J"
+4FF>EFJ"J"
+4DF>FFJ"J"
+4FF>EFJ"J"
+4DF>FFJ"J"
+4FF>EFJ"J"
+4DF>FFJ"J"
+4FF>EFJ"J"
+4DF>FFJ"J#
+4FF>EFFFJ"J"
+4DF>FFJ"J$
+4FF>EC0007J"J$
+4DF>FDFFF7J"J"
+4FF>EDJ"J"
+4DF>FDJ"J"
+4FF>EDJ"z$
+4CA>AAAC0007JZ
+4B
+
+
+
+
+
+
+
+
+
+
+
+D"@"
+8EFEJ"
+9F8D-
+A6E1E4CF0E7FF8C7A7771E3EE,
+CCE226667FF7BB9B76EDFED+
+A2FCE66667FFEFFBBB77D#8"8&
+B2E007C3BBAF0E7ED#8"8&
+B8CC7FBBBBAEEFBEH$8"
+767FF7DED-
+BCE266670E7FF8C5BBDF147EDW
+
+
+J"j"
+4C0=3FJZ
+4?
+
+
+
+
+
+
+
+
+
+G"
+E7@%<&:%:&9'
+F83FFFFBF9CFFFF9E13CFFFE7FE7E7FFF0F9FE73FFF87E7F@%?#<#:&<#
+F99FFFF3F5DEFDBFE667FFEF76F7BDA.;%;&:$
+9C3C20C3C9E0E70E7FFC9CFFED9D9FFBDF667FEF6F7F3FF7FBA)8$;"=#@"
+B9999399C4CCE6663CFFDD99F24EF7@'8(:#=%:%
+F87999F3F9CC67FFFE3FFFBDE1CBFF4FFFF0EF03FFF06F@&9(:"=&:&
+F93819F3C107FFFC9FFF80DEE7F00FFFEF6F73FFF7A03FA):"C#@#
+39F9F399CCC8E67FFDF99FBF7FA$8'>$;&:"
+99D9D3E4E6767FF9CC9FFDBF9E7FEF76FF3FA);"<#=#<#
+8C3C38C4CCFCE70EE1FE7FF0F9F87F@Q"S:%:P9Q
+CCFFFFFFFFF"
+E1F"
+FFJ&9'9&9'
+78000000001F0000000003FC000000000E0000000007FJP9Q9P9Q
+7
+
+
+
+J"j"
+4C0103J"Q"
+?7FFBJ"T"
+4CFFE
+
+
+:#:"9$
+FE7F9FFE739F7#;"8"?%:"8":"
+FE73F7C3EF7FEFF0FB87DF:#8"8"?"8#<"
+FFFFE799E7F77FBB928)9&
+872660E1E4C1879F9FC3261E7393C3927F79C3F7698F1C7A704C78E3D387909*9&
+33267CCCE267339F8F9924CE738999EB76EFF76776FBB9BB3BB7DDCDDF8-8+8":"8"
+03331E79CCE667F39FC39F1C99F98FFFCFE96F6FF76FBB7BDD8%9&9#8"8&9%
+73333E71839FF19F3CC19FEDF0EF07383B877839C1;"9$;"9"8&9%
+73339FF999EEF7EF7FDBFBBF7BFEDF;";#;#8#8$;#
+67999D9E7F76EF77DBBBBEDD909$8%9&
+873E60E1E671899FC3C33E1E7383C4EF79F38E3C7BBC7C71E3DDE77Z"T8Q
+3CF
+
+
+
+J"e
+4C0Jb"
+?03JZ
+43
+J"j"
+4C0103J"Q"
+?7FFBJ"T"
+4CFFE
+
+
+="8"9$
+F99FFE739F:"8"9"?%:"8":"
+3C79C3EF7FEFF0FB87DF<#9"?"8#<"
+FE7F99E7F77FBB;08)9&
+C39019C3879F9FC3261E7393C3927F79C3F7698F1C7A704C78E3D387:/9*9&
+9D99927999339F8F9924CE738999EB76EFF76776FBB9BB3BB7DDCDDF:+8+8":"8"
+99998E799FF39FC39F1C99F98FFFCFE96F6FF76FBB7BDD:$8&9#8"8&9%
+CB819E839FF19F3CC19FEDF0EF07383B877839C1:#9$;"9"8&9%
+C39F339FF999EEF7EF7FDBFBBF7BFEDF:#8"8#;#8#8$;#
+E79D9D999D9E7F76EF77DBBBBEDD;.9$8%9&
+C39F19C3899FC3C33E1E7383C4EF79F38E3C7BBC7C71E3DDE7:Z"T8Q
+0CF
+
+
+
+J"e
+4C0Jb"
+?03JZ
+43
+
+
+
+
+
+
+
+>#:"
+FE388E
+@+
+E1E4F33FA6E1E4CF0E7F?%8%
+94CCE273CCE22666A"8'
+E6A2FCE66667FF@"9#8"
+C0B2E007?#9#8"
+CCCFB8CC7F@$;#
+CEE672767F?+
+FCE1E6793FBCE266670E>W
+
+
+J"j"
+4C0=3FJZ
+4?
+
+
+
+
+
+
+
+
+
+?"<"
+E739;";$
+83BFCE7F;"9$
+99FFFF3F</
+C3C9E1E7260FCE70F27839C3927F;.
+9B99C4CCE7133FCE6671333999;+9#
+8799CCFCE7333FC07E738FFF;%9#9#
+9381CCE0CE70819F<$:"9"
+9FCCCC669F;#>&
+999D32399D9E7F;.
+98C3C1E267338FCE71333939C3;$W
+FFFFCF
+="
+FFJ"j"
+4C0=3FJZ
+4?
+
+
+
+J"j"
+4C0903JU"S"
+;BFFBJ"P"
+4CFFC
+
+
+@";$:"<$@"
+F9FCFFE7EFFEFFFEFD<"<#<#:%=%9"
+C1FE38DEDEFEF7EFEEC3FFFEF0DF<"9"B"<"="8$
+CCFFFFEFDDEFFFFF<(859(
+CE64C39F99C9E05E1E0E1E67FCFEDDEEE3BFBFCFF6FEEEEE9F0F3BFB8E78C2FF14DD387>+9&8"8&9(
+999999C4CCFE94CCCCCCF5DEEDDBBBAFE6EEEDBBB7DB7EE7EF3DCDDF=&<)8)9'
+63F9C939CCE7FFCFF3EDEDDDB79FF55EEEEEDEDB77BD7EF1DF7DDD=#>"9&8";#8%
+67C1C0EBEDEC1D575FD579C3BD9EFC>#8$8"9%9"<"8%
+99C0C8FECCCFEDEDEDFD6F7EDFBDEEFE<(959"8"
+CCE799E679CCE44C8CEE67FCFDEF3EDDEEFFCFEF7FBBEEEECEDEEFEDBEF<$9';#=%9(
+C1E7C4FCFEFCE1E4E1EE3EF2F3EEF1E71F21F17DC3E7<Q"R"P"T8Q#
+CCCFFCDFFFB"
+E1B"J"
+FF?FF
+
+J"a
+4C0Jj"
+;303JZ
+4;
+
+
+
+
+
+
+F"
+39="9$
+03BFCE7F="9"
+3F3F=.
+3E670F260FCE70F27839C3927F>+
+6667133FCE6671333999="8&9#
+06333FC07E738FFF=$8#9#
+3F2E07CE70819F?"9"9"
+7F669F>#;&
+9E7732399D9E7F=,
+039F0F338FCE71333939C3=X
+
+
+J"j"
+4C0=3FJZ
+4?
+
+
+
+J"b)`)
+4C03FF8000000000FFE01FFC0000000007FJ"R)P(
+4DFBFFBFFFFFFFFEFFEFDFFDFFFFFFFFF
+
+
+
+=#9"@">";#
+FE7F9F7FF37FEF:#="9"9">%9"8"9#
+FCE7C0EFE1FDFFEF7F0FEFC07F;"="9"9$C#;#
+CFCFCFEEFFFF77FFFBFF;08&:$:$:#
+DE1CE64F0F0E4C1FCF99C3C983067FD374CF1D2EF1C21F70E9C3F3D3;)8%9&:$:$:#
+BCCCE6266666499F99C4CE7ECF7336ECEEEEEF7F6EE6EFEDCD;*8%8%A$;#
+3CCCEE6667E6399FC1CCCE3FFFDF7777ED0F6EEEDEDD;$8*8"9#:";"
+9C0E4E06799FCFCB81CCCF0FE10DF5E06F;':"8"8"8#;";#
+8CFE5E6666669FC7EF76EDEF776C;$:%8#<":"<"<"
+CCEF1E1FCFE79DE67FFBEE72ED;/;#:%:$:#
+E61F3E0F0F127C9FC0E7C3CCE20E7715FC31EF9F7EEEF3F3C3:%W"P"9%9%9$
+FFFFFE7FDFF7FFFFFFFFFFFEFFFFFFFFDFJ"A"
+:E7F1<#H"A"="
+FFFFFFFFFF
+
+
+J"b)`(
+4C03FF8000000000FFE01FFC000000000JZ
+4=
+J"b#`)`#`"
+4C0FFE01FFC0000000007FF0FFE01J"Q$P0P"
+4DFFEFFEFDFFDFFFFFFFFF7FF7FFFFFFFFFEFFEFD
+
+
+
+J"
+GFB=#:"9"9$<$:%9"<"
+8E3FC0EFC3FFDEE0FFEFFC1FFBBF077DC"9"9">"<$:"<"
+CFCFDDEFFDFFFF7B39>-8&:%9$9%:$
+38799C1C3FCF99C3C983067FDD8439E9E3E9C31D3FFBBB0F7DA63C3FF3BB8F='8%:%:%;":$9%
+A5333999F99F99C4CE7EDEF6E6DFE6EEECFFBF9DDBBF55EDBB77@"8"8'8#:%9$;"<"
+98C1CCCE3FFFDFC3EF6EE1EEEEEDFC3D7BBFDE@*8":"9"8"9$;#:%
+9C381FCFCB81CCCF0FDDE7EF0DFDFEFBBE1B6DDED707="8$8"8"="<":#;$<"
+B39F19FF9FC7FBFDFD7BBDDB3F7F@'8#8%=":#:%9%
+1F99DFCFE79DE67FD9DEF6EEEDFBBB7BBDDCBF7DEDEF77=-8'9%9%9$;$
+BF387C983C3FC0E7C3CCE20EC3E5E739EEC7E0EEF31DFC1BBBCF07BE2FF3EF8F=X"Q9%9%9$:%
+DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFJ#
+O FC7FJ#
+O FFFF
+
+
+J"b#`)`#`"
+4C0FFE01FFC0000000007FF0FFE01JZ
+4D
+
+
+
+
+
+
+
+
+
+
+>"d"
+C007>"T"
+3FF9=#?"
+FEFFFE="?$
+FD7FFF7F=$?"
+FBFE1FBF?"?"
+FF9F=+8"
+F7FEFE74C7869CF774F8DF?)8"
+FDB3BB767B777377CF?#8$
+1BD7F7B777?$
+FBD783A#
+BF66?+
+FDB7BB96FB7677766DBF?)
+FE77C7F6FCF97779='Q"
+FBFFFFFFFFF78FB"<#j"
+8F9FF0=0F=":"<"Z
+FDFF1F?="@#
+FEFE3F=#?#
+FF3FF87F>"e"
+80FF>"?"
+C003>V
+
+
+
+
+>"d"
+C003>"T"
+3FFC=#?#
+FEFFFF7F="9";$
+FDEFBFFFBF=$?"
+FBFC3FDF>#?"
+FDDFCF=.
+F7FDDC7C6EC34E7BBA7C3FFFEF?,
+DBBBEDBB3DBBB9BBBFFFE7>)
+FC3FB7EBBB7BDBBB>%
+FDDC37E3?%
+DBB7EDB3@*
+BBECCB7DBB3BBB36DF>+
+FC3C5C6EFB7E7CBBBCB6='Q"
+FBFFFFFFFFFBC7B"<#j"
+C7CFF0=0F=":"<"Z
+FDFF8F?="A"
+FE1F=#?#
+FF3FFC3F>"e"
+807F>"?#
+C001FF>V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+G`9&9"c"
+8000000001C01FF"P*8"S"
+FC3FFFFE7FFFFFFFFE7F3FE7F";%9&>"
+FBDFFFFDFFFFBFFFFEFFFBF"9&;$8"<"
+F7FBFFEFFFFBDFFFFDFEFDF#:&8'8'
+EFFCF7FFF7FC3FDFEFFFFBFEF7FC07FFFBFFFEJ"8#9"<#:"
+6F3FDDFE7FFBF7FF28)
+DFFB7A7A7B77FBFFEFFDDC78E387F7FFF71EE9FFBE3BB0FFFFH&9&9(8"
+79B9BB77F9DBB7DDDFF3F6EEE6FFBDDBBB3FH#;#=$8#
+7BBBFC3B06EEEEDD7BG#8"9%;#8$
+F03BAFFDB839C1F60EBC1EFBG#=$<"8$
+F7BBDBFEDFFEBDFD7BJ";#<"9$
+5DFBEDDEEDBBBB6H$;%:(
+B8787BDC71E3E7F71EE1FFBE3BBCF*P(P"
+EFFFFBFBFFBFF1FFF7E3FFFBFFFFFFEFFEJ#="B"
+53FF3E77FF"P$;$9";"
+F7E3FFFBC7FFFDFFFCF";$;$?#
+FBC7FFFD8FFFFEF8FFF";%9&>"
+FC0FFFFE7FFE1FFFFF3FE1F"`$`"8"c"
+FE1FFFFF3F8003F";"8":"8">"
+FF7F80FFC00FGQ8P9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j"
+O,03
+
+ENDBITMAP
+%%EndBinary
+61.42 547.98 194.26 559.42 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 75.96 552.76 T
+61.42 486.42 194.26 497.86 R
+7 X
+V
+0 X
+(Name p.94) 145.62 491.2 T
+61.42 468.99 194.26 480.44 R
+7 X
+V
+0 X
+(Rectangle p.95) 129.31 473.77 T
+61.42 448.98 194.26 460.42 R
+7 X
+V
+0 X
+(ScrollBars p.98) 128.34 453.76 T
+61.42 433.86 194.26 445.3 R
+7 X
+V
+0 X
+(ScrollBars p.98) 128.34 438.64 T
+61.42 412.98 194.26 424.42 R
+7 X
+V
+0 X
+(Menu Name p.99) 117.04 417.76 T
+61.42 394.26 194.26 405.7 R
+7 X
+V
+0 X
+(Repaint Handler p.105) 93.71 399.04 T
+61.42 375.54 194.26 386.98 R
+7 X
+V
+0 X
+(Repaint Handler p.105) 93.71 380.32 T
+61.42 358.26 194.26 369.7 R
+7 X
+V
+0 X
+(Event Handler p.105) 102.55 363.04 T
+61.42 338.82 194.26 350.26 R
+7 X
+V
+0 X
+(Keyboard Events p.105) 91.55 343.6 T
+61.42 322.26 194.26 333.7 R
+7 X
+V
+0 X
+(Mouse Events p.106) 105.22 327.04 T
+61.42 300.66 194.26 312.1 R
+7 X
+V
+0 X
+(Foreground p.106) 114.88 305.44 T
+61.42 279.85 194.26 291.3 R
+7 X
+V
+0 X
+(Background p.106) 113.53 284.63 T
+61.42 252.56 194.26 264.01 R
+7 X
+V
+0 X
+(Apply p.108) 139.29 257.34 T
+60.84 236 193.68 247.45 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 86.35 240.78 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "170" 5
+%%Page: "171" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (171) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.94 (Contr) 54 638 P
+-0.94 (ol Ar) 89.56 638 P
+-0.94 (eas) 119.6 638 P
+1 F
+0.47 0.09 (Figur) 198 268.6 B
+0.47 0.09 (e B-4) 218.77 268.6 B
+0 F
+0.47 0.09 (The Contr) 248.4 268.6 B
+0.47 0.09 (ol Ar) 289.8 268.6 B
+0.47 0.09 (eas Pr) 310.86 268.6 B
+0.47 0.09 (operty W) 335.54 268.6 B
+0.47 0.09 (indow) 373.56 268.6 B
+54 595.96 163.73 626.34 C
+54 595.96 163.73 626.34 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  302      
+70 37 50.4 26.64 0 55.66 598.4 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"R"
+EFDF
+7%
+E0F83F077%
+DF77DEFB
+7%
+E0F83F077%
+FFFFFFFF
+
+
+7'
+FE7FF8007FBF7(
+E001FB737E001F7(
+FE7FF8007F1FFF7Q
+
+
+
+
+7$8"
+8FFFFEE37":"
+77FB8'
+1D3834F1FBC77(
+7EECDEF36EFBBB8'
+EDDEF7EEFBBF="
+C77";"
+76FB="
+BB7(
+8F1DDF37F1FBC77R
+
+
+"b"
+E01FT
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 284.6 556.7 585.2 C
+54 284.6 556.7 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  5826     
+450 406 324 292.32 0 198 290.22 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J$="
+2FBF5FE7E7F3F7$F#=%9"
+FEDFDFF07FF87FFFFBE7J#9#8%
+4F33FFFFEF33FFFF37"I5
+FD49C399C1CCE7070E7E7F0F260930F3FD3930F0F078#G/8%
+CFBF9999999CCE666667E7E6713392679266667F8#J"8$8&
+E73F87F73338EB38E67E63F7#H$9";"8&
+FCE0981CB9609E819E07070F7$G%8#=&
+FEF87F99FCB91C67FF399E7E67C78"H+=$
+3C39DE7C9C8E646767F3A67667E77$F08%
+FC00FFF07C3E7F9E4E7270E7F870F3389F0F9F0F120F8"G&Z
+C3FFFFFFF99F07#J#
+FFFF4FC3FJ#
+7FFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz$
+?AA60003F@"<"Z$
+F9FE?EFFFBF;"8"9":"J"
+C3DF3FFF?6F;"8">"J"
+999FFE?EF;.J"
+3F8793049879FE9C98787833FF?6F<&8&J$
+33899C9339933333F3FE?E0003F=,J$
+999C7339FD9C733F31FFFF?7FFFFF?*J"
+F339FC0CF038387FFE?FFA(J$
+F9CCF3F33E3FFF?70007F;">%J$
+9DB33F33FE?EFFF3F;'8(j$
+C38799C4F879F8789073FFFFF8;01FF6F;W$Z$
+FEFFFB;FDFFEFG"J"
+FF?6FG"<"J#
+FEFB8EFBFG":"9"J#
+FFF7BF66F5FG"=#J#
+FEFE3F6EEAFG"8(J#
+FF1CF4E14E7B8FBF66D57G*J#
+FEFFFAFB73773DBB7F7EEAFG)J#
+FFFFF9F7B7777BDB86FFFG"="J"
+FE9F7EFG"="J"
+FFEF76FG)J"
+FEFFFAFB77777DBB8EFG*J"
+FFFFFB1CF7797E7B1F76FG"8RJ#
+FE6E000G"J#
+FF?6FFFG"J"
+FE?EFG"J"
+FF?6FG$j$
+FEFFF8;01FFEFGZ"
+@6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6000G"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6C03G"J"
+FE?ECG"J#
+FF?6E07G"J#
+FE?EF0FG"J#
+FF?6F9FG"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J#
+FE?E000G"J$
+FF?70007FG"J$
+FE?FFFFFFG"J#
+FF?7F8FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J#
+FF?7FFFG"J"
+FE?FFG"J$
+FF?60003FG"J$
+FE?EFFFBFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"z$
+FE?5560003FGZ
+C
+
+
+
+
+
+
+
+
+
+
+J"
+6FDA#="9"
+F8EFFBDFJ"
+81FA/
+FA6E1E4CF0E7FF8E7A70A73DC7DFB-
+6CCE226667FF7DB9BB9EDDBFB,
+2FCE66667FFEFBDBBBBDEDA&="
+FB2E0E6660CFB&<"
+8CCE6667FFF7F(
+67FF7DBBBBBEDDB-
+CE266670E7FF8E7BBCBF3D8FAY
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+D#
+FE7F>"8"<&9%:'9&
+83BF9CFFFE1C0FF3CFFFE7FE7E7FFF0F0FE73FFF87E7>"8">$<";&<#
+993FFDEDFFDB667FFEF6F77BD7?.:%<$;%
+C3C20C3C9E0E70E7FFC9CFFDFDF9D9FFBD67FEFF33FF7FB7>,8#:"<$@"
+9B9999399C4CCE6667FFC3FC1F99FF24E777>'8(9#>%9&
+87999F3F9CCC7FFFE3FFFC1FEFFCBFFFFE0F8FE03FFF06F7>&8"8%:#="8#9"8#
+93819F3C1C60C9FFFDEFFE7F00F7F7E77A03?)H"@#
+9F9F399CCC8E67FF997BF7>$8*;$<$;"
+999D9DCE4E6767FF9CCFFDED79FFDBE7FEF633>*9$<"=$<"
+98C3C38C4CCFCE70E7FE1E1FE7FF0F0F87>P#S9%;P9P
+FCCFFFFFFFFFC#
+FE1FC#
+FFFFJ'9&9'8'
+4F8000000001F0000000003FC000000000FFE0000000007JQ9P9Q8Q
+4
+
+
+
+G"c"
+FE1FJ'
+501FFFFFFFFDFH%
+7FFFFFF9
+
+
+="<"
+3FCF<":"="8#
+0F077BFDF7;#:"="
+FE67333B<,9'
+7F27873F3F3387260E1C93CFF9FEEE3C7F<+9#8$
+3F1333333F373324CCCC5BB7EDDBFF;*8"8&
+FF0F3333927F0F331C7F4B7BF9FF5D<":'8"9#
+C737333CCC0CFF6BBC1C<"8$9"9"9$
+E7807F33FC73BDFF7F;#8#9$9"9"
+FE67CCFF8CECF3B7DF;%8&9#8$
+FF0F338707873E4E1C7BCFBE38FF<V8#8#
+FFFFFFFF
+
+
+
+H%
+00000001J`"
+51FGU
+
+
+
+
+
+
+
+
+<#9#
+F1C7FC77
+>*
+0F2799FD370F267873<%8&
+F4A667133667113333?"8&
+3317E733333F>"9%
+0797073330<$9&
+F6667FC6673333FF>$;"
+773391B3<,
+F7E70F33C9FDE713333873<V
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F9CF:#8$
+F81FFDFE73:#8"
+F9FFF9;-
+F33879307E738793C1CE1C93<+
+333899FE73338999CCCC:%8$9"
+F833333903F3997F:$9#9#
+F9F97073830CFF<#9"9"
+73F933FC;$;%
+FCF3B991CCECF3:-
+F81CF8799C7E738999C9CE1C:X
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+G"b*`(
+FE01FFC0000000007FF00FFE0000000003HR*P(
+FDFFDFFFFFFFFF7FF7EFFEFFFFFFFFFB
+
+
+
+;"9"@"?":$
+F3FCFB9FFBFF7F8#<#9"9">$9#8"8#
+E73FFE077F0FEFFF7BF87B7FFE038#="8":#C#;#
+E67F7FFE77FFFBBFFFDF9/8':#:%:#
+F0E73278787260FE7CCE1E4C1833769BA678E9778E10BB874E1F9E9F8)8&9%;#;$:#
+E5E667313333324CCCCE2673F37B99B767777B77377F6E6F8"8(8$9%@%:$
+E173333F31CCFE0C6671FFFBBBBF6FF87B7777DEF6EF8$8#8'8"8$:":"
+E4E07238337E5C0E66787F0EB86FAF07FB9&;%8"8"<";#
+67F2F33333FE667E3F7EB77FBB678$:)=":"<";#
+E66778C8FE7F3CEE667F33DF7797DF6E80;#:$;$:#
+E730F9F0787893E4FE073E1E671073B8AFE18F7CF7779F9E1F8$W8P"9$9&9$
+FFFFF3BFFFFFFFFFFFF7FFFFFFFEFFJ"A"
+83F8F:"I"A"<"
+FFFFFFFF
+
+
+Hb*`(
+01FFC0000000007FF00FFE0000000003GZ
+=
+G"b#a)`#`"
+FE07FFFFE0000000003FF87FF00FHR1P#P"
+F7FF7FFFFFFFFFFEFFEFFFFFFFFFBFFB7FF7EF
+
+
+
+J"
+EDF:#:#9"8%<$:$9#;#
+FC71FE077FFE1FFEF707FF7FE0FFDDF83FFBEFA"8":">"<$9#;#
+7FFEEF7FEFFFFDFBDFF9CF<,8':$:$9$;$
+C3CCE0E1FE7CCE1E4C1833EEEC21CF4F1F4E18E9DDD87FED31E19DDC7F:'8&9&:$;#9$9&
+FD2999CCCFCCCCCE2673F3EEF7B736FF377767DDFFECEEDDFAAF6DDBBF>"8"8$8"8#:%9#;#;#
+C70C6671FF1E7B760F77776FE1EBEDFEAEF5>*8"9#9$:#<":&
+E1C0FE7E5C0E66787FEE773F7F7770EFF7F0FB6EF6B83F;"8#9%=";#:"<#<#
+99F8CFFE667E3FDF77EFEBEED9BBFF=+9$>":";$:%
+C8FCCEFE7F3CEE667F33CEF7B76FDDDDEEE5EF6F7BBF;-8'9%9%8%;$
+F9C3E4C1E1FE073E1E6710731F2F39CF763F077798EFE0DDDE7FF83DF17D9F7C7F:X"R9%9%8%9P
+FEFFFFFFFFFFFFFFFFFFFFFFFDJ"
+LE3J"
+LFF
+
+
+Hb#a)`#`"
+07FFFFE0000000003FF87FF00FGZ
+E
+
+
+
+
+
+
+
+
+
+
+;"e"
+FC7F;"U"
+F39F;"@"
+EFEF;">$
+DFF7FFF7;#?"
+BFE1FB<"?"
+EFF9;-
+7FEFE74C7869CF774F87FFFD=+
+DB3BB767B7773777FFFC<)
+E1BD7BB76F7B7777<%
+EFBD7837>#
+7BF6=*
+DB7BB96FB7677766DB=)
+E77C7F6FCF977796;'P"
+BFFFFFFFFF7FF8?#;#j
+F8FFF9FF>;"9"<"Z
+DFFFF1?;"@"
+EFE3;"@"
+F387;"e"
+F80F;"@"
+FC3F;W
+
+
+
+
+;"e"
+FC3F;"U"
+F3CF;"@"
+EFF7;"8";$
+DFFEFBFFFB;#?"
+BFC3FD<"?"
+DDFC;-
+7FDDC7C6EC34E7BBA7C3FFFE=)8"
+BBBEDBB3DBBB9BBB7F<)
+C3FB7EBBB7BDBBBB<%
+DDC37E3B=%
+BB7EDB37>)
+BECCB7DBB3BBB36D<*
+C3C5C6EFB7E7CBBBCB;'P"
+BFFFFFFFFFBFFC?#<"j
+FC7FFF>;"9#;"Z
+DFFFFFF8?;"@"
+EFF1;"@"
+F3C3;"e"
+F807;"@"
+FC1F;W
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+59.76 546.9 192.6 558.34 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 74.31 551.68 T
+59.76 484.62 192.6 496.06 R
+7 X
+V
+0 X
+(Name p.94) 143.97 489.4 T
+59.76 467.19 192.6 478.64 R
+7 X
+V
+0 X
+(Rectangle p.95) 127.65 471.97 T
+59.76 450.63 192.6 462.08 R
+7 X
+V
+0 X
+(Show Border p.97) 113.17 455.41 T
+59.76 430.76 192.6 442.21 R
+7 X
+V
+0 X
+(Menu Name p.99) 115.38 435.54 T
+59.76 412.9 192.6 424.35 R
+7 X
+V
+0 X
+(Event Handler p.105) 100.89 417.69 T
+58.54 394.9 191.38 406.35 R
+7 X
+V
+0 X
+(Keyboard Events p.105) 88.67 399.69 T
+59.33 376.9 192.17 388.35 R
+7 X
+V
+0 X
+(Mouse Events p.106) 103.14 381.69 T
+58.1 353.22 190.94 364.66 R
+7 X
+V
+0 X
+(Foreground p.106) 111.57 358 T
+59.76 332.34 192.6 343.78 R
+7 X
+V
+0 X
+(Background p.106) 111.87 337.12 T
+59.76 306.49 192.6 317.94 R
+7 X
+V
+0 X
+(Apply p.108) 137.63 311.27 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "171" 6
+%%Page: "172" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (172) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(Gauges) 54 638 T
+1 F
+0.47 0.09 (Figur) 198 231.52 B
+0.47 0.09 (e B-5) 218.77 231.52 B
+0 F
+0.47 0.09 (The Gauges Pr) 248.4 231.52 B
+0.47 0.09 (operty W) 308.74 231.52 B
+0.47 0.09 (indow) 346.76 231.52 B
+55.66 595.81 173.23 623.68 C
+55.66 595.81 173.23 623.68 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  227      
+82 33 59.04 23.76 0 58.46 597.9 BEGINBITMAPBWc
+
+
+
+
+
+7"b"
+803F7"R"
+7FDF#="
+FEFFEF#="
+FDC3F77"
+83
+
+7"
+C3#="
+FEFFEF#="
+FF7FDF7"b"
+803F7T
+
+7"<#
+9FBF3F7";$
+6FFE3EDF#;$
+FEF7FFBDEF
+
+
+
+#<#
+FF6FBEDF7"<#
+9FBF3F7"<#
+FFFFFF
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 247.52 556.7 585.2 C
+54 247.52 556.7 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  8412     
+450 461 324 331.92 0 197.28 251.84 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#
+2FBF8F3F37$I">"
+FEDFDF8387J":"9"
+799FF337"J0
+FD59CE1CCE0E67383873E7F8799C1C3C18#J$8#8&
+CFBF4CCCCCC3333339999999F8#J$9"
+E73F;FE7FF38F7#J#:%8#
+FCE05C0E503FE738381C37$J$9"8&
+FEF87F4CFE5C83F3399919FF18"J0
+3C499CEF3E4E473233B3F333391C99DF97$I0
+FC00FF83E1F3FCF27393873F8389C9F9C3838"J%S$
+C34FFFFFFCC99FFFF7#J">"
+FFFF7E1C3J">"
+:FFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz%
+>5554C0007FG"Z#
+FD?DFFF@"<"J"
+E1FF>FE@"<"J"
+CCFD>FF@)J"
+9FE1E67070F067FF>FEA(J$
+CCE6666667E7FD>FFC000A"9$J%
+FC63FFFF>FEFFFFFF@#8%J"
+9CE06070FFFD>FFA(J$
+CCE66467FC7FFF>FEE000@)J%
+CCCCE472677E67FD>FFDFFE7F@+j#
+E0E2727E70E0E7FFFFF0;03FE@+Z#
+FFFFFFE67FFFFFFDFFF7;FBFFC#8"J"
+F0FFFF>FEC"9"J$
+FFFD>FFDF7EG"<"J$
+FFF77FEDEBEG"<"J$
+FDC77FFDD5EG)J$
+FFFFF438F770E3F77FEDAAEG(J$
+FDFFF3B7776EDD8FFDD5EG"8"J$
+FFBF;FEDFFEG"8"8"J"
+FDB8C18FFG"8%J"
+FF37776CDF8FEG(J"
+FDFFF4B77672DD8FFG(J"
+FFFFF7B8B97EE38FEG"8&J$
+FDBFFFFEFFFF7FFC000G'J$
+FFFFF47FFFF19FEDFFEG'J"
+FDFFF7FFFFFF9FFG"J"
+FF>FEG$j#
+FDFFF0;03FFGZ"
+?FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEC000G"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FED806G"J"
+FD>FFG"J$
+FF>FEDC0EG"J$
+FD>FFDE1EG"J$
+FF>FEDF3EG"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J$
+FD>FFC000G"J%
+FF>FEE000FFG"J$
+FD>FFFFFFG"J$
+FF>FEFF1FG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEFFFFG"J"
+FD>FFG"J%
+FF>FEC0007FG"J$
+FD>FFDFFFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"z#
+FC?AAC000GZ
+C
+
+
+
+
+
+
+
+
+
+
+
+A#?"
+F8EFFDJ"
+6F1A-
+FA6E1E4CF0E7FF0E3DDC38FDB,
+6CCE226667FEEDDDDBB77DB(
+2FCE66667FFEEFA&8%
+FB2E0E6660EE1DDBB0B,
+8CCE6667FFFECDDDDB37FDF(
+67FF2DDD9CB77DB,
+CE266670E7FFEE2E5FB8FDAR&
+EFFFFFBFFFH%
+1FFFFC7FH%
+FFFFFFFFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C%
+FCFFFE7FA"<"
+FC87H"
+7BB,
+FC3C9E1E67FEFF8F770E3BB%9%
+F99C4CCE7776EDDBB&8"8"
+FF9CCCCE7FF7DFB%8&
+FC1CCC0EFB8776EC1FB%9%
+F99CCCFE7776CDFFE)
+EE67FF7B77672DDBB%8&
+0C4C1E1E838B97EE3BAU#
+EFFFJ"
+51FJ"
+5FFG"j"
+FC=03GZ
+?
+
+
+
+G"j8"f"
+FC3FE3FJ"W"="Q"
+77FFE03BFH&G&
+FFFFFFFFFE7FFFFFFFF3
+
+
+A$A$8"A"9"
+F9FFFCDFFFFB77FCFD?":#8%8":"A'
+F9FE7FFC07FFFBC3877FFBDFF3FE7DH#:":#
+FFBFBDBFF7@(8$8-;*
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C77C7087F3FDBD3E7771@(8$:+;$8%
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB7BBBDFBCDDB76E@#9#9#:%8$A$
+FF3963FFDD7BBBBBBF87EFDDDDBDDBD7@'9$8$8(;#8&
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83783BF81DDBDAE0@(8$?&;#8#8"
+F33999FCFE7C7FBDFD7BFEEDDDDDBF7BFBFBDDEFC%9#8$:"9"<":$
+DCFE7E67DBBBBDDEFBEEBBBBDDBDEE?)8$8%8';$8%
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC70C7BE7DC3E7DF1?S8$8$T;%P
+FFFFFFFFFDFBFFFFFFF3J"
+9F9J#
+9FFFF
+
+H`G&
+0000000003Ji=b"
+73FGZ8X
+4
+
+
+
+
+
+
+C"J$
+FC6F3F3FC?"9":&9&9&8$
+CFBC9CFFFE1F3FF3CFFFC3C3FE7E73F3BCFBF3F3C"<$<#:%8$
+3FFDEEDFBDBD667FF33CE3EDED@.9%<)
+C3C3860CE1E4E7FFC9CFFDEDEFF9D9FFBF73820C9CFFFBDEDE@*>"<'
+9999333CCCE267FFC399FF24F3333C4CA#8(:&>"
+9FF3E67FFFE3FFFE1DFCBFFF83C3CFB";%:&:"
+83C9FFFDEDFE7FFFBDBD00B"J"
+33699A":(:"?$8#
+9D67FF9CCFFDEEDF79233CCCEDED?';$<#<#9#
+C0C3C3898CE1FE1F3FC3C3938CF3F3?Y9P:T
+
+
+J'9&=&
+4F8000000001F00000000038000000001JQ9P=P
+4
+
+
+
+G"j"
+FE11FJ"R"
+;03DFH"S"
+7FF3
+
+
+>#9#<":":"8"
+FE7FFE7FFBEFFE7F="9$;":"9%
+0FFBFFDE7BFEFBDFFFDE<*<"?"
+FE67FFFFFFF3FF9FFFFFDF<,9'9&
+FCF32670F260C30670F273CE9B079E9C31DC7486F18F?)9'9&
+667133999E667133B67BF76E6EEEDBB3DEEF77>&8#8(8'
+1E667333F9733F037AFBEEF6EEFEFDBBB7DEDFF7>#8"<"8"8"9#8"
+3E60C17BDEF0B83787?%?"8"9#8"
+67F33399BEEEBBF777<#8";"9%:&
+FE677333B6FB7F6EFE7BB7DEEF<+:(8&
+FF0F3E70F338C4C670F3CEFB079EEF316F7C77E6F18B=U8S"R
+F3
+
+
+
+Hd"
+03Jc"
+;1FGZ
+3
+G"f"
+FE1FJP"
+8DFH'
+7FFFFFFFFFFC
+
+
+I"<#:"
+FEBFBFE7A"=";":#9":#:$
+E00E7BFE38FCFE387E7E7FA#;#<";"8#>%
+E67F7EFEFFFFFB7FFC7DBDBFB&9$9#:&;(
+70F27838739F3BFBBC38E7273FF7BFE1CC9FFF7BDBDFB&8%9$8$=#
+E6713333337E6EDBBBBBB77F94E71394CCA$8(8"=#=$
+E1FE733FFE7F1EEDEDB70333FFFCE5FFA#8"9"8"8$D#
+E4F030CE577BBBB0E0F3B&8"=#8"?$
+E6733233FFEEB7FFCCCCCCE9A'9$:#;$<'
+E666733933B3EEDEEF377F3FFB7FCC9FFF7DBDBFB+:$8"9#:$8$
+31333F3873FE7E1EEF3EBCB8FFFCFCFFFCE24C7E7E7FA-8$8Q:T
+FFFFFFF33FFFFE7FFFFFFFFFFFFFFFD#
+F87FD#
+FFFFJ':'
+CE0000000007FF0000000003FJQ:Q
+CHa
+J`"
+81FGX
+
+
+
+
+
+
+
+C#
+3FF3A#;"
+FC039FA$:"
+FF9FFF6FC'
+38733067FEF7C%
+333367E7D$
+F2E3FFD#
+F0F0D$
+F27C7FD&
+B33E67FF6FC'
+387320E7FF9FBR
+
+
+G'
+FC000000000FGQ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+Hs5
+554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG#Q*P(
+FF7FFDFFDFFFFFFFFF7FF7DFFF7FFFFFFFF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFB;"9"=#<$8%9&9"
+F7FDFF7FFDFFDFDFFF7FF77FFFDFFF7FF78%9$;%:38"
+EFBFFFFBFEFEAFFEFFAFFBFBFFEFEFFFFBFEFFFBFAFBFFFFFFEFFEFEABFB8%9$9':38"
+F77FFFF7FDFF7F7FFFFF7F77FFFDFFDFFFFF7FFF7FF7FFFFFF7F7FDFFF7FDFF785
+LEEFAEFBAFAFAFAEAFEFEEEBEEEBABBFEFFFEBBAEFAEBFFFBFFEFEFAEBAFEFFFBFBBBAFEEBFEFFEFFFFBEBFFB85
+LF5F777757777775DFF7DDDDF7777F7FF7F777FDDF77777FDFFDFFF777FFF7FF7FFFF77777FDFFF7FDF7F7FF785
+LEBEEEFFBBBBFBBEEFEAEEEEEEEFBFFFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFAFBFFFFFFEFFEFFFEFEEFFB85
+LF5F57777777D77DDFF7F5D5F777D7FFF7F5FFFFFFD7FFFFDFFDFFF577FFF7FF7FF7F77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEEFEFEFEFEEEFEBFFEFFFEFBBBBFEFAFFBFFEFEFFFFBFEFFFBFBBBEFFFFFEFFEFFFEFEEFFB85
+LF7777DF7777777DDFF7F7DFF777F77FF7F7FFFFFF77FDFFDFFDFFF777FFF7FF7FFFFD7777FDFFF7FDF7FFFF785
+LEFBAFBFAFAFABBEEFEAFBEBEEFBAFBFEFFFEFBBBBAAFFFFBFFEFEBAFFEFEFFFBFBBBFFFFBFEFFEFFFFBEBFFB8$X"Q5
+FFFFF77F5FDFFDFFFFFFFFF7FF7FFFFF7FFFFDFFF7FFFFFFFF7:"B#;%9$8"8(
+FBFEFFBFFBFFEFFEFFFBAFEFFEFFFFFEFFFB:"B#;%9$8"8(
+FFFF7FFFFDFFDFFF7FF7FFDFFF7FFFFFFFF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557HZ
+<
+G"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"R5P"
+FE7EFFFBFFFFFFFFFFEFFEFFFFFFFFFBFFBFFFFFFFFFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEF:#;"9(938$;"
+FD75577FFFFF7F5FFFF7F7FF7F57FF7FFFFDFFF7F5FFDDFF7FFDFD7FFF7FF7DF:#:#8)938&9"
+FEFBFEFFFEFFFFFEFEEFFEFFEFFFBFFFFFFFFFFEFFEFEFFFFFFFBFFBFBFFFEFFFBFBEFEF:5
+O$FD75D7DDF5F5FF7DDF5F5D5D77FF7FFFFD75DF5F5FF7FF7F7F5F5DFDFDFFF7FFDDDD7F7FFDFFFD75F5FF7FF7FDDFDDDD7FDF:5
+O$FFABBBEEEFEEFEFEEEEEAEFBFBFEFEEEEEFFBFBEFFEFFFBFFFBFFFEFFEFFEFEFFFFFFFBFFBFBEEEEFFFEFFFBFAAFEFFBBFEF:5
+O$FD7DDDDDD7DDFF5DDDDF7775FFFF7F5FFFF77F77FFF7FF7F5F77777FFDFFF7F5FFDDFF7FFDFFFDFFDDFF7FF7FFFFF5DFFFDF:5
+O$FFABBBEEEBEAFEFEFEAEEEFAFFFEFEEEEEFFFBFFBFEFFFBFFFFFFAEFFEFFEFEFFFFFFFBFFBFBEFFAFFFEFFFBFBEEFEBABFEF:5
+O$FDDDDDDDFDDFFF7F5DFF777F7FFF7FFFFFF77F77DFF7FF7F7F7777FFFDFFF7FFFFDDFF7FFDFFFDFFDDFF7FF7FF7FF7FFFFDF:5
+O$FFBBBBEAFEEEFEFFBEEEEEFFBBFEFEEEEEFFBFFFFFEFFFBFFFFFFFEFFEFFEFEFFFFFFFBFFBFBFFEEEFFEFFFBFBEFEFFBBFEF:5
+O$FDFDD7F5D5F5FF577F5F775577FF7F5F7F7DDF777FF7FF7F5777DDFFFDFFF7F5DDDF7F7FFDFD7DF57DFF7FF7FFFFDF7D7FDF:X"R58%
+FE7EFFFBFFFFFFFFFFEFFEFFFFFFFFFBFFBFFFFFFFFFEFFFBFFFFFFEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDF7FF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBFFFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFGZ
+E
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+63.94 547.9 192.53 559.35 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 74.23 552.69 T
+63.22 486.06 192.53 497.5 R
+7 X
+V
+0 X
+(Name p.94) 143.89 490.84 T
+62.5 450.92 192.53 462.37 R
+7 X
+V
+0 X
+(Label Is p.95) 136.38 455.7 T
+63.22 414.34 192.53 425.79 R
+7 X
+V
+0 X
+(Orientation p.103) 114.8 419.13 T
+63.22 430.62 192.53 442.06 R
+7 X
+V
+0 X
+(Location p.96) 132.37 435.4 T
+63.22 396.92 192.53 408.37 R
+7 X
+V
+0 X
+(Range p.102) 137.98 401.7 T
+63.22 355.16 192.53 366.61 R
+7 X
+V
+0 X
+(Event Handler p.105) 100.82 359.94 T
+63.22 296.48 192.53 307.93 R
+7 X
+V
+0 X
+(Color p.106) 140.96 301.26 T
+63.22 469.14 192.53 480.58 R
+7 X
+V
+0 X
+(Label/Title p.95) 120.44 473.92 T
+63.22 269.62 192.53 281.07 R
+7 X
+V
+0 X
+(Apply p.108) 137.56 274.41 T
+63.22 253.35 192.53 264.8 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 85.2 258.13 T
+63.22 380.86 192.53 392.31 R
+7 X
+V
+0 X
+(Ticks p.103) 142.54 385.65 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "172" 7
+%%Page: "173" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (173) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.94 (Help Editor) 54 638 P
+1 F
+0.47 0.09 (Figur) 198 289.18 B
+0.47 0.09 (e B-6) 218.77 289.18 B
+0 F
+0.47 0.09 (The Help Editor W) 248.4 289.18 B
+0.47 0.09 (indow) 326.39 289.18 B
+54 305.18 557.42 625 C
+54 305.18 557.42 625 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  3111     
+495 439 356.4 316.08 0 196.78 307.77 BEGINBITMAPBWc
+
+
+"j"
+C0O.07
+"Z"
+CFO.E7
+
+
+
+
+J"
+O/E6
+J"
+O/E78#J#:"8#
+F01F9CFCF3FF9CF8#I#=#9$
+EBCFFE0FFCE7C0F9CE8#J":"=$
+D3E7467FFCFF9FC8#J)8)I"
+B7F747387338399CE0E1C0F393FCFC1C830E4E6J2
+933333399CCCCCCFCE667389FCF99CCE664J(9"I"
+?CFFC0667399FC163E78"J#:%8"9"
+B3603970FFCE607CF678#J$9"8"
+BBC753F9723FF7F8#J)8"9"
+DC974673BCF9391CC8CEC77918#J3
+CFEF40F87CFF3C9CE4E1CFCE70F383FC0C9CE30E78#I&R"Q
+87DFFFFFFFFF33F98#J"
+B03F7878#J"="
+FFFF7FFFFJ"
+O/E6
+
+J"
+O/E77j"
+O-1F7Z
+O.J"
+O/E6
+J"
+O/E7J"
+O/E6J"
+O/E7
+
+
+
+
+D"j$
+F0@18000FD"Z$
+F7@DBFFEF8#="
+FE1FFD8#="
+FCCFF98-
+F9FC3C99E4F0F278793060CF9+J$
+F99C44E26671333899CFBD8000F;*J$
+CCE66673333999C7FFADFFFFF?"8"
+30E1?%J$
+33F999F8BDC001F8#<%="J$
+FCE9B999FCCFEF9DBFFCF8,>"
+FE1C3CCCE0F0F338799C418F8&R8'
+FFFFFFFFE78C7A7771E3EFF&
+7BB9B76EDF<">&J"
+FFFEFFBBB77E<E7F&J"
+FC3BBAF0E7;C3F&J"
+FBBBBAEEFB;81E%J"
+FF7BBBBD=00F&
+8C5BBDF147FQJ"
+:FF
+
+
+
+J$
+O!D8000FJ$
+O!DBFFCF
+J"
+4FDH"9"
+FBDFJ"
+61FF(
+8E7A70A73DC7DFF'
+7DB9BB9EDDBFE'
+FEFBDBBBBDEDJ"
+5CFJ"
+5F7E'
+FF7DBBBBBEDDF'J"
+8E7BBCBF3D8FGE6FRJ"
+FE7
+J$
+O!D8000FJ$A"
+O!DBFFCFE6J"
+O/E7E"j"
+FC=01E"Z"
+FD=FD
+F"J"B"
+77?00E6G#J"
+FDFBJE7F$J"
+7FFDE3=81F$J"
+77187B=C3F$J"
+76FDFB=E7J"
+O"FFF#
+773DG"
+DD
+F$J$
+763E7B<D8000FF$J$
+FFFFFF<DC001FJ$A"
+O!DFE3FFE6J"
+O/E7
+E"j"E"
+FC=01E6EZE"
+?E7
+
+
+F"<"
+7FFBJ"
+7E3E*
+FE18E9A67A78F4F1FBE)
+FF776799B9B7736EG&
+6FBBBBBF77F"9$
+70B87760F#8$
+77EFB7776FG":"
+6F6EF(
+98EFBBB878B771F)J"
+FFFFFFFBFFFFFFFF8EBJ"B"
+O"F7E6I"J"B"
+FF<EBE7J"
+O"F7J"
+O"EBJ"
+O"F7J"
+O"EBJ"
+O"F7J"
+O"EBF$:"J"
+7FFFEF7F8F7J"J"B"
+6FC9EBE6E)J"
+FE18EEC34F1E9E3F9F7E)J"B"
+FF776EEF36EE6DDF9EBE7G&J"
+75EF77EEED:F7F#8$J"
+707B0EEC1F9EBF(J"
+77F5EF76EEEDFF9F7G":"J"B"
+6EDF9EBE6F(J"
+98EEF30F16EE3F9F7F)J"B"
+FFFFFF7FFFFFFFFF8EBE7J"
+O"F7I"J"
+FF<EBJ"
+O"F7J"
+O"EBJ"
+O"F7J"
+O"EBJ"
+O"F7J"B"
+O"EBE6J"
+O"F7J"B"
+O"EBE7J"
+O"F7J"
+O"EBJ"
+O"F7J"
+O"EBJ"
+O"FF
+J$
+O!D8000FJ$
+O!DBFFEF
+
+J"
+O/E6D"j$A"
+F0@18000FE7DZ
+D
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D"j$
+E0KC0007FD"Z$
+EFJFEDFFF="
+F3;#8%
+CE7FF807FFFD?%
+FF3FFFF9<)J#
+70F393FF3E1CC04FLC000<)J$
+667389FF3CCCC9CFLFFFFFF;"8"8$
+C099CE59FF;#:#J#
+CE600F39ME000<#9#J$
+67F3FE99MDFFE7F="9$
+73ECC9CF<+
+70F383FF3E1CCC4FEFEF;%P#
+FFFFFF9FEFD7E"J$
+ABK3E7FE6>"<"J%
+FF55JDE1E7FE7E"J#
+ABJDC0EE"J#
+D7JD806E"
+EFE"J#
+FFJDFFE
+
+
+J"
+O/E6J%
+O,C0007FE7J#
+O,DFFE
+J"
+O/E6J"
+O/E7
+
+
+
+
+
+
+
+
+
+J#
+O,C000J#
+O,DFFE
+
+
+
+J#
+O,D806
+J#
+O,DC0EJ#
+O,DE1EJ#
+O,DF3EJ"
+O-FE
+
+
+J#
+O,C000J$
+O,E000FFJ#
+O,FF1F
+
+
+
+
+
+
+
+J"
+O/E6J"
+O/E7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+O/E6J"
+O/E7
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+O/E6J"
+O/E7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+O/E6J"
+O/E7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+O-FF
+
+J$
+O,C0007FJ#
+O,DFFF
+
+
+D"j#
+E0KC000DZ
+O!
+
+
+
+J"
+O/E6J"
+O/E7
+
+J"
+O/E6J"
+O/E7
+
+
+
+
+
+
+
+
+
+
+
+J'8'
+8C0000000001FF0000000001FJ'8'
+83FFFFFFFFFE7CFFFFFFFFFE7J#:"8":"
+7FEFFFBBFFBJ";"8":"
+7FDFD7FFDJ"="
+=FCFCJ";%:"
+7FBFEFFFEFFFEJ"="
+>7F7FJ"
+;FEJ"="8"
+93F87FBJ"
+ABBJ&;$
+8FEDE9E9EDD8F1C70J#<$
+:6E6E76FBBBJ#;"
+:EEEE87J#8":%
+8FC0EEBB707383BJ#=%
+8FDEEBB7FDBFBJ";$
+<F777DBBBJ#<$
+:1E1E8E3C7CJ&:%
+8FFFEFEFFEFFFFFFFFFJ"
+<CFJ"P%:"
+7FDFC7FFF7FFCJ"="
+>FFFFJ";"8":"
+7FEF8BFF8J#:"8":"
+7FF3FE5CFE5J'8'
+8800000000003E00000000003J":"8":"J"
+8E00FF80F7E6JQ8QJ"
+87E7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"j"
+C0O.07J"
+O/06Z
+O0
+
+ENDBITMAP
+%%EndBinary
+61.78 584.18 190.37 595.62 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 72.07 588.96 T
+61.06 483.09 190.37 494.54 R
+7 X
+V
+0 X
+(Help Text p.89) 124.8 487.87 T
+64.66 324.33 193.97 335.78 R
+7 X
+V
+0 X
+(Apply p.108) 139 329.11 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "173" 8
+%%Page: "174" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (174) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (Menus I) 54 638 P
+1 F
+0.47 0.09 (Figur) 198 381.26 B
+0.47 0.09 (e B-7) 218.77 381.26 B
+0 F
+0.47 0.09 (The Menu Editor W) 248.4 381.26 B
+0.47 0.09 (indow \320 T) 330.05 381.26 B
+0.47 0.09 (op Half) 371.21 381.26 B
+54 397.26 555.98 625 C
+54 397.26 555.98 625 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  3226     
+402 306 289.44 220.32 0 197.78 402.38 BEGINBITMAPBWc
+
+
+"j
+C0O#
+"Z"
+CFO"FC
+
+
+8#
+FE3F8#
+F1CF8#J$
+CBEF5FE7E7F8#F">#
+B7F7E0E38FJ#9#
+4E67FFFFE8"G0
+77E738733839CE7070E7E38E1E4F33838#G$8*
+73EF333333666667E94CCE27333F8#J"9$
+79CF87F67331F8#G$9"9"8"
+380F303973600E878#G$9&8"
+BE1F33F97267FFECCCFEE38"G*8%
+8FE673BCF9390E646767EE6723F38#F0
+003FE0F87CFF3CCE7270E7EFCE1E6793078#F&U
+30FFFFFFFFF33F8"J#
+FF4F87FJ#
+7FFFF
+
+
+
+
+"j"
+CEO"1C"Z"
+CFO"FC
+
+
+
+
+
+
+
+Bx"z&
+552A/AAAD5530001FA"Z$
+FD?F7FFDF:#;"J"
+F8E3FF?B7A"J"
+FD?F7<'J"
+8793C67067FF?B7:)J$
+FA533389C667E7FD?F0001F=&J$
+99C663FFFF?BFFFFF<"8$J"
+0370FFFD?FF:$8$J$
+FB333F7C7FFF?B8003F<'J$
+3B99C47E67FD?F7FF9F;*j#
+F38799E260E7FFFFF0<FFB7:R$Z$
+FDFFF7;FEFFF7A"J"
+FF?B7A"J#
+FD?F7DFA"<"J#
+FFEF8B7AFA"<"J#
+FD8F8F757A)J#
+FFFFF533C7A7BBEF8B6ABA'J#
+FDFFF4CDBB9B:F757A'J#
+FFFFF5DDBBBB:B7FFA"9"J"
+FD83;F7A"9"J"
+FFBF;B7A"9$J"
+FDBBBBB39F7A"9$J"
+FFC7BBCB9B7A$PJ$
+FDFFF78F0001FA"J$
+FF?B7FF9FA"J"
+FD?F7A"J"
+FF?B7A$j#
+FDFFF0<FFF7AZ"
+@B7A"J"
+FD?F7A"J"
+FF?B7A"J"
+FD?F7A"J"
+FF?B7
+A"J"
+FD?F7A"J"
+FF?B7A"J"
+FD?F7A"J"
+FF?B7A"J"
+FD?F7A"J$
+FF?B0001FA"J$
+FD?F7FF9FA"J"
+FF?B7A"J"
+FD?F7A"J"
+FF?B7A"J"
+FD?F7A"J#
+FF?B601A"J"
+FD?F6A"J#
+FF?B703A"J#
+FD?F787A"J#
+FF?B7CFA"J#
+FD?F7FFA"J"
+FF?B7A"J"
+FD?F7A"J"
+FF?B7A"J$
+FD?F0001FA"J$
+FF?B8003FA"J$
+FD?FFFFFFA"J#
+FF?BFC7A"J"
+FD?FFA"J"
+FF?BFA"J"
+FD?FFA"J"
+FF?BFA"J"
+FD?FFA"J"
+FF?BFA"J"
+FD?FFA"J"
+FF?BFA"J"
+FD?FFA"J#
+FF?BFFFA"J"
+FD?FFA"J$
+FF?B0001FA"J$
+FD?F7FFDFA"J"
+FF?B7A"J"
+FD?F7A"J"
+FF?B7A"x"z&
+FCAAD5/5552AAB0001FAZ
+C
+
+
+
+
+
+
+
+
+
+B'8"`
+800000000003F0A(8"P"
+FE7FFFFFFFFFFCCF3FA#:%;"
+FDFFFF7FFFBFDFA"<'8"
+FBBFFF7FFFF77FEFA$8)8"
+F7FE1FDFFFDFFEFF07F777F7B#:"8$8"
+FDEFCF7FF7F7F3A*8&
+EFFBFD31E3863FEFFD8761FC03FBC'9&
+FCEEDDDDDFE77777FDFBF9C$;"8#
+FDEEFD0FFEF7D%9"
+E0E1DC1F7FD%<#
+EFDDDDFFFF2FB$8":"
+FDEDEEDF67B'9&
+FE1DF1E2E63F079779FFDFA"Q#Q"
+F7C7FEF1H"="
+CFF3A"<$;"
+FB8FFF7FE3A"<$;"
+FD1FFFBFC7A#:%;"
+FE7FFC3FFFCF0FA"a$`"
+FF7FFFE01FB":%;"
+8001FFFFF07FBQ8R
+
+
+
+
+
+
+
+
+
+
+
+;#?"
+F1DFFBF"
+E3;-
+F4DC3C9CF0E7FF4CF1E9EEFB<*
+D99C426667FF336EE6<*
+5F9CC6667FFF776EEE;&9"
+F65C1CC66060;'8"
+F7199CC667FF6F@"8$
+676EEEEC<&8$
+9C4CC670E771EEF2;W
+
+
+A"j
+FC>AZ
+?
+
+
+
+
+
+
+
+
+
+=#
+E7FC<$
+80677C<#
+F3FE=%
+E41CE1CF=$
+E67CCC@"
+FF?"
+C0?"
+CF?#
+CECF=$
+E71CE1<P
+
+
+A"j"
+F8=01AZ
+?
+
+
+
+
+
+
+
+A$
+FE000FA$
+FDFFF7C">"
+F3FE<">#
+00F87F
+<";&
+E7C073FFF7BF='8)
+9CC4F0E7FDDFEFFCF4CF4CF1E9F0>'8(
+C26667FDEEF3FB7337336EE6EE=%;'
+9DC6667FF7B777777EEE=$8"="
+C9C660F570=%?"
+CBC667FF6E="8$8$:"
+E367FDFBF7BB77EC='8$8$
+E7C0F0E7FDFFF87CF7716EF2<&:S
+FFCFC7FFFFA$
+FE0003=#8$
+FFFFFF0007B#
+FFFF
+
+
+
+
+
+
+
+
+
+
+:#
+FE7F9">"
+0FDF8#>"
+FE671F8,
+FCFE1E733933C4F067FFDF9)
+FCCE733889C267E7<&
+3999C663FF?"
+70?#
+7C7F8%9#
+FE74CE727E678%9#
+FF0E1E7960E79U
+
+
+A'
+FC000000000FAQ
+
+
+
+
+A"j"
+FC41FJ"V"
+40FDFBS"
+CF
+
+
+C"9#<"9#
+FEDFDFFDBFBF9#9#8#=&
+F1C7FE7FFE1EF7BFF7F83DC"="8#
+EFF3FBDF;'8(8*
+0F2799FE7067EEE9E9E3D3DC7FBCE1FBDDD3D3C7A7B89%8#9+8'
+F4A6671367E7E6E6DDCDDBBFCFF5BB77CDCDBB9BB77F<"8#9%9$8%
+3363FFEEEEFDDDF4B7B7DDDDFBBB;"9"9"8'8#8$
+07701EE1DDD83FCFF6F83DC3BBB09$9#8"8+8%
+F6667F7C7FFEDDDDDBFFCFF737B7FBFDBBBBB7FF;'>"8#="
+773391FE7E67BF3B777F9);%8#:%
+F7E70F33C9FE60E7E2C3DC7FBCF9C587B8FF9S"S"U
+FCCF
+
+
+
+Bc"
+0FJg"
+41FAZ
+6
+
+
+
+
+
+
+=#
+E73F9#
+F9CF
+:(
+CE1E4F073C3927:'
+CCCE266739999%8#
+F80FCE6698FF9$8#
+F9CE0E3819:#8#
+CCCE39F9=%
+4739D9E7:'
+CE2667273C399S
+
+
+A"j
+FC>AZ
+?
+
+
+
+
+
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+63.58 502.24 192.89 513.69 R
+7 X
+V
+4 F
+0 X
+(Name p.94) 144.25 507.02 T
+62.86 464.94 192.89 476.39 R
+7 X
+V
+0 X
+(Type \050Setting & Menu\051 p.100) 64.85 469.73 T
+63.58 446.8 192.89 458.25 R
+7 X
+V
+0 X
+(Columns p.101) 125.81 451.58 T
+63.58 410.8 192.89 422.25 R
+7 X
+V
+0 X
+(Notify Handler p.105) 97.98 415.58 T
+63.58 428.58 192.89 440.03 R
+7 X
+V
+0 X
+(Menu Is p.97) 134.98 433.36 T
+63.58 485.32 192.89 496.77 R
+7 X
+V
+0 X
+(Label/Title p.95) 120.8 490.1 T
+65.3 585.83 193.9 597.28 R
+7 X
+V
+0 X
+(Selecting UI Elements p.93) 75.6 590.61 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "174" 9
+%%Page: "175" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (175) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.94 (Menus II) 54 638 P
+1 F
+0.47 0.09 (Figur) 198 330.58 B
+0.47 0.09 (e B-8) 218.77 330.58 B
+0 F
+0.47 0.09 (The Menu Editor W) 248.4 330.58 B
+0.47 0.09 (indow \320 Bottom Half) 330.05 330.58 B
+54 346.58 553.82 625 C
+54 346.58 553.82 625 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  3765     
+402 379 289.44 272.88 0 196.7 350.39 BEGINBITMAPBWc
+"J#
+CFO"FCFF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A"x"z&
+FEAAD5/5552AA60003FA"Z$
+FB?EFFFBF;#:"J"
+E77FFF?6F;";"J"
+E6FB?EF;(J"
+E4187939E0CFFF?6F;(J$
+E6733884CFCFFB?E0003F=&J$
+399CC7FFFF?7FFFFF<"8$J"
+70E1FFFB?FF<'J$
+73F99CF8FFFF?70007F=&J$
+B99CFCCFFB?EFFF3F;*j$
+E718799CC1CFFFFFE0;01FF6F;Q$Z$
+FBFFEF;FDFFEFA"J"
+FF?6FA"J#
+FB?EFBFA%J#
+FFFFEBBF<6F5FA"J#
+FB?EEAFA"8$J#
+FF0C7A67:6D57A"8$J#
+FBBBB99B:EEAF
+A"9#J#
+FFBBBB:6FFFA"8#J"
+FBB83B;EFA"8#J"
+FFBBFB;6FA"9"J"
+FBBB;EFA"8#J"
+FFCC7B;6FA'J#
+FBFFEFFFFFFF:E000A"J#
+FF?6FFFA"J"
+FB?EFA"J"
+FF?6FA$j$
+FBFFE0;01FFEFAZ"
+@6FA"J"
+FB?EFA"J"
+FF?6FA"J"
+FB?EFA"J"
+FF?6FA"J"
+FB?EFA"J"
+FF?6FA"J"
+FB?EFA"J"
+FF?6FA"J"
+FB?EFA"J#
+FF?6000A"J#
+FB?EFFFA"J"
+FF?6FA"J"
+FB?EFA"J"
+FF?6FA"J"
+FB?EFA"J#
+FF?6C03A"J"
+FB?ECA"J#
+FF?6E07A"J#
+FB?EF0FA"J#
+FF?6F9FA"J#
+FB?EFFFA"J"
+FF?6FA"J"
+FB?EFA"J"
+FF?6FA"J#
+FB?E000A"J$
+FF?70007FA"J$
+FB?FFFFFFA"J#
+FF?7F8FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J"
+FF?7FA"J"
+FB?FFA"J#
+FF?7FFFA"J"
+FB?FFA"J$
+FF?60003FA"J$
+FB?EFFFBFA"J"
+FF?6FA"J"
+FB?EFA"J"
+FF?6FA"x"z&
+F9552A/AAAD5560003FAZ
+C
+
+
+
+
+
+
+
+
+B"a8"`"
+C0FC3FB"Q$P"
+3F3FFFF3CFA#<$;"
+FEFFDFFFEFF7A"='8"
+FDEFFFDFFFFDDFFBA#9"8'8"
+FBFEFBF7FFBFC1FDDDFDI"8$8"
+F3DFFDFDFCA2
+F7FEE9E38E90FE03FBFF7FDFE1D83F80FEC(9'
+E6DF767BFEFBF9DDDDFFBEFE7FC"8$9"9"
+EEFBFF77C3DDD#<"
+E706DFD#8"="
+FB7EAFEBE"="
+76D9D&9&
+C78EFCFFDFC1E5DE3FF7A"R$P"
+FBF1FFBFFCI">"
+F3FFA"=$;"
+FDE3FFDFF8A"=$;"
+FEC7FFEFF1A#<$;"
+FF3F0FFFF3C3B"a$`"
+801FFFF807B"<$;"
+C07FFFFC1FBZ
+0
+
+
+
+
+
+
+
+
+
+=$
+F3FFFC;";#
+F3FEEF
+
+<*
+F0F27C3CCFFEC31E99<%8$
+E671399CEEEE66<#8"9"
+FE73FFEE<%9"
+F073381C0E<%9"
+E67339FCFE?#8"
+DCCFEE;&8#
+F031307C3CF31E;U
+
+
+A"j"
+F8=01AZ
+?
+
+
+
+A"j
+F83GX"
+FEA'
+F9FFFFFFFFFC
+
+
+;$A'
+E7FFF3BFFFF7FFFEEF9":"9%8":"
+E7FCF80FFFF7870EB#:":"
+FF7F7B7F:$8#82
+E1E4F0E0CF7C7761FCFEFFB774F4FF7EEE1E9E3D33C7:'9$:+
+CCE26673FCCF7BB77773737F7EEDEE6DDCCDBB:#9#9#:%8$
+FCE6C7FFBAF777777F0EEFDDDD:$8"9#9$8(
+E0E660E1783DFBBAF77EEC0EEE1DDD83:'9#?'
+CCE667F3FCF87BFAEDFEEDDDDDBF=%9';"9"
+73FCFCCFB777FCFF7BBDEEBB9(9$8%8'
+E06260F0F3FCC17C777983BDF0F7EE1EEE2DDDC79S8$8$T
+FFFFFFFFFBF7I"
+F3I#
+FFFF
+
+A"`
+F8Gi
+AZ
+4
+A"i"
+F803I"Q"
+7FFBA"Q"
+F9FE
+
+
+G":$
+FDCFFFFB:"9"9#<$8"
+CEFCFDEF07FFBFDF:"="="
+CCFC7B:(9%8'
+C830F267FCE0CF3A699E3D7DC70C7BBB07:'8'9&
+CCE67113FCCFFD6ED9E66DDDBBBBBBBBDF<&8%;"
+7333FCC7FF2DEBEEEFBF;"9"9"8#9$
+E0E1ADEE1D83BC3B;#8"9"8#9$
+E7F3F8CDEDDDBFBBBB<"8#8#;#8"
+73FCCFCEDB7BBB3B:$8"9&8'
+CE30F3C1EF3BEEEE2D07C7BC5CBBE7:R"Q8Q
+F9
+
+
+
+A"b
+F8Ib"
+03AZ
+0
+
+
+
+
+
+:"`
+809#P"
+FE7F3F9#;"
+FDFFDF9"8"9"
+FBFDEF9$:"
+F7FE1FF7:#:"
+FDEFF39)
+EFFBFF3DE747FFFB;'
+FEDDDB3FFFF9;%
+FDEDBD7F
+
+:'
+FDEEDDDB7DB7:%
+FE1F3DE79"Q"
+F7F1@#j"
+F3F8=019"<"Z
+FBE3?9"<"
+FDC79#;"
+FE7F0F9"a"
+FF1F:";"
+807F:R
+
+
+
+
+
+:"
+CF8"
+878"
+338*
+3F99C9E4CF0F23CCCF8(
+1F99C4E22667198*
+8799CCE6666739CCFF8":"
+E3078":"
+F37F8#9%
+33917739C8CF8)
+87C9C1E6670F39E48T
+
+
+A"j"
+F8=01AZ
+?
+
+
+
+
+
+
+
+
+
+=#
+CE7F9#
+F39F
+:(
+9C3C9E0E78724F:'
+999C4CCE63329%8#
+F01F9CCC31FF9$8#
+F39C1C6033:#8#
+999C63F3=%
+8E63B3CF:'
+9C4CCE4E78739S
+
+
+
+A"j"
+F8=01AZ
+?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+H`9&
+C000000000G"P"8'
+FC3F3FFFFFFFFF3FG";%:"
+FBDFFFFEFFDFG"9&;"
+F7FBFFEFFFFDEFG#:&8#
+EFFCF7FFFBFE1FEFF7J"9"9"
+7F3EFF3G0
+DFFB7A7A7B77FBFFF7FEEE3C71C3FBI&9&
+79B9BB77F9EDDBEEEFF9I#<"
+7BBB1DH#8":$
+F03BAFDC1CE0H#=$
+F7BBEDFF6FJ";#
+6DFDF6EI$;%
+B8787BEE38F1F3G*P"
+EFFFFBFBFFBFF1FFFBF1J#="
+63FF3F3G"P$;"
+F7E3FFFDE3G";$;"
+FBC7FFFEC7G";%:"
+FC0FFFFF3F0FG"`"8'
+FE1F80000000001FG";"8":"
+FF7FC07FHQ8Q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"j
+C0O#
+Z
+O$
+
+ENDBITMAP
+%%EndBinary
+61.78 506.2 191.09 517.65 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 72.79 510.98 T
+61.06 471.06 191.09 482.51 R
+7 X
+V
+0 X
+(Label Is p.95) 134.94 475.85 T
+61.78 434.49 191.09 445.94 R
+7 X
+V
+0 X
+(Color p.106) 139.52 439.27 T
+61.78 453.64 191.09 465.09 R
+7 X
+V
+0 X
+(Item Is p.99) 139.03 458.42 T
+61.78 417.06 191.09 428.51 R
+7 X
+V
+0 X
+(Submenu p.100) 122.11 421.85 T
+61.78 489.28 191.09 500.73 R
+7 X
+V
+0 X
+(Label/Title p.95) 119 494.06 T
+61.78 366.88 191.09 378.33 R
+7 X
+V
+0 X
+(Apply p.108) 136.12 371.66 T
+61.78 398.92 191.09 410.37 R
+7 X
+V
+0 X
+(Handler p.104) 127.49 403.7 T
+63.79 599.44 192.38 610.89 R
+7 X
+V
+0 X
+(Selecting UI Elements p.93) 74.09 604.22 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "175" 10
+%%Page: "176" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (176) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(Messages) 54 638 T
+1 F
+0.47 0.09 (Figur) 198 266.44 B
+0.47 0.09 (e B-9) 218.77 266.44 B
+0 F
+0.47 0.09 (The Messages Pr) 248.4 266.44 B
+0.47 0.09 (operty W) 317.07 266.44 B
+0.47 0.09 (indow) 355.09 266.44 B
+54 599.41 157.32 623.82 C
+54 599.41 157.32 623.82 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  235      
+80 21 57.6 15.12 0 56.16 605.68 BEGINBITMAPBWc
+
+
+
+#<#
+F27FFC9F7#
+638F#<#
+F6E3FDBF8(
+8E1E0E0E1E0E1D+
+FFE94CCCFCFCCCCCCFFF:#
+7C7F9'
+0E1E1E0CCC0F7)
+ECCCFF8F8CCC8CFF9'
+EFCFCCCE4CEF7)
+EFCE1C1C1E27CE1F7P$
+FCCFFF<#
+FE1F<#
+FFFF
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 282.44 555.26 585.2 C
+54 282.44 555.26 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  7385     
+450 411 324 295.92 0 197.28 286.98 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#
+2FBF7E7E77$H"=#
+FEDFDF07FE38J":"
+633FF7"J2
+FD439C399C1CCE7070E7E38E1E0E0E1E0E1E08#I1
+CFBF999999CCE666667E94CCCFCFCCCCCCCF8#J#8$8"
+E73F967FEC7C7FCC77#J#:"8(
+FCE0481CB07C0E1E1E0CCC0E17$I$9+
+FEF87F9FCB917FFECCCFF8F8CCC8CFF88"I2
+3C339DE7C9C8E646767ECCCEFCFCCCE4CEFC7$H2
+FC00FF07C3E7F9E4E7270E7EFCE1C1C1E27CE1C18"I%U$
+C3FFFFFF99CCFFFF7#J"@"
+FFFF6C3E1J"@"
+9FFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz%
+>5554C0007FG"Z#
+FD?DFFF>#="J"
+1C7FFF>FEG"J"
+FD>FF?*J"
+70F07070F070F067FF>FE>+J$
+4A6667E7E6666667E7FD>FFC000@$8$J%
+63E3FE63FFFF>FEFFFFFF?*J"
+6070F0F0666070FFFD>FF>+J$
+6667FC7C666467FC7FFF>FEE000@)J%
+7E7E6672677E67FD>FFDFFE7F>-j#
+7E70E0E0F13E70E0E7FFFFF0;03FE>P(Z#
+E67FFFFFFDFFF7;FBFFC#8"J"
+F0FFFF>FEC"9"J$
+FFFD>FFDF7EG">"J$
+FFF75FEDEBEG">"J$
+FDC75FFDD5EG+J$
+FFFFF533C78E38F0E3F75FEDAAEG*J$
+FDFFF4CDBB7DF76EDD6FFDD5EG%8"J$
+FFFFF5DDFF8FEDFFEG"9&J"
+FD839E786EC16FFG"9&J"
+FFBFEFB76CDF6FEG"9"8#J"
+FDBB72DD6FFG"9&J"
+FFC71C78BEE36FEG+J$
+FDFFF7FFFFFFFFFEFFFF5FFC000G"<"J$
+FFF17FEDFFEG"<"J"
+FDFF7FFG"J"
+FF>FEG$j#
+FDFFF0;03FFGZ"
+?FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEC000G"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FED806G"J"
+FD>FFG"J$
+FF>FEDC0EG"J$
+FD>FFDE1EG"J$
+FF>FEDF3EG"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J$
+FD>FFC000G"J%
+FF>FEE000FFG"J$
+FD>FFFFFFG"J$
+FF>FEFF1FG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEFFFFG"J"
+FD>FFG"J%
+FF>FEC0007FG"J$
+FD>FFDFFFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"z#
+FC?AAC000GZ
+C
+
+
+
+
+
+
+
+
+
+
+
+A#A"
+F8EFFDJ"
+8F1A/
+FA6E1E4CF0E7FF4CF1E38E3C38FDB.
+6CCE226667FF336EDF7DDBB77DB(8"
+2FCE66667FFF777FA&9&
+FB2E0E666060E79E1BB0B&8'
+8CCE6667FF6FFBEDDB37FDF"8"8$
+676EDCB77DB&8'
+CE266670E771C71E2FB8FDAW#
+BFFFJ#
+6FC7FJ#
+6FFFFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C%
+FCFFFE7FA"<"
+FC7DH"
+39B&8&
+FC3C9E1E67E3C71C7871B%8'
+F99C4CCE55DDBEFBB76EB&:"
+FF9CCCCE7FFFB%8'
+FC1CCC0E6DC1CF3C3760B%9&
+F99CCCFEDFF7DBB66FE&8#
+EE67FF7DDDB96EB%9&
+0C4C1E1EE38E3C5F71AW"
+7FJ#
+6F8FFJ"
+6FFG"j"
+FC=03GZ
+?
+
+
+
+G"j
+FC3J"W"
+77FFEH&
+FFFFFFFFFE
+
+
+A$A$8"
+F9FFFCDFFFFB77?":#8%8":"
+F9FE7FFC07FFFBC387H#:":#
+FFBFBDBFF7@(8$8-
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C7@(8$:+
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB@#9#9#:%8$
+FF3963FFDD7BBBBBBF87EFDDDD@'9$8$8(
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83@(8$?&
+F33999FCFE7C7FBDFD7BFEEDDDDDBFC%9#8$:"9"
+DCFE7E67DBBBBDDEFBEEBB?)8$8%8'
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC7?S8$8$T
+FFFFFFFFFDFBJ"
+9F9J#
+9FFFF
+
+H`
+Ji
+7GZ
+4
+G"g"
+FC1FJR"
+7DFH&
+FFFFFFFFFC
+
+
+?$>#="
+F9FFFCFBFB7F=":%8#:"
+F9FE07FFFEFC3F7BC$8#:"
+7FFFFCFDDF3B>*8$9%
+F8793C3CFE7C3C9827DE7BC3CE9A678F>*8$8&
+F338999CFE799C4CE7DDBBBB5BB6799B77>#9)9&
+FF39099CCCFFFCFC3BDB4B7AFBBBF7>':#:"9"
+F839981CFE79FDDB6B87>%B"9"
+F33999FC7377A":"8$9"
+DCE7DDBBB3B6=08#8"
+F818983C3CFE7C3CCE27FCFC3E7BCB7BCE8B=U&8Q
+FCFFFFFFFF
+
+
+
+H`
+Jb"
+71FGY
+
+
+
+
+
+
+
+C"
+FC?"9":"8$8&
+CFBC9CBF3E1FF3CFFFC3E7C"<%;#
+3FFE3EDDEFBDDB@.9&
+C3C3860CE1E4E7FFC9CFFFBDEDF9D9FFBFBD@*>"
+9999333CCCE267FFC399A#8&8#8%
+9FF3E67FFFE3FFEE1FFCBFFF83B";"9#8%
+83C9EDEFFE7FFFBDB"
+33A":(:"8"
+9D67FF9CCFFFBEDD79DB?'<$;#
+C0C3C3898CE1BF3E1FC3E7?Z8P
+/
+
+J'9&
+4F8000000001F0000000003JQ9P
+4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C#
+F9CF:#8$
+F81FFDFE73:#8"
+F9FFF9;-
+F33879307E738793C1CE1C93<+
+333899FE73338999CCCC:%8$9"
+F833333903F3997F:$9#9#
+F9F97073830CFF<#9"9"
+73F933FC;$;%
+FCF3B991CCECF3:-
+F81CF8799C7E738999C9CE1C:X
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+Hs5
+554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG#Q*P(
+FF7FFDFFDFFFFFFFFF7FF7DFFF7FFFFFFFF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFB;"9"=#<$8%9&9"
+F7FDFF7FFDFFDFDFFF7FF77FFFDFFF7FF78%9$;%:38"
+EFBFFFFBFEFEAFFEFFAFFBFBFFEFEFFFFBFEFFFBFAFBFFFFFFEFFEFEABFB8%9$9':38"
+F77FFFF7FDFF7F7FFFFF7F77FFFDFFDFFFFF7FFF7FF7FFFFFF7F7FDFFF7FDFF785
+LEEFAEFBAFAFAFAEAFEFEEEBEEEBABBFEFFFEBBAEFAEBFFFBFFEFEFAEBAFEFFFBFBBBAFEEBFEFFEFFFFBEBFFB85
+LF5F777757777775DFF7DDDDF7777F7FF7F777FDDF77777FDFFDFFF777FFF7FF7FFFF77777FDFFF7FDF7F7FF785
+LEBEEEFFBBBBFBBEEFEAEEEEEEEFBFFFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFAFBFFFFFFEFFEFFFEFEEFFB85
+LF5F57777777D77DDFF7F5D5F777D7FFF7F5FFFFFFD7FFFFDFFDFFF577FFF7FF7FF7F77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEEFEFEFEFEEEFEBFFEFFFEFBBBBFEFAFFBFFEFEFFFFBFEFFFBFBBBEFFFFFEFFEFFFEFEEFFB85
+LF7777DF7777777DDFF7F7DFF777F77FF7F7FFFFFF77FDFFDFFDFFF777FFF7FF7FFFFD7777FDFFF7FDF7FFFF785
+LEFBAFBFAFAFABBEEFEAFBEBEEFBAFBFEFFFEFBBBBAAFFFFBFFEFEBAFFEFEFFFBFBBBFFFFBFEFFEFFFFBEBFFB8$X"Q5
+FFFFF77F5FDFFDFFFFFFFFF7FF7FFFFF7FFFFDFFF7FFFFFFFF7:"B#;%9$8"8(
+FBFEFFBFFBFFEFFEFFFBAFEFFEFFFFFEFFFB:"B#;%9$8"8(
+FFFF7FFFFDFFDFFF7FF7FFDFFF7FFFFFFFF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557HZ
+<
+G"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"R5P"
+FE7EFFFBFFFFFFFFFFEFFEFFFFFFFFFBFFBFFFFFFFFFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEF:#;"9(938$;"
+FD75577FFFFF7F5FFFF7F7FF7F57FF7FFFFDFFF7F5FFDDFF7FFDFD7FFF7FF7DF:#:#8)938&9"
+FEFBFEFFFEFFFFFEFEEFFEFFEFFFBFFFFFFFFFFEFFEFEFFFFFFFBFFBFBFFFEFFFBFBEFEF:5
+O$FD75D7DDF5F5FF7DDF5F5D5D77FF7FFFFD75DF5F5FF7FF7F7F5F5DFDFDFFF7FFDDDD7F7FFDFFFD75F5FF7FF7FDDFDDDD7FDF:5
+O$FFABBBEEEFEEFEFEEEEEAEFBFBFEFEEEEEFFBFBEFFEFFFBFFFBFFFEFFEFFEFEFFFFFFFBFFBFBEEEEFFFEFFFBFAAFEFFBBFEF:5
+O$FD7DDDDDD7DDFF5DDDDF7775FFFF7F5FFFF77F77FFF7FF7F5F77777FFDFFF7F5FFDDFF7FFDFFFDFFDDFF7FF7FFFFF5DFFFDF:5
+O$FFABBBEEEBEAFEFEFEAEEEFAFFFEFEEEEEFFFBFFBFEFFFBFFFFFFAEFFEFFEFEFFFFFFFBFFBFBEFFAFFFEFFFBFBEEFEBABFEF:5
+O$FDDDDDDDFDDFFF7F5DFF777F7FFF7FFFFFF77F77DFF7FF7F7F7777FFFDFFF7FFFFDDFF7FFDFFFDFFDDFF7FF7FF7FF7FFFFDF:5
+O$FFBBBBEAFEEEFEFFBEEEEEFFBBFEFEEEEEFFBFFFFFEFFFBFFFFFFFEFFEFFEFEFFFFFFFBFFBFBFFEEEFFEFFFBFBEFEFFBBFEF:5
+O$FDFDD7F5D5F5FF577F5F775577FF7F5F7F7DDF777FF7FF7F5777DDFFFDFFF7F5DDDF7F7FFDFD7DF57DFF7FF7FFFFDF7D7FDF:X"R58%
+FE7EFFFBFFFFFFFFFFEFFEFFFFFFFFFBFFBFFFFFFFFFEFFFBFFFFFFEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDF7FF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBFFFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFGZ
+E
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+59.9 546.9 192.74 558.34 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 74.45 551.68 T
+59.9 485.05 192.74 496.5 R
+7 X
+V
+0 X
+(Name p.94) 144.11 489.83 T
+59.9 451.35 192.74 462.8 R
+7 X
+V
+0 X
+(Label Is p.95) 136.59 456.13 T
+59.9 432.63 192.74 444.08 R
+7 X
+V
+0 X
+(Label Font p.95) 124.11 437.41 T
+59.9 413.91 192.74 425.36 R
+7 X
+V
+0 X
+(Location p.96) 132.59 418.69 T
+59.9 390.15 192.74 401.6 R
+7 X
+V
+0 X
+(Event Handler p.105) 101.03 394.93 T
+59.9 333.34 192.74 344.79 R
+7 X
+V
+0 X
+(Color p.106) 141.17 338.13 T
+59.9 307.35 192.74 318.8 R
+7 X
+V
+0 X
+(Apply p.108) 137.77 312.13 T
+59.33 290.72 192.17 302.17 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 84.84 295.5 T
+59.62 469.57 192.46 481.02 R
+7 X
+V
+0 X
+(Label/Title p.95) 120.36 474.35 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "176" 11
+%%Page: "177" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (177) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.94 (Pop-up W) 54 638 P
+-0.94 (indows) 114.83 638 P
+4 F
+0.52 0.1 ( ) 198 616.33 B
+1 F
+0.47 0.09 (Figur) 198 198.62 B
+0.47 0.09 (e B-10) 218.77 198.62 B
+0 F
+0.47 0.09 (The Pop-up W) 248.4 198.62 B
+0.47 0.09 (indows Pr) 308 198.62 B
+0.47 0.09 (operty W) 349.89 198.62 B
+0.47 0.09 (indow) 387.9 198.62 B
+54 591.78 172.3 624.47 C
+54 591.78 172.3 624.47 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  319      
+70 38 50.4 27.36 0 55.94 596.1 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"<#
+EF03DF7"P"
+7FFB$:"
+EC7D7FF8#;"
+EDF0FE#<"
+E1DD1F$:#
+E7FFFFFF9F"a"
+E601"R
+E7
+
+
+
+
+
+7#
+FE1F8"
+EF8&
+EE3A7FEED38&
+EDD9BFEECD8&
+1DDBB06EDD8%
+FDDBBFEE
+9%
+D9BFECCD8&
+FE3A7FF2D37'
+FFFFFBFFFFDF
+"<#
+E1FE1F"8"8$
+EDFFFFFEDF#;"
+EC7FF8"<"
+EFFB7a"
+03"<#
+E0001FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 214.62 556.7 585.2 C
+54 214.62 556.7 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  6949     
+450 506 324 364.32 0 196.13 218.29 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#@$
+2FBF4E7E7CFFFE77$E"=#;#
+FEDFDF07FE0FF9F9I":"9"<#
+33FF6799FF7"G08'
+FD39C399C1CCE7070E7E661E4FFF3393CE4F070E7E608#F,8*
+CFBF999999CCE666667E64CE2789FC93CE266666664F8#J)9&
+E73F667FE6CCE6603339966666724C77#G#:'9";"
+FCE081CB07FE1CCE67FF03E17$F$9$;#:#
+FEF87F9FCB917FFE7CFE6700F88"F*:";%
+3C339DE7C9C8E646767E23466799FC7$E09&
+FC00FF07C3E7F9E4E7270E7E7E1E0FFF938367270F99C18"F%Q&S
+C3FFFFFF99FE7FFFFF9F7#I"
+FFFFC3J"<#8"
+6FFFFFFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+G"z$
+FE>AAA98000@$:"Z#
+CFFFE7FB?BFFE7#;#="J"
+FE0FF9F9FF>FD8"<#<"J"
+6799FFFB>FF8'8)J"
+661E4FFF3393CE4F070E7E60CFFF>FD8$8,J$
+64CE2789FC93CE266666664FCFFB>FF80008'9(J$
+6CCE6603339966666724C7FFFF>FDFFFF8%9";$J"
+1CCE67FF03E1FFFB>FF8";#:%J$
+7CFE6700F8FFFF>FDC001<";'J$
+23466799FCCFFB>FFBFFC8'9*j#
+7E1E0FFF938367270F99C1CFFFFFE0;07FD7(T$Z#
+FFFFFE7FFFFF9FFBFFEF;F7FFG"J"
+FF>FD9#8"?"J#
+FFFFFFFB>FFBEG"<"J$
+FFFD7FDBD7CG"<"J$
+FBF17FFBABCG)J$
+FFFFEA7CF4F774FD7FDB55CG)J$
+FBFFE9BB7377737D7FFBABCG(J$
+FFFFEBB7B777778FDBFFCG"J"
+FB>FFG"J"
+FF>FDG"8$J"
+FBBB77769FFG)J"
+FFFFE87CF0F970FD7FDG)J$
+FBFFEBFFF7FFF7FF7FF8000G"J$
+FF>FDBFFCG(J"
+FBFFEFFFFFFFFF8FFG"J"
+FF>FDG$j#
+FBFFE0;07FFGZ"
+?FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FD8000G"J$
+FB>FFBFFCG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FDB00CG"J"
+FB>FFG"J$
+FF>FDB81CG"J$
+FB>FFBC3CG"J$
+FF>FDBE7CG"J$
+FB>FFBFFCG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J$
+FB>FF8000G"J$
+FF>FDC001G"J$
+FB>FFFFFFG"J$
+FF>FDFE3FG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FDFFFFG"J"
+FB>FFG"J$
+FF>FD8000G"J$
+FB>FFBFFEG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"z#
+F9?558000GZ
+B
+
+
+
+
+
+
+
+
+
+
+
+A#@"
+F8EFBFJ#
+6FE3FA.
+FA6E1E4CF0E7FF4F9E9EEE9FBFB,
+6CCE226667FF376E6EEE6FB,
+2FCE66667FFF76F6EEEEEFA&
+FB2E0E6660B&
+8CCE6667FFF'
+67FF776EEECEB,
+CE266670E7FF0F9E1F2E1FAR'
+7FFEFFFEFFFF
+H%
+FFFFFFFFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C%=$
+FCFFFE7FFDFFFDA"<":#
+FC0FDFDDH";"
+77DFB&8,
+FC3C9E1E679E9EEE9FDDDDD3E1E77F7FB%9%8%
+F99C4CCE6E6EEE6FCDDDDB77B3
+FF9CCCCE7FFF76F6EEEEEFEABDDDDDBDB6FFB%8"?"
+FC1CCC0E0EAAB%8"
+F99CCCFE7EE/
+EE67FF7F6EEECEEFF77DDDD9DBDDB%9%9#
+0C4C1E1E9E1F2E1FE5E7AS$R
+FEFFFE
+I$
+FFFFFFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+D#
+FE7F>"8"<'8'
+83BF9F9FFFC3E7E7F9CFFFFBE1E1>"8"<"8$;$
+993F99BDDBDBE3DEDE?)8&9%
+C3C20C3C9E0E70E799FFFDBDBDCCFFFBFE>-
+9B9999399C4CCE6667FFC939>'8"8$:#8#
+87999F3F9CCC7F3FFFFBF80FFDE1>&8"8"8":#8#
+93819F3C1C60C0F7F9CFFBDE?.>"
+9F9F399CCC8E67FFFFE67FFFEFF7>$8%8&9"8"
+999D9DCE4E676779FFDFDBDBCCEF>*:$<#
+98C3C38C4CCFCE70E781E7E7C0E1>P#T8Q
+FCCFC#
+FE1FC#
+FFFFJ&9&
+500000000038000000001JP9P
+5
+
+
+
+G"g"
+FC01J"P"
+801FDHQ"
+F9
+
+
+>%>"8"
+CFF3FF9F7FF7<$9$:"<"
+F3FFCEC3DFFE0F0F>#8$9#;#
+FCFF999FFCFEF7FEF7=5
+793C833879F9F061830E7FCFDFF79E38F87F9FDFBA78F4F=+9%9$
+89CCF3339F8F9CCCE66776DF77779B7737="8%8"9#;$
+99F39FC39F7F6F5FBB7777@';#;"
+839FF19E0CE0670707@(:#;"
+339FF99CCCE7FF7B7F7FB"9.
+9967FCFEF776FB7767F9FEF7BB77>5
+5CE33899FC3C62630E7FCFF0F79C78F97F9FF0F878F<V8P8%
+FFBFFFFF
+J"
+;FF
+
+Ha"
+01Ja"
+801GY
+
+G"j"
+FC23FJ"U"
+90FBFHR"
+CF
+
+
+
+A"8"9#:(9"
+C0BFFE1F7FCFF7BFF7F87FFDA"8":"<"8#
+CF3FEFF3FBBFB&8'8*
+87860C3927ED31E38F4E1FBCE1FBB4C78E3D387FB%92
+33333999ECEEDF77377FCFF5BB77FBB3BB7DDCDDFFA"9#8"9"8&8"
+C198FFED77F4B7B7FBB7DDA"8#9%9"8&
+CF38191DE0E707F6F877839C1DD#9%9)
+39F9FDEFFB7FF737B7FBF7BFEDFDE#9$:#8$
+D9E7EEFB773B77BBEDDDB%:&8#8&
+87878C39F1C78F779FBCF9C71E3DDE7FAQ"R"U
+FCCF
+
+
+
+Hb"
+0FJf"
+93FGZ
+4
+G"j"
+FC/01J"P"
+;01FDHT"
+F9
+
+
+D";"9#9"8"
+3FEEFBFBFDF7C";"9":#
+0F3FBFFE1DB$;">"
+FE67FFEFFFC/8%
+7F3070E7FCFEDF0EEEE30C7A7B8FFDBB8F87C%8):#
+3F3E6667DEEEEEDFBBB9BB777777B&<#:#
+FF0F3CE67FBFBB1DD7C$8#8&8$
+C738E0FC0EE7BC3BBB07FDEF07C(8&9#
+E739E7FFFCFDEEFBBBBBBB7FD77FB&9#:"9$
+FE6733E767CEEC77BB7767B&8):#
+FF0F3070E7EF2EF2C7CC587B8F8F97C)Q"P
+FFFFFFFFFCFFFFFEF9J"
+4F9J"
+4FF
+
+Hd"
+01Ja"
+;01GZ
+1
+G"c"
+FE7FJ%
+603FFFFFFH&
+7FFFFFFFF3
+
+
+B%
+F9FFFE7F?#>&
+F07F87FFDFF3FD?#9#9"
+F33FFFFF7B@-8"
+3338393C9E7273FE7EFDDD87D3A':"8"
+33F89C4E7133DFCD@(="
+7331F99CCE733FDD?%
+F0F33879?%
+F3F33E39@#:&
+F23F33FE7F7BD9@&:$
+F930799C1E87E5E7?)8'
+FFFFFFFFFCFFFFFFFFFFFFF3FFFF
+C"
+FF
+
+H&
+0000000003J%
+600000000GU
+
+
+
+
+
+
+
+C#
+F9CF;"9#
+07FE73;"
+33;%8'
+39C3C9E18793C1CE1C93<$8&
+99C4CC338999CCCC="8$9"
+CC03F3997F>%9#
+C0FE73830CFF>"8"9"
+CF33FC;"8":%
+33CE91CCECF3;%8&
+07C3CCE18999C9CE1C;W
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F9CF:#8$
+F81FFDFE73:#8"
+F9FFF9;-
+F33879307E738793C1CE1C93<+
+333899FE73338999CCCC:%8$9"
+F833333903F3997F:$9#9#
+F9F97073830CFF<#9"9"
+73F933FC;$;%
+FCF3B991CCECF3:-
+F81CF8799C7E738999C9CE1C:X
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+G"b*`(
+FE01FFC0000000007FF00FFE0000000003HR*P(
+FDFFDFFFFFFFFF7FF7EFFEFFFFFFFFFB
+
+
+
+;"9"@"?":$
+F3FCFB9FFBFF7F8#<#9"9">$9#8"8#
+E73FFE077F0FEFFF7BF87B7FFE038#="8":#C#;#
+E67F7FFE77FFFBBFFFDF9/8':#:%:#
+F0E73278787260FE7CCE1E4C1833769BA678E9778E10BB874E1F9E9F8)8&9%;#;$:#
+E5E667313333324CCCCE2673F37B99B767777B77377F6E6F8"8(8$9%@%:$
+E173333F31CCFE0C6671FFFBBBBF6FF87B7777DEF6EF8$8#8'8"8$:":"
+E4E07238337E5C0E66787F0EB86FAF07FB9&;%8"8"<";#
+67F2F33333FE667E3F7EB77FBB678$:)=":"<";#
+E66778C8FE7F3CEE667F33DF7797DF6E80;#:$;$:#
+E730F9F0787893E4FE073E1E671073B8AFE18F7CF7779F9E1F8$W8P"9$9&9$
+FFFFF3BFFFFFFFFFFFF7FFFFFFFEFFJ"A"
+83F8F:"I"A"<"
+FFFFFFFF
+
+
+Hb*`(
+01FFC0000000007FF00FFE0000000003GZ
+=
+G"b#a)`#`"
+FE07FFFFE0000000003FF87FF00FHR1P#P"
+F7FF7FFFFFFFFFFEFFEFFFFFFFFFBFFB7FF7EF
+
+
+
+J"
+EDF:#:#9"8%<$:$9#;#
+FC71FE077FFE1FFEF707FF7FE0FFDDF83FFBEFA"8":">"<$9#;#
+7FFEEF7FEFFFFDFBDFF9CF<,8':$:$9$;$
+C3CCE0E1FE7CCE1E4C1833EEEC21CF4F1F4E18E9DDD87FED31E19DDC7F:'8&9&:$;#9$9&
+FD2999CCCFCCCCCE2673F3EEF7B736FF377767DDFFECEEDDFAAF6DDBBF>"8"8$8"8#:%9#;#;#
+C70C6671FF1E7B760F77776FE1EBEDFEAEF5>*8"9#9$:#<":&
+E1C0FE7E5C0E66787FEE773F7F7770EFF7F0FB6EF6B83F;"8#9%=";#:"<#<#
+99F8CFFE667E3FDF77EFEBEED9BBFF=+9$>":";$:%
+C8FCCEFE7F3CEE667F33CEF7B76FDDDDEEE5EF6F7BBF;-8'9%9%8%;$
+F9C3E4C1E1FE073E1E6710731F2F39CF763F077798EFE0DDDE7FF83DF17D9F7C7F:X"R9%9%8%9P
+FEFFFFFFFFFFFFFFFFFFFFFFFDJ"
+LE3J"
+LFF
+
+
+Hb#a)`#`"
+07FFFFE0000000003FF87FF00FGZ
+E
+
+
+
+
+
+
+
+
+
+
+;"e"
+FC7F;"U"
+F39F;"@"
+EFEF;">$
+DFF7FFF7;#?"
+BFE1FB<"?"
+EFF9;-
+7FEFE74C7869CF774F87FFFD=+
+DB3BB767B7773777FFFC<)
+E1BD7BB76F7B7777<%
+EFBD7837>#
+7BF6=*
+DB7BB96FB7677766DB=)
+E77C7F6FCF977796;'P"
+BFFFFFFFFF7FF8?#;#j
+F8FFF9FF>;"9"<"Z
+DFFFF1?;"@"
+EFE3;"@"
+F387;"e"
+F80F;"@"
+FC3F;W
+
+
+
+
+;"e"
+FC3F;"U"
+F3CF;"@"
+EFF7;"8";$
+DFFEFBFFFB;#?"
+BFC3FD<"?"
+DDFC;-
+7FDDC7C6EC34E7BBA7C3FFFE=)8"
+BBBEDBB3DBBB9BBB7F<)
+C3FB7EBBB7BDBBBB<%
+DDC37E3B=%
+BB7EDB37>)
+BECCB7DBB3BBB36D<*
+C3C5C6EFB7E7CBBBCB;'P"
+BFFFFFFFFFBFFC?#<"j
+FC7FFF>;"9#;"Z
+DFFFFFF8?;"@"
+EFF1;"@"
+F3C3;"e"
+F807;"@"
+FC1F;W
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J'8'
+6C0000000003FE0000000007FJ'8'
+63FFFFFFFFFCF9FFFFFFFFF9FJ#:"8":"
+5FEFFF77FEFJ"9':"
+5FDFEFFFBFFFEFFF7J$9&8#
+5FBFF3FFDFFFDFF0FF7FBJ"9"9"
+;FC77F9J*8%
+5F7FEDE9E9EDDFEFFFB1E38E1FDJ#8"8&
+86E6E7F76EDF777FCJ#;"
+8EEEE0EJ#8":$
+6FC0EEB6E0E70J#=%
+6FDEE76FFB7F7J";$
+:F7EFB777J#;%
+81E1E771C78F9J*P"
+5FBFFFEFEFFEFFC7FFDF8J$<"
+:CFFCFFF9J"P$;"
+5FDF8FFFEF1J";%:"
+5FEF1FFFF7FE3J#:"8":"
+5FF3FC39F87J'8'
+6800000000007C0000000000FJ":"8":"
+6C01FE03FJQ8Q
+6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+59.04 547.62 191.88 559.06 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 73.58 552.4 T
+59.04 485.34 191.88 496.78 R
+7 X
+V
+0 X
+(Name p.94) 143.25 490.12 T
+59.04 467.34 191.88 478.78 R
+7 X
+V
+0 X
+(Label/Title p.95) 119.79 472.12 T
+59.04 450.78 191.88 462.22 R
+7 X
+V
+0 X
+(Rectangle p.95) 126.93 455.56 T
+59.04 431.34 191.88 442.78 R
+7 X
+V
+0 X
+(Initial State p.98) 119.95 436.12 T
+59.04 414.34 191.88 425.79 R
+7 X
+V
+0 X
+(Footer p.96) 141.7 419.13 T
+59.04 398.43 191.88 409.88 R
+7 X
+V
+0 X
+(Size p.97) 152.22 403.21 T
+59.04 380.29 191.88 391.74 R
+7 X
+V
+0 X
+(Pushpin p.97) 133.31 385.07 T
+59.04 360.92 191.88 372.37 R
+7 X
+V
+0 X
+(Done Handler p.105) 101.99 365.7 T
+59.04 341.48 191.88 352.93 R
+7 X
+V
+0 X
+(Event Handler p.105) 100.17 346.26 T
+57.74 323.48 190.58 334.93 R
+7 X
+V
+0 X
+(Keyboard Events p.105) 87.88 328.26 T
+58.61 305.48 191.45 316.93 R
+7 X
+V
+0 X
+(Mouse Events p.106) 102.42 310.26 T
+57.38 281.72 190.22 293.17 R
+7 X
+V
+0 X
+(Foreground p.106) 110.85 286.5 T
+59.04 260.91 191.88 272.36 R
+7 X
+V
+0 X
+(Background p.106) 111.15 265.69 T
+59.04 235.06 191.88 246.51 R
+7 X
+V
+0 X
+(Apply p.108) 136.91 239.85 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "177" 12
+%%Page: "178" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (178) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (Scr) 54 638 P
+-0.94 (olling Lists) 74.01 638 P
+1 F
+0.47 0.09 (Figur) 198 158.92 B
+0.47 0.09 (e B-1) 218.77 158.92 B
+0.47 0.09 (1) 237.91 158.92 B
+0 F
+0.47 0.09 (The Scr) 248.4 158.92 B
+0.47 0.09 (olling Lists Pr) 278.89 158.92 B
+0.47 0.09 (operty W) 336.12 158.92 B
+0.47 0.09 (indow) 374.14 158.92 B
+53.42 558.73 151.7 623.32 C
+53.42 558.73 151.7 623.32 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  564      
+64 82 46.08 59.04 0 55.8 562.55 BEGINBITMAPBWc
+
+
+
+;$
+F8000F)
+F5555555555BFFEFP"
+FB"
+F7"
+FF":$
+F7F8000F":$
+FFFFFFFF"
+F7":$
+FFFC001F":$
+F7FBFFCF"
+FF"
+F7"
+FF";"
+F7EF";"
+FFD7";"
+F7AB";"
+FF55";"
+F7AB";"
+FFFF"
+F7"
+FF"
+F7"
+FF":$
+F7F8000F":$
+FFFBFFCF"
+F7"
+FF"
+F7"
+FF"
+F7"
+FF"
+F7"
+FF"
+F7"
+FF"
+F7"
+FF"
+F7":$
+FFF8000F":$
+F7FBFFCF"
+FF"
+F7"
+FF"
+F7";"
+FF00"
+F7";"
+FF81";"
+F7C3";"
+FFE7";"
+F7FF"
+FF"
+F7"
+FF":$
+F7F8000F":$
+FFFC001F":$
+F7FFFFFF";"
+FFE3"
+F7"
+FF"
+F7"
+FF"
+F7"
+FF"
+F7"
+FF"
+F7";"
+FFFF"
+F7":$
+FFF8000F":$
+F7FBFFEF"
+FF"
+F7"
+FF":$
+F7F8000F)
+FAAAAAAAAAAFFFFFQ
+
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 174.92 555.98 564.8 C
+54 174.92 555.98 564.8 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  9119     
+450 536 324 385.92 0 197.28 177.3 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#;$9"
+2FBF5F3F3F9CE7F9F7$F">"=$
+FEDFDF830F9F9FFDJ":"8#9#9#
+499FFFE67CFFFFFF97"H5
+FD59CE1CCE0E67383873E7F0C9879CE72783F9F9C10608#G$8+8$
+CFBFCCCCCC33333E3E649339CE713399F9CF8#J%8"9$
+E73F8FF0E7C737398F9C77#H#:&<$
+FCE0C0E503FFC67CF39C39E17$G$9$;"8$
+FEF87FCFE5C83FFFE6329F19F88"G,:"9#
+3C99CEF3E4E473233B3E66743999FC7$F.8'
+FC00FF83E1F3FCF27393873F0F0CF8793F3F81983C418"G%V'
+C3FFFFFFCCF33FFFFFFFFF7#J"A#
+FFFF4E1F87FJ"A#
+7FFFFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+G"z$
+FE>AAA98000C"9"Z#
+9FFB?BFFEB$8"J"
+9F9FFDFF>FDC#8"J"
+FFF9FB>FFC&J"
+9C1060CFFF>FDC&J$
+99F9CFCFFB>FF8000C&J$
+98F9C7FFFF>FDFFFFC&J"
+9C39E1FFFB>FFC&J$
+9F19F8FFFF>FDC001D%J$
+99FCCFFB>FFBFFCB)j#
+81983C41CFFFFFE0;07FDBP$Z#
+FBFFEF;F7FFG"J"
+FF>FDG%J#
+FBFFEBBF;FFBEG"9#J$
+FFEFDF9FDBD7CG"8$J$
+FBFFEF1F9FFBABCG"8$J$
+FFB8C3DF9FDB55CG"8#J$
+FBB7EF:FFBABCG"J$
+FF>FDBFFCG"8"J"
+FBB9;FFG"8"J"
+FFBE;FDG"J"
+FB>FFG"8#J"
+FFB1F3:FDG'J$
+FBFFEFFFFFFF9FF8000G"J$
+FF>FDBFFCG"J"
+FB>FFG"J"
+FF>FDG$j#
+FBFFE0;07FFGZ"
+?FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FD8000G"J$
+FB>FFBFFCG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FDB00CG"J"
+FB>FFG"J$
+FF>FDB81CG"J$
+FB>FFBC3CG"J$
+FF>FDBE7CG"J$
+FB>FFBFFCG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J$
+FB>FF8000G"J$
+FF>FDC001G"J$
+FB>FFFFFFG"J$
+FF>FDFE3FG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FDFFFFG"J"
+FB>FFG"J$
+FF>FD8000G"J$
+FB>FFBFFEG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"z#
+F9?558000GZ
+B
+
+
+
+
+
+
+
+
+
+
+H"
+77A#<#
+F8EFFDFBH$
+7FFDE3A+
+FA6E1E4CF0E7FF77187BB*
+6CCE226667FF76FDFBB&
+2FCE66667FA&8#
+FB2E0E6660773DB&8"
+8CCE6667FFDDF"
+67B*
+CE266670E7FF763E7BAU
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C%
+FCFFFE7FA"
+FC
+B&
+FC3C9E1E67B%
+F99C4CCEB&
+FF9CCCCE7FB%
+FC1CCC0EB%
+F99CCCFEE#
+EE67B%
+0C4C1E1EAQ
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j8"f"
+FC3FE3FJ"W"="Q"
+77FFE03BFH&G&
+FFFFFFFFFE7FFFFFFFF3
+
+
+A$A$8"A"9"
+F9FFFCDFFFFB77FCFD?":#8%8":"A'
+F9FE7FFC07FFFBC3877FFBDFF3FE7DH#:":#
+FFBFBDBFF7@(8$8-;*
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C77C7087F3FDBD3E7771@(8$:+;$8%
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB7BBBDFBCDDB76E@#9#9#:%8$A$
+FF3963FFDD7BBBBBBF87EFDDDDBDDBD7@'9$8$8(;#8&
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83783BF81DDBDAE0@(8$?&;#8#8"
+F33999FCFE7C7FBDFD7BFEEDDDDDBF7BFBFBDDEFC%9#8$:"9"<":$
+DCFE7E67DBBBBDDEFBEEBBBBDDBDEE?)8$8%8';$8%
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC70C7BE7DC3E7DF1?S8$8$T;%P
+FFFFFFFFFDFBFFFFFFF3J"
+9F9J#
+9FFFF
+
+H`G&
+0000000003Ji=b"
+73FGZ8X
+4
+
+
+
+
+
+
+C"J$
+FC6F3F3FC?"9":"8$8&9&8$
+CFBC9CBC0E1FF3CFFFC3E7FE7E73F3BCE1F3F3C"<%;#:%8$
+3FFE3FEDEFBDDB667FF33CDEEDED@.9&;)
+C3C3860CE1E4E7FFC9CFFFBFDFF9D9FFFDBD73820C9CFFFEDEDE@*9":"<'
+9999333CCCE267FFC3BF99FF24F3333C4CA#8&9"8%?$
+9FF3E67FFFE3FFDFFCBFFFFBCFFFFDB";"9#8%;";"
+83C97FBFFE7FFFF700FBB"@";";";"
+337FEF99F7A":)9%<(
+9D67FF9CCFFFBEFEFF79FFDFDB233CCCFFEFEDED?'=#;#<#8$
+C0C3C3898CE1FC0F81E7938CC0F3F3?Z8P:T
+/
+
+J'9&=&
+4F8000000001F00000000038000000001JQ9P=P
+4
+
+
+
+
+
+
+
+
+
+
+B";"
+070FB":#
+33FEF7C&
+873F3067FFB&
+37333327E7B(
+0F339263FFFF8FB"8"8"
+2770F7D$
+807C7FB'
+3333CCFE67FEB(
+3187CCE0E7FF0FBR
+
+
+G'
+FC000000000FGQ
+
+
+
+
+G"j"
+FE40FJ"T"
+<07EFH"T"
+7FE7
+
+
+C#="8"<"9"
+FE7FDFFDFEDF>":";"<"8#
+C3DE0FDFF87F>":#:";"9#
+999FFF77FFFBBF>*9)8)
+3CE4F0E4C30670F2731E3E1FFBFB4D863FB8F1F0FFF3D3DBBF?)8*8'
+E26664999E66713376EDDDDFFBBB3DDDDFB76EEEFFEDCD?%8#8(9(
+E66663F9733F0EEFDDD80DB77DF8777EEEC05EDD@$<4
+6067C16E0E1DDFFD577DDC1FE7FB7070EEFFDEDDDD7F@$<$:#8#
+67E79976FDDDDDFFB7EE>"8":"9&8"9(
+996733EDDD9FFEEFDF6EECFFEDDDDEFF>)9%9#8&
+C3E0F0E7C4C670F3771E2E5FE63FB8F172FFF3>#R8T"R"
+FFE7E7FDJ"
+DF9?"J"
+FF:FF
+
+He"
+07Je"
+<0FGZ
+6
+G"j"
+FE41FJ"S"
+=03DFH"U"
+7FF3
+
+
+B$@"8";"8"
+3FFF9FFEEFF77FA"=%=#
+877BFF7F87FC3FA"8":"8"8":#8"
+33FF3BBBFFFDDFFF@(9*8'
+FE7F27879C3873CE1FBB8F0EEED31F0FDC78777698F8B&8+8#8#
+13339993335BB77FBB76EEEECEEEEFDBB77777B"8#8%9"9#9"
+33F33F4B7B7F87DEFC3BF7E"9"8#9"8$8"
+F06BB7060EFDB837F0E#8"8#9"9#8#
+F3FF73BB7EFEDBF7F7F7@#9#9"8'9#8"
+FF3BD3B3B776CECEDEEECFB67676A'8+8'
+8733879C38737BCF9FBB8F2F2EDF1F2FDC797976F8F9AQ8P/
+EFFFFFFFFFF3FFFFFF7FFFFFFFFF
+J">"
+8FFFF
+
+Hf"
+03Jd"
+=1FGZ
+6
+G"j"
+FE403J"V"
+:01FBH"R"
+7FF9
+
+
+A$=$?$
+3FFF9FF7FFFDEFFFFB@"=#=#
+877E0FFEF7@"8";"9":"<"
+33FFFFFF77FF?)8(9*
+FE7F27879C387833FDDE37771DBB8F9E9E3BBC6EEE3B771FA'9'8+
+1333999333F3DDF776FDBB77B76E6DDBBBEEEDFB76EFA"8$8#=&
+33F331FF1EBB96F6EDDD77D$8(8+
+F0387FFF7BF7773DD707D6F6EC1EF7EEEE7BAE0FD$8#8$8+
+F3FE3FFEBBDDD77FE6F6EDFD77EEEFBBAEFF?#9$8(8+
+FF3BD3BF33FDDDF767DDEF77E76EEDDBBBEECFBBDEEF@(8(8+
+8733879C3870730DDE37963DEF8FF79EEE3BBC6F2C7BDF1F@R#R"V
+FE7FF9
+
+
+
+Hc"
+01Jg"
+:03GZ
+6
+
+
+
+
+
+
+
+
+
+
+
+
+<#9#
+E38FF8EF
+=+
+8E1E4F33FA6E1E4CF0E7<%8&
+E94CCE276CCE226667?"8&
+672FCE66667F>"8&
+0EFB2E0E6660<$9&
+ECCCFE8CCE6667FF>$;"
+EE672367<,
+EFCE1E6793FBCE266670E7<V
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+<#;#
+FE78F39F:(
+1DFFDE73FFFCE7<#
+9FF3:&8'
+4DC306609C0F27839C3927;$8'
+999E73E66713339999:"9&8#
+459DFC07E73398FF:"9%8#
+65C9FCE7079819:"9%8#
+71CBFCE66799F9>":%
+E32399D9E7:-
+79C3C673E7FCE71333939C39:&S
+FFFFFFFFCF
+>"
+FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"R*P(
+FEFBFFEFFFFFFFFEFFFBEFFEFFFFFFFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7;"9"=%:$8'9$9"
+FBFEFEFFFFFBFBFFEFBFFEFFFBFFFBEFFEFFFB8%9$9':$8.8"
+F77FFFF7FDFF577FFFFF7F5FFFFDFFDF7FFF7FF7FD7FFF7F7FDFFF7F57F78%9$8';38"
+EEFFFFFBFEFEFFFEFFFFFEFFFFFBFFEFEFFFFBFEFFFBFBBFFFFFFFEFFEFFFFFB85
+LF7F5F7777D7D7775FF7DDF5F5D5D77FF7F77DFF77DFD77FDFFDFFFDF55FF7FF7FFFFD75F5FDFFF7FDFDFDFF785
+LEFEEEFBBBBBBBAEEFEFEEEEEAEFBFBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBFFBFFFEFFEFFFFEEEFFB85
+LF5F77777777F75DDFF5DDDDF7775FFFF7F77FFFFFF7F77FDFFDFFF777FFF7FF7FD7F77777FDFFF7FDFF7FFF785
+LEEEAFAFBBBBABBEEFEFEFEAEEEFAFFFEFFAEFBBBBAEFAFFBFFEFEFAFFBFEFFFBFBFBFFFFFFEFFEFFFEFEEFFB85
+LF577F7F7777777DDFF7F5DFF777F7FFF7F7FFFFFF77FFFFDFFDFFF7F7FFF7FF7FFFF77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEAFEFFBEEEEEFFBBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBBFFFFFEFFEFFFFEEEFFB85
+LF775FDF57D7DD7F5FF577F5F775577FF7F7FFFFFFDFFDFFDFFDFF5DF7DFF7FF7FFFFF777DFDFFF7FDFDF5FF78$W$8-8+
+FFFFFBFEFFFFFFFFBFFBFFEFFFFFFFFEFFFBFFFFFFEFFEFFFFFEFFFB:"B#;%9$8"8(
+F7FF7F7FFDFFDFFF7FF7DFDFFF7FFFFFFFF7:"B#;%9$8"8$9"
+FFFEFFFFFBFFEFFEFFFBFFEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABGZ
+=
+Hr5
+55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG#Q1P#P"
+FF7FF7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFD7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$8%:$;"
+FF7FF7FF7FFDFFF7DFFF7FFDFF7FF7DF:#:#;%:%9,8&9"
+FEFBFEAFFEFEBFFEEFFFBFAFFEFFEFEAFFFFFFBFFBFABFFEFFFBFBEFEF:#:#9(938&9"
+FD75FF7F7FFFFF7FFFFFF7F7FF7F7FFF7FFFFDFFF7FFFFFDFF7FFDFFDFFF7FF7FDDFDF:5
+O$FEFBEBEEEAEBFEFEEEBEEEBABBFEFEEEEEABEFEFBFEFFFBFFFEEBAEBFEFFEFEFFFFAFFBFFBFBEFBBEBFEFFFBFBEFBFFEFFEF:5
+O$FD7DDDDDDFDDFF7DDDDF7777F7FF7FFFFFF7F777FFF7FF7F7F777777FDFFF7FFDDDDFF7FFDFFFDFFDDFF7FF7FFFF7DDFFFDF:5
+O$FFABBBEEEFEEFEAEEEEEEEFBFFFEFEBEEEFFFBFEFFEFFFBFAFFFFFEFFEFFEFEBEBFFFFBFFBFBEFFEFFFEFFFBFAAEFFFBBFEF:5
+O$FD7DDDDDF5D5FF7F5D5F777D7FFF7FFFFFF77F777FF7FF7F7F77757FFDFFF7FFF7DDFF7FFDFFFDF5DDFF7FF7FF7FF7FD7FDF:5
+O$FFBBBBEEFAEFFEFEFEFEEEFEBFFEFEEEEEFFFBFFFFEFFFBFFFFFFFEFFEFFEFEFEBFFFFBFFBFBEFEEFBFEFFFBFBEEFEBBFFEF:5
+O$FDDDDDDDFDDFFF7F7DFF777F77FF7FFFDFF7F777DFF7FF7F7F77777FFDFFF7FFDDDDFF7FFDFFDDFFF5FF7FF7FFFF7F7FFFDF:5
+O$FFFBEBEEEBEBFEAFBEBEEFBAFBFEFEBFAFBBEFFEBFEFFFBFAFFFBAEFFEFFEFEAFFFEFFBFFBFABFFBFFFEFFFBFBEFBFFEFFEF;X"Q5P"
+7F7F7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFDFFFFFFFDFF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBEBFEFFFBEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDFFFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FHZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+62.14 528.22 190.73 539.67 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 72.43 533.01 T
+61.42 465.66 190.73 477.1 R
+7 X
+V
+0 X
+(Name p.94) 142.09 470.44 T
+60.7 431.89 190.73 443.34 R
+7 X
+V
+0 X
+(Label Is p.95) 134.58 436.67 T
+61.42 393.94 190.73 405.39 R
+7 X
+V
+0 X
+(Rows p.104) 139.31 398.73 T
+61.42 413.82 190.73 425.26 R
+7 X
+V
+0 X
+(Location p.96) 130.57 418.6 T
+61.42 377.89 190.73 389.34 R
+7 X
+V
+0 X
+(Operation p.99) 123.97 382.67 T
+61.42 283.35 190.73 294.8 R
+7 X
+V
+0 X
+(Event Handler p.105) 99.02 288.13 T
+61.42 221.79 190.73 233.24 R
+7 X
+V
+0 X
+(Color p.106) 139.16 226.57 T
+61.42 301.35 190.73 312.8 R
+7 X
+V
+0 X
+(Notify Handler p.105) 95.82 306.13 T
+61.42 450.1 190.73 461.55 R
+7 X
+V
+0 X
+(Label/Title p.95) 118.64 454.89 T
+61.42 196.38 190.73 207.82 R
+7 X
+V
+0 X
+(Apply p.108) 135.76 201.16 T
+61.42 180.03 190.73 191.48 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 83.4 184.81 T
+61.42 360.46 190.73 371.91 R
+7 X
+V
+0 X
+(Choice p.104) 133.52 365.25 T
+61.42 342.75 190.73 354.2 R
+7 X
+V
+0 X
+(Choices p.104) 129.28 347.53 T
+61.42 319.06 190.73 330.51 R
+7 X
+V
+0 X
+(Menu Name p.99) 113.51 323.85 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "178" 13
+%%Page: "179" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (179) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.94 (Settings I) 54 638 P
+1 F
+0.47 0.09 (Figur) 198 265.07 B
+0.47 0.09 (e B-12) 218.77 265.07 B
+0 F
+0.47 0.09 (The Settings Pr) 248.4 265.07 B
+0.47 0.09 (operty W) 310.58 265.07 B
+0.47 0.09 (indow \320 T) 348.59 265.07 B
+0.47 0.09 (op Half) 389.75 265.07 B
+54 596.53 159.41 623.46 C
+54 596.53 159.41 623.46 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  192      
+75 29 54 20.88 0 55.44 599.56 BEGINBITMAPBWc
+
+
+
+"c
+C09'
+3FFFFEFFFFFE$
+CFFFFF
+
+
+
+7"8"8"
+F38787:"8"
+BB7B7":#
+EDFEFF
+:"
+877"8"
+C0BB7"
+DE<#
+FF7B:"8"
+87877"8"8"
+FFFFFF
+
+
+
+$
+C000009a
+T
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 281.07 556.7 585.2 C
+54 281.07 556.7 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  7362     
+452 409 325.44 294.48 0 197.64 288.78 BEGINBITMAPBWc
+
+"j"
+80O)1F
+"Z"
+9FO)9F
+
+
+8#
+FC7F8#
+E39F8#J#;"
+97DF8CFCF3F8#H#=%
+6FEFFE0FFC3FFDEFJ":"8&
+767FFF99FF9CFFF7#J1
+FEEF47387338399CE0E1CF9FC3003393C1C1F8#J0
+E7DF433333399CCCCCCF8F999CF389999FF8#J$8$
+F39F:CFFC393999988#J#:%9#
+701F403970FFF18199C3F7$J$9%9#
+FF7C3F43F9723FFFF99F91F1F8"J,8$
+1E4673BCF9391CC8CECF999D99C9F9F7$I1
+FE007F0F87CFF3C9CE4E1CFC3C3C63399F983F8#H&T$
+61FFFFFFFFFF33F99FFF7#J"?#
+FFFF787FC3FJ"?#
+:FFFFFF
+
+
+
+
+"j"
+9CO(03"Z
+9FO)
+
+
+
+
+
+
+
+H"z$
+D5>5530001FC":"Z$
+3F7F>F7FFDF?%;"J"
+FC3FFDEFFF>B7?&:"J"
+F99FF9CFFF7F>F7@*J"
+FC3003393C1C19FFFF>B7?+J$
+F8F999CF389999F9FF7F>F0001F?#8'J$
+FC39399998FFFFFF>BFFFFF?$9%J"
+FF18199C3FFF7F>FF@#9%J$
+99F91F1FFFFF>B8003F?$8&J$
+F999D99C9F99FF7F>F7FF9F?,j#
+FC3C3C63399F9839FFFFFC<FFB7?P'Z$
+F99FFFFF7FFD;FEFFF7D#8"J"
+FC3FFF>B7D#8"9"J#
+FFFF7FFE:F7DFH"8#8"J#
+FFFBDEF77B7AFH"9"8"J#
+7FDFC77F757H)J#
+FFFD1C7086E9E1F77B6ABH(J#
+7FFCFBBBDEE6DD8F757H":"J#
+FFEE9B7FFH%J"
+7FFD383B;F7H%8"J"
+FFFDDBFBD98B7H"8"8"J"
+7FBBE58F7H(J"
+FFFC3C7CE6EEFD8B7H)J$
+7FFDFFFFFFFFFDFF7F0001FH";"J$
+FFE38B7FF9FH";"J"
+7FFF8F7H"J"
+FF>B7H#j#
+7FFC<FFF7HZ"
+?B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J$
+FF>B0001FH"J$
+7F>F7FF9FH"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J#
+FF>B601H"J"
+7F>F6H"J#
+FF>B703H"J#
+7F>F787H"J#
+FF>B7CFH"J#
+7F>F7FFH"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J$
+7F>F0001FH"J$
+FF>B8003FH"J$
+7F>FFFFFFH"J#
+FF>BFC7H"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J#
+FF>BFFFH"J"
+7F>FFH"J$
+FF>B0001FH"J$
+7F>F7FFDFH"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"z$
+2A>AAB0001FHZ
+B
+
+
+
+
+
+
+
+
+
+
+J"
+57FA#<#8"
+FC77FDEFFBJ$
+5FFFFE3A.
+FD370F267873FF8E384374F0FBB,
+3667113333FF7DDDEF736EB&:"
+17E733333F77B%8#
+970733309C1DB)8"
+C6673333FFFFEDFD6CF"8"8"
+B3DD72B,
+E713333873FF1E3E73777EAV#
+FEFFJ"
+6F1J"
+6FFG"j"
+FE=01GZ
+?
+
+
+
+
+
+
+
+
+
+C%:"
+FE7FFF3FBFA#;$
+FE7F87FEF7H"8"
+7FFFB&8&
+7E1E4F0F331C21BA786FB%8&
+7CCE26673EEEF7B9B7B(8$
+7FCE66673FFF8EBBB77FB%8#
+7E0E6607E60EB%8#8"
+7CCE667FF6FEB6E#8"8#
+7733EEB96FB%8&
+06260F0F0F1F39BBBFAW"
+7FJ#
+6F8FFJ"
+6FFG"j"
+FE=01GZ
+?
+
+
+
+G"j"8f"
+FE37F1FJ"X="Q"
+73F01DFH&G&
+7FFFFFFFFF3FFFFFFFF9
+
+
+A%@$8"A#8"
+FCFFFE7FEFFFFDBBFE7FFE?";"8%8":"A$8"
+FC3F7E03FFFDE1C3BFFDEF3EH#:":#
+7FDFDEDFFB@(91;*
+FC3C9E1E7F38331DD87F3FBFEDDD3D3FDFBB8F4F1E99E3BE3843F9FEDE9F3BB8@(8%9$8&;$9%
+F99C4CCE7F33F3DEEDDDFFDCDCDF7736EE66DDBDDDEF6EDBB77F@$8#9#:%8$B#
+FF9CCC31FFEEBDDDDDDFC377EEEEEDEB@(9#8$8(;#8&
+FC1CCC0E7F387F0F7DBEEEBDDFBB07770EEEC1BC1DFC0EEDED70@(9#?&;#8#8#
+F99CCCFE7F3E3FFEBD7F76EEEEDFBDFDFDEE77FFC%9#8$:"9"<":%
+EE7F3F33EDDDDEEF7D77DDDDEEDEF77F@(8*9&;$9%
+0C4C1E1E7F3073DF1DDE7F3FE0EF7C3D8F7716EEE3863DF31F3EF8FF?S8)T;%P
+FFFFFFFF3FFFFEFDFFFFFFF9J"
+9FCJ#
+9FFFF
+
+H`G&
+0000000001Ji=b"
+71FGZ8W
+5
+
+
+
+
+
+
+C#
+FE7F?"9":'8&
+E7DECE7FFFDF0F0FF9E7FFE1F3C#<$;#
+9FFF1EF6F7DEED@.9&
+E1E1C30670F273FFE4E7FFDFF7FCECFFDFDE@*>"
+CCCC999E667133FFE1CCA#8&8#8%
+CFF9733FFFF1FF8FEFFE5FFFC1B";"9#8%
+C1E4F7DFFF3FFFDEB"@"
+99BFA":)9"8"
+CE33FFCE67FFDEF77F3CED?(;$;#
+E061E1C4C670F3DF0E07E1F3?Z9%
+/FFFFFFFF
+
+J'9&
+4FC000000000F8000000001JQ9P
+4
+
+
+
+
+
+
+
+H#
+0007G$
+FEFFFBI":$
+F9BFFFEFB#=#
+C03FF07FB#:&9"
+F9FFE039FFF7FFFFC(8(
+E7327873FEEFB9EEF1BBB8EDDC7FD'9'
+313333FEF779EFBBB7EDDBBFD$:$
+73333FF0F5DFC$8&8%
+F27330FAF9FFF7FBB9EEB83FD$;"8%
+F333FFF5BEEEBBFFC"8$9(
+F8B3FEFDEEEFBB3EEF7BBFC'8)
+F9F07873FEFFF06EF1BCB1EF7C7FB&:S
+FFF3F3FFFFG$
+FF0001C#9#
+FFFF8003H#
+FFFF
+
+
+
+
+Hi"
+07JS"
+8F7H'
+3FFFFFFFFFFC
+
+
+>"8"E"
+F9CF7F9#:"?";"?"
+FC1FE18787F7:"9#?";"?"
+CFF3CCBB7BC7:.9-9"
+CE1CFCC1F39FC3CE6726793C19CEFEE3FCFEFFCF7774CF4F1FF7:(8%9$9'
+DCCCCC9FE79F99113899F9B6EEDFB777733736FF:&:%8$:&
+3CCE498FC7333998FF877B6D7B77777776:"8#<#8%=#
+9CC3CF9C3FB77B55E7773F<$<#8"8">"
+01F19F9F1FBBFBDF:'8"9"9#8%
+CCCF33F99FCE4799B7BBFF7BB776:*8#9$8$8#
+C61F33833FE1C3CF279839CFBBC787CF79763F9P"S8%8R9"
+3FFFFFFFFFFF>"
+FF
+J&
+C0000000003JP
+CHa
+Jc"
+807HZ
+/
+
+
+
+
+
+
+
+
+
+
+
+=#:#
+9E3FFCE7:(
+C77FF79CFFFF39<#
+E7FC:.
+D370C198273F39C3C9E0E70E49;%8&
+66679CE799C4CCE666:":%9"
+D17F01F9CC3F:"9%9#
+D9F27F39C1067F:":$9"
+DCFF39997E>":%
+F8C8E67679:&8&
+DE70F19CF9C4CCE4E70E:&S
+FFFFFFFFF3
+>"
+FFHj
+>HZ
+>
+
+
+
+
+
+
+
+
+
+C#
+FCE7:#8$
+FC0FFEFF39;"8"
+FFFC;-
+F99C3C983F39C3C9E0E70E49<+
+999C4CFF3999C4CCE666;"8&9"
+19CCFF01F9CC3F;$8#9#
+FCB81C39C1067F<#9"9"
+B9FC997E;$;%
+FE79DCC8E67679;,
+0E7C3CCE3F39C4CCE4E70E:X
+
+
+Hj
+>HZ
+>
+
+
+
+Hs5
+AA4FFEAAAAAAAAABFFAAAAAAAAAAAAFFFAAAAAAAAABHs5
+554FFF5555555557FFD555555555557FF5555555555H"Q*P(
+BFFEFFEFFFFFFFFFBFFBEFFFBFFFFFFFFBH"<$:#;$9"
+7FFDFFF77FFDF7FF7FFDH"<$:#;$9"
+BFFEFFEFBFFBEFFFBFFBH"<$:#;$9"
+7FFDFFF77FFDF7FF7FFD;"9">"<$8%9&9"
+FBFEBFFEFFEFEFFFBFFBBFFFEFFFBFFB8%9$<$:38"
+F7DFFFFDFF7F577FD7FDFDFFF7F7FFFDFF7FFDFD7DFFFFFFF7FF7F55FD8%9$9"8$:38"
+FBBFFFFBFEFFBFBFBFBBFFFEFFEFFFFFBFFFBFFBFFFFFFBFBFEFFFBFEFFB85
+LF77D77DD7D7D7D757F7F775F775D5DFF7FFF5DD77D75FFFDFFF7F7D75D7F7FFDFDDDD7F75FF7FF7FFFDF5FFD85
+LFAFBBBBABBBBBBAEFFBEEEEFBBBBFBFFBFBBBFEEFBBBBBFEFFEFFFBBBFFFBFFBFFFFBBBBBFEFFFBFEFBFBFFB85
+LF5F777FDDDDFDDF77F577777777DFFFF7FFF7DDDDFF7FFFDFFF7F7FFFDFF7FFDFD7DFFFFFFF7FF7FFF7F77FD85
+LFAFABBBBBBBEBBEEFFBFAEAFBBBEBFFFBFAFFFFFFEBFFFFEFFEFFFABBFFFBFFBFFBFBBBBBFEFFFBFEFFBFFFB85
+LF777FD7DDDDDDDF77F7F7F7F777F5FFF7FFF7DDDDFF7D7FDFFF7F7FFFDFF7FFDFDDDF7FFFFF7FF7FFF7F77FD85
+LFBBBBEFBBBBBBBEEFFBFBEFFBBBFBBFFBFBFFFFFFBBFEFFEFFEFFFBBBFFFBFFBFFFFEBBBBFEFFFBFEFBFFFFB85
+LF7DD7DFD7D7D5DF77F57DF5F77DD7DFF7FFF7DDDDD57FFFDFFF7F5D7FF7F7FFDFDDDFFFFDFF7FF7FFFDF5FFD8$X"Q5
+FFFFFBBF5FEFFEFFFFFFFFFBFFBFFFFFBFFFFEFFFBFFFFFFFFB:"C";%:#8"8$8#
+FD7FDFFDFFF77FFDD7F7FF7F7FFD:"C";%:#8"8$8#
+FFBFFFFEFFEFBFFBFFEFFFBFFFFBH"<$:#;$9"
+7FFDFFF77FFDF7FF7FFDH"<$:#;$9"
+BFFEFFEFBFFBEFFFBFFBHs5
+554FFF5555555557FFD555555555557FF5555555555Hs5
+AA4FFEAAAAAAAAABFFAAAAAAAAAAAAFFFAAAAAAAAABHZ
+<
+Hr5
+55=57FFD555555555557FF5555555555FFD55555555557FFD555555555557Hr5
+AA=ABFFAAAAAAAAAAAAFFFAAAAAAAAABFFEAAAAAAAAAABFFAAAAAAAAAAAAFH"Q$P)P#P"
+7FF7FFDF7FF7FFFFFFFFDFFD7FFDF7H"<$:$:#;#;"
+BFFBFFBFFEFFFBBFFEBFFBEFH"<$:$:#;#;"
+7FF7FFDFFF7FF7DFFD7FFDF7H"<$:$:#;#;"
+BFFBFFBFFEFFFBBFFEBFFBEFH"<$:$:#;#;"
+7FF7FFDFFF7FF7DFFD7FFDF7:#;"9"8%939#;"
+FEBAABBFBFAFFFFBFBFFBFABFFBFFFFEFFFBFAFFEEFFBFFEFEBFBFFBEF:#;"9"8%9$P+9%9"
+FF7D7F7F7F77FF7FF7FFDF7FF7F7FFFFFFDFFDFDFF7FFDFDF7F7:5
+O$FEBAEBEEFAFAFFBEEFAFAEAEBBFFBFFFFEBAEFAFAFFBFFBFBFAFAEFEFEFFFBFFEEEEBFBFFEFFFEBAFAFFBFFBFEEFEEEEBFEF:5
+O$FFD5DDF777F77F7F7777577DFDFF7F77777FDFDF7FF7FFDFFFDFFFF7FF7FF7F7FFFFFFDFFDFDF7777FFF7FFDFD57F7FDDFF7:5
+O$FEBEEEEEEBEEFFAEEEEFBBBAFFFFBFAFFFFBBFBBFFFBFFBFAFBBBBBFFEFFFBFAFFEEFFBFFEFFFEFFEEFFBFFBFFFFFAEFFFEF:5
+O$FFD5DDF775F57F7F7F57777D7FFF7F77777FFDFFDFF7FFDFFFFFFD77FF7FF7F7FFFFFFDFFDFDF7FD7FFF7FFDFDF77F5D5FF7:5
+O$FEEEEEEEFEEFFFBFAEFFBBBFBFFFBFFFFFFBBFBBEFFBFFBFBFBBBBFFFEFFFBFFFFEEFFBFFEFFFEFFEEFFBFFBFFBFFBFFFFEF:5
+O$FFDDDDF57F777F7FDF77777FDDFF7F77777FDFFFFFF7FFDFFFFFFFF7FF7FF7F7FFFFFFDFFDFDFFF777FF7FFDFDF7F7FDDFF7:5
+O$FEFEEBFAEAFAFFABBFAFBBAABBFFBFAFBFBEEFBBBFFBFFBFABBBEEFFFEFFFBFAEEEFBFBFFEFEBEFABEFFBFFBFFFFEFBEBFEF:Y"Q$P)P#8%
+7FF7FFDF7FF7FFFFFFFFDFFD7FFDFFFFFFF7H"<$:$:#9%;"
+BFFBFFBFFEFFFBBFFEFBFFBFFBEFH"<$:$:#9%;"
+7FF7FFDFFF7FF7DFFDFFFF7FFDF7H"<$:$:#;#;"
+BFFBFFBFFEFFFBBFFEBFFBEFH"<$:$:#;#;"
+7FF7FFDFFF7FF7DFFD7FFDF7Hr5
+AA=ABFFAAAAAAAAAAAAFFFAAAAAAAAABFFEAAAAAAAAAABFFAAAAAAAAAAAAFHr5
+55=57FFD555555555557FF5555555555FFD55555555557FFD555555555557HZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+F03F@"P"
+CFCF@";"
+BFF7@"8"8"
+7FBFFB?$:"
+FEFFC3FDA":"
+BDFC?)
+FDFF7FE7BCE9FFFEB$8"
+DBBB677FB$
+BDB7AF
+
+A&
+BDDBBB6F6DA%
+C3E7BCEF?"Q"
+FEFCG#j"
+FF80=7F?#;"Z
+FF7FF8@@";"
+BFF1@";"
+CFC3@"`"
+E007@";"
+F01F@R
+
+
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+61.78 546.18 194.62 557.62 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 76.32 550.96 T
+61.78 484.33 194.62 495.78 R
+7 X
+V
+0 X
+(Name p.94) 145.98 489.11 T
+61.78 450.63 194.62 462.08 R
+7 X
+V
+0 X
+(Label Is p.95) 138.47 455.41 T
+61.78 411.18 194.62 422.62 R
+7 X
+V
+0 X
+(Type \050Setting & Menu\051 p.100) 66.58 415.96 T
+61.78 430.33 194.62 441.78 R
+7 X
+V
+0 X
+(Location p.96) 134.46 435.11 T
+61.78 393.75 194.62 405.2 R
+7 X
+V
+0 X
+(Rows/Columns p.101) 96.78 398.53 T
+61.78 353.43 194.62 364.88 R
+7 X
+V
+0 X
+(Event Handler p.105) 102.91 358.21 T
+61.78 293.31 194.62 304.76 R
+7 X
+V
+0 X
+(Color p.106) 143.04 298.09 T
+61.78 371.5 194.62 382.95 R
+7 X
+V
+0 X
+(Notify Handler p.105) 99.71 376.29 T
+61.78 468.85 194.62 480.3 R
+7 X
+V
+0 X
+(Label/Title p.95) 122.53 473.63 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "179" 14
+%%Page: "180" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (180) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (Settings II) 54 638 P
+1 F
+0.47 0.09 (Figur) 198 342.18 B
+0.47 0.09 (e B-13) 218.77 342.18 B
+0 F
+0.47 0.09 (The Settings Pr) 248.4 342.18 B
+0.47 0.09 (operty W) 310.58 342.18 B
+0.47 0.09 (indow \320 Bottom Half) 348.59 342.18 B
+54 596.53 159.41 623.46 C
+54 596.53 159.41 623.46 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  192      
+75 29 54 20.88 0 55.44 599.56 BEGINBITMAPBWc
+
+
+
+"c
+C09'
+3FFFFEFFFFFE$
+CFFFFF
+
+
+
+7"8"8"
+F38787:"8"
+BB7B7":#
+EDFEFF
+:"
+877"8"
+C0BB7"
+DE<#
+FF7B:"8"
+87877"8"8"
+FFFFFF
+
+
+
+$
+C000009a
+T
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 358.18 557.42 585.2 C
+54 358.18 557.42 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  3689     
+458 305 329.76 219.6 0 197.64 362.94 BEGINBITMAPBWc
+"J#
+CFO)FCCBJ"
+O+DFJ"
+O+DA
+J"
+O+F5J"
+O+D2J"
+O+D0J"
+O+F5J"
+O+D6J"
+O+E9J"
+O+DFJ"
+O+D2J"
+O+D1J"
+O+F5
+J"
+O+DAJ"
+O+DBJ"
+O+C3J"
+O+D0J"
+O+C1J"
+O+CCH%x"x$;"
+F555555AAAAD55538000C1A$:"Z#;"
+E7FFF3DF?BFFEDC@"="J"="
+F0FF>FBFF@%:"J"
+E667FFFFDF>FF@*J"
+CFE4F0F3870F067FFF>FBA)J$
+E2667332667E7FDF>FF8000A"8&J$
+E63E663FFFFF>FBFFFFE%J"
+070FFFDF>FFE%J$
+7FC7FFFF>FBC001@#8&J$
+E7663A77E67FDF>FFBFFC@+j#
+F0E670F3870E0E7FFFFF<0FFB@S$Z#
+DFFF7F;EFFFH"J"
+FF>FBH"8$J#
+DFE7FFEF9FFBEH$J$
+FFFF61<FBBD7CH$8"J$
+DFFF5EFF9FFBABCH(J$
+FFFF3FE4F9EF188FBB55CH"8&J$
+DFE376EEF77F7FFBABCH"8$J$
+FFE76F6D9FBBFFCH";"J"
+DFF08FFH";#J"
+FFF7FF7FBH)J"
+DFFF5EE776EEF77F7FFH)J"
+FFFF61E779EF18FF7FBH(J$
+DFFF7FFFFFFFFF8FF8000H"J$
+FF>FBBFFCH"J"
+DF>FFH"J"
+FF>FBH#j#
+DFFF<0FFFHZ"
+?FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J$
+FF>FB8000H"J$
+DF>FFBFFCH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J$
+FF>FBB00CH"J"
+DF>FFH"J$
+FF>FBB81CH"J$
+DF>FFBC3CH"J$
+FF>FBBE7CH"J$
+DF>FFBFFCH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J$
+DF>FF8000H"J$
+FF>FBC001H"J$
+DF>FFFFFFH"J$
+FF>FBFE3FH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH"J"
+DF>FFH"J$
+FF>FBFFFF
+H"J"
+DF>FFH"J$
+FF>FB8000H"J$
+DF>FFBFFEH"J"
+FF>FBH"J"
+DF>FFH"J"
+FF>FBH%x"x$
+CAAAAAA55552AAAB8000HZ
+B
+
+
+
+
+
+
+
+
+I"a"8`"
+E03F1FI"Q$P"
+9FCFFFFCE7I"<$;"
+7FF7FFFBFBH#<$8"8"
+FEFFFBFFF777FDH$8"8*
+FDFF7FFEFDFFEFF07F777FFFFEJ"8$9"
+:FCF7FF7F7FH2
+FBFF74F8E3A43F80FEFFDFF7F8761FC07FJ)8'
+47367DD9EFFBEFE7FF7777FDF7F3FJ"8$9"9#
+477BEFFDDF0EEFFJ#<"
+579C1F7J#8"="
+57EDFEBF5J"="
+6DDF6J&9&
+561E3BF3FF7F079779FFBH"R$P"
+FDFC7FEFFEJ"="
+;FF7FH"=$;"
+FEF8FFF7FCH#<$;#
+FF7FF1FFFBF8FFI"<$;"
+9FC3FFFCE1I"a$`"
+C007FFFE03I"<$;"
+E01FFFFF0FIS8Q
+
+
+
+
+
+
+
+
+
+
+D$8$
+CFFFE7FBFFFBB";#
+CFF87BH%
+F7BBFFFFC,
+C3C9E1E67FEFFA7CFBC63FC$9&
+99C4CCF9BB7BBDDFC+
+F9CCCCE7FFEFFBB7BB7DC$<#
+C1CCC07C1FC$<#
+99CCCF7DFFE*
+CEE67FF7BBBB7BBDDFB%8'
+C0C4C1E1F87BBCFBC63FBW
+
+
+H"j"
+C0=0FHZ
+?
+
+
+
+H"j"
+E0201J"X"
+701FDH'
+E7FFFFFFFFF9
+
+
+B$A'
+CFFFE77FFFEFFFFDDF@":"9%8"9#
+CFF3E03FFFEF0FFE1DI#9#:"
+FDFFFEF7FFA$8#82
+C3C9E1833FF1DEC3F9FDFF6EE9E9FEFDDC7A78F4CF8FA$8"9$:#8'
+99C4CC3FEEDEEFE6E6DBB9B7733377A#9#9";*
+F9CC1FFFE5EEEEFE1DDBBBBF7773A$8"9#9#9%8"
+C1CCC087E0FBF775FDD83BB807A$8"9#?$8"
+99CCCFE3EFE5DBFBB77FC"8#8#8$;"9"
+CEF33FEEDEFEF77BBB77@%8"9)9'
+C0C4C1E107F1DEF3F9FF077BE1DC7BB8B7738F@S&8$T
+E7FFFFFFFFFFF7EFJ"
+:E7J#
+:FFFF
+
+H'
+E00000000001Ji"
+701HZ
+4
+
+
+
+
+
+@"`"
+FC0F@"P"
+F3F3@";"
+EFFD@"8"8"
+DFEFFE@#:#
+BFF0FF7FA#:"
+EF7F3F@)
+7FDFF9EF3A7FFFBFB'
+F6EED9FFFF9FB$
+EF6DEB
+
+A'
+EF76EEDBDB7FA%
+F0F9EF3B@"Q"
+BF1FG#j"
+3FE0=07@";#Z
+DFFE3F?@";#
+EFFC7F@";#
+F3F0FF@"`"
+F801@";"
+FC07@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+F'8'8"c"
+80000000007FE0000000007FF003E(8'8"S"
+FE7FFFFFFFFF9F9FFFFFFFFF9FCFFCE#:"8":"8">#
+FDFFE77FEFBFFF7FE"9':"8"8"<"
+FBFDFFFBFFFEFFF77FBFBFE$9&8'9"8$
+F7FE7FFDFFFDFF0FF7FBFFFEFFBD807FFFDFJ"9"9"=":"
+5FC77F9F7CFE*8'8*
+EFFDBD3D3DBBFEFFFB1E38E1FDFFFDC7BD3FF7C7761FFFEFG$8"8&:*
+BCDCDD7F76EDF777FCBBBCDFF7BB777FFFE7G#<"=$9"
+BDDD0E81BBBDAFF#8":$;#9#
+F81DD76E0E70BD8383DFF#=%;"9#
+FBDD76FFB7F7BFBFAFJ";$;"9%
+4EFEFB777BBBB7776DFG$;%;(
+DC3C3D771C78F9C7BC3FF7C77796E*P(Q"
+F7FFFDFDFFDFFC7FFDF8FFFEFFFFFFFDC7J$<"B"
+49FFCFFF9CFE"P$;%8"<"
+FBF8FFFEF1FFFF7FFF8FE";%:"8"?"
+FDE1FFFF7FE3BF1FE#:"8":"8">#
+FE7F839F87CFFC3FE"`"8'8"d"
+FF07C0000000000FE07FF":"8":"8">#
+803FE03FF001FFFQ8Q8U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"j
+C0O*
+Z
+O+
+
+ENDBITMAP
+%%EndBinary
+59.98 554.89 192.82 566.34 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 74.52 559.67 T
+59.98 433.64 192.82 445.09 R
+7 X
+V
+0 X
+(Label Is p.95) 136.67 438.42 T
+59.98 383.02 192.82 394.47 R
+7 X
+V
+0 X
+(Apply p.108) 137.85 387.81 T
+59.98 469.35 192.82 480.8 R
+7 X
+V
+0 X
+(Selecting UI Elements p.93) 74.52 474.13 T
+59.98 409.16 192.82 420.61 R
+7 X
+V
+0 X
+(Color p.106) 141.24 413.94 T
+59.98 366.75 192.82 378.2 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 85.49 371.53 T
+59.98 451.86 192.82 463.3 R
+7 X
+V
+0 X
+(Label/Title p.95) 120.72 456.64 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "180" 15
+%%Page: "181" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (181) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+(Sliders) 54 638 T
+1 F
+0.47 0.09 (Figur) 198 179.32 B
+0.47 0.09 (e B-14) 218.77 179.32 B
+0 F
+0.47 0.09 (The Sliders Pr) 248.4 179.32 B
+0.47 0.09 (operty W) 306.05 179.32 B
+0.47 0.09 (indow) 344.07 179.32 B
+54 603.37 187.99 624.47 C
+54 603.37 187.99 624.47 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  185      
+83 20 59.76 14.4 0 56.88 607.12 BEGINBITMAPBWc
+
+
+8#
+807F8#
+7FBF#="
+F83F07#="
+FBBF77
+9'
+80000000007F9'
+BFFFFFFFFFBF
+
+9'
+80000000007F9"P
+BF#="
+F83F07#="
+FFFFFF8#
+807F8#
+FFFF
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 195.32 556.7 585.2 C
+54 195.32 556.7 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  9420     
+450 536 324 385.92 0 197.28 197.34 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#9#
+2FBF8F9F99CFC7$I">"
+FEDFDFC187J":"9#
+7CCFF339F7"J0
+FD5CE70E6707339C1C39F3F9CE0E1C9838#J$8*
+CFBF466666699999F1F9CCCCCC93F8#J#9#
+E73F;FF87C71F7#J$9$8$
+FCE056072E681FFE3C0CF877$J$9$8$
+FEF87F467F2E49FFFF3CFCFE38"J0
+3C4CCE779F27239919D9F339CC8CECFF37$I0
+FC00FFC1F0F9FE7939C9C39F879CE4E1CF078"J&U
+C34FFFFFFE67F7#J#
+FFFF7F0FFJ"
+:FF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+H"z$
+D5>5530001FA$:"Z$
+FCE7E77F>F7FFDF@#<"J"
+FC3CFF>B7@$;"J"
+F99CFF7F>F7A)J"
+FCE7070E4C19FFFF>B7@*J$
+F8FCE6666649F9FF7F>F0001F@#9%J$
+FC3C38FFFFFF>BFFFFF@#8&J"
+FF1C067C3FFF7F>FFA"8&J$
+9C7E7F1FFFFF>B8003F@"8'J$
+F946767F99FF7F>F7FF9F@+j#
+FC3CE7270E7839FFFFFC<FFB7@S#Z$
+7FFD;FEFFF7H"J"
+FF>B7H&J#
+7FFDFDDFDF:F7DFH";"J#
+FFF78B7AFH"8"8"J#
+7FFFC78F757H(J#
+FFFD1DDE1C74F78B6ABH'J#
+7FFCFDDDDBB39F757H":"J#
+FFB79B7FFH'J"
+7FFD3DDDD8379F7H'J"
+FFFDDDDDDBF79B7H"9#J"
+7F9BB79F7H'J"
+FFFC3DDE5C779B7H#PJ$
+7FFD8F0001FH"J$
+FF>B7FF9FH"J"
+7F>F7H"J"
+FF>B7H#j#
+7FFC<FFF7HZ"
+?B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J$
+FF>B0001FH"J$
+7F>F7FF9FH"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J"
+7F>F7H"J#
+FF>B601H"J"
+7F>F6H"J#
+FF>B703H"J#
+7F>F787H"J#
+FF>B7CFH"J#
+7F>F7FFH"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"J$
+7F>F0001FH"J$
+FF>B8003FH"J$
+7F>FFFFFFH"J#
+FF>BFC7H"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J"
+FF>BFH"J"
+7F>FFH"J#
+FF>BFFFH"J"
+7F>FFH"J$
+FF>B0001FH"J$
+7F>F7FFDFH"J"
+FF>B7H"J"
+7F>F7H"J"
+FF>B7H"z$
+2A>AAB0001FHZ
+B
+
+
+
+
+
+
+
+
+
+
+H$
+FDDFDFA#?"
+F8EFF7I"8"
+FFC7A-
+FA6E1E4CF0E7FF1DDE1C74F7B+
+6CCE226667FEFDDDDBB3B&:"
+2FCE66667FB7A,
+FB2E0E66607FFF3DDDD837B+
+8CCE6667FFFFDDDDDBF7F"9#
+679BB7B+
+CE266670E7FE3DDE5C77AW
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C)
+FCFFFE7FFFFEEFEFA"<"
+FC0EG$
+FEFEFFB&8%
+FC3C9E1E67EF0E3A5FB%8&
+F99C4CCE7EEEEDD9DFB(8#
+FF9CCCCE7FFF1EDBFFB%8%
+FC1CCC0ECEEEEC1BB%8%
+F99CCCFEEEEEEDFBE#9$
+EE67CDDBDFB+
+0C4C1E1E67FE1EEF2E3BAW
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j8"f"
+FC3FE3FJ"W"="Q"
+77FFE03BFH&G&
+FFFFFFFFFE7FFFFFFFF3
+
+
+A$A$8"A"9"
+F9FFFCDFFFFB77FCFD?":#8%8":"A'
+F9FE7FFC07FFFBC3877FFBDFF3FE7DH#:":#
+FFBFBDBFF7@(8$8-;*
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C77C7087F3FDBD3E7771@(8$:+;$8%
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB7BBBDFBCDDB76E@#9#9#:%8$A$
+FF3963FFDD7BBBBBBF87EFDDDDBDDBD7@'9$8$8(;#8&
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83783BF81DDBDAE0@(8$?&;#8#8"
+F33999FCFE7C7FBDFD7BFEEDDDDDBF7BFBFBDDEFC%9#8$:"9"<":$
+DCFE7E67DBBBBDDEFBEEBBBBDDBDEE?)8$8%8';$8%
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC70C7BE7DC3E7DF1?S8$8$T;%P
+FFFFFFFFFDFBFFFFFFF3J"
+9F9J#
+9FFFF
+
+H`G&
+0000000003Ji=b"
+73FGZ8X
+4
+
+
+
+
+
+
+C"J$
+FC6F3F3FC?"9":"8$8&9&8$
+CFBC9CBFBE1FF3CFFF81C3FE7E73F3BCFBF3F3C"<%;#:%8$
+3FFE3E3DEFFDBD667FF33CE3EDED@.9&;)
+C3C3860CE1E4E7FFC9CFFFBFBFF9D9FFFBFD73820C9CFFFBDEDE@*>$:'
+9999333CCCE267FFC399FFF7FF24F3333C4CA#8&9"8#8">"
+9FF3E67FFFE3FFDFFCBFFBCFB";":"8&:"
+83C9BFFE7FFFEFF700B"@"<":"
+337FEF99A":%8#9%<$8#
+9D67FF9CCFBEFF79FFDFDF233CCCEDED?'=#<"<#9#
+C0C3C3898CE1BC0F81938CF3F3?Z8P:T
+/
+
+J'9&=&
+4F8000000001F00000000038000000001JQ9P=P
+4
+
+
+
+G"j"
+FE11FJ"R"
+;03DFH"S"
+7FF3
+
+
+>#9#<":":"8"
+FE7FFE7FFBEFFE7F="9$;":"9%
+0FFBFFDE7BFEFBDFFFDE<*<"?"
+FE67FFFFFFF3FF9FFFFFDF<,9'9&
+FCF32670F260C30670F273CE9B079E9C31DC7486F18F?)9'9&
+667133999E667133B67BF76E6EEEDBB3DEEF77>&8#8(8'
+1E667333F9733F037AFBEEF6EEFEFDBBB7DEDFF7>#8"<"8"8"9#8"
+3E60C17BDEF0B83787?%?"8"9#8"
+67F33399BEEEBBF777<#8";"9%:&
+FE677333B6FB7F6EFE7BB7DEEF<+:(8&
+FF0F3E70F338C4C670F3CEFB079EEF316F7C77E6F18B=U8S"R
+F3
+
+
+
+Hd"
+03Jc"
+;1FGZ
+3
+G"j"
+FE21FJ"U"
+907DFH"Q"
+7FE7
+
+
+C#
+FE7FA#<":(9"
+F9E70FBFE7FBDFFBFC3FFEI"<"8#
+77F9FDDFB&8'8*
+E61E7338737698F1C7A70FDE70FDDA63C71E9C3FA'91
+FCECCE733333776FBB9BBFE7FADDBBFDD9DDBEEE6EFFB"9"9"8"9%9"
+CF3FF7BB5BDBFDDBEEA&9%9"8&
+FE5E0E73300EF07383FBFC3BC1CE0EB&8%:(
+1CCE7333FF7EF7FDBF9BDBFDFBDFF6FEA':#:#8$
+FF3CCE7233B37DBB9DBBDDF6EEB&9&8#8&
+3E26793873F8E3C7BBCFDE7CE38F1EEF3FBP8Q"U
+E7
+
+
+
+Hb"
+07Jf"
+91FGZ
+4
+G"f"
+FE1FJP"
+8DFH'
+7FFFFFFFFFFC
+
+
+I"<#:"
+FEBFBFE7A"=";":#9":#:$
+E00E7BFE38FCFE387E7E7FA#;#<";"8#>%
+E67F7EFEFFFFFB7FFC7DBDBFB&9$9#:&;(
+70F27838739F3BFBBC38E7273FF7BFE1CC9FFF7BDBDFB&8%9$8$=#
+E6713333337E6EDBBBBBB77F94E71394CCA$8(8"=#=$
+E1FE733FFE7F1EEDEDB70333FFFCE5FFA#8"9"8"8$D#
+E4F030CE577BBBB0E0F3B&8"=#8"?$
+E6733233FFEEB7FFCCCCCCE9A'9$:#;$<'
+E666733933B3EEDEEF377F3FFB7FCC9FFF7DBDBFB+:$8"9#:$8$
+31333F3873FE7E1EEF3EBCB8FFFCFCFFFCE24C7E7E7FA-8$8Q:T
+FFFFFFF33FFFFE7FFFFFFFFFFFFFFFD#
+F87FD#
+FFFFJ':'
+CE0000000007FF0000000003FJQ:Q
+CHa
+J`"
+81FGX
+
+G"j"
+FC23FG"R"
+FDE0J"U
+9E7
+
+
+@"
+E7=#8#;#:(9"
+FE07F07FFE1F7FE7F7BFF7F87FFD>"8#<"<"8#
+7FF33FEFF3FBBF>*8'8*
+7E4F07F3387330F067ED31E38F4E1FBCE1FBB4C78E3D387F?)82
+2667F373332667E7ECEEDF77377FE7F5BB77FBB3BB7DDCDDFF>*8"9"8&8"
+0E6667F0F3396663FFED77F4B7B7FBB7DD>"8&9%9"8&
+7EF3733CE0701DE0E707F6F877839C1DB&8%9)
+333A67FC7FFDEFFB7FF737B7FBF7BFEDFD@"8%9$:#8$
+4733277E67EEFB773B77BBEDDD>*9&8#8&
+066727F0787330E0E7F1C78F779FBCF9C71E3DDE7F=U"R"U
+FDE7
+
+
+
+J"e
+9E0G"c
+FCGZ
+4
+
+
+
+
+
+
+C#
+3FF3A#;"
+FC039FA$:"
+FF9FFF6FC'
+38733067FEF7C%
+333367E7D$
+F2E3FFD#
+F0F0D$
+F27C7FD&
+B33E67FF6FC'
+387320E7FF9FBR
+
+
+G'
+FC000000000FGQ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<#;#
+FE78F39F:(
+1DFFDE73FFFCE7<#
+9FF3:&8'
+4DC306609C0F27839C3927;$8'
+999E73E66713339999:"9&8#
+459DFC07E73398FF:"9%8#
+65C9FCE7079819:"9%8#
+71CBFCE66799F9>":%
+E32399D9E7:-
+79C3C673E7FCE71333939C39:&S
+FFFFFFFFCF
+>"
+FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"R*P(
+FEFBFFEFFFFFFFFEFFFBEFFEFFFFFFFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7;"9"=%:$8'9$9"
+FBFEFEFFFFFBFBFFEFBFFEFFFBFFFBEFFEFFFB8%9$9':$8.8"
+F77FFFF7FDFF577FFFFF7F5FFFFDFFDF7FFF7FF7FD7FFF7F7FDFFF7F57F78%9$8';38"
+EEFFFFFBFEFEFFFEFFFFFEFFFFFBFFEFEFFFFBFEFFFBFBBFFFFFFFEFFEFFFFFB85
+LF7F5F7777D7D7775FF7DDF5F5D5D77FF7F77DFF77DFD77FDFFDFFFDF55FF7FF7FFFFD75F5FDFFF7FDFDFDFF785
+LEFEEEFBBBBBBBAEEFEFEEEEEAEFBFBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBFFBFFFEFFEFFFFEEEFFB85
+LF5F77777777F75DDFF5DDDDF7775FFFF7F77FFFFFF7F77FDFFDFFF777FFF7FF7FD7F77777FDFFF7FDFF7FFF785
+LEEEAFAFBBBBABBEEFEFEFEAEEEFAFFFEFFAEFBBBBAEFAFFBFFEFEFAFFBFEFFFBFBFBFFFFFFEFFEFFFEFEEFFB85
+LF577F7F7777777DDFF7F5DFF777F7FFF7F7FFFFFF77FFFFDFFDFFF7F7FFF7FF7FFFF77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEAFEFFBEEEEEFFBBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBBFFFFFEFFEFFFFEEEFFB85
+LF775FDF57D7DD7F5FF577F5F775577FF7F7FFFFFFDFFDFFDFFDFF5DF7DFF7FF7FFFFF777DFDFFF7FDFDF5FF78$W$8-8+
+FFFFFBFEFFFFFFFFBFFBFFEFFFFFFFFEFFFBFFFFFFEFFEFFFFFEFFFB:"B#;%9$8"8(
+F7FF7F7FFDFFDFFF7FF7DFDFFF7FFFFFFFF7:"B#;%9$8"8$9"
+FFFEFFFFFBFFEFFEFFFBFFEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABGZ
+=
+Hr5
+55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG#Q1P#P"
+FF7FF7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFD7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$8%:$;"
+FF7FF7FF7FFDFFF7DFFF7FFDFF7FF7DF:#:#;%:%9,8&9"
+FEFBFEAFFEFEBFFEEFFFBFAFFEFFEFEAFFFFFFBFFBFABFFEFFFBFBEFEF:#:#9(938&9"
+FD75FF7F7FFFFF7FFFFFF7F7FF7F7FFF7FFFFDFFF7FFFFFDFF7FFDFFDFFF7FF7FDDFDF:5
+O$FEFBEBEEEAEBFEFEEEBEEEBABBFEFEEEEEABEFEFBFEFFFBFFFEEBAEBFEFFEFEFFFFAFFBFFBFBEFBBEBFEFFFBFBEFBFFEFFEF:5
+O$FD7DDDDDDFDDFF7DDDDF7777F7FF7FFFFFF7F777FFF7FF7F7F777777FDFFF7FFDDDDFF7FFDFFFDFFDDFF7FF7FFFF7DDFFFDF:5
+O$FFABBBEEEFEEFEAEEEEEEEFBFFFEFEBEEEFFFBFEFFEFFFBFAFFFFFEFFEFFEFEBEBFFFFBFFBFBEFFEFFFEFFFBFAAEFFFBBFEF:5
+O$FD7DDDDDF5D5FF7F5D5F777D7FFF7FFFFFF77F777FF7FF7F7F77757FFDFFF7FFF7DDFF7FFDFFFDF5DDFF7FF7FF7FF7FD7FDF:5
+O$FFBBBBEEFAEFFEFEFEFEEEFEBFFEFEEEEEFFFBFFFFEFFFBFFFFFFFEFFEFFEFEFEBFFFFBFFBFBEFEEFBFEFFFBFBEEFEBBFFEF:5
+O$FDDDDDDDFDDFFF7F7DFF777F77FF7FFFDFF7F777DFF7FF7F7F77777FFDFFF7FFDDDDFF7FFDFFDDFFF5FF7FF7FFFF7F7FFFDF:5
+O$FFFBEBEEEBEBFEAFBEBEEFBAFBFEFEBFAFBBEFFEBFEFFFBFAFFFBAEFFEFFEFEAFFFEFFBFFBFABFFBFFFEFFFBFBEFBFFEFFEF;X"Q5P"
+7F7F7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFDFFFFFFFDFF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBEBFEFFFBEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDFFFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FHZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+63.22 547.18 191.81 558.63 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 73.51 551.97 T
+62.5 485.34 191.81 496.78 R
+7 X
+V
+0 X
+(Name p.94) 143.17 490.12 T
+61.78 451.64 191.81 463.09 R
+7 X
+V
+0 X
+(Label Is p.95) 135.66 456.42 T
+62.5 415.06 191.81 426.51 R
+7 X
+V
+0 X
+(Orientation p.103) 114.08 419.85 T
+62.5 433.5 191.81 444.94 R
+7 X
+V
+0 X
+(Location p.96) 131.65 438.28 T
+62.5 397.64 191.81 409.09 R
+7 X
+V
+0 X
+(Value p.103) 139.16 402.42 T
+62.5 303.75 191.81 315.2 R
+7 X
+V
+0 X
+(Event Handler p.105) 100.1 308.53 T
+62.5 243.63 191.81 255.08 R
+7 X
+V
+0 X
+(Color p.106) 140.24 248.41 T
+62.5 321.75 191.81 333.2 R
+7 X
+V
+0 X
+(Notify Handler p.105) 96.9 326.53 T
+62.5 469.86 191.81 481.3 R
+7 X
+V
+0 X
+(Label/Title p.95) 119.72 474.64 T
+62.5 218.14 191.81 229.59 R
+7 X
+V
+0 X
+(Apply p.108) 136.84 222.93 T
+62.5 201.87 191.81 213.32 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 84.48 206.65 T
+62.5 380.14 191.81 391.59 R
+7 X
+V
+0 X
+(Range p.103) 137.26 384.93 T
+62.5 362.43 191.81 373.88 R
+7 X
+V
+0 X
+(End Boxes p.103) 118.82 367.21 T
+62.5 343.06 191.81 354.51 R
+7 X
+V
+0 X
+(Ticks p.103) 141.82 347.85 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "181" 16
+%%Page: "182" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (182) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (T) 54 638 P
+-0.94 (erm Panes) 61.5 638 P
+54 590.26 558 606.6 C
+558 603.58 198 603.58 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+5 F
+(Note \320 ) 198 593.42 T
+0 72 612 720 C
+54 582.26 558 590.26 C
+558 587.23 198 587.23 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (T) 231.84 593.59 B
+0.52 0.1 (erm panes ar) 237.15 593.59 B
+0.52 0.1 (e not implemented in TNT) 296.55 593.59 B
+0.52 0.1 (.) 417.91 593.59 B
+1 F
+0.47 0.09 (Figur) 198 276.26 B
+0.47 0.09 (e B-15) 218.77 276.26 B
+0 F
+0.47 0.09 (The T) 248.4 276.26 B
+0.47 0.09 (erm Pane Pr) 271.29 276.26 B
+0.47 0.09 (operty W) 321.77 276.26 B
+0.47 0.09 (indow) 359.79 276.26 B
+54 599.99 145.15 632.32 C
+54 599.99 145.15 632.32 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  347      
+71 38 51.12 27.36 0 55.94 603.16 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"R"
+EFDF="
+F8%
+EB8E1E0F%9"
+EFFFFFFFFD%9"
+EB861E7FFF%9"
+EFFFFFFFFD%
+EB82067F%
+EFFFFFFF%
+EB82060F%9"
+EFFFFFFFF8%9"
+EB861E3FFA%9"
+EFFFFFFFF8="
+FA="
+F8="
+FD
+
+
+8#
+F83F8#9"
+FEFFFF9&
+F8E9CBFFFD9&
+F766D5FFFF:"8"
+6FFD9"9"
+F0FF9#8"
+F7EFFD:"8"
+6FFF9#8"
+F8EFF88%
+FFFFFFFF="
+FF
+"b"
+E01FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 292.26 558 574.86 C
+54 292.26 558 574.86 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  5702     
+450 381 324 274.32 0 199.01 296.51 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#
+2FBF6F9F97$G">":"
+FEDFDFC10083J":"9":"
+5CCFFE7997"I4
+FDCE70E6707339C1C39FE7C393267F998793C3C18#H$8#8*
+CFBF66666699999993113F993389999F8#J"8)
+E73F9FF8F333F9BF399998F7#I$9"8#8&
+FCE06072E681819F87839981C37$H$9"8"9&
+FEF87F67F2E49F9F9F33999FF18"H,<#
+3CCCE779F27239919D9FE79D9DF97$G)8":%
+FC00FFC1F0F9FE7939C9C3C38999C3838"H&Y
+C3FFFFFFE67F7#J#
+FFFF5F0FFJ"
+8FF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz%
+>5554C0007FG"Z#
+FD?DFFF<#9";"J"
+C03FE0FF>FE<#9#:"J"
+F9FFE67FFD>FF=,J"
+F0E4C99FE661E4F0F067FF>FE=,J$
+E664C44FE64CE26667E7FD>FFC000>+J%
+63CCCFE6FCE66663FFFF>FEFFFFFF=#8(J"
+E067E1E0E66070FFFD>FF=#8(J$
+E7E7E7CCE667FC7FFF>FEE000>"<$J%
+677E67FD>FFDFFE7F=#9)j#
+F0E7E26670E0E7FFFFF0;03FE<V$Z#
+FDFFF7;FBFFG"J"
+FF>FEG"J$
+FD>FFDF7EG$="J$
+FFFFF5EF4FEDEBEG"?"J$
+FD8F4FFDD5EG,J$
+FFFFF063A699E9E3D3C7EF4FEDAAEG+J$
+FDFFF5DD9E66E6DDCDBB5FFDD5EG"9&J$
+FFBEEEEEFDDD6FEDFFEG"8"9$J"
+FDC1E1DD835FFG"8"9$J"
+FFDFDDDDBF5FEG"8";"J"
+FDDDBB5FFG%8%J"
+FFFFF663E1E2DDC75FEG,J$
+FDFFF7FFFFFFEFFFFFFFFF4FFC000G"J$
+FF>FEDFFEG";"J"
+FDFF8FFG"J"
+FF>FEG$j#
+FDFFF0;03FFGZ"
+?FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEC000G"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FED806G"J"
+FD>FFG"J$
+FF>FEDC0EG"J$
+FD>FFDE1EG"J$
+FF>FEDF3EG"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J$
+FD>FFC000G"J%
+FF>FEE000FFG"J$
+FD>FFFFFFG"J$
+FF>FEFF1FG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEFFFFG"J"
+FD>FFG"J%
+FF>FEC0007FG"J$
+FD>FFDFFFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"z#
+FC?AAC000GZ
+C
+
+
+
+
+
+
+
+
+
+
+
+A#;"<"
+F8EF7FFBJ"
+9E3A0
+FA6E1E4CF0E7FE18E9A67A78F4F1FBB.
+6CCE226667FF776799B9B7736EB&8&
+2FCE66667F6FBBBBBF77A&8"9$
+FB2E0E666070B87760B)8$
+8CCE6667FFFF77EFB7776FF"8":"
+676F6EB.
+CE266670E7FF98EFBBB878B771AU&
+FBFFFFFFFF
+J"
+5FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+D#
+FE7F>"8"<"8":%:'9&
+83BF9C3FF3CFFFE7FE7E7FFF0FCFE73FFF87E7>"8">#=";&<#
+993FFEDFDB667FFEF7AF7BD7?.:%<%:%
+C3C20C3C9E0E70E7FFC9CFFDEFF9D9FFBD67FEFF6F33FF7FB7>,>"<'="
+9B9999399C4CCE6667FFC399FF24E7FEFEEF77>'8%<#>$:&
+87999F3F9CCC7FFFE3FFFCBFFFFE0DE03FFF06F7>&8"8"=#="8#9"8#
+93819F3C1C60C9FE7F00F407E77A03?)H"8#<#
+9F9F399CCC8E67FF99F7EF7BF7>$8*;$<"="
+999D9DCE4E6767FF9CCFFEDF79FFDBE733>*9#="=#="
+98C3C38C4CCFCE70E7FF3FE7FF0F87>P#R:%;P9P
+FCCFFFFFFFFFC#
+FE1FC#
+FFFFJ'9&9'8'
+4F8000000001F0000000003FC000000000FFE0000000007JQ9P9Q8Q
+4
+
+
+
+G"c"
+FC3FJ&
+61FFFFFFFBFH&
+FFFFFFFF9F
+
+
+<#<"
+FE7F9F;#9#<#9#
+FE1EFE0FFDF7EF7F;#:"A"
+FCCE67E7<18"
+FE4F0E7E7E670E4C1C3927FCFEEE3C7F79<+9'
+7E2666667E6E66499999EDDBFF9FEB76;09$
+FE1E666724FE1E66399998FFFCFF5DE96F7F;#:&9#8"
+FF8E6E66799819BC1CED<"8$8#9&
+CE00FE6699F9BDFF7F9FEE;"9":$9"9#
+FC9919D9E7DF76FF;%8&9'
+FE1E670F0F0E7C9C39BE38FF9FEF79;W8#8#
+FFFFFFFF
+
+
+
+H&
+000000001FJ&
+6000000003FGU
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"b*`(
+FE01FFC0000000007FF00FFE0000000003HR*P(
+FDFFDFFFFFFFFF7FF7EFFEFFFFFFFFFB
+
+
+
+;"9"@"?":$
+F3FCFB9FFBFF7F8#<#9"9">$9#8"8#
+E73FFE077F0FEFFF7BF87B7FFE038#="8":#C#;#
+E67F7FFE77FFFBBFFFDF9/8':#:%:#
+F0E73278787260FE7CCE1E4C1833769BA678E9778E10BB874E1F9E9F8)8&9%;#;$:#
+E5E667313333324CCCCE2673F37B99B767777B77377F6E6F8"8(8$9%@%:$
+E173333F31CCFE0C6671FFFBBBBF6FF87B7777DEF6EF8$8#8'8"8$:":"
+E4E07238337E5C0E66787F0EB86FAF07FB9&;%8"8"<";#
+67F2F33333FE667E3F7EB77FBB678$:)=":"<";#
+E66778C8FE7F3CEE667F33DF7797DF6E80;#:$;$:#
+E730F9F0787893E4FE073E1E671073B8AFE18F7CF7779F9E1F8$W8P"9$9&9$
+FFFFF3BFFFFFFFFFFFF7FFFFFFFEFFJ"A"
+83F8F:"I"A"<"
+FFFFFFFF
+
+
+Hb*`(
+01FFC0000000007FF00FFE0000000003GZ
+=
+G"b#a)`#`"
+FE07FFFFE0000000003FF87FF00FHR1P#P"
+F7FF7FFFFFFFFFFEFFEFFFFFFFFFBFFB7FF7EF
+
+
+
+J"
+EDF:#:#9"8%<$:$9#;#
+FC71FE077FFE1FFEF707FF7FE0FFDDF83FFBEFA"8":">"<$9#;#
+7FFEEF7FEFFFFDFBDFF9CF<,8':$:$9$;$
+C3CCE0E1FE7CCE1E4C1833EEEC21CF4F1F4E18E9DDD87FED31E19DDC7F:'8&9&:$;#9$9&
+FD2999CCCFCCCCCE2673F3EEF7B736FF377767DDFFECEEDDFAAF6DDBBF>"8"8$8"8#:%9#;#;#
+C70C6671FF1E7B760F77776FE1EBEDFEAEF5>*8"9#9$:#<":&
+E1C0FE7E5C0E66787FEE773F7F7770EFF7F0FB6EF6B83F;"8#9%=";#:"<#<#
+99F8CFFE667E3FDF77EFEBEED9BBFF=+9$>":";$:%
+C8FCCEFE7F3CEE667F33CEF7B76FDDDDEEE5EF6F7BBF;-8'9%9%8%;$
+F9C3E4C1E1FE073E1E6710731F2F39CF763F077798EFE0DDDE7FF83DF17D9F7C7F:X"R9%9%8%9P
+FEFFFFFFFFFFFFFFFFFFFFFFFDJ"
+LE3J"
+LFF
+
+
+Hb#a)`#`"
+07FFFFE0000000003FF87FF00FGZ
+E
+
+
+
+
+
+
+
+
+
+
+;"e"
+FC7F;"U"
+F39F;"@"
+EFEF;">$
+DFF7FFF7;#?"
+BFE1FB<"?"
+EFF9;-
+7FEFE74C7869CF774F87FFFD=+
+DB3BB767B7773777FFFC<)
+E1BD7BB76F7B7777<%
+EFBD7837>#
+7BF6=*
+DB7BB96FB7677766DB=)
+E77C7F6FCF977796;'P"
+BFFFFFFFFF7FF8?#;#j
+F8FFF9FF>;"9"<"Z
+DFFFF1?;"@"
+EFE3;"@"
+F387;"e"
+F80F;"@"
+FC3F;W
+
+
+
+
+;"e"
+FC3F;"U"
+F3CF;"@"
+EFF7;"8";$
+DFFEFBFFFB;#?"
+BFC3FD<"?"
+DDFC;-
+7FDDC7C6EC34E7BBA7C3FFFE=)8"
+BBBEDBB3DBBB9BBB7F<)
+C3FB7EBBB7BDBBBB<%
+DDC37E3B=%
+BB7EDB37>)
+BECCB7DBB3BBB36D<*
+C3C5C6EFB7E7CBBBCB;'P"
+BFFFFFFFFFBFFC?#<"j
+FC7FFF>;"9#;"Z
+DFFFFFF8?;"@"
+EFF1;"@"
+F3C3;"e"
+F807;"@"
+FC1F;W
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "182" 17
+%%Page: "183" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Graphical Pr) 198 108.7 B
+-0.58 0.09 (operty-W) 245.18 108.7 B
+-0.58 0.09 (indow Index) 280.16 108.7 B
+0 F
+0.09 (183) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (B) 542.7 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.94 (T) 54 638 P
+-0.94 (ext Fields) 61.5 638 P
+1 F
+0.47 0.09 (Figur) 198 178.6 B
+0.47 0.09 (e B-16) 218.77 178.6 B
+0 F
+0.47 0.09 (The T) 248.4 178.6 B
+0.47 0.09 (ext Fields Pr) 271.29 178.6 B
+0.47 0.09 (operty W) 322.41 178.6 B
+0.47 0.09 (indow) 360.43 178.6 B
+55.66 594.23 173.23 623.6 C
+55.66 594.23 173.23 623.6 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  354      
+70 38 50.4 27.36 0 58.25 593.29 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"R"
+EFDF="
+F87#
+ED7F7#:"
+FFFFFD7";"
+EAFF7";"
+FFFD
+7%
+F84309337%
+FFFFFFFF7%8"
+E4582024F87%8"
+FFFFFFFFFA7%8"
+E1190423F87%8"
+FFFFFFFFFA7";"
+E4F87";"
+FFFD
+
+
+8%
+FC1FFFFB8#9"
+FF7FFF9&
+7C7760FFFD9&
+7BB77BFFFF:%
+BAFBFFFD9#8"
+783DFF9#8"
+7BFAFD:%
+B77BFFFF9&
+7C777CFFF89$
+FFFFFF="
+FF
+"b"
+E01FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 194.6 556.7 585.2 C
+54 194.6 556.7 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  9389     
+450 536 324 385.92 0 196.92 196.98 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#<%
+2FBF73F3FF3FF9F9F7$G#='
+FEDFDFF83FE01FFFF7F813J#:"8'
+5F99FFFFCFFFFE7F9FF7"J3
+FD4CE1CCE0E67383873FCF87301F9F3879C1C1F8#H-8%
+CFBFCCCCCCCE67333333FCF33327339999FF8#J"8%8"
+E73F93F3967F833987#J#9"8*
+FCE040E5C30F03CE7F9F303999C3F7$I$8'8%
+FEF87FFE5C8E33FFFCF3FA673F999F1F8"I)8#8%
+3C9CEF3E4E473233B3B3273B991F9F7$G.8%
+FC00FFF83E1F3FCF27393873FCF87331879C983F8"H&Y
+C3FFFFFFFCCF7#J#
+FFFF5FE1FJ#
+8FFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz$
+?AA60003FB'Z$
+E7FF3F3FFFFE?EFFFBF=':"J"
+C03FFFEFF027FF?6F=':"J"
+F9FFFFCFF3FFFE?EF>+J"
+F0E603F3E70F383833FF?6F>+J$
+E6664FF3E6673333F3FE?E0003F?%8$J$
+72CFF06631FFFF?7FFFFF>+J"
+E079CFF3E60733387FFE?FF>#9&J$
+E7F47F333E3FFF?70007F?#8&J$
+664F77323F33FE?EFFF3F>-j$
+F0E663F3E70F393073FFFFF8;01FF6F=U$Z$
+FEFFFB;FDFFEFG"J"
+FF?6FG";$J#
+FE37FEFE7EFBFG$8#8"J#
+FFFFFADEF7FB66F5FG";"8"J#
+FEFFE36EEAFG+J#
+FFFFF831DD84371EF0FB66D57G*J#
+FEFFFAEEDDDEF6EEEE7EEAFG"9"J#
+FFEB;6FFFG"8#8"J"
+FEE0F70E8EFG"8#8"J"
+FFEFEBFE86FG"8#8#J"
+FEEEDDEEEC7EFG*J"
+FFFFFB31DDE6F71EF276FG"8RJ#
+FE6E000G"J#
+FF?6FFFG"J"
+FE?EFG"J"
+FF?6FG$j$
+FEFFF8;01FFEFGZ"
+@6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6000G"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6C03G"J"
+FE?ECG"J#
+FF?6E07G"J#
+FE?EF0FG"J#
+FF?6F9FG"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J#
+FE?E000G"J$
+FF?70007FG"J$
+FE?FFFFFFG"J#
+FF?7F8FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J#
+FF?7FFFG"J"
+FE?FFG"J$
+FF?60003FG"J$
+FE?EFFFBFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"z$
+FE?5560003FGZ
+C
+
+
+
+
+
+
+
+
+
+
+J%
+59BFF7F7FA#;%8"
+F8EF7FFFEF7B7DJ"8"
+57F71A/
+FA6E1E4CF0E7FE18EEC21B8F787DB-
+6CCE226667FF776EEF7B7777B&8"
+2FCE66667F75A&8#8"
+FB2E0E6660707B07B)8"
+8CCE6667FFFF77F57FF"8"8#
+676E7776B-
+CE266670E7FF98EEF37B8F79AY
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C%;%
+FCFFFE7FFDFFBFBFA";'
+FCFE03FFFDFE1DG#9"
+FFDFFFB&8(
+FC3C9E1E671DD87EFDC7BC37B%8)
+F99C4CCEDEEDDDFEFDBBBBB7B&8%8"
+FF9CCCCE7FEEBDFE1DBFB%9&
+FC1CCC0E0F7DFEFD83B%9#8"
+F99CCCFEFEBDBFE#8#8$
+EE67EDDDBBBB37B%8)
+0C4C1E1EDF1DDE7EFDC7BCB7AZ
+/
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j8"f"
+FC3FE3FJ"W"="Q"
+77FFE03BFH&G&
+FFFFFFFFFE7FFFFFFFF3
+
+
+A$A$8"A"9"
+F9FFFCDFFFFB77FCFD?":#8%8":"A'
+F9FE7FFC07FFFBC3877FFBDFF3FE7DH#:":#
+FFBFBDBFF7@(8$8-;*
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C77C7087F3FDBD3E7771@(8$:+;$8%
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB7BBBDFBCDDB76E@#9#9#:%8$A$
+FF3963FFDD7BBBBBBF87EFDDDDBDDBD7@'9$8$8(;#8&
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83783BF81DDBDAE0@(8$?&;#8#8"
+F33999FCFE7C7FBDFD7BFEEDDDDDBF7BFBFBDDEFC%9#8$:"9"<":$
+DCFE7E67DBBBBDDEFBEEBBBBDDBDEE?)8$8%8';$8%
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC70C7BE7DC3E7DF1?S8$8$T;%P
+FFFFFFFFFDFBFFFFFFF3J"
+9F9J#
+9FFFF
+
+H`G&
+0000000003Ji=b"
+73FGZ8X
+4
+
+
+
+
+
+
+C"
+FC?"9":&9&
+CFBC9CFFFE1F9FF3CFFFC3F3C"<$<#
+3FFDEF5FBDEB@.9&
+C3C3860CE1E4E7FFC9CFFDFEDFF9D9FFFDDB@*8";"8"
+9999333CCCE267FFC3FD99BBA#8(:&
+9FF3E67FFFE3FFFC1BFCBFFFFB7BB";&9&
+83C9FFFDE80FFE7FFFF701B">#<#
+33EFDFEFFBA":%=$
+9D67FF9CCF79FFDF?';#="
+C0C3C3898CE1FE1F81?Y9P
+
+
+J'9&
+4F8000000001F0000000003JQ9P
+4
+
+
+
+G"j"
+FC407G"W"
+FDC0J"R"
+>CFE7
+
+
+>%=$<"="
+F3FF9F9FFEFFEFDFF7=#9#;"A#
+F813807F3EEF7F=#9#D"8":"
+F9FFF3FFFFE7FF>58'
+6F3879C1FF3CE64F0E7FDFEDEE9E9E3D3DDD33C74DE3F7774CF1D378F?$8$93
+33999F626667E6E6DDCDDDCCDBB3DDFFCFEB777336ECF77F=#;$9*8(
+F833E6667FEEEEFDDDDDDDDBB7DBE9777776EDF6FF=$9$8#8"9#9"9"
+F9F303E4E660FC0EE1D837ED0D?"9(8"9#9"9"
+3FE5E667FFFDFDEEDDDBF7EEFD?&8"="8#9"8$
+3B991FF3F167D9B7DD76EDF77F?)93
+879C9FF3F3E0F0E7E1EEE2DDE5DDDC77DE3FCFEF7977771DF78F=Q)T"R
+E7E7FFFFFDFFFFEFCF
+C#;"
+FFFFFF
+
+J"b"
+>C007G"h
+FCGZ
+6
+
+
+
+
+
+
+I"
+F3A"<#8#9#9$
+C11C73FE7FFC71FEFCFCA"="8#>%
+CC7FFDBFF8FB7B7FB&8&;(
+E1E4F070E773939FFBDFC3993FFEF7B7BFA+<$
+CDCCE2666667FF4A7389FD2999A$8"9#=$
+C3FCE67F99FFF9CBFFA#8"C#
+C9E060C1E7B(?$
+CCE66467FFFF669999D3A"8$:$<'
+CC7267679FFDBF993FFEFB7B7FB(9#:#9$
+62667E70E7FF7EFE7FF9C4FCFCFFA&S9S
+FFFFFFE67FD#
+F0FFD"
+FFJ':'
+6F0000000003FE0000000007FJQ:Q
+6
+
+
+
+
+
+
+
+
+
+<%;"
+FE7FF3F3E7<"9"9"9"
+02F9FD0F<#<"8#
+3FFFF9FEF7<,
+3E70F383F9F8793C1064E7=+
+667333F9F3389999E267<";"8%
+0639E67FFF0F<#9";#
+3E60F0FEF7=#8%
+67F3F3F99919>#8&
+7323B99C99E667=-
+70F393F818799F9C6667FF0F<R'
+F99FFFFFFFFFC#
+FC3FC#
+FFFFG'
+FC000000000FGQ
+
+
+
+
+
+
+
+
+
+
+?";"
+F3E7:#:"9"9#
+FC3DF9FD0F9F:#>"8$
+F999F9FEF76F;0
+F061C98783F9F8793C1064E7FEF6F7:.
+F8F9CCC93333F9F3389999E267:%:"8%
+FC39CCC739E67FFF0E:&8";#
+FF19CCCF03F0FEF6;"8"8%
+993FF3F99919:"9#8)
+F93B23B99C99E667FEF76F:1
+FC3C61CF8793F818799F9C6667FF0F9F:T#P
+F99FC#
+FC3FC#
+FFFFG'
+FC000000000FGQ
+
+
+
+
+G"j"
+FC41FJ"T"
+<0FDFHU"
+CF
+
+
+C">"8"<"9"
+FCBFFBFDBF>":":#<"8"
+87BCFE1FBFF0>":";";"9#
+333FEFFFF77F=+8*8)
+FE79C9E1C9860CE1E4E7EE3C7C3FF7F69B0C7F71E3E1FFE7A7B77F?)8*8'
+C4CCC9333CCCE267EDDBBBBFF7767BBBBF6EDDDDFFDB9B?%8#8(9(
+CCCCC7F3E67F1DDFBBB01B6EFBF0EEFDDD80BDBB@$<08#
+C0CF83DC1C3BBFFAAEFBB83FCFF6E0E1DDFFBAFF@$<$:'
+CFCF33EDFBBBBBFFCFF76FDD=%;"9&8"8(
+FF33CCCE67DBBB3FFDDEBF6EDDD9FFDBBBBD>(:%9#8&
+87C1E1CF898CE1EE3C5CBFCC7F71E2E5FFE7>#R"U"R"
+FFCFFCCFFBJ"
+DF3?"J"
+FF:FF
+
+He"
+0FJe"
+<1FGZ
+6
+
+
+
+
+
+
+
+
+
+
+
+<#;#
+FE78F39F:(
+1DFFDE73FFFCE7<#
+9FF3:&8'
+4DC306609C0F27839C3927;$8'
+999E73E66713339999:"9&8#
+459DFC07E73398FF:"9%8#
+65C9FCE7079819:"9%8#
+71CBFCE66799F9>":%
+E32399D9E7:-
+79C3C673E7FCE71333939C39:&S
+FFFFFFFFCF
+>"
+FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"R*P(
+FEFBFFEFFFFFFFFEFFFBEFFEFFFFFFFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7;"9"=%:$8'9$9"
+FBFEFEFFFFFBFBFFEFBFFEFFFBFFFBEFFEFFFB8%9$9':$8.8"
+F77FFFF7FDFF577FFFFF7F5FFFFDFFDF7FFF7FF7FD7FFF7F7FDFFF7F57F78%9$8';38"
+EEFFFFFBFEFEFFFEFFFFFEFFFFFBFFEFEFFFFBFEFFFBFBBFFFFFFFEFFEFFFFFB85
+LF7F5F7777D7D7775FF7DDF5F5D5D77FF7F77DFF77DFD77FDFFDFFFDF55FF7FF7FFFFD75F5FDFFF7FDFDFDFF785
+LEFEEEFBBBBBBBAEEFEFEEEEEAEFBFBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBFFBFFFEFFEFFFFEEEFFB85
+LF5F77777777F75DDFF5DDDDF7775FFFF7F77FFFFFF7F77FDFFDFFF777FFF7FF7FD7F77777FDFFF7FDFF7FFF785
+LEEEAFAFBBBBABBEEFEFEFEAEEEFAFFFEFFAEFBBBBAEFAFFBFFEFEFAFFBFEFFFBFBFBFFFFFFEFFEFFFEFEEFFB85
+LF577F7F7777777DDFF7F5DFF777F7FFF7F7FFFFFF77FFFFDFFDFFF7F7FFF7FF7FFFF77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEAFEFFBEEEEEFFBBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBBFFFFFEFFEFFFFEEEFFB85
+LF775FDF57D7DD7F5FF577F5F775577FF7F7FFFFFFDFFDFFDFFDFF5DF7DFF7FF7FFFFF777DFDFFF7FDFDF5FF78$W$8-8+
+FFFFFBFEFFFFFFFFBFFBFFEFFFFFFFFEFFFBFFFFFFEFFEFFFFFEFFFB:"B#;%9$8"8(
+F7FF7F7FFDFFDFFF7FF7DFDFFF7FFFFFFFF7:"B#;%9$8"8$9"
+FFFEFFFFFBFFEFFEFFFBFFEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABGZ
+=
+Hr5
+55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG#Q1P#P"
+FF7FF7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFD7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$8%:$;"
+FF7FF7FF7FFDFFF7DFFF7FFDFF7FF7DF:#:#;%:%9,8&9"
+FEFBFEAFFEFEBFFEEFFFBFAFFEFFEFEAFFFFFFBFFBFABFFEFFFBFBEFEF:#:#9(938&9"
+FD75FF7F7FFFFF7FFFFFF7F7FF7F7FFF7FFFFDFFF7FFFFFDFF7FFDFFDFFF7FF7FDDFDF:5
+O$FEFBEBEEEAEBFEFEEEBEEEBABBFEFEEEEEABEFEFBFEFFFBFFFEEBAEBFEFFEFEFFFFAFFBFFBFBEFBBEBFEFFFBFBEFBFFEFFEF:5
+O$FD7DDDDDDFDDFF7DDDDF7777F7FF7FFFFFF7F777FFF7FF7F7F777777FDFFF7FFDDDDFF7FFDFFFDFFDDFF7FF7FFFF7DDFFFDF:5
+O$FFABBBEEEFEEFEAEEEEEEEFBFFFEFEBEEEFFFBFEFFEFFFBFAFFFFFEFFEFFEFEBEBFFFFBFFBFBEFFEFFFEFFFBFAAEFFFBBFEF:5
+O$FD7DDDDDF5D5FF7F5D5F777D7FFF7FFFFFF77F777FF7FF7F7F77757FFDFFF7FFF7DDFF7FFDFFFDF5DDFF7FF7FF7FF7FD7FDF:5
+O$FFBBBBEEFAEFFEFEFEFEEEFEBFFEFEEEEEFFFBFFFFEFFFBFFFFFFFEFFEFFEFEFEBFFFFBFFBFBEFEEFBFEFFFBFBEEFEBBFFEF:5
+O$FDDDDDDDFDDFFF7F7DFF777F77FF7FFFDFF7F777DFF7FF7F7F77777FFDFFF7FFDDDDFF7FFDFFDDFFF5FF7FF7FFFF7F7FFFDF:5
+O$FFFBEBEEEBEBFEAFBEBEEFBAFBFEFEBFAFBBEFFEBFEFFFBFAFFFBAEFFEFFEFEAFFFEFFBFFBFABFFBFFFEFFFBFBEFBFFEFFEF;X"Q5P"
+7F7F7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFDFFFFFFFDFF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBEBFEFFFBEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDFFFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FHZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+63.5 547.76 192.1 559.21 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 73.8 552.54 T
+62.78 483.03 192.1 494.48 R
+7 X
+V
+0 X
+(Name p.94) 143.46 487.81 T
+62.06 449.34 192.1 460.78 R
+7 X
+V
+0 X
+(Label Is p.95) 135.95 454.12 T
+62.78 414.92 192.1 426.37 R
+7 X
+V
+0 X
+(Field Type p.102) 118.14 419.7 T
+62.78 431.19 192.1 442.64 R
+7 X
+V
+0 X
+(Location p.96) 131.94 435.97 T
+62.78 395.34 192.1 406.78 R
+7 X
+V
+0 X
+(Range p.102) 137.55 400.12 T
+62.78 301.45 192.1 312.9 R
+7 X
+V
+0 X
+(Event Handler p.105) 100.39 306.23 T
+62.78 241.33 192.1 252.78 R
+7 X
+V
+0 X
+(Color p.106) 140.52 246.11 T
+62.78 319.45 192.1 330.9 R
+7 X
+V
+0 X
+(Notify Handler p.105) 97.19 324.23 T
+62.78 467.55 192.1 479 R
+7 X
+V
+0 X
+(Label/Title p.95) 120 472.33 T
+62.78 215.91 192.1 227.36 R
+7 X
+V
+0 X
+(Apply p.108) 137.13 220.69 T
+62.78 199.64 192.1 211.09 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 84.76 204.42 T
+62.78 377.91 192.1 389.36 R
+7 X
+V
+0 X
+(Field Length p.102) 109.27 382.69 T
+62.78 360.2 192.1 371.65 R
+7 X
+V
+0 X
+(Stored Length p.102) 102.74 364.98 T
+62.78 340.76 192.1 352.21 R
+7 X
+V
+0 X
+(Operation p.99) 125.34 345.54 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "183" 18
+%%Page: "184" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (B) 58.19 680.03 S
+0 F
+0 X
+0 K
+0.09 (184) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (T) 54 638 P
+-0.94 (ext Panes) 61.5 638 P
+1 F
+0.47 0.09 (Figur) 198 270.76 B
+0.47 0.09 (e B-17) 218.77 270.76 B
+0 F
+0.47 0.09 (The T) 248.4 270.76 B
+0.47 0.09 (ext Panes Pr) 271.29 270.76 B
+0.47 0.09 (operty W) 321.76 270.76 B
+0.47 0.09 (indow) 359.77 270.76 B
+54 600.35 138.74 632.32 C
+54 600.35 138.74 632.32 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  354      
+70 38 50.4 27.36 0 56.02 603.09 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"R"
+EFDF="
+F87#
+ED7F7#:"
+FFFFFD7";"
+EAFF7";"
+FFFD
+7%
+F84309337%
+FFFFFFFF7%8"
+E4582024F87%8"
+FFFFFFFFFA7%8"
+E1190423F87%8"
+FFFFFFFFFA7";"
+E4F87";"
+FFFD
+
+
+8%
+FC1FFFFB8#9"
+FF7FFF9&
+7C7760FFFD9&
+7BB77BFFFF:%
+BAFBFFFD9#8"
+783DFF9#8"
+7BFAFD:%
+B77BFFFF9&
+7C777CFFF89$
+FFFFFF="
+FF
+"b"
+E01FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 286.76 557.42 585.2 C
+54 286.76 557.42 585.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  6235     
+450 406 324 292.32 0 199.08 290.22 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#
+2FBF73F3F7$G#='
+FEDFDFF83FE01FFFF7F83FJ#:"8'
+5F99FFFFCFFFFE7F99F7"J3
+FD4CE1CCE0E67383873FCF87301F998793C3C1F8#H3
+CFBFCCCCCCCE67333333FCF33327F993389999FF8#J"8(
+E73F93F3967F9BF3999987#J#9"8*
+FCE040E5C30F03CE7F87839981C3F7$I$8-
+FEF87FFE5C8E33FFFCF3FA67F9F33999FF1F8"I)8#:#
+3C9CEF3E4E473233B3B327DF9F7$G4
+FC00FFF83E1F3FCF27393873FCF87331F9F8999C383F8"H&Y
+C3FFFFFFFCCF7#J#
+FFFF5FE1FJ#
+8FFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+G"z$
+FE>AAA98000G"Z#
+FB?BFFE="8#;"J"
+00BFC1FF>FD="8#;"J"
+E73FCCFB>FF>+J"
+C3980FCCC3C9E1E0CFFF>FD>+J$
+99993FCC99C4CCCFCFFB>FF8000?*J$
+CB3FCDF9CCCCC7FFFF>FDFFFF>+J"
+81E73FC3C1CCC0E1FFFB>FF>+J$
+9FD33FCF99CCCFF8FFFF>FDC001>#:%J$
+9D99CEFCCFFB>FFBFFC>-j#
+C3998FCFC4CCE1C1CFFFFFE0;07FD=U$Z#
+FBFFEF;F7FFG"J"
+FF>FDG"J#
+FB>FFBEG$8"9"J$
+FFFFEB7FFB5FDBD7CG">"J$
+FBE35FFBABCG+J$
+FFFFE0C7761A78F4F1FB5FDB55CG*J$
+FBFFEBBB7779B7736E6FFBABCG"9%J$
+FFAF7BBF777FDBFFCG"8'J"
+FB83DF7BB877606FFG"8'J"
+FFBFAF7BB7776F6FDG"8#9"J"
+FBBB776E6FFG*J"
+FFFFECC7779878B7716FDG+J$
+FBFFEFFFFFFBFFFFFFFF5FF8000G"J$
+FF>FDBFFCG":"J"
+FBFF9FFG"J"
+FF>FDG$j#
+FBFFE0;07FFGZ"
+?FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FD8000G"J$
+FB>FFBFFCG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FDB00CG"J"
+FB>FFG"J$
+FF>FDB81CG"J$
+FB>FFBC3CG"J$
+FF>FDBE7CG"J$
+FB>FFBFFCG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J$
+FB>FF8000G"J$
+FF>FDC001G"J$
+FB>FFFFFFG"J$
+FF>FDFE3FG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FDFFFFG"J"
+FB>FFG"J$
+FF>FD8000G"J$
+FB>FFBFFEG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"z#
+F9?558000GZ
+B
+
+
+
+
+
+
+
+
+
+
+
+A#;$:"
+F8EF7FFFEF7FJ"
+8FCA/
+FA6E1E4CF0E7FE18EEC34F1E9E3FB.
+6CCE226667FF776EEF36EE6DDFB&8&
+2FCE66667F75EF77EEEDA&8#8$
+FB2E0E6660707B0EEC1FB.
+8CCE6667FFFF77F5EF76EEEDFFF"8":"
+676EDFB.
+CE266670E7FF98EEF30F16EE3FAU&
+7FFFFFFFFF
+J"
+5FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+D#
+FE7F>"8"<"8$8%:'9&
+83BF9CBF3C0FF3CFFFE7FE7E7FFF0E07E73FFF87E7>"8">%;";&<#
+993FFE3EDDFFDB667FFEF6FF7BD7?/9%<"=%
+C3C20C3C9E0E70E7FFC9CFFFBDEDF9D9FFBD6733FF7FB7>,9#9"<$8"="
+9B9999399C4CCE6667FFC3EC1F99FF24E70F77>'8%8#8#>%9&
+87999F3F9CCC7FFFE3FFEFEFFCBFFFFF07F7E03FFF06F7>&8"8"=#="8":"8#
+93819F3C1C60C9FE7F00F7E77A03?)H"@#
+9F9F399CCC8E67FF997BF7>$8+:$<$;"
+999D9DCE4E6767FF9CCFFFBEDD79FFDBE7FEF633>*:$;"=$<"
+98C3C38C4CCFCE70E7BF3E1FE7FF0F0F87>P#T8%;P9P
+FCCFFFFFFFFFC#
+FE1FC#
+FFFFJ'9&9'8'
+4F8000000001F0000000003FC000000000FFE0000000007JQ9P9Q8Q
+4
+
+
+
+G"c"
+FC3FJ&
+61FFFFFFFBFH&
+FFFFFFFF9F
+
+
+<#<"
+FE7F9F;#9#<#9#
+FE1EFE0FFDF7EF7F;#:"A"
+FCCE67E7<18"
+FE4F0E7E7E670E4C1C3927FCFEEE3C7F79<+9'
+7E2666667E6E66499999EDDBFF9FEB76;09$
+FE1E666724FE1E66399998FFFCFF5DE96F7F;#:&9#8"
+FF8E6E66799819BC1CED<"8$8#9&
+CE00FE6699F9BDFF7F9FEE;"9":$9"9#
+FC9919D9E7DF76FF;%8&9'
+FE1E670F0F0E7C9C39BE38FF9FEF79;W8#8#
+FFFFFFFF
+
+
+
+H&
+000000001FJ&
+6000000003FGU
+
+G"j"
+FC41FJ"T"
+<0FDFHU"
+CF
+
+
+C">"8"<"9"
+FCBFFBFDBF>":":#<"8"
+87BCFE1FBFF0>":";";"9#
+333FEFFFF77F=+8*8)
+FE79C9E1C9860CE1E4E7EE3C7C3FF7F69B0C7F71E3E1FFE7A7B77F?)8*8'
+C4CCC9333CCCE267EDDBBBBFF7767BBBBF6EDDDDFFDB9B?%8#8(9(
+CCCCC7F3E67F1DDFBBB01B6EFBF0EEFDDD80BDBB@$<08#
+C0CF83DC1C3BBFFAAEFBB83FCFF6E0E1DDFFBAFF@$<$:'
+CFCF33EDFBBBBBFFCFF76FDD=%;"9&8"8(
+FF33CCCE67DBBB3FFDDEBF6EDDD9FFDBBBBD>(:%9#8&
+87C1E1CF898CE1EE3C5CBFCC7F71E2E5FFE7>#R"U"R"
+FFCFFCCFFBJ"
+DF3?"J"
+FF:FF
+
+He"
+0FJe"
+<1FGZ
+6
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"b*`(
+FE01FFC0000000007FF00FFE0000000003HR*P(
+FDFFDFFFFFFFFF7FF7EFFEFFFFFFFFFB
+
+
+
+;"9"@"?":$
+F3FCFB9FFBFF7F8#<#9"9">$9#8"8#
+E73FFE077F0FEFFF7BF87B7FFE038#="8":#C#;#
+E67F7FFE77FFFBBFFFDF9/8':#:%:#
+F0E73278787260FE7CCE1E4C1833769BA678E9778E10BB874E1F9E9F8)8&9%;#;$:#
+E5E667313333324CCCCE2673F37B99B767777B77377F6E6F8"8(8$9%@%:$
+E173333F31CCFE0C6671FFFBBBBF6FF87B7777DEF6EF8$8#8'8"8$:":"
+E4E07238337E5C0E66787F0EB86FAF07FB9&;%8"8"<";#
+67F2F33333FE667E3F7EB77FBB678$:)=":"<";#
+E66778C8FE7F3CEE667F33DF7797DF6E80;#:$;$:#
+E730F9F0787893E4FE073E1E671073B8AFE18F7CF7779F9E1F8$W8P"9$9&9$
+FFFFF3BFFFFFFFFFFFF7FFFFFFFEFFJ"A"
+83F8F:"I"A"<"
+FFFFFFFF
+
+
+Hb*`(
+01FFC0000000007FF00FFE0000000003GZ
+=
+G"b#a)`#`"
+FE07FFFFE0000000003FF87FF00FHR1P#P"
+F7FF7FFFFFFFFFFEFFEFFFFFFFFFBFFB7FF7EF
+
+
+
+J"
+EDF:#:#9"8%<$:$9#;#
+FC71FE077FFE1FFEF707FF7FE0FFDDF83FFBEFA"8":">"<$9#;#
+7FFEEF7FEFFFFDFBDFF9CF<,8':$:$9$;$
+C3CCE0E1FE7CCE1E4C1833EEEC21CF4F1F4E18E9DDD87FED31E19DDC7F:'8&9&:$;#9$9&
+FD2999CCCFCCCCCE2673F3EEF7B736FF377767DDFFECEEDDFAAF6DDBBF>"8"8$8"8#:%9#;#;#
+C70C6671FF1E7B760F77776FE1EBEDFEAEF5>*8"9#9$:#<":&
+E1C0FE7E5C0E66787FEE773F7F7770EFF7F0FB6EF6B83F;"8#9%=";#:"<#<#
+99F8CFFE667E3FDF77EFEBEED9BBFF=+9$>":";$:%
+C8FCCEFE7F3CEE667F33CEF7B76FDDDDEEE5EF6F7BBF;-8'9%9%8%;$
+F9C3E4C1E1FE073E1E6710731F2F39CF763F077798EFE0DDDE7FF83DF17D9F7C7F:X"R9%9%8%9P
+FEFFFFFFFFFFFFFFFFFFFFFFFDJ"
+LE3J"
+LFF
+
+
+Hb#a)`#`"
+07FFFFE0000000003FF87FF00FGZ
+E
+
+
+
+
+
+
+
+
+
+
+;"e"
+FC7F;"U"
+F39F;"@"
+EFEF;">$
+DFF7FFF7;#?"
+BFE1FB<"?"
+EFF9;-
+7FEFE74C7869CF774F87FFFD=+
+DB3BB767B7773777FFFC<)
+E1BD7BB76F7B7777<%
+EFBD7837>#
+7BF6=*
+DB7BB96FB7677766DB=)
+E77C7F6FCF977796;'P"
+BFFFFFFFFF7FF8?#;#j
+F8FFF9FF>;"9"<"Z
+DFFFF1?;"@"
+EFE3;"@"
+F387;"e"
+F80F;"@"
+FC3F;W
+
+
+
+
+;"e"
+FC3F;"U"
+F3CF;"@"
+EFF7;"8";$
+DFFEFBFFFB;#?"
+BFC3FD<"?"
+DDFC;-
+7FDDC7C6EC34E7BBA7C3FFFE=)8"
+BBBEDBB3DBBB9BBB7F<)
+C3FB7EBBB7BDBBBB<%
+DDC37E3B=%
+BB7EDB37>)
+BECCB7DBB3BBB36D<*
+C3C5C6EFB7E7CBBBCB;'P"
+BFFFFFFFFFBFFC?#<"j
+FC7FFF>;"9#;"Z
+DFFFFFF8?;"@"
+EFF1;"@"
+F3C3;"e"
+F807;"@"
+FC1F;W
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+62.42 541.21 195.26 552.66 R
+7 X
+V
+4 F
+0 X
+(Selecting UI Elements p.93) 76.97 545.99 T
+62.42 488.58 195.26 500.02 R
+7 X
+V
+0 X
+(Name p.94) 146.63 493.36 T
+62.42 467.77 195.26 479.22 R
+7 X
+V
+0 X
+(Rectangle p.95) 130.32 472.55 T
+62.42 449.05 195.26 460.5 R
+7 X
+V
+0 X
+(Show Border p.97) 115.84 453.83 T
+62.42 430.33 195.26 441.78 R
+7 X
+V
+0 X
+(Operation p.99) 128.51 435.11 T
+62.42 413.05 195.26 424.5 R
+7 X
+V
+0 X
+(Event Handler p.105) 103.55 417.83 T
+62.42 393.61 195.26 405.06 R
+7 X
+V
+0 X
+(Keyboard Events p.105) 92.56 398.39 T
+62.42 377.05 195.26 388.5 R
+7 X
+V
+0 X
+(Mouse Events p.106) 106.23 381.83 T
+62.42 355.45 195.26 366.9 R
+7 X
+V
+0 X
+(Foreground p.106) 115.89 360.23 T
+62.42 334.64 195.26 346.09 R
+7 X
+V
+0 X
+(Background p.106) 114.54 339.42 T
+62.42 307.35 195.26 318.8 R
+7 X
+V
+0 X
+(Apply p.108) 140.29 312.13 T
+61.85 290.72 194.69 302.17 R
+7 X
+V
+0 X
+(Adding Help Text p.107) 87.36 295.5 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "184" 19
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 18 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Palatino-Bold

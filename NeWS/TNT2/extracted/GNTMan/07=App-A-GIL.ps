@@ -1,0 +1,3256 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 10 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 10 /Palatino-Roman FMDEFINEFONT
+5 15 /Palatino-Italic FMDEFINEFONT
+%%Page: "151" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (151) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (A-0) 158.96 672.33 S
+-0.12 (A-0) 158.96 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (The GIL File Format) 199.01 509.03 B
+3 F
+7 X
+1 K
+-3.12 (A) 537.91 508.36 S
+4 F
+0 X
+0 K
+0.52 0.1 (This appendix is for advanced Devguide users who ar) 198 459.68 B
+0.52 0.1 (e inter) 446.06 459.68 B
+0.52 0.1 (ested in ) 475.11 459.68 B
+0.12 0.1 (developing their own sour) 198 447.28 B
+0.12 0.1 (ce code generators, translating GIL \336les dir) 318.16 447.28 B
+0.12 0.1 (ectly into ) 513.17 447.28 B
+0.52 0.1 (the language, toolkit, and windowing envir) 198 434.88 B
+0.52 0.1 (onment with which you work.  It ) 396.69 434.88 B
+0.52 0.1 (contains an overview of GIL \336les to give you a quick look at their str) 198 422.48 B
+0.52 0.1 (uctur) 514.28 422.48 B
+0.52 0.1 (e, ) 538.29 422.48 B
+0.52 0.1 (and then goes on to a language syntax listing that describes Graphical ) 198 410.08 B
+0.09 0.1 (Intermediate Language in a form very similar to a standar) 198 397.68 B
+0.09 0.1 (d Backus-Naur Form ) 460.49 397.68 B
+0.52 0.1 (\050BNF\051.  Although a quick description of the syntax r) 198 385.28 B
+0.52 0.1 (ules pr) 437.04 385.28 B
+0.52 0.1 (ecedes the listing, ) 468.49 385.28 B
+0.52 0.1 (you should be familiar with BNF to get the most out of the listing.) 198 372.88 B
+5 F
+-0.94 (An Overview of the GIL File Format) 54 339.14 P
+4 F
+0.43 0.1 (GIL is an acr) 198 317.48 B
+0.43 0.1 (onym for Graphical Intermediate Language, a \336le format used by ) 256.34 317.48 B
+0.52 0.1 (Devguide to stor) 198 305.08 B
+0.52 0.1 (e user interfaces. Because GIL stor) 274.63 305.08 B
+0.52 0.1 (es an interface without ) 431.21 305.08 B
+0.52 0.1 (r) 198 292.68 B
+0.52 0.1 (efer) 201.87 292.68 B
+0.52 0.1 (ence to a speci\336c windowing system or pr) 218.94 292.68 B
+0.52 0.1 (ogramming language, it is a ) 411.79 292.68 B
+0.52 0.1 (neutral language. An interface saved as a GIL \336le can be used to generate ) 198 280.28 B
+-0.01 0.1 (sour) 198 267.88 B
+-0.01 0.1 (ce code in any OPEN LOOK-compatible envir) 217.89 267.88 B
+-0.01 0.1 (onment in any pr) 424.74 267.88 B
+-0.01 0.1 (ogramming ) 502.62 267.88 B
+0.52 0.1 (language\321as long as a sour) 198 255.48 B
+0.52 0.1 (ce code generator exists to r) 326.01 255.48 B
+0.52 0.1 (ead the GIL \336le and ) 453.64 255.48 B
+0.52 0.1 (generate sour) 198 243.08 B
+0.52 0.1 (ce code for that envir) 259.75 243.08 B
+0.52 0.1 (onment.) 357.02 243.08 B
+0.52 0.1 (TNT comes with GNT) 198 222.68 B
+0.52 0.1 (, a sour) 298.79 222.68 B
+0.52 0.1 (ce code generator that turns GIL \336les into ) 332.62 222.68 B
+0.52 0.1 (PostScript and C sour) 198 210.28 B
+0.52 0.1 (ce code that r) 297.45 210.28 B
+0.52 0.1 (uns in the OpenW) 359.11 210.28 B
+0.52 0.1 (indows envir) 442.35 210.28 B
+0.52 0.1 (onment. ) 502.35 210.28 B
+0.52 0.1 (Other generators will become available as Sun and outside developers write ) 198 197.88 B
+0.21 0.1 (them. W) 198 185.48 B
+0.21 0.1 (ith many dif) 236.04 185.48 B
+0.21 0.1 (fer) 292 185.48 B
+0.21 0.1 (ent code generators available, you\325ll be able to design a ) 304.19 185.48 B
+0.52 0.1 (single user interface, save it in a GIL \336le, and then use the dif) 198 173.08 B
+0.52 0.1 (fer) 480.29 173.08 B
+0.52 0.1 (ent code ) 492.48 173.08 B
+0.52 0.1 (generators to cr) 198 160.68 B
+0.52 0.1 (eate the interface sour) 269.35 160.68 B
+0.52 0.1 (ce code you need to port your pr) 370.15 160.68 B
+0.52 0.1 (ogram ) 521.18 160.68 B
+0.52 0.1 (into dif) 198 148.28 B
+0.52 0.1 (fer) 231.42 148.28 B
+0.52 0.1 (ent languages and windowing envir) 243.6 148.28 B
+0.52 0.1 (onments.) 408.81 148.28 B
+FMENDPAGE
+%%EndPage: "151" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+3 14 /Palatino-Italic FMDEFINEFONT
+%%Page: "152" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (152) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (Y) 198 641.33 B
+0.52 0.1 (ou may be tempted to write an interface dir) 203.85 641.33 B
+0.52 0.1 (ectly in GIL without using ) 404.32 641.33 B
+0.22 0.1 (Devguide, or to modify an existing GIL \336le befor) 198 628.93 B
+0.22 0.1 (e you generate sour) 420.04 628.93 B
+0.22 0.1 (ce code. If ) 509.34 628.93 B
+0.52 0.1 (so, be for) 198 616.53 B
+0.52 0.1 (ewarned that GIL wasn\325t designed to be used as a dir) 240.1 616.53 B
+0.52 0.1 (ect ) 485.62 616.53 B
+0.52 0.1 (pr) 198 604.13 B
+0.52 0.1 (ogramming language. It has no debugger) 207.98 604.13 B
+0.52 0.1 (, and if you intr) 396.41 604.13 B
+0.52 0.1 (oduce bugs into a ) 468.63 604.13 B
+0.35 0.1 (GIL \336le, you may get some unexpected \050and unwanted!\051 r) 198 591.73 B
+0.35 0.1 (esults when you use ) 462.18 591.73 B
+0.52 0.1 (the code generator to r) 198 579.33 B
+0.52 0.1 (ead the GIL \336le.) 302.06 579.33 B
+3 F
+-0.88 (File Structur) 126 546.27 P
+-0.88 (e) 198.61 546.27 P
+4 F
+0.52 0.1 (A GIL \336le is, in essence, a list of the elements that make up a user interface. ) 198 524.93 B
+0.41 0.1 (Each element listing includes descriptions of the way the element was de\336ned ) 198 512.53 B
+0.28 0.1 (in Devguide: its shape, size, position, r) 198 500.13 B
+0.28 0.1 (elationship to other elements, and other ) 374.05 500.13 B
+0.52 0.1 (characteristics that ar) 198 487.73 B
+0.52 0.1 (e pertinent for that element. Each element description is ) 295.05 487.73 B
+0.52 0.1 (enclosed in a pair of par) 198 475.33 B
+0.52 0.1 (entheses, and the entir) 309.27 475.33 B
+0.52 0.1 (e list of elements is enclosed ) 412.17 475.33 B
+-0 0.1 (within a pair of par) 198 462.93 B
+-0 0.1 (entheses. A GIL \336le can include comments: each must be on ) 285.44 462.93 B
+0.45 0.1 (a single line that starts with a semicolon \050;\051. All comments must be at the very ) 198 450.53 B
+0.52 0.1 (beginning of the GIL \336le, befor) 198 438.13 B
+0.52 0.1 (e the left par) 339.74 438.13 B
+0.52 0.1 (enthesis that starts the GIL \336le.) 397.9 438.13 B
+0.52 0.1 (When Devguide generates a GIL \336le, it includes a one-line comment at the ) 198 417.73 B
+0.52 0.1 (beginning of the \336le which lists the curr) 198 405.33 B
+0.52 0.1 (ent version of GIL. The second line is ) 381.22 405.33 B
+0.52 0.1 (the opening left par) 198 392.93 B
+0.52 0.1 (enthesis for the element list to follow) 288.32 392.93 B
+0.52 0.1 (, and the thir) 457.45 392.93 B
+0.52 0.1 (d line is ) 516.93 392.93 B
+0.52 0.1 (the opening left par) 198 380.54 B
+0.52 0.1 (enthesis for the \336rst element de\336nition. Element ) 288.32 380.54 B
+0.52 0.1 (descriptions follow) 198 368.14 B
+0.52 0.1 (, each separated by closing and opening par) 284.5 368.14 B
+0.52 0.1 (entheses ) 486.04 368.14 B
+0.52 0.1 (between descriptions, and the \336le ends with a closing right par) 198 355.73 B
+0.52 0.1 (enthesis.) 486.76 355.73 B
+3 F
+-0.88 (An Example) 126 322.67 P
+4 F
+0.52 0.1 (Figur) 198 301.33 B
+0.52 0.1 (e A-1 shows an interface with a base window) 222.32 301.33 B
+0.52 0.1 (, contr) 429.72 301.33 B
+0.52 0.1 (ol ar) 458.68 301.33 B
+0.52 0.1 (ea, and button. ) 479.33 301.33 B
+1 F
+0.47 0.09 (Figur) 198 158.97 B
+0.47 0.09 (e A-1) 218.77 158.97 B
+0 F
+0.47 0.09 (A Basic Interface) 248.4 158.97 B
+198 176.31 556.45 285.6 C
+198 176.31 556.45 285.6 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  776      
+307 146 221.04 105.12 0 199.14 179.05 BEGINBITMAPBWc
+j"
+F1F#J#
+7FC0C7FDF7"Z
+DFC
+#J"
+701FC01%J"
+77FE000FAFD7$
+FDFFF79"
+F3J$
+5F9FFFC8#A#9#
+C073F07F3F39$B#9#E#
+07FDDFF33F333FFC1F%B,@#
+3FFDEEF33878387F3339C9E0E1CFCFFF9FF+
+7333F33F9279C4CCCCCC8"B$:"8#
+F5F0FF31CCE49FE'
+F37838703F808"C'9#
+FB333E33FFCCF9E01F8"D$9%
+FF3F33BFC8CCF33FE&9#
+F07890787FE4E17$AW
+FE00037$
+FF00078#
+FFFF
+
+
+
+
+"j"
+38D03"Z"
+3BDFB
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+F"`"
+FE0FF"P"
+F9F3F";"
+F7FDF";"
+EFFEF)
+DFE1FFEF7FFFFF7FG";"
+EE3FF)
+BFEEEEC21CF4FFBFI&
+EF7B737F9FG"8#
+E177B7G"
+EE
+H%
+ECEF7B77G&
+E1F2F39CF7F"Q"
+DF1FJ"
+73FF";"
+EFFEF";#
+F7FC7FF";#
+F9F0FFF"`"
+FC01F";"
+FE07FR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"j"
+38D03"Z
+3FE
+
+
+
+
+
+
+
+
+
+
+"J#
+07DFC1F"J#
+77DFDDF
+
+
+
+#J"
+701FC01#J"
+7FDFC7F
+7"j
+C0C#J#
+0000C001F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "152" 3
+6 10 /Courier FMDEFINEFONT
+%%Page: "153" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The GIL File Format) 198 108.7 B
+0 F
+0.09 (153) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (A) 541.59 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.52 0.1 (When Devguide saves this interface, it generates the GIL \336le that follows:) 198 641.33 B
+6 F
+(;GIL-2) 198 616.93 T
+(\050) 198 604.93 T
+(\050) 198 592.93 T
+(:type                   :base-window) 198 580.93 T
+(:name                   window1) 198 568.93 T
+(:owner                  nil) 198 556.93 T
+(:width                  200) 198 544.93 T
+(:height                 128) 198 532.93 T
+(:background-color       "") 198 520.93 T
+(:foreground-color       "") 198 508.93 T
+(:label                  "Base Window") 198 496.93 T
+(:label-type             :string) 198 484.93 T
+(:mapped                 t) 198 472.93 T
+(:show-footer            t) 198 460.93 T
+(:icon-file              "") 198 448.93 T
+(:event-handler          nil) 198 436.93 T
+(:events                 \050\051) 198 424.93 T
+(:user-data              \050\051) 198 412.93 T
+(\051) 198 400.93 T
+(\050) 198 388.93 T
+(:type                   :control-area) 198 376.93 T
+(:name                   controls1) 198 364.93 T
+(:owner                  window1) 198 352.93 T
+(:help                   "") 198 340.93 T
+(:x                      0) 198 328.93 T
+(:y                      0) 198 316.93 T
+(:width                  200) 198 304.93 T
+(:height                 128) 198 292.93 T
+(:background-color       "") 198 280.93 T
+(:foreground-color       "") 198 268.93 T
+(:show-border            nil) 198 256.93 T
+(:menu                   nil) 198 244.93 T
+(:event-handler          nil) 198 232.93 T
+(:events                 \050\051) 198 220.93 T
+(:user-data              \050\051) 198 208.94 T
+(\051) 198 196.94 T
+(\050) 198 184.94 T
+(:type                   :button) 198 172.94 T
+(:name                   button1) 198 160.94 T
+(:owner                  controls1) 198 148.94 T
+FMENDPAGE
+%%EndPage: "153" 4
+%%Page: "154" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (154) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(:help                   "") 198 641.33 T
+(:x                      68) 198 629.33 T
+(:y                      40) 198 617.33 T
+(:width                  0) 198 605.33 T
+(:height                 0) 198 593.33 T
+(:foreground-color       "") 198 581.33 T
+(:label                  "Button") 198 569.33 T
+(:label-type             :string) 198 557.33 T
+(:menu                   nil) 198 545.33 T
+(:notify-handler         nil) 198 533.33 T
+(:event-handler          nil) 198 521.33 T
+(:events                 \050\051) 198 509.33 T
+(:user-data              \050\051) 198 497.33 T
+(\051) 198 485.33 T
+(\051) 198 473.33 T
+4 F
+0.42 0.1 (Y) 198 453.33 B
+0.42 0.1 (ou can see Devguide\325s comment line at the beginning of the \336le listing. After ) 203.85 453.33 B
+0.52 0.1 (two opening par) 198 440.93 B
+0.52 0.1 (entheses \050one for the element list, the other for the beginning ) 273.71 440.93 B
+0.52 0.1 (of the base window element\051, the description of the element follows. This ) 198 428.53 B
+0.1 0.1 (description is a list of attribute/value pairs which de\336ne the base window) 198 416.14 B
+0.1 0.1 (. The ) 532.88 416.14 B
+0.09 0.1 (\336rst, type, shows this to be a ":base-window" element. The following pairs give ) 198 403.73 B
+0.52 0.1 (the name as "window 1", say ther) 198 391.33 B
+0.52 0.1 (e is no owner) 351.12 391.33 B
+0.52 0.1 (, and go on to describe its size, ) 412.29 391.33 B
+0.52 0.1 (color) 198 378.93 B
+0.52 0.1 (, and other characteristics. A right par) 219.97 378.93 B
+0.52 0.1 (enthesis marks the end of the ) 393.91 378.93 B
+0.52 0.1 (element description.) 198 366.54 B
+-0.03 0.1 (The next two element descriptions appear within their own sets of par) 198 346.14 B
+-0.03 0.1 (entheses, ) 514.31 346.14 B
+0.52 0.1 (and include attribute/value pairs that describe characteristics that apply to a ) 198 333.73 B
+0.52 0.1 (contr) 198 321.33 B
+0.52 0.1 (ol panel and a button. The \336nal line is a right par) 221.24 321.33 B
+0.52 0.1 (enthesis that closes the ) 447.5 321.33 B
+0.52 0.1 (element list.) 198 308.93 B
+3 F
+-0.88 (The Graphical Intermediate Language Syntax) 126 275.87 P
+4 F
+0.52 0.1 (What follows is a modi\336ed Backus-Naur Form \050BNF\051 listing of the Graphical ) 198 254.53 B
+-0 0.1 (Intermediate Langauge Syntax. If you\325r) 198 242.14 B
+-0 0.1 (e familiar with BNF syntax, you can use ) 375.29 242.14 B
+0.52 0.1 (this listing to quickly \336nd the syntax for any element description in a GIL \336le.) 198 229.73 B
+0.52 0.1 (Note that this syntax listing is the most r) 198 209.34 B
+0.52 0.1 (ecent version of GIL syntax available ) 384.98 209.34 B
+0.37 0.1 (befor) 198 196.93 B
+0.37 0.1 (e publication.  The syntax is subject to change as Devguide and GXV and ) 221.37 196.93 B
+0.52 0.1 (GNT ar) 198 184.54 B
+0.52 0.1 (e updated.) 232.44 184.54 B
+FMENDPAGE
+%%EndPage: "154" 5
+7 14 /Times-Bold FMDEFINEFONT
+%%Page: "155" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The GIL File Format) 198 108.7 B
+0 F
+0.09 (155) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (A) 541.59 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.88 (A Quick Sketch of BNF) 126 638.67 P
+4 F
+0.52 0.1 (For r) 198 617.33 B
+0.52 0.1 (eaders unfamiliar with BNF) 220.25 617.33 B
+0.52 0.1 (, note that each item de\336ned is enclosed in ) 346.8 617.33 B
+0.52 0.1 (wedges <> and is located in the left column. The item de\336nition is located in ) 198 604.93 B
+0.52 0.1 (the right column, dir) 198 592.53 B
+0.52 0.1 (ectly acr) 293.26 592.53 B
+0.52 0.1 (oss fr) 331.33 592.53 B
+0.52 0.1 (om the item being de\336ned. The item ) 355.97 592.53 B
+0.52 0.1 (de\336nition uses these symbols:) 198 580.13 B
+7 F
+(\245) 198 561.73 T
+4 F
+0.52 0.1 (::= stands for "is comprised of") 210.6 561.73 B
+7 F
+(\245) 198 543.33 T
+4 F
+0.52 0.1 (| stands for "or", and separates component items that you can choose ) 210.6 543.33 B
+0.52 0.1 (between to satisfy the de\336nition of an item) 210.6 530.93 B
+7 F
+(\245) 198 512.53 T
+4 F
+0.13 0.1 ({} enclose a component item that can occur not at all, once, or as many times ) 210.6 512.53 B
+0.52 0.1 (as necessary in an item de\336nition) 210.6 500.13 B
+0.52 0.1 (For example, the de\336nition:) 198 479.73 B
+6 F
+(<layout-type>) 198 455.33 T
+(:= :horizontal | :vertical) 306 455.33 T
+4 F
+0.1 (r) 198 435.33 S
+0.1 (eads:) 201.87 435.33 S
+0.52 0.1 (The item "layout-type" is comprised of either ":horizontal" or ":vertical".) 198 414.93 B
+0.08 0.1 (This means that whenever you encounter the item <layout-type> in the syntax, ) 198 394.53 B
+0.52 0.1 (you can substitute either the string ":horizontal" or the string ":vertical".) 198 382.13 B
+0.52 0.1 (As another example, the de\336nition:) 198 361.73 B
+6 F
+(<string-list>) 198 337.33 T
+(::= \050 { <string> } \051) 306 337.33 T
+4 F
+0.1 (r) 198 317.33 S
+0.1 (eads:) 201.87 317.33 S
+0.37 0.1 (The item "string-list" is comprised of a left par) 198 296.93 B
+0.37 0.1 (enthesis, any number of "string" ) 408.8 296.93 B
+0.52 0.1 (items \050including none at all\051, and a right par) 198 284.54 B
+0.52 0.1 (enthesis.) 401.53 284.54 B
+0.52 0.1 (This means that to cr) 198 264.14 B
+0.52 0.1 (eate a "string-list" item, you put any number of "string" ) 294.18 264.14 B
+0.52 0.1 (items between par) 198 251.73 B
+0.52 0.1 (entheses. If you don\325t know how string items ar) 281.82 251.73 B
+0.52 0.1 (e de\336ned, ) 501.33 251.73 B
+0.52 0.1 (you look up <string> in the syntax listing to see its component parts.) 198 239.34 B
+-0.05 0.1 (Y) 198 218.93 B
+-0.05 0.1 (ou\325ll \336nd that items in the listing that follows ar) 203.85 218.93 B
+-0.05 0.1 (e arranged in or) 419.3 218.93 B
+-0.05 0.1 (der fr) 491.15 218.93 B
+-0.05 0.1 (om most ) 516.14 218.93 B
+0.52 0.1 (elemental to most complex. The listing starts with basic types, fundamental ) 198 206.53 B
+0.52 0.1 (items used in the de\336nition of other items, and then moves to a section of ) 198 194.14 B
+0.37 0.1 (attribute/value pairs, which de\336ne the pr) 198 181.73 B
+0.37 0.1 (operties of elements described in the ) 387.9 181.73 B
+FMENDPAGE
+%%EndPage: "155" 6
+%%Page: "156" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (156) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.15 0.1 (GIL \336le. The next section de\336nes objects; each object uses attribute/value pairs ) 198 641.33 B
+0.52 0.1 (to describe one element in the user interface. The last section de\336nes the form ) 198 628.93 B
+0.52 0.1 (of an entir) 198 616.53 B
+0.52 0.1 (e GIL \336le.) 245.27 616.53 B
+5 F
+-0.94 (Basic T) 54 582.8 P
+-0.94 (ypes) 96.53 582.8 P
+6 F
+(<boolean>) 54 563.13 T
+(::= t | nil) 270 563.13 T
+(<boolean-list>) 54 551.13 T
+(::= \050 { <boolean> } \051) 270 551.13 T
+(<character>) 54 534.13 T
+(::= <any printable ascii character>) 270 534.13 T
+(<character-list>) 54 522.13 T
+(::= \050 { <character> } \051) 270 522.13 T
+(<string>) 54 505.13 T
+(::= "{ <character> }") 270 505.13 T
+(<string-list>) 54 493.13 T
+(::= \050 { <string> } \051) 270 493.13 T
+(<drawing-model-type>) 54 476.13 T
+(::= :xview | :xwindows) 270 476.13 T
+(<event-type>) 54 459.13 T
+(::= :keyboard |) 270 459.13 T
+(    :keyboard-left |) 306 447.13 T
+(    :keyboard-right |) 306 435.13 T
+(    :keyboard-top |) 306 423.13 T
+(    :mouse |) 306 411.13 T
+(    :mouse-drag |) 306 399.13 T
+(    :mouse-enter |) 306 387.13 T
+(    :mouse-exit |) 306 375.14 T
+(    :mouse-move) 306 363.14 T
+(<event-type-list>) 54 346.14 T
+(::= \050 { <event-type> } \051) 270 346.14 T
+(<label-type>) 54 329.14 T
+(::= :string | :glyph) 270 329.14 T
+(<label-type-list>) 54 312.14 T
+(::= \050 { <label-type> } \051) 270 312.14 T
+(<label-layout-type>) 54 295.14 T
+(::= :horizontal | :vertical) 270 295.14 T
+(<menu-type>) 54 278.14 T
+(::= :command | :exclusive | :nonexclusive) 270 278.14 T
+(<name>) 54 261.14 T
+(::= { [A-Za-z0-9_-] } | nil) 270 261.14 T
+(<name-list>) 54 249.14 T
+(::= \050 { <name> } \051) 270 249.14 T
+(<setting-type>) 54 232.14 T
+(::= :exclusive | :nonexclusive | :check | :stack) 270 232.14 T
+(<text-type>) 54 215.14 T
+(::= :alphanumeric | :numeric) 270 215.14 T
+FMENDPAGE
+%%EndPage: "156" 7
+%%Page: "157" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The GIL File Format) 198 108.7 B
+0 F
+0.09 (157) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (A) 541.59 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+(Miscellaneous) 54 638 T
+6 F
+(<comment>) 54 618.33 T
+(::= ; { <character> }) 270 618.33 T
+(<version-number>) 54 601.33 T
+(::= 1) 270 601.33 T
+(<gil-header>) 54 584.33 T
+(::= ;GIL-<version-number> { <comment> }) 270 584.33 T
+5 F
+-0.94 (Attribute/V) 54 551 P
+-0.94 (alue Pairs) 125.1 551 P
+6 F
+(<background-color-attr>) 54 531.33 T
+(::= :background-color <string>) 270 531.33 T
+(<choices-attr>) 54 514.33 T
+(::= :choices <string-list>) 270 514.33 T
+(<columns-attr>) 54 497.33 T
+(::= :columns <integer>) 270 497.33 T
+(<done-handler-attr>) 54 480.33 T
+(::= :done-handler <name>) 270 480.33 T
+(<drawing-model-attr>) 54 463.33 T
+(::= :drawing-model <drawing-model-type>) 270 463.33 T
+(<events-attr>) 54 446.33 T
+(::= :events <event-type-list>) 270 446.33 T
+(<event-handler-attr>) 54 429.33 T
+(::= :event-handler <name>) 270 429.33 T
+(<foreground-color-attr>) 54 412.33 T
+(::= :foreground-color <string>) 270 412.33 T
+(<height-attr>) 54 395.33 T
+(::= :height <integer>) 270 395.33 T
+(<help-attr>) 54 378.33 T
+(::= :help <string>) 270 378.33 T
+(<horizontal-scrollbar-attr>) 54 361.33 T
+(::= :horizontal-scrollbar <boolean>) 270 361.33 T
+(<icon-file-attr>) 54 344.33 T
+(::= :icon-file <string>) 270 344.33 T
+(<label-attr>) 54 327.33 T
+(::= :label <string>) 270 327.33 T
+(<label-type-attr>) 54 310.33 T
+(::= :label-type <label-type>) 270 310.33 T
+(<label-bold-attr>) 54 293.33 T
+(::= :label-bold <boolean>) 270 293.33 T
+(<label-layout-type-attr>) 54 276.34 T
+(::= :layout-type <label-layout-type>) 270 276.34 T
+(<mapped-attr>) 54 259.34 T
+(::= :mapped <boolean>) 270 259.34 T
+(<max-value-attr>) 54 242.34 T
+(::= :max-value <integer>) 270 242.34 T
+(<menu-handler-attr>) 54 225.34 T
+(::= :menu-handler <name>) 270 225.34 T
+(<menu-item-defaults-attr>) 54 208.34 T
+(::= :menu-item-defaults <boolean-list>) 270 208.34 T
+(<menu-item-handlers-attr>) 54 191.34 T
+(::= :menu-item-handlers <name-list>) 270 191.34 T
+(<menu-item-labels-attr>) 54 174.34 T
+(::= :menu-item-labels <string-list>) 270 174.34 T
+(<menu-item-label-types-attr>) 54 157.34 T
+(::= :menu-item-label-types <label-type-list>) 270 157.34 T
+FMENDPAGE
+%%EndPage: "157" 8
+%%Page: "158" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (158) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(<menu-item-menus-attr>) 54 641.33 T
+(::= :menu-item-menus <name-list>) 270 641.33 T
+(<menu-name-attr>) 54 624.33 T
+(::= :menu <name>) 270 624.33 T
+(<menu-title-attr>) 54 607.33 T
+(::= :menu-title <string>) 270 607.33 T
+(<menu-type-attr>) 54 590.33 T
+(::= :menu-type <menu-type>) 270 590.33 T
+(<min-value-attr>) 54 573.33 T
+(::= :min-value <integer>) 270 573.33 T
+(<multiple-selections-attr>) 54 556.33 T
+(::= :multiple-selections <boolean>) 270 556.33 T
+(<name-attr>) 54 539.33 T
+(::= :name <name>) 270 539.33 T
+(<notify-handler-attr>) 54 522.33 T
+(::= :notify-handler <name>) 270 522.33 T
+(<owner-attr>) 54 505.33 T
+(::= :owner <name>) 270 505.33 T
+(<pinnable-attr>) 54 488.33 T
+(::= :pinnable <boolean>) 270 488.33 T
+(<pinned-attr>) 54 471.33 T
+(::= :pinned <boolean>) 270 471.33 T
+(<read-only-attr>) 54 454.33 T
+(::= :read-only <boolean>) 270 454.33 T
+(<repaint-proc-attr>) 54 437.33 T
+(::= :repaint-proc <name>) 270 437.33 T
+(<resizable-attr>) 54 420.33 T
+(::= :resizable <boolean>) 270 420.33 T
+(<rows-attr>) 54 403.33 T
+(::= :rows <integer>) 270 403.33 T
+(<scrollable-height-attr>) 54 386.33 T
+(::= :scrollable-height <integer>) 270 386.33 T
+(<scrollable-width-attr>) 54 369.33 T
+(::= :scrollable-width <integer>) 270 369.33 T
+(<selection-required-attr>) 54 352.33 T
+(::= :selection-required <boolean>) 270 352.33 T
+(<setting-type-attr>) 54 335.33 T
+(::= :setting-type <setting-type>) 270 335.33 T
+(<show-border-attr>) 54 318.33 T
+(::= :show-border <boolean>) 270 318.33 T
+(<show-footer-attr>) 54 301.33 T
+(::= :show-footer <boolean>) 270 301.33 T
+(<show-range-attr>) 54 284.33 T
+(::= :show-range <boolean>) 270 284.33 T
+(<show-value-attr>) 54 267.34 T
+(::= :show-value <boolean>) 270 267.34 T
+(<slider-width-attr>) 54 250.34 T
+(::= :slider-width <integer>) 270 250.34 T
+(<text-type-attr>) 54 233.34 T
+(::= :text-type <text-type>) 270 233.34 T
+(<user-data-attr>) 54 216.34 T
+(::= :user-data <character-list>) 270 216.34 T
+(<value-length-attr>) 54 199.34 T
+(::= :value-length <integer>) 270 199.34 T
+(<value-x-attr>) 54 182.34 T
+(::= :value-x <integer>) 270 182.34 T
+(<value-y-attr>) 54 165.34 T
+(::= :value-y <integer>) 270 165.34 T
+(<vertical-scrollbar-attr>) 54 148.34 T
+(::= :vertical-scrollbar <boolean>) 270 148.34 T
+FMENDPAGE
+%%EndPage: "158" 9
+%%Page: "159" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The GIL File Format) 198 108.7 B
+0 F
+0.09 (159) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (A) 541.59 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(<width-attr>) 54 641.33 T
+(::= :width <integer>) 270 641.33 T
+(<x-attr>) 54 624.33 T
+(::= :x <integer>) 270 624.33 T
+(<y-attr>) 54 607.33 T
+(::= :y <integer>) 270 607.33 T
+5 F
+(Elements) 54 574 T
+6 F
+(<base-window>) 54 554.33 T
+(::= :type :base-window) 270 554.33 T
+(<name-attr>) 305.29 542.33 T
+(<owner-attr>) 305.29 530.33 T
+(<width-attr>) 305.29 518.33 T
+(<height-attr>) 305.29 506.33 T
+(<background-color-attr>) 305.29 494.33 T
+(<foreground-color-attr>) 305.29 482.33 T
+(<label-attr>) 305.29 470.33 T
+(<label-type-attr>) 305.29 458.33 T
+(<mapped-attr>) 305.29 446.33 T
+(<show-footer-attr>) 305.29 434.33 T
+(<icon-file-attr>) 305.29 422.33 T
+(<event-handler-attr> ) 305.29 410.33 T
+(<events-attr>) 305.29 398.33 T
+(<user-data-attr>) 305.29 386.33 T
+(<button>) 54 369.33 T
+(::= :type :button) 270 369.33 T
+(<name-attr> ) 306 357.33 T
+(<owner-attr> ) 306 345.33 T
+(<help-attr> ) 306 333.33 T
+(<x-attr> ) 306 321.33 T
+(<y-attr> ) 306 309.33 T
+(<width-attr> ) 306 297.33 T
+(<height-attr> ) 306 285.33 T
+(<foreground-color-attr> ) 306 273.34 T
+(<label-attr> ) 306 261.34 T
+(<label-type-attr>) 306 249.34 T
+(<menu-name-attr> ) 306 237.34 T
+(<notify-handler-attr> ) 306 225.34 T
+(<event-handler-attr>) 306 213.34 T
+(<events-attr>) 306 201.34 T
+(<user-data-attr>) 306 189.34 T
+FMENDPAGE
+%%EndPage: "159" 10
+%%Page: "160" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (160) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(<canvas-pane>) 54 641.33 T
+(::= :type :canvas-pane) 270 641.33 T
+(<name-attr> ) 306 629.33 T
+(<owner-attr> ) 306 617.33 T
+(<help-attr> ) 306 605.33 T
+(<x-attr> ) 306 593.33 T
+(<y-attr> ) 306 581.33 T
+(<width-attr> ) 306 569.33 T
+(<height-attr> ) 306 557.33 T
+(<background-color-attr> ) 306 545.33 T
+(<foreground-color-attr> ) 306 533.33 T
+(<menu-name-attr> ) 306 521.33 T
+(<horizontal-scrollbar-attr>) 306 509.33 T
+(<scrollable-width-attr> ) 306 497.33 T
+(<vertical-scrollbar-attr>) 306 485.33 T
+(<scrollable-height-attr> ) 306 473.33 T
+(<repaint-proc-attr> ) 306 461.33 T
+(<event-handler-attr> ) 306 449.33 T
+(<events-attr>) 306 437.33 T
+(<drawing-model-attr>) 306 425.33 T
+(<user-data-attr>) 306 413.33 T
+(<control-area>) 54 396.33 T
+(::= :type :control-area ) 270 396.33 T
+(<name-attr>) 306 384.33 T
+(<owner-attr>) 306 372.33 T
+(<help-attr>) 306 360.33 T
+(<x-attr>) 306 348.33 T
+(<y-attr>) 306 336.33 T
+(<width-attr>) 306 324.33 T
+(<height-attr>) 306 312.33 T
+(<background-color-attr>) 306 300.33 T
+(<foreground-color-attr>) 306 288.33 T
+(<show-border-attr>) 306 276.34 T
+(<menu-name-attr> ) 306 264.34 T
+(<event-handler-attr> ) 306 252.34 T
+(<events-attr> ) 306 240.34 T
+(<user-data-attr>) 306 228.34 T
+FMENDPAGE
+%%EndPage: "160" 11
+%%Page: "161" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The GIL File Format) 198 108.7 B
+0 F
+0.09 (161) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (A) 541.59 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(<menu>) 54 641.33 T
+(::= :type :menu) 270 641.33 T
+(<name-attr>) 306 629.33 T
+(<help-attr>) 306 617.33 T
+(<columns-attr> ) 306 605.33 T
+(<label-attr> ) 306 593.33 T
+(<label-type-attr> ) 306 581.33 T
+(<menu-type-attr> ) 306 569.33 T
+(<menu-handler-attr> ) 306 557.33 T
+(<menu-title-attr> ) 306 545.33 T
+(<menu-item-labels-attr> ) 306 533.33 T
+(<menu-item-label-types-attr> ) 306 521.33 T
+(<menu-item-defaults-attr> ) 306 509.33 T
+(<menu-item-handlers-attr> ) 306 497.33 T
+(<menu-item-menus-attr> ) 306 485.33 T
+(<pinnable-attr>) 306 473.33 T
+(<user-data-attr>) 306 461.33 T
+(<message>) 54 444.33 T
+(::= :type :message) 270 444.33 T
+(<name-attr>) 306 432.33 T
+(<owner-attr>) 306 420.33 T
+(<help-attr>) 306 408.33 T
+(<x-attr>) 306 396.33 T
+(<y-attr>) 306 384.33 T
+(<width-attr>) 306 372.33 T
+(<height-attr>) 306 360.33 T
+(<foreground-color-attr>) 306 348.33 T
+(<label-attr> ) 306 336.33 T
+(<label-type-attr> ) 306 324.33 T
+(<label-bold-attr> ) 306 312.33 T
+(<event-handler-attr> ) 306 300.33 T
+(<events-attr>) 306 288.33 T
+(<user-data-attr>) 306 276.34 T
+FMENDPAGE
+%%EndPage: "161" 12
+%%Page: "162" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (162) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(<popup-window>) 54 641.33 T
+(::= :type :popup-window) 270 641.33 T
+(<name-attr>) 306 629.33 T
+(<owner-attr>) 306 617.33 T
+(<width-attr>) 306 605.33 T
+(<height-attr>) 306 593.33 T
+(<background-color-attr>) 306 581.33 T
+(<foreground-color-attr>) 306 569.33 T
+(<label-attr> ) 306 557.33 T
+(<label-type-attr> ) 306 545.33 T
+(<mapped-attr> ) 306 533.33 T
+(<show-footer-attr>) 306 521.33 T
+(<resizable-attr> ) 306 509.33 T
+(<pinned-attr> ) 306 497.33 T
+(<done-handler-attr> ) 306 485.33 T
+(<event-handler-attr> ) 306 473.33 T
+(<events-attr>) 306 461.33 T
+(<user-data-attr>) 306 449.33 T
+(<scrolling-list>) 54 432.33 T
+(::= :type :scrolling-list) 270 432.33 T
+(<name-attr>) 306 420.33 T
+(<owner-attr>) 306 408.33 T
+(<help-attr>) 306 396.33 T
+(<x-attr>) 306 384.33 T
+(<y-attr>) 306 372.33 T
+(<width-attr>) 306 360.33 T
+(<height-attr>) 306 348.33 T
+(<foreground-color-attr>) 306 336.33 T
+(<rows-attr> ) 306 324.33 T
+(<read-only-attr> ) 306 312.33 T
+(<multiple-selections-attr> ) 306 300.33 T
+(<selection-required-attr> ) 306 288.33 T
+(<menu-name-attr>) 306 276.34 T
+(<notify-handler-attr> ) 306 264.34 T
+(<event-handler-attr> ) 306 252.34 T
+(<events-attr>) 306 240.34 T
+(<user-data-attr>) 306 228.34 T
+FMENDPAGE
+%%EndPage: "162" 13
+%%Page: "163" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The GIL File Format) 198 108.7 B
+0 F
+0.09 (163) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (A) 541.59 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(<setting>) 54 641.33 T
+(::= :type :setting) 270 641.33 T
+(<name-attr>) 306 629.33 T
+(<owner-attr>) 306 617.33 T
+(<help-attr>) 306 605.33 T
+(<x-attr>) 306 593.33 T
+(<y-attr>) 306 581.33 T
+(<width-attr>) 306 569.33 T
+(<height-attr>) 306 557.33 T
+(<value-x-attr> ) 306 545.33 T
+(<value-y-attr> ) 306 533.33 T
+(<label-layout-type-attr> ) 306 521.33 T
+(<foreground-color-attr>) 306 509.33 T
+(<setting-type-attr> ) 306 497.33 T
+(<choices-attr> ) 306 485.33 T
+(<label-attr> ) 306 473.33 T
+(<label-type-attr> ) 306 461.33 T
+(<notify-handler-attr> ) 306 449.33 T
+(<event-handler-attr> ) 306 437.33 T
+(<events-attr>) 306 425.33 T
+(<user-data-attr>) 306 413.33 T
+(<slider>) 54 396.33 T
+(::= :type :slider) 270 396.33 T
+(<name-attr>) 306 384.33 T
+(<owner-attr>) 306 372.33 T
+(<help-attr>) 306 360.33 T
+(<x-attr>) 306 348.33 T
+(<y-attr>) 306 336.33 T
+(<width-attr>) 306 324.33 T
+(<height-attr>) 306 312.33 T
+(<value-x-attr> ) 306 300.33 T
+(<value-y-attr> ) 306 288.33 T
+(<slider-width-attr> ) 306 276.34 T
+(<foreground-color-attr>) 306 264.34 T
+(<label-attr> ) 306 252.34 T
+(<label-type-attr> ) 306 240.34 T
+(<label-layout-type-attr> ) 306 228.34 T
+(<show-range-attr>) 306 216.34 T
+(<show-value-attr>) 306 204.34 T
+(<min-value-attr> ) 306 192.34 T
+(<max-value-attr> ) 306 180.34 T
+(<notify-handler-attr> ) 306 168.34 T
+(<event-handler-attr> ) 306 156.34 T
+FMENDPAGE
+%%EndPage: "163" 14
+%%Page: "164" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (164) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(<events-attr>) 306 641.33 T
+(<user-data-attr>) 306 629.33 T
+(<term-pane>) 54 612.33 T
+(::= :type :term-pane) 270 612.33 T
+(<name-attr>) 306 600.33 T
+(<owner-attr>) 306 588.33 T
+(<help-attr>) 306 576.33 T
+(<x-attr>) 306 564.33 T
+(<y-attr>) 306 552.33 T
+(<width-attr>) 306 540.33 T
+(<height-attr>) 306 528.33 T
+(<background-color-attr>) 306 516.33 T
+(<foreground-color-attr>) 306 504.33 T
+(<show-border-attr>) 306 492.33 T
+(<event-handler-attr> ) 306 480.33 T
+(<events-attr>) 306 468.33 T
+(<user-data-attr>) 306 456.33 T
+(<text-field>) 54 439.33 T
+(::= :type :text-field) 270 439.33 T
+(<name-attr>) 306 427.33 T
+(<owner-attr>) 306 415.33 T
+(<help-attr>) 306 403.33 T
+(<x-attr>) 306 391.33 T
+(<y-attr>) 306 379.33 T
+(<width-attr>) 306 367.33 T
+(<height-attr>) 306 355.33 T
+(<foreground-color-attr>) 306 343.33 T
+(<text-type-attr> ) 306 331.33 T
+(<label-attr> ) 306 319.33 T
+(<label-type-attr> ) 306 307.33 T
+(<value-x-attr> ) 306 295.33 T
+(<value-y-attr> ) 306 283.33 T
+(<label-layout-type-attr> ) 306 271.34 T
+(<value-length-attr> ) 306 259.34 T
+(<max-value-attr> ) 306 247.34 T
+(<min-value-attr> ) 306 235.34 T
+(<read-only-attr> ) 306 223.34 T
+(<notify-handler-attr> ) 306 211.34 T
+(<event-handler-attr> ) 306 199.34 T
+(<events-attr>) 306 187.34 T
+(<user-data-attr>) 306 175.34 T
+FMENDPAGE
+%%EndPage: "164" 15
+%%Page: "165" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (The GIL File Format) 198 108.7 B
+0 F
+0.09 (165) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (A) 541.59 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(<text-pane>) 54 641.33 T
+(::= :type :text-pane) 270 641.33 T
+(<name-attr>) 306 629.33 T
+(<owner-attr>) 306 617.33 T
+(<help-attr>) 306 605.33 T
+(<x-attr>) 306 593.33 T
+(<y-attr>) 306 581.33 T
+(<width-attr>) 306 569.33 T
+(<height-attr>) 306 557.33 T
+(<background-color-attr>) 306 545.33 T
+(<foreground-color-attr>) 306 533.33 T
+(<show-border-attr>) 306 521.33 T
+(<event-handler-attr> ) 306 509.33 T
+(<events-attr>) 306 497.33 T
+(<user-data-attr>) 306 485.33 T
+(<object>) 54 468.33 T
+(::= \050 {) 270 468.33 T
+(<base-window> |) 306 456.33 T
+(<button> |) 306 444.33 T
+(<canvas-pane> |) 306 432.33 T
+(<control-area> |) 306 420.33 T
+(<menu> |) 306 408.33 T
+(<message> |) 306 396.33 T
+(<popup-window> |) 306 384.33 T
+(<scrolling-list> |) 306 372.33 T
+(<setting> |) 306 360.33 T
+(<slider> |) 306 348.33 T
+(<term-pane> |) 306 336.33 T
+(<text-field> |) 306 324.33 T
+(<text-pane> |) 306 312.33 T
+(} \051) 306 300.33 T
+(<gil-file>) 54 283.33 T
+(::= \050 <gil-header> { <object> } \051) 270 283.33 T
+5 F
+(Notes) 54 250 T
+4 F
+0.52 0.1 (W) 198 228.34 B
+0.52 0.1 (indows \050base and popup\051 can only contain panes \050contr) 207.54 228.34 B
+0.52 0.1 (ol ar) 462.07 228.34 B
+0.52 0.1 (ea, text pane, ) 482.72 228.34 B
+0.52 0.1 (term pane\051.) 198 215.93 B
+0.52 0.1 (Panes ar) 198 195.53 B
+0.52 0.1 (e always within windows.) 236.46 195.53 B
+0.52 0.1 (Contr) 198 175.14 B
+0.52 0.1 (ols ar) 223.89 175.14 B
+0.52 0.1 (e always within contr) 248.87 175.14 B
+0.52 0.1 (ol ar) 347.63 175.14 B
+0.52 0.1 (eas.) 368.28 175.14 B
+FMENDPAGE
+%%EndPage: "165" 16
+%%Page: "166" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (A) 57.08 680.03 S
+0 F
+0 X
+0 K
+0.09 (166) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (GIL objects ar) 198 641.33 B
+0.52 0.1 (e always or) 261.35 641.33 B
+0.52 0.1 (der) 313.53 641.33 B
+0.52 0.1 (ed so containing objects come \336rst.  Objects ar) 328.49 641.33 B
+0.52 0.1 (e ) 539.64 641.33 B
+0.52 0.1 (then or) 198 628.93 B
+0.52 0.1 (der) 230.62 628.93 B
+0.52 0.1 (ed by Y location and then X location.) 245.58 628.93 B
+0.19 0.1 (W) 198 608.53 B
+0.19 0.1 (indow names must be unique within a GIL \336le.  For GXV other object names ) 207.54 608.53 B
+0.1 0.1 (must be unique only within their containing window) 198 596.13 B
+0.1 0.1 (. However) 437.55 596.13 B
+0.1 0.1 (, for TNT 2.0 all ) 484.09 596.13 B
+0.52 0.1 (object names must be unique.) 198 583.73 B
+FMENDPAGE
+%%EndPage: "166" 17
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 16 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Courier
+%%+ Times-Bold

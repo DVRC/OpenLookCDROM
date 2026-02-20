@@ -1,0 +1,184 @@
+;;;	(c) Copyright 1989, 1990, 1991 Sun Microsystems, Inc. 
+;;;	Sun design patents pending in the U.S. and foreign countries. 
+;;;	See LEGAL_NOTICE file for terms of the license.
+
+
+				LIST-VIEWERS
+
+A "list-viewer" is a class that can be the basis for a wide variety of
+scrolling-list style user interface components.  A list-viewer is like a
+scrolling-list in that it displays a potentially large number of
+choices, stacked vertically, in a window with a vertical scrollbar.
+List-Viewers are different than scrolling-lists:
+
+- Unlike scrolling-lists each choice is drawn by the application.  As a result
+choices are not constrained to be strings or a small glyph followed by a string;
+list-viewer choices can be anything your application can draw on a canvas or an image.
+
+- The height and width of list-viewer choices can vary, scrolling-list choices must
+all have the same width and height.
+
+- The cost of creating a list-viewer is proportional to the number of viewable
+choices rather than the total number of choices.
+
+- Although both scrolling-lists and list-viewers are designed to display lists
+of choices where each choice occupies one line or "row", list-viewers can be
+extended to support columns or or some other tessellation of the space within 
+a row.
+
+
+The LispView list-viewer package defines and exports three basic
+list-viewer classes: list-viewer, exclusive-list-viewer and
+non-exclusive-list-viewer.  The second two classes are subclasses of
+list-viewer; they provide basic definitions for the methods
+select-choice and highlight-choice (see below).  To create a new kind
+of list-viewer you need to define a subclass of one of the exported
+classes and methods for (at least): lv-nth-choice, lv-draw-choice, lv-choice-height.
+
+
+LV-N-CHOICES (v list-viewer)
+
+Returns the total, fixnum, number of choices to be displayed in the list-viewer.
+You can change this value at any time with setf.  
+
+
+LV-NTH-CHOICE (v list-viewer) row
+
+Returns the object that represents the choice for the specified row and list-viewer.
+The list-viewer implementation will apply the remaining four methods to this object
+to determine its dimensions, draw it, highlight it, and handle mouse events that
+occur within it.  There is no default method for lv-nth-choice.
+
+
+LV-CHOICE-HEIGHT (v list-viewer) choice
+
+Return a distance large enough to contain the entire choice when
+rendered by lv-draw-choice and possibly highlighted by lv-highlight-choice.
+There is no default method for lv-choice-height.
+
+
+LV-DRAW-CHOICE (v list-viewer) drawable x y choice row
+
+Draw the choice on the specified drawable so that the upper left hand
+corner of the choices outermost region is at x,y.  When the choice is
+drawn it should be no higher than the value returned by lv-choice-height.
+There is no default method for lv-draw-choice.
+
+
+LV-HIGHLIGHT-CHOICE (v list-viewer) drawable region choice row operation
+
+This method will be called after a choice has been drawn so that
+the application can add a mark to indicate that the choice has been selected.
+Operation will be :draw or :erase, region will be the portion of drawable
+that contains the choice and any existing highlight.   The default method 
+for highlight-choice draws or erases a rectangle on the edges of region.
+
+
+LV-SELECT-CHOICE (v list-viewer) canvas x y choice row
+
+This method is called whenever the select button (the left button) is 
+pressed within the list-viewer.  The coordinates of mouse, x,y, are passed
+along for applications that want to subdivide a single row into more than
+one mouse sensitive area.  There is no default method for select-choice
+however there are predefined methods for select-choice specialized for
+exclusive-list-viewer and non-exclusive-list-viewer.
+
+
+
+The rest of the list-viewer interface is equally flexible however most
+applications will probably be able to use the standard definitions.
+Note that although list-viewer is NOT a subclass of canvas it does
+support some of the basic canvas protocol: display, status,
+bounding-region, mapped, parent interests.  The semantics of the
+list-viewer methods for these generic functions are the same as for
+canvases and are not documented here.
+
+
+
+INITIALIZE-INSTANCE (v list-viewer) 
+	            &key 
+	              parent mapped interests
+	              bounding-region left right top bottom width height
+		      view-width view-height view-region first-viewable-row 
+		      foreground background
+                    &allow-other-keys
+
+Create a new list-viewer.  The list-viewer will include a complex of
+one or more windows, usually a display window and a scrollbar, all of
+the windows will share the specified parent.  The bounding-region
+arguments specify the outer dimensions of the entire list-viewer
+window complex.  View-width and view-height or view-region specify the inner size of
+the list-viewers display window.  Foreground and background apply to the 
+list-viewers display window.
+
+
+LV-VIEWABLE-CHOICES (v list-viewer)
+LV-CHOICE-OBJECT x
+LV-CHOICE-ROW x
+LV-CHOICE-HIGHLIGHT x
+LV-CHOICE-REGION x
+
+Lv-viewable-choices returns a list of the objects that represents
+the choices that are at least partially visible in the list-viewers
+display window.  The remaining functions can be applied to these objects:
+lv-choice-object returns the actual choice object, lv-choice-row returns
+the choices row number, lv-choice-highlight returns non NIL if the choice
+has been highlighted, lv-choice-region returns the region in the list-viewers
+viewport where the choice is currently displayed.  None of these values
+can be changed with setf.
+
+
+
+LV-FIRST-VIEWABLE-ROW (v list-viewer)
+
+Return the row number of the first at least partially viewable row or change it
+with setf.  If there are now rows, e.g. if lv-n-choices = 0, then return 0.
+
+
+
+LV-UPDATE-CHOICES (v list-viewer) &key n-choices first-viewable-row
+
+Force the viewer to recompute and redraw it's entire display.  This is useful
+if you've created a viewer subclass whose entire set of choices may change
+periodically.   The default for n-choices is the value of (lv-nchoices v)
+and the default for first-viewable-row is the smaller of (lv-nchoices v) 
+and (1- nchoices).
+
+
+
+LV-SELECT-CHOICE (v exclusive-list-viewer) canvas x y choice row
+LV-SELECT-CHOICE (v non-exclusive-list-viewer) canvas x y choice row
+
+Both methods change the list-viewers value with setf.
+
+
+
+VIEWPORT (v list-viewer) 
+
+Return the viewers display window.  The value of viewport can not be changed with
+setf.  Note that the viewport isn't necessarily the drawable passed to lv-draw-choice
+and lv-highlight-choice.  To find the the list-viewer associated with a display-window
+apply the method list-viewer to the window.  In other words (list-viewer (viewport x)) => x.
+This is only important for applications that define their own interests and
+receive-event methods for a viewer.
+
+
+VIEW-REGION (v list-viewer)
+
+Return the inner dimensions of the list-viewers display or change them with setf.
+The setf method for view-region only uses the regions width and height.
+
+
+VALUE (v exclusive-list-viewer)
+VALUE (v non-exclusive-list-viewer)
+
+The exclusive-list-viewer value method returns the most recently selected
+choice.  The non-exclusive-list-viewer method returns a list of all of the selected 
+choices.  In both cases changing the value with setf causes highlight-choice
+to be called to :draw and :erase highlight marks for the affected choices.
+
+
+MENU
+
+The menu to be popped up when the user presses the menu button (the right
+button) over the list-viewer.  [not supported yet]

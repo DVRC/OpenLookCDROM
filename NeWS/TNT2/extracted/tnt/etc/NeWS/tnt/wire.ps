@@ -1,0 +1,389 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)wire.ps 23.10 91/02/11
+%
+
+/Temp growabledict dup /id 0 put def
+
+/wire_Sync { % proc => -
+    /wire_Listener where {
+	/wire_Listener get aload pop	    % proc process file
+	currentprocess /Stdout get eq exch currentprocess eq and
+    } {
+	false
+    } ifelse
+    {   % Can't block; this process has to keep reading the wire.
+    	% First make sure this process has all the necessary variables.
+    	userdict /wire_SyncLevel known not {
+    	    userdict begin
+		% wire_SyncDict is a collection of arrays of tokens; the dict
+		% keys are ints representing the level of recursion at which
+		% the array will be executed.  We use a dict rather than an
+		% array so that it is growable.
+    	    	/wire_SyncDict growabledict dup begin
+		    0 nullarray def
+		end def
+		/wire_SyncLevel 0 def		% recursion level
+		/wire_SyncExit false def	% flag to return to top level
+	    end
+	} if
+	wire_SyncTag tagprint 0 typedprint
+	cvx exec
+	wire_SyncTag tagprint -1 typedprint
+
+	/wire_SyncLevel wire_SyncLevel 1 add store
+	wire_SyncDict wire_SyncLevel nullarray put
+	/wire_SyncExit false store
+
+	% This first loop reads all the PostScript token that have already been
+	% sent but are before the wire_SyncStart token.  The tokens are stored
+	% for later execution.  Initially they're earmarked to be executed at
+	% the previous level of recursion, but intervening wire_SyncEnd tokens
+	% force subsequent stuff to earlier levels.
+	wire_SyncLevel 1 sub 0 {		% level token..token numTokens
+	    currentfile token pop
+	    dup {
+	    	/wire_SyncFinal {pop}
+	    	/wire_SyncEnd {
+	    	    pop array astore		% level [tokens]
+	    	    wire_SyncDict 2 index 2 copy get % lv [tks] dict lv [oldtks]
+	    	    4 -1 roll append put	% level
+	    	    1 sub 0			% level numTokens
+	    	}
+	    	/wire_SyncStart {
+	    	    pop array astore
+	    	    wire_SyncDict 2 index 2 copy get
+	    	    4 -1 roll append put
+	    	    pop exit
+	    	}
+	    	/Default {
+	    	    exch 1 add
+	    	    dup 100 ge count 1200 ge and {
+	    	    	% stack is getting full; append what we have so far
+	    	    	% but stay on same level
+	    	    	array astore	% level [tokens]
+	    	    	wire_SyncDict 2 index 2 copy get
+	    	    	4 -1 roll append put
+	    	    	0
+	    	    } if
+	    	}
+	    } case
+	} loop
+
+	%% This loop is exec'ing the code that is between wire_SyncStart and
+	%% wire_SyncEnd.
+	{ currentfile token pop exec wire_SyncExit { exit } if } loop
+
+	%% After executing sync'd code there may be more code to execute that
+	%% was saved by an embedded sync call.
+	wire_SyncFinal				% exec saved code 
+
+	/wire_SyncLevel wire_SyncLevel 1 sub store
+    } { % Okay to block; listener process will wake us up eventually.
+	currentprocess /BindOverride get {
+	    % tell client to turn on bindoverride in listener process
+	    wire_SyncTag tagprint -2 typedprint
+	    cvx exec
+	    wire_SyncTag tagprint -3 typedprint
+	} {
+	    cvx exec
+	} ifelse
+	
+	% register process in private dict, send ID to client
+	    
+	//Temp begin
+	    id 1 add dup 32767 eq {pop 1} if		% id
+	    /id 1 index def				% id
+	    createevent dup begin			% id event
+		/TimeStampMS currenttimems 5000 add def
+		/Name /DoItEvent def
+		/ClientData [ id /wire_SyncTimedOut cvx ] cvx def
+		/Process GlobalSystemEventMgr def
+	    end						% id event
+	    dup sendevent				% id event
+	    currentprocess 2 array astore def		% -
+	    id						% id
+	end						% id
+	wire_SyncTag tagprint typedprint flush
+	% wait for client to call wire_SyncWake for this ID
+	breakpoint
+    } ifelse
+} def
+
+/wire_SyncEnd {
+	/wire_SyncExit true store
+} def
+
+/wire_SyncFinal {
+	%% Execute the saved code at the current recursion level.
+
+	%% Called in two similar but different contexts.  The first is as a
+	%% subroutine of the main function sync.  The second is in direct
+	%% execution by the top level reader after the last sync call has been
+	%% exited but before the saved code has been executed.
+
+	wire_SyncDict wire_SyncLevel 2 copy get
+	3 1 roll nullarray put
+	cvx exec
+} def
+
+% Wakeup the process associated with ID.  If it's no longer known, that
+% means that the wire_Sync timed out and it's been removed by the procedure
+% below (wire_SyncTimedOut).  This happens when the client times out, but
+% then wakes up later.
+%
+% Normally, though, this just continues to stopped process and recalls the
+% timeout event.
+%
+/wire_SyncWake {	% id => --	wakes up suspended process
+    //Temp exch 2 copy known {		% dict id
+	2 copy get aload pop		% dict id event process
+	continueprocess recallevent	% dict id
+	undef				% -
+    } {
+	pop pop
+    } ifelse
+} def
+
+% The wire_Sync timed out, so we continue the process now.  This also
+% removes the entry from the wire_Sync dict.
+%
+/wire_SyncTimedOut { % id => -
+    //Temp exch 2 copy get aload pop	% dict id event process
+    continueprocess pop			% dict id
+    undef				% -
+} def
+
+/Temp null def
+
+/ClassWireClient [ClassObject]
+dictbegin
+    /wire_ReturnValue   null def
+dictend
+
+classbegin
+    /wire_token		-1 def
+    /wire_Tags		null def
+    /wire_File		null def
+    /wire_AutoFlush?	true def
+    /wire_Trace?	false def
+    /wire_TraceFile	{ console } def
+    /wire_SyncTag	-1 def
+    /wire_UniqueValue	[] def
+
+    /NewInit { % - => -
+	/NewInit super send
+	/wire_initialize self send
+    } def
+
+    /wire_initialize { % - => -
+	userdict /wire_SyncTag known {
+	    /wire_SyncTag dup userdict exch get promote
+	    currentfile /wire_setfile self send
+	} if	
+    } def
+
+    /destroy { % - => -
+	wire_File null ne {
+	    null /wire_setfile self send
+	} if
+	/destroy super send
+    } def
+
+    /HandleObsoleteTarget { % target => -
+	dup /wire_File load eq {			    % target
+	    null /wire_setfile self send		    % target
+	} {
+	    dup /wire_TraceFile load eq {		    % target
+		null /wire_settracefile self send	    % target
+	    } if
+	} ifelse					    % target
+	/HandleObsoleteTarget super send		    % -
+    } def
+
+    /wire_RememberFile { % name file => -
+	1 index load dup null ne {			% name file oldfile
+	    self /removeclient ObsoleteService send	% name file
+	} {
+	    pop						% name file
+	} ifelse
+	dup 3 1 roll soften promote			% file
+	dup null ne {					% file
+	    self /addclient ObsoleteService send	% -
+	} {
+	    pop						% -
+	} ifelse
+    } def
+
+    /wire_setfile { % file => -
+	dup null eq {
+	    -1 /wire_settoken self send
+	} if
+	/wire_File exch /wire_RememberFile self send
+    } def
+
+    /wire_settoken { % token soft? | token => -
+	dup type /booleantype eq {
+	    pop
+	    self soften
+	} {
+	    self
+	} ifelse					% token self
+	1 index null eq {
+	    exch pop -1 exch
+	} if
+	1 index -1 eq {					% token self
+	    wire_token -1 ne {
+		null wire_token wire_File setfileinputtoken
+	    } if
+	    pop						% token
+	} {						% token self
+	    2 copy exch wire_File setfileinputtoken	% token self
+	    pop						% token
+	} ifelse
+	dup -1 eq {					% token
+	    pop /wire_token unpromote			% -
+	} {
+	    /wire_token exch promote			% -
+	} ifelse
+    } def
+
+    /wire_LookupTag { % tagname => value true | false
+	wire_Tags exch 2 copy known {
+	    get true
+	} {
+	    wire_Trace? {
+		wire_TraceFile (Wire: Unknown tag - %\n) [ 3 index ] fprintf
+	    } if
+	    pop pop false
+	} ifelse
+    } def
+
+    /wire_DefineTagInDict { % tagname value tagdict => -
+	3 1 roll put
+    } def
+
+    /wire_definetag { % tagname value => -
+	wire_Tags null eq {
+	    /wire_Tags growabledict promote
+	} if
+	wire_Tags /wire_DefineTagInDict self send
+    } def
+
+    /wire_settagsdict { % dict => -
+	/wire_Tags exch promote
+    } def
+
+    /wire_status { % - => bool
+	wire_File null ne {
+	    wire_File status
+	} {
+	    false
+	} ifelse
+    } def
+
+    /wire_Exec { % proc => bool
+	wire_status {
+	    currentprocess /Stdout get cvlit
+		currentprocess /TmpStdout 3 -1 roll put
+
+	    currentprocess /Stdout wire_File put
+
+	    { exec } stopped				% error?
+
+	    wire_AutoFlush? {flush} if
+
+	    currentprocess /Stdout currentprocess /TmpStdout get put
+	    currentprocess /TmpStdout null put
+
+	    {						% error?
+		stop
+	    } {
+		true
+	    } ifelse
+	} {
+	    false
+	} ifelse
+    } def
+
+    /wire_SendTagAndArgs {
+	wire_Trace? { /wire_TraceSend self send } if
+	wire_LookupTag {		    % [ args ] tagvalue
+	    tagprint			    % [ args ]
+	    { typedprint } forall	    % -
+	} {				    % [args]
+	    pop				    % -
+	} ifelse
+    } def
+
+    /wire_sendclient { % [args] tagname => -
+	//wire_SendTagAndArgs wire_Exec	    % [args] tagname proc false | true
+	not {				    %
+	    pop pop pop			    % -
+	} if
+    } def
+
+    /wire_sendclientsynchronized { % [args] tagname => -
+	{
+	    //wire_SendTagAndArgs wire_Sync
+	} wire_Exec pop
+    } def
+
+    /wire_callbackclient { % [args] tagname => value true | false
+	/wire_ReturnValue wire_UniqueValue store
+	{
+	    //wire_SendTagAndArgs wire_Sync
+	} wire_Exec					% true | false
+	dup {						% true | false
+	    wire_ReturnValue wire_UniqueValue eq {
+		pop false				% false
+	    } {
+		wire_ReturnValue exch			% value true
+	    } ifelse
+	} if
+    } def
+
+    /wire_setautoflush { % bool => -
+	/wire_AutoFlush? exch promote
+    } def
+
+    /wire_autoflush? { % - => bool
+	wire_AutoFlush?
+    } def
+
+    /wire_setreturnvalue { % value => -
+	wire_Trace? { /wire_TraceCallback self send } if
+	/wire_ReturnValue exch def
+    } def
+
+    /wire_settracefile { % file => -
+	/wire_SetTraceFile exch /wire_RememberFile self send
+    } def
+
+    /wire_settrace { % bool => -
+	/wire_Trace? exch promote
+    } def
+
+    /wire_trace? { % - => bool
+	wire_Trace?
+    } def
+
+    /wire_TraceSend { % [args] tagname => [args] tagname
+	wire_TraceFile (Wire: send tag = %, args = ) [3 index] fprintf
+	1 index {
+	    wire_TraceFile (% ) [ 4 -1 roll ] fprintf
+	} forall
+	wire_TraceFile (\n) fprintf
+	wire_TraceFile flushfile
+    } def
+
+    /wire_TraceCallback { % value => value
+	wire_TraceFile (Wire: returns %\n) [ 3 index ] fprintf
+	wire_TraceFile flushfile
+    } def
+
+classend def

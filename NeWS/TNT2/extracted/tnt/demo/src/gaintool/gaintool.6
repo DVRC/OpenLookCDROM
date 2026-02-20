@@ -1,0 +1,87 @@
+.\" @(#)gaintool.6 1.5 91/02/11
+.ds Dc 02/01/91
+.TH GAINTOOL 6 "\*(Dc" "" "TNT Demos"
+.SH NAME
+gaintool \- audio control panel
+.SH DISCLAIMER
+.LP
+This program is furnished on an AS IS basis as a demonstration
+of audio applications programming.
+.SH SYNOPSIS
+.B gaintool
+.SH DESCRIPTION
+.B Gaintool
+is a NeWS/TNT demonstration program that controls various characteristics
+of the SPARCstation audio device.  Operations performed by the
+.B gaintool
+control panel affect all audio programs;  for instance, adjusting the
+.I Play Volume
+instantly changes the output gain, regardless of which program is playing
+audio data.  Further,
+.B gaintool
+detects audio state changes made by other programs,
+and updates its display accordingly, so that it keeps in sync with the
+current device configuration.
+.LP
+.B Gaintool
+demonstrates an important principle involved in the integration of
+audio in the desktop environment: by enabling global control of important
+audio characteristics, it is not necessary for every application to
+provide an interface for these parameters.  For instance, since audio output
+may be paused from the control panel, it is not strictly necessary that
+output applications display a
+.I Pause
+button of their own.  However, such applications may detect that audio
+output has been paused, and take appropriate action.
+.LP
+.B Gaintool
+also demonstrates the use of controls with a shared handler, and the use
+of previewing for immediate feedback from the controlled audio.
+.SH Control Panel
+.IP "Play Volume"
+This slider adjusts the output volume.
+Volume levels between 0 and 100 may be selected, where 0 represents
+infinite attenuation and 100 is maximum gain.
+.IP "Record Volume"
+This slider adjusts the recording gain level in the range 0 to 100.
+.IP "Monitor Volume"
+This slider adjusts the monitor gain level in the range 0 to 100.
+Monitor gain controls the amount of audio input signal that is
+fed through to the output port.  For instance, if an audio source
+(such as a radio or CD-player) is connected directly to the input port,
+the input signal may be monitored
+through either the built-in speaker or the headphone jack.
+.IP Output
+This selector switches the audio output port between
+the built-in speaker and the external headphone jack.
+.IP "Pause Play"
+This button may be used to suspend and resume audio output.
+If audio output is in progress when
+.I Pause
+is pressed, it is stopped immediately and subsequent output data remains
+queued.
+The button then switches to a
+.I Resume
+button that, when pressed, resumes audio output at the point that
+it was suspended.
+.IP
+If no process has the device open for output when
+.I Pause
+is pressed,
+.B gaintool
+holds the device open itself, thereby denying other processes output access.
+Audio programs that simply open and write to the audio device will
+typically be suspended when they attempt to open the device.
+Programs that asynchronously poll the device will discover that it is
+``busy'' and may take appropriate action.
+.SH BUGS
+.I Record Volume
+should be controlled by a separate panel that also provides automatic
+gain level adjustment capabilities.
+.SH SEE ALSO
+.BR soundtool (1).
+.SH LEGAL STUFF
+.I PostScript
+is a trademark of Adobe Systems, Inc.
+.I NeWS
+is a trademark of Sun Microsystems, Inc.

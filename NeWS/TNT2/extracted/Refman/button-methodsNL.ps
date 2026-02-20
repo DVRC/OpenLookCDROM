@@ -1,0 +1,2123 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 12 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 9 /Palatino-Italic FMDEFINEFONT
+5 10 /Palatino-Roman FMDEFINEFONT
+6 10 /Palatino-Italic FMDEFINEFONT
+7 9 /Helvetica-Bold FMDEFINEFONT
+8 7 /Helvetica-Oblique FMDEFINEFONT
+%%Page: "29" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (29) 548.83 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (4-0) 159.51 672.33 S
+-0.12 (4-0) 159.51 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (Buttons) 199.01 509.03 S
+3 F
+7 X
+1 K
+-3.12 (4) 540.57 508.36 S
+4 F
+0 X
+0 K
+0.47 0.09 (Figur) 198 390.6 B
+0.47 0.09 (e 4-1) 218.77 390.6 B
+0 F
+0.47 0.09 (The buttons subtr) 248.4 390.6 B
+0.47 0.09 (ee) 321.12 390.6 B
+5 F
+0.14 0.1 (Buttons and menu buttons come in gr) 198 365.93 B
+0.14 0.1 (oups; buttons ar) 368.98 365.93 B
+0.14 0.1 (e consider) 442.42 365.93 B
+0.14 0.1 (ed items in the ) 488.36 365.93 B
+0.42 0.1 (button gr) 198 353.53 B
+0.42 0.1 (oup. A single button is a degenerate case. The buttons in a gr) 240.49 353.53 B
+0.42 0.1 (oup ar) 520.32 353.53 B
+0.42 0.1 (e ) 550.09 353.53 B
+0.52 0.1 (items and ar) 198 341.13 B
+0.52 0.1 (e added, deleted and accessed using the methods found in ) 254.94 341.13 B
+0.52 0.1 (ClassItemGr) 198 328.73 B
+0.52 0.1 (oup \050see ClassItemGr) 254.2 328.73 B
+0.52 0.1 (oup on page 87\051. Some of the ) 351.96 328.73 B
+0.52 0.1 (ClassItemGr) 198 316.33 B
+0.52 0.1 (oup methods inherited by ClassButtons ar) 254.2 316.33 B
+0.52 0.1 (e:) 447.08 316.33 B
+0.1 (/setitemlist) 198 299.93 S
+0.1 (/itemlist) 279 299.93 S
+0.1 (/itemcount) 360 299.93 S
+0.1 (/insertitem) 198 283.53 S
+0.1 (/r) 279 283.53 S
+0.1 (eplaceitem) 289.02 283.53 S
+0.1 (/deleteitem) 360 283.53 S
+0.1 (/appenditem) 198 267.13 S
+0.1 (/itemsize) 279 267.13 S
+0.1 (/itemlocation) 360 267.13 S
+0.1 (/itembbox) 198 250.73 S
+0.1 (/pointinitem?) 279 250.73 S
+0.1 (/pointtoitem) 360 250.73 S
+0.52 0.1 (In addition, ClassContr) 198 230.33 B
+0.52 0.1 (ol is mixed-in to ClassButtons. The contr) 304.43 230.33 B
+0.52 0.1 (ol interfaces ) 490.3 230.33 B
+0.52 0.1 (documented in ClassButtons ar) 198 217.93 B
+0.52 0.1 (e: /setnoti\336er) 340.68 217.93 B
+0.52 0.1 (, /noti\336er) 402.21 217.93 B
+0.52 0.1 (, /setvisualstate) 446.26 217.93 B
+0.52 0.1 (/visualstate and the tar) 198 205.53 B
+0.52 0.1 (get interface \050see ) 305.58 205.53 B
+6 F
+0.52 0.1 (Managing r) 385.55 205.53 B
+0.52 0.1 (efer) 435.47 205.53 B
+0.52 0.1 (ences between contr) 450.13 205.53 B
+0.52 0.1 (ols ) 532.85 205.53 B
+0.52 0.1 (and other objects) 198 193.13 B
+5 F
+0.52 0.1 (\051.) 268.28 193.13 B
+54 144 558 466.34 C
+90 405 558 456.34 C
+90 405 558 456.34 R
+7 X
+0 K
+V
+7 F
+0 X
+(ClassObject) 91.58 447.46 T
+(ClassDrawable) 166.59 446.98 T
+(ClassRegion) 230.51 413.6 T
+(ClassItemGroup) 308.94 414.1 T
+(ClassButtons) 398.51 432.21 T
+(ClassMenuButtons) 477.18 432.23 T
+144.36 449.44 164.36 449.44 2 L
+0.5 H
+2 Z
+N
+284.54 416.71 306.14 416.71 2 L
+N
+8 F
+(\050ClassControl\051) 402.51 441.88 T
+(\050ClassLayout\051) 319.29 422.8 T
+474.94 434.73 454.94 434.73 2 L
+N
+230.25 449.18 231.76 422.18 2 L
+N
+377.13 417.76 398.73 432.16 2 L
+N
+54 144 558 466.34 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "29" 2
+1 15 /Palatino-Italic FMDEFINEFONT
+3 14 /Palatino-Italic FMDEFINEFONT
+8 9 /Helvetica FMDEFINEFONT
+%%Page: "30" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (30) 54 108.7 S
+4 F
+-0.58 0.09 (The NewS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 242.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 283.7 108.7 B
+-0.58 0.09 (ch 1991) 359.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (A button gr) 198 641.33 B
+0.52 0.1 (oup is cr) 251.58 641.33 B
+0.52 0.1 (eated and items ar) 291.36 641.33 B
+0.52 0.1 (e added either one at a time or with a ) 375.85 641.33 B
+0.52 0.1 (single call. Most of the time items ar) 198 628.93 B
+0.52 0.1 (e simple string display items, but ) 364.51 628.93 B
+0.52 0.1 (theor) 198 616.53 B
+0.52 0.1 (etically any display item may be displayed in a button. \050See Chapter 7, ) 221.59 616.53 B
+0.52 0.1 (Display Items on page 79.\051 However) 198 604.13 B
+0.52 0.1 (, buttons ar) 364.3 604.13 B
+0.52 0.1 (e r) 416.38 604.13 B
+0.52 0.1 (estricted to a \336xed size that ) 428.25 604.13 B
+0.52 0.1 (accommodates a maximum font size of 12 points.) 198 591.73 B
+1 F
+(ClassButtons) 54 558 T
+3 F
+(Cr) 126 523.67 T
+(eation) 140.52 523.67 T
+8 F
+(/new) 54 503 T
+(placement parent ) 198 503 T
+7 F
+(/new) 269.93 503 T
+8 F
+( instance) 289.91 503 T
+5 F
+0.52 0.1 (Cr) 198 483.33 B
+0.52 0.1 (eates a button gr) 209.05 483.33 B
+0.52 0.1 (oup, i.e., an instance of ClassButtons. ) 285.54 483.33 B
+8 F
+0.45 -0.27 (placement) 458.82 483.33 B
+5 F
+0.52 0.1 ( is one of ) 497.85 483.33 B
+8 F
+0.5 (/Spaced) 198 470.93 P
+5 F
+0.52 0.1 (, ) 230.98 470.93 B
+8 F
+0.5 (/Absolute) 236.69 470.93 P
+5 F
+0.52 0.1 (, ) 274.16 470.93 B
+8 F
+0.5 (/Calculated) 279.88 470.93 P
+5 F
+0.52 0.1 ( or ) 324.83 470.93 B
+8 F
+0.5 (/Grid) 340.67 470.93 P
+5 F
+0.52 0.1 (. \050See Chapter 9, ClassItemGr) 360.15 470.93 B
+0.52 0.1 (oup; Setting ) 494.27 470.93 B
+0.52 0.1 (the item list, for an explanation of placement\051.) 198 458.53 B
+3 F
+-0.88 (Abbr) 126 425.47 P
+-0.88 (eviated buttons) 154.25 425.47 P
+8 F
+(/setabbreviated) 54 404.8 T
+(item-index boolean ) 198 404.8 T
+7 F
+(/setabbreviated) 276.42 404.8 T
+8 F
+( -) 342.36 404.8 T
+5 F
+0.52 0.1 (Determines whether the button at ) 198 385.13 B
+8 F
+0.5 (item-index) 355.69 385.13 P
+5 F
+0.52 0.1 ( is abbr) 397.14 385.13 B
+0.52 0.1 (eviated. Invalidates the ) 430.95 385.13 B
+0.5 0.1 (gr) 198 372.73 B
+0.5 0.1 (oup. \050See the ) 207.52 372.73 B
+6 F
+0.5 0.1 (OPEN LOOK Graphical User Interface Functional Speci\336cation) 269.92 372.73 B
+5 F
+0.5 0.1 ( for ) 538.67 372.73 B
+0.52 0.1 (a de\336nition of abbr) 198 360.33 B
+0.52 0.1 (eviated buttons.\051) 285.66 360.33 B
+8 F
+(/abbreviated?) 54 340.6 T
+(item-index ) 198 340.6 T
+7 F
+(/abbreviated?) 241.95 340.6 T
+8 F
+( boolean) 300.39 340.6 T
+5 F
+0.52 0.1 (Returns whether the button at ) 198 320.93 B
+8 F
+0.5 (item-index) 339.05 320.93 P
+5 F
+0.52 0.1 ( is abbr) 380.5 320.93 B
+0.52 0.1 (eviated.) 414.3 320.93 B
+3 F
+-0.88 (Ability to interact with buttons) 126 287.87 P
+8 F
+(/setvisualstate) 54 267.2 T
+(item-index state ) 198 267.2 T
+7 F
+(/setvisualstate) 263.93 267.2 T
+8 F
+( -) 325.87 267.2 T
+5 F
+0.52 0.1 (Sets the visual state of the button at ) 198 247.53 B
+8 F
+0.5 (item-index) 364.95 247.53 P
+5 F
+0.52 0.1 ( to be ) 406.4 247.53 B
+8 F
+0.5 (state) 435.18 247.53 P
+5 F
+0.52 0.1 (. The visual state of a ) 454.67 247.53 B
+0.37 0.1 (button determines not only its visual pr) 198 235.14 B
+0.37 0.1 (esentation but also whether the button ) 379.19 235.14 B
+0.52 0.1 (can accept user interactions. ) 198 222.73 B
+8 F
+0.5 (state) 329.58 222.73 P
+5 F
+0.52 0.1 ( is one of ) 349.06 222.73 B
+8 F
+0.5 (/Active) 394.23 222.73 P
+5 F
+0.52 0.1 (, ) 421.2 222.73 B
+8 F
+0.5 (/Busy) 426.92 222.73 P
+5 F
+0.52 0.1 (, or ) 448.28 222.73 B
+8 F
+0.5 (/Inactive) 466.72 222.73 P
+5 F
+0.52 0.1 (. Users can ) 500.19 222.73 B
+0.52 0.1 (interact with ) 198 210.34 B
+8 F
+0.45 -0.27 (/Active) 259.17 210.34 B
+5 F
+0.52 0.1 ( buttons; ) 284.25 210.34 B
+8 F
+0.45 -0.27 (/Inactive) 327.36 210.34 B
+5 F
+0.52 0.1 ( and ) 358.4 210.34 B
+8 F
+0.45 -0.27 (/Busy) 381.86 210.34 B
+5 F
+0.52 0.1 ( buttons ignor) 402.99 210.34 B
+0.52 0.1 (e user interaction. ) 467.51 210.34 B
+0.52 0.1 (The button r) 198 197.93 B
+0.52 0.1 (epaints to r) 255.08 197.93 B
+0.52 0.1 (e\337ect the new state only if it is valid.) 306.81 197.93 B
+8 F
+(/visualstate) 54 178.2 T
+(item-index ) 198 178.2 T
+7 F
+(/visualstate) 241.95 178.2 T
+8 F
+( state) 290.9 178.2 T
+5 F
+0.52 0.1 (Returns the state of the button at ) 198 158.53 B
+8 F
+0.5 (item-index) 352.02 158.53 P
+5 F
+0.52 0.1 (.) 393.48 158.53 B
+FMENDPAGE
+%%EndPage: "30" 3
+%%Page: "31" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (Buttons) 198 108.7 S
+0 F
+0.09 (31) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+(Default) 126 638.67 T
+8 F
+(/setdefault) 54 618 T
+(item-index ) 198 618 T
+7 F
+(/setdefault) 241.95 618 T
+8 F
+( -) 286.89 618 T
+5 F
+0.52 0.1 (Makes the button at ) 198 598.33 B
+8 F
+0.5 (item-index) 292.57 598.33 P
+5 F
+0.52 0.1 ( be the default choice for the button gr) 334.02 598.33 B
+0.52 0.1 (oup. ) 510.86 598.33 B
+0.52 0.1 (Invalidates the gr) 198 585.93 B
+0.52 0.1 (oup. The default button has a ring drawn ar) 278.06 585.93 B
+0.52 0.1 (ound it. Button ) 480.22 585.93 B
+0.52 0.1 (defaults ar) 198 573.53 B
+0.52 0.1 (e used most often \050if not exclusively\051 in notices.) 246.53 573.53 B
+8 F
+(/default) 54 553.8 T
+(- ) 198 553.8 T
+7 F
+(/default) 203.49 553.8 T
+8 F
+( item-index | null) 235.45 553.8 T
+5 F
+0.52 0.1 (Returns the ) 198 534.13 B
+8 F
+0.5 (item-index) 253.85 534.13 P
+5 F
+0.52 0.1 ( of the default button choice if ther) 295.3 534.13 B
+0.52 0.1 (e is a default. If no ) 455.24 534.13 B
+0.52 0.1 (default exists ) 198 521.73 B
+8 F
+0.5 (null) 261.54 521.73 P
+5 F
+0.52 0.1 ( is r) 275.52 521.73 B
+0.52 0.1 (eturned.) 292.97 521.73 B
+3 F
+(Justi\336cation) 126 488.67 T
+8 F
+(/setjustification) 54 468 T
+(/Left | /Centered ) 198 468 T
+7 F
+(/setjustification) 264.79 468 T
+8 F
+( -) 330.71 468 T
+5 F
+0.52 0.1 (Sets the justi\336cation for the button\325s display item. Invalidates the gr) 198 448.33 B
+0.52 0.1 (oup. The ) 508.54 448.33 B
+0.52 0.1 (default is ) 198 435.93 B
+8 F
+0.5 (/Centered) 243.7 435.93 P
+5 F
+0.52 0.1 (.) 283.16 435.93 B
+8 F
+(/justification) 54 416.2 T
+(- ) 198 416.2 T
+7 F
+(/justification) 203.49 416.2 T
+8 F
+( /Left | /Centered) 256.43 416.2 T
+5 F
+0.52 0.1 (Returns the justi\336cation of the button gr) 198 396.53 B
+0.52 0.1 (oup.) 381.83 396.53 B
+3 F
+(Noti\336cation) 126 363.47 T
+5 F
+0.52 0.1 (Noti\336ers execute in the context of the local event manager \050LEM\051 and ar) 198 342.13 B
+0.52 0.1 (e ) 528.86 342.13 B
+0.52 0.1 (called with the item-index and button gr) 198 329.73 B
+0.52 0.1 (oup on the stack. Y) 383.91 329.73 B
+0.52 0.1 (ou can associate a ) 471.24 329.73 B
+0.52 0.1 (noti\336er with the entir) 198 317.33 B
+0.52 0.1 (e button gr) 296.2 317.33 B
+0.52 0.1 (oup \050) 346.79 317.33 B
+7 F
+0.45 -0.27 (/setnoti\336er) 371.12 317.33 B
+5 F
+0.52 0.1 (\051 or on a per button basis ) 414.1 317.33 B
+0.1 (\050) 198 304.93 S
+7 F
+-0.27 (/setitemnoti\336er) 201.43 304.93 S
+5 F
+0.1 (\051.) 261.8 304.93 S
+8 F
+(/setnotifier) 54 285.2 T
+( notifier ) 198 285.2 T
+7 F
+(/setnotifier) 229.97 285.2 T
+8 F
+( -) 275.91 285.2 T
+5 F
+0.13 0.1 (Sets the noti\336er for the entir) 198 265.53 B
+0.13 0.1 (e button gr) 324.9 265.53 B
+0.13 0.1 (oup. If you don\325t use ) 374.71 265.53 B
+7 F
+0.11 -0.27 (/setitemnoti\336er) 472.26 265.53 B
+5 F
+0.13 0.1 ( then ) 532.63 265.53 B
+0.52 0.1 (all the buttons in the gr) 198 253.14 B
+0.52 0.1 (oup have the same noti\336er) 305.76 253.14 B
+0.52 0.1 (.) 427.26 253.14 B
+8 F
+(/notifier) 54 233.4 T
+(- ) 198 233.4 T
+7 F
+(/notifier) 203.49 233.4 T
+8 F
+( notifier | null) 236.45 233.4 T
+5 F
+0.52 0.1 (Returns the button gr) 198 213.73 B
+0.52 0.1 (oup\325s noti\336er) 296.44 213.73 B
+0.52 0.1 (. If the button gr) 356.74 213.73 B
+0.52 0.1 (oup doesn\325t have a single ) 432.34 213.73 B
+0.52 0.1 (noti\336er that is associated with all the buttons ) 198 201.34 B
+8 F
+0.5 (null) 407.64 201.34 P
+5 F
+0.52 0.1 ( is r) 421.63 201.34 B
+0.52 0.1 (eturned.) 439.08 201.34 B
+8 F
+(/setitemnotifier) 54 181.6 T
+(item-index notifier ) 198 181.6 T
+7 F
+(/setitemnotifier) 271.42 181.6 T
+8 F
+( -) 335.84 181.6 T
+5 F
+0.52 0.1 (Sets the noti\336er for the button at ) 198 161.93 B
+8 F
+0.5 (item-index) 350.44 161.93 P
+5 F
+0.52 0.1 (. The per item noti\336er takes ) 391.89 161.93 B
+0.52 0.1 (pr) 198 149.53 B
+0.52 0.1 (ecedence over any button gr) 207.98 149.53 B
+0.52 0.1 (oup-wide noti\336er that may exist.) 337.57 149.53 B
+FMENDPAGE
+%%EndPage: "31" 4
+%%Page: "32" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (32) 54 108.7 S
+4 F
+-0.58 0.09 (The NewS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 242.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 283.7 108.7 B
+-0.58 0.09 (ch 1991) 359.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+(/itemnotifier) 54 642 T
+(item-index ) 198 642 T
+7 F
+(/itemnotifier) 241.95 642 T
+8 F
+( notifier | null) 293.38 642 T
+5 F
+0.52 0.1 (Returns the noti\336er of the button at ) 198 622.33 B
+8 F
+0.5 (item-index) 363.91 622.33 P
+5 F
+0.52 0.1 (. If the button doesn\325t have a ) 405.36 622.33 B
+0.52 0.1 (noti\336er then ) 198 609.93 B
+8 F
+0.5 (null) 257.24 609.93 P
+5 F
+0.52 0.1 ( is r) 271.22 609.93 B
+0.52 0.1 (eturned.) 288.67 609.93 B
+3 F
+-0.88 (Managing r) 126 576.87 P
+-0.88 (efer) 192.89 576.87 P
+-0.88 (ences between contr) 212.86 576.87 P
+-0.88 (ols and other objects) 322.8 576.87 P
+5 F
+0.52 0.1 (This section contains the tar) 198 555.53 B
+0.52 0.1 (get interface that ClassButtons inherits fr) 325.78 555.53 B
+0.52 0.1 (om ) 512.78 555.53 B
+0.1 (ClassContr) 198 543.13 S
+0.1 (ol.) 247.85 543.13 S
+8 F
+(/settarget) 54 523.4 T
+(object ) 198 523.4 T
+7 F
+(/settarget) 224.48 523.4 T
+8 F
+( -) 264.93 523.4 T
+5 F
+0.52 0.1 (Sets ) 198 503.73 B
+8 F
+0.5 (object) 219.05 503.73 P
+5 F
+0.52 0.1 ( as the tar) 243.03 503.73 B
+0.52 0.1 (get of the button\325s noti\336er) 288.3 503.73 B
+0.52 0.1 (. If a pr) 407.17 503.73 B
+0.52 0.1 (evious tar) 441.09 503.73 B
+0.52 0.1 (gets exists it is ) 486.19 503.73 B
+0.1 (overwritten.) 198 491.33 S
+8 F
+(/cleartarget) 54 471.6 T
+(null | object ) 198 471.6 T
+7 F
+(/cleartarget) 245.79 471.6 T
+8 F
+( -) 294.25 471.6 T
+5 F
+0.52 0.1 (Clears the tar) 198 451.93 B
+0.52 0.1 (get. If ) 259.29 451.93 B
+8 F
+0.5 (null) 288.92 451.93 P
+5 F
+0.52 0.1 ( is given the tar) 302.9 451.93 B
+0.52 0.1 (get is clear) 374.42 451.93 B
+0.52 0.1 (ed. If ) 423.31 451.93 B
+8 F
+0.5 (object) 450.13 451.93 P
+5 F
+0.52 0.1 ( is speci\336ed then ) 474.11 451.93 B
+0.52 0.1 (the tar) 198 439.53 B
+0.52 0.1 (get is clear) 227.6 439.53 B
+0.52 0.1 (ed only if ) 276.49 439.53 B
+8 F
+0.5 (object) 323.51 439.53 P
+5 F
+0.52 0.1 ( and the tar) 347.49 439.53 B
+0.52 0.1 (get ar) 400.55 439.53 B
+0.52 0.1 (e the same. This latter ) 426.54 439.53 B
+0.52 0.1 (speci\336cation ensur) 198 427.13 B
+0.52 0.1 (es that the tar) 282.75 427.13 B
+0.52 0.1 (get is not incorr) 345.55 427.13 B
+0.52 0.1 (ectly clear) 417.92 427.13 B
+0.52 0.1 (ed.) 463.88 427.13 B
+8 F
+(/sendtarget) 54 407.4 T
+(arguments /method ) 198 407.4 T
+7 F
+(/sendtarget) 277.92 407.4 T
+8 F
+( results) 326.37 407.4 T
+5 F
+0.52 0.1 (Sends ) 198 387.73 B
+8 F
+0.5 (/method) 227.81 387.73 P
+5 F
+0.52 0.1 ( and any ar) 260.29 387.73 B
+0.52 0.1 (guments that the method r) 312.5 387.73 B
+0.52 0.1 (equir) 434.79 387.73 B
+0.52 0.1 (es to the tar) 458.38 387.73 B
+0.52 0.1 (get.) 512.36 387.73 B
+8 F
+(/target) 54 368 T
+(-) 198 368 T
+7 F
+( /target) 200.99 368 T
+8 F
+( null | object) 230.96 368 T
+5 F
+0.52 0.1 (Returns the tar) 198 348.33 B
+0.52 0.1 (get.) 266.17 348.33 B
+8 F
+(/HandleObsoleteTarget) 54 328.6 T
+(object ) 198 328.6 T
+7 F
+(/HandleObsoleteTarget) 224.48 328.6 T
+8 F
+( -) 322.86 328.6 T
+5 F
+0.52 0.1 (Use for br) 198 308.93 B
+0.52 0.1 (eaking r) 243.87 308.93 B
+0.52 0.1 (efer) 281.07 308.93 B
+0.52 0.1 (ence chains. The default is to send ) 298.14 308.93 B
+7 F
+0.45 -0.27 (/cleartarget) 458.37 308.93 B
+5 F
+0.52 0.1 ( to ) 503.58 308.93 B
+8 F
+0.45 -0.27 (object) 518.73 308.93 B
+5 F
+0.52 0.1 (. ) 541.09 308.93 B
+-0.13 0.1 (Subclasses of ClassContr) 198 296.54 B
+-0.13 0.1 (ol that override ) 309.42 296.54 B
+7 F
+-0.11 -0.27 (/HandleObsoleteT) 381.52 296.54 B
+-0.11 -0.27 (arget) 452.95 296.54 B
+5 F
+-0.13 0.1 ( should always do ) 473.57 296.54 B
+0.52 0.1 (a super send.) 198 284.14 B
+1 F
+(ClassMenuButtons) 54 250.4 T
+5 F
+0.52 0.1 (ClassMenuButtons implements OPEN LOOK menu buttons.) 198 228.73 B
+0.52 0.1 (Items in a menu button gr) 198 208.34 B
+0.52 0.1 (oup ar) 317.91 208.34 B
+0.52 0.1 (e described using the following speci\336cation:) 347.79 208.34 B
+8 F
+([ item menu ]) 216 194.6 T
+FMENDPAGE
+%%EndPage: "32" 5
+%%Page: "33" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (Buttons) 198 108.7 S
+0 F
+0.09 (33) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+8 F
+0.17 (item) 198 641.33 P
+5 F
+0.18 0.1 ( serves as the text label or image that is pr) 214.98 641.33 B
+0.18 0.1 (esented within the bor) 405.35 641.33 B
+0.18 0.1 (ders of the ) 507.03 641.33 B
+0.12 0.1 (menu button. ) 198 628.93 B
+8 F
+0.1 -0.27 (menu) 261.83 628.93 B
+5 F
+0.12 0.1 ( is either a menu instance or a PostScript code fragment that ) 283.23 628.93 B
+0.52 0.1 (r) 198 616.53 B
+0.52 0.1 (eturns a menu instance when executed; i.e., when MENU is pr) 201.87 616.53 B
+0.52 0.1 (essed over the ) 487.85 616.53 B
+0.52 0.1 (button the code fragment is executed. The menu associated with the menu ) 198 604.13 B
+0.52 0.1 (button is positioned based on the menu dir) 198 591.73 B
+0.52 0.1 (ection state.) 395.79 591.73 B
+0.52 0.1 (For example, you could set a menu button gr) 198 571.33 B
+0.52 0.1 (oup\325s itemlist like:) 404.76 571.33 B
+8 F
+([) 216 557.6 T
+([ \050Button1\051 menu1 ]) 234 557.6 T
+([ \050Button2\051 menu2 ]) 234 544.6 T
+([ [\050RedButton\051 1 0 0 rgbcolor ] redmenu ]) 234 531.6 T
+(. . . ] /setitemlist mymenubuttons send) 234 518.6 T
+5 F
+0.52 0.1 (ClassMenuButtons inherits the methods speci\336ed in ClassButtons above. In ) 198 498.93 B
+0.48 0.1 (addition, menus in buttons use a mechanism that maintains a notion of which ) 198 486.53 B
+0.04 0.1 (object is af) 198 474.13 B
+0.04 0.1 (fected by the menu\325s noti\336er) 245.38 474.13 B
+0.04 0.1 (. For information on this mechanism see ) 373.96 474.13 B
+0.52 0.1 (The invoker mechanism on page 1) 198 461.73 B
+0.52 0.1 (17. ) 354.76 461.73 B
+0.52 0.1 (Methods r) 198 441.33 B
+0.52 0.1 (elated to menus and de\336ned in ClassMenuButtons ar) 244.8 441.33 B
+0.52 0.1 (e:) 487.86 441.33 B
+8 F
+(/setmenudirection) 54 421.6 T
+(item-index menu-direction ) 198 421.6 T
+7 F
+(/setmenudirection) 303.88 421.6 T
+8 F
+( -) 381.29 421.6 T
+5 F
+0.52 0.1 (Speci\336es wher) 198 401.93 B
+0.52 0.1 (e the menu appears when MENU is pr) 263.48 401.93 B
+0.52 0.1 (essed over the menu ) 440.42 401.93 B
+0.46 0.1 (button at ) 198 389.53 B
+8 F
+0.4 -0.27 (item-index) 242.52 389.53 B
+5 F
+0.46 0.1 (. ) 281.27 389.53 B
+8 F
+0.4 -0.27 (m) 286.94 389.53 B
+0.45 (enu-direction) 294.15 389.53 P
+5 F
+0.46 0.1 ( is de\336ned as either ) 346.1 389.53 B
+8 F
+0.45 (/Down) 438.55 389.53 P
+5 F
+0.46 0.1 ( or ) 464.02 389.53 B
+8 F
+0.45 (/Right) 479.75 389.53 P
+5 F
+0.46 0.1 (. The menu ) 503.23 389.53 B
+0.52 0.1 (mark visual corr) 198 377.13 B
+0.52 0.1 (esponds to ) 273.3 377.13 B
+8 F
+0.45 -0.27 (menu-direction) 325.8 377.13 B
+5 F
+0.52 0.1 (. The default menu dir) 381.45 377.13 B
+0.52 0.1 (ection is ) 484.61 377.13 B
+8 F
+0.45 -0.27 (/Down) 525.45 377.13 B
+5 F
+0.52 0.1 (. ) 549.57 377.13 B
+8 F
+(/menudirection) 54 357.4 T
+(item-index ) 198 357.4 T
+7 F
+(/menudirection) 241.95 357.4 T
+8 F
+( menu-direction) 306.37 357.4 T
+5 F
+0.52 0.1 (Returns the menu dir) 198 337.73 B
+0.52 0.1 (ection for the menu button at ) 295.91 337.73 B
+8 F
+0.45 -0.27 (item-index) 433.33 337.73 B
+5 F
+0.52 0.1 (.) 472.08 337.73 B
+8 F
+(/setmenu) 54 318 T
+(item-index menu ) 198 318 T
+7 F
+(/setmenu) 266.92 318 T
+8 F
+( -) 306.38 318 T
+5 F
+0.52 0.1 (Sets the menu for the menu button at ) 198 298.33 B
+8 F
+0.45 -0.27 (item-index) 372.34 298.33 B
+5 F
+0.52 0.1 (. ) 411.09 298.33 B
+8 F
+0.5 (menu) 416.81 298.33 P
+5 F
+0.52 0.1 ( is speci\336ed as either a ) 439.29 298.33 B
+0.52 0.1 (menu instance or a PostScript code fragment that r) 198 285.93 B
+0.52 0.1 (eturns a menu instance ) 430.46 285.93 B
+0.52 0.1 (when executed.) 198 273.53 B
+8 F
+(/menu) 54 253.8 T
+(item-index ) 198 253.8 T
+7 F
+(/menu) 241.95 253.8 T
+8 F
+( menu) 268.42 253.8 T
+5 F
+0.52 0.1 (Returns the menu for the menu button at ) 198 234.14 B
+8 F
+0.45 -0.27 (item-index) 389.86 234.14 B
+5 F
+0.52 0.1 (.) 428.61 234.14 B
+FMENDPAGE
+%%EndPage: "33" 6
+%%Page: "34" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (34) 54 108.7 S
+4 F
+-0.58 0.09 (The NewS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 242.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 283.7 108.7 B
+-0.58 0.09 (ch 1991) 359.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+FMENDPAGE
+%%EndPage: "34" 7
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 6 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Helvetica-Bold
+%%+ Helvetica-Oblique
+%%+ Helvetica

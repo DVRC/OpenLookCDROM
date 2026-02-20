@@ -1,0 +1,305 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#) help.ps 1.5 91/02/11
+%
+
+/ClassMagnifyGlassCanvas ClassCanvas
+[]
+classbegin
+    /ImageX 10 def  	    	% x-coordinate of lower left of handle
+    /ImageY 20 def		% y-coordinate of lower left of handle
+    /ImageWidth 47 def	    	% Width of glass handle frame
+    /ImageHeight 56 def		% Height of glass handle frame
+    % mglass handle bitmap
+    /ImageData <		
+    FFFFFFFFFD5FFFFFFFFFFAA7FFFFFFFF
+    F737FFFFFFFFFB9BFFFFFFFFF9CCFFFF
+    FFFFF6E3FFFFFFFFEE54FFFFFFFEDCB3
+    FFFFFFFD3901FFFFFFFBB203FFFFFFF7
+    C437FFFFFFEFE87FFFFFFFDFF0FEFFFF
+    FE0FE1FEFFFFFC07C8FFFFFFF80390FF
+    FFFFF00121FFFFFFE0C043FFFFFFC180
+    07FEFFFF83000FFFFFFF06003FFFFFFE
+    0C003FFFFFFC18003FFEFFF830007FFF
+    FFF06000FFFFFFE0C001FFFFFFC18003
+    FFFFFF830007FFFEFF06000FFFFEFE0C
+    001FFFFFFC18003FFFFFF830007FFFFF
+    F06000FFFFFFE0C001FFFFFFC18003FF
+    FFFF830007FFFFFF06000FFFFFFE0C00
+    1FFFFFFF18003FFFFFFF30007FFFFFFF
+    6000FFFFFFFFC001FFFFFFFF8003FFFF
+    FFFF0007FFFFFFFF000FFFFFFFFF001F
+    FFFFFFFF003FFFFFFFFF007FFFFFFFFF
+    00FFFFFFFFFF01FFFFFFFFFF03FFFFFF
+    FFFF07FFFFFFFFFF0FFFFFFFFFFF1FFF
+    FFFFFFFF3FFFFFFFFFFF7FFFFFFFFFFF
+    > def
+
+    /Helpable? true def
+    /HelpKeyword (xview.info:helpMagnifyingGlass) def
+
+    % Parameters of the concentric circular rims
+    /MagnifyX {	 % - => mx
+	ImageWidth dup ImageHeight atan cos
+	MagnifyRadius mul ImageX add add
+    } def
+
+    /MagnifyY	{   % - => my
+	ImageWidth ImageHeight atan sin
+	MagnifyRadius mul ImageY add ImageHeight add
+    } def
+
+    /MagnifyRadius 42 def   	% Radius of inner circle
+   % /MagnifyRadius 36 def   	% Radius of inner circle
+    /MagnifyImage null def	% Image under cursor
+    /MagnifyScale 2 def		% image scaling factor
+    
+    % Painting
+    /Paint  { % - => -
+	BG fillcanvas
+	gsave
+	    ImageX ImageY translate
+	    ImageWidth ImageHeight scale
+	    0 0 0 rgbcolor setcolor
+	    ImageWidth ImageHeight false
+	    [ImageWidth 0 0 ImageHeight neg 0 ImageHeight]
+	    ImageData imagemask
+	grestore
+	/PaintMagnify self send
+    } def
+
+    % Paint the image under the cursor (if non-null) and the circles
+    /PaintMagnify     { % - => -
+	BG setcolor
+	MagnifyX MagnifyY MagnifyRadius 2 add 0 360 arc fill
+	MagnifyImage null ne	{
+	    gsave
+	        MagnifyX MagnifyY translate
+	        0 0 MagnifyRadius 0 360 arc clip
+	        MagnifyImage false getbbox 
+	        4 2 roll pop pop	   % magw magh
+	        MagnifyRadius neg dup translate
+	        scale		      	   % -
+	        MagnifyScale dup scale
+	        MagnifyImage imagecanvas
+	    grestore
+	} if
+	0 0 0 rgbcolor setcolor
+	MagnifyX MagnifyY MagnifyRadius 0 360 arc 
+	MagnifyX MagnifyY MagnifyRadius 2 add 0 360 arc stroke
+    } def
+
+    % Get a piece of the image under the cursor
+    /setmagnifycanvas	 { % x y => -	 ;x,y in framebuffer coordinates
+	7 dict begin
+	    /y exch def
+	    /x exch def
+	    /width MagnifyRadius 2 mul MagnifyScale div def
+	    /height width def
+	    /depth /Color self send {8} {1} ifelse def
+	    gsave
+	        framebuffer setcanvas
+	        /source framebuffer /new ClassCanvas send def
+	        x width 2 div sub y height 2 div sub translate
+	        width height scale
+	        0 0 1 1 /reshape source send
+	    grestore
+	    /imagecan
+	        width height depth
+	        [width 0 0 height neg 0 height]
+	        null buildimage
+	    def
+	    gsave
+	        imagecan setcanvas source imagecanvas
+	    grestore
+	    /MagnifyImage imagecan /promote self send
+	end
+    } def
+
+    /minsize {200 150} def
+classend def
+
+
+/ClassTNTHelpWindow [ClassPopupWindow ClassWireClient]
+[]
+classbegin
+    /Pin? true def
+    /Reshape? false def
+    /Footer? false def
+    /Label? true def
+    /Close? false def
+
+    /HelpTextBag null def
+    /HelpTextSbar null def
+    /MoreHelpButton null def
+    /MoreHelpPanel null def
+
+    /InvokingWindow null def
+
+    /Helpable? true def
+    /HelpKeyword (xview.info:helpWindow) def
+    /preferredsize {592 224} def
+    /NewInit	{  % invoker label-string => -
+	/NewInit super send
+	0 0 preferredsize /reshape self send
+	/setlabel self send
+	/InvokingWindow exch soften promote
+	/HelpWindow self soften promote
+
+	% Create and stash a More Help... button
+	/MoreHelpButton
+	    /Calculated framebuffer /new ClassButtons send
+	promote
+	[(More Help...) [/South {/South PARENT POSITION}]]
+	/setitemlist MoreHelpButton send
+	self /settarget MoreHelpButton send
+	/MoreHelpNotifier /setnotifier MoreHelpButton send
+
+	% Create and install a panel to hold a More Help button
+	% as the south client
+	/MoreHelpPanel
+	    /Calculated framebuffer /new ClassPanel send	% pan
+	    /-South- 1 index /addclient self send		% pan
+	    /minsize {120 40} /promote 3 index send		% pan
+	    0 0 120 40 /reshape 5 index send			% pan
+	    /colors self send /setcolors 3 index send		% pan
+	    [/South {/South PARENT POSITION 0 10 xyadd}]
+	    /setlayoutparameters 2 index send	    	    	% pan
+	promote
+
+	
+	% Create and install the magnifying glass canvas
+	% as the West client
+	framebuffer /new ClassMagnifyGlassCanvas send	% mgcv
+	0 0 /minsize 3 index send			% mgcv 0 0 w h
+	/reshape 5 index send				% mgcv
+	/West exch /addclient self send
+
+	% Create and install a border bag to hold the Jot canvas and
+	% scrollbar
+	/HelpTextBag
+	    framebuffer /new ClassBorderBag send
+	promote
+	/colors self send /setcolors HelpTextBag send
+	2 2 2 2 /setinsets HelpTextBag send
+	/Paint {
+	    BG fillcanvas
+	    0 0 0 rgbcolor 1 /StrokeCanvas self send
+	} /promote HelpTextBag send
+	/minsize {380 140} /promote HelpTextBag send
+	/Center HelpTextBag /addclient self send
+
+	% Create the scrollbar, which may be added as the /-East-
+	% client of HelpTextBag
+	/HelpTextSbar
+	    framebuffer /new ClassVScrollbar send
+	promote
+	
+	/pin self send
+    } def
+
+    /destroy { % - => -
+	/InvokingWindow unpromote
+	/HelpTextBag unpromote
+	/HelpTextSbar unpromote
+	/MoreHelpButton unpromote
+	/MoreHelpPanel unpromote
+	/destroy super send
+    } def
+
+    /open { % - => -
+	InvokingWindow null ne {
+	    /HelpOpened? true /promote InvokingWindow send
+	} if
+	/pin self send
+	/totop self send
+	/open super send
+    } def
+
+    /unpin { % - => -
+	InvokingWindow null ne {
+	    /HelpOpened? /unpromote InvokingWindow send
+	} if
+	/unpin super send
+    } def
+
+    /DismissFromUser { % ctl => -
+	InvokingWindow null ne {
+	    /HelpOpened? /unpromote InvokingWindow send
+	} if
+	/DismissFromUser super send
+    } def
+
+    /MoreHelpNotifier { % index buttongroup
+	pop pop
+	[] /MoreHelpTag wire_sendclient self send
+    } def
+
+    /MoreHelpButton?   { % - => boolean
+	/MoreHelpButton /client MoreHelpPanel send dup {
+	    exch pop
+	} if
+    } def
+
+    /addMoreHelpButton { % - => -
+	/MoreHelpButton MoreHelpButton
+	[] /addclient MoreHelpPanel send
+    } def
+
+    /removeMoreHelpButton { % - => -
+	/MoreHelpButton /removeclient MoreHelpPanel send {
+	    pop
+	} if
+    } def
+
+    /addJotCanvas   { % jc => -
+	/Center 1 index /addclient HelpTextBag send	    % jc
+	HelpTextSbar /ScrollbarInitialize 2 index send
+	/Scroll /setnotifier HelpTextSbar send	    % jc
+	/settarget HelpTextSbar send		    % -
+	/-East- HelpTextSbar /addclient HelpTextBag send
+    } def
+
+    /jotadded?	{
+	/Center /client HelpTextBag send dup {	    % false | client true
+	    exch pop
+	} if
+    } def
+
+    /showmagnify    { % x y => -; framebuffer coordinates of event
+	/West /client self send {
+	    dup 4 1 roll /setmagnifycanvas exch send
+	    /paint exch send
+	} {
+	    pop pop
+	} ifelse
+    } def
+classend def
+
+/ClassNoHelpNotice ClassNotice []
+classbegin
+    /NewInit { % - => notice
+	/NewInit super send
+	(No help is available for this object) 
+	/settext self send
+	/Calculated framebuffer /new ClassButtons send  % buttons
+	[(OK) [/South {/South PARENT POSITION 0 10 xyadd}]]
+	/setitemlist 2 index send		    	% buttons
+	0 /setdefault 2 index send			% buttons
+	{ % index buttongroup
+	    exch pop
+	    /Parent exch send /close exch send 
+	} /setnotifier 2 index send	    	    	% buttons
+	/setbuttons self send
+    } def
+    /close { % - => -
+	/close super send
+	/deactivate self send
+    } def
+classend def
+    
+

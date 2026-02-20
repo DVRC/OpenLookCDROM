@@ -1,0 +1,1474 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 8 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 10 /Palatino-Roman FMDEFINEFONT
+%%Page: "xix" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xix) 545.84 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (0) 161.06 672.33 S
+-0.12 (0) 161.06 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (Pr) 199.01 509.03 S
+-0.4 (eface) 217.84 509.03 S
+3 F
+0.52 0.1 (Imagine, it is 10:30 am Monday morning, you\325ve just shown up for work, and ) 198 459.68 B
+0.52 0.1 (befor) 198 447.28 B
+0.52 0.1 (e you can grab a cup of cof) 221.37 447.28 B
+0.52 0.1 (fee, you\325r) 345.6 447.28 B
+0.52 0.1 (e called into your boss\325 of) 388.61 447.28 B
+0.52 0.1 (\336ce and ) 506.6 447.28 B
+0.07 0.1 (given the task of developing the user interface for a new gr) 198 434.88 B
+0.07 0.1 (oupwar) 464.74 434.88 B
+0.07 0.1 (e pr) 499.93 434.88 B
+0.07 0.1 (oduct. It ) 517.46 434.88 B
+0.52 0.1 (is a lar) 198 422.48 B
+0.52 0.1 (ge pr) 228.65 422.48 B
+0.52 0.1 (oject with no user) 252.29 422.48 B
+0.52 0.1 (-interface speci\336cation. Y) 333.83 422.48 B
+0.52 0.1 (ou talk to the pr) 447.61 422.48 B
+0.52 0.1 (oject ) 521.94 422.48 B
+0.52 0.1 (lead, to the usability expert, and to the writer assigned to the pr) 198 410.08 B
+0.52 0.1 (oject to get ) 491.25 410.08 B
+0.52 0.1 (some ideas. Then you sit down at your workstation and open up your ) 198 397.68 B
+0.52 0.1 (Devguide tool.) 198 385.28 B
+-0.03 0.1 (Y) 198 364.88 B
+-0.03 0.1 (ou begin by dragging a Base window glyph onto the workspace. It expands to ) 203.85 364.88 B
+0.49 0.1 (a window and you shape it to make it big enough, then add contr) 198 352.48 B
+0.49 0.1 (ol ar) 499.67 352.48 B
+0.49 0.1 (eas and ) 520.28 352.48 B
+0.52 0.1 (a text pane. The text pane pr) 198 340.08 B
+0.52 0.1 (ovides multi-font capability and a scr) 329.15 340.08 B
+0.52 0.1 (ollbar ) 500.16 340.08 B
+0.52 0.1 (automatically) 198 327.68 B
+0.52 0.1 (, so all you have to do is pr) 258.73 327.68 B
+0.52 0.1 (ovide the appr) 384.27 327.68 B
+0.52 0.1 (opriate hooks to the ) 451.25 327.68 B
+0.52 0.1 (application code. Next you drag some buttons, a text \336eld, a message, and a ) 198 315.28 B
+0.17 0.1 (few settings glyphs onto the contr) 198 302.88 B
+0.17 0.1 (ol ar) 351.92 302.88 B
+0.17 0.1 (eas. Some of the buttons need menus, so ) 372.21 302.88 B
+0.14 0.1 (you quickly build them by opening the Menus pr) 198 290.48 B
+0.14 0.1 (operty window and typing in ) 421.29 290.48 B
+0.52 0.1 (some possible menu options.) 198 278.08 B
+0.52 0.1 (Now that you have all the elements for the main application window on the ) 198 257.68 B
+0.52 0.1 (scr) 198 245.28 B
+0.52 0.1 (een, you settle down to try out some dif) 210.74 245.28 B
+0.52 0.1 (fer) 394.46 245.28 B
+0.52 0.1 (ent con\336gurations. Y) 406.64 245.28 B
+0.52 0.1 (ou arrange ) 500.75 245.28 B
+0.51 0.1 (buttons down one side, settings down the other) 198 232.88 B
+0.51 0.1 (. Then you try placing buttons ) 415.76 232.88 B
+0.52 0.1 (and messages along the top, with settings and text \336elds underneath. Y) 198 220.48 B
+0.52 0.1 (our ) 524.06 220.48 B
+0.52 0.1 (of) 198 208.08 B
+0.52 0.1 (\336ce neighbor comes over to see what you ar) 206.8 208.08 B
+0.52 0.1 (e doing. Y) 408.56 208.08 B
+0.52 0.1 (ou talk about the ) 454.48 208.08 B
+0.52 0.1 (application and how he would like to use it, and he suggests a dif) 198 195.68 B
+0.52 0.1 (fer) 500.68 195.68 B
+0.52 0.1 (ent ) 512.87 195.68 B
+0.52 0.1 (con\336guration for the information and contr) 198 183.28 B
+0.52 0.1 (ols display) 395.99 183.28 B
+0.52 0.1 (. Befor) 444.32 183.28 B
+0.52 0.1 (e the day is done ) 473.99 183.28 B
+0.52 0.1 (you have six dif) 198 170.88 B
+0.52 0.1 (fer) 271.41 170.88 B
+0.52 0.1 (ent con\336gurations done for the main application window ) 283.59 170.88 B
+0.52 0.1 (and a few of the subwindows done.) 198 158.48 B
+FMENDPAGE
+%%EndPage: "xix" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+2 15 /Palatino-Italic FMDEFINEFONT
+%%Page: "xx" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xx) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch, 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+3 F
+0.52 0.1 (The next day) 198 641.33 B
+0.52 0.1 (, you demo several interface ideas and get useful feedback on ) 256.54 641.33 B
+0.52 0.1 (usability and functionality) 198 628.93 B
+0.52 0.1 (. W) 317.55 628.93 B
+0.52 0.1 (ithin a couple of days, you ar) 332.82 628.93 B
+0.52 0.1 (e able to bring ) 467.24 628.93 B
+0.52 0.1 (potential users in to do usability testing on a mock-up of the system that ) 198 616.53 B
+0.52 0.1 (r) 198 604.13 B
+0.52 0.1 (esults in critical functionality changes to the design speci\336cation. Ultimately) 201.87 604.13 B
+0.52 0.1 (, ) 549.11 604.13 B
+0.52 0.1 (the Graphical Interface Language \336le that Devguide pr) 198 591.73 B
+0.52 0.1 (oduces becomes the ) 448.91 591.73 B
+0.52 0.1 (design speci\336cation for the user interface. ) 198 579.33 B
+2 F
+-0.94 (About GNT for Devguide) 54 545.6 P
+3 F
+0.52 0.1 (After you have built your user interface with Devguide, the GNT \050Guide to ) 198 523.93 B
+0.52 0.1 (TNT\051 postpr) 198 511.53 B
+0.52 0.1 (ocessor builds the code that generates the interface as well as the ) 254.74 511.53 B
+0.52 0.1 (client-server communications code \050wir) 198 499.13 B
+0.52 0.1 (e-service code\051. In the simplest case, ) 378.19 499.13 B
+0.52 0.1 (once you have written your C or C++ application code, all that r) 198 486.73 B
+0.52 0.1 (emains is for ) 493.3 486.73 B
+0.52 0.1 (you to link the client application code to the client UI code. In mor) 198 474.33 B
+0.52 0.1 (e complex ) 503.91 474.33 B
+0.52 0.1 (cases, such as when you ar) 198 461.93 B
+0.52 0.1 (e adjusting the client-server split, you may need to ) 321.2 461.93 B
+-0.02 0.1 (write or modify some of the server) 198 449.53 B
+-0.02 0.1 (-side callback code. All of the code that GNT ) 354.23 449.53 B
+0.52 0.1 (generates is formatted and well str) 198 437.13 B
+0.52 0.1 (uctur) 357.1 437.13 B
+0.52 0.1 (ed so that you can study it for mor) 381.12 437.13 B
+0.52 0.1 (e ) 541.11 437.13 B
+0.52 0.1 (ideas on how to write code using the toolkit.) 198 424.73 B
+0.52 0.1 (OpenWindows\252 Developer\325s Guide for The NeWS) 198 404.33 B
+0.52 0.1 (\250) 432.83 404.33 B
+0.52 0.1 ( Toolkit) 440.4 404.33 B
+0.52 0.1 ( operates in the ) 475.89 404.33 B
+0.52 0.1 (OpenW) 198 391.93 B
+0.52 0.1 (indows application envir) 232.41 391.93 B
+0.52 0.1 (onment, a graphical user) 346.34 391.93 B
+0.52 0.1 (-interface ) 459.65 391.93 B
+0.52 0.1 (envir) 198 379.54 B
+0.52 0.1 (onment that r) 221.43 379.54 B
+0.52 0.1 (uns on Sun workstations. Y) 283.92 379.54 B
+0.52 0.1 (ou can use Devguide to cr) 408.75 379.54 B
+0.52 0.1 (eate ) 528.61 379.54 B
+0.52 0.1 (user interfaces that conform to the OPEN LOOK\252 User Interface as it is ) 198 367.14 B
+0.52 0.1 (implemented in OpenW) 198 354.73 B
+0.52 0.1 (indows.) 307.69 354.73 B
+2 F
+-0.94 (The Names) 54 321 P
+3 F
+0.52 0.1 (When the term Devguide is used, it r) 198 299.33 B
+0.52 0.1 (efers to the graphical interface tool you ) 368.12 299.33 B
+0.52 0.1 (use to develop the user interface.) 198 286.93 B
+0.52 0.1 (The terms postpr) 198 266.53 B
+0.52 0.1 (ocessor and GNT ar) 276.16 266.53 B
+0.52 0.1 (e used to r) 367.32 266.53 B
+0.52 0.1 (efer to the code generator that ) 415.9 266.53 B
+0.52 0.1 (takes the GIL \336le pr) 198 254.14 B
+0.52 0.1 (oduced by Devguide and pr) 289.39 254.14 B
+0.52 0.1 (oduces executable NeWS ) 418.22 254.14 B
+0.52 0.1 (T) 198 241.73 B
+0.52 0.1 (oolkit code that cr) 203.31 241.73 B
+0.52 0.1 (eates your user interface. This is r) 286.13 241.73 B
+0.52 0.1 (eferr) 440.67 241.73 B
+0.52 0.1 (ed to as the UI code ) 461.78 241.73 B
+0.52 0.1 (which contrasts with the application code.) 198 229.34 B
+0.52 0.1 (The wor) 198 208.93 B
+0.52 0.1 (d \322Guide\323 in the full name \322OpenW) 236.01 208.93 B
+0.52 0.1 (indows Developer) 402.07 208.93 B
+0.52 0.1 (\325s Guide\323 is an ) 486.35 208.93 B
+0.52 0.1 (acr) 198 196.53 B
+0.52 0.1 (onym for Graphical User Interface Design Editor) 211.5 196.53 B
+0.52 0.1 (.) 433.91 196.53 B
+FMENDPAGE
+%%EndPage: "xx" 3
+%%Page: "xxi" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Pr) 198 108.7 S
+0.09 (eface) 207.01 108.7 S
+0 F
+0.09 (xxi) 545.84 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+-0.94 (Who is Devguide for?) 54 638 P
+3 F
+0.42 0.1 (Devguide is a development tool designed to make the interface pr) 198 616.33 B
+0.42 0.1 (ogrammer) 499.88 616.33 B
+0.42 0.1 (\325s ) 547.76 616.33 B
+0.52 0.1 (job much easier) 198 603.93 B
+0.52 0.1 (. It gives you the ability to cr) 268.89 603.93 B
+0.52 0.1 (eate and try user interfaces ) 401.37 603.93 B
+0.52 0.1 (without writing one line of code. Devguide obviously is a powerful ) 198 591.53 B
+0.52 0.1 (pr) 198 579.13 B
+0.52 0.1 (ogrammer) 207.98 579.13 B
+0.52 0.1 (\325s tool, but it is also a useful tool for non-pr) 255.86 579.13 B
+0.52 0.1 (ogrammers such as ) 455.48 579.13 B
+0.52 0.1 (user interface designers and pr) 198 566.73 B
+0.52 0.1 (oject managers because you can easily cr) 339.52 566.73 B
+0.52 0.1 (eate ) 525.77 566.73 B
+0.34 0.1 (and modify user interfaces without ever writing a line of sour) 198 554.33 B
+0.34 0.1 (ce code. Because ) 479.88 554.33 B
+0.21 0.1 (a Devguide interface doesn\325t r) 198 541.93 B
+0.21 0.1 (equir) 334.85 541.93 B
+0.21 0.1 (e days and weeks of code writing, it is easy ) 358.44 541.93 B
+0.35 0.1 (to change an interface without losing work. Y) 198 529.53 B
+0.35 0.1 (ou will \336nd a new \337exibility and ) 405.17 529.53 B
+0.52 0.1 (opportunity for interface experimentation. Y) 198 517.13 B
+0.52 0.1 (ou can also turn interface design ) 400.14 517.13 B
+0.52 0.1 (into a team pr) 198 504.73 B
+0.52 0.1 (oject, passing an interface \336le fr) 262.53 504.73 B
+0.52 0.1 (om Devguide user to Devguide ) 407.48 504.73 B
+0.52 0.1 (user for tweaking and comment. Devguide can be used by virtually anyone. ) 198 492.33 B
+0.52 0.1 (Y) 198 479.93 B
+0.52 0.1 (ou can even give it to users and let the users themselves show you exactly ) 203.85 479.93 B
+0.52 0.1 (what they would like the pr) 198 467.53 B
+0.52 0.1 (oduct interface to look like. ) 326.25 467.53 B
+2 F
+-0.94 (What Y) 54 433.8 P
+-0.94 (ou Need to Run GNT and Devguide) 98.47 433.8 P
+3 F
+0.52 0.1 (Devguide will r) 198 412.13 B
+0.52 0.1 (un on any Sun workstation that r) 270.02 412.13 B
+0.52 0.1 (uns OpenW) 422.34 412.13 B
+0.52 0.1 (indows. Y) 476.25 412.13 B
+0.52 0.1 (ou will ) 521.27 412.13 B
+0.52 0.1 (need\321in addition to the Sun workstation\321Devguide, TNT) 198 399.73 B
+0.52 0.1 (, OpenW) 467.95 399.73 B
+0.52 0.1 (indows, a ) 508.08 399.73 B
+0.25 0.1 (C compiler) 198 387.33 B
+0.25 0.1 (, and SunOS r) 247.37 387.33 B
+0.25 0.1 (unning on the workstation. Devguide, sold separately ) 310.4 387.33 B
+0.52 0.1 (fr) 198 374.93 B
+0.52 0.1 (om TNT) 205.3 374.93 B
+0.52 0.1 (, pr) 243.01 374.93 B
+0.52 0.1 (ovides the user) 258.71 374.93 B
+0.52 0.1 (-interface design tool. TNT V) 328.07 374.93 B
+0.52 0.1 (ersion 2.0 pr) 460.3 374.93 B
+0.52 0.1 (ovides ) 517.05 374.93 B
+0.52 0.1 (GNT to generate NeWS T) 198 362.54 B
+0.52 0.1 (oolkit code.) 314.53 362.54 B
+2 F
+-0.94 (About the GNT for Devguide Manual) 54 328.8 P
+3 F
+0.26 0.1 (Her) 198 307.14 B
+0.26 0.1 (e is what you will \336nd in this manual, chapter by chapter) 215.17 307.14 B
+0.26 0.1 (, accompanied by ) 475.55 307.14 B
+0.52 0.1 (a brief description of when you will want to r) 198 294.73 B
+0.52 0.1 (ead each chapter) 407.66 294.73 B
+0.52 0.1 (.) 483.74 294.73 B
+0.52 0.1 (Chapter 1, \322Intr) 198 274.34 B
+0.52 0.1 (oduction\323 pr) 270.24 274.34 B
+0.52 0.1 (ovides an overview of how pr) 328.7 274.34 B
+0.52 0.1 (ograms ar) 466.23 274.34 B
+0.52 0.1 (e written ) 511.94 274.34 B
+0.52 0.1 (using GNT and Devguide. Read this chapter to get the big pictur) 198 261.93 B
+0.52 0.1 (e of how to ) 495.7 261.93 B
+0.52 0.1 (write your pr) 198 249.53 B
+0.52 0.1 (ograms using these tools.) 259.34 249.53 B
+0.3 0.1 (Chapter 2, \322Getting Started\323 covers installing and starting Devguide and GNT ) 198 229.14 B
+0.52 0.1 (as well as de\336ning the parts of the Devguide window) 198 216.73 B
+0.52 0.1 (, and explaining how to ) 443.27 216.73 B
+0.52 0.1 (use Devguide\325s on-line help system. Read this chapter befor) 198 204.34 B
+0.52 0.1 (e you install ) 472.52 204.34 B
+0.08 0.1 (Devguide and as you \336rst get it up and r) 198 191.93 B
+0.08 0.1 (unning. Y) 382.06 191.93 B
+0.08 0.1 (ou will also \336nd this chapter ) 425.73 191.93 B
+0.52 0.1 (useful while you ar) 198 179.53 B
+0.52 0.1 (e learning the Devguide terminology) 286.83 179.53 B
+0.52 0.1 (.) 454.72 179.53 B
+FMENDPAGE
+%%EndPage: "xxi" 4
+%%Page: "xxii" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xxii) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch, 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+3 F
+0.52 0.1 (Chapter 3, \322T) 198 641.33 B
+0.52 0.1 (utorial: Building Interfaces\323 is a tutorial designed to teach you ) 258.96 641.33 B
+0.52 0.1 (how to use Devguide. ) 198 628.93 B
+0.52 0.1 (Chapter 4, \322T) 198 608.53 B
+0.52 0.1 (utorial: Generating UI Sour) 258.96 608.53 B
+0.52 0.1 (ce Code\323 intr) 383.86 608.53 B
+0.52 0.1 (oduces you to the code ) 444.6 608.53 B
+0.52 0.1 (generating pr) 198 596.13 B
+0.52 0.1 (ogram, GNT) 259.53 596.13 B
+0.52 0.1 (, and shows you how to link the generated UI code ) 316.14 596.13 B
+0.52 0.1 (to your application code to pr) 198 583.73 B
+0.52 0.1 (oduce a complete application. Read this chapter ) 334.77 583.73 B
+0.52 0.1 (when you need to learn how to link the interface you have cr) 198 571.33 B
+0.52 0.1 (eated with your ) 478.83 571.33 B
+0.52 0.1 (application code. This chapter continues the tutorial started in Chapter 3.) 198 558.93 B
+-0.05 0.1 (Chapter 5, \322Refer) 198 538.53 B
+-0.05 0.1 (ence: Building Interfaces\323 contains a systematic description of ) 276.33 538.53 B
+0.52 0.1 (each Devguide featur) 198 526.13 B
+0.52 0.1 (e. Its ar) 295.8 526.13 B
+0.52 0.1 (e contents arranged conceptually in an or) 329.65 526.13 B
+0.52 0.1 (der ) 519.23 526.13 B
+0.52 0.1 (which is easy to r) 198 513.73 B
+0.52 0.1 (ead and understand. Use the Graphical Pr) 278.4 513.73 B
+0.52 0.1 (operty-W) 471.03 513.73 B
+0.52 0.1 (indow ) 513.62 513.73 B
+0.52 0.1 (Index in Appendix B to look contr) 198 501.33 B
+0.52 0.1 (ols up by pr) 354.87 501.33 B
+0.52 0.1 (operty window) 410.62 501.33 B
+0.52 0.1 (. ) 479.99 501.33 B
+0.52 0.1 (Chapter 6, \322Refer) 198 480.93 B
+0.52 0.1 (ence: Generating UI Sour) 277.48 480.93 B
+0.52 0.1 (ce Code\323 describes Devguide\325s ) 392.4 480.93 B
+0.52 0.1 (companion pr) 198 468.53 B
+0.52 0.1 (ogram, GNT) 261.71 468.53 B
+0.52 0.1 (, and the \336les it generates. This chapter is of ) 318.33 468.53 B
+0.17 0.1 (particular inter) 198 456.13 B
+0.17 0.1 (est to pr) 266.24 456.13 B
+0.17 0.1 (ogrammers who want to modify GNT) 303.24 456.13 B
+0.17 0.1 (-generated sour) 474.78 456.13 B
+0.17 0.1 (ce ) 545.81 456.13 B
+0.52 0.1 (code and take advantage of the client-server split by deciding explicitly what ) 198 443.73 B
+0.52 0.1 (will be done on the client and server sides of the application.) 198 431.33 B
+0.52 0.1 (Appendix A, \322The GIL-File Format\323 describes the Graphical Interface ) 198 410.93 B
+0.52 0.1 (Language \050GIL\051 \336le format used to stor) 198 398.54 B
+0.52 0.1 (e Devguide interfaces. Read this when ) 377.66 398.54 B
+0.52 0.1 (you want to know how the user interface is encoded into the GIL \336le.) 198 386.14 B
+0.52 0.1 (Appendix B, \322Graphical Pr) 198 365.73 B
+0.52 0.1 (operty-W) 321.17 365.73 B
+0.52 0.1 (indow Index\323 lists all the Devguide ) 363.76 365.73 B
+0.02 0.1 (pr) 198 353.33 B
+0.02 0.1 (operty windows in alphabetic or) 207.98 353.33 B
+0.02 0.1 (der) 354.95 353.33 B
+0.02 0.1 (. Use this when you want to look up how ) 369.36 353.33 B
+0.52 0.1 (to use a particular option in a pr) 198 340.93 B
+0.52 0.1 (operty window) 347.13 340.93 B
+0.52 0.1 (.) 416.5 340.93 B
+0.52 0.1 (Appendix C, \322GNT Generated Files\323 shows a graphical r) 198 320.54 B
+0.52 0.1 (epr) 458.59 320.54 B
+0.52 0.1 (esentation of all ) 473.45 320.54 B
+0.52 0.1 (the \336les GNT pr) 198 308.14 B
+0.52 0.1 (oduces and how they r) 272.23 308.14 B
+0.52 0.1 (elate to each other) 377.17 308.14 B
+0.52 0.1 (. Refer to this when ) 460.14 308.14 B
+0.52 0.1 (you want an overview of all the \336les GNT pr) 198 295.73 B
+0.52 0.1 (oduces.) 404.52 295.73 B
+0.52 0.1 (Finally) 198 275.34 B
+0.52 0.1 (, the GNT for Devguide Manual contains an index.) 228.24 275.34 B
+2 F
+-0.94 (What Y) 54 241.6 P
+-0.94 (ou Should Know) 98.47 241.6 P
+3 F
+0.52 0.1 (This manual isn\325t for novice Sun users. It assumes that you\325ve worked with ) 198 219.93 B
+-0.04 0.1 (Sun workstations and OpenW) 198 207.53 B
+-0.04 0.1 (indows. Befor) 333.36 207.53 B
+-0.04 0.1 (e you r) 395.93 207.53 B
+-0.04 0.1 (ead this manual, you should ) 427.14 207.53 B
+0.52 0.1 (be familiar with UNIX, SunOS, OpenW) 198 195.14 B
+0.52 0.1 (indows, the OPEN LOOK User ) 377.26 195.14 B
+0.52 0.1 (Interface, and the C pr) 198 182.73 B
+0.52 0.1 (ogramming language. It is particularly important that ) 301.24 182.73 B
+FMENDPAGE
+%%EndPage: "xxii" 5
+2 14 /Times-Bold FMDEFINEFONT
+4 10 /Palatino-Italic FMDEFINEFONT
+%%Page: "xxiii" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Pr) 198 108.7 S
+0.09 (eface) 207.01 108.7 S
+0 F
+0.09 (xxiii) 540.43 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+3 F
+0.25 0.1 (you know how to work in the OpenW) 198 641.33 B
+0.25 0.1 (indows envir) 370.9 641.33 B
+0.25 0.1 (onment. T) 430.65 641.33 B
+0.25 0.1 (o use some of the ) 475.97 641.33 B
+-0.05 0.1 (mor) 198 628.93 B
+-0.05 0.1 (e advanced featur) 216.35 628.93 B
+-0.05 0.1 (es of GNT) 296.8 628.93 B
+-0.05 0.1 (, you will also need to have some knowledge of ) 341.73 628.93 B
+0.52 0.1 (NeWS and The NeWS T) 198 616.53 B
+0.52 0.1 (oolkit \050TNT\051.) 307.5 616.53 B
+0.52 0.1 (For mor) 198 596.13 B
+0.52 0.1 (e information about these topics, consult: ) 234.73 596.13 B
+2 F
+(\245) 198 577.73 T
+3 F
+0.52 0.1 (The) 210.6 577.73 B
+4 F
+0.52 0.1 ( SunOS Refer) 227.63 577.73 B
+0.52 0.1 (ence Manual) 285.8 577.73 B
+3 F
+0.52 0.1 ( for information about UNIX and SunOS.) 339.52 577.73 B
+2 F
+(\245) 198 559.33 T
+3 F
+0.52 0.1 (The) 210.6 559.33 B
+4 F
+0.52 0.1 ( OpenW) 227.63 559.33 B
+0.52 0.1 (indows User) 262.7 559.33 B
+0.52 0.1 (\325) 315.5 559.33 B
+0.52 0.1 (s Guide) 317.83 559.33 B
+3 F
+0.52 0.1 ( for information on working in the ) 349.87 559.33 B
+0.52 0.1 (OpenW) 210.6 546.93 B
+0.52 0.1 (indows envir) 245.01 546.93 B
+0.52 0.1 (onment.) 305.02 546.93 B
+2 F
+(\245) 198 528.53 T
+3 F
+0.52 0.1 (The) 210.6 528.53 B
+4 F
+0.52 0.1 ( OPEN LOOK Graphical User Interface Style Guidelines) 227.63 528.53 B
+3 F
+0.52 0.1 ( for information ) 467.57 528.53 B
+0.49 0.1 (about the elements that constitute user interfaces in OpenW) 210.6 516.13 B
+0.49 0.1 (indows and the ) 483.88 516.13 B
+0.52 0.1 (r) 210.6 503.73 B
+0.52 0.1 (ules and suggestions for cr) 214.57 503.73 B
+0.52 0.1 (eating OPEN LOOK user interfaces.) 337.24 503.73 B
+2 F
+(\245) 198 485.33 T
+3 F
+0.52 0.1 (The) 210.6 485.33 B
+4 F
+0.52 0.1 ( PostScript Language, Refer) 227.63 485.33 B
+0.52 0.1 (ence Manual) 344.62 485.33 B
+3 F
+0.52 0.1 (, and the ) 398.34 485.33 B
+4 F
+0.52 0.1 (PostScript Language, ) 441.67 485.33 B
+0.52 0.1 (T) 210.6 472.93 B
+0.52 0.1 (utorial and Cookbook) 215.7 472.93 B
+3 F
+0.52 0.1 (, for mor) 303.85 472.93 B
+0.52 0.1 (e information on PostScript. Both books ar) 344.07 472.93 B
+0.52 0.1 (e ) 538.09 472.93 B
+0.52 0.1 (published by Addison-W) 210.6 460.53 B
+0.52 0.1 (esley) 325.06 460.53 B
+0.52 0.1 (.) 346.73 460.53 B
+2 F
+(\245) 198 442.13 T
+3 F
+0.52 0.1 (The) 210.6 442.13 B
+4 F
+0.52 0.1 ( NeWS Pr) 227.63 442.13 B
+0.52 0.1 (ogrammer) 270.94 442.13 B
+0.52 0.1 (\325) 313.19 442.13 B
+0.52 0.1 (s Guide) 315.52 442.13 B
+3 F
+0.52 0.1 ( for a description of NeWS pr) 347.57 442.13 B
+0.52 0.1 (ogramming.) 483.07 442.13 B
+2 F
+(\245) 198 423.73 T
+4 F
+0.52 0.1 (The NeWS T) 210.6 423.73 B
+0.52 0.1 (oolkit Refer) 264.28 423.73 B
+0.52 0.1 (ence Manual) 311.62 423.73 B
+3 F
+0.52 0.1 ( for a description of TNT pr) 365.35 423.73 B
+0.52 0.1 (ogramming.) 492.98 423.73 B
+2 F
+(\245) 198 405.33 T
+4 F
+0.52 0.1 (The C Pr) 210.6 405.33 B
+0.52 0.1 (ogramming Language) 248.91 405.33 B
+3 F
+0.52 0.1 ( by Kernighan and Ritchie \050or other C books\051 ) 339.8 405.33 B
+0.52 0.1 (for a description of pr) 210.6 392.93 B
+0.52 0.1 (ogramming in C.) 311.14 392.93 B
+0.52 0.1 (Note also that befor) 198 372.54 B
+0.52 0.1 (e you can r) 288.66 372.54 B
+0.52 0.1 (un Devguide and GNT as described in this ) 339.76 372.54 B
+0.52 0.1 (manual, you must \336rst install Devguide and GNT on your workstation. T) 198 360.14 B
+0.52 0.1 (o ) 533.82 360.14 B
+0.52 0.1 (install Devguide, follow the instr) 198 347.73 B
+0.52 0.1 (uctions in the) 348.89 347.73 B
+4 F
+0.52 0.1 ( OpenW) 411.05 347.73 B
+0.52 0.1 (indows Developer) 446.12 347.73 B
+0.52 0.1 (\325) 520.52 347.73 B
+0.52 0.1 (s Guide ) 522.85 347.73 B
+0.48 0.1 (1.1 Installation Manual) 198 335.33 B
+3 F
+0.48 0.1 (, which you r) 297.58 335.33 B
+0.48 0.1 (eceived when you pur) 358.42 335.33 B
+0.48 0.1 (chased Devguide for ) 460.4 335.33 B
+0.52 0.1 (XV) 198 322.93 B
+0.52 0.1 (iew) 211.53 322.93 B
+0.52 0.1 (. GNT is installed when you install TNT) 226.94 322.93 B
+0.52 0.1 (. For instr) 410.25 322.93 B
+0.52 0.1 (uctions on installing ) 454.94 322.93 B
+0.49 0.1 (TNT) 198 310.54 B
+0.49 0.1 (, see the ) 218.12 310.54 B
+4 F
+0.49 0.1 (TNT Installation Guide and Release Notes) 258.27 310.54 B
+3 F
+0.49 0.1 (, which you r) 436.04 310.54 B
+0.49 0.1 (eceived with ) 496.93 310.54 B
+0.52 0.1 (the TNT softwar) 198 298.14 B
+0.52 0.1 (e. ) 273.34 298.14 B
+FMENDPAGE
+%%EndPage: "xxiii" 6
+%%Page: "xxiv" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xxiv) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321 Mar) 198 108.7 B
+-0.58 0.09 (ch, 1991) 295.34 108.7 B
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+FMENDPAGE
+%%EndPage: "xxiv" 7
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 6 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Times-Bold

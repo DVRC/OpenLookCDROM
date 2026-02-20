@@ -1,0 +1,1211 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#) scrollbar.ps 1.42 91/02/11
+%
+
+/ClassVScrollbar [ ClassControl ClassCanvas ]
+dictbegin
+    /Width	    1 def
+    /Height	    1 def
+
+    %
+    % Scrollbar parameters
+    %
+    /PreviousLow    0 def
+    /Low	    0 def
+    /High	    1 def
+    /Max	    1 def
+
+    /ProportionSize 1 def
+    /NewLow	    0 def
+    /NewHigh	    0 def
+
+    %
+    % delta names
+    %
+    /PageDelta	    1 def
+
+    %
+    % Y positions of various parts of the scrollbar
+    %
+    /TopAnchorY	    0 def
+    /BottomAnchorY  0 def
+    /TopAnchor	    0 def	    % anchor pseudo-object
+    /BottomAnchor   0 def	    % same
+
+    /CableRange	    [ 0 0 ] cvx def
+    /CableX	    0 def	    % midpoint of scrollbar
+
+    /ElevatorRange  [ 0 0 ] cvx def
+    /ElevatorTopY   -1 def
+    /ElevatorBottomY -1 def
+    /ElevatorHeight 0 def
+    /Elevator	    null def	    % elevator pseudo-object
+
+    /HitType	    null def
+
+    /Tracking?	    false def
+    /InRepeat?	    false def
+
+dictend
+
+classbegin
+
+% class utilities
+
+    UserProfile begin
+	/ScrollDelay	100 		?def	%  these 3 are ms.
+	/ScrollThresh	200		?def
+    end
+
+    /ScrollDelay { UserProfile /ScrollDelay get } def
+    /ScrollThresh { UserProfile /ScrollThresh get } def
+
+    /AbbrevElevatorCharacters dictbegin
+	/ElevatorLight		133 cvis def
+	/ElevatorShadow		134 cvis def
+	/ElevatorArrowUp	56 cvis def
+	/ElevatorArrowDown	59 cvis def
+	/ElevatorULCorner	194 cvis def
+	/ElevatorLRCorner	195 cvis def
+	/Elevator2DDefault	5 cvis def
+	/Elevator2DUp		6 cvis def
+	/Elevator2DDown		7 cvis def
+    dictend def
+
+    /FullElevatorCharacters dictbegin
+	/ElevatorLight		54 cvis def
+	/ElevatorShadow		55 cvis def
+	/ElevatorArrowUp	56 cvis def
+	/ElevatorArrowDown	59 cvis def
+	/ElevatorDimpleL	196 cvis def
+	/ElevatorDimpleR	197 cvis def
+	/ElevatorULCorner	194 cvis def
+	/ElevatorLRCorner	195 cvis def
+	/Elevator2DDefault	1 cvis def
+	/Elevator2DUp		2 cvis def
+	/Elevator2DDown		4 cvis def
+	/Elevator2DDrag		3 cvis def
+    dictend def
+
+    /Helpable? true def
+
+    /setrange { % top bottom range => -
+	load dup 4 1 roll 1 3 -1 roll put	    % range top
+	0 exch put
+    } def
+
+    /rangetop { pop } def
+    /rangebottom { exch pop } def
+
+% class variables
+
+    /Menuable?		true def
+    /Trackable?		true def
+    /CableColor		.5 .5 .5 rgbcolor def
+    /ProportionColor	0 0 0 rgbcolor def
+
+    %
+    % REMIND: these numbers assume 12 point olglyph - I don't even know
+    % if that's a problem or not.
+    %
+    /AnchorCableGap	2 def
+    /ElevatorProportionGap 1 def
+    /AnchorHeight	5 def
+    /FullHeight		47 AnchorCableGap AnchorHeight add 2 mul add def
+% REMIND: in 2D this wants to be 33:
+    /MinimumHeight	33 def
+    /AbbreviatedHeight	MinimumHeight AnchorCableGap AnchorHeight add 2 mul add def
+
+
+    /TrackMotion	{ pop } def
+    /TrackStop		{ pop } def
+    /MenuEvent		null def
+
+    /ScrollbarMenu {
+	/Grid framebuffer /new ClassMenu send
+	[ (Here To Top) (Top To Here) (Previous) ]
+	/setitemlist 2 index send
+	{						    % index menu
+	    exch					    % menu index
+	    { /HereToTop /TopToHere /Previous } exch get    % menu motion
+	    /MenuCallback /sendtarget 4 -1 roll send
+	} /setnotifier 2 index send
+	(Scrollbar) /setlabel 2 index send
+	0 /setdefault 2 index send
+	/ScrollbarMenu 1 index store
+    } def
+
+    /Menu {
+        /ScrollbarMenu self send
+	self /settarget 2 index send
+    } def
+
+    /MenuStart { % event => event Menu true
+	VisualState /Active eq {
+	    dup /MenuEvent exch store
+	    /MenuStart super send
+	    MenuEvent /Canvas null put
+	} {
+	    null true
+	} ifelse
+    } def
+
+    /MenuCallback { % <menu motion name> => -
+	/HitType exch store
+	/InitializeWarping self send
+	MenuEvent /HandleNotify self send
+    } def
+
+% overrides
+
+    /minsize { % - => minwidth minheight
+	15 MinimumHeight
+    } def
+
+    /preferredsize { % - => pwidth pheight
+	15 FullHeight
+    } def
+
+    /destroy {
+	/MenuEvent null store
+	/destroy super send
+    } def
+
+    /validate { % - => -
+	/validate super send
+
+	/TopAnchor null store
+	/BottomAnchor null store
+
+	% Width and Height are the size in our (possibly rotated) coordinate system.
+	currentcanvas
+	    self setcanvas
+	    /size self send /Height exch promote /Width exch promote
+	setcanvas
+	/SelectScrollbarType self send /Minimum eq {
+	    /BottomAnchorY AnchorCableGap neg store    % e.g., not visible.
+	    /TopAnchorY Height AnchorCableGap add store
+	} {
+	    /BottomAnchorY AnchorHeight 1 add store
+	    /BottomAnchor 1 /NewAnchor self send store
+
+	    /TopAnchorY Height AnchorHeight sub store
+	    /TopAnchor TopAnchorY /NewAnchor self send store
+	} ifelse
+
+	TopAnchorY AnchorCableGap 1 add sub BottomAnchorY AnchorCableGap add
+ 	    /CableRange /setrange self send
+
+	CableRange ElevatorHeight add
+	    /ElevatorRange /setrange self send
+
+	/CableX Width 2 div store
+    } def
+
+    /PaintInactive {
+	BackgroundColor setcolor
+	/bbox self send StippleRect
+    } def
+
+    /setvisualstate { % state => -
+	dup VisualState ne {
+	    /setvisualstate super send
+	    /paint self send
+	} {
+	    pop
+	} ifelse
+    } def
+
+    /Paint {
+	/ElevatorTopY -1 store
+	BackgroundColor /FillCanvas self send
+	/PaintAnchors self send
+	/update self send
+    } def
+
+    % Anchors.
+    %
+    % Anchors are just dictionaries.  Executing code defined in
+    % anchors is done by beginning the anchor and calling the
+    % routine.  They execute in the context of the scrollbar, so
+    % have access to all the scrollbar's variables and methods.
+    %
+    /NewAnchor { % Y => anchor
+	growabledict begin
+	    /State /Default def
+	    /AnchorY exch def
+
+	    /SetState { % newstate => -
+		dup State ne {
+		    /State exch store
+		    gsave
+			self setcanvas
+			Paint
+		    grestore
+		} {
+		    pop
+		} ifelse
+	    } def
+
+	    3D? {
+		/Paint {
+		    State /SplitDrag eq { BG2 } { BG } ifelse setcolor
+		    1 AnchorY Width 3 sub AnchorHeight 1 sub rectpath fill
+		    State /SplitDrag eq { BG3 } { BG0 } ifelse setcolor
+		    0 AnchorY moveto 0 AnchorHeight rlineto
+		    Width 2 sub dup 0 rlineto
+		    currentpoint
+		    stroke moveto
+
+		    State /SplitDrag eq { BG0 } { BG3 } ifelse setcolor
+		    0 AnchorHeight neg rlineto
+		    1 sub neg 0 rlineto
+		    stroke
+		} def
+	    } {
+		/Paint {
+		    State /SplitDrag eq { 2DFG } { 2DBG } ifelse setcolor
+
+		    0 AnchorY Width AnchorHeight rectpath fill
+
+		    2DFG setcolor
+		    0 AnchorY Width 1 sub AnchorHeight rectpath
+		    stroke
+		} def
+	    } ifelse
+	currentdict end
+    } def
+
+    /PaintAnchors {
+	/Paint TopAnchor /callanchor self send
+	/Paint BottomAnchor /callanchor self send
+    } def
+
+    /callanchor { % method anchor => ...
+	dup null ne {
+	    begin
+		cvx exec
+	    end
+	} {
+	    pop pop
+	} ifelse
+    } def
+
+    %
+    % Elevators.
+    %
+    % Elevators are implemented in the same way anchors are.  They
+    % are just dictionaries with generic variables and procedures to
+    % be called.  SelectScrollbarType figures out what size of
+    % elevator to use based on the size of the canvas, and then
+    % builds an elevator of the right type, and assigns it to the
+    % /Elevator variable.
+    %
+    /SelectScrollbarType { % - => type
+	Height AbbreviatedHeight le {
+	    /Minimum
+	} {
+	    Height FullHeight lt {
+		/Abbreviated
+	    } {
+		/Default
+	    } ifelse
+	} ifelse
+	dup
+	growabledict dup begin exch
+	dup /Minimum eq exch /Abbreviated eq or {
+	    AbbrevElevatorCharacters { def } forall
+
+	    /ElevatorHeight	32 store
+
+	    /PaintState	nullproc def
+
+	    /SetState { % hit-type => -
+		dup /State exch def
+		currentdict exch known {
+		    /PaintState State load store
+		} {
+		    /PaintState nullproc store
+		} ifelse
+	    } def
+
+	    /UpRange {
+		ElevatorTopY dup ElevatorHeight 2 div sub
+	    } def
+
+	    /DownRange {
+		ElevatorBottomY dup ElevatorHeight 2 div add exch
+	    } def
+
+	    /DragRange { 
+		-1 -1
+	    } def
+
+	    3D? {
+		/Paint {
+		    0 ElevatorTopY				% x y
+		    2 copy moveto				% x y
+		    GraphicFont setfont
+		    BG0 setcolor ElevatorLight show
+		    moveto
+		    BG3 setcolor ElevatorShadow show
+		    PaintState
+		} def
+
+		/ElevatorUp {
+		    ElevatorTopY dup dup
+		    BG2 setcolor ElevatorArrowUp CharShowAt
+		    BG3 setcolor ElevatorULCorner CharShowAt
+		    BG0 setcolor ElevatorLRCorner CharShowAt
+		} def
+
+		/ElevatorDown {
+		    ElevatorTopY 15 sub dup dup
+		    BG2 setcolor ElevatorArrowDown CharShowAt
+		    BG3 setcolor ElevatorULCorner CharShowAt
+		    BG0 setcolor ElevatorLRCorner CharShowAt
+		} def
+	    } {
+		/Paint {
+		    GraphicFont setfont
+		    2DFG setcolor
+		    ElevatorTopY .5 add
+		    /PaintState load
+		    dup nullproc eq { pop Default } { exec } ifelse
+		} def
+
+		/Default {
+		    Elevator2DDefault CharShowAt
+		} def
+
+		/ElevatorUp {
+		    Elevator2DUp CharShowAt
+		} def
+
+		/ElevatorDown {
+		    Elevator2DDown CharShowAt
+		} def
+	    } ifelse
+	} {
+	    FullElevatorCharacters { def } forall
+
+	    /ElevatorHeight	47 store
+
+	    /PaintState	nullproc def
+
+	    /SetState { % hit-type => -
+		dup /State exch def
+		currentdict exch known {
+		    /PaintState State load store
+		} {
+		    /PaintState nullproc store
+		} ifelse
+	    } def
+
+	    /UpRange {
+		ElevatorTopY dup ElevatorHeight 3 div sub
+	    } def
+
+	    /DownRange {
+		ElevatorBottomY dup ElevatorHeight 3 div add exch
+	    } def
+
+	    /DragRange {
+		ElevatorTopY ElevatorHeight 3 div sub dup
+		ElevatorHeight 3 div sub
+	    } def
+
+	    3D? {
+		/Paint {
+		    ElevatorTopY dup			% y y
+		    GraphicFont setfont
+		    BG0 setcolor ElevatorLight CharShowAt
+		    BG3 setcolor ElevatorShadow CharShowAt
+		    PaintState
+		} def
+
+		/ElevatorUp {
+		    ElevatorTopY dup dup
+		    BG2 setcolor ElevatorArrowUp CharShowAt
+		    BG3 setcolor ElevatorULCorner CharShowAt
+		    BG0 setcolor ElevatorLRCorner CharShowAt
+		} def
+
+		/ElevatorDown {
+		    ElevatorTopY 30 sub dup dup
+		    BG2 setcolor ElevatorArrowDown CharShowAt
+		    BG3 setcolor ElevatorULCorner CharShowAt
+		    BG0 setcolor ElevatorLRCorner CharShowAt
+		} def
+
+		/ElevatorDrag {
+		    ElevatorTopY ElevatorHeight 3 div sub dup
+		    BG3 setcolor ElevatorDimpleL CharShowAt
+		    BG0 setcolor ElevatorDimpleR CharShowAt
+		} def
+	    } {
+		/Paint {
+		    GraphicFont setfont
+		    2DFG setcolor
+		    ElevatorTopY
+		    /PaintState load
+		    dup nullproc eq { pop Default } { exec } ifelse
+		} def
+
+		/Default {
+		    Elevator2DDefault CharShowAt
+		    FontKludge % REMIND
+		} def
+
+		/ElevatorUp {
+		    Elevator2DUp CharShowAt
+		    FontKludge % REMIND
+		} def
+
+		/ElevatorDown {
+		    Elevator2DDown CharShowAt
+		    FontKludge % REMIND
+		} def
+
+		/ElevatorDrag {
+		    Elevator2DDrag CharShowAt
+		    FontKludge % REMIND
+		} def
+	    } ifelse
+	} ifelse
+	end /Elevator exch store
+    } def
+
+% REMIND: font clipping bug work-around (needed for OW2.0 and OW3.0!)
+    /FontKludge nullproc def
+
+    /CharShowAt { % Y char => -
+	exch round 0 exch moveto show
+    } def
+
+    /callelevator { % /method => ...
+	Elevator null ne {
+	    Elevator begin
+		cvx exec
+	    end
+	} {
+	    pop
+	} ifelse
+    } def
+
+    %
+    % Calculate the elevator position based on the value of Low, and
+    % the current size of the proportion indicator.  This works for
+    % any elevator size.  This sets /ElevatorTopY and
+    % /ElevatorBottomY.
+    %
+    /CalculateElevatorPosition { % - => -
+	ElevatorRange 2 copy sub exch pop	    % yt ylength
+	Low 0 ne {
+	    Max ProportionSize sub dup 0 ne {
+		Low exch div dup 1 gt { pop 1 } if
+	    } {
+		pop 1
+	    } ifelse
+	} {
+	    0
+	} ifelse
+	mul sub					    % Y
+	/ElevatorTopY exch def
+	/ElevatorBottomY ElevatorTopY ElevatorHeight sub def
+    } def
+
+    %
+    % Paint a subsection of the cable in COLOR from ytop to ybottom.
+    % But only if ytop is greater than ybottom.
+    %
+    /PaintCable {   % color Ytop Ybottom
+	2 copy gt {
+	    3 setlinewidth
+	    CableX 2 index moveto
+	    sub exch setcolor
+	    0 exch neg rlineto
+	    stroke
+	} {
+	    pop pop pop
+	} ifelse
+    } def
+
+    %
+    % Calculate the proportion low/high Y value, taking into
+    % consideration the fact that at least 3 pixels should show
+    % off the top and bottom of the elevator.
+    %
+    /ValueToY { % value topy bottomy => Y
+	Max 0 eq {
+	    3 1 roll pop pop
+	} {
+	    2 copy sub exch pop 3 -1 roll	    % yt range value
+	    Max div mul sub			    % Y
+	} ifelse
+    } def
+	
+    /ProportionLow { % - => Y
+	Low CableRange /ValueToY self send
+	ElevatorTopY 3 add 2 copy lt {
+	    exch pop
+	    CableRange rangetop 2 copy gt {
+		exch pop
+	    } {
+		pop
+	    } ifelse
+	} {
+	    pop
+	} ifelse
+    } def
+
+    /ProportionHigh { % - => Y
+	High CableRange /ValueToY self send		% Y
+	ElevatorBottomY 3 sub 2 copy gt {		% Y EY
+	    exch pop
+	    CableRange rangebottom 2 copy lt {
+		exch pop
+	    } {
+		pop
+	    } ifelse
+	} {
+	    pop
+	} ifelse
+    } def
+
+    % Update.
+    %
+    % This is called to paint the scrollbar in its current
+    % position.  It's an update because it erases only everything
+    % that contains the old elevator position and the new elevator
+    % position, so there is no flickering.  Right now it redraws
+    % the entire cable and proportion indicator EVERY TIME, and it
+    % doesn't seem too slow.  A relatively simple optimization
+    % would be only redrawing the necessary parts.  I think the
+    % amount of code it would take to perform the necessary
+    % calculations would be minimal, compared to the amount of time
+    % it takes to do the graphics.  But I am not sure about that.
+    %
+    /update {
+	gsave
+	    self setcanvas
+
+	    %
+	    % first erase everything that including the old elevator
+	    % position and the new elevator position
+	    %
+	    ElevatorTopY -1 ne {
+		ElevatorTopY
+		    /CalculateElevatorPosition self send
+		ElevatorTopY				% old-EY new-EY
+		2 copy lt {
+		    exch
+		} if
+		ElevatorHeight sub
+		0 2 index 1 add moveto sub 2 add Width exch neg rect
+		BackgroundColor setcolor fill
+	    } {
+		/CalculateElevatorPosition self send
+	    } ifelse	    
+	    %
+	    % now draw the cable up to the proportion indicator
+	    %
+	    ElevatorTopY ElevatorRange rangetop lt {
+		CableColor CableRange rangetop
+		    /ProportionLow self send dup 4 1 roll
+		    /PaintCable self send
+		%
+		% now draw the proportion indicator up to the elevator
+		%
+		ProportionColor exch ElevatorTopY ElevatorProportionGap add
+		    /PaintCable self send
+	    } if
+	    %
+	    % now paint the elevator
+	    %
+	    /Paint /callelevator self send
+	    %
+	    % now paint from the bottom of the elevator to the
+	    % end of the proportion indicator
+	    %
+	    ElevatorTopY ElevatorRange rangebottom gt {
+		ProportionColor ElevatorBottomY ElevatorProportionGap sub
+		    /ProportionHigh self send dup 4 1 roll
+		    /PaintCable self send
+		%
+		% now draw the cable from the bottom of the proportion
+		% indicator to the bottom of the scrollbar
+		%
+		CableColor exch CableRange rangebottom
+		    /PaintCable self send
+	    } if
+	    VisualState /Inactive eq {
+		/PaintInactive self send
+	    } if
+	grestore
+    } def
+
+% API methods and utils
+
+    %
+    % Make sure a value is within the range of the scrollbar.
+    % If it's not, return the correct value.
+    %
+    /rangecheckvalue { % value => new-value
+	dup 0 lt {
+	    pop 0
+	} {
+	    dup Max gt {
+		pop Max
+	    } if
+	} ifelse
+    } def
+
+    /setparameters { % low viewsize max => -
+	/SetMax self send		% low viewsize
+	/PageDelta 1 index store	% low viewsize
+	1 index add 1 sub		% low high
+	/SetProportion self send
+    } def
+
+    /parameters { % - => low high max
+	Low PageDelta Max 1 add
+    } def
+
+    /motion { % - => motion
+	HitType
+    } def
+
+    /SetProportion { % low high => -
+	/PreviousLow Low store
+	/High exch /rangecheckvalue self send store
+	/Low exch /rangecheckvalue self send store
+	/ProportionSize High Low sub store
+	/update self send
+    } def
+
+    /SetMax { % max => -
+	1 sub
+	dup 0 lt {
+	    pop 0
+	} if
+	/Max exch def
+    } def
+
+    /setvalue { % value => -
+	/rangecheckvalue self send dup
+	    PageDelta add 1 sub /SetProportion self send
+    } def
+
+    /value { % - => value
+	Low
+    } def
+
+% Tracking overrides:
+
+    /EventToPos { % event => pos (y coordinate)
+	gsave
+	    self setcanvas
+	    /YLocation get
+	grestore
+    } def
+
+    /Between? { % num high low => bool
+	2 index lt 3 1 roll le and
+    } def
+
+    /PickOne { % choices => value
+	false exch
+	 {	% false { test result }
+	    dup 0 get exec {
+		exch pop 1 get true exit
+	    } {
+		pop
+	    } ifelse
+	} forall
+    } def
+
+    /ElevatorUpRange { % - => ytop ybottom
+	/UpRange /callelevator self send
+    } def
+
+    /ElevatorDownRange { % - => ytop ybottom
+	/DownRange /callelevator self send
+    } def
+
+    /ElevatorDragRange { % - => ytop ybottom
+	/DragRange /callelevator self send
+    } def
+
+    /LocateHit { % event => <hitname>
+	/EventToPos self send
+	/YHit exch def
+	{
+	    { { YHit TopAnchorY ge } /TopAnchor }
+	    { { YHit BottomAnchorY lt } /BottomAnchor }
+	    { { YHit /ElevatorUpRange self send Between? }
+		/ElevatorUp }
+	    { { YHit ElevatorDragRange Between? } /ElevatorDrag }
+	    { { YHit /ElevatorDownRange self send Between? } /ElevatorDown }
+	    { { YHit ElevatorTopY gt } /PageUp }
+	    { { YHit ElevatorBottomY lt } /PageDown }
+	} PickOne
+	not {
+	    /ElevatorDown	    % REMIND: THIS IS NOT A SOLUTION!
+	} if
+    } def
+
+    /SetState { % motion stop => -
+	/TrackStop exch load store
+	/TrackMotion exch load store
+    } def
+
+    /InitTrackingState { % - => -
+	HitType {
+	    /TopAnchor /BottomAnchor {
+		/SplitDrag /SetState HitType load /callanchor self send
+		/DecideSplit /ExecuteAnchor /SetState self send
+	    }
+	    /ElevatorDrag /Default {
+		/HandlePreview /DefaultTrackStop /SetState self send
+	    }
+	} case
+    } def
+
+    /TrackStart { % event => dependents bool
+	dup /Name get AdjustButton eq
+	VisualState /Active ne or {
+	    pop nullarray true
+	} {
+	begin
+	    /Tracking? true store
+	    /HitType currentdict /LocateHit self send store
+	    HitType /SetState /callelevator self send
+	    /InitializeWarping self send
+	    /InitTrackingState self send
+	    /TopAnchor HitType ne /BottomAnchor HitType ne
+	    /ElevatorDrag HitType ne and and {
+		currentdict /HandleNotify self send
+	    } if
+
+	    [
+		HitType /ElevatorDrag eq
+		HitType /TopAnchor eq
+		HitType /BottomAnchor eq or or {
+		    /TrackMotion
+		} {
+		    /TrackTimer
+		    /AutoRepeatStart self send
+		} ifelse
+
+		/TrackStop
+	    ] true
+	end
+	} ifelse
+    } def
+
+    /WarpingMethods 5 dict dup begin
+	/ElevatorUp { % mx my => my true
+	    pop pop
+	    ElevatorUpRange add 2 div
+	    true
+	} def
+	/ElevatorDown { % mx my => my true
+	    pop pop
+	    ElevatorDownRange add 2 div
+	    true
+	} def
+	/PageUp { % mx my => my true
+	    exch pop
+	    ElevatorTopY 2 add 2 copy lt {
+		exch pop
+	    } {
+		pop
+	    } ifelse
+	    true
+	} def
+	/PageDown { % mx my => my true
+	    exch pop
+	    ElevatorBottomY 2 sub 2 copy gt {
+		exch pop
+	    } {
+		pop
+	    } ifelse
+	    true
+	} def
+	/WarpNoWarp { % mx my => false
+	    pop pop false
+	} def
+    end def
+
+    /CursorWarp false def
+
+    /InitializeWarping { % - => -
+	/CursorWarp
+	    WarpingMethods HitType known {
+		WarpingMethods HitType get
+	    } {
+		WarpingMethods /WarpNoWarp get
+	    } ifelse
+	store
+    } def
+
+    /warpcursor { % - => - ; warp the cursor when appropriate
+	gsave
+	    self setcanvas
+	    currentcursorlocation		    % mx my
+	    2 copy 2 copy 0 lt exch 0 lt	    % mx my mx my bool bool
+	    4 2 roll Height gt exch Width gt	    % mx my bool bool bool bool
+	    or or or {				    % mx my
+		pop pop				    % -
+	    } {					    % mx my
+		/CursorWarp self send {		    % my
+		    CableX exch setcursorlocation   % -
+		} if
+	    } ifelse
+	grestore
+    } def
+
+    /DefaultTrackStop { % event => -
+	/AutoRepeatStop self send
+	/Tracking? false store
+	/Default /SetState /callelevator self send
+	/update self send
+	HitType /ElevatorDrag eq {
+	    /HandleNotify self send
+	} {
+	    pop
+	} ifelse
+    } def
+
+    /DecideSplit { % event => -
+	/LocateHit self send
+	dup /TopAnchor ne exch /BottomAnchor ne and {
+	    /SplitDrag /ExecuteSplit /SetState self send
+	} if
+    } def
+
+    /SplitDrag { % event => -
+	pop		    % REMIND: /SplitDrag /sendtarget self send
+    } def
+
+    /ExecuteSplit { % event => -
+	/Default /SetState HitType load /callanchor self send
+	pop		    % REMIND: /SplitStop /sendtarget self send
+    } def
+
+    /ExecuteAnchor { % event => -
+	/HandleNotify self send
+	/Default /SetState HitType load /callanchor self send
+    } def
+
+    /AutoRepeatStart { % - => -
+	ScrollThresh ScrollDelay /starttracktimer self send
+    } def
+
+    /AutoRepeatStop { % - => -
+	/InRepeat? false store
+	/stoptracktimer self send
+    } def
+
+    /TrackTimer { % event => -
+	/InRepeat? true store
+	/HandleNotify self send
+    } def
+
+    /EventToValue { % event => value
+	/EventToPos self send
+	ElevatorHeight 2 div add	    % Y ; compensate for size of Elevator
+	ElevatorRange 2 copy sub	    % Y top bottom range
+% REMIND: Got 0 div error at edge condition of abbrev elevator: fix me harder!
+	dup 0 eq {pop 1} if
+	4 1 roll rangebottom sub exch div   % percentage-from-bottom
+	1 exch sub Max ProportionSize sub mul
+	/rangecheckvalue self send
+    } def
+
+    /HandleNotify { % ev => -
+	/HandleMotion self send /notifier self send
+	/ExecuteNotifier self send
+	/value self send dup 0 eq exch Max eq or {
+	    /stoptracktimer self send
+	} if
+    } def
+
+    /HandlePreview { % ev => -
+	/HandleMotion self send /previewer self send
+	/ExecuteNotifier self send
+    } def
+
+    /HandleMotion { % ev => <notify-args>
+	HitType {
+	    /TopAnchor { pop 0 }
+	    /BottomAnchor { pop Max }
+	    /ElevatorUp { pop Low 1 sub  }
+	    /ElevatorDown { pop Low 1 add }
+	    /PageUp { pop PageDelta neg Low add }
+	    /PageDown { pop PageDelta Low add }
+	    /Previous { pop PreviousLow }
+	    /HereToTop /TopToHere /HereToLeft /LeftToHere {
+		CableRange 2 copy sub exch pop exch		% ev ydist YT
+		3 -1 roll /EventToPos self send			% ydist YT Y
+		sub exch div PageDelta mul			% delta
+		HitType /TopToHere eq HitType /LeftToHere eq or {
+		    neg
+		} if
+		Low add
+	    }
+	    /ElevatorDrag {
+		/EventToValue self send
+	    }
+	} case
+
+	/setvalue self send
+	/warpcursor self send
+	Low					% <notify args>
+    } def
+
+    /helpkeyword { % event => string
+	/LocateHit self send  	    	    	% name
+	{
+	    /TopAnchor 	    	{(xview.info:scrollbarTop)}
+	    /BottomAnchor	{(xview.info:scrollbarBottom)}
+	    /ElevatorUp		{(xview.info:scrollbarLineBackward)}
+	    /ElevatorDown	{(xview.info:scrollbarLineForward)}
+	    /ElevatorDrag	{(xview.info:scrollbarDrag)}
+	    /PageUp		{(xview.info:scrollbarPageBackward)}
+	    /PageDown		{(xview.info:scrollbarPageForward)}
+	    /Default		{HelpKeyword}
+	} case
+    } def
+
+    IncludeDemos? {
+	/SBDemoCanvas ClassCanvas 
+	dictbegin
+	    /String () def
+	dictend
+	classbegin
+	    /TextFont	/ZapfChancery-MediumItalic findfont
+			100 scalefont def
+	    /FG		0 0 1 rgbcolor def
+
+	    /Paint {
+		BackgroundColor setcolor /bbox self send rectpath fill
+		TextFont setfont
+		FG setcolor ShowString
+	    } def
+
+	    /updatedemo { % value sbar => -
+		gsave
+		    pop self setcanvas
+		    TextFont setfont
+		    BackgroundColor setcolor ShowString
+		    cvi 3 string cvs /String exch def
+		    FG setcolor ShowString
+		grestore
+	    } def
+
+	    /ShowString {
+		size self send 2 div exch 2 div exch 25 sub moveto
+		String cshow
+	    } def
+
+	    /preferredsize {150 125} def
+	classend def
+
+	/demo { % - => instance
+	    10 dict begin
+	    	/sb framebuffer /new ClassVScrollbar send def
+		/can framebuffer /new SBDemoCanvas send def
+
+	    	0 10 101 /setparameters sb send
+
+		can /settarget sb send
+		/updatedemo /setnotifier sb send
+		/updatedemo /setpreviewer sb send
+
+		37 dup /setvalue sb send
+		null /updatedemo can send
+
+		/win can framebuffer /new ClassBaseWindow send def
+		/East sb /addclient win send
+		/Footer? false /setattribute win send
+		(ClassVScrollbar) /setlabel win send
+		/place win send
+	    	/new ClassEventMgr send /activate win send
+		/map win send
+
+		win sb
+	    end
+	} def
+    } if
+
+classend def
+
+/ClassHScrollbar [ ClassVScrollbar ] []
+classbegin
+
+    /AbbrevElevatorCharacters dictbegin
+	/ElevatorLight		136 cvis def
+	/ElevatorShadow		137 cvis def
+	/ElevatorArrowUp	138 cvis def
+	/ElevatorArrowDown	135 cvis def
+	/ElevatorULCorner	200 cvis def
+	/ElevatorLRCorner	201 cvis def
+	/Elevator2DDefault	14 cvis def
+	/Elevator2DUp		15 cvis def
+	/Elevator2DDown		16 cvis def
+    dictend def
+
+    /FullElevatorCharacters dictbegin
+	/ElevatorLight		57 cvis def
+	/ElevatorShadow		58 cvis def
+	/ElevatorArrowUp	138 cvis def
+	/ElevatorArrowDown	135 cvis def
+	/ElevatorDimpleL	196 cvis def
+	/ElevatorDimpleR	197 cvis def
+	/ElevatorULCorner	200 cvis def
+	/ElevatorLRCorner	201 cvis def
+	/Elevator2DDefault	10 cvis def
+	/Elevator2DUp		11 cvis def
+	/Elevator2DDown		13 cvis def
+	/Elevator2DDrag		12 cvis def
+    dictend def
+
+    /ScrollbarMenu {
+	/Grid framebuffer /new ClassMenu send
+	[ (Here To Left) (Left To Here) (Previous) ]
+	/setitemlist 2 index send
+	{
+	    exch				    	    % value menu
+	    { /HereToLeft /LeftToHere /Previous } exch get  % motion
+	    /MenuCallback /sendtarget 4 -1 roll send
+        } /setnotifier 2 index send
+	(Scrollbar) /setlabel 2 index send
+	0 /setdefault 2 index send
+	/ScrollbarMenu 1 index store
+    } def
+
+    /reshape {	% x y w h => -
+	gsave
+	    1 index 4 index add 3 index translate
+	    90 rotate
+	    exch 4 2 roll pop pop		% h w
+	    0 0 4 2 roll /reshape super send
+	grestore
+    } def
+
+    /move { % x y => -
+	exch /size self send pop add exch
+	/move super send
+    } def
+
+% REMIND: font clipping bug work-around (needed for OW2.0 and OW3.0!)
+    /FontKludge {
+	3D? not {
+	  BackgroundColor setcolor
+	  ElevatorHeight neg 0 rlineto 0 setlinewidth stroke
+	} if
+    } def
+
+    /CharShowAt { % Y char => -
+	exch round Width exch moveto show 
+    } def
+
+    /minsize {
+	/minsize super send
+	exch
+    } def
+
+    /preferredsize {
+	/preferredsize super send
+	exch
+    } def
+
+    %
+    % Anchors.
+    %
+    % Anchors are just dictionaries.  Executing code defined in
+    % anchors is done by beginning the anchor and calling the
+    % routine.  They execute in the context of the scrollbar, so
+    % have access to all the scrollbar's variables and methods.
+    %
+    /NewAnchor { % Y => anchor
+	growabledict begin
+	    /State /Default def
+	    /AnchorY exch def
+
+	    /SetState { % newstate => -
+		dup State ne {
+		    /State exch store
+		    gsave
+			self setcanvas
+			Paint
+		    grestore
+		} {
+		    pop
+		} ifelse
+	    } def
+
+	    3D? {
+		/Paint {
+		    State /SplitDrag eq { BG2 } { BG } ifelse setcolor
+		    2 AnchorY Width 3 sub AnchorHeight 2 sub rectpath fill
+		    State /SplitDrag eq { BG3 } { BG0 } ifelse setcolor
+		    Width AnchorY moveto 0 AnchorHeight rlineto
+		    2 Width sub 0 rlineto
+		    currentpoint stroke moveto
+
+		    State /SplitDrag eq { BG0 } { BG3 } ifelse setcolor
+		    0 AnchorHeight neg rlineto
+		    Width 2 sub 0 rlineto
+		    stroke
+		} def
+	    } {
+		/Paint {
+		    State /SplitDrag eq { 2DFG } { 2DBG } ifelse setcolor
+
+		    1 AnchorY Width AnchorHeight rectpath fill
+
+		    FG setcolor
+		    1 AnchorY Width 1 sub AnchorHeight rectpath
+		    stroke
+		} def
+	    } ifelse
+	currentdict end
+    } def
+
+    IncludeDemos? {
+	/demo { % - => instance
+	    10 dict begin
+	    	/sb framebuffer /new ClassHScrollbar send def
+		/can framebuffer /new SBDemoCanvas send def
+
+	    	0 10 101 /setparameters sb send
+
+		can /settarget sb send
+		/updatedemo /setnotifier sb send
+		/updatedemo /setpreviewer sb send
+
+		37 dup /setvalue sb send
+		null /updatedemo can send
+
+		/win can framebuffer /new ClassBaseWindow send def
+		/South sb /addclient win send
+		/Footer? false /setattribute win send
+		(ClassHScrollbar) /setlabel win send
+		/place win send
+	    	/new ClassEventMgr send /activate win send
+		/map win send
+
+		win sb
+	    end
+	} def
+    } if
+
+classend def

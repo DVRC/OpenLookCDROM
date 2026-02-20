@@ -1,0 +1,59 @@
+;;;	(c) Copyright 1989, 1990, 1991 Sun Microsystems, Inc. 
+;;;	Sun design patents pending in the U.S. and foreign countries. 
+;;;	See LEGAL_NOTICE file for terms of the license.
+
+Q & A on sending events
+
+Q:
+The method which is mentioned in the manual (Section 11.4)
+is for sending events between the windows under one LIspView
+as follows:
+
+
+                       +--------+
+                       |LispView|
+                       +---+----+
+            +--------------+----------------+
+            |                               |
+        +-------+     lv:send-event     +-------+
+        | Window|     ------------->    | Window|
+        +-------+                       +-------+
+
+   I`d like to know about how to send the events under the 
+   following configuration.
+
+
+	   +--------+                      +--------+
+	   |LispView|                      |LispView|
+	   +---+----+                      +---+----+
+	       |                               |
+	   +---+---+       send event      +---+---+
+	   | Window|     ------------->    | Window|
+	   +-------+                       +-------+
+
+
+   I guess I can do that by using Xlib interface with the
+   Foreign Function Interface.
+
+A:
+
+That's correct - you'll have to use X11:XSendEvent to do this.  The code
+below illustrates roughly how you'd write this kind of thing.
+
+(in-package "LISPVIEW")
+
+(let* ((display-xid (xview-object-xid (device (display window))))
+       (window-xid (xview-object-xid (device window)))
+       (data (X11:make-bsl-union))
+       (event 
+	 (X11:make-XEvent
+	   :type X11:ClientMessage
+	   :display display-xid
+	   :window window-xid
+	   :message-type (x11-intern-atom display-xid 'your-message-type)
+	   :format 32
+	   :data data)))
+  ;; init data
+  (X11:XSendEvent display-xid window-xid X11:True 0 event)
+  (X11:XFlush display-xid))
+

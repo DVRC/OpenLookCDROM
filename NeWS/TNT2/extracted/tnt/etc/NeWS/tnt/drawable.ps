@@ -1,0 +1,932 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) drawable.ps 1.36 91/02/11
+%
+%
+
+/ClassDrawable ClassObject []
+classbegin
+
+    /Valid?		false def
+    /Transparent	true def
+    /Mapped		true def
+    
+    % Valid VisualState values are:
+    %	/Active
+    %	/Inactive
+    %	/Busy
+    %	/Indeterminate
+    /VisualState	/Active def
+
+    % Variables to store colors and font information for this drawable.
+    %
+    
+    % OpenLook foreground/background colors
+    % The XView/OLWM (exact match) colors are given in the comments.  We
+    % use a closest match, thus may have slightly different values.
+    %
+    /BG0	.95 dup dup rgbcolor def	% .95 <== XView colors
+    /BG		.80 dup dup rgbcolor def
+    /BG2	.72 dup dup rgbcolor def	% .72
+    /BG3	.45 dup dup rgbcolor def	% .40
+    /FG		  0 dup dup rgbcolor def	%   0
+    /2DBG	  1 dup dup rgbcolor def
+    /2DFG	  0 dup dup rgbcolor def
+
+    /TextFont		/LucidaSans findfont 12 scalefont 
+			false printermatchfont
+			/ISOLatin1Encoding encodefont def
+
+     % Pt Sizes: 10 12 14 19
+    /GraphicFont	/olglyph findfont 12 scalefont def
+
+% Defaults:
+
+    /HandleDefaults { % name value => -
+	exch {
+	    /windowcolor {
+		3D? {
+		    /color /convert ClassDefaultsService send {
+			FG exch /setcolors self send
+		    } if
+		} {
+		    pop
+		} ifelse
+	    }
+	    /Default { pop }
+	} case
+    } def
+
+    /windowcolor self /addclient DefaultsService send
+
+    % Help support
+    /HelpKeyword nullstring def
+    /helpkeyword { % event => string
+	pop HelpKeyword
+    } def
+    /sethelpkeyword { % string => -
+	/HelpKeyword exch promote
+    } def
+
+    % The next four methods deal with validation. Basically a drawable
+    % is valid, if it is ready to be painted, invalid when some
+    % operations have to be executed before it can be repainted.
+
+    % Returns true if the drawable has already been reshaped.
+    %
+    /valid? { % - => bool
+	Valid?
+    } def
+
+    % Validate the drawable for repainting. For example, in a subclass
+    % validating may consist of laying out components on the drawable.
+    %
+    /validate { % - => -
+	/Valid? true def
+    } def
+
+    % Validate the drawable only if it is currently invalid.
+    %
+    /?validate { % - => -
+	Valid? not { /validate self send } if
+    } def
+
+    % Make the drawable invalid.
+    % Invalidate insures the object repaints, and possibly resizes, when the
+    % data behind the drawable object changes.
+    %
+    /invalidate { % - => -
+	/Valid? false def
+    } def
+
+    % Event management.  Every drawable needs to be able to get hold of
+    % its local event manager process.
+    %
+    /eventmgr { % - => process
+	SubClassResponsibility
+    } def
+
+    % Menu stuff.
+    
+    /Menu null def
+
+    /setmenu { % menu => -
+	/Menu exch promote
+    } def
+
+    /menu { % - => menu
+	Menu
+    } def
+
+    /MenuStart{ % invoker posname event => invoker' posname' event' menu true |
+		% invoker posname event => invoker posname event false
+	Menu null ne dup {Menu exch} if
+    } def
+
+    /MenuStop { % menu => -
+	pop
+    } def
+	
+
+    % Return the minimum size this drawable may take on.  Drawables may
+    % have a minimum size based on data they manage.  /minsize is
+    % typically inquired at user reshape time.  It allows each component
+    % to say -- OK, you can squeeze me smaller than my ideal size, but
+    % not smaller than this given size.
+    %
+    /minsize { % - => w h
+	0 0
+    } def
+
+    % Return the preferred size for this object.
+    % /preferredsize is typically inquired at startup time (from /place),
+    % and allows each component to give its ideal starting size.
+    %
+    /preferredsize { % - => width height
+	/minsize self send
+    } def
+
+
+    % Return the offset from the lower left corner to the named offset.
+    % A named offset may be used in place of /North, /Center, etc, in
+    % a calculated layout specification.
+    %
+    /offset { % name => x y
+        SubClassResponsibility
+    } def
+
+
+    /destroy { % - => -
+	/Menu unpromote
+	/destroy super send
+    } def
+
+    % Set the foreground & background colors for a drawable.
+    % This should be sent to a class if you want to change
+    % defaults for that class, and should be sent to individual instances
+    % to change just that instance.
+    /setcolors { % fg bg => -
+	3D? {
+	    % REMIND : These are not correct.
+	    dup +.80 ChangeBrightness /BG0 exch promote
+	    dup -.15 ChangeBrightness /BG2 exch promote
+	    dup -.50 ChangeBrightness /BG3 exch promote
+	    /BG exch promote
+	    /FG exch promote
+	}{
+	    /2DBG exch promote
+	    /2DFG exch promote
+	} ifelse
+
+	self isinstance? {
+	    /valid? self send {
+		/paint self send
+	    } if
+	} if
+    } def
+
+    % Get the foreground & background colors for a drawable.
+    %
+    /colors { % - => fg bg
+	3D? {
+	    FG BG
+	}{
+	    2DFG 2DBG
+	} ifelse
+    } def
+
+    % Set all OpenLook colors for a drawable.
+    %
+    /setallcolors { % 2dfg 2dbg fg bg0 bg bg2 bg3 => -
+	/BG3 exch def
+	/BG2 exch def
+	/BG  exch def
+	/BG0 exch def
+	/FG  exch def
+	/2DBG exch def
+	/2DFG exch def
+    } def
+
+    % Get all OpenLook colors for a drawable.
+    %
+    /allcolors { % - => 2dfg 2dbg fg bg0 bg bg2 bg3 
+	2DFG 2DBG FG BG0 BG BG2 BG3 
+    } def
+
+    % Lighten or darken the given color a percentage of its current value.
+    %
+    /ReTryDelta .01 def
+    /ChangeBrightness { % color percent => -
+	gsave
+	    1 index setcolor				% color pct
+	    {
+		currenthsbcolor 			% color pct h s b
+		3 index 0 le {
+		    3 index 1 add mul
+		} {
+		    1 1 index sub 4 index mul add
+		    exch 1 4 index sub mul exch
+		} ifelse
+		sethsbcolor 				% color pct
+		1 index contrastswithcurrent {exit} if
+		currentgray dup 0 eq exch 1 eq or {exit} if
+		dup dup abs div ReTryDelta mul add	% color pct'
+	    } loop
+	    pop pop currentcolor
+	grestore
+    } def
+
+    UserProfile /3D? known {
+      /3D? UserProfile /3D? get def
+    } {
+      % Be smart about looking at hardware configuration,
+      % and make /3D? a boolean class variable if we can.
+      /3D? { % - => bool
+	/Color self send
+      } def
+    } ifelse
+
+    /set3D { % bool|proc => -
+	/3D? exch def
+	self isinstance? {
+	    /invalidate self send
+	} if
+    } def
+
+    /Color { % - => bool
+      framebuffer /Color get
+    } def
+
+    /BackgroundColor { % - => color
+      3D? { BG } { 2DBG } ifelse
+    } def
+
+    /ForegroundColor { % - => color
+      3D? { FG } { 2DFG } ifelse
+    } def
+
+    % Utility routine to fill and stroke a 3D-rectangle. The light source
+    % is assumed to be from the north-west corner, and the "down?" boolean
+    % determines whether the look will be `depressed' or `outstanding'
+    /Paint3DBox { % x y w h down?
+	5 copy {BG2} {BG} ifelse setcolor rectpath fill
+	5 copy {BG0} {BG3} ifelse setcolor BotRightPath stroke
+	{BG3} {BG0} ifelse setcolor TopLeftPath stroke
+    } def
+
+    % Construct a path of the topand left edges of a box.
+    /TopLeftPath { % x y w h => -
+	4 2 roll moveto         % w h; move to bot-lt corner
+	0 exch rlineto          % w; stroke up
+	0 rlineto               % -; stroke over
+    } def
+
+    % Construct a path of the bottom and right edges of a box. 
+    /BotRightPath { % x y w h => -
+	4 2 roll moveto         % w h; move to bot-lt corner
+	exch 0 rlineto          % h; stroke over
+	0 exch rlineto          % -; stroke up
+    } def
+
+    /Paint2DBox { % x y w h bold? => -
+	2DBG setcolor
+	5 copy pop rectpath
+	gsave fill grestore
+	2DFG setcolor stroke
+	{ 1 5 1 roll insetrect rectpath stroke
+	} { pop pop pop pop } ifelse
+    } def
+
+    % Utility for drawing a horizontal OpenLook 3D line.
+    /Paint3DLine { % x y width => -
+	currentlinecap 2 setlinecap exch 4 2 roll	% lc w x y
+	moveto .5 .5 rmoveto 2 sub			% lc w'
+	0 1 rlineto dup 0 rlineto			% lc w'
+	BG0 setcolor currentpoint stroke moveto		% lc w'
+	1 0 rmoveto 0 -1 rlineto neg 0 rlineto		% lc
+	BG3 setcolor stroke setlinecap
+    } def
+
+    % Set the text font for a drawable.
+    % This should be sent to a class if you want to change
+    % defaults for that class, and should be sent to individual instances
+    % to change just that instance.
+    %
+    /settextfont { % font => -
+	/ModifyFont self send
+	/TextFont exch def
+	self isinstance? {
+	    /invalidate self send
+	} if
+    } def
+
+    % Subclasser hook.  By default, this method changes AdobeStandard
+    % encodings into ISOLatin1, and leaves other encodings unchanged.
+    % In addition, the PrinterMatched key is set to false.  Subclassers
+    % can override this to be 'nullproc' if they really want an 
+    % AdobeStandard encoding or printermatched font.
+    %
+    /ModifyFont { % font => font'
+	false printermatchfont
+
+	dup /Encoding get StandardEncoding eq {
+	    /ISOLatin1Encoding encodefont
+	} if
+
+    } def
+
+    % Return the text font of a drawable.
+    %
+    /textfont { % - => font; get the text font
+	TextFont
+    } def
+
+    % Set the visual state for a drawable.
+    %
+    /setvisualstate { % state => -
+        /VisualState exch promote
+    } def
+
+    % Return the visual state for a drawable.
+    %
+    /visualstate { % - => state
+        VisualState
+    } def
+
+    % Map the drawable.
+    %
+    /map { % - => -
+	/Mapped true def
+    } def
+
+    % Unmap the drawable.
+    %
+    /unmap { % - => -
+	/Mapped false def
+    } def
+
+    % Return true if the drawable is currently mapped.
+    %
+    /mapped? { % - => bool
+	Mapped
+    } def
+
+    /bbox { % - => x y w h
+	SubClassResponsibility
+    } def
+
+    /location { % - => x y
+	SubClassResponsibility
+    } def
+
+    /size { % - => w h
+	SubClassResponsibility
+    } def
+
+    /move { % x y => -
+	SubClassResponsibility
+    } def
+
+    /reshape { % x y w h => -
+	SubClassResponsibility
+    } def
+
+    /reshaped? { % - => boolean
+	SubClassResponsibility
+    } def
+
+    /reparent { % ParentCanvas => -
+	SubClassResponsibility
+    } def
+
+
+    % Set the current path to be that of the drawables' shape, using the given
+    % bounding box.  Each drawable uses this method for defining it's
+    % intrinsic shape given the desired bounding box.  Note that this is very
+    % useful for for much more than defining the outside shape of the
+    % menu.  For example, it can be used for defining a stroke path that
+    % is just inset from the edge of the drawable.  This is generally
+    % subclass responsibility. This method defaults to rectangular.
+    %
+    /path { % x y w h => -
+	rectpath
+    } def
+
+    % The rendering model used for each of paint/fix/capture is:
+    % - A top level method (paint, fix, or capture) sets up
+    %   initial context; this may be a no-op (for painting a canvas)
+    %   or may involve significant operations (such as setting the
+    %   clippath for a fix operation).  It then calls /PaintAll or
+    %   /FixAll or /CaptureAll to start the recursion.
+    % - FooAll sets up the context of the current object RELATIVE TO
+    %   that of the parent.  For a canvas this is a setcanvas; for a
+    %   region it's a translate.  It also validates the object.  Then
+    %   it calls Foo and FooChildren.  The FooAll methods are different
+    %   for canvases vs regions, so they are SubClassResponsibility and
+    %   are overridden by ClassCanvas and ClassRegion.
+    % - Foo paints the object itself.  Clients should override /Paint
+    %   (unless the default /Paint method is suitable, which is rare).
+    %   /Fix and /Capture default to calling /Paint but can be overridden
+    %   if additional cleverness is useful (e.g., /Fix might avoid painting
+    %   clipped areas if it can save a lot of computation that way).
+    % - FooChildren sends /FooAll to each Mapped child.  FixChildren should
+    %   ignore opaque (damageable) children since they will get their own
+    %   /Damaged events.
+    
+    /paint { % - => -
+	/PaintAll self send
+    } def
+    
+    /PaintAll { % - => -
+	SubClassResponsibility
+    } def
+
+    /Paint { % - => -
+	% subclasser responsibility; assumes current canvas and 0,0 origin
+    } def
+
+    /PaintChildren { % - => -
+	% subclasser responsibility; send /PaintAll to each child
+	% or do an equivalent operation such as "begin PaintAll end"
+	% (if you're sure you know what your children are!) to
+	% avoid multiple cross-object sends.  Default is a no-op,
+	% i.e., no children.
+    } def
+
+    /FixAll { % - => -
+	SubClassResponsibility
+    } def
+
+    /Fix { % - => -
+	/Paint self send	% default behavior
+    } def
+    
+    /FixChildren { % - => -
+	% subclasser responsibility; send /FixAll to each child
+	% or do an equivalent operation such as "begin FixAll end"
+	% to avoid multiple cross-object sends.  Default is a no-op,
+	% i.e., no children.
+    } def
+
+    /capture { % file array array => -
+	console 
+	(The capture facility is not fully functional in this release.\n) 
+	fprintf
+	2 index 3 -1 roll
+	{ 1 index exch writestring } forall     % prolog
+	{ /CaptureAll self send } /PSCapture self send
+	{ 1 index exch writestring } forall     % endlog
+	closefile
+    } def
+
+    /CaptureAll { % - => -
+	SubClassResponsibility
+    } def
+
+    /Capture { % - => -
+	/Paint self send	% default behavior
+    } def
+    
+    /CaptureChildren { % - => -
+	% subclasser responsibility; send /CaptureAll to each child
+	% or do an equivalent operation such as "begin CaptureAll end"
+	% to avoid multiple cross-object sends.  Default is a no-op,
+	% i.e., no children.
+    } def
+
+    % Display Items.  Display items are simple structures for
+    % drawing.  They are often strings, but may be procedures,
+    % instances, or canvases (images).  In addition, they may
+    % consist of an array with modifiers for font & color:
+    %		[str|proc|ins|can  font color]
+    /DisplayItemPaintDict dictbegin
+	/arraytype {
+	    dup xcheck {
+		/paint exch exec
+	    }{
+		gsave
+		    aload pop dup truetype exec
+		grestore
+	    } ifelse
+	} def	
+	/packedarraytype /arraytype load def
+
+	/canvastype {
+	    [ 0 0 0 0 0 0 ] currentmatrix exch
+	    currentpoint translate
+
+	    % This code handles orphan canvases created during buildimage
+	    % or readcanvas operations.
+	    dup /Parent get null eq {
+		dup false getbbox scale pop pop
+	    } if
+
+	    dup /Color get {
+		imagecanvas
+	    }{
+		false exch imagemaskcanvas
+	    } ifelse
+	    setmatrix
+	} def
+
+	/colortype {
+	    setcolor dup truetype exec
+	} def
+
+	/dicttype {
+	    /paint exch send
+	} def
+
+	/fonttype {
+	    setfont dup truetype exec
+	} def
+
+	/integertype {
+	    rmoveto dup truetype exec
+	} def
+	/fixedtype //integertype def
+	/realtype //integertype def
+
+	/nametype {
+	    exch aload length 1 add -1 roll cvx exec dup truetype exec
+	} def	
+
+	/nulltype {
+	    pop
+	} def
+
+	/stringtype {
+	    0 currentfont fontdescent rmoveto show
+	} def
+
+    dictend def
+
+    % Dictionary to hold a procedure that returns the size of the display
+    % item.
+    %
+    /DisplayItemSizeDict dictbegin
+
+	/arraytype {
+	    dup xcheck {
+		/size exch exec
+	    }{
+		gsave
+		    aload pop dup truetype exec
+		grestore
+	    } ifelse
+	} def
+	/packedarraytype /arraytype load def
+
+	/canvastype {
+	    false getbbox 4 2 roll pop pop
+	} def
+
+	/colortype {
+	    setcolor dup truetype exec
+	} def
+
+	/dicttype {
+	    /size exch send
+	} def
+ 
+	/fonttype {
+	    setfont dup truetype exec
+	} def
+
+	/integertype {
+	    pop pop dup truetype exec
+	} def
+	/fixedtype //integertype def
+	/realtype //integertype def
+
+	/nametype {
+	    exch aload length 1 add -1 roll cvx exec dup truetype exec
+	} def
+
+	/nulltype {
+	    pop 0 0
+	} def
+
+	/stringtype {
+	    dup stringbbox pop 3 -2 roll pop pop
+	    exch stringwidth pop max
+	    currentfont fontheight
+	} def
+
+    dictend def
+
+    % Dictionary to hold a procedure that leaves code on the stack that
+    % knows how to paint the display item.
+    %
+    /DisplayItemInlinePaintDict dictbegin
+
+	/arraytype {
+	    dup xcheck {
+		exch pop /paint exch /exec load
+	    }{
+		/gsave load counttomark 1 add 1 roll
+		    aload pop dup truetype exec
+		/grestore load
+	    } ifelse
+	} def
+	/packedarraytype /arraytype load def
+
+	/canvastype {
+	    exch pop DisplayItemPaintDict /canvastype get /exec load
+	} def
+
+	/colortype {
+	    /setcolor load counttomark 1 add 2 roll
+	    dup truetype exec
+	} def
+
+	/dicttype {
+	    exch pop /paint exch /send load
+	} def
+
+	/fonttype {
+	    dup setfont
+	    /setfont load counttomark 1 add 2 roll
+	    dup truetype exec
+	} def      
+
+	/integertype {
+	    /rmoveto load counttomark 1 add 3 roll
+	    dup truetype exec
+	} def
+	/fixedtype //integertype def
+	/realtype //integertype def
+
+	/nametype {
+	    load counttomark 1 add 1 roll
+	    aload length counttomark 1 add exch roll
+	    dup truetype exec
+	} def
+
+	/nulltype {
+	    pop pop
+	} def
+
+	/stringtype {
+	    exch pop
+	    0 currentfont fontdescent
+	    /rmoveto load /show load
+	} def
+
+    dictend def
+
+    /DisplayItemPaint { % <display item> => -
+	//DisplayItemPaintDict begin
+	    dup truetype exec
+	end
+    } def
+
+    /DisplayItemSize { % <display item> => width height
+	//DisplayItemSizeDict begin
+	    dup truetype exec
+	end
+    } def
+
+    /DisplayItemMaximumSize { % [<display item>...] => maxwidth maxheight
+	currentfont exch				
+	TextFont setfont
+	DisplayItemSizeDict begin
+	    0 0 3 -1 roll {
+		dup truetype exec	
+		4 -1 roll max 3 1 roll max
+		pause
+	    } forall
+	end				
+	exch 3 -1 roll setfont	
+    } def
+
+    /DisplayItemInlinePaint { % <display item> => paintproc
+	mark exch mark exch
+	//DisplayItemInlinePaintDict begin
+	    dup truetype exec
+	end
+	counttomark packedarray cvx exch pop
+    } def
+
+    /DisplayItemRect {3 -1 roll /paint eq {rect fill} if} def
+
+    % Return the corner farthest from the given x y.
+    % Coordinates are in the parents space.
+    %
+    /FarthestCorner { % x y =>  x' y'
+        /bbox self send rect2points             % x y X0 Y0 X1 Y1
+                % X0 x sub abs X1 x sub abs gt {X0} {X1} ifelse
+                % X0 x sub abs X1 x sub abs gt {X0} {X1} ifelse
+        3 index 6 index sub abs 2 index 7 index sub abs gt {3} {1} ifelse index
+        3 index 6 index sub abs 2 index 7 index sub abs gt {3} {1} ifelse index
+        mark 9 3 roll cleartomark       % x y X0 Y0 X1 Y1 x' y' => x' y'
+    } def
+
+
+    % Stipple Utilities.  Stippling is done, believe it or not, by using a
+    % font with stipple patterns for characters!
+    
+    % The Stipple Font.
+    % The stipple font is driven by the StippleData array which consists of
+    % charname-imagedata pairs used in creating the stipple characters.
+    % To add new characters, simply add a new entry in the array.  Note
+    % the encoding used will be the relative position in the array.  Thus
+    % the third entry in the array would encode to two. 
+    %
+    /StippleData [
+%	[/Gray12Stipple  <80808080 08080808 20202020 02020202>]
+	[/Gray12Stipple  <88888888 00000000 22222222 00000000>]
+	[/Gray25Stipple  <88888888 22222222 44444444 11111111>]
+	[/Gray50Stipple  <aaaaaaaa 55555555>]
+	[/Gray75Stipple  <77777777 dddddddd bbbbbbbb eeeeeeee>]
+    ] def
+    /StippleEncoding [
+	StippleData {0 get} forall
+	counttomark 256 exch sub {/.notdef} repeat
+    ] def
+    
+    /StippleFont dup dictbegin
+	/FontType	3 def
+	/FontMatrix	[2 -5 exp 0 0 2 -5 exp 0 0] def
+	/FontBBox	[0 0 32 32] def
+	/Encoding	StippleEncoding def
+	/CharProcs	dictbegin
+	    /.notdef {} def
+	    StippleData {
+		aload pop
+		[32 32 true /matrix cvx 6 -1 roll /imagemask cvx] cvx def
+	    } forall
+	dictend def
+	/BuildChar { % font char => -
+	    exch begin
+		32 0 0 0 32 32 setcachedevice
+		Encoding exch get CharProcs exch get exec
+	    end
+	} def
+    dictend definefont 32 scalefont def
+
+    % Build "Class Variables" whose name is the char name of the stipple,
+    % and is a string filled with the correct endocing.
+    %
+    /StippleStringSize 256 def	% # pixels: StippleStringSize 32 mul = 8192
+    0 1 StippleData length 1 sub {			% i
+	StippleStringSize string dup			% i str str
+	0 1 StippleStringSize 1 sub {			% i str str index
+	    3 index put dup
+	} for pop					% i str
+	StippleData 3 -1 roll get 0 get exch def	% -
+    } for
+    
+    % A proc which is used to stipple fill a path with a given pattern
+    %
+    /StipplePath { % str x y w h pathproc => -
+	gsave
+	    StippleFont setfont		% str x y w h p
+	    5 copy exec clip pop	% str x y w h
+	    4 2 roll translate		% str w h
+	    3 1 roll			% h str w
+	    32 div ceiling cvi		% h str strlen
+	    0 exch getinterval		% h substr
+	    exch 32 div ceiling cvi {	% substr
+		0 0 moveto dup show
+		0 32 translate
+	    } repeat
+	    pop
+	grestore
+    } def
+
+    % A "macro" for a rectangular stipple of 50% gray.  This is used
+    % for inactive visual state feedback.
+    % 
+    /StippleRect { % x y w h => -
+	Gray50Stipple 5 1 roll //rectpath StipplePath
+    } def
+
+    % Help support. Every Drawable can receive help requests.
+    % Method does nothing if client-side does not initialize
+    % help package.
+    /HandleHelp	{ % event => -
+	/helpkeyword self send	    	    	    % string
+	dup nullstring eq			    %  string bool
+	HelpInitialized? not or	{		    %  string
+	    pop
+	    /FindRootWindow self send {   
+		% Blow away the menus
+		/triggered? MenuService send {
+			/CancelNotify MenuService send
+		} if
+		/nohelp 1 index send exch    	    % notice root
+		/eventmgr 1 index send	    	    % notice root emgr
+		/activate 3 index send		    % notice root
+		/setbasewindow 2 index send	    % notice
+		self /open 3 -1 roll send	    % -
+	    } if
+	} {		    	    	    	    % string
+	    /sethelpwindow self send {		    % string
+		SpotHelpTag tagprint
+		typedprint
+		gsave framebuffer setcanvas
+		    currentcursorlocation exch	    % y x
+		grestore
+		typedprint
+		typedprint  	    	    	     
+	    } {
+		pop
+	    } ifelse
+	} ifelse
+    } def
+
+    % Maintain the Help Window - Root Window dependencies for the
+    % root window containing this drawable. If there is no root
+    % window, return false so that the client doesn't get confused.
+    /sethelpwindow { % - => boolean
+	/FindRootWindow self send   	    	    % false| root true
+	{
+	    /helpwindow? self send  	    	    % root f | help t
+	    {
+		/HelpWindow 2 index send    	    % root help help'
+		1 index ne			    % root help bool
+		{
+		    /AddHelpWindow self send	    % -
+		} {
+		    pop pop 	    	    	    % -
+		} ifelse			    % -
+	    } {					    % root
+		/NewHelpWindow self send	    % root help
+		/AddHelpWindow self send	    % -
+	    } ifelse				    % -
+	    true
+	} {
+	    false
+	} ifelse    	    	    	    	    % boolean
+    } def
+
+    % Create a new Help Window, and store a reference where the
+    % client can find it: /HelpWindowToken is defined by the client
+    % library. Only called when /HelpInitialized? returns true
+    /NewHelpWindow  { % - => help-window|null
+	/FindRootWindow self send {
+	    (Help) null framebuffer /new ClassTNTHelpWindow send
+	    gsave framebuffer setcanvas
+		0 /size framebuffer send exch pop	    % help-w 0 H
+		/size 3 index send exch pop	    	    % help-w 0 H h
+		sub /move 3 index send		    % help-w
+		dup soften HelpWindowToken
+		/eventmgr self send /Stdout get setfileinputtoken
+	    grestore
+	} {
+	    null
+	} ifelse
+    } def
+
+    % Only called if /HelpInitialized? returns true, i.e.,
+    % /HelpWindowToken is defined 
+    /helpwindow? { % - => false | help-window true
+	/eventmgr self send /Stdout get	      	    % file
+	HelpWindowToken exch  getfileinputtoken     % wind|null
+	dup null eq {				    % wind|null
+	    pop false
+	} {
+	    true
+	} ifelse
+    } def
+
+    /AddHelpWindow  { % root-window help-window => -
+	2 copy ne {
+	    /InvokingWindow /unpromote 2 index send	    % r-w h-w
+	    /HelpWindow /unpromote 3 index send	    % r-w h-w
+	    /HelpWindow 1 index /promote 4 index send   % r-w h-w
+	    /active? 1 index send {
+		/deactivate 1 index send
+	    } if			    	    	    % r-w h-w
+	    /eventmgr 2 index send			    % r-w h-w emgr
+	    /activate 2 index send			    % r-w h-w
+	    exch soften /InvokingWindow exch /promote 4 -1 roll send
+	} {
+	    pop pop
+	} ifelse
+    } def
+	
+    /HelpInitialized? { % - => bool
+	userdict /SpotHelpTag known
+    } def
+
+    % Find the "root" window containing this drawable
+    /FindRootWindow  { % -  => false | window true
+	self /descendantof? ClassWindow send	{
+	    /RootWindow self send true
+	} {
+	    self dup type /canvastype ne {/Parent get} if  % cv
+	    /parentdescendant ClassWindow send {
+		/RootWindow exch send true
+	    } {
+		false
+	    } ifelse
+	} ifelse
+    } def
+
+classend def

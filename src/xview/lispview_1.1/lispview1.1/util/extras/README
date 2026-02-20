@@ -1,0 +1,30 @@
+
+Some coding ideas related to a variety of LispView topics
+
+-----
+draw-without-damage-interest.lisp
+
+"example of how to draw on a window without messing with damage events"
+
+-----
+image-file-array.lisp
+
+Utility to convert icon files to arrays
+
+-----
+object-id.lisp
+
+Code for returning the XView object id and X11 resource id
+
+-----
+send-event.doc
+
+Idea for sending events between LispView windows under two different
+Lisp sessions
+
+-----
+spot-help.doc
+
+Using spot help in LispView
+
+-----

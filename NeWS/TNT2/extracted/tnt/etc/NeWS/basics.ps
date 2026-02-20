@@ -1,0 +1,360 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)basics.ps 23.12 91/02/11
+%
+%  This file contains the utilities necessary to run X11/NeWS as a filter.
+%
+
+/XNeWS? systemdict /soften known def    % a post-1.1 version NeWS server
+
+/version (2.1) def			% NeWS version number.
+/openwinversion (TNT 2.0) def		% OpenWindows version number.
+
+% defined early so everyone can use it to bail out in event of a fatal error.
+/FatalError { % string => (doesn't return)
+    console exch writestring
+    console flushfile
+    shutdownserver
+} def
+
+%
+% Utility to prevent defining proc previously defined.
+% This is used here to avoid defining in PostScript a
+% primitive recently implemented in C.
+%
+/?def { % key value => -
+    1 index where { pop pop pop } { def } ifelse
+} def
+
+%
+% ?put, ?get, ?load & ?getenv:
+% Similar to ?def: check if the value exists before acting.
+% Retreving operators take a default, which may be a proc creating the default.
+%
+/?put { % dict key value => -
+    2 index 2 index known { pop pop pop } { put } ifelse
+} def
+
+/?get { % dict key default => value
+    2 index 2 index known {pop get} {exec 3 1 roll pop pop} ifelse
+} def
+
+/?load { % key default => value
+    1 index where {exch pop exch get} {exec exch pop} ifelse
+} def
+
+/?getenv { % envstr defaultstr => str
+    exch {getenv} stopped {pop exec} {exch pop} ifelse
+} def
+
+% envknown?: like ?getenv but for "is it defined or not" state variables
+/envknown? { % envstr => bool
+   { getenv } stopped exch pop not
+} def
+
+
+% Return true if an object is an array.
+/isarray? { % any => boolean
+    type dup /arraytype eq  exch /packedarraytype eq or
+} ?def
+
+% Fakes for packing if running without pack.ps.
+/currentpacking false ?def
+/setpacking { pop } ?def
+%
+% Sprintf: replace %'s in format string with argument as a string.
+% Note the args can either be before or after the format string.
+% If they precede the format string, they are in reverse order:
+% argN .. arg0 formatstring   -or-  formatstring [arg0 .. argN]
+%
+/sprintf { % args fmtstr -or- fmttstr [args] => str
+    dup isarray? {			% convert second form to first form
+	3 exch {			% fmtstr i+3 ai
+	    1 index 1 roll		% ai .. a1 fmtstr i+3 
+	    1 add
+	} forall
+	pop
+    } if				% aN .. ai fmtstr
+    () 250 string 3 -1 roll (%) {	% aN .. ai resultstr tempstr fmtstr (%)
+	search {			% aN .. ai result temp post (%) pre
+	    6 -1 roll			% aN .. result temp post (%) pre ai
+	    dup type /stringtype ne	% is ai a string?  If so, convert.
+	    	{4 index cvs} if	% aN .. result temp post (%) pre (ai)
+	    append			% aN .. result temp post (%) pre'
+	    5 -1 roll exch append	% aN .. temp post (%) result'
+	    4 1 roll			% aN .. result' temp post (%)
+	} {				% result temp fmt
+	    exch pop append exit
+	} ifelse
+    } loop
+} def
+
+%
+% Printing versions of sprintf.  Note: fprintf also flushes the file.
+%
+/printf {sprintf print} def 	% print sprintf on std out
+
+/fprintf { % file fmtstr argarray  .or. file args fmtstr  => -
+    sprintf 1 index exch writestring flushfile
+} def
+
+%
+% The console.  Note: it is a handy place to fprintf in case of errors.
+%
+/console (%stderr) (w) file def
+
+% Ring a bell somewhere!  Currently sends (\007) to console.  Note: might
+% want to send to /dev/console rather than %stderr (see /console)
+/beep { % - => -; ring the bell
+    console (\007) writestring console flushfile 
+} ?def
+
+%
+% Extra color manipulation routines. These routines take a color and
+% return the appropriate HSB or RGB triple:
+/colorrgb { % color => r g b
+    gsave
+        setcolor
+        currentrgbcolor
+    grestore
+} ?def
+
+/colorhsb { % color => h s b
+    gsave
+        setcolor
+	currenthsbcolor
+    grestore
+} ?def
+
+%
+% This is the implementation of the executive, defined in redbook Appx D
+% Default error handler: print out message in $error dict if there is
+% one; otherwise print $error dict fields & operand stack.
+%
+/ExecutiveErrorHandler {
+    (***ERROR***\n) print
+
+    $error dup null ne {
+	dup /newerror get {
+	    dup /message null ?get			% $error message|null
+	    dup null eq {
+		pop dup {
+		    exch (\t%:\t%\n)  printf
+		} forall				% $error
+	    	/newerror false put			% --
+		stack
+	    } {
+	    	print
+		(*****\n) print
+	    	/newerror false put			% --
+	    } ifelse
+	} {
+	    pop ($error does not have a new error in it!\n) print
+	} ifelse
+    } {
+	pop ($error not found!!!\n) print
+    } ifelse						% --
+    flush
+} def
+
+/execfile {currentfile dup null eq {pop (%stdin) (r) file} if} def
+
+/executive { % - => - (Execute current file)
+    countdictstack 1 eq {200 dict begin} if % make sure there is a userdict
+    currentprocess /ErrorDetailLevel 1 put
+
+    (Welcome to X11/NeWS Version %\n) [ openwinversion ] printf
+    {   % restart loop for errors.
+	{ execfile cvx exec } stopped pop
+	execfile status not { quit } if	% quit if file closed
+	ExecutiveErrorHandler
+    } loop
+} def
+
+%
+% A case/switch statement.  Takes a key for the case and an array.
+% Generally the array is executable to avoid evaluating the array
+% each time case is called:
+%	obj {
+%	    key1	{proc1}
+%	    key2 key3	{proc2}
+%	    key4	{proc3}
+%	    /Default	{proc4}
+%	} case
+%
+/case {			%  v { k {} k k {} .... /Default {} }  CASE  -
+    false exch {				% v bool k|{}
+	exch {					% v k|{}
+	    dup xcheck {exit} {pop true} ifelse	% v bool|{}
+	} {
+	    2 copy eq exch /Default eq or	% v bool
+	} ifelse
+    } forall					% v bool|{}
+    dup xcheck {exch pop exec} {pop pop} ifelse
+} ?def
+
+%
+% A "cond" (condition) statement: Consists of predicate-proc pairs.
+% The first predicate that evaluates to true executes its correnponding
+% procedure.  Thus:
+%
+%    2 {
+%        {dup 1 eq}	{(one)}
+%        {dup 2 eq}	{(two)}
+%        true		{(other)}
+%    } cond
+%
+% results in "2 (two)" being left on the stack.  Note "true" effects
+% a default branch.
+%
+% The implementation is very wierd.  Here are the author's notes:
+% Here's another entry in the cond-test.  It's like Owen & Jerry's last
+% ones in that it uses forall to step through all the elements, except
+% instead of leaving a boolean or integer on the top of the stack to tell
+% it what to do on the next iteration, it puts the code to be executed
+% itself.  Notice the mind-bending self referentiality:
+% 
+% NextProc contains the code to be executed the next time a test is to be
+% made, "exec null exit" gets executed in the clause after a true result,
+% "pop /NextProc" gets executed in the clause after a false result -
+% which is setting up for the next test.
+%
+% The "/NextProc" in the definition of /NextProc should really be
+% //NextProc except that NextProc isn't defined yet...
+% I then reach into the array and install it after /NextProc
+% is defined.
+% 
+currentpacking	    	% bool left on stack for later setpacking call
+false setpacking
+/NextProc { exec { { exec null exit } } { { pop /NextProc } } ifelse } def
+//NextProc 2 get 0 get 1 //NextProc put % replace placeholder by a recursion
+setpacking
+
+/cond { % args array => args
+    //NextProc			% args a nextproc
+    exch {			% args nextproc ai
+	exch exec		% args newnextproc
+    } forall
+    pop
+} ?def
+currentdict /NextProc undef
+
+%
+% Append arrays, strings, and dicts:  obj1 obj2    =>    obj3
+%
+/append {	% obj1 obj2  =>  obj3 (concatinates arrays, strings, and dicts)
+		% Dicts: second dict over-rides common keys
+    1 index length 1 index length add	% obj1 obj2 totalsize
+    1 index dup type /dicttype eq {
+        pop dict begin
+            exch {def}forall {def}forall
+            currentdict
+        end
+    } {
+        isarray? {array} {string} ifelse	% a1 a2 A
+	dup 4 -1 roll 1 index copy length	% a2 A A l1
+	4 -1 roll putinterval
+    } ifelse
+} ?def
+
+
+%%%%%%%%%%%%%%%%
+% from util.ps %
+%%%%%%%%%%%%%%%%
+
+% The smallest and largest "fract" type:
+/minim 1.0 256.0 div 256.0 div def
+/maxim 32767.0 def
+
+%
+% File usage with search paths.
+%	filepathparse is used to convert from a : separated list to
+%		an array of strings
+%	filepathopen opens a file using a search path
+%	filepathrun runs a file using a search path
+% Usage:
+%	/FooPath (FOOPATH) (.:~/bin:$OPENWINHOME/bin) ?getenv filepathparse def
+%	(foo.ps) FooPath filepathrun { .. } { .. } ifelse
+%
+% Note:
+%	-If the file name is absolute (begins with "/"), the path is ignored.
+%	-() in the path is equivalent to just the filename with no
+%	 dir pre-pended.  Use (.) for current directory.
+%	-X11/NeWS will also look in OPENWINSHOME/lib for the file too!
+%	 This seems like a bug to me.  It should at least not do so if
+%	 the path is absolute.
+%
+/filepathparse { % pathstring => patharray
+    [ exch (:) { search {3 1 roll} {exit} ifelse } loop ]
+} def
+/filepathopen { % filename patharray access => path file true -or- name false
+    % Hack: no path if abs filename! Note: 47 == "/"; {()} == [()] but static.
+    2 index 0 get 47 eq {exch pop {()} exch} if
+    mark 3 -1 roll {					% name access mark dir
+        dup () ne {(/) append} if 3 index append	% name access mark path
+        dup {3 index file} stopped
+            {cleartomark mark}		% name access mark
+            {exit} ifelse		% name access mark path file
+    } forall
+    dup mark eq {pop pop false} {5 2 roll pop pop pop true} ifelse
+} def
+%/filepathrun { % filename patharray => path true -or- name|path false
+%    (r) filepathopen {			% path file true -or- name false
+%        mark exch			% path mark file
+%        {cvx exec} stopped {		% path mark..clear will fix crudy files
+%            cleartomark false		% path false
+%            (%: Load failed; error in file.\n) [3 index] printf
+%            mark {$error /message get print} stopped cleartomark
+%        } {
+%	    counttomark 0 ne {
+%		counttomark dup 2 add index	% path mark .. n path
+%		[3 1 roll exch]			% path mark .. [path n]
+%		console
+%		    (Note: % left % items on the operand stack.\n)
+%		    3 -1 roll fprintf
+%	    } if
+%	    cleartomark true
+%        } ifelse			% path true
+%    } {false} ifelse			% name false
+%} def
+% The above should be used but NeWS 1.1 has an error in error handling.
+% This simply fails on errors in the file:
+/filepathrun { % filename patharray => path true -or- name|path false
+    (r) filepathopen {			% path file true -or- name false
+        mark exch			% path mark file
+        cvx exec			% path mark ..
+	counttomark 0 ne {
+	    counttomark dup 2 add index	% path mark .. n path
+	    [3 1 roll exch]		% path mark .. [path n]
+	    console
+		(Note: % left % items on the operand stack.\n)
+		3 -1 roll fprintf
+	} if
+	cleartomark true
+    } {false} ifelse			% name false
+} def
+
+/setvm { % vm => -
+    currentprocess /CurrentVM 3 -1 roll put
+} def
+/currentvm { % - => vm
+    currentprocess /CurrentVM get
+} def
+/currentshared { % - => bool
+    currentvm sharedvm eq
+} def
+/setshared { % bool => -
+    {
+	sharedvm
+    } {
+	currentprocess /PrivateVM get
+    } ifelse
+    setvm
+} def
+
+/SystemPriority 100 ?def
+/UserPriority 0 ?def

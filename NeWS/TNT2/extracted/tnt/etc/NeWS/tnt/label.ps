@@ -1,0 +1,113 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) label.ps 1.17 91/02/11
+%
+%
+
+/ClassLabel ClassRegion [/Label]
+classbegin
+    /TextFont	/LucidaSans-Bold findfont 12 scalefont 
+		false printermatchfont
+		/ISOLatin1Encoding encodefont def
+
+    /Valid?	true def % we're always valid; don't promote the flag!
+
+    /NewInit { % displayitem parent
+	/NewInit super send
+	/Label exch def
+    } def
+    
+    % Note: override use of Width & Height.
+    /size { % - => w h
+	/Width promoted? {
+	    Width Height
+	} {
+	    currentfont
+	    TextFont setfont
+	    /Label load DisplayItemSize
+	    3 -1 roll setfont
+	} ifelse
+    } def
+
+    /setvisualstate { % state => -
+	/setvisualstate super send
+	VisualState /Active eq {
+	    /paint self send
+	} {
+	    gsave Parent setcanvas
+		BackgroundColor setcolor /bbox self send StippleRect
+	    grestore
+	} ifelse
+    } def
+
+    /Paint { % - => -
+	0 0 moveto TextFont setfont ForegroundColor setcolor
+	/Label load DisplayItemPaint
+	VisualState /Active ne {
+	    BackgroundColor setcolor 0 0 /size self send StippleRect
+	} if
+    } def
+
+    /setvalue { % displayitem => -
+	% Build a label that erases the current one!!  This may seem
+	% nuts, but it isolates us from the Parent details nicely.
+	/Label [
+            [	currentfont
+		TextFont setfont
+		/Label load DisplayItemSize
+		3 -1 roll setfont
+		/DisplayItemRect cvx
+	    ] cvx
+	    BackgroundColor
+	] def
+	/paint self send
+	% Now install us:
+	/Label exch def
+	/paint self send
+    } def
+    /value { % - => displayitem
+	/Label load
+    } def
+
+IncludeDemos? {
+    /demo { % - => window instance
+    growabledict begin
+	/panel /Absolute framebuffer /new ClassPanel send def
+	
+	/Lab1 (Simple:) framebuffer /new ClassLabel send def
+	/Lab1 Lab1 [0 70] /addclient panel send
+
+	/Lab2 [(Red:) /Helvetica-Bold findfont 18 scalefont 
+	       false printermatchfont 1 0 0 rgbcolor]
+	    framebuffer /new ClassLabel send def
+	/Lab2 Lab2 [70 70] /addclient panel send
+
+	/Lab3 40 22 1 [] {<
+	    FF00000003 FF7FFFFFFB FF5FFFFFFB FF7FFFFFFB FF00000003 FF6F7FFEFB
+	    FF6F7FFEFB FF6F7FFEFB FF6971FEFB FF697FFEFB 3F6F7FFEF7 0F6F7FFEEF
+	    C300000018 F03FFFFFC0 FC3F8000C7 FFBFFFFFDF FFBF8000DF FFBFFFFFDF
+	    FFBF8000DF FFBFFFFFDF FF8000001F FFE7FFFCFF
+	>} buildimage framebuffer /new ClassLabel send def
+	/Lab3 Lab3 [0 0] /addclient panel send
+
+	/Lab4 [{20 20 DisplayItemRect} 0 0 1 rgbcolor]
+	    framebuffer /new ClassLabel send def
+	/Lab4 Lab4 [70 0] /addclient panel send
+    
+	/win panel framebuffer /new ClassBaseWindow send def
+	20 20 20 20 /setgaps win send
+	(Demo of 4 labels) /setlabel win send
+	/Footer? false /setattribute win send
+	/place win send
+	/new ClassEventMgr send /activate win send
+	/map win send
+	win [Lab1 Lab2 Lab3 Lab4]
+    end
+    } def
+} if
+classend def
+

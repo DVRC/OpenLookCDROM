@@ -1,0 +1,9218 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 15 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 15 /Palatino-Italic FMDEFINEFONT
+5 10 /Palatino-Roman FMDEFINEFONT
+6 9 /Courier FMDEFINEFONT
+%%Page: "255" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (255) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (27-0) 158.58 672.33 S
+-0.12 (27-0) 158.58 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (Jot) 199.01 509.03 S
+3 F
+7 X
+1 K
+-3.12 (27) 536.13 508.36 S
+4 F
+0 X
+0 K
+-0.94 (Intr) 54 456.34 P
+-0.94 (oduction to Jot) 77.89 456.34 P
+5 F
+0.52 0.1 (Jot is the text package included with the NeWS toolkit. Jot de\336nes both the ) 198 434.68 B
+0.52 0.1 (data str) 198 422.28 B
+0.52 0.1 (uctur) 232.54 422.28 B
+0.52 0.1 (es and pr) 256.56 422.28 B
+0.52 0.1 (ocedur) 299.21 422.28 B
+0.52 0.1 (es r) 330.4 422.28 B
+0.52 0.1 (equir) 346.61 422.28 B
+0.52 0.1 (ed to manage pr) 370.2 422.28 B
+0.52 0.1 (esentation and ) 445.11 422.28 B
+0.38 0.1 (interaction with text. Y) 198 409.88 B
+0.38 0.1 (ou can use either C or C++ when using the Jot interface.) 301.66 409.88 B
+4 F
+-0.94 (How Jot functionality is or) 54 376.14 P
+-0.94 (ganized) 211.9 376.14 P
+5 F
+0.52 0.1 (Jot\325s functionality is or) 198 354.48 B
+0.52 0.1 (ganized accor) 301.66 354.48 B
+0.52 0.1 (ding to the model-view-contr) 364.25 354.48 B
+0.52 0.1 (oller ) 498.23 354.48 B
+0.52 0.1 (paradigm. This paradigm decomposes an application into thr) 198 342.08 B
+0.52 0.1 (ee components. ) 478.35 342.08 B
+0.52 0.1 (The model is a data object, r) 198 329.68 B
+0.52 0.1 (epr) 327.4 329.68 B
+0.52 0.1 (esenting application information. The view ) 342.26 329.68 B
+0.13 0.1 (pr) 198 317.28 B
+0.13 0.1 (esents its associated model in a graphical fashion. The contr) 207.98 317.28 B
+0.13 0.1 (oller pr) 478.58 317.28 B
+0.13 0.1 (ovides an ) 511.79 317.28 B
+0.52 0.1 (interface between input devices and the model that allows the user to interact ) 198 304.88 B
+0.52 0.1 (with the model thr) 198 292.48 B
+0.52 0.1 (ough its view) 283.96 292.48 B
+0.52 0.1 (.) 345.32 292.48 B
+0.52 0.1 (For example, a model consisting of numeric data might be viewed as a ) 198 272.08 B
+0.52 0.1 (spr) 198 259.68 B
+0.52 0.1 (eadsheet, a pie chart, or a line graph. When the user enters a number in a ) 212.31 259.68 B
+0.52 0.1 (spr) 198 247.28 B
+0.52 0.1 (eadsheet cell, the contr) 212.31 247.28 B
+0.52 0.1 (oller noti\336es the model, which stor) 316.68 247.28 B
+0.52 0.1 (es the new ) 476.28 247.28 B
+0.52 0.1 (information. The model then r) 198 234.88 B
+0.52 0.1 (equests its views to update their pr) 336.45 234.88 B
+0.52 0.1 (esentations.) 497.8 234.88 B
+0.52 0.1 (The arrangement of Jot functionality does not quite map into the model-view-) 198 214.48 B
+0.52 0.1 (contr) 198 202.08 B
+0.52 0.1 (oller paradigm. The text model is called JotT) 221.24 202.08 B
+0.52 0.1 (ext and all the pr) 424.54 202.08 B
+0.52 0.1 (ocedur) 502.98 202.08 B
+0.52 0.1 (es ) 534.16 202.08 B
+0.49 0.1 (that deal with the model ar) 198 189.68 B
+0.49 0.1 (e pr) 322.82 189.68 B
+0.49 0.1 (efaced with ) 340.78 189.68 B
+6 F
+1.02 (JotText_) 396.72 189.68 P
+5 F
+0.49 0.1 (. The view and contr) 439.86 189.68 B
+0.49 0.1 (oller ) 534.4 189.68 B
+0.52 0.1 (pr) 198 177.28 B
+0.52 0.1 (ocedur) 207.98 177.28 B
+0.52 0.1 (es ar) 239.16 177.28 B
+0.52 0.1 (e combined and ar) 260.47 177.28 B
+0.52 0.1 (e pr) 345.56 177.28 B
+0.52 0.1 (efaced by ) 363.54 177.28 B
+6 F
+1.08 (JotView_) 410.1 177.28 P
+5 F
+0.52 0.1 (. ) 453.24 177.28 B
+FMENDPAGE
+%%EndPage: "255" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+3 15 /Palatino-BoldItalic FMDEFINEFONT
+7 10 /Palatino-Italic FMDEFINEFONT
+8 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "256" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (256) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (In addition, Jot uses spans to r) 198 641.33 B
+0.52 0.1 (efer) 337.66 641.33 B
+0.52 0.1 (ence speci\336c pieces of the text buf) 354.73 641.33 B
+0.52 0.1 (fer ) 510.01 641.33 B
+0.52 0.1 (\050) 198 628.93 B
+6 F
+1.08 (JotSpan_) 201.43 628.93 P
+5 F
+0.52 0.1 (\051 and has functions for implementing a text sear) 244.57 628.93 B
+0.52 0.1 (ch facility ) 464.49 628.93 B
+0.52 0.1 (\050) 198 616.53 B
+6 F
+1.08 (JotSearch_) 201.43 616.53 P
+5 F
+0.52 0.1 (\051 and for handling selections \050) 255.35 616.53 B
+6 F
+1.08 (JotSelection_) 392.62 616.53 P
+5 F
+0.52 0.1 (\051.) 462.72 616.53 B
+4 F
+-0.94 (Position de\336nition) 54 582.8 P
+3 F
+-0.94 ( ) 164.73 582.8 P
+5 F
+0.52 0.1 (In Jot, ) 198 561.13 B
+7 F
+0.52 0.1 (position) 228.56 561.13 B
+5 F
+0.52 0.1 ( indicates a point between characters so that the location of ) 261.57 561.13 B
+0.52 0.1 (operations like inserting characters is unambiguous. A characters said to be ) 198 548.73 B
+0.52 0.1 (located at a position is actually the character to the right of that position. The ) 198 536.33 B
+0.52 0.1 (\336rst character in a JotT) 198 523.93 B
+0.52 0.1 (ext is at position zer) 301.56 523.93 B
+0.52 0.1 (o \0500\051.) 394.04 523.93 B
+4 F
+-0.94 (Global err) 54 490.2 P
+-0.94 (or descriptions) 113.48 490.2 P
+5 F
+0.34 0.1 (Whenever a Jot function indicates an err) 198 468.53 B
+0.34 0.1 (or condition, the global err) 381.47 468.53 B
+0.34 0.1 (or variable, ) 503.4 468.53 B
+6 F
+1.08 (Jot_Errno) 198 456.13 P
+5 F
+0.52 0.1 ( is also set. Y) 246.53 456.13 B
+0.52 0.1 (ou can examine this variable for a mor) 305.38 456.13 B
+0.52 0.1 (e detailed ) 482.04 456.13 B
+0.52 0.1 (explanation of the failur) 198 443.73 B
+0.52 0.1 (e.) 308.25 443.73 B
+1 F
+0.47 0.09 (T) 198 424 B
+0.47 0.09 (able 27-1) 202.58 424 B
+0 F
+0.47 0.09 (Jot err) 241.2 424 B
+0.47 0.09 (ors) 266.62 424 B
+54 409.54 558 414 C
+198 411.7 558 411.7 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+54 395.07 558 399.54 C
+198 397.23 558 397.23 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+8 F
+0 X
+0 K
+0.52 0.1 (Error name) 198 402.87 B
+0.1 (Description) 297 402.87 S
+6 F
+(Jot_ECONSTRAIN) 198 382.01 T
+5 F
+0.52 0.1 (The characters in the JotT) 297 382.01 B
+0.52 0.1 (ext buf) 413.11 382.01 B
+0.52 0.1 (fer could not be ) 444.73 382.01 B
+0.05 0.1 (constrained to the JotV) 297 369.61 B
+0.05 0.1 (iew) 400.01 369.61 B
+0.05 0.1 (. This err) 415.42 369.61 B
+0.05 0.1 (or occurs only when a ) 455.61 369.61 B
+0.52 0.1 (JotV) 297 357.21 B
+0.52 0.1 (iew is constrained.) 316.11 357.21 B
+6 F
+(Jot_EMEMORY) 198 340.81 T
+5 F
+0.52 0.1 (An attempt to allocate memory failed.) 297 340.81 B
+6 F
+(Jot_ERANGECHECK) 198 324.41 T
+5 F
+0.04 0.1 (Position and/or length parameters exceeded the range of ) 297 324.41 B
+0.52 0.1 (the associated JotT) 297 312.01 B
+0.52 0.1 (ext buf) 381.47 312.01 B
+0.52 0.1 (fer) 413.1 312.01 B
+0.52 0.1 (. For JotSelections, the rank ) 424.72 312.01 B
+0.52 0.1 (or level wer) 297 299.61 B
+0.52 0.1 (e inappr) 351.57 299.61 B
+0.52 0.1 (opriate.) 389.68 299.61 B
+6 F
+(Jot_ESELECTION) 198 283.21 T
+5 F
+0.52 0.1 (An operation was attempted on a selection that didn\325t ) 297 283.21 B
+0.1 (exist.) 297 270.81 S
+6 F
+(Jot_ESYNTAX) 198 254.41 T
+5 F
+0.52 0.1 (An invalid r) 297 254.41 B
+0.52 0.1 (egular expr) 352.89 254.41 B
+0.52 0.1 (ession was detected.) 404.95 254.41 B
+6 F
+(Jot_ETEXT) 198 238.01 T
+5 F
+0.24 0.1 (An operation was attempted on a JotSpan or JotV) 297 238.01 B
+0.24 0.1 (iew not ) 521.16 238.01 B
+0.52 0.1 (associated with a JotT) 297 225.61 B
+0.52 0.1 (ext instance.) 396.24 225.61 B
+4 F
+-0.94 (Jot initialization) 54 191.87 P
+6 F
+1.08 (Jot_Initialize) 198 170.21 P
+5 F
+0.52 0.1 ( must be performed on each W) 273.49 170.21 B
+0.52 0.1 (ir) 415.02 170.21 B
+0.52 0.1 (e Service ) 421.89 170.21 B
+7 F
+0.52 0.1 (connection) 465.48 170.21 B
+5 F
+0.52 0.1 ( prior to ) 510.15 170.21 B
+0.52 0.1 (executing other Jot pr) 198 157.81 B
+0.52 0.1 (ocedur) 297.08 157.81 B
+0.52 0.1 (es. ) 328.26 157.81 B
+FMENDPAGE
+%%EndPage: "256" 3
+%%Page: "257" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (257) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(Jot_Initialize) 54 642 T
+(void ) 198 642 T
+(Jot_Initialize\050connection\051) 198 631 T
+(wire_Wire connection;) 198 621 T
+5 F
+0.26 0.1 (Initializes a Jot connection. Information is placed on the server associated with ) 198 602.33 B
+0.36 0.1 (the ) 198 589.93 B
+7 F
+0.36 0.1 (connection) 215.12 589.93 B
+5 F
+0.36 0.1 (. In addition, Jot internal data str) 259.8 589.93 B
+0.36 0.1 (uctur) 409.49 589.93 B
+0.36 0.1 (es ar) 433.5 589.93 B
+0.36 0.1 (e initialized to default ) 454.65 589.93 B
+0.1 (values.) 198 577.53 S
+4 F
+-0.94 (JotT) 54 543.8 P
+-0.94 (ext pr) 78.15 543.8 P
+-0.94 (ocedur) 112.36 543.8 P
+-0.94 (es\321the text model) 152.36 543.8 P
+5 F
+-0.02 0.1 (JotT) 198 522.13 B
+-0.02 0.1 (ext is the text model managed in Jot. This model includes a character buf) 215.65 522.13 B
+-0.02 0.1 (fer ) 543.05 522.13 B
+0.52 0.1 (and pr) 198 509.73 B
+0.52 0.1 (ocedur) 228.31 509.73 B
+0.52 0.1 (es to access and change this buf) 259.5 509.73 B
+0.52 0.1 (fer) 404.94 509.73 B
+0.52 0.1 (. The developer can insert or ) 416.56 509.73 B
+0.04 0.1 (delete characters, r) 198 497.33 B
+0.04 0.1 (ead characters fr) 282.84 497.33 B
+0.04 0.1 (om a \336le str) 357.47 497.33 B
+0.04 0.1 (eam, or write characters to a \336le ) 410.57 497.33 B
+0.31 0.1 (str) 198 484.93 B
+0.31 0.1 (eam. In addition, the developer can sear) 209.56 484.93 B
+0.31 0.1 (ch for speci\336c patterns and perform ) 392.09 484.93 B
+0.52 0.1 (inquiries on the buf) 198 472.53 B
+0.52 0.1 (fer state.) 288.03 472.53 B
+6 F
+(JotText_New) 54 452.8 T
+(JotText * ) 198 452.8 T
+(JotText_New\050length\051) 198 441.8 T
+(int length;) 198 431.8 T
+5 F
+0.4 0.1 (Allocates and r) 198 413.13 B
+0.4 0.1 (eturns a pointer to a new JotT) 266.74 413.13 B
+0.4 0.1 (ext instance. A ) 402.26 413.13 B
+6 F
+0.82 (NULL) 472.27 413.13 P
+5 F
+0.4 0.1 ( \0500\051 pointer is ) 493.85 413.13 B
+0.52 0.1 (r) 198 400.73 B
+0.52 0.1 (eturned if the operation fails. The initial size of the JotT) 201.87 400.73 B
+0.52 0.1 (ext buf) 455.66 400.73 B
+0.52 0.1 (fer) 487.28 400.73 B
+0.52 0.1 (, ) 498.9 400.73 B
+7 F
+0.52 0.1 (length) 504.62 400.73 B
+5 F
+0.52 0.1 (, can ) 530.77 400.73 B
+0.52 0.1 (be speci\336ed. If ) 198 388.33 B
+7 F
+0.52 0.1 (length) 267.48 388.33 B
+5 F
+0.52 0.1 ( is negative, the size defaults to zer) 293.63 388.33 B
+0.52 0.1 (o.) 454.67 388.33 B
+0.11 0.1 (The ) 198 367.93 B
+7 F
+0.11 0.1 (length) 217.74 367.93 B
+5 F
+0.11 0.1 ( parameter is declar) 243.89 367.93 B
+0.11 0.1 (ed for performance r) 333.43 367.93 B
+0.11 0.1 (easons. When the initial size ) 427 367.93 B
+0.52 0.1 (is zer) 198 355.54 B
+0.52 0.1 (o, sequential insertions might r) 222.32 355.54 B
+0.52 0.1 (esult in the buf) 364.38 355.54 B
+0.52 0.1 (fer space being r) 433.54 355.54 B
+0.52 0.1 (eallocated ) 509.19 355.54 B
+0.52 0.1 (several times. For example, when a lar) 198 343.14 B
+0.52 0.1 (ge \336le is to be edited in an application, ) 374.09 343.14 B
+0.52 0.1 (you can de\336ne a r) 198 330.73 B
+0.52 0.1 (easonable ) 280.37 330.73 B
+7 F
+0.52 0.1 (length) 327.91 330.73 B
+5 F
+0.52 0.1 ( for the buf) 354.05 330.73 B
+0.52 0.1 (fer during text cr) 405.61 330.73 B
+0.52 0.1 (eation. The ) 483.55 330.73 B
+0.52 0.1 (performance penalty associated with numer) 198 318.33 B
+0.52 0.1 (ous allocations is then avoided.) 398.81 318.33 B
+8 F
+0.52 0.1 (Errors) 198 298.6 B
+5 F
+0.52 0.1 (:) 226.36 298.6 B
+6 F
+1.1 0.09 ( Jot_EMEMORY) 228.96 298.6 B
+(JotText_Free) 54 279.2 T
+(void ) 198 279.2 T
+(JotText_Free\050text\051) 198 268.2 T
+(JotText *text;) 198 258.2 T
+5 F
+0.12 0.1 (Deallocates ) 198 239.53 B
+7 F
+0.12 0.1 (text) 252.33 239.53 B
+5 F
+0.12 0.1 ( and its internal r) 268.27 239.53 B
+0.12 0.1 (esour) 346.16 239.53 B
+0.12 0.1 (ces. Any JotV) 370.94 239.53 B
+0.12 0.1 (iews or JotSpans associated ) 431.29 239.53 B
+0.52 0.1 (with ) 198 227.14 B
+7 F
+0.52 0.1 (text) 221.84 227.14 B
+5 F
+0.52 0.1 ( ar) 237.78 227.14 B
+0.52 0.1 (e r) 249.86 227.14 B
+0.52 0.1 (eturned to a pristine state for r) 261.73 227.14 B
+0.52 0.1 (euse. ) 402.5 227.14 B
+6 F
+(JotText_Clear) 54 207.4 T
+(void ) 198 207.4 T
+(JotText_Clear\050text\051 ) 198 196.4 T
+(JotText *text;) 198 186.4 T
+5 F
+0.52 0.1 (Deletes all the characters in the ) 198 167.73 B
+7 F
+0.52 0.1 (text) 344.14 167.73 B
+5 F
+0.52 0.1 ( buf) 360.08 167.73 B
+0.52 0.1 (fer) 378.2 167.73 B
+0.52 0.1 (. Any JotSpans associated with ) 389.82 167.73 B
+7 F
+0.52 0.1 (text) 533.76 167.73 B
+5 F
+0.52 0.1 ( ) 549.7 167.73 B
+0.52 0.1 (r) 198 155.34 B
+0.52 0.1 (eset their length and position to zer) 201.87 155.34 B
+0.52 0.1 (o. ) 364.85 155.34 B
+FMENDPAGE
+%%EndPage: "257" 4
+%%Page: "258" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (258) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotText_CharacterAt) 54 642 T
+(int ) 198 642 T
+(JotText_CharacterAt\050text, position\051 ) 198 631 T
+(JotText *text;) 198 621 T
+(int position;) 198 611 T
+5 F
+0.09 0.1 (Returns the character following ) 198 592.33 B
+7 F
+0.09 0.1 (position) 343.48 592.33 B
+5 F
+0.09 0.1 ( in the ) 376.49 592.33 B
+7 F
+0.09 0.1 (text) 407.65 592.33 B
+5 F
+0.09 0.1 ( buf) 423.59 592.33 B
+0.09 0.1 (fer) 441.29 592.33 B
+0.09 0.1 (. A -1 is r) 452.91 592.33 B
+0.09 0.1 (eturned if the ) 493.89 592.33 B
+0.52 0.1 (operation fails.) 198 579.93 B
+8 F
+0.52 0.1 (Errors) 198 560.2 B
+5 F
+0.52 0.1 (:) 226.36 560.2 B
+6 F
+1.1 0.09 ( Jot_ERANGECHECK) 228.96 560.2 B
+(JotText_FastCharacterAt) 54 540.8 T
+(int ) 198 540.8 T
+(JotText_FastCharacterAt\050text, position\051) 198 529.8 T
+(JotText *text;) 198 519.8 T
+(int position;) 198 509.8 T
+5 F
+0.52 0.1 (Returns the character following ) 198 491.13 B
+7 F
+0.52 0.1 (position) 345.19 491.13 B
+5 F
+0.52 0.1 ( in the) 378.19 491.13 B
+7 F
+0.52 0.1 ( text) 407.51 491.13 B
+5 F
+0.52 0.1 ( buf) 426.57 491.13 B
+0.52 0.1 (fer) 444.69 491.13 B
+0.52 0.1 (.) 456.32 491.13 B
+8 F
+0.52 0.1 ( ) 458.92 491.13 B
+6 F
+-0.34 (JotText_FastCharacterAt) 198 478.73 P
+5 F
+-0.16 0.1 ( performs no range checking. Although the macr) 322.03 478.73 B
+-0.16 0.1 (o is ) 540.22 478.73 B
+0.52 0.1 (faster than the r) 198 466.33 B
+0.52 0.1 (elated ) 270.83 466.33 B
+6 F
+1.08 (JotText_CharacterAt) 301.39 466.33 P
+5 F
+0.52 0.1 ( function, it is also danger) 403.85 466.33 B
+0.52 0.1 (ous ) 523.23 466.33 B
+0.52 0.1 (unless used with car) 198 453.93 B
+0.52 0.1 (e. In addition, constr) 291.75 453.93 B
+0.52 0.1 (ucts such as ) 386.61 453.93 B
+6 F
+1.08 (JotText_FastCharacterAt\050text, position++\051) 198 441.53 P
+5 F
+0.52 0.1 ( should be avoided, because ) 420.17 441.53 B
+0.52 0.1 (position will be incr) 198 429.13 B
+0.52 0.1 (emented twice.) 289.51 429.13 B
+6 F
+(JotText_InsertCharacters) 54 409.4 T
+(int ) 198 409.4 T
+(JotText_InsertCharacters\050text, position, buffer, length\051) 198 398.4 T
+(JotText *text;) 198 388.4 T
+(int position;) 198 378.4 T
+(char *buffer;) 198 368.4 T
+(int length;) 198 358.4 T
+5 F
+0.52 0.1 (Inserts ) 198 339.73 B
+7 F
+0.52 0.1 (length) 231.47 339.73 B
+5 F
+0.52 0.1 ( characters fr) 257.62 339.73 B
+0.52 0.1 (om ) 317.01 339.73 B
+7 F
+0.52 0.1 (buffer) 334.61 339.73 B
+5 F
+0.52 0.1 ( into the ) 358.73 339.73 B
+7 F
+0.52 0.1 (text) 400.09 339.73 B
+5 F
+0.52 0.1 ( buf) 416.03 339.73 B
+0.52 0.1 (fer) 434.15 339.73 B
+0.52 0.1 (, at ) 445.77 339.73 B
+7 F
+0.52 0.1 (position) 463.06 339.73 B
+5 F
+0.52 0.1 (. When the ) 496.07 339.73 B
+0.52 0.1 (operation is successful, the number of characters inserted is r) 198 327.33 B
+0.52 0.1 (eturned; ) 477.62 327.33 B
+0.52 0.1 (otherwise, a -1 is r) 198 314.93 B
+0.52 0.1 (eturned.) 282.34 314.93 B
+8 F
+0.52 0.1 (Errors) 198 295.2 B
+5 F
+0.52 0.1 (:) 226.36 295.2 B
+6 F
+1.1 0.09 ( Jot_ECONSTRAIN Jot_EMEMORY Jot_ERANGECHECK) 228.96 295.2 B
+(JotText_ScanCharacter) 54 275.8 T
+(int) 198 275.8 T
+(JotText_ScanCharacter\050text, position, c, n\051 ) 198 264.8 T
+(JotText *text; ) 198 254.8 T
+(int pos, c, n;) 198 244.8 T
+5 F
+0.52 0.1 (Returns the position of the nth occurr) 198 226.14 B
+0.52 0.1 (ence of ) 370.18 226.14 B
+7 F
+0.52 0.1 (c) 405.64 226.14 B
+5 F
+0.52 0.1 ( in ) 409.8 226.14 B
+7 F
+0.52 0.1 (text) 424.96 226.14 B
+5 F
+0.52 0.1 (. It starts at ) 440.91 226.14 B
+7 F
+0.52 0.1 (position) 495.8 226.14 B
+5 F
+0.52 0.1 ( and ) 528.8 226.14 B
+0.52 0.1 (sear) 198 213.73 B
+0.52 0.1 (ches for the Nth occurr) 216.19 213.73 B
+0.52 0.1 (ence of ) 321.89 213.73 B
+7 F
+0.52 0.1 (c) 357.34 213.73 B
+5 F
+0.52 0.1 (. If ) 361.51 213.73 B
+7 F
+0.52 0.1 (n) 377.24 213.73 B
+5 F
+0.52 0.1 ( is a negative number) 382.9 213.73 B
+0.52 0.1 (, it sear) 481.16 213.73 B
+0.52 0.1 (ches ) 514.55 213.73 B
+0.52 0.1 (backwar) 198 201.34 B
+0.52 0.1 (ds fr) 236.32 201.34 B
+0.52 0.1 (om ) 257.28 201.34 B
+6 F
+1.08 (position) 274.88 201.34 P
+5 F
+0.52 0.1 ( starting fr) 318.02 201.34 B
+0.52 0.1 (om the character just befor) 366.33 201.34 B
+0.52 0.1 (e ) 488.6 201.34 B
+6 F
+1.08 (position) 496.61 201.34 P
+5 F
+0.52 0.1 (. ) 539.75 201.34 B
+6 F
+1.08 (JotText_ScanCharacter) 198 188.93 P
+5 F
+0.52 0.1 ( r) 311.24 188.93 B
+0.52 0.1 (eturns -1 if ther) 318.23 188.93 B
+0.52 0.1 (e ar) 389.25 188.93 B
+0.52 0.1 (e not ) 406.22 188.93 B
+7 F
+0.52 0.1 (n) 432.17 188.93 B
+5 F
+0.52 0.1 ( occurr) 437.83 188.93 B
+0.52 0.1 (ences.) 469.62 188.93 B
+FMENDPAGE
+%%EndPage: "258" 5
+%%Page: "259" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (259) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(JotText_InsertString) 54 642 T
+(int ) 198 642 T
+(JotText_InsertString\050text, position, string\051) 198 631 T
+(JotText *text;) 198 621 T
+(int position;) 198 611 T
+(char *string;) 198 601 T
+1.08 (I) 198 582.33 P
+5 F
+0.52 0.1 (nserts a null terminated ) 203.39 582.33 B
+7 F
+0.52 0.1 (string) 315.6 582.33 B
+5 F
+0.52 0.1 ( into the ) 340.64 582.33 B
+7 F
+0.52 0.1 (text) 381.99 582.33 B
+5 F
+0.52 0.1 ( buf) 397.93 582.33 B
+0.52 0.1 (fer) 416.05 582.33 B
+0.52 0.1 (, at ) 427.68 582.33 B
+7 F
+0.52 0.1 (position) 444.97 582.33 B
+5 F
+0.52 0.1 (. When the ) 477.97 582.33 B
+0.52 0.1 (operation is successful, the number of characters inserted is r) 198 569.93 B
+0.52 0.1 (eturned; ) 477.62 569.93 B
+0.52 0.1 (otherwise, a -1 is r) 198 557.53 B
+0.52 0.1 (eturned.) 282.34 557.53 B
+8 F
+0.52 0.1 (Errors) 198 537.13 B
+5 F
+0.52 0.1 (: ) 226.36 537.13 B
+6 F
+1.1 0.09 (Jot_ECONSTRAIN Jot_EMEMORY Jot_ERANGECHECK) 232.08 537.13 B
+(JotText_ReplaceCharacters) 54 517.4 T
+(int) 198 517.4 T
+-0.31 (JotText_ReplaceCharacters\050text, position, length, buffer, buffer_length\051) 171 506.4 P
+(JotText *text;) 198 496.4 T
+(int position;) 198 486.4 T
+(int length;) 198 476.4 T
+(char *buffer;) 198 466.4 T
+(int buffer_length;) 198 456.4 T
+5 F
+0.52 0.1 (Replaces ) 198 437.73 B
+7 F
+0.52 0.1 (length) 240.76 437.73 B
+5 F
+0.52 0.1 ( characters in the ) 266.9 437.73 B
+7 F
+0.52 0.1 (text) 348.33 437.73 B
+5 F
+0.52 0.1 ( buf) 364.27 437.73 B
+0.52 0.1 (fer) 382.39 437.73 B
+0.52 0.1 (, at ) 394.01 437.73 B
+7 F
+0.52 0.1 (position) 411.3 437.73 B
+5 F
+0.52 0.1 (, with ) 444.3 437.73 B
+7 F
+0.52 0.1 (buffer_length) 473.86 437.73 B
+5 F
+0.52 0.1 ( ) 529.22 437.73 B
+0.52 0.1 (characters fr) 198 425.33 B
+0.52 0.1 (om ) 254.28 425.33 B
+7 F
+0.52 0.1 (buffer) 271.88 425.33 B
+5 F
+0.52 0.1 (. When the operation is successful, the number of ) 295.26 425.33 B
+0.52 0.1 (characters inserted is r) 198 412.93 B
+0.52 0.1 (eturned; otherwise, a -1 is r) 301.08 412.93 B
+0.52 0.1 (eturned.) 426.57 412.93 B
+8 F
+0.52 0.1 (Errors) 198 393.2 B
+5 F
+0.52 0.1 (:) 226.36 393.2 B
+6 F
+1.1 0.09 ( Jot_ECONSTRAIN Jot_EMEMORY Jot_ERANGECHECK) 228.96 393.2 B
+(JotText_DeleteCharacters) 54 373.8 T
+(int ) 198 373.8 T
+(JotText_DeleteCharacters\050text,position,length\051) 198 362.8 T
+(JotText *text;) 198 352.8 T
+(int position;) 198 342.8 T
+(int length;) 198 332.8 T
+5 F
+0.52 0.1 (Deletes ) 198 314.14 B
+7 F
+0.52 0.1 (length) 234.32 314.14 B
+5 F
+0.52 0.1 ( characters fr) 260.47 314.14 B
+0.52 0.1 (om the ) 319.86 314.14 B
+7 F
+0.52 0.1 (text) 354.74 314.14 B
+5 F
+0.52 0.1 ( buf) 370.68 314.14 B
+0.52 0.1 (fer) 388.8 314.14 B
+0.52 0.1 (, after ) 400.43 314.14 B
+7 F
+0.52 0.1 (position) 430.08 314.14 B
+5 F
+0.52 0.1 (. When ) 463.08 314.14 B
+7 F
+0.52 0.1 (length) 498.73 314.14 B
+5 F
+0.52 0.1 ( is ) 524.88 314.14 B
+0.52 0.1 (negative, ) 198 301.73 B
+7 F
+0.52 0.1 (length) 242.28 301.73 B
+5 F
+0.52 0.1 ( characters befor) 268.42 301.73 B
+0.52 0.1 (e ) 343.89 301.73 B
+7 F
+0.52 0.1 (position) 351.89 301.73 B
+5 F
+0.52 0.1 ( ar) 384.9 301.73 B
+0.52 0.1 (e deleted. When the operation is ) 396.98 301.73 B
+0.29 0.1 (successful, the number of characters deleted is r) 198 289.33 B
+0.29 0.1 (eturned; otherwise no deletion ) 415.68 289.33 B
+0.52 0.1 (is performed and -1 is r) 198 276.93 B
+0.52 0.1 (eturned.) 305.99 276.93 B
+8 F
+0.52 0.1 (Errors) 198 257.2 B
+5 F
+0.52 0.1 (:) 226.36 257.2 B
+6 F
+1.1 0.09 ( Jot_ERANGECHECK) 228.96 257.2 B
+FMENDPAGE
+%%EndPage: "259" 6
+%%Page: "260" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (260) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotText_Read) 54 642 T
+(int ) 198 642 T
+(JotText_Read\050text, position, file\051) 198 631 T
+(JotText *text;) 198 621 T
+(int position;) 198 611 T
+(int file;) 198 601 T
+5 F
+-0.01 0.1 (Reads fr) 198 582.33 B
+-0.01 0.1 (om the ) 235.19 582.33 B
+7 F
+-0.01 0.1 (\336le) 269.02 582.33 B
+5 F
+-0.01 0.1 ( descriptor) 281.26 582.33 B
+-0.01 0.1 (, inserting characters into the ) 329.21 582.33 B
+7 F
+-0.01 0.1 (text) 462.77 582.33 B
+5 F
+-0.01 0.1 ( buf) 478.71 582.33 B
+-0.01 0.1 (fer at ) 496.3 582.33 B
+7 F
+-0.01 0.1 (position) 522.31 582.33 B
+5 F
+-0.01 0.1 ( ) 555.31 582.33 B
+0.52 0.1 (until EOF is detected. When the operation is successful, the number of ) 198 569.93 B
+0.4 0.1 (characters r) 198 557.53 B
+0.4 0.1 (ead is r) 250.73 557.53 B
+0.4 0.1 (eturned; otherwise, a -1 is r) 284.13 557.53 B
+0.4 0.1 (eturned. Y) 409.02 557.53 B
+0.4 0.1 (ou ar) 455.9 557.53 B
+0.4 0.1 (e r) 479.54 557.53 B
+0.4 0.1 (esponsible for ) 491.3 557.53 B
+0.52 0.1 (opening, positioning, and closing ) 198 545.13 B
+7 F
+0.52 0.1 (\336le) 353.39 545.13 B
+5 F
+0.52 0.1 (.) 365.64 545.13 B
+54 519.06 558 535.4 C
+558 532.38 198 532.38 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+8 F
+(Note \320 ) 198 522.22 T
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (The ) 231.84 522.39 B
+7 F
+0.52 0.1 (\336le) 251.99 522.39 B
+5 F
+0.52 0.1 ( parameter should not be set to non-blocking mode. ) 264.23 522.39 B
+0.52 0.1 (Applications that r) 198 509.99 B
+0.52 0.1 (equir) 283.75 509.99 B
+0.52 0.1 (e this featur) 307.34 509.99 B
+0.52 0.1 (e can use ) 361.85 509.99 B
+6 F
+1.08 (read\0502\051) 406.99 509.99 P
+5 F
+0.52 0.1 ( or ) 444.74 509.99 B
+6 F
+1.08 (fread\0503\051) 460.58 509.99 P
+5 F
+0.52 0.1 ( to r) 503.72 509.99 B
+0.52 0.1 (ead ) 522.74 509.99 B
+0.52 0.1 (characters into a private buf) 198 497.59 B
+0.52 0.1 (fer and then use ) 326.53 497.59 B
+6 F
+1.08 (JotText_InsertCharacters) 404.02 497.59 P
+5 F
+0.52 0.1 ( or ) 533.44 497.59 B
+54 473.86 558 481.86 C
+558 478.83 198 478.83 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+6 F
+0 X
+0 K
+1.08 (JotText_InsertString) 198 485.19 P
+5 F
+0.52 0.1 ( to transfer the characters into a JotT) 305.85 485.19 B
+0.52 0.1 (ext buf) 472.33 485.19 B
+0.52 0.1 (fer) 503.95 485.19 B
+0.52 0.1 (. ) 515.57 485.19 B
+8 F
+0.52 0.1 (Errors) 198 456.8 B
+5 F
+0.52 0.1 (: ) 226.36 456.8 B
+6 F
+1.08 (Jot_ECONSTRAIN) 232.08 456.8 P
+5 F
+0.52 0.1 ( ) 307.58 456.8 B
+6 F
+1.08 (Jot_EMEMORY) 310.69 456.8 P
+5 F
+0.52 0.1 ( ) 370.01 456.8 B
+6 F
+1.08 (Jot_ERANGECHECK) 373.13 456.8 P
+5 F
+0.52 0.1 ( \050plus all the err) 454.02 456.8 B
+0.52 0.1 (ors ) 527.58 456.8 B
+0.52 0.1 (that you can get when using ) 198 444.4 B
+6 F
+1.08 (read\0502\051) 331.44 444.4 P
+5 F
+0.52 0.1 (\051) 369.18 444.4 B
+6 F
+(JotText_Write) 54 424.67 T
+(int ) 198 424.67 T
+(JotText_Write\050text,position,length,file\051) 198 413.67 T
+(JotText *text;) 198 403.67 T
+(int position;) 198 393.67 T
+(int length;) 198 383.67 T
+(int file;) 198 373.67 T
+5 F
+0.52 0.1 (W) 198 355 B
+0.52 0.1 (rites ) 207.35 355 B
+7 F
+0.52 0.1 (length) 230.11 355 B
+5 F
+0.52 0.1 ( characters, beginning at ) 256.26 355 B
+7 F
+0.52 0.1 (position) 371.24 355 B
+5 F
+0.52 0.1 (, fr) 404.25 355 B
+0.52 0.1 (om ) 417.26 355 B
+7 F
+0.52 0.1 (text) 434.86 355 B
+5 F
+0.52 0.1 ( buf) 450.8 355 B
+0.52 0.1 (fer to the ) 468.92 355 B
+7 F
+0.52 0.1 (\336le) 513.72 355 B
+5 F
+0.52 0.1 ( ) 525.96 355 B
+0.52 0.1 (descriptor) 198 342.6 B
+0.52 0.1 (. When the operation is successful, the number of characters written ) 243.35 342.6 B
+0.52 0.1 (is r) 198 330.2 B
+0.52 0.1 (eturned; otherwise, a -1 is r) 212.33 330.2 B
+0.52 0.1 (eturned. Y) 337.82 330.2 B
+0.52 0.1 (ou ar) 384.82 330.2 B
+0.52 0.1 (e r) 408.58 330.2 B
+0.52 0.1 (esponsible for opening, ) 420.46 330.2 B
+0.52 0.1 (positioning, and closing \336le.) 198 317.8 B
+54 291.72 558 308.07 C
+558 305.04 198 305.04 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+8 F
+(Note \320 ) 198 294.89 T
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.45 0.1 (If the ) 231.84 295.05 B
+7 F
+0.45 0.1 (\336le) 258.99 295.05 B
+5 F
+0.45 0.1 ( parameter is set to non-blocking mode and r) 271.23 295.05 B
+0.45 0.1 (efers to a pipe or ) 477.35 295.05 B
+0.01 0.1 (socket, ) 198 282.65 B
+6 F
+0.03 (JotText_Write) 231.55 282.65 P
+5 F
+0.01 0.1 ( may write fewer bytes than r) 301.65 282.65 B
+0.01 0.1 (equested. The r) 434.46 282.65 B
+0.01 0.1 (eturn value ) 503.57 282.65 B
+54 258.93 558 266.92 C
+558 263.9 198 263.9 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (should be noted and the operation r) 198 270.26 B
+0.52 0.1 (etried.) 363.09 270.26 B
+8 F
+0.52 0.1 (Errors) 198 241.86 B
+5 F
+0.52 0.1 (: ) 226.36 241.86 B
+6 F
+1.08 (Jot_ERANGECHECK) 232.08 241.86 P
+5 F
+0.52 0.1 ( \050plus all the err) 312.97 241.86 B
+0.52 0.1 (ors that you can get when using ) 386.53 241.86 B
+6 F
+(write\0502\051) 198 229.46 T
+5 F
+0.1 (\051) 241.14 229.46 S
+FMENDPAGE
+%%EndPage: "260" 7
+%%Page: "261" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (261) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(JotText_Modified) 54 642 T
+(int ) 198 642 T
+(JotText_Modified\050text\051) 198 631 T
+(JotText *text;) 198 621 T
+5 F
+0.4 0.1 (Returns the total number of modi\336cations performed on ) 198 602.33 B
+7 F
+0.4 0.1 (text) 457.74 602.33 B
+5 F
+0.4 0.1 ( since its cr) 473.68 602.33 B
+0.4 0.1 (eation. ) 524.48 602.33 B
+0.52 0.1 (The modi\336cation total is incr) 198 589.93 B
+0.52 0.1 (emented each time the buf) 329.88 589.93 B
+0.52 0.1 (fer is changed. T) 451.2 589.93 B
+0.52 0.1 (o ) 526.39 589.93 B
+-0.06 0.1 (determine whether ) 198 577.53 B
+7 F
+-0.06 0.1 (text) 286.66 577.53 B
+5 F
+-0.06 0.1 ( has been modi\336ed, you compar) 302.6 577.53 B
+-0.06 0.1 (e the r) 446.95 577.53 B
+-0.06 0.1 (eturn values fr) 474.95 577.53 B
+-0.06 0.1 (om ) 540.88 577.53 B
+0.52 0.1 (two successive calls to ) 198 565.13 B
+6 F
+1.08 (JotText_Modified) 303.47 565.13 P
+5 F
+0.52 0.1 (.) 389.75 565.13 B
+8 F
+0.52 0.1 ( ) 392.35 565.13 B
+6 F
+1.08 (JotText_Modified) 395.47 565.13 P
+5 F
+0.52 0.1 ( is the ) 481.75 565.13 B
+0.52 0.1 (foundation for developing a checkpoint service.) 198 552.73 B
+6 F
+(JotText_Characters) 54 533 T
+(int ) 198 533 T
+(JotText_Characters\050text\051) 198 522 T
+(JotText *text;) 198 512 T
+5 F
+0.52 0.1 (Returns the number of characters in the ) 198 493.33 B
+7 F
+0.52 0.1 (text) 382.91 493.33 B
+5 F
+0.52 0.1 ( buf) 398.85 493.33 B
+0.52 0.1 (fer) 416.97 493.33 B
+0.52 0.1 (. ) 428.59 493.33 B
+6 F
+(JotText_Newlines) 54 473.6 T
+(int ) 198 473.6 T
+(JotText_Newlines\050text\051) 198 462.6 T
+(JotText *text;) 198 452.6 T
+5 F
+0.44 0.1 (Returns the number of newline characters in the ) 198 433.93 B
+7 F
+0.44 0.1 (text) 421.46 433.93 B
+5 F
+0.44 0.1 ( buf) 437.4 433.93 B
+0.44 0.1 (fer) 455.44 433.93 B
+0.44 0.1 (. Jot does not cache ) 467.06 433.93 B
+0.52 0.1 (this information in a JotT) 198 421.53 B
+0.52 0.1 (ext instance; the number of newline characters is ) 312.59 421.53 B
+0.52 0.1 (r) 198 409.13 B
+0.52 0.1 (ecalculated each time ) 201.87 409.13 B
+6 F
+1.08 (JotText_Newlines) 302.59 409.13 P
+5 F
+0.52 0.1 ( is called. Ther) 388.87 409.13 B
+0.52 0.1 (efor) 455.82 409.13 B
+0.52 0.1 (e, a slight ) 473.55 409.13 B
+0.52 0.1 (performance penalty might r) 198 396.73 B
+0.52 0.1 (esult fr) 329.56 396.73 B
+0.52 0.1 (om locating and counting newline ) 361.69 396.73 B
+0.52 0.1 (characters in a lar) 198 384.33 B
+0.52 0.1 (ge buf) 279.21 384.33 B
+0.52 0.1 (fer) 307.88 384.33 B
+0.52 0.1 (.) 319.5 384.33 B
+6 F
+(JotText_FirstView) 54 364.6 T
+(JotView * ) 198 364.6 T
+(JotText_FirstView\050text\051) 198 353.6 T
+(JotText *text;) 198 343.6 T
+5 F
+0.52 0.1 (Returns a pointer to the \336rst JotV) 198 324.93 B
+0.52 0.1 (iew instance in the ) 350.22 324.93 B
+7 F
+0.52 0.1 (text) 439.17 324.93 B
+5 F
+0.52 0.1 (\325s view list. When the ) 455.11 324.93 B
+0.52 0.1 (list is empty) 198 312.54 B
+0.52 0.1 (, a ) 253.12 312.54 B
+6 F
+1.08 (NULL) 267.05 312.54 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 288.62 312.54 B
+0.52 0.1 (eturned.) 357.14 312.54 B
+6 F
+(JotText_NextView) 54 292.8 T
+(JotView * ) 198 292.8 T
+(JotText_NextView\050view\051) 198 281.8 T
+(JotView *view;) 198 271.8 T
+5 F
+0.14 0.1 (Returns a pointer to the JotV) 198 253.14 B
+0.14 0.1 (iew instance following ) 327.28 253.14 B
+7 F
+0.14 0.1 (view) 432.45 253.14 B
+5 F
+0.14 0.1 ( in the list managed by ) 451.73 253.14 B
+0.18 0.1 (the owner of ) 198 240.73 B
+7 F
+0.18 0.1 (view) 258.32 240.73 B
+5 F
+0.18 0.1 (. When ) 276.68 240.73 B
+7 F
+0.18 0.1 (view) 311.64 240.73 B
+5 F
+0.18 0.1 ( is the last JotV) 330.92 240.73 B
+0.18 0.1 (iew in the list, a ) 398.44 240.73 B
+6 F
+0.37 (NULL) 473.15 240.73 P
+5 F
+0.18 0.1 ( \0500\051 pointer is ) 494.72 240.73 B
+0.52 0.1 (r) 198 228.34 B
+0.52 0.1 (eturned. Y) 201.87 228.34 B
+0.52 0.1 (ou can use this function and ) 248.86 228.34 B
+6 F
+1.08 (JotText_FirstView) 381.85 228.34 P
+5 F
+0.52 0.1 ( to enumerate all ) 473.52 228.34 B
+0.52 0.1 (the views on a text:) 198 215.93 B
+6 F
+(for \050V = JotText_FirstView\050text\051;) 198 200.2 T
+(V != 0; V=JotText_NextView\050V\051 \051 {) 224.64 185.2 T
+(. . .) 210.6 170.2 T
+(}) 198 155.2 T
+FMENDPAGE
+%%EndPage: "261" 8
+3 14 /Palatino-Italic FMDEFINEFONT
+%%Page: "262" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (262) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotText_FirstSpan) 54 642 T
+(JotSpan * ) 198 642 T
+(JotText_FirstSpan\050text\051) 198 631 T
+(JotText *text;) 198 621 T
+5 F
+0.52 0.1 (Returns a pointer to the \336rst JotSpan instance in the list associated with ) 198 602.33 B
+7 F
+0.52 0.1 (text) 528.75 602.33 B
+5 F
+0.52 0.1 (. ) 544.69 602.33 B
+0.52 0.1 (When the list is empty) 198 589.93 B
+0.52 0.1 (, a ) 300.33 589.93 B
+6 F
+1.08 (NULL) 314.27 589.93 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 335.84 589.93 B
+0.52 0.1 (eturned.) 404.36 589.93 B
+6 F
+(JotText_NextSpan) 54 570.2 T
+(JotSpan * ) 198 570.2 T
+(JotText_NextSpan\050span\051) 198 559.2 T
+(JotSpan *span;) 198 549.2 T
+5 F
+0.18 0.1 (Returns a pointer to the JotSpan instance following ) 198 530.53 B
+7 F
+0.18 0.1 (span) 432.18 530.53 B
+5 F
+0.18 0.1 ( in the list managed by ) 451.46 530.53 B
+0.16 0.1 (the owner of ) 198 518.13 B
+7 F
+0.16 0.1 (span) 258.27 518.13 B
+5 F
+0.16 0.1 (. When ) 277.55 518.13 B
+7 F
+0.16 0.1 (span) 312.48 518.13 B
+5 F
+0.16 0.1 ( is the last JotSpan in the list, a ) 331.76 518.13 B
+6 F
+0.33 (NULL) 473.21 518.13 P
+5 F
+0.16 0.1 ( \0500\051 pointer is ) 494.78 518.13 B
+0.1 (r) 198 505.73 S
+0.1 (eturned.) 201.87 505.73 S
+6 F
+(JotText_SetCaret) 54 486 T
+(boolean ) 198 486 T
+(JotText_SetCaret\050text, position\051) 198 475 T
+(JotText *text;) 198 465 T
+(int position;) 198 455 T
+5 F
+0.52 0.1 (Moves the car) 198 436.33 B
+0.52 0.1 (et \050insertion point\051 to ) 261.98 436.33 B
+7 F
+0.52 0.1 (position) 362.46 436.33 B
+5 F
+0.52 0.1 ( in the ) 395.46 436.33 B
+7 F
+0.52 0.1 (text) 427.9 436.33 B
+5 F
+0.52 0.1 ( buf) 443.84 436.33 B
+0.52 0.1 (fer) 461.96 436.33 B
+0.52 0.1 (. When the ) 473.59 436.33 B
+0.52 0.1 (operation is successful, ) 198 423.93 B
+6 F
+1.08 (TRUE) 306.5 423.93 P
+5 F
+0.52 0.1 ( is r) 328.07 423.93 B
+0.52 0.1 (eturned; otherwise, ) 345.52 423.93 B
+6 F
+1.08 (FALSE) 436.82 423.93 P
+5 F
+0.52 0.1 ( is r) 463.78 423.93 B
+0.52 0.1 (eturned. ) 481.23 423.93 B
+0.52 0.1 (If the car) 198 403.53 B
+0.52 0.1 (et should be visible following the next JotV) 238.8 403.53 B
+0.52 0.1 (iew r) 436.43 403.53 B
+0.52 0.1 (efr) 459.75 403.53 B
+0.52 0.1 (esh \050see JotV) 471.93 403.53 B
+0.52 0.1 (iew ) 529.96 403.53 B
+0.52 0.1 (pr) 198 391.13 B
+0.52 0.1 (ocedur) 207.98 391.13 B
+0.52 0.1 (es\321the view and contr) 239.16 391.13 B
+0.52 0.1 (oller on page 269\051, you must invoke:) 344.53 391.13 B
+6 F
+(if) 198 375.4 T
+(\050JotText_SetCaret\050aText, aPosition\051\051 {) 210.6 375.4 T
+(JotView_EnsurePositionVisible\050aView, JotText_Caret \050aText\051\051;) 210.6 360.4 T
+(}) 198 345.4 T
+8 F
+0.52 0.1 (Errors) 198 326.4 B
+5 F
+0.52 0.1 (:) 226.36 326.4 B
+6 F
+1.1 0.09 ( Jot_ERANGECHECK) 228.96 326.4 B
+(JotText_Caret) 54 307 T
+(int ) 198 307 T
+(JotText_Caret\050text\051) 198 296 T
+(JotText *text;) 198 286 T
+5 F
+0.52 0.1 (Returns the car) 198 267.34 B
+0.52 0.1 (et position \050insertion point\051 in the ) 267.35 267.34 B
+7 F
+0.52 0.1 (text) 425.08 267.34 B
+5 F
+0.52 0.1 ( buf) 441.03 267.34 B
+0.52 0.1 (fer) 459.15 267.34 B
+0.52 0.1 (. ) 470.77 267.34 B
+3 F
+-0.88 (Undoing and r) 126 234.27 P
+-0.88 (edoing JotT) 207.97 234.27 P
+-0.88 (ext operations) 270.43 234.27 P
+5 F
+0.09 0.1 (Jot has an undo facility built into it. The undo operations ar) 198 212.93 B
+0.09 0.1 (e part of the JotT) 466.77 212.93 B
+0.09 0.1 (ext ) 541.81 212.93 B
+0.1 (interface.) 198 200.53 S
+FMENDPAGE
+%%EndPage: "262" 9
+%%Page: "263" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (263) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (The way any undo works is by keeping a history of editing operations. T) 198 641.33 B
+0.52 0.1 (o ) 531.81 641.33 B
+0.48 0.1 (undo an insertion, the corr) 198 628.93 B
+0.48 0.1 (esponding deletion is done. T) 319.96 628.93 B
+0.48 0.1 (o undo a deletion, the ) 454.54 628.93 B
+0.52 0.1 (deleted characters ar) 198 616.53 B
+0.52 0.1 (e r) 292.51 616.53 B
+0.52 0.1 (einserted. T) 304.38 616.53 B
+0.52 0.1 (wo possible appr) 356.96 616.53 B
+0.52 0.1 (oaches to the undo ) 435.24 616.53 B
+0.52 0.1 (operation ar) 198 604.13 B
+0.52 0.1 (e:) 253.62 604.13 B
+0.1 (1.) 197.5 583.73 S
+0.52 0.1 (The accountant\325s appr) 210.6 583.73 B
+0.52 0.1 (oach\321an operation that is undone becomes a part of ) 311.76 583.73 B
+0.52 0.1 (the edit history) 210.6 571.33 B
+0.52 0.1 (.) 279.23 571.33 B
+0.1 (2.) 197.5 550.93 S
+0.52 0.1 (The 1984 appr) 210.6 550.93 B
+0.52 0.1 (oach\321back up in time, thus r) 275.43 550.93 B
+0.52 0.1 (ewriting history) 410.69 550.93 B
+0.52 0.1 (.) 482.9 550.93 B
+0.52 0.1 (Jot uses the 1984 appr) 198 530.53 B
+0.52 0.1 (oach. In this appr) 298.23 530.53 B
+0.52 0.1 (oach undoing an operation can be ) 378.48 530.53 B
+0.52 0.1 (thought of as going backwar) 198 518.13 B
+0.52 0.1 (d in time thr) 328.9 518.13 B
+0.52 0.1 (ough the edit history) 386.71 518.13 B
+0.52 0.1 (. Redoing an ) 481.71 518.13 B
+0.52 0.1 (operation can be though of as simply moving forwar) 198 505.73 B
+0.52 0.1 (d thr) 439.79 505.73 B
+0.52 0.1 (ough time, or \322back ) 462.25 505.73 B
+0.52 0.1 (to the futur) 198 493.33 B
+0.52 0.1 (e.\323 Once back in time, starting new editing operations erases the ) 250.22 493.33 B
+0.52 0.1 (futur) 198 480.93 B
+0.52 0.1 (e. Jot uses an N level undo, which means it will r) 220.91 480.93 B
+0.52 0.1 (emember an arbitrary ) 446.76 480.93 B
+0.52 0.1 (number of editing operations on a per JotT) 198 468.53 B
+0.52 0.1 (ext basis.) 393.52 468.53 B
+0.52 0.1 (In Jot, consecutive insertions \050or deletions\051 ar) 198 448.13 B
+0.52 0.1 (e gr) 404.91 448.13 B
+0.52 0.1 (ouped into one undoable ) 422.44 448.13 B
+0.52 0.1 (editing operation. Jot pr) 198 435.73 B
+0.52 0.1 (ovides functions to br) 307.85 435.73 B
+0.52 0.1 (eak up the default gr) 407.54 435.73 B
+0.52 0.1 (ouping, or ) 503.69 435.73 B
+0.52 0.1 (to gr) 198 423.33 B
+0.52 0.1 (oup together operations that ar) 219.56 423.33 B
+0.52 0.1 (e normally consider) 362.06 423.33 B
+0.52 0.1 (ed separate.) 452.72 423.33 B
+6 F
+(JotText_SetUndo) 54 403.6 T
+(void ) 198 403.6 T
+(JotText_SetUndo\050text, level\051) 198 392.6 T
+(JotText *text;) 198 382.6 T
+(int     level;) 198 372.6 T
+5 F
+0.19 0.1 (Sets the undo level in ) 198 353.93 B
+7 F
+0.19 0.1 (text) 298.32 353.93 B
+5 F
+0.19 0.1 ( to ) 314.26 353.93 B
+7 F
+0.19 0.1 (level) 328.76 353.93 B
+5 F
+0.19 0.1 (. If the speci\336ed level is <= 0 undo is disabled ) 347.59 353.93 B
+0.52 0.1 (in ) 198 341.54 B
+7 F
+0.52 0.1 (text) 210.04 341.54 B
+5 F
+0.52 0.1 (. Otherwise, Jot r) 225.99 341.54 B
+0.52 0.1 (emembers the last ) 303.58 341.54 B
+7 F
+0.52 0.1 (level) 389.42 341.54 B
+5 F
+0.52 0.1 ( changes to ) 408.25 341.54 B
+7 F
+0.52 0.1 (text) 462.87 341.54 B
+5 F
+0.52 0.1 (. When ) 478.82 341.54 B
+6 F
+1.08 (JotText_SetUndo) 198 329.14 P
+5 F
+0.52 0.1 ( is used to shorten the edit history) 278.89 329.14 B
+0.52 0.1 (, some number of the ) 434.95 329.14 B
+0.52 0.1 (oldest operations ar) 198 316.73 B
+0.52 0.1 (e immediately for) 288.43 316.73 B
+0.52 0.1 (gotten.) 369.38 316.73 B
+6 F
+(JotText_Undo) 54 297 T
+(boolean ) 198 297 T
+(JotText_Undo\050text\051) 198 286 T
+(JotText *text;) 198 276 T
+5 F
+0.52 0.1 (Ef) 198 257.34 B
+0.52 0.1 (fectively backs up in time, undoing one operation. JotT) 207.46 257.34 B
+0.52 0.1 (ext_Undo r) 458.65 257.34 B
+0.52 0.1 (eturns ) 509.79 257.34 B
+6 F
+0.9 (FALSE) 198 244.93 P
+5 F
+0.43 0.1 ( if you ar) 224.96 244.93 B
+0.43 0.1 (e alr) 266.8 244.93 B
+0.43 0.1 (eady at the beginning of r) 286.69 244.93 B
+0.43 0.1 (ecor) 404.75 244.93 B
+0.43 0.1 (ded history) 423.6 244.93 B
+0.43 0.1 (. If ) 474.7 244.93 B
+6 F
+0.9 (JotText_Undo) 490.26 244.93 P
+5 F
+0.43 0.1 ( ) 554.97 244.93 B
+0.52 0.1 (is issued again befor) 198 232.53 B
+0.52 0.1 (e any other changes ar) 291.75 232.53 B
+0.52 0.1 (e made, time is backed up even ) 394.86 232.53 B
+0.1 (further) 198 220.14 S
+0.1 (.) 229.07 220.14 S
+FMENDPAGE
+%%EndPage: "263" 10
+%%Page: "264" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (264) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotText_Redo) 54 642 T
+(boolean ) 198 642 T
+(JotText_Redo\050text\051) 198 631 T
+(JotText *text;) 198 621 T
+5 F
+0.17 0.1 (Redoes the last undone operation, ef) 198 602.33 B
+0.17 0.1 (fectively moving forwar) 363.36 602.33 B
+0.17 0.1 (d thr) 472.68 602.33 B
+0.17 0.1 (ough the edit ) 494.8 602.33 B
+0.52 0.1 (history) 198 589.93 B
+0.52 0.1 (. ) 228.77 589.93 B
+6 F
+1.08 (JotText_Redo) 234.49 589.93 P
+5 F
+0.52 0.1 ( r) 299.2 589.93 B
+0.52 0.1 (eturns ) 306.18 589.93 B
+6 F
+1.08 (FALSE) 337.98 589.93 P
+5 F
+0.52 0.1 ( if ther) 364.94 589.93 B
+0.52 0.1 (e ar) 395.64 589.93 B
+0.52 0.1 (e no mor) 412.61 589.93 B
+0.52 0.1 (e undone operations ) 453.56 589.93 B
+0.52 0.1 (that can be r) 198 577.53 B
+0.52 0.1 (edone.) 255.02 577.53 B
+6 F
+(JotText_RedoCount) 54 557.8 T
+(int ) 198 557.8 T
+(JotText_RedoCount\050text\051) 198 546.8 T
+(JotText *text;) 198 536.8 T
+5 F
+0.36 0.1 (Returns the number of r) 198 518.13 B
+0.36 0.1 (edoable operations for ) 307.83 518.13 B
+7 F
+0.36 0.1 (text) 412.89 518.13 B
+5 F
+0.36 0.1 (. This is useful for an editor ) 428.83 518.13 B
+0.52 0.1 (which wants to guar) 198 505.73 B
+0.52 0.1 (d against a naive user erasing a bunch of r) 291.98 505.73 B
+0.52 0.1 (edoable ) 486.9 505.73 B
+0.1 (operations.) 198 493.33 S
+6 F
+(JotText_UndoCount) 54 473.6 T
+(int ) 198 473.6 T
+(JotText_UndoCount\050text\051) 198 462.6 T
+(JotText *text;) 198 452.6 T
+5 F
+0.52 0.1 (Returns the number of undoable operations for ) 198 433.93 B
+7 F
+0.52 0.1 (text) 417.29 433.93 B
+5 F
+0.52 0.1 (. The integer r) 433.23 433.93 B
+0.52 0.1 (eturned is a ) 497.85 433.93 B
+0.52 0.1 (number between 0 and the level speci\336ed in ) 198 421.53 B
+6 F
+1.08 (JotText_SetUndo) 403.54 421.53 P
+5 F
+0.52 0.1 (.) 484.42 421.53 B
+6 F
+(JotText_UndoBreak) 54 401.8 T
+(void ) 198 401.8 T
+(JotText_UndoBreak\050text\051) 198 390.8 T
+(JotText *text;) 198 380.8 T
+5 F
+0.22 0.1 (Speci\336es that the curr) 198 362.13 B
+0.22 0.1 (ent gr) 296.19 362.13 B
+0.22 0.1 (ouping of edit operations should be stopped, and a ) 322.69 362.13 B
+0.52 0.1 (new one started. The default gr) 198 349.73 B
+0.52 0.1 (ouping combines consecutive insertions or ) 341.75 349.73 B
+0.52 0.1 (deletions at the same position in the text as one undoable operation. Y) 198 337.33 B
+0.52 0.1 (ou use ) 519.45 337.33 B
+6 F
+1.08 (JotText_UndoBreak) 198 324.93 P
+5 F
+0.52 0.1 ( to split up that default gr) 289.67 324.93 B
+0.52 0.1 (ouping.) 408.72 324.93 B
+6 F
+(JotText_UndoBegin) 54 305.2 T
+(void ) 198 305.2 T
+(JotText_UndoBegin\050text\051) 198 294.2 T
+(JotText *text;) 198 284.2 T
+(JotText_UndoEnd) 54 266.2 T
+(void ) 198 266.2 T
+(JotText_UndoEnd\050text\051) 198 255.2 T
+(JotText *text;) 198 245.2 T
+5 F
+0.52 0.1 (These two r) 198 226.53 B
+0.52 0.1 (outines ar) 251.71 226.53 B
+0.52 0.1 (e used to gr) 296.98 226.53 B
+0.52 0.1 (oup together operations that ar) 351.23 226.53 B
+0.52 0.1 (e normally ) 493.73 226.53 B
+0.52 0.1 (consider) 198 214.14 B
+0.52 0.1 (ed separate. For instance, an EMACS \336ll-paragraph operation is ) 236.32 214.14 B
+0.52 0.1 (implemented by inserting and deleting many Newline characters. The default ) 198 201.73 B
+0.34 0.1 (gr) 198 189.34 B
+0.34 0.1 (ouping separates insertions and deletions into separate pieces of history) 207.52 189.34 B
+0.34 0.1 (, but ) 534.42 189.34 B
+0.52 0.1 (that would not be the corr) 198 176.93 B
+0.52 0.1 (ect behavior for undoing a \336ll paragraph. So, ) 318.17 176.93 B
+0.52 0.1 (EMACS implementers would use ) 198 164.53 B
+6 F
+1.08 (JotText_UndoBegin) 353.62 164.53 P
+5 F
+0.52 0.1 ( at the beginning their ) 445.3 164.53 B
+0.52 0.1 (\336ll r) 198 152.14 B
+0.52 0.1 (outine and ) 217.15 152.14 B
+6 F
+1.08 (JotText_UndoEnd) 269.46 152.14 P
+5 F
+0.52 0.1 ( at the end.) 350.35 152.14 B
+FMENDPAGE
+%%EndPage: "264" 11
+9 10 /Times-Roman FMDEFINEFONT
+10 12 /Helvetica FMDEFINEFONT
+%%Page: "265" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (265) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (Another use for the begin and end pair might be in implementing a global ) 198 641.33 B
+0.28 0.1 (r) 198 628.93 B
+0.28 0.1 (eplace operation. Y) 201.87 628.93 B
+0.28 0.1 (ou could wrap the global r) 288.12 628.93 B
+0.28 0.1 (eplace operation in a begin/end ) 409.28 628.93 B
+0.41 0.1 (pair so the user could undo the entir) 198 616.53 B
+0.41 0.1 (e r) 365.23 616.53 B
+0.41 0.1 (eplacement operation at once. Contrast ) 376.99 616.53 B
+0.52 0.1 (this behavior with query r) 198 604.13 B
+0.52 0.1 (eplace, which you want to allow the user to undo ) 317.98 604.13 B
+0.52 0.1 (one r) 198 591.73 B
+0.52 0.1 (eplacement at-a-time. Thus, you wouldn\325t wrap a query r) 221.35 591.73 B
+0.52 0.1 (eplace in a ) 484.19 591.73 B
+0.52 0.1 (begin/end pair) 198 579.33 B
+0.52 0.1 (.) 266.9 579.33 B
+4 F
+-0.94 (T) 54 545.6 P
+-0.94 (ext spans) 61.5 545.6 P
+5 F
+0.52 0.1 (A JotSpan describes a speci\336c r) 198 523.93 B
+0.52 0.1 (egion or location in a text buf) 340.68 523.93 B
+0.52 0.1 (fer thr) 475.95 523.93 B
+0.52 0.1 (ough a ) 504.57 523.93 B
+0.52 0.1 (beginning position and length. \050The de\336nition of \322position is on page 256.\051 ) 198 511.53 B
+0.01 0.1 (Each JotT) 198 499.13 B
+0.01 0.1 (ext instance maintains a list of the JotSpans that ar) 240.02 499.13 B
+0.01 0.1 (e associated with it. ) 466.56 499.13 B
+0.52 0.1 (The position \336eld is adjusted whenever modi\336cations occur befor) 198 486.73 B
+0.52 0.1 (e the ) 497.64 486.73 B
+0.52 0.1 (beginning of a JotSpan. The length \336eld is adjusted whenever modi\336cations ) 198 474.33 B
+0.52 0.1 (occur within the JotSpan boundaries. These adjustments r) 198 461.93 B
+0.52 0.1 (equir) 461.77 461.93 B
+0.52 0.1 (e no ) 485.36 461.93 B
+0.52 0.1 (intervention fr) 198 449.53 B
+0.52 0.1 (om the developer) 264.02 449.53 B
+0.52 0.1 (.) 343.5 449.53 B
+0.52 0.1 (Figur) 198 429.13 B
+0.52 0.1 (e 27-1 illustrates the adjustments to the JotSpan, as strings ar) 222.32 429.13 B
+0.52 0.1 (e inserted ) 500.38 429.13 B
+0.52 0.1 (within and befor) 198 416.73 B
+0.52 0.1 (e its scope.) 274.47 416.73 B
+1 F
+0.47 0.09 (Figur) 198 242 B
+0.47 0.09 (e 27-1) 218.77 242 B
+0 F
+0.47 0.09 (Inserting strings into a Jot span) 248.4 242 B
+54 144 558 648 C
+117 256.4 558 413.4 C
+117 256.4 558 413.4 R
+7 X
+0 K
+V
+195.19 265.37 555.19 409.37 R
+6 X
+V
+1 H
+0 Z
+0 X
+N
+286.65 291.07 300.33 304.51 R
+7 X
+V
+0.5 H
+0 X
+N
+300.33 291.07 314.01 304.51 R
+7 X
+V
+0 X
+N
+314.01 291.07 327.69 304.51 R
+7 X
+V
+0 X
+N
+341.38 291.07 355.06 304.51 R
+7 X
+V
+0 X
+N
+355.06 291.07 368.74 304.51 R
+7 X
+V
+0 X
+N
+368.74 291.07 382.42 304.51 R
+7 X
+V
+0 X
+N
+382.42 291.07 396.1 304.51 R
+7 X
+V
+0 X
+N
+396.11 291.07 409.79 304.51 R
+7 X
+V
+0 X
+N
+409.79 291.07 423.47 304.51 R
+7 X
+V
+0 X
+N
+423.47 291.07 437.15 304.51 R
+7 X
+V
+0 X
+N
+437.15 291.07 450.83 304.51 R
+7 X
+V
+0 X
+N
+450.83 291.07 464.51 304.51 R
+7 X
+V
+0 X
+N
+464.52 291.07 478.2 304.51 R
+7 X
+V
+0 X
+N
+478.2 291.07 491.88 304.51 R
+7 X
+V
+0 X
+N
+491.89 291.07 505.57 304.51 R
+7 X
+V
+0 X
+N
+505.57 291.07 519.25 304.51 R
+7 X
+V
+0 X
+N
+519.25 291.07 532.93 304.51 R
+7 X
+V
+0 X
+N
+532.93 291.07 546.61 304.51 R
+7 X
+V
+0 X
+N
+327.73 291.31 341.41 304.75 R
+7 X
+V
+0 X
+N
+202.25 374.98 274.25 400.18 R
+7 X
+V
+9 F
+0 X
+(Position:) 202.25 393.51 T
+(2) 256.25 393.51 T
+(Length:) 202.25 379.51 T
+(4) 256.25 379.51 T
+202.25 327.51 274.25 352.71 R
+7 X
+V
+0 X
+(Position:) 202.25 346.04 T
+(2) 256.25 346.04 T
+(Length:) 202.25 332.04 T
+(8) 256.25 332.04 T
+202.25 279.74 274.25 304.94 R
+7 X
+V
+0 X
+(Position:) 202.25 298.28 T
+(11) 256.25 298.28 T
+(Length:) 202.25 284.28 T
+(8) 256.25 284.28 T
+286.65 385.97 300.33 400.37 R
+7 X
+V
+0 X
+N
+300.33 385.97 314.01 400.37 R
+7 X
+V
+0 X
+N
+314.01 385.97 327.69 400.37 R
+7 X
+V
+0 X
+N
+327.69 385.97 341.37 400.37 R
+7 X
+V
+0 X
+N
+341.38 385.97 355.06 400.37 R
+7 X
+V
+0 X
+N
+355.06 385.97 368.74 400.37 R
+7 X
+V
+0 X
+N
+10 F
+(S) 316.16 389.6 T
+(P) 329.84 389.6 T
+(A) 344.24 389.6 T
+(N) 357.59 389.6 T
+311.88 378.54 314.38 382.87 316.89 378.54 3 L
+1 H
+N
+314.38 372.69 314.38 383.11 2 L
+7 X
+V
+2 Z
+0 X
+N
+366.6 378.54 369.1 382.87 371.61 378.54 3 L
+0 Z
+N
+369.1 372.69 369.1 383.11 2 L
+7 X
+V
+2 Z
+0 X
+N
+314.38 373.14 368.38 373.14 2 L
+7 X
+V
+0 X
+N
+311.86 331.09 314.36 335.42 316.86 331.09 3 L
+0 Z
+N
+314.36 325.26 314.36 335.66 2 L
+7 X
+V
+2 Z
+0 X
+N
+314.36 325.7 423.8 325.7 2 L
+7 X
+V
+0 X
+N
+421.3 331.09 423.8 335.42 426.3 331.09 3 L
+0 Z
+N
+423.8 325.26 423.8 335.66 2 L
+7 X
+V
+2 Z
+0 X
+N
+286.65 337.83 300.33 352.23 R
+7 X
+V
+0.5 H
+0 Z
+0 X
+N
+300.33 337.83 314.01 352.23 R
+7 X
+V
+0 X
+N
+314.01 337.83 327.69 352.23 R
+7 X
+V
+0 X
+N
+327.69 337.83 341.37 352.23 R
+7 X
+V
+0 X
+N
+341.38 337.83 355.06 352.23 R
+7 X
+V
+0 X
+N
+355.06 337.83 368.74 352.23 R
+7 X
+V
+0 X
+N
+(T) 317.92 341.72 T
+(E) 331.27 341.72 T
+(X) 344.95 341.72 T
+(T) 359.68 341.72 T
+368.74 337.83 382.42 352.23 R
+7 X
+V
+0 X
+N
+382.42 337.83 396.1 352.23 R
+7 X
+V
+0 X
+N
+396.11 337.83 409.79 352.23 R
+7 X
+V
+0 X
+N
+409.79 337.83 423.47 352.23 R
+7 X
+V
+0 X
+N
+(S) 373.02 341.72 T
+(P) 387.42 341.72 T
+(A) 401.11 341.72 T
+(N) 415.17 341.72 T
+(E) 329.84 293.03 T
+(X) 344.24 293.03 T
+(A) 357.92 293.03 T
+(M) 370.6 293.03 T
+(P) 386 293.03 T
+(L) 400.34 293.03 T
+(E) 414.08 293.03 T
+(N) 301.43 293.03 T
+(T) 440.35 293.03 T
+(E) 453.69 293.03 T
+(X) 468.09 293.03 T
+(T) 482.11 293.03 T
+(S) 495.45 293.03 T
+(P) 509.85 293.03 T
+(A) 523.53 293.03 T
+(N) 537.6 293.03 T
+(A) 288.79 293.74 T
+(A) 288.79 389.6 T
+(A) 289.51 341.72 T
+434.87 282.37 437.37 286.7 439.87 282.37 3 L
+1 H
+N
+437.37 276.54 437.37 286.94 2 L
+7 X
+V
+2 Z
+0 X
+N
+437.37 276.99 546.81 276.99 2 L
+7 X
+V
+0 X
+N
+544.31 282.37 546.81 286.7 549.31 282.37 3 L
+0 Z
+N
+546.81 276.54 546.81 286.94 2 L
+7 X
+V
+2 Z
+0 X
+N
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "265" 12
+%%Page: "266" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (266) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotSpan_New) 54 642 T
+(JotSpan * ) 198 642 T
+(JotSpan_New\050text, position, length\051) 198 631 T
+(JotText *text;) 198 621 T
+(int position;) 198 611 T
+(int length;) 198 601 T
+5 F
+0.52 0.1 (Allocates and r) 198 582.33 B
+0.52 0.1 (eturns a pointer to a new JotSpan instance. When ) 266.99 582.33 B
+7 F
+0.52 0.1 (text) 496.24 582.33 B
+5 F
+0.52 0.1 ( is a ) 512.19 582.33 B
+0.52 0.1 (pointer to a JotT) 198 569.93 B
+0.52 0.1 (ext instance, the JotSpan is inserted into the JotSpan list ) 271.9 569.93 B
+0.52 0.1 (managed by ) 198 557.53 B
+7 F
+0.52 0.1 (text) 257.31 557.53 B
+5 F
+0.52 0.1 (. When ) 273.25 557.53 B
+7 F
+0.52 0.1 (text) 308.9 557.53 B
+5 F
+0.52 0.1 ( is a ) 324.84 557.53 B
+6 F
+1.08 (NULL) 346.64 557.53 P
+5 F
+0.52 0.1 ( \0500\051 pointer) 368.21 557.53 B
+0.52 0.1 (, the JotSpan is not initially ) 418.54 557.53 B
+0.01 0.1 (associated with a JotT) 198 545.13 B
+0.01 0.1 (ext instance. The position and length variables in the new ) 295.72 545.13 B
+0.32 0.1 (JotSpan ar) 198 532.73 B
+0.32 0.1 (e set to the speci\336ed ) 244.69 532.73 B
+7 F
+0.32 0.1 (position) 339.94 532.73 B
+5 F
+0.32 0.1 ( and ) 372.94 532.73 B
+7 F
+0.32 0.1 (length) 396 532.73 B
+5 F
+0.32 0.1 (. If the operation fails, a ) 422.14 532.73 B
+6 F
+0.66 (NULL) 533.41 532.73 P
+5 F
+0.32 0.1 ( ) 554.98 532.73 B
+0.52 0.1 (\0500\051 pointer is r) 198 520.33 B
+0.52 0.1 (eturned.) 263.4 520.33 B
+8 F
+0.52 0.1 (Errors) 198 500.6 B
+5 F
+0.52 0.1 (:) 226.36 500.6 B
+6 F
+1.1 0.09 ( Jot_EMEMORY Jot_ERANGECHECK) 228.96 500.6 B
+(JotSpan_Free) 54 481.2 T
+(void ) 198 481.2 T
+(JotSpan_Free\050span\051) 198 470.2 T
+(JotSpan *span;) 198 460.2 T
+5 F
+0.52 0.1 (Deallocates ) 198 441.53 B
+7 F
+0.52 0.1 (span) 252.73 441.53 B
+5 F
+0.52 0.1 ( and its internal r) 272.01 441.53 B
+0.52 0.1 (esour) 351.52 441.53 B
+0.52 0.1 (ces. If ) 376.29 441.53 B
+7 F
+0.52 0.1 (span) 405.79 441.53 B
+5 F
+0.52 0.1 ( is owned by a JotT) 425.07 441.53 B
+0.52 0.1 (ext ) 513.04 441.53 B
+0.52 0.1 (instance it is also r) 198 429.13 B
+0.52 0.1 (emoved fr) 283.11 429.13 B
+0.52 0.1 (om the JotSpan list in its owner) 329.74 429.13 B
+0.52 0.1 (.) 473.35 429.13 B
+6 F
+(JotSpan_SetText) 54 409.4 T
+(boolean ) 198 409.4 T
+(JotSpan_SetText\050span, text, position, length\051) 198 398.4 T
+(JotSpan *span;) 198 388.4 T
+(JotText *text;) 198 378.4 T
+(int position;) 198 368.4 T
+(int length;) 198 358.4 T
+5 F
+0.52 0.1 (Inserts ) 198 339.73 B
+7 F
+0.52 0.1 (span) 231.47 339.73 B
+5 F
+0.52 0.1 ( into the JotSpan list managed by ) 250.75 339.73 B
+7 F
+0.52 0.1 (text) 406.17 339.73 B
+5 F
+0.52 0.1 (. If ) 422.12 339.73 B
+7 F
+0.52 0.1 (span) 437.85 339.73 B
+5 F
+0.52 0.1 ( is alr) 457.13 339.73 B
+0.52 0.1 (eady associated ) 482.68 339.73 B
+0.52 0.1 (with a JotT) 198 327.33 B
+0.52 0.1 (ext instance, it will be r) 247.7 327.33 B
+0.52 0.1 (emoved fr) 354.66 327.33 B
+0.52 0.1 (om the pr) 401.29 327.33 B
+0.52 0.1 (evious list. In addition, ) 446.14 327.33 B
+7 F
+0.2 0.1 (span) 198 314.93 B
+5 F
+0.2 0.1 ( can be explicitly disassociated fr) 217.28 314.93 B
+0.2 0.1 (om its curr) 366.45 314.93 B
+0.2 0.1 (ent owner by de\336ning ) 415.81 314.93 B
+7 F
+0.2 0.1 (text) 519.03 314.93 B
+5 F
+0.2 0.1 ( as a ) 534.97 314.93 B
+6 F
+1.08 (NULL) 198 302.54 P
+5 F
+0.52 0.1 ( \0500\051 pointer) 219.57 302.54 B
+0.52 0.1 (. The position and length variables in ) 269.9 302.54 B
+7 F
+0.52 0.1 (span) 443.96 302.54 B
+5 F
+0.52 0.1 ( ar) 463.23 302.54 B
+0.52 0.1 (e set to the ) 475.32 302.54 B
+0.52 0.1 (speci\336ed ) 198 290.14 B
+7 F
+0.52 0.1 (position) 241.24 290.14 B
+5 F
+0.52 0.1 ( and ) 274.24 290.14 B
+7 F
+0.52 0.1 (length) 297.7 290.14 B
+5 F
+0.52 0.1 (. When the operation is successful, ) 323.84 290.14 B
+6 F
+1.08 (TRUE) 485.27 290.14 P
+5 F
+0.52 0.1 ( is ) 506.84 290.14 B
+0.52 0.1 (r) 198 277.73 B
+0.52 0.1 (eturned; otherwise, ) 201.87 277.73 B
+6 F
+1.08 (FALSE) 293.17 277.73 P
+5 F
+0.52 0.1 ( is r) 320.13 277.73 B
+0.52 0.1 (eturned.) 337.58 277.73 B
+8 F
+0.52 0.1 (Errors) 198 258 B
+5 F
+0.52 0.1 (:) 226.36 258 B
+6 F
+1.1 0.09 ( Jot_ERANGECHECK) 228.96 258 B
+(JotSpan_Text) 54 238.6 T
+(JotText * ) 198 238.6 T
+(JotSpan_Text\050span\051) 198 227.6 T
+(JotSpan *span;) 198 217.6 T
+5 F
+0.12 0.1 (Returns a pointer to the JotT) 198 198.93 B
+0.12 0.1 (ext instance associated with ) 325.72 198.93 B
+7 F
+0.12 0.1 (span) 454.28 198.93 B
+5 F
+0.12 0.1 (. When ) 473.56 198.93 B
+7 F
+0.12 0.1 (span) 508.4 198.93 B
+5 F
+0.12 0.1 ( is not ) 527.68 198.93 B
+0.52 0.1 (associated with a JotT) 198 186.53 B
+0.52 0.1 (ext instance, a ) 297.24 186.53 B
+6 F
+1.08 (NULL) 364.86 186.53 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 386.43 186.53 B
+0.52 0.1 (eturned.) 454.95 186.53 B
+FMENDPAGE
+%%EndPage: "266" 13
+%%Page: "267" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (267) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(JotSpan_DeleteContents) 54 642 T
+(int ) 198 642 T
+(JotSpan_DeleteContents\050span\051 ) 198 631 T
+(JotSpan *span;) 198 621 T
+5 F
+0.1 0.1 (Deletes the characters fr) 198 602.33 B
+0.1 0.1 (om the buf) 306.61 602.33 B
+0.1 0.1 (fer managed by the owner of span using the ) 355.65 602.33 B
+0.52 0.1 (position and length of ) 198 589.93 B
+7 F
+0.52 0.1 (span) 302.27 589.93 B
+5 F
+0.52 0.1 (. Because spans adjust their length as they ar) 321.55 589.93 B
+0.52 0.1 (e ) 526.72 589.93 B
+0.52 0.1 (modi\336ed the length of ) 198 577.53 B
+7 F
+0.52 0.1 (span) 303.3 577.53 B
+5 F
+0.52 0.1 ( becomes 0. When the operation is successful, the ) 322.58 577.53 B
+0.52 0.1 (number of characters deleted is r) 198 565.13 B
+0.52 0.1 (eturned; otherwise, no deletion is performed ) 348.63 565.13 B
+0.52 0.1 (and -1 is r) 198 552.73 B
+0.52 0.1 (eturned.) 244.31 552.73 B
+8 F
+0.52 0.1 (Errors) 198 533 B
+5 F
+0.52 0.1 (:) 226.36 533 B
+6 F
+1.1 0.09 ( Jot_ETEXT) 228.96 533 B
+(JotSpan_Contents) 54 513.6 T
+(int ) 198 513.6 T
+(JotSpan_Contents\050span, contents\051) 198 502.6 T
+(JotSpan *span;) 198 492.6 T
+(char *contents;) 198 482.6 T
+5 F
+0.4 0.1 (Copies the characters de\336ned by ) 198 463.93 B
+7 F
+0.4 0.1 (span) 349.61 463.93 B
+5 F
+0.4 0.1 (, fr) 368.89 463.93 B
+0.4 0.1 (om the owner of ) 381.78 463.93 B
+7 F
+0.4 0.1 (span) 460.23 463.93 B
+5 F
+0.4 0.1 ( to contents. The ) 479.51 463.93 B
+0.52 0.1 (characters ar) 198 451.53 B
+0.52 0.1 (e placed in ) 255.95 451.53 B
+7 F
+0.52 0.1 (contents) 308.96 451.53 B
+5 F
+0.52 0.1 (. Y) 343.81 451.53 B
+0.52 0.1 (ou ar) 355.37 451.53 B
+0.52 0.1 (e r) 379.14 451.53 B
+0.52 0.1 (esponsible for allocating adequate ) 391.01 451.53 B
+0.52 0.1 (space to hold the characters. When the operation is successful, the number of ) 198 439.13 B
+0.52 0.1 (characters copied is r) 198 426.73 B
+0.52 0.1 (eturned; otherwise, -1 is r) 294.74 426.73 B
+0.52 0.1 (eturned.) 412.01 426.73 B
+6 F
+(if) 198 411 T
+(\050\050\050length = JotSpan_Length\050aSpan\051\051 > 0\051 &&) 210.6 411 T
+( \050\050contents = \050char *\051 malloc\050length\051\051 != 0\051\051 {) 210.6 400 T
+(JotSpan_Contents\050aSpan, contents\051;) 210.6 389 T
+(/* process the contents */) 210.6 378 T
+(free\050contents\051;) 210.6 367 T
+(}) 198 356 T
+8 F
+0.52 0.1 (Errors) 198 337 B
+5 F
+0.52 0.1 (:) 226.36 337 B
+6 F
+1.1 0.09 ( Jot_ETEXT) 228.96 337 B
+(JotSpan_Replace) 54 317.6 T
+(boolean ) 198 317.6 T
+(JotSpan_Replace\050old, new\051) 198 306.6 T
+(JotSpan *old;) 198 296.6 T
+(JotSpan *new;) 198 286.6 T
+5 F
+0.52 0.1 (Replaces the characters described in ) 198 267.93 B
+7 F
+0.52 0.1 (old) 365.93 267.93 B
+5 F
+0.52 0.1 ( with the characters described in ) 378.44 267.93 B
+7 F
+0.52 0.1 (new) 530.57 267.93 B
+5 F
+0.52 0.1 (. ) 546.61 267.93 B
+0.52 0.1 (Both ) 198 255.53 B
+7 F
+0.52 0.1 (old) 222.16 255.53 B
+5 F
+0.52 0.1 ( and ) 234.67 255.53 B
+7 F
+0.52 0.1 (new) 258.13 255.53 B
+5 F
+0.52 0.1 ( must be associated with a JotT) 275.09 255.53 B
+0.52 0.1 (ext instance. When the ) 416.95 255.53 B
+0.52 0.1 (operation is successful, ) 198 243.14 B
+6 F
+1.08 (TRUE) 306.5 243.14 P
+5 F
+0.52 0.1 ( is r) 328.07 243.14 B
+0.52 0.1 (eturned; otherwise, ) 345.52 243.14 B
+6 F
+1.08 (FALSE) 436.82 243.14 P
+5 F
+0.52 0.1 ( is r) 463.78 243.14 B
+0.52 0.1 (eturned.) 481.23 243.14 B
+8 F
+0.52 0.1 (Errors) 198 223.4 B
+5 F
+0.52 0.1 (:) 226.36 223.4 B
+6 F
+1.1 0.09 ( Jot_ECONSTRAIN Jot_EMEMORY Jot_ETEXT) 228.96 223.4 B
+(JotSpan_Position) 54 204 T
+(int ) 198 204 T
+(JotSpan_Position\050span\051) 198 193 T
+(JotSpan *span;) 198 183 T
+5 F
+0.52 0.1 (Returns the value of the position variable in ) 198 164.34 B
+7 F
+0.52 0.1 (span) 402.87 164.34 B
+5 F
+0.52 0.1 (. If the operation fails, a -1 is ) 422.15 164.34 B
+0.1 (r) 198 151.93 S
+0.1 (eturned.) 201.87 151.93 S
+FMENDPAGE
+%%EndPage: "267" 14
+%%Page: "268" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (268) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+0.52 0.1 (Errors) 198 642 B
+5 F
+0.52 0.1 (:) 226.36 642 B
+6 F
+1.1 0.09 ( Jot_ETEXT) 228.96 642 B
+(JotSpan_SetPosition) 54 622.6 T
+(boolean ) 198 622.6 T
+(JotSpan_SetPosition\050span, position\051) 198 611.6 T
+(JotSpan *span) 198 601.6 T
+(int position;) 198 591.6 T
+5 F
+0.52 0.1 (Sets the position variable in ) 198 572.93 B
+7 F
+0.52 0.1 (span) 327.98 572.93 B
+5 F
+0.52 0.1 ( to the speci\336ed ) 347.26 572.93 B
+7 F
+0.52 0.1 (position) 422.93 572.93 B
+5 F
+0.52 0.1 (. The ) 455.93 572.93 B
+7 F
+0.52 0.1 (span) 481.79 572.93 B
+5 F
+0.52 0.1 ( must be ) 501.07 572.93 B
+0.52 0.1 (associated with a JotT) 198 560.53 B
+0.52 0.1 (ext instance. When the operation is successful, ) 297.24 560.53 B
+6 F
+1.08 (TRUE) 512.36 560.53 P
+5 F
+0.52 0.1 ( is ) 533.93 560.53 B
+0.52 0.1 (r) 198 548.13 B
+0.52 0.1 (eturned; otherwise, ) 201.87 548.13 B
+6 F
+1.08 (FALSE) 293.17 548.13 P
+5 F
+0.52 0.1 ( is r) 320.13 548.13 B
+0.52 0.1 (eturned.) 337.58 548.13 B
+8 F
+0.52 0.1 (Errors) 198 528.4 B
+5 F
+0.52 0.1 (:) 226.36 528.4 B
+6 F
+1.1 0.09 ( Jot_ERANGECHECK Jot_ETEXT) 228.96 528.4 B
+(JotSpan_Length) 54 509 T
+(int ) 198 509 T
+(JotSpan_Length\050span\051) 198 498 T
+(JotSpan *span;) 198 488 T
+5 F
+0.52 0.1 (Returns) 198 469.33 B
+7 F
+0.52 0.1 ( span) 233.45 469.33 B
+5 F
+0.52 0.1 (\325s length. If the operation fails, a -1 is r) 255.85 469.33 B
+0.52 0.1 (eturned.) 433.38 469.33 B
+8 F
+0.52 0.1 (Errors) 198 448.93 B
+5 F
+0.52 0.1 (: ) 226.36 448.93 B
+6 F
+1.08 (Jot_ETEXT) 232.08 448.93 P
+(JotSpan_SetLength) 54 429.2 T
+(boolean ) 198 429.2 T
+(JotSpan_SetLength\050span, length\051) 198 418.2 T
+(JotSpan *span;) 198 408.2 T
+(int length;) 198 398.2 T
+5 F
+0.52 0.1 (Sets the length variable in ) 198 379.53 B
+7 F
+0.52 0.1 (span) 319.87 379.53 B
+5 F
+0.52 0.1 ( to the speci\336ed ) 339.15 379.53 B
+7 F
+0.52 0.1 (length) 414.82 379.53 B
+5 F
+0.52 0.1 (. The ) 440.97 379.53 B
+7 F
+0.52 0.1 (span) 466.83 379.53 B
+5 F
+0.52 0.1 ( must be ) 486.11 379.53 B
+0.52 0.1 (associated with a JotT) 198 367.13 B
+0.52 0.1 (ext instance. When the operation is successful, ) 297.24 367.13 B
+6 F
+1.08 (TRUE) 512.36 367.13 P
+5 F
+0.52 0.1 ( is ) 533.93 367.13 B
+0.52 0.1 (r) 198 354.73 B
+0.52 0.1 (eturned; otherwise, ) 201.87 354.73 B
+6 F
+1.08 (FALSE) 293.17 354.73 P
+5 F
+0.52 0.1 ( is r) 320.13 354.73 B
+0.52 0.1 (eturned.) 337.58 354.73 B
+8 F
+0.52 0.1 (Errors) 198 335 B
+5 F
+0.52 0.1 (:) 226.36 335 B
+6 F
+1.1 0.09 ( Jot_ERANGECHECK Jot_ETEXT) 228.96 335 B
+(JotSpan_Set) 54 315.6 T
+(boolean ) 198 315.6 T
+(JotSpan_Set\050span, position, length\051) 198 304.6 T
+(JotSpan *span;) 198 294.6 T
+(int position;) 198 284.6 T
+(int length;) 198 274.6 T
+5 F
+0.52 0.1 (Sets the position and length variables in span to the speci\336ed ) 198 255.93 B
+7 F
+0.52 0.1 (position) 481.64 255.93 B
+5 F
+0.52 0.1 ( and ) 514.65 255.93 B
+7 F
+0.03 0.1 (length) 198 243.53 B
+5 F
+0.03 0.1 (. The ) 224.15 243.53 B
+7 F
+0.03 0.1 (span) 249.02 243.53 B
+5 F
+0.03 0.1 ( must be associated with a JotT) 268.3 243.53 B
+0.03 0.1 (ext instance. When the operation ) 407.2 243.53 B
+0.52 0.1 (is successful, ) 198 231.14 B
+6 F
+1.08 (TRUE) 259.85 231.14 P
+5 F
+0.52 0.1 ( is r) 281.42 231.14 B
+0.52 0.1 (eturned; otherwise, ) 298.87 231.14 B
+6 F
+1.08 (FALSE) 390.17 231.14 P
+5 F
+0.52 0.1 ( is r) 417.13 231.14 B
+0.52 0.1 (eturned.) 434.58 231.14 B
+8 F
+0.52 0.1 (Errors) 198 211.4 B
+5 F
+0.52 0.1 (:) 226.36 211.4 B
+6 F
+1.1 0.09 ( Jot_ERANGECHECK Jot_ETEXT) 228.96 211.4 B
+FMENDPAGE
+%%EndPage: "268" 15
+%%Page: "269" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (269) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(JotSpan_Modified) 54 642 T
+(boolean ) 198 642 T
+(JotSpan_Modified\050span\051) 198 631 T
+(JotSpan *span;) 198 621 T
+5 F
+0.14 0.1 (Returns the modi\336ed state of ) 198 602.33 B
+7 F
+0.14 0.1 (span) 332.27 602.33 B
+5 F
+0.14 0.1 (. Whenever a text operation occurs in a span, ) 351.55 602.33 B
+0.52 0.1 (the span is marked as modi\336ed and stays marked until ) 198 589.93 B
+6 F
+1.08 (JotSpan_ClearModified) 198 577.53 P
+5 F
+0.52 0.1 ( is called. When ) 311.24 577.53 B
+7 F
+0.52 0.1 (span) 387.22 577.53 B
+5 F
+0.52 0.1 ( is not associated with a JotT) 406.5 577.53 B
+0.52 0.1 (ext ) 537.28 577.53 B
+0.52 0.1 (instance, ) 198 565.13 B
+6 F
+1.08 (FALSE) 240.78 565.13 P
+5 F
+0.52 0.1 ( is r) 267.74 565.13 B
+0.52 0.1 (eturned.) 285.19 565.13 B
+6 F
+(JotSpan_ClearModified) 54 545.4 T
+(void ) 198 545.4 T
+(JotSpan_ClearModified\050span\051) 198 534.4 T
+(JotSpan *span;) 198 524.4 T
+5 F
+0.52 0.1 (Sets the modi\336ed state of ) 198 505.73 B
+7 F
+0.52 0.1 (span) 316.64 505.73 B
+5 F
+0.52 0.1 ( to ) 335.92 505.73 B
+6 F
+1.08 (FALSE) 351.08 505.73 P
+5 F
+0.52 0.1 (.) 378.04 505.73 B
+4 F
+-0.94 (JotV) 54 472 P
+-0.94 (iew pr) 80.37 472 P
+-0.94 (ocedur) 117.08 472 P
+-0.94 (es\321the view and contr) 157.08 472 P
+-0.94 (oller) 293.02 472 P
+5 F
+0.52 0.1 (The view associated with the text model is the JotV) 198 450.33 B
+0.52 0.1 (iew) 432.54 450.33 B
+0.52 0.1 (. This view r) 447.95 450.33 B
+0.52 0.1 (eads ) 505.34 450.33 B
+0.52 0.1 (characters fr) 198 437.93 B
+0.52 0.1 (om a text buf) 254.28 437.93 B
+0.52 0.1 (fer) 315.08 437.93 B
+0.52 0.1 (, applies formatting information, and displays the ) 326.7 437.93 B
+0.52 0.1 (r) 198 425.53 B
+0.52 0.1 (esults in a r) 201.87 425.53 B
+0.52 0.1 (ectangular canvas on the scr) 255.17 425.53 B
+0.52 0.1 (een. A JotT) 384.49 425.53 B
+0.52 0.1 (ext instance can be ) 434.54 425.53 B
+0.52 0.1 (associated with multiple JotV) 198 413.13 B
+0.52 0.1 (iews.) 332.04 413.13 B
+0.52 0.1 (The JotV) 198 392.73 B
+0.52 0.1 (iew interface also encompasses the contr) 237.26 392.73 B
+0.52 0.1 (oller interface. The user ) 422.68 392.73 B
+0.52 0.1 (interacts with text using the mouse and keyboar) 198 380.33 B
+0.52 0.1 (d. Mouse events such as ) 418.57 380.33 B
+0.52 0.1 (selections or car) 198 367.93 B
+0.52 0.1 (et movement ar) 271.18 367.93 B
+0.52 0.1 (e handled in the contr) 342.83 367.93 B
+0.52 0.1 (oller) 443.75 367.93 B
+0.52 0.1 (. Jot pr) 463.52 367.93 B
+0.52 0.1 (ovides no-op ) 494.68 367.93 B
+0.52 0.1 (default contr) 198 355.54 B
+0.52 0.1 (ollers.) 256.47 355.54 B
+6 F
+(JotView_New) 54 335.8 T
+(JotView * ) 198 335.8 T
+(JotView_New\050text\051) 198 324.8 T
+(JotText *text;) 198 314.8 T
+5 F
+-0.02 0.1 (Allocates and r) 198 296.14 B
+-0.02 0.1 (eturns a pointer to a new JotV) 265.91 296.14 B
+-0.02 0.1 (iew instance. In addition, a canvas ) 400.38 296.14 B
+0.52 0.1 (is cr) 198 283.73 B
+0.52 0.1 (eated on the window server to view text. This canvas is neither mapped ) 216.87 283.73 B
+0.52 0.1 (nor activated. A ) 198 271.34 B
+6 F
+1.08 (NULL) 274.65 271.34 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 296.22 271.34 B
+0.52 0.1 (eturned if the operation fails. ) 364.74 271.34 B
+0.52 0.1 (Y) 198 250.93 B
+0.52 0.1 (ou can use ) 203.85 250.93 B
+6 F
+1.08 (JotView_New) 255.79 250.93 P
+5 F
+0.52 0.1 ( to cr) 315.11 250.93 B
+0.52 0.1 (eate and associate a JotV) 338.66 250.93 B
+0.52 0.1 (iew with an existing ) 451.01 250.93 B
+0.52 0.1 (JotT) 198 238.53 B
+0.52 0.1 (ext instance in one operation. When this behavior is not desir) 215.65 238.53 B
+0.52 0.1 (ed, ) 496.62 238.53 B
+7 F
+0.52 0.1 (text) 513.44 238.53 B
+5 F
+0.52 0.1 ( ) 529.38 238.53 B
+0.52 0.1 (should be de\336ned as a ) 198 226.14 B
+6 F
+1.08 (NULL) 304.04 226.14 P
+5 F
+0.52 0.1 ( \0500\051 pointer) 325.61 226.14 B
+0.52 0.1 (.) 375.94 226.14 B
+8 F
+0.52 0.1 (Errors) 198 205.73 B
+5 F
+0.52 0.1 (: ) 226.36 205.73 B
+6 F
+1.08 (Jot_EMEMORY) 232.08 205.73 P
+FMENDPAGE
+%%EndPage: "269" 16
+%%Page: "270" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (270) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotView_Free) 54 642 T
+(void ) 198 642 T
+(JotView_Free\050view\051) 198 631 T
+(JotView *view;) 198 621 T
+5 F
+0.46 0.1 (Deallocates ) 198 602.33 B
+7 F
+0.46 0.1 (view) 252.67 602.33 B
+5 F
+0.46 0.1 ( and its internal r) 271.95 602.33 B
+0.46 0.1 (esour) 351.23 602.33 B
+0.46 0.1 (ces, including the canvas cr) 376 602.33 B
+0.46 0.1 (eated in the ) 501.29 602.33 B
+0.52 0.1 (window server) 198 589.93 B
+0.52 0.1 (. As necessary) 265.89 589.93 B
+0.52 0.1 (, ) 329.54 589.93 B
+7 F
+0.52 0.1 (view) 335.25 589.93 B
+5 F
+0.52 0.1 ( is r) 354.53 589.93 B
+0.52 0.1 (emoved fr) 371.98 589.93 B
+0.52 0.1 (om the JotV) 418.61 589.93 B
+0.52 0.1 (iew list in its ) 472.6 589.93 B
+0.52 0.1 (associated JotT) 198 577.53 B
+0.52 0.1 (ext.) 265.19 577.53 B
+6 F
+(JotView_SetText) 54 557.8 T
+(void ) 198 557.8 T
+(JotView_SetText\050view, text\051) 198 546.8 T
+(JotView *view;) 198 536.8 T
+(JotText *text;) 198 526.8 T
+5 F
+0.52 0.1 (Inserts ) 198 508.13 B
+7 F
+0.52 0.1 (view) 231.47 508.13 B
+5 F
+0.52 0.1 ( into the JotV) 250.75 508.13 B
+0.52 0.1 (iew list managed by ) 311.22 508.13 B
+7 F
+0.52 0.1 (text) 406.8 508.13 B
+5 F
+0.52 0.1 (. This operation permits ) 422.75 508.13 B
+7 F
+0.52 0.1 (text) 535.51 508.13 B
+5 F
+0.52 0.1 ( ) 551.46 508.13 B
+0.52 0.1 (to be pr) 198 495.73 B
+0.52 0.1 (esented and edited in the canvas contr) 233.64 495.73 B
+0.52 0.1 (olled thr) 409.66 495.73 B
+0.52 0.1 (ough ) 448.59 495.73 B
+7 F
+0.52 0.1 (view) 474.97 495.73 B
+5 F
+0.52 0.1 (. If ) 493.33 495.73 B
+7 F
+0.52 0.1 (view) 509.06 495.73 B
+5 F
+0.52 0.1 ( is ) 528.34 495.73 B
+0.28 0.1 (alr) 198 483.33 B
+0.28 0.1 (eady associated with a JotT) 209.97 483.33 B
+0.28 0.1 (ext instance, it is r) 333.23 483.33 B
+0.28 0.1 (emoved fr) 415.5 483.33 B
+0.28 0.1 (om the pr) 461.88 483.33 B
+0.28 0.1 (evious list. ) 506.26 483.33 B
+0.52 0.1 (In addition, ) 198 470.93 B
+7 F
+0.52 0.1 (view) 254.58 470.93 B
+5 F
+0.52 0.1 ( can be explicitly disassociated fr) 273.86 470.93 B
+0.52 0.1 (om its curr) 424.62 470.93 B
+0.52 0.1 (ent owner by ) 474.63 470.93 B
+0.52 0.1 (de\336ning ) 198 458.53 B
+7 F
+0.52 0.1 (text) 238.86 458.53 B
+5 F
+0.52 0.1 ( as a ) 254.8 458.53 B
+6 F
+1.08 (NULL) 278.69 458.53 P
+5 F
+0.52 0.1 ( \0500\051 pointer) 300.26 458.53 B
+0.52 0.1 (.) 350.59 458.53 B
+6 F
+(JotView_Text) 54 438.8 T
+(JotText * ) 198 438.8 T
+(JotView_Text\050view\051) 198 427.8 T
+(JotView *view;) 198 417.8 T
+5 F
+0.52 0.1 (Returns the JotT) 198 399.13 B
+0.52 0.1 (ext instance associated with ) 271.5 399.13 B
+7 F
+0.52 0.1 (view) 401.68 399.13 B
+5 F
+0.52 0.1 (. When ) 420.04 399.13 B
+7 F
+0.52 0.1 (view) 455.69 399.13 B
+5 F
+0.52 0.1 ( is not associated ) 474.97 399.13 B
+0.52 0.1 (with a JotT) 198 386.73 B
+0.52 0.1 (ext instance, a ) 247.7 386.73 B
+6 F
+1.08 (NULL) 315.32 386.73 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 336.89 386.73 B
+0.52 0.1 (eturned.) 405.41 386.73 B
+6 F
+(JotView_Characters) 54 367 T
+(int ) 198 367 T
+(JotView_Characters\050view\051) 198 356 T
+(JotView *view;) 198 346 T
+5 F
+0.52 0.1 (Returns the number of characters in ) 198 327.33 B
+7 F
+0.52 0.1 (view) 365.63 327.33 B
+5 F
+0.52 0.1 (. Should the operation fail, a -1 is ) 383.99 327.33 B
+0.1 (r) 198 314.93 S
+0.1 (eturned.) 201.87 314.93 S
+0.52 0.1 (The information r) 198 294.54 B
+0.52 0.1 (eturned is consistent with the last change to the text buf) 278.95 294.54 B
+0.52 0.1 (fer ) 535.76 294.54 B
+0.52 0.1 (pr) 198 282.14 B
+0.52 0.1 (esented in) 207.98 282.14 B
+7 F
+0.52 0.1 ( view) 254.5 282.14 B
+5 F
+0.52 0.1 (, i.e., if the buf) 275.98 282.14 B
+0.52 0.1 (fer) 342.34 282.14 B
+0.52 0.1 (\325s contents have changed, Jot formats it to ) 355.44 282.14 B
+0.04 0.1 (calculate the answer) 198 269.73 B
+0.04 0.1 (. However) 289.08 269.73 B
+0.04 0.1 (, ) 335.55 269.73 B
+7 F
+0.04 0.1 (view) 340.78 269.73 B
+5 F
+0.04 0.1 ( is not r) 360.06 269.73 B
+0.04 0.1 (edisplayed, which may r) 394.02 269.73 B
+0.04 0.1 (esult in the ) 505.29 269.73 B
+0.52 0.1 (r) 198 257.34 B
+0.52 0.1 (eturned value being inconsistent with what is displayed in ) 201.87 257.34 B
+7 F
+0.52 0.1 (view) 473.78 257.34 B
+5 F
+0.52 0.1 (.) 492.14 257.34 B
+6 F
+(JotView_EnsurePositionVisible) 54 237.6 T
+(boolean) 198 226.6 T
+(JotView_EnsurePositionVisible\050view, position\051) 198 216.6 T
+(JotView *view;) 198 206.6 T
+(int position;) 198 196.6 T
+5 F
+0.21 0.1 (For) 198 177.93 B
+0.21 0.1 (ces the character at ) 213.08 177.93 B
+7 F
+0.21 0.1 (position) 302.21 177.93 B
+5 F
+0.21 0.1 ( to be visible after the next update in ) 335.21 177.93 B
+7 F
+0.21 0.1 (view) 504.62 177.93 B
+5 F
+0.21 0.1 (. When ) 522.98 177.93 B
+0.52 0.1 (the operation is successful, ) 198 165.53 B
+6 F
+1.08 (TRUE) 323.78 165.53 P
+5 F
+0.52 0.1 ( is r) 345.35 165.53 B
+0.52 0.1 (eturned; otherwise, ) 362.8 165.53 B
+6 F
+1.08 (FALSE) 454.1 165.53 P
+5 F
+0.52 0.1 ( is r) 481.06 165.53 B
+0.52 0.1 (eturned.) 498.51 165.53 B
+FMENDPAGE
+%%EndPage: "270" 17
+%%Page: "271" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (271) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+8 F
+0.52 0.1 (Errors) 198 641.33 B
+5 F
+0.52 0.1 (: ) 226.36 641.33 B
+6 F
+1.08 (Jot_ERANGECHECK) 232.08 641.33 P
+(JotView_ConstrainText) 54 621.6 T
+(void ) 198 621.6 T
+(JotView_ConstrainText\050view, constrain\051) 198 610.6 T
+(JotView *view;) 198 600.6 T
+(boolean constrain;) 198 590.6 T
+5 F
+0.14 0.1 (Pr) 198 571.93 B
+0.14 0.1 (events scr) 208 571.93 B
+0.14 0.1 (olling and limits character insertion to the amount of space in ) 252.62 571.93 B
+7 F
+0.14 0.1 (view) 534.3 571.93 B
+5 F
+0.14 0.1 (, ) 552.66 571.93 B
+0.52 0.1 (when ) 198 559.53 B
+7 F
+0.52 0.1 (constrain) 226.27 559.53 B
+5 F
+0.52 0.1 ( is ) 265.11 559.53 B
+6 F
+1.08 (TRUE) 278.7 559.53 P
+5 F
+0.52 0.1 (. ) 300.27 559.53 B
+6 F
+1.08 (JotView_ConstrainText) 305.98 559.53 P
+5 F
+0.52 0.1 ( is useful in forms-based ) 419.22 559.53 B
+0.52 0.1 (applications wher) 198 547.13 B
+0.52 0.1 (e each JotV) 279.36 547.13 B
+0.52 0.1 (iew r) 330.04 547.13 B
+0.52 0.1 (epr) 353.35 547.13 B
+0.52 0.1 (esents a \336eld in a form.) 368.22 547.13 B
+0.52 0.1 (At some futur) 198 526.73 B
+0.52 0.1 (e time, during a insertion into the text buf) 262.08 526.73 B
+0.52 0.1 (fer \050e.g., using ) 454.66 526.73 B
+6 F
+0.8 (JotText_InsertCharacters) 198 514.33 P
+5 F
+0.39 0.1 (\051, the insertion may fail and the insertion function ) 327.42 514.33 B
+0.52 0.1 (will r) 198 501.93 B
+0.52 0.1 (eturn -1 and the err) 222.45 501.93 B
+0.52 0.1 (or number will be ) 311.97 501.93 B
+6 F
+1.08 (Jot_ECONSTRAIN) 397.55 501.93 P
+5 F
+0.52 0.1 (.) 473.04 501.93 B
+6 F
+(JotView_Update) 54 482.2 T
+(boolean ) 198 482.2 T
+(JotView_Update\050view\051) 198 471.2 T
+(JotView *view;) 198 461.2 T
+5 F
+0.52 0.1 (For) 198 442.53 B
+0.52 0.1 (ces ) 213.08 442.53 B
+7 F
+0.52 0.1 (view) 229.96 442.53 B
+5 F
+0.52 0.1 ( to update its display based on the curr) 249.24 442.53 B
+0.52 0.1 (ent state of the associated ) 429.38 442.53 B
+0.52 0.1 (JotT) 198 430.13 B
+0.52 0.1 (ext buf) 215.65 430.13 B
+0.52 0.1 (fer and the car) 247.27 430.13 B
+0.52 0.1 (et location \050the insertion point\051. If the buf) 313.88 430.13 B
+0.52 0.1 (fer hasn\325t ) 503.65 430.13 B
+0.52 0.1 (changed and the car) 198 417.73 B
+0.52 0.1 (et hasn\325t moved, no action occurs. When the operation is ) 290.46 417.73 B
+0.52 0.1 (successful, ) 198 405.33 B
+6 F
+1.08 (TRUE) 249.38 405.33 P
+5 F
+0.52 0.1 ( is r) 270.95 405.33 B
+0.52 0.1 (eturned; otherwise, ) 288.4 405.33 B
+6 F
+1.08 (FALSE) 379.7 405.33 P
+5 F
+0.52 0.1 ( is r) 406.66 405.33 B
+0.52 0.1 (eturned.) 424.11 405.33 B
+0.26 0.1 (In a editor with a C language mode, the car) 198 384.93 B
+0.26 0.1 (et might be moved to the matching ) 395.55 384.93 B
+0.52 0.1 (delimiter when a close brace is enter) 198 372.54 B
+0.52 0.1 (ed. \050This is commonly r) 365.09 372.54 B
+0.52 0.1 (eferr) 473.47 372.54 B
+0.52 0.1 (ed to as ) 494.59 372.54 B
+0.52 0.1 (\322par) 198 360.14 B
+0.52 0.1 (en \337ashing.\323\051 After a brief interval, the cursor would then r) 218.17 360.14 B
+0.52 0.1 (estor) 490.85 360.14 B
+0.52 0.1 (ed to its ) 512.86 360.14 B
+0.32 0.1 (original position. The following code demonstrates how Jot functions could be ) 198 347.73 B
+0.52 0.1 (used to implement such behavior:) 198 335.33 B
+6 F
+(/* A simple paren flashing example*/) 198 319.6 T
+(aText = JotView_Text\050aView\051;) 198 308.6 T
+(CurrentLocation = JotText_Cursor\050aText\051;) 198 297.6 T
+(JotText_SetCursor\050aText, AnotherLocation\051;) 198 286.6 T
+(JotView_EnsurePositionVisible\050aView, AnotherLocation\051;) 198 275.6 T
+(JotView_Update\050aView\051;) 198 264.6 T
+(sleep\0501\051;) 198 253.6 T
+(JotText_SetCursor\050aText, CurrentLocation\051;) 198 242.6 T
+(JotView_EnsurePositionVisible\050aView, CurrentLocation\051;) 198 231.6 T
+(JotView_Update\050aView\051;) 198 220.6 T
+FMENDPAGE
+%%EndPage: "271" 18
+%%Page: "272" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (272) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotView_UpdateViews) 54 642 T
+(void ) 198 642 T
+(JotView_UpdateViews\050\051) 198 631 T
+5 F
+0.52 0.1 (Updates all the views that need updating. Changes ar) 198 612.33 B
+0.52 0.1 (e made to text buf) 444.17 612.33 B
+0.52 0.1 (fers, ) 527.43 612.33 B
+0.52 0.1 (they ar) 198 599.93 B
+0.52 0.1 (e all batched together and the scr) 229.9 599.93 B
+0.52 0.1 (een is r) 382.04 599.93 B
+0.52 0.1 (efr) 415.18 599.93 B
+0.52 0.1 (eshed once. Every time ) 427.36 599.93 B
+0.52 0.1 (thr) 198 587.53 B
+0.52 0.1 (ough the main loop, ) 211.14 587.53 B
+6 F
+1.08 (JotView_UpdateViews) 306.81 587.53 P
+5 F
+0.52 0.1 ( should be called to ensur) 409.27 587.53 B
+0.52 0.1 (e that ) 527.32 587.53 B
+0.52 0.1 (all views that need updating for one r) 198 575.13 B
+0.52 0.1 (eason or another ) 371.72 575.13 B
+7 F
+0.52 0.1 (ar) 451.26 575.13 B
+0.52 0.1 (e) 459.61 575.13 B
+5 F
+0.52 0.1 (, in fact, updated.) 463.59 575.13 B
+0.52 0.1 (It is necessary for applications using Jot to own the main loop and call ) 198 554.73 B
+6 F
+1.08 (JotView_UpdateViews\050\051) 198 542.33 P
+5 F
+0.52 0.1 (. E.g., ) 311.24 542.33 B
+6 F
+(while \050wire_Notify\050\051\051 { ) 210.6 526.6 T
+(/* If there is something else coming over the wire ) 234 511.6 T
+( ) 509.02 511.6 T
+(   don\325t bother updating the views this time, so we ) 234 496.6 T
+( ) 514.41 496.6 T
+(   can batch keystrokes, etc. */) 234 481.6 T
+( ) 198 466.6 T
+(if \050wire_WouldNotify\050\051\051 ) 234 466.6 T
+(continue; ) 261 451.6 T
+(JotView_UpdateViews\050\051; ) 234 436.6 T
+(/* maybe do something else*/ ) 224.64 421.6 T
+(}) 210.6 406.6 T
+8 F
+0.52 0.1 (Errors) 198 386.93 B
+5 F
+0.52 0.1 (: ) 226.36 386.93 B
+6 F
+1.08 (Jot_ETEXT) 232.08 386.93 P
+(JotView_Lines) 54 367.2 T
+(int ) 198 367.2 T
+(JotView_Lines\050view\051) 198 356.2 T
+(JotView *view;) 198 346.2 T
+5 F
+0.39 0.1 (Returns the number of lines in ) 198 327.53 B
+7 F
+0.39 0.1 (view) 340.16 327.53 B
+5 F
+0.39 0.1 (. Should the operation fail, a -1 is r) 358.52 327.53 B
+0.39 0.1 (eturned. ) 516.88 327.53 B
+0.52 0.1 (The information r) 198 307.14 B
+0.52 0.1 (eturned is consistent with the last change to the text buf) 278.95 307.14 B
+0.52 0.1 (fer ) 535.76 307.14 B
+0.52 0.1 (pr) 198 294.73 B
+0.52 0.1 (esented in) 207.98 294.73 B
+7 F
+0.52 0.1 ( view) 254.5 294.73 B
+5 F
+0.52 0.1 (, i.e., if the buf) 275.98 294.73 B
+0.52 0.1 (fer) 342.34 294.73 B
+0.52 0.1 (\325s contents have changed, Jot formats it to ) 355.44 294.73 B
+0.04 0.1 (calculate the answer) 198 282.33 B
+0.04 0.1 (. However) 289.08 282.33 B
+0.04 0.1 (, ) 335.55 282.33 B
+7 F
+0.04 0.1 (view) 340.78 282.33 B
+5 F
+0.04 0.1 ( is not r) 360.06 282.33 B
+0.04 0.1 (edisplayed, which may r) 394.02 282.33 B
+0.04 0.1 (esult in the ) 505.29 282.33 B
+0.52 0.1 (r) 198 269.93 B
+0.52 0.1 (eturned value being inconsistent with what is displayed in ) 201.87 269.93 B
+7 F
+0.52 0.1 (view) 473.78 269.93 B
+5 F
+0.52 0.1 (.) 492.14 269.93 B
+8 F
+0.52 0.1 (Errors) 198 249.53 B
+5 F
+0.52 0.1 (: ) 226.36 249.53 B
+6 F
+1.08 (Jot_ETEXT) 232.08 249.53 P
+FMENDPAGE
+%%EndPage: "272" 19
+%%Page: "273" 19
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (273) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(JotView_PositionFromLine) 54 642 T
+(int) 198 642 T
+(JotView_PositionFromLine\050view, line\051) 198 631 T
+(JotView *view;) 198 621 T
+(int line;) 198 611 T
+5 F
+0.52 0.1 (Returns the position pr) 198 592.33 B
+0.52 0.1 (eceding the \336rst character displayed on ) 303.79 592.33 B
+7 F
+0.52 0.1 (line) 487.17 592.33 B
+5 F
+0.52 0.1 ( in ) 502.57 592.33 B
+7 F
+0.52 0.1 (view) 517.73 592.33 B
+5 F
+0.52 0.1 (.) 536.09 592.33 B
+8 F
+0.52 0.1 ( ) 538.69 592.33 B
+5 F
+0.52 0.1 (If ) 541.81 592.33 B
+0.52 0.1 (you ask what this character is you get the ) 198 579.93 B
+7 F
+0.52 0.1 (\336rst) 392.2 579.93 B
+5 F
+0.52 0.1 ( character in line; r) 408.98 579.93 B
+0.52 0.1 (emember ) 495.2 579.93 B
+0.52 0.1 (position is de\336ned to be ) 198 567.53 B
+7 F
+0.52 0.1 (between) 311.47 567.53 B
+5 F
+0.52 0.1 ( characters) 344.56 567.53 B
+7 F
+0.52 0.1 (. line) 393.54 567.53 B
+5 F
+0.52 0.1 ( must be gr) 414.66 567.53 B
+0.52 0.1 (eater than or equal ) 466.8 567.53 B
+0.52 0.1 (to zer) 198 555.13 B
+0.52 0.1 (o and less than the value r) 223.89 555.13 B
+0.52 0.1 (eturned fr) 345.13 555.13 B
+0.52 0.1 (om ) 390.97 555.13 B
+6 F
+1.08 (JotView_Lines) 408.57 555.13 P
+5 F
+0.52 0.1 ( \050page 272\051. ) 478.68 555.13 B
+0.52 0.1 (Should the operation fail, a -1 is r) 198 542.73 B
+0.52 0.1 (eturned.) 351.67 542.73 B
+6 F
+(/* First position in view */) 198 527 T
+(First = JotView_PositionFromLine\050aView, 0\051) 198 516 T
+(/* Last position in view */) 198 505 T
+(Last = \050First + JotView_Characters\050aView\051\051 - 1;) 198 494 T
+8 F
+0.52 0.1 (Errors) 198 474.33 B
+5 F
+0.52 0.1 (: ) 226.36 474.33 B
+6 F
+1.08 (Jot_ERANGE) 232.08 474.33 P
+5 F
+0.52 0.1 (, ) 286.01 474.33 B
+6 F
+1.08 (Jot_ETEXT) 291.72 474.33 P
+3 F
+-0.88 (The JotBoundingBox data type) 126 441.27 P
+5 F
+0.52 0.1 (A new data type, JotBoundingBox, is used to determine the size of a view) 198 419.93 B
+0.52 0.1 (. ) 535.25 419.93 B
+0.25 0.1 (Although characters ar) 198 407.53 B
+0.25 0.1 (e pr) 301.95 407.53 B
+0.25 0.1 (esented on a canvas managed in a JotV) 319.66 407.53 B
+0.25 0.1 (iew instance, ) 496.31 407.53 B
+0.1 (if) 198 395.13 S
+8 F
+0.1 ( ) 204.44 395.13 S
+5 F
+0.1 (you use mar) 207.04 395.13 S
+0.1 (gins,) 262.81 395.13 S
+8 F
+0.1 ( ) 284.33 395.13 S
+5 F
+0.1 (the view size and origin might not be equivalent to those of ) 286.93 395.13 S
+0.41 0.1 (the canvas. The ) 198 382.73 B
+6 F
+0.85 (JotView_Height) 271.55 382.73 P
+5 F
+0.41 0.1 (, ) 347.05 382.73 B
+6 F
+0.85 (JotView_Width) 352.65 382.73 P
+5 F
+0.41 0.1 (, ) 422.76 382.73 B
+6 F
+0.85 (JotView_LineBoundingBox) 428.36 382.73 P
+5 F
+0.41 0.1 (, ) 552.39 382.73 B
+0.52 0.1 (and ) 198 370.33 B
+6 F
+1.08 (JotView_BoundingBox) 218.34 370.33 P
+5 F
+0.52 0.1 ( functions take the mar) 320.8 370.33 B
+0.52 0.1 (gins into account. In ) 426.51 370.33 B
+0.52 0.1 (addition, the values ar) 198 357.93 B
+0.52 0.1 (e r) 300.64 357.93 B
+0.52 0.1 (elative to the Curr) 312.52 357.93 B
+0.52 0.1 (ent T) 396.17 357.93 B
+0.52 0.1 (ransformation Matrix \050CTM\051 ) 418.78 357.93 B
+0.52 0.1 (for the canvas. ) 198 345.54 B
+1 F
+0.47 0.09 (Figur) 198 165.8 B
+0.47 0.09 (e 27-2) 218.77 165.8 B
+0 F
+0.47 0.09 (Relationship of a Jot view to a canvas) 248.4 165.8 B
+54 144 558 648 C
+198 180.2 558 342.2 C
+198 180.2 558 342.2 R
+7 X
+0 K
+V
+318.43 190.4 408.43 334.4 R
+4 X
+V
+0.5 H
+2 Z
+0 X
+N
+327.43 217.4 399.43 307.4 R
+7 X
+V
+1 H
+0 X
+N
+5 F
+(V) 352.08 264.17 T
+(iew) 358.75 264.17 T
+0 F
+(canvas origin) 240.29 188.91 T
+(view origin) 258 216.06 T
+311.75 194.01 317.6 190.63 311.75 187.26 311.75 190.63 4 Y
+V
+311.99 190.63 296 190.63 2 L
+0.5 H
+N
+320.33 221.74 326.17 218.36 320.33 214.99 320.33 218.36 4 Y
+V
+320.57 218.36 304.57 218.36 2 L
+N
+(gr) 421.96 272.74 T
+(ey ar) 430.34 272.74 T
+(eas ar) 449.77 272.74 T
+(e the mar) 472.51 272.74 T
+(gins) 509.59 272.74 T
+5 F
+(Canvas) 345.29 318.03 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "273" 20
+%%Page: "274" 20
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (274) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (The origin for JotV) 198 641.33 B
+0.52 0.1 (iew is the lower) 283.72 641.33 B
+0.52 0.1 (-left corner) 356.67 641.33 B
+0.52 0.1 (. The declaration for ) 406.15 641.33 B
+6 F
+1.08 (JotBoundingBox) 198 628.93 P
+5 F
+0.52 0.1 ( is:) 273.49 628.93 B
+6 F
+(typedef struct {) 198 613.2 T
+(int x;) 210.6 602.2 T
+(int y;) 210.6 591.2 T
+(int width;) 210.6 580.2 T
+(int height;) 210.6 569.2 T
+(} JotBoundingBox;) 198 558.2 T
+(JotView_Height) 54 539.2 T
+(int ) 198 539.2 T
+(JotView_Height\050view\051) 198 528.2 T
+(Jotview *view;) 198 518.2 T
+5 F
+0.52 0.1 (Returns the ) 198 499.53 B
+7 F
+0.52 0.1 (view) 253.85 499.53 B
+5 F
+0.52 0.1 ( height in points) 273.13 499.53 B
+6 F
+(JotView_Width) 54 479.8 T
+(int ) 198 479.8 T
+(JotView_Width\050view\051) 198 468.8 T
+(JotView *view;) 198 458.8 T
+5 F
+0.52 0.1 (Returns the ) 198 440.13 B
+7 F
+0.52 0.1 (view) 253.85 440.13 B
+5 F
+0.52 0.1 ( width in points.) 273.13 440.13 B
+6 F
+(JotView_SetMargins) 54 420.4 T
+(void) 198 420.4 T
+(JotView_SetMargins\050view, left, right, top, bottom\051) 198 409.4 T
+(JotView *view;) 198 399.4 T
+(int left, right, top, bottom;) 198 389.4 T
+5 F
+0.52 0.1 (Sets the mar) 198 370.73 B
+0.52 0.1 (gins for a view) 254.22 370.73 B
+0.52 0.1 (. ) 321.78 370.73 B
+7 F
+0.52 0.1 (left) 327.5 370.73 B
+5 F
+0.52 0.1 (, ) 340.67 370.73 B
+7 F
+0.52 0.1 (right) 346.39 370.73 B
+5 F
+0.52 0.1 (, ) 366.88 370.73 B
+7 F
+0.52 0.1 (top) 372.59 370.73 B
+5 F
+0.52 0.1 ( and ) 385.66 370.73 B
+7 F
+0.52 0.1 (bottom) 409.11 370.73 B
+5 F
+0.52 0.1 ( ar) 437.65 370.73 B
+0.52 0.1 (e speci\336ed in points.) 449.73 370.73 B
+6 F
+(JotView_BoundingBox) 54 351 T
+(void ) 198 351 T
+(JotView_BoundingBox\050view, box\051) 198 340 T
+(JotView *view;) 198 330 T
+(JotBoundingBox *box;) 198 320 T
+5 F
+0.52 0.1 (Copies the values for the origin, width and height of ) 198 301.33 B
+7 F
+0.52 0.1 (view) 442.49 301.33 B
+5 F
+0.52 0.1 ( into ) 461.77 301.33 B
+7 F
+0.52 0.1 (box) 485.85 301.33 B
+5 F
+0.52 0.1 (.) 500.21 301.33 B
+8 F
+0.52 0.1 ( ) 502.81 301.33 B
+5 F
+0.52 0.1 (Y) 505.93 301.33 B
+0.52 0.1 (ou ar) 511.78 301.33 B
+0.52 0.1 (e ) 535.54 301.33 B
+0.52 0.1 (r) 198 288.93 B
+0.52 0.1 (esponsible for allocating ) 201.87 288.93 B
+7 F
+0.52 0.1 (box) 316.17 288.93 B
+5 F
+0.52 0.1 (.) 330.54 288.93 B
+6 F
+(JotView_LineBoundingBox) 54 269.2 T
+(boolean ) 198 269.2 T
+(JotView_LineBoundingBox\050view, box, line\051) 198 258.2 T
+(JotView *view;) 198 248.2 T
+(JotBoundingBox *box;) 198 238.2 T
+(int line;) 198 228.2 T
+5 F
+0.52 0.1 (Copies the values for the origin, width and height of ) 198 209.53 B
+7 F
+0.52 0.1 (line) 442.49 209.53 B
+5 F
+0.52 0.1 (, in ) 457.9 209.53 B
+7 F
+0.52 0.1 (view) 475.66 209.53 B
+5 F
+0.52 0.1 (, to ) 494.02 209.53 B
+7 F
+0.52 0.1 (box) 511.77 209.53 B
+5 F
+0.52 0.1 (. ) 526.13 209.53 B
+7 F
+0.52 0.1 (line) 531.85 209.53 B
+5 F
+0.52 0.1 ( ) 547.25 209.53 B
+0.52 0.1 (must be gr) 198 197.14 B
+0.52 0.1 (eater than or equal to zer) 247.02 197.14 B
+0.52 0.1 (o and less than the value r) 362.37 197.14 B
+0.52 0.1 (eturned fr) 483.61 197.14 B
+0.52 0.1 (om ) 529.46 197.14 B
+6 F
+0.73 (JotView_Lines) 198 184.73 P
+5 F
+0.35 0.1 ( \050page 272\051. When the operation is successful, ) 268.1 184.73 B
+6 F
+0.73 (TRUE) 478.33 184.73 P
+5 F
+0.35 0.1 ( is r) 499.9 184.73 B
+0.35 0.1 (eturned; ) 517.02 184.73 B
+0.52 0.1 (otherwise, ) 198 172.34 B
+6 F
+1.08 (FALSE) 248.15 172.34 P
+5 F
+0.52 0.1 ( is r) 275.11 172.34 B
+0.52 0.1 (eturned. Y) 292.57 172.34 B
+0.52 0.1 (ou ar) 339.56 172.34 B
+0.52 0.1 (e r) 363.33 172.34 B
+0.52 0.1 (esponsible for allocating) 375.2 172.34 B
+7 F
+0.52 0.1 ( box) 486.39 172.34 B
+5 F
+0.52 0.1 (.) 503.87 172.34 B
+FMENDPAGE
+%%EndPage: "274" 21
+%%Page: "275" 21
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (275) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (The information r) 198 641.33 B
+0.52 0.1 (eturned is consistent with the last change to the text buf) 278.95 641.33 B
+0.52 0.1 (fer ) 535.76 641.33 B
+0.52 0.1 (pr) 198 628.93 B
+0.52 0.1 (esented in) 207.98 628.93 B
+7 F
+0.52 0.1 ( view) 254.5 628.93 B
+5 F
+0.52 0.1 (, i.e., if the buf) 275.98 628.93 B
+0.52 0.1 (fer) 342.34 628.93 B
+0.52 0.1 (\325s contents have changed, Jot formats it to ) 355.44 628.93 B
+0.04 0.1 (calculate the answer) 198 616.53 B
+0.04 0.1 (. However) 289.08 616.53 B
+0.04 0.1 (, ) 335.55 616.53 B
+7 F
+0.04 0.1 (view) 340.78 616.53 B
+5 F
+0.04 0.1 ( is not r) 360.06 616.53 B
+0.04 0.1 (edisplayed, which may r) 394.02 616.53 B
+0.04 0.1 (esult in the ) 505.29 616.53 B
+0.52 0.1 (r) 198 604.13 B
+0.52 0.1 (eturned value being inconsistent with what is displayed in ) 201.87 604.13 B
+7 F
+0.52 0.1 (view) 473.78 604.13 B
+5 F
+0.52 0.1 (.) 492.14 604.13 B
+8 F
+0.52 0.1 (Errors) 198 583.73 B
+5 F
+0.52 0.1 (: ) 226.36 583.73 B
+6 F
+1.08 (Jot_ERANGECHECK) 232.08 583.73 P
+5 F
+0.52 0.1 (, ) 312.97 583.73 B
+6 F
+1.08 (Jot_ETEXT) 318.68 583.73 P
+10 F
+( ) 54 562 T
+6 F
+(JotView_RelativeLineFromPosition ) 57.33 562 T
+(int) 198 550 T
+(JotView_RelativeLineFromPostion\050view, position\051) 198 540 T
+(JotView *view;) 198 530 T
+(int position;) 198 520 T
+5 F
+0.52 0.1 (Returns the line number containing the character at ) 198 501.33 B
+7 F
+0.52 0.1 (position) 437.03 501.33 B
+5 F
+0.52 0.1 ( in the text buf) 470.03 501.33 B
+0.52 0.1 (fer ) 537.45 501.33 B
+0.52 0.1 (being pr) 198 488.93 B
+0.52 0.1 (esented in ) 236.19 488.93 B
+7 F
+0.52 0.1 (view) 285.83 488.93 B
+5 F
+0.52 0.1 (. This line number is r) 304.19 488.93 B
+0.52 0.1 (elative to ) 405.43 488.93 B
+7 F
+0.52 0.1 (view) 450.58 488.93 B
+5 F
+0.52 0.1 (, so its value is ) 468.94 488.93 B
+0.52 0.1 (gr) 198 476.53 B
+0.52 0.1 (eater than or equal to zer) 207.52 476.53 B
+0.52 0.1 (o and less than the value r) 322.87 476.53 B
+0.52 0.1 (eturned fr) 444.11 476.53 B
+0.52 0.1 (om ) 489.96 476.53 B
+6 F
+1.08 (JotView_Lines) 198 464.13 P
+5 F
+0.52 0.1 (. When the character is not contained in ) 268.1 464.13 B
+7 F
+0.52 0.1 (view) 453.74 464.13 B
+5 F
+0.52 0.1 ( or the operation ) 473.02 464.13 B
+0.52 0.1 (fails for other r) 198 451.73 B
+0.52 0.1 (easons, a -1 is r) 266.9 451.73 B
+0.52 0.1 (eturned.) 336.94 451.73 B
+8 F
+0.52 0.1 (Errors) 198 431.33 B
+5 F
+0.52 0.1 (: ) 226.36 431.33 B
+6 F
+1.08 (Jot_ERANGECHECK) 232.08 431.33 P
+5 F
+0.52 0.1 (, ) 312.97 431.33 B
+6 F
+1.08 (Jot_ETEXT) 318.68 431.33 P
+(JotView_LineFromPosition) 54 411.6 T
+(int ) 198 411.6 T
+(JotView_LineFromPosition\050view, position\051) 198 400.6 T
+(JotView *view;) 198 390.6 T
+(int position;) 198 380.6 T
+5 F
+0.52 0.1 (Returns the number of the line containing the character located at ) 198 361.93 B
+7 F
+0.52 0.1 (position) 502.18 361.93 B
+5 F
+0.52 0.1 (.) 535.18 361.93 B
+8 F
+0.52 0.1 ( ) 537.78 361.93 B
+6 F
+1.08 (JotView_LineFromPosition) 198 349.54 P
+5 F
+0.52 0.1 ( uses ) 327.42 349.54 B
+7 F
+0.52 0.1 (view) 353.35 349.54 B
+5 F
+0.52 0.1 (\325s width to calculate line width but ) 372.62 349.54 B
+0.19 0.1 (pr) 198 337.14 B
+0.19 0.1 (etends that view\325s height is adequate to pr) 207.98 337.14 B
+0.19 0.1 (esent the entir) 400.42 337.14 B
+0.19 0.1 (e JotT) 464.57 337.14 B
+0.19 0.1 (ext buf) 489.89 337.14 B
+0.19 0.1 (fer) 521.18 337.14 B
+0.19 0.1 (. The ) 532.8 337.14 B
+0.52 0.1 (\336rst character in the buf) 198 324.73 B
+0.52 0.1 (fer appears at the top of view) 307.98 324.73 B
+0.52 0.1 (. Should the operation ) 442.52 324.73 B
+0.52 0.1 (fail, a -1 is r) 198 312.33 B
+0.52 0.1 (eturned.) 252.45 312.33 B
+6 F
+1.08 (JotView_LineFromPosition) 198 291.93 P
+5 F
+0.52 0.1 ( needs to format text fr) 327.42 291.93 B
+0.52 0.1 (om the beginning of the ) 432.73 291.93 B
+0.52 0.1 (buf) 198 279.53 B
+0.52 0.1 (fer to calculate the line number; performance will be degraded during this ) 213 279.53 B
+0.1 (pr) 198 267.14 S
+0.1 (ocess.) 207.98 267.14 S
+8 F
+0.52 0.1 (Errors) 198 246.73 B
+5 F
+0.52 0.1 (: ) 226.36 246.73 B
+6 F
+1.08 (Jot_ERANGE) 232.08 246.73 P
+5 F
+0.52 0.1 (, ) 286.01 246.73 B
+6 F
+1.08 (Jot_ETEXT) 291.72 246.73 P
+(JotView_ScrollAutomatic) 54 227 T
+(void ) 198 227 T
+(JotView_ScrollAutomatic\050view, height\051) 198 216 T
+(JotView *view;) 198 206 T
+(int height;) 198 196 T
+5 F
+0.42 0.1 (Speci\336es how you want the view to scr) 198 177.34 B
+0.42 0.1 (oll when the car) 376.34 177.34 B
+0.42 0.1 (et would be positioned ) 449.79 177.34 B
+0.52 0.1 (outside ) 198 164.93 B
+7 F
+0.52 0.1 (view) 234.6 164.93 B
+5 F
+0.52 0.1 ( without scr) 253.88 164.93 B
+0.52 0.1 (olling. Scr) 308.62 164.93 B
+0.52 0.1 (olling is speci\336ed as follows:) 354.24 164.93 B
+FMENDPAGE
+%%EndPage: "275" 22
+10 14 /Times-Bold FMDEFINEFONT
+%%Page: "276" 22
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (276) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+(\245) 198 641.33 T
+5 F
+0.09 0.1 (When ) 210.6 641.33 B
+7 F
+0.09 0.1 (height) 240.11 641.33 B
+5 F
+0.09 0.1 ( is positive, the car) 265.69 641.33 B
+0.09 0.1 (et is positioned ) 350.07 641.33 B
+7 F
+0.09 0.1 (height) 421.68 641.33 B
+5 F
+0.09 0.1 ( points below the top or ) 447.27 641.33 B
+0.52 0.1 (above the bottom of ) 210.6 628.93 B
+7 F
+0.52 0.1 (view) 305.52 628.93 B
+5 F
+0.52 0.1 (.) 323.88 628.93 B
+10 F
+(\245) 198 616.53 T
+5 F
+0.52 0.1 (When ) 210.6 616.53 B
+7 F
+0.52 0.1 (height) 240.53 616.53 B
+5 F
+0.52 0.1 ( is negative, the car) 266.12 616.53 B
+0.52 0.1 (et is positioned ) 354.76 616.53 B
+7 F
+0.52 0.1 (height) 427.65 616.53 B
+5 F
+0.52 0.1 ( points fr) 453.24 616.53 B
+0.52 0.1 (om the ) 495.05 616.53 B
+0.52 0.1 (opposite end of ) 210.6 604.13 B
+7 F
+0.52 0.1 (view) 284.87 604.13 B
+5 F
+0.52 0.1 (. ) 303.23 604.13 B
+10 F
+(\245) 198 591.73 T
+5 F
+0.42 0.1 (When the absolute value of ) 210.6 591.73 B
+7 F
+0.42 0.1 (height) 338.5 591.73 B
+5 F
+0.42 0.1 ( is zer) 364.09 591.73 B
+0.42 0.1 (o or gr) 391.32 591.73 B
+0.42 0.1 (eater than the value r) 422.03 591.73 B
+0.42 0.1 (eturned ) 519.55 591.73 B
+0.52 0.1 (by ) 210.6 579.33 B
+6 F
+1.08 (JotView_Height) 225 579.33 P
+5 F
+0.52 0.1 (, the car) 300.5 579.33 B
+0.52 0.1 (et is center) 337 579.33 B
+0.52 0.1 (ed in ) 386.28 579.33 B
+7 F
+0.52 0.1 (view) 412.54 579.33 B
+5 F
+0.52 0.1 (. ) 430.89 579.33 B
+0.02 0.1 (The dir) 198 558.93 B
+0.02 0.1 (ection to scr) 230.73 558.93 B
+0.02 0.1 (oll is determined by whether the car) 284.89 558.93 B
+0.02 0.1 (et is moving forwar) 448.26 558.93 B
+0.02 0.1 (d or ) 536.95 558.93 B
+0.5 0.1 (backwar) 198 546.53 B
+0.5 0.1 (d. For automatic scr) 236.32 546.53 B
+0.5 0.1 (olling to occur) 327.49 546.53 B
+0.5 0.1 (, ) 392.82 546.53 B
+6 F
+1.04 (JotView_EnsurePositionVisible) 398.52 546.53 P
+5 F
+0.5 0.1 ( ) 554.9 546.53 B
+0.52 0.1 (must also be invoked.) 198 534.13 B
+6 F
+(JotView_ScrollRelative) 54 514.4 T
+(boolean ) 198 514.4 T
+(JotView_ScrollRelative\050view, units, count\051) 198 503.4 T
+(JotView *view;) 198 493.4 T
+(int units;) 198 483.4 T
+(int count;) 198 473.4 T
+5 F
+0.11 0.1 (Scr) 198 454.73 B
+0.11 0.1 (olls text in ) 211.75 454.73 B
+7 F
+0.11 0.1 (view) 261.56 454.73 B
+5 F
+0.11 0.1 ( based on line or page ) 280.84 454.73 B
+7 F
+0.11 0.1 (units) 382.87 454.73 B
+5 F
+0.11 0.1 (. The ) 404.48 454.73 B
+7 F
+0.11 0.1 (count) 429.52 454.73 B
+5 F
+0.11 0.1 ( parameter determines ) 452.97 454.73 B
+0.52 0.1 (the number of ) 198 442.33 B
+7 F
+0.52 0.1 (units) 266.03 442.33 B
+5 F
+0.52 0.1 ( to scr) 287.64 442.33 B
+0.52 0.1 (oll. When ) 315.54 442.33 B
+7 F
+0.52 0.1 (count) 362.76 442.33 B
+5 F
+0.52 0.1 ( is positive, the text is scr) 386.21 442.33 B
+0.52 0.1 (olled ) 501.98 442.33 B
+0.52 0.1 (forwar) 198 429.93 B
+0.52 0.1 (d. When ) 228.43 429.93 B
+7 F
+0.52 0.1 (count) 270.29 429.93 B
+5 F
+0.52 0.1 ( is negative, the text is scr) 293.74 429.93 B
+0.52 0.1 (olled backwar) 412.06 429.93 B
+0.52 0.1 (d. When ) 476.17 429.93 B
+7 F
+0.52 0.1 (count) 518.02 429.93 B
+5 F
+0.52 0.1 ( is ) 541.47 429.93 B
+0.52 0.1 (zer) 198 417.53 B
+0.52 0.1 (o, the operation is ignor) 211.85 417.53 B
+0.52 0.1 (ed and ) 321.53 417.53 B
+6 F
+1.08 (TRUE) 356.08 417.53 P
+5 F
+0.52 0.1 ( is r) 377.65 417.53 B
+0.52 0.1 (eturned. If the absolute value of ) 395.1 417.53 B
+7 F
+0.52 0.1 (count) 198 405.13 B
+5 F
+0.52 0.1 ( exceeds the actual number of lines or pages, ) 221.45 405.13 B
+7 F
+0.52 0.1 (count) 429.86 405.13 B
+5 F
+0.52 0.1 ( is r) 453.31 405.13 B
+0.52 0.1 (egar) 470.76 405.13 B
+0.52 0.1 (ded as the ) 490.27 405.13 B
+0.52 0.1 (maximum number of ) 198 392.73 B
+7 F
+0.52 0.1 (units) 298.14 392.73 B
+5 F
+0.52 0.1 (. The ) 319.74 392.73 B
+7 F
+0.52 0.1 (units) 345.61 392.73 B
+5 F
+0.52 0.1 ( parameter must be de\336ned as ) 367.22 392.73 B
+6 F
+1.08 (Jot_LINE) 509.33 392.73 P
+5 F
+0.52 0.1 ( ) 552.47 392.73 B
+0.52 0.1 (or ) 198 380.33 B
+6 F
+1.08 (Jot_PAGE) 210.72 380.33 P
+5 F
+0.52 0.1 (. If further scr) 253.86 380.33 B
+0.52 0.1 (olling is not possible, ) 317.27 380.33 B
+6 F
+1.08 (FALSE) 417.54 380.33 P
+5 F
+0.52 0.1 ( is r) 444.5 380.33 B
+0.52 0.1 (eturned; otherwise, ) 461.95 380.33 B
+6 F
+1.08 (TRUE) 198 367.93 P
+5 F
+0.52 0.1 ( is r) 219.57 367.93 B
+0.52 0.1 (eturned. ) 237.02 367.93 B
+6 F
+(while) 198 352.2 T
+(\050JotView_ScrollRelative\050view, Jot_PAGE, 1\051\051) 228 352.2 T
+(;) 210.6 341.2 T
+8 F
+0.52 0.1 (Errors) 198 321.54 B
+5 F
+0.52 0.1 (: ) 226.36 321.54 B
+6 F
+1.08 (Jot_ETEXT) 232.08 321.54 P
+(JotView_ScrollAbsolute) 54 301.8 T
+(boolean ) 198 301.8 T
+(JotView_ScrollAbsolute\050view, position, YCoordinate\051) 198 290.8 T
+(JotView *view;) 198 280.8 T
+(int position;) 198 270.8 T
+(int YCoordinate;) 198 260.8 T
+5 F
+0.52 0.1 (Scr) 198 242.14 B
+0.52 0.1 (olls text in ) 211.75 242.14 B
+7 F
+0.52 0.1 (view) 262.8 242.14 B
+5 F
+0.52 0.1 ( until the line containing the character at ) 282.08 242.14 B
+7 F
+0.52 0.1 (position) 471.55 242.14 B
+5 F
+0.52 0.1 ( is visible. ) 504.55 242.14 B
+0.4 0.1 (The baseline for this line is positioned as close as possible to the point de\336ned ) 198 229.73 B
+0.52 0.1 (in ) 198 217.34 B
+7 F
+0.52 0.1 (YCoordinate) 210.04 217.34 B
+5 F
+0.52 0.1 (. T) 262.23 217.34 B
+0.52 0.1 (o calculate appr) 273.25 217.34 B
+0.52 0.1 (opriate values for ) 345.88 217.34 B
+7 F
+0.52 0.1 (YCoordinate) 429.53 217.34 B
+5 F
+0.52 0.1 (, you should ) 481.71 217.34 B
+0.43 0.1 (r) 198 204.93 B
+0.43 0.1 (efer) 201.87 204.93 B
+0.43 0.1 (ence the values r) 218.94 204.93 B
+0.43 0.1 (eturned fr) 295.49 204.93 B
+0.43 0.1 (om ) 341.25 204.93 B
+6 F
+0.89 (JotView_BoundingBox) 358.76 204.93 P
+5 F
+0.43 0.1 ( or ) 461.21 204.93 B
+6 F
+0.89 (JotView_Height) 476.88 204.93 P
+5 F
+0.43 0.1 (, ) 552.37 204.93 B
+0.52 0.1 (e.g., ) 198 192.53 B
+6 F
+(JotView_BoundingBox \050aView, &aBox\051;) 198 176.8 T
+(Bottom = aBox.y;) 198 165.8 T
+(Top = Bottom + aBox.height;) 198 154.8 T
+FMENDPAGE
+%%EndPage: "276" 23
+%%Page: "277" 23
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (277) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(JotView_ScrollAbsolute \050aView, 1000, Top\051;) 198 642 T
+8 F
+0.52 0.1 (Errors) 198 622.33 B
+5 F
+0.52 0.1 (: ) 226.36 622.33 B
+6 F
+1.08 (Jot_ETEXT) 232.08 622.33 P
+(JotView_SetReadOnly) 54 602.6 T
+(void ) 198 602.6 T
+(JotView_SetReadOnly\050view, browse\051) 198 591.6 T
+(JotView *view;) 198 581.6 T
+(boolean browse;) 198 571.6 T
+5 F
+0.06 0.1 (Determines whether the view is pr) 198 552.93 B
+0.06 0.1 (otected fr) 354.4 552.93 B
+0.06 0.1 (om user input. Jot does not enfor) 397.14 552.93 B
+0.06 0.1 (ce ) 545.92 552.93 B
+0.52 0.1 (the r) 198 540.53 B
+0.52 0.1 (ead-only state. Y) 219.15 540.53 B
+0.52 0.1 (our keyboar) 294.63 540.53 B
+0.52 0.1 (d contr) 349.83 540.53 B
+0.52 0.1 (oller will have to check to see if r) 382.39 540.53 B
+0.52 0.1 (ead ) 534.73 540.53 B
+0.52 0.1 (only is turned on and then enfor) 198 528.13 B
+0.52 0.1 (ce it. When ) 347.17 528.13 B
+7 F
+0.52 0.1 (br) 401.73 528.13 B
+0.52 0.1 (owse) 410.26 528.13 B
+5 F
+0.52 0.1 ( is ) 430.09 528.13 B
+6 F
+1.08 (TRUE) 443.67 528.13 P
+5 F
+0.52 0.1 ( the view is r) 465.24 528.13 B
+0.52 0.1 (ead ) 525.17 528.13 B
+0.52 0.1 (only and the car) 198 515.73 B
+0.52 0.1 (et is not visible. Scr) 272.38 515.73 B
+0.52 0.1 (olling and selections r) 361.25 515.73 B
+0.52 0.1 (emain available in a ) 461.68 515.73 B
+0.52 0.1 (r) 198 503.33 B
+0.52 0.1 (ead only view with the following limitations on manipulating the selection: ) 201.87 503.33 B
+10 F
+(\245) 198 484.93 T
+5 F
+0.52 0.1 (selections cannot be cut.) 210.6 484.93 B
+10 F
+(\245) 198 472.53 T
+5 F
+0.52 0.1 (selections cannot be pasted into the view) 210.6 472.53 B
+0.52 0.1 (.) 397.2 472.53 B
+10 F
+(\245) 198 460.13 T
+5 F
+0.52 0.1 (selections can be copied out of the view) 210.6 460.13 B
+0.52 0.1 (.) 391.98 460.13 B
+6 F
+(JotView_ReadOnly) 54 440.4 T
+(boolean ) 198 440.4 T
+(JotView_ReadOnly\050view\051) 198 429.4 T
+(JotView *view;) 198 419.4 T
+5 F
+0.52 0.1 (Indicates whether ) 198 400.73 B
+7 F
+0.52 0.1 (view) 282.5 400.73 B
+5 F
+0.52 0.1 ( is pr) 301.78 400.73 B
+0.52 0.1 (otected fr) 325.34 400.73 B
+0.52 0.1 (om input. ) 368.55 400.73 B
+6 F
+(JotView_SetData) 54 381 T
+(void ) 198 381 T
+(JotView_SetData\050view, pointer\051) 198 370 T
+(JotView *view;) 198 360 T
+(caddr_t pointer;) 198 350 T
+5 F
+0.52 0.1 (Associates a client data ) 198 331.33 B
+7 F
+0.52 0.1 (pointer) 307.38 331.33 B
+5 F
+0.52 0.1 ( with ) 336.95 331.33 B
+7 F
+0.52 0.1 (view) 363.91 331.33 B
+5 F
+0.52 0.1 (. ) 382.27 331.33 B
+6 F
+(JotView_Data) 54 311.6 T
+(caddr_t ) 198 311.6 T
+(JotView_Data\050view\051) 198 300.6 T
+(JotView *view;) 198 290.6 T
+5 F
+0.1 (Returns the client data pointer pr) 198 271.93 S
+0.1 (eviously associated with ) 347.94 271.93 S
+7 F
+0.1 (view) 461.2 271.93 S
+5 F
+0.1 (. If no client data ) 479.56 271.93 S
+0.52 0.1 (has been associated with ) 198 259.53 B
+7 F
+0.52 0.1 (view) 314.29 259.53 B
+5 F
+0.52 0.1 (, a ) 332.65 259.53 B
+6 F
+1.08 (NULL) 346.58 259.53 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 368.15 259.53 B
+0.52 0.1 (eturned.) 436.67 259.53 B
+3 F
+-0.88 (The W) 126 226.47 P
+-0.88 (ir) 162.54 226.47 P
+-0.88 (e Service and JotV) 171.62 226.47 P
+-0.88 (iews) 271.21 226.47 P
+5 F
+0.52 0.1 (Please see the example at the end of this chapter for information on the ) 198 205.14 B
+0.52 0.1 (relationship between the Wire Service and JotViews, including how to ) 198 192.73 B
+0.52 0.1 (associate a scrollbar to the JotView.) 198 180.34 B
+FMENDPAGE
+%%EndPage: "277" 24
+%%Page: "278" 24
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (278) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotView_Canvas) 54 642 T
+(int ) 198 642 T
+(JotView_Canvas\050view\051) 198 631 T
+(JotView *view;) 198 621 T
+5 F
+0.41 0.1 (Returns the W) 198 602.33 B
+0.41 0.1 (ir) 263.18 602.33 B
+0.41 0.1 (e Service user token r) 270.05 602.33 B
+0.41 0.1 (epr) 368.08 602.33 B
+0.41 0.1 (esenting the canvas managed by ) 382.95 602.33 B
+7 F
+0.41 0.1 (view) 533.93 602.33 B
+5 F
+0.41 0.1 (. ) 552.29 602.33 B
+6 F
+(JotView_View) 54 582.6 T
+(JotView * ) 198 582.6 T
+(JotView_View\050connection, token\051) 198 571.6 T
+(wire_Wire connection;) 198 561.6 T
+(int token;) 198 551.6 T
+5 F
+0.21 0.1 (Returns a pointer to the JotV) 198 532.93 B
+0.21 0.1 (iew instance associated with the W) 327.66 532.93 B
+0.21 0.1 (ir) 485.95 532.93 B
+0.21 0.1 (e Service user ) 492.82 532.93 B
+7 F
+0.52 0.1 (token) 198 520.53 B
+5 F
+0.52 0.1 ( on the W) 220.15 520.53 B
+0.52 0.1 (ir) 264.68 520.53 B
+0.52 0.1 (e Service ) 271.56 520.53 B
+7 F
+0.52 0.1 (connection) 315.14 520.53 B
+5 F
+0.52 0.1 (. Should the operation fail, a ) 359.82 520.53 B
+6 F
+1.08 (NULL) 493.23 520.53 P
+5 F
+0.52 0.1 ( \0500\051 ) 514.8 520.53 B
+0.52 0.1 (pointer is r) 198 508.13 B
+0.52 0.1 (eturned.) 248.33 508.13 B
+6 F
+(JotView_Wire) 54 488.4 T
+(wire_Wire ) 198 488.4 T
+(JotView_Wire\050view\051) 198 477.4 T
+(JotView *view;) 198 467.4 T
+5 F
+0.08 0.1 (Returns the W) 198 448.73 B
+0.08 0.1 (ir) 262.51 448.73 B
+0.08 0.1 (e Service connection associated with ) 269.39 448.73 B
+7 F
+0.08 0.1 (view) 436.47 448.73 B
+5 F
+0.08 0.1 (. Should the operation ) 454.83 448.73 B
+0.52 0.1 (fail, ) 198 436.33 B
+6 F
+1.08 (wire_INVALID_WIRE) 218.26 436.33 P
+5 F
+0.52 0.1 ( is r) 309.93 436.33 B
+0.52 0.1 (eturned.) 327.38 436.33 B
+3 F
+-0.88 (V) 126 403.27 P
+-0.88 (iew Contr) 135.07 403.27 P
+-0.88 (ollers) 190.3 403.27 P
+5 F
+0.08 0.1 (Jot pr) 198 381.93 B
+0.08 0.1 (ovides a mechanism to r) 222.99 381.93 B
+0.08 0.1 (egister contr) 332.87 381.93 B
+0.08 0.1 (ollers that contr) 388.97 381.93 B
+0.08 0.1 (ol user input into the ) 460.14 381.93 B
+0.52 0.1 (JotV) 198 369.53 B
+0.52 0.1 (iew) 217.11 369.53 B
+0.52 0.1 (. The keyboar) 232.52 369.53 B
+0.52 0.1 (d and mouse default contr) 294.74 369.53 B
+0.52 0.1 (ollers ar) 415.82 369.53 B
+0.52 0.1 (e implemented as no-) 452.75 369.53 B
+0.48 0.1 (ops. The selection contr) 198 357.13 B
+0.48 0.1 (ollers have implement T) 305.6 357.13 B
+0.48 0.1 (oolkit semantics for selections. ) 415.67 357.13 B
+0.52 0.1 (Y) 198 344.73 B
+0.52 0.1 (ou can install the default if you no longer want to get input fr) 203.85 344.73 B
+0.52 0.1 (om the ) 487.39 344.73 B
+0.41 0.1 (associated device. For example, if you don\325t want to get input fr) 198 332.33 B
+0.41 0.1 (om the mouse ) 490.51 332.33 B
+0.52 0.1 (you can use the default mouse contr) 198 319.93 B
+0.52 0.1 (oller) 364.3 319.93 B
+0.52 0.1 (.) 384.07 319.93 B
+6 F
+(JotView_SetControllers) 54 300.2 T
+(void) 144 289.2 T
+-0.31 (JotView_SetControllers\050view, keyboard, mouse, SelectionStart, SelectionAlter\051) 144 279.2 P
+(JotView *view;) 198 269.2 T
+(void \050*keyboard\051 \050\051;) 198 259.2 T
+(void \050*mouse\051 \050\051;) 198 249.2 T
+(boolean \050*SelectionStart\051 \050\051;) 198 239.2 T
+(void \050*SelectionAlter\051 \050\051;) 198 229.2 T
+5 F
+0.52 0.1 (Registers the contr) 198 210.53 B
+0.52 0.1 (ollers that r) 282.93 210.53 B
+0.52 0.1 (espond to various inputs in ) 335.61 210.53 B
+7 F
+0.52 0.1 (view) 464.83 210.53 B
+5 F
+0.52 0.1 (. Jot pr) 483.19 210.53 B
+0.52 0.1 (ovides ) 514.34 210.53 B
+0.32 0.1 (default contr) 198 198.14 B
+0.32 0.1 (ollers that ar) 256.26 198.14 B
+0.32 0.1 (e used when you do not de\336ne and r) 313.64 198.14 B
+0.32 0.1 (egister a private ) 481.62 198.14 B
+0.52 0.1 (contr) 198 185.73 B
+0.52 0.1 (oller) 221.24 185.73 B
+0.52 0.1 (. T) 241.01 185.73 B
+0.52 0.1 (o unr) 252.03 185.73 B
+0.52 0.1 (egister your private contr) 276.62 185.73 B
+0.52 0.1 (oller) 393.03 185.73 B
+0.52 0.1 (, you should execute ) 412.8 185.73 B
+6 F
+1.08 (JotView_SetControllers) 198 173.34 P
+5 F
+0.52 0.1 ( using the appr) 316.63 173.34 B
+0.52 0.1 (opriate default contr) 386.38 173.34 B
+0.52 0.1 (oller name. ) 480.02 173.34 B
+FMENDPAGE
+%%EndPage: "278" 25
+%%Page: "279" 25
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (279) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.23 0.1 (When a contr) 198 641.33 B
+0.23 0.1 (oller parameter is de\336ned as ) 258.82 641.33 B
+6 F
+0.49 (NULL) 390.98 641.33 P
+5 F
+0.23 0.1 (, it is ignor) 412.55 641.33 B
+0.23 0.1 (ed. This permits you ) 461.37 641.33 B
+0.52 0.1 (to change one or mor) 198 628.93 B
+0.52 0.1 (e contr) 295.72 628.93 B
+0.52 0.1 (ollers without r) 326.96 628.93 B
+0.52 0.1 (egistering an existing contr) 397.67 628.93 B
+0.52 0.1 (oller ) 521.47 628.93 B
+0.52 0.1 (multiple times.) 198 616.53 B
+6 F
+(void) 198 600.8 T
+(keyboard\050view, character\051) 198 589.8 T
+(JotView *view;) 198 578.8 T
+(int character;) 198 567.8 T
+5 F
+0.52 0.1 (The ) 198 548.13 B
+7 F
+0.52 0.1 (keyboard) 218.15 548.13 B
+5 F
+0.52 0.1 ( contr) 254.66 548.13 B
+0.52 0.1 (oller is executed whenever keyboar) 281.01 548.13 B
+0.52 0.1 (d events ar) 442.57 548.13 B
+0.52 0.1 (e detected in ) 493.11 548.13 B
+7 F
+0.1 (view) 198 535.73 S
+5 F
+0.1 (.) 216.36 535.73 S
+6 F
+(void) 198 520 T
+(mouse\050view, button, action, position\051) 198 509 T
+(JotView *view;) 198 498 T
+(int button;) 198 487 T
+(int action;) 198 476 T
+(int position;) 198 465 T
+5 F
+0.52 0.1 (The ) 198 445.33 B
+7 F
+0.52 0.1 (mouse) 218.15 445.33 B
+5 F
+0.52 0.1 ( contr) 244.2 445.33 B
+0.52 0.1 (oller is called for the entir) 270.55 445.33 B
+0.52 0.1 (e time between mouse down and ) 388.98 445.33 B
+0.52 0.1 (mouse up on either SELECT or ADJUST and includes mouse drags. The ) 198 432.93 B
+0.52 0.1 (default contr) 198 420.53 B
+0.52 0.1 (oller is ) 256.47 420.53 B
+6 F
+1.08 (JotView_MouseDefault) 290.56 420.53 P
+5 F
+0.52 0.1 (.) 398.41 420.53 B
+7 F
+0.52 0.1 (button) 198 400.13 B
+5 F
+0.52 0.1 ( is de\336ned as either ) 225.43 400.13 B
+6 F
+1.08 (Jot_SELECTBUTTON) 318.16 400.13 P
+5 F
+0.52 0.1 ( or ) 404.44 400.13 B
+6 F
+1.08 (Jot_ADJUSTBUTTON) 420.28 400.13 P
+5 F
+0.52 0.1 (. ) 506.56 400.13 B
+7 F
+0.52 0.1 (action) 512.28 400.13 B
+5 F
+0.52 0.1 ( is ) 537.49 400.13 B
+0.52 0.1 (de\336ned as ) 198 387.73 B
+6 F
+1.08 (Jot_BUTTONUP) 247.92 387.73 P
+5 F
+0.52 0.1 (, ) 311.34 387.73 B
+6 F
+1.08 (Jot_BUTTONDOWN) 317.06 387.73 P
+5 F
+0.52 0.1 (, or ) 392.55 387.73 B
+6 F
+1.08 (Jot_MOUSEDRAGGED) 410.99 387.73 P
+5 F
+0.52 0.1 (. ) 497.27 387.73 B
+7 F
+0.52 0.1 (position) 502.99 387.73 B
+5 F
+0.52 0.1 ( ) 535.99 387.73 B
+0.52 0.1 (corr) 198 375.33 B
+0.52 0.1 (esponds to the point pr) 216.01 375.33 B
+0.52 0.1 (eceding a character in the text buf) 322.83 375.33 B
+0.52 0.1 (fer being ) 478.21 375.33 B
+0.52 0.1 (pr) 198 362.93 B
+0.52 0.1 (esented in ) 207.98 362.93 B
+7 F
+0.52 0.1 (view) 257.62 362.93 B
+5 F
+0.52 0.1 (. ) 275.98 362.93 B
+6 F
+(boolean) 198 347.2 T
+(SelectionStart\050view, position\051) 198 336.2 T
+(JotView *view;) 198 325.2 T
+(int position;) 198 314.2 T
+5 F
+0.52 0.1 (The ) 198 294.54 B
+6 F
+1.08 (SelectionStart) 218.15 294.54 P
+5 F
+0.52 0.1 ( contr) 293.64 294.54 B
+0.52 0.1 (oller is executed whenever a r) 320 294.54 B
+0.52 0.1 (equest to begin a ) 457.28 294.54 B
+-0.01 0.1 (selection is made. Y) 198 282.14 B
+-0.01 0.1 (our SelectionStart contr) 286.17 282.14 B
+-0.01 0.1 (oller determines whether a selection ) 392.04 282.14 B
+0.3 0.1 (should be made and r) 198 269.73 B
+0.3 0.1 (eturns ) 297.48 269.73 B
+6 F
+0.63 (true) 329.06 269.73 P
+5 F
+0.3 0.1 ( if it should be started. The default contr) 350.63 269.73 B
+0.3 0.1 (oller ) 534.59 269.73 B
+0.52 0.1 (is ) 198 257.34 B
+6 F
+1.08 (JotView_SelectionStartDefault) 208.46 257.34 P
+5 F
+0.52 0.1 (.) 364.85 257.34 B
+7 F
+0.52 0.1 (position) 198 236.93 B
+5 F
+0.52 0.1 ( corr) 231 236.93 B
+0.52 0.1 (esponds to the point pr) 252.13 236.93 B
+0.52 0.1 (eceding a character in the text buf) 358.94 236.93 B
+0.52 0.1 (fer being ) 514.31 236.93 B
+0.52 0.1 (pr) 198 224.53 B
+0.52 0.1 (esented in ) 207.98 224.53 B
+7 F
+0.52 0.1 (view) 257.62 224.53 B
+5 F
+0.52 0.1 (. When ) 275.98 224.53 B
+6 F
+1.08 (JotView_SelectionStart) 311.63 224.53 P
+5 F
+0.52 0.1 ( r) 430.26 224.53 B
+0.52 0.1 (eturns ) 437.25 224.53 B
+6 F
+1.08 (TRUE) 469.04 224.53 P
+5 F
+0.52 0.1 (, a new ) 490.61 224.53 B
+0.52 0.1 (selection is cr) 198 212.14 B
+0.52 0.1 (eated.) 259.49 212.14 B
+FMENDPAGE
+%%EndPage: "279" 26
+%%Page: "280" 26
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (280) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+54 631.66 558 648 C
+558 644.98 198 644.98 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+8 F
+(Note \320 ) 198 634.82 T
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (In an editing application, a click on SELECT button might r) 231.84 634.99 B
+0.52 0.1 (eset the ) 504.24 634.99 B
+0.23 0.1 (insertion point or start a selection. A hypertext application might interpr) 198 622.59 B
+0.23 0.1 (et this ) 527.48 622.59 B
+0.52 0.1 (action in a dif) 198 610.19 B
+0.52 0.1 (fer) 261.32 610.19 B
+0.52 0.1 (ent manner) 273.5 610.19 B
+0.52 0.1 (. For instance, a text link could be activated in the ) 324.83 610.19 B
+54 586.46 558 594.46 C
+558 591.43 198 591.43 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (Help V) 198 597.79 B
+0.52 0.1 (iewer) 230.3 597.79 B
+0.52 0.1 (.) 254.83 597.79 B
+6 F
+(void) 198 574.06 T
+(SelectionAlter\050view, rank\051) 198 563.06 T
+(JotView *view;) 198 552.06 T
+(int rank;) 198 541.07 T
+5 F
+0.52 0.1 (The ) 198 521.4 B
+6 F
+1.08 (SelectionAlter) 218.15 521.4 P
+5 F
+0.52 0.1 ( contr) 293.64 521.4 B
+0.52 0.1 (oller is executed whenever the selection is adjusted ) 320 521.4 B
+0.52 0.1 (in ) 198 509 B
+7 F
+0.52 0.1 (view) 210.04 509 B
+5 F
+0.52 0.1 (. The default contr) 228.4 509 B
+0.52 0.1 (oller is ) 312.74 509 B
+6 F
+1.08 (JotView_SelectionAlterDefault) 346.83 509 P
+5 F
+0.52 0.1 (.) 503.21 509 B
+0.52 0.1 ( ) 198 488.6 B
+7 F
+0.52 0.1 (rank) 201.12 488.6 B
+5 F
+0.52 0.1 ( is de\336ned as either ) 219.84 488.6 B
+6 F
+1.08 (Jot_PRIMARY) 312.57 488.6 P
+5 F
+0.52 0.1 ( or ) 371.88 488.6 B
+6 F
+1.08 (Jot_SECONDARY) 387.73 488.6 P
+5 F
+0.52 0.1 (.) 456.72 488.6 B
+4 F
+-0.94 (JotSear) 54 454.86 P
+-0.94 (ch pr) 97.05 454.86 P
+-0.94 (ocedur) 126.53 454.86 P
+-0.94 (es) 166.53 454.86 P
+5 F
+0.52 0.1 (JotSear) 198 433.2 B
+0.52 0.1 (ch uses the same syntax as r) 229.54 433.2 B
+0.52 0.1 (egular expr) 358.73 433.2 B
+0.52 0.1 (essions to conduct its text ) 410.79 433.2 B
+0.52 0.1 (sear) 198 420.8 B
+0.52 0.1 (ches. Regular expr) 216.19 420.8 B
+0.52 0.1 (essions ar) 300.42 420.8 B
+0.52 0.1 (e passed to ) 344.89 420.8 B
+6 F
+1.08 (JotSearch_CompileExpression) 399.02 420.8 P
+5 F
+0.52 0.1 (, ) 544.61 420.8 B
+0.52 0.1 (which compiles them into a form usable for pattern matching.) 198 408.4 B
+6 F
+(JotSearch_New) 54 388.67 T
+(JotSearch * ) 198 388.67 T
+(JotSearch_New\050\051) 198 377.67 T
+5 F
+0.52 0.1 (Allocates and r) 198 359 B
+0.52 0.1 (eturns a pointer to a new JotSear) 266.99 359 B
+0.52 0.1 (ch instance. If the operation ) 417.15 359 B
+0.52 0.1 (fails a ) 198 346.6 B
+6 F
+1.08 (NULL) 228.21 346.6 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 249.78 346.6 B
+0.52 0.1 (eturned.) 318.3 346.6 B
+8 F
+0.52 0.1 (Errors) 198 326.86 B
+5 F
+0.52 0.1 (:) 226.36 326.86 B
+6 F
+1.1 0.09 ( Jot_EMEMORY) 228.96 326.86 B
+(JotSearch_Free) 54 307.46 T
+(void ) 198 307.46 T
+(JotSearch_Free\050search\051) 198 296.46 T
+(JotSearch *search;) 198 286.46 T
+5 F
+0.52 0.1 (Deallocates ) 198 267.8 B
+7 F
+0.52 0.1 (sear) 252.73 267.8 B
+0.52 0.1 (ch) 269.05 267.8 B
+5 F
+0.52 0.1 ( and its internal r) 278.32 267.8 B
+0.52 0.1 (esour) 357.82 267.8 B
+0.52 0.1 (ces.) 382.6 267.8 B
+FMENDPAGE
+%%EndPage: "280" 27
+%%Page: "281" 27
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (281) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(JotSearch_CompileExpression) 54 642 T
+(boolean) 198 631 T
+(JotSearch_CompileExpression\050search, string, regular\051) 198 621 T
+(JotSearch *search;) 198 611 T
+(char *string;) 198 601 T
+(boolean regular;) 198 591 T
+5 F
+0.52 0.1 (Compiles ) 198 572.33 B
+7 F
+0.52 0.1 (string) 244.13 572.33 B
+5 F
+0.52 0.1 ( and copies the r) 269.17 572.33 B
+0.52 0.1 (esults to ) 345.33 572.33 B
+7 F
+0.52 0.1 (sear) 386.54 572.33 B
+0.52 0.1 (ch) 402.86 572.33 B
+5 F
+0.52 0.1 (. When ) 412.12 572.33 B
+7 F
+0.52 0.1 (r) 447.77 572.33 B
+0.52 0.1 (egular) 451.58 572.33 B
+5 F
+0.52 0.1 ( is ) 477.73 572.33 B
+6 F
+1.08 (TRUE) 491.31 572.33 P
+5 F
+0.52 0.1 (, ) 512.88 572.33 B
+7 F
+0.52 0.1 (string) 518.59 572.33 B
+5 F
+0.52 0.1 ( is ) 543.63 572.33 B
+0.52 0.1 (consider) 198 559.93 B
+0.52 0.1 (ed a r) 236.32 559.93 B
+0.52 0.1 (egular expr) 262.61 559.93 B
+0.52 0.1 (ession sear) 314.68 559.93 B
+0.52 0.1 (ch string, and certain characters will be ) 364.03 559.93 B
+0.27 0.1 (tr) 198 547.53 B
+0.27 0.1 (eated specially \050See ed\0501\051 for a list of these characters.\051. When ) 205.23 547.53 B
+7 F
+0.27 0.1 (r) 487.94 547.53 B
+0.27 0.1 (egular) 491.75 547.53 B
+5 F
+0.27 0.1 ( is ) 517.89 547.53 B
+6 F
+0.55 (TRUE) 530.97 547.53 P
+5 F
+0.27 0.1 (, ) 552.54 547.53 B
+0.28 0.1 (the special characters must be escaped if they ar) 198 535.13 B
+0.28 0.1 (e to be tr) 416.6 535.13 B
+0.28 0.1 (eated as literal. When ) 456.78 535.13 B
+0.52 0.1 (the operation is successful, ) 198 522.73 B
+6 F
+1.08 (TRUE) 323.78 522.73 P
+5 F
+0.52 0.1 ( is r) 345.35 522.73 B
+0.52 0.1 (eturned; otherwise, ) 362.8 522.73 B
+6 F
+1.08 (FALSE) 454.1 522.73 P
+5 F
+0.52 0.1 ( is r) 481.06 522.73 B
+0.52 0.1 (eturned.) 498.51 522.73 B
+0.52 0.1 (A new JotSear) 198 502.33 B
+0.52 0.1 (ch instance does not have to be cr) 262.89 502.33 B
+0.52 0.1 (eated for each sear) 417.54 502.33 B
+0.52 0.1 (ch; an ) 502.99 502.33 B
+0.52 0.1 (existing instance can be passed r) 198 489.93 B
+0.52 0.1 (epeatedly to ) 346.99 489.93 B
+6 F
+1.08 (JotSearch_CompileExpression) 406.23 489.93 P
+5 F
+0.52 0.1 (.) 551.83 489.93 B
+8 F
+0.52 0.1 (Errors) 198 469.53 B
+5 F
+0.52 0.1 (: ) 226.36 469.53 B
+6 F
+1.08 (Jot_EMEMORY) 232.08 469.53 P
+5 F
+0.52 0.1 (, ) 290.29 469.53 B
+6 F
+1.08 (Jot_ESYNTAX) 296.01 469.53 P
+(JotSearch_MatchPattern) 54 449.8 T
+(boolean) 198 449.8 T
+(JotSearch_MatchPattern\050search, range, match, direction, case\051) 198 438.8 T
+(JotSearch *search;) 198 428.8 T
+(JotSpan *range;) 198 418.8 T
+(JotSpan *match;) 198 408.8 T
+(int direction;) 198 398.8 T
+(boolean case;) 198 388.8 T
+5 F
+0.52 0.1 (Matches the compiled expr) 198 370.14 B
+0.52 0.1 (ession in ) 321.56 370.14 B
+7 F
+0.52 0.1 (sear) 364.77 370.14 B
+0.52 0.1 (ch) 381.09 370.14 B
+5 F
+0.52 0.1 ( against characters in the text buf) 390.35 370.14 B
+0.52 0.1 (fer ) 542.35 370.14 B
+0.42 0.1 (managed by the owner of ) 198 357.73 B
+7 F
+0.42 0.1 (range) 318.16 357.73 B
+5 F
+0.42 0.1 (. The position and length variables of ) 341.42 357.73 B
+7 F
+0.42 0.1 (range) 514.84 357.73 B
+5 F
+0.42 0.1 ( ar) 538.11 357.73 B
+0.42 0.1 (e ) 550.09 357.73 B
+0.52 0.1 (examined to determine the sear) 198 345.33 B
+0.52 0.1 (ch r) 342.05 345.33 B
+0.52 0.1 (egion. The ) 359.49 345.33 B
+7 F
+0.52 0.1 (dir) 410.38 345.33 B
+0.52 0.1 (ection) 422.17 345.33 B
+5 F
+0.52 0.1 ( must be de\336ned as ) 446.82 345.33 B
+6 F
+1.08 (Jot_FORWARD) 198 332.93 P
+5 F
+0.52 0.1 ( or ) 257.32 332.93 B
+6 F
+1.08 (Jot_BACKWARD) 273.16 332.93 P
+5 F
+0.52 0.1 (. ) 337.87 332.93 B
+7 F
+0.52 0.1 (case) 343.58 332.93 B
+5 F
+0.52 0.1 ( determines whether case should be ) 360.27 332.93 B
+0.52 0.1 (consider) 198 320.54 B
+0.52 0.1 (ed during the sear) 236.32 320.54 B
+0.52 0.1 (ch. When the operation is successful, the text, ) 320.08 320.54 B
+0.52 0.1 (position, and length variables describing the matched characters ar) 198 308.14 B
+0.52 0.1 (e copied ) 504.37 308.14 B
+0.52 0.1 (into ) 198 295.73 B
+7 F
+0.52 0.1 (match) 218.96 295.73 B
+5 F
+0.52 0.1 ( and ) 244.07 295.73 B
+6 F
+1.08 (TRUE) 267.52 295.73 P
+5 F
+0.52 0.1 ( is r) 289.09 295.73 B
+0.52 0.1 (eturned; otherwise, ) 306.54 295.73 B
+6 F
+1.08 (FALSE) 397.84 295.73 P
+5 F
+0.52 0.1 ( is r) 424.8 295.73 B
+0.52 0.1 (eturned.) 442.25 295.73 B
+6 F
+(JotSearch_MatchString) 54 276 T
+(boolean ) 198 276 T
+(JotSearch_MatchString\050string, range, match, direction, case\051) 198 265 T
+(char *string;) 198 255 T
+(JotSpan *range;) 198 245 T
+(JotSpan *match;) 198 235 T
+(int direction;) 198 225 T
+(boolean case;) 198 215 T
+5 F
+0.52 0.1 (Matches ) 198 196.34 B
+7 F
+0.52 0.1 (string) 238.81 196.34 B
+5 F
+0.52 0.1 ( against characters in the text buf) 263.84 196.34 B
+0.52 0.1 (fer managed by the owner of ) 415.84 196.34 B
+7 F
+0.02 0.1 (range) 198 183.93 B
+5 F
+0.02 0.1 (. The position and length variables in ) 221.27 183.93 B
+7 F
+0.02 0.1 (range) 391.8 183.93 B
+5 F
+0.02 0.1 ( ar) 415.07 183.93 B
+0.02 0.1 (e examined to determine the ) 426.65 183.93 B
+0.44 0.1 (sear) 198 171.53 B
+0.44 0.1 (ch r) 216.19 171.53 B
+0.44 0.1 (egion. ) 233.55 171.53 B
+7 F
+0.44 0.1 (dir) 264.22 171.53 B
+0.44 0.1 (ection) 276.01 171.53 B
+5 F
+0.44 0.1 ( must be de\336ned as ) 300.66 171.53 B
+6 F
+0.92 (Jot_FORWARD) 392.82 171.53 P
+5 F
+0.44 0.1 ( or ) 452.14 171.53 B
+6 F
+0.92 (Jot_BACKWARD) 467.83 171.53 P
+5 F
+0.44 0.1 (. ) 532.54 171.53 B
+7 F
+0.44 0.1 (case) 538.18 171.53 B
+5 F
+0.44 0.1 ( ) 554.86 171.53 B
+0.52 0.1 (determines whether case should be consider) 198 159.14 B
+0.52 0.1 (ed during the sear) 400.35 159.14 B
+0.52 0.1 (ch. When the ) 484.11 159.14 B
+FMENDPAGE
+%%EndPage: "281" 28
+%%Page: "282" 28
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (282) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (operation is successful, the text, position, and length variables describing the ) 198 641.33 B
+0.52 0.1 (matched characters ar) 198 628.93 B
+0.52 0.1 (e copied into ) 297.99 628.93 B
+7 F
+0.52 0.1 (match) 360.38 628.93 B
+5 F
+0.52 0.1 ( and ) 385.49 628.93 B
+6 F
+1.08 (TRUE) 408.94 628.93 P
+5 F
+0.52 0.1 ( is r) 430.51 628.93 B
+0.52 0.1 (eturned; otherwise, ) 447.96 628.93 B
+6 F
+1.08 (FALSE) 198 616.53 P
+5 F
+0.52 0.1 ( is r) 224.96 616.53 B
+0.52 0.1 (eturned.) 242.41 616.53 B
+54 590.46 558 606.8 C
+558 603.78 198 603.78 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+8 F
+(Note \320 ) 198 593.62 T
+0 72 612 720 C
+6 F
+0 X
+0 K
+1.08 (JotSearch_MatchString) 231.84 593.79 P
+5 F
+0.52 0.1 ( does not support r) 345.08 593.79 B
+0.52 0.1 (egular expr) 432.88 593.79 B
+0.52 0.1 (essions. It is ) 484.95 593.79 B
+54 570.06 558 578.06 C
+558 575.03 198 575.03 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (used for simple sear) 198 581.39 B
+0.52 0.1 (ches.) 290.41 581.39 B
+6 F
+(JotSearch_Substring) 54 553.66 T
+(boolean ) 198 553.66 T
+(JotSearch_Substring\050search, substring, match\051) 198 542.66 T
+(JotSearch *search;) 198 532.67 T
+(int substring;) 198 522.67 T
+(JotSpan *match;) 198 512.67 T
+5 F
+0.52 0.1 (Accesses the ) 198 494 B
+7 F
+0.52 0.1 (substring) 258.14 494 B
+5 F
+0.52 0.1 ( r) 297.55 494 B
+0.52 0.1 (egister fr) 304.53 494 B
+0.52 0.1 (om the curr) 345.13 494 B
+0.52 0.1 (ent r) 398.59 494 B
+0.52 0.1 (egular expr) 419.74 494 B
+0.52 0.1 (ession in ) 471.8 494 B
+7 F
+0.52 0.1 (sear) 515.01 494 B
+0.52 0.1 (ch) 531.33 494 B
+5 F
+0.52 0.1 (. ) 540.59 494 B
+0.52 0.1 (The ) 198 481.6 B
+7 F
+0.52 0.1 (sear) 218.15 481.6 B
+0.52 0.1 (ch) 234.47 481.6 B
+5 F
+0.52 0.1 ( parameter must have been passed to a successful execution of ) 243.74 481.6 B
+6 F
+0.5 (JotSearch_MatchPattern) 198 469.2 P
+5 F
+0.24 0.1 (. When the operation is successful, the text, position, ) 316.63 469.2 B
+0.52 0.1 (and length variables describing the contents of ) 198 456.8 B
+7 F
+0.52 0.1 (substring) 414.9 456.8 B
+5 F
+0.52 0.1 ( r) 454.31 456.8 B
+0.52 0.1 (egister ar) 461.3 456.8 B
+0.52 0.1 (e copied ) 503.56 456.8 B
+0.52 0.1 (into ) 198 444.4 B
+7 F
+0.52 0.1 (match) 218.96 444.4 B
+5 F
+0.52 0.1 ( and ) 244.07 444.4 B
+6 F
+1.08 (TRUE) 267.52 444.4 P
+5 F
+0.52 0.1 ( is r) 289.09 444.4 B
+0.52 0.1 (eturned; otherwise, ) 306.54 444.4 B
+6 F
+1.08 (FALSE) 397.84 444.4 P
+5 F
+0.52 0.1 ( is r) 424.8 444.4 B
+0.52 0.1 (eturned.) 442.25 444.4 B
+0.52 0.1 (Notes: Fr) 198 424 B
+0.52 0.1 (om the ed\0501\051 manual pages:) 239.79 424 B
+0.43 0.1 (\134n - Match the contents of the nth substring r) 198 403.6 B
+0.43 0.1 (egister fr) 405.89 403.6 B
+0.43 0.1 (om the curr) 446.39 403.6 B
+0.43 0.1 (ent RE. This ) 499.68 403.6 B
+0.52 0.1 (pr) 198 391.2 B
+0.52 0.1 (ovides a mechanism for extracting matched substrings. For example, the ) 207.98 391.2 B
+0.52 0.1 (expr) 198 378.8 B
+0.52 0.1 (ession \134\050.*\134\051\1341$ matches a line consisting of two r) 218.12 378.8 B
+0.52 0.1 (epeated appearances of ) 448.03 378.8 B
+0.52 0.1 (the same string. When nested par) 198 366.4 B
+0.52 0.1 (enthesized substrings ar) 351.4 366.4 B
+0.52 0.1 (e pr) 461.86 366.4 B
+0.52 0.1 (esent, n is ) 479.85 366.4 B
+0.52 0.1 (determined by counting occurr) 198 354 B
+0.52 0.1 (ences of \134\050 starting fr) 339.72 354 B
+0.52 0.1 (om the left.]) 437.41 354 B
+8 F
+0.52 0.1 (Errors) 198 333.6 B
+5 F
+0.52 0.1 (: ) 226.36 333.6 B
+6 F
+1.08 (Jot_ERANGECHECK) 232.08 333.6 P
+3 F
+-0.88 (JotFont pr) 126 300.53 P
+-0.88 (ocedur) 182.77 300.53 P
+-0.88 (es) 220.09 300.53 P
+6 F
+(JotFont_New) 54 279.87 T
+(JotFont * ) 198 279.87 T
+(JotFont_New\050name, size, printermatched\051) 198 268.87 T
+(char *name;) 198 258.87 T
+(int size;) 198 248.87 T
+(boolean printermatched;) 198 238.87 T
+5 F
+0.19 0.1 (Returns a pointer to a JotFont instance. The JotFont cache) 198 220.2 B
+8 F
+0.19 0.1 ( ) 457.82 220.2 B
+5 F
+0.19 0.1 (is sear) 460.61 220.2 B
+0.19 0.1 (ched for a font ) 488.93 220.2 B
+0.52 0.1 (matching the speci\336ed parameters. When the sear) 198 207.8 B
+0.52 0.1 (ch is successful, the pointer ) 425.96 207.8 B
+0.52 0.1 (to an existing JotFont instance is r) 198 195.4 B
+0.52 0.1 (eturned; otherwise, the window server is ) 353.17 195.4 B
+0.52 0.1 (r) 198 183 B
+0.52 0.1 (equested to locate the font corr) 201.87 183 B
+0.52 0.1 (esponding to ) 343.64 183 B
+7 F
+0.52 0.1 (name) 406.39 183 B
+5 F
+0.52 0.1 (. If the font is not located, a ) 428.44 183 B
+FMENDPAGE
+%%EndPage: "282" 29
+%%Page: "283" 29
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (283) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+1.08 (NULL) 198 641.33 P
+5 F
+0.52 0.1 ( \0500\051 pointer is r) 219.57 641.33 B
+0.52 0.1 (eturned; otherwise, the font is scaled to ) 288.09 641.33 B
+7 F
+0.52 0.1 (size) 471.74 641.33 B
+5 F
+0.52 0.1 (. When ) 487.13 641.33 B
+7 F
+0.52 0.1 (printermatched) 198 628.93 B
+5 F
+0.52 0.1 ( is ) 261.21 628.93 B
+6 F
+1.08 (TRUE) 274.8 628.93 P
+5 F
+0.52 0.1 (, printer metrics ar) 296.37 628.93 B
+0.52 0.1 (e imposed on the font. The pointer to ) 381.76 628.93 B
+0.52 0.1 (the new JotFont instance is r) 198 616.53 B
+0.52 0.1 (eturned and the instance is cached for r) 328.1 616.53 B
+0.52 0.1 (euse.) 509.23 616.53 B
+0.52 0.1 (The T) 198 596.13 B
+0.52 0.1 (imes-Roman 12 is the default font.) 223.83 596.13 B
+8 F
+0.52 0.1 (Errors) 198 575.73 B
+5 F
+0.52 0.1 (: ) 226.36 575.73 B
+6 F
+1.08 (Jot_EMEMORY) 232.08 575.73 P
+(JotFont_Free) 54 556 T
+(void ) 198 556 T
+(JotFont_Free\050font\051) 198 545 T
+(JotFont *font;) 198 535 T
+5 F
+-0.02 0.1 (Deallocates ) 198 516.33 B
+7 F
+-0.02 0.1 (font) 252.19 516.33 B
+5 F
+-0.02 0.1 ( and its internal r) 268.69 516.33 B
+-0.02 0.1 (esour) 346.03 516.33 B
+-0.02 0.1 (ces. In addition, ) 370.81 516.33 B
+7 F
+-0.02 0.1 (font) 445.25 516.33 B
+5 F
+-0.02 0.1 ( is r) 461.75 516.33 B
+-0.02 0.1 (emoved fr) 478.12 516.33 B
+-0.02 0.1 (om the ) 524.2 516.33 B
+0.52 0.1 (JotFont cache.) 198 503.93 B
+6 F
+(JotView_SetFont) 54 484.2 T
+(void ) 198 484.2 T
+(JotView_SetFont\050view, font\051) 198 473.2 T
+(JotView *view;) 198 463.2 T
+(JotFont *font;) 198 453.2 T
+5 F
+0.52 0.1 (Sets the font in view to ) 198 434.53 B
+7 F
+0.52 0.1 (font) 306.98 434.53 B
+5 F
+0.52 0.1 (.) 323.48 434.53 B
+3 F
+-0.88 (JotSelection pr) 126 401.47 P
+-0.88 (ocedur) 207.13 401.47 P
+-0.88 (es) 244.45 401.47 P
+5 F
+0.52 0.1 (Selections ar) 198 380.13 B
+0.52 0.1 (e a mechanism that permit client applications to exchange ) 254.93 380.13 B
+0.52 0.1 (information. This service allows text to be cut, copied, and pasted between ) 198 367.73 B
+0.41 0.1 (applications. Although the window server might support an arbitrary number ) 198 355.33 B
+0.52 0.1 (of selections, the Jot interface ) 198 342.93 B
+9 F
+0.5 (the Jot interface supports only primary and secondary ) 334.68 342.93 P
+(selections.) 198 330.54 T
+6 F
+(JotSelection_Set) 54 310.8 T
+(boolean ) 198 310.8 T
+(JotSelection_Set\050span, rank, pendingdelete\051) 198 299.8 T
+(JotSpan *span;) 198 289.8 T
+(int rank;) 198 279.8 T
+(boolean pendingdelete;) 198 269.8 T
+5 F
+0.09 0.1 (Uses the position and length variables in ) 198 251.14 B
+7 F
+0.09 0.1 (span) 385 251.14 B
+5 F
+0.09 0.1 ( to set the ) 404.28 251.14 B
+7 F
+0.09 0.1 (rank) 450.69 251.14 B
+5 F
+0.09 0.1 ( selection. The ) 469.41 251.14 B
+7 F
+0.09 0.1 (rank) 536.59 251.14 B
+5 F
+0.09 0.1 ( ) 555.31 251.14 B
+0.52 0.1 (must be de\336ned as either ) 198 238.73 B
+6 F
+1.08 (Jot_PRIMARY) 316.64 238.73 P
+5 F
+0.52 0.1 ( or ) 375.96 238.73 B
+6 F
+1.08 (Jot_SECONDARY) 391.8 238.73 P
+5 F
+0.52 0.1 (. When ) 460.8 238.73 B
+7 F
+0.52 0.1 (pendingdelete) 496.45 238.73 B
+5 F
+0.52 0.1 ( ) 553.28 238.73 B
+0.22 0.1 (is ) 198 226.34 B
+6 F
+0.45 (TRUE) 208.16 226.34 P
+5 F
+0.22 0.1 (, the selection is to be pending delete) 229.73 226.34 B
+8 F
+0.22 0.1 ( ) 397.39 226.34 B
+5 F
+0.22 0.1 (and will be r) 400.21 226.34 B
+0.22 0.1 (eplaced with the next ) 457.71 226.34 B
+0.22 0.1 (inserted character) 198 213.93 B
+0.22 0.1 (. The characters) 278.25 213.93 B
+8 F
+0.22 0.1 ( ) 349.38 213.93 B
+5 F
+0.22 0.1 (de\336ned by ) 352.2 213.93 B
+7 F
+0.22 0.1 (span) 403.36 213.93 B
+8 F
+0.22 0.1 ( ) 422.64 213.93 B
+5 F
+0.22 0.1 (ar) 425.46 213.93 B
+0.22 0.1 (e highlighted when visible ) 434.43 213.93 B
+0.52 0.1 (in associated JotV) 198 201.53 B
+0.52 0.1 (iews. When the operation is successful, ) 278.7 201.53 B
+6 F
+1.08 (TRUE) 460.8 201.53 P
+5 F
+0.52 0.1 ( is r) 482.36 201.53 B
+0.52 0.1 (eturned; ) 499.82 201.53 B
+0.52 0.1 (otherwise, ) 198 189.14 B
+6 F
+1.08 (FALSE) 248.15 189.14 P
+5 F
+0.52 0.1 ( is r) 275.11 189.14 B
+0.52 0.1 (eturned.) 292.57 189.14 B
+8 F
+0.52 0.1 (Errors) 198 168.73 B
+5 F
+0.52 0.1 (: ) 226.36 168.73 B
+6 F
+1.08 (Jot_ERANGECHECK Jot_ETEXT) 232.08 168.73 P
+FMENDPAGE
+%%EndPage: "283" 30
+%%Page: "284" 30
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (284) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(JotSelection_SetLevel) 54 642 T
+(boolean ) 198 642 T
+(JotSelection_SetLevel\050view, rank, level\051) 198 631 T
+(JotView *view;) 198 621 T
+(int rank;) 198 611 T
+(int level;) 198 601 T
+5 F
+-0.02 0.1 (Sets the ) 198 582.33 B
+7 F
+-0.02 0.1 (rank) 235.24 582.33 B
+5 F
+-0.02 0.1 ( selection in ) 253.96 582.33 B
+7 F
+-0.02 0.1 (view) 310.11 582.33 B
+5 F
+-0.02 0.1 ( to the speci\336ed ) 329.39 582.33 B
+7 F
+-0.02 0.1 (level) 402.88 582.33 B
+5 F
+-0.02 0.1 (. The ) 421.71 582.33 B
+7 F
+-0.02 0.1 (rank) 446.49 582.33 B
+5 F
+-0.02 0.1 ( must be de\336ned as) 465.21 582.33 B
+6 F
+-0.05 ( ) 552.46 582.33 P
+1.08 (Jot_PRIMARY) 198 569.93 P
+5 F
+0.52 0.1 ( or ) 257.32 569.93 B
+6 F
+1.08 (Jot_SECONDARY) 273.16 569.93 P
+5 F
+0.52 0.1 (. The ) 342.15 569.93 B
+7 F
+0.52 0.1 (level) 368.02 569.93 B
+5 F
+0.52 0.1 ( must be de\336ned as ) 386.85 569.93 B
+6 F
+1.08 (Jot_CHARACTER) 479.39 569.93 P
+5 F
+0.52 0.1 (, ) 549.49 569.93 B
+6 F
+0.9 (Jot_WORD) 198 557.53 P
+5 F
+0.43 0.1 (, ) 241.14 557.53 B
+6 F
+0.9 (Jot_LINE) 246.77 557.53 P
+5 F
+0.43 0.1 (, or ) 289.91 557.53 B
+6 F
+0.9 (Jot_BUFFER) 308.18 557.53 P
+5 F
+0.43 0.1 (. When the operation is successful, ) 362.1 557.53 B
+6 F
+0.9 (TRUE) 523.02 557.53 P
+5 F
+0.43 0.1 ( is ) 544.59 557.53 B
+0.52 0.1 (r) 198 545.13 B
+0.52 0.1 (eturned; otherwise, ) 201.87 545.13 B
+6 F
+1.08 (FALSE) 293.17 545.13 P
+5 F
+0.52 0.1 ( is r) 320.13 545.13 B
+0.52 0.1 (eturned.) 337.58 545.13 B
+8 F
+0.52 0.1 (Errors) 198 524.73 B
+5 F
+0.52 0.1 (: ) 226.36 524.73 B
+6 F
+1.08 (Jot_ERANGECHECK) 232.08 524.73 P
+(JotSelection_Clear) 54 505 T
+(boolean ) 198 505 T
+(JotSelection_Clear\050text, rank\051) 198 494 T
+(JotText *text;) 198 484 T
+(int rank;) 198 474 T
+5 F
+0.52 0.1 (Clears the ) 198 455.33 B
+7 F
+0.52 0.1 (rank) 246.96 455.33 B
+5 F
+0.52 0.1 ( selection in ) 265.68 455.33 B
+7 F
+0.52 0.1 (text) 323.46 455.33 B
+5 F
+0.52 0.1 (. The ) 339.4 455.33 B
+7 F
+0.52 0.1 (rank) 365.27 455.33 B
+5 F
+0.52 0.1 ( must be de\336ned as ) 383.99 455.33 B
+6 F
+1.08 (Jot_PRIMARY) 476.53 455.33 P
+5 F
+0.52 0.1 ( or ) 535.84 455.33 B
+6 F
+0.4 (Jot_SECONDARY) 198 442.93 P
+5 F
+0.19 0.1 (. When ) 266.99 442.93 B
+7 F
+0.19 0.1 (text) 301.99 442.93 B
+5 F
+0.19 0.1 ( does not own the selection, the operation is ignor) 317.93 442.93 B
+0.19 0.1 (ed ) 544.11 442.93 B
+-0.03 0.1 (and ) 198 430.53 B
+6 F
+-0.05 (FALSE) 217.79 430.53 P
+5 F
+-0.03 0.1 ( is r) 244.76 430.53 B
+-0.03 0.1 (eturned; otherwise, ) 261.11 430.53 B
+6 F
+-0.05 (TRUE) 351.32 430.53 P
+5 F
+-0.03 0.1 ( is r) 372.89 430.53 B
+-0.03 0.1 (eturned. The characters addr) 389.25 430.53 B
+-0.03 0.1 (essed in ) 519.27 430.53 B
+0.52 0.1 (the selection ar) 198 418.13 B
+0.52 0.1 (e unhighlighted when visible in associated JotV) 266.86 418.13 B
+0.52 0.1 (iews.) 484.28 418.13 B
+8 F
+0.52 0.1 (Errors) 198 397.73 B
+5 F
+0.52 0.1 (: ) 226.36 397.73 B
+6 F
+1.08 (Jot_ERANGECHECK) 232.08 397.73 P
+(JotSelection_Span) 54 378 T
+(JotSpan * ) 198 378 T
+(JotSelection_Span\050text, rank\051) 198 367 T
+(JotText *text;) 198 357 T
+(int rank;) 198 347 T
+5 F
+0.52 0.1 (Returns a pointer to a JotSpan that r) 198 328.33 B
+0.52 0.1 (epr) 363.68 328.33 B
+0.52 0.1 (esents the selection of rank ) 378.54 328.33 B
+7 F
+0.52 0.1 (rank) 505.22 328.33 B
+5 F
+0.52 0.1 (. The ) 523.94 328.33 B
+7 F
+0.52 0.1 (rank) 198 315.93 B
+5 F
+0.52 0.1 ( must be de\336ned as ) 216.72 315.93 B
+6 F
+1.08 (Jot_PRIMARY) 309.26 315.93 P
+5 F
+0.52 0.1 ( or ) 368.58 315.93 B
+6 F
+1.08 (Jot_SECONDARY) 384.42 315.93 P
+5 F
+0.52 0.1 (. ) 453.41 315.93 B
+6 F
+1.08 (JotSelection_Span) 459.13 315.93 P
+5 F
+0.52 0.1 ( ) 550.8 315.93 B
+0.52 0.1 (supports only primary and secondary selections. In addition, ) 198 303.54 B
+7 F
+0.52 0.1 (text) 480.19 303.54 B
+5 F
+0.52 0.1 ( must own ) 496.14 303.54 B
+0.52 0.1 (the ) 198 291.14 B
+7 F
+0.52 0.1 (rank) 215.28 291.14 B
+5 F
+0.52 0.1 ( selection. When the operation is not successful a ) 234 291.14 B
+6 F
+1.08 (NULL) 461.61 291.14 P
+5 F
+0.52 0.1 ( \0500\051 pointer is ) 483.18 291.14 B
+0.1 (r) 198 278.73 S
+0.1 (eturned.) 201.87 278.73 S
+FMENDPAGE
+%%EndPage: "284" 31
+%%Page: "285" 31
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (285) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+-0.94 (A JOT Example) 54 638 P
+5 F
+0.01 0.1 (This is a Jot example that consists of thr) 198 616.33 B
+0.01 0.1 (ee \336les: joe.c, joe_cps.cps, and Make\336le. ) 376.57 616.33 B
+0.52 0.1 (This is an example of a very simple text editor) 198 603.93 B
+0.52 0.1 (.) 409.96 603.93 B
+6 F
+(#include <sys/ioctl.h>) 54 592.2 T
+(#include <sys/stat.h>) 54 576.2 T
+(#include <stdio.h>) 54 560.2 T
+(#include <strings.h>) 54 544.2 T
+(#include \322NeWS/wire/wire.h\323) 54 528.2 T
+(#include \322NeWS/jot/jot.h\323) 54 512.2 T
+(#include \322NeWS/jot/view.h\323) 54 496.2 T
+(#include \322NeWS/jot/font.h\323) 54 480.2 T
+(#include \322joe_cps.h\323) 54 464.2 T
+(#de\336ne CTL\050c\051 \050c & 037\051) 54 432.2 T
+(JotView) 54 400.2 T
+(*TheView;) 91.75 400.2 T
+(/*) 54 368.2 T
+( * Keyboard callback for the JotView. This handles:) 54 352.2 T
+( *) 54 336.2 T
+(Control-A moves to the beginning of the document.) 135 336.2 T
+( *) 54 320.2 T
+(Control-B moves backward one character.) 135 320.2 T
+( *) 54 304.2 T
+(Control-D deletes the character after the caret.) 135 304.2 T
+( *) 54 288.2 T
+(Control-E moves to the end of the document.) 135 288.2 T
+( *) 54 272.2 T
+(Control-F moves forward one character.) 135 272.2 T
+( *) 54 256.2 T
+(Delete deletes the character before the caret.) 135 256.2 T
+( *) 54 240.2 T
+( *) 54 224.2 T
+( * All other characters are inserted in the text buffer based on the) 54 208.2 T
+( * caret position. Following the insertion, the caret is) 54 192.2 T
+( * advanced.) 54 176.2 T
+( */) 54 160.2 T
+FMENDPAGE
+%%EndPage: "285" 32
+%%Page: "286" 32
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (286) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(static void) 54 626 T
+(keyboard_callback \050view, ch\051) 54 610 T
+(JotView) 54 594 T
+(*view;) 99 594 T
+(char ) 54 578 T
+(ch;) 99 578 T
+({) 54 562 T
+(    JotText *text;) 54 546 T
+(    int) 54 530 T
+( caret_pos;) 99 530 T
+(    text = JotView_Text\050view\051;) 54 498 T
+(    caret_pos = JotText_Caret\050text\051;) 54 482 T
+(    switch \050ch\051 {) 54 450 T
+(    case CTL\050\324D\325\051:) 54 434 T
+(    case \324\134177\325:) 54 418 T
+(\050void\051 JotText_DeleteCharacters\050text, caret_pos, \050ch == CTL\050\324D\325\051\051 ? 1 : -1\051;) 99 402 T
+(break;) 99 386 T
+(    case CTL\050\324B\325\051:) 54 354 T
+(if \050caret_pos > 0\051) 99 338 T
+(    JotText_SetCaret \050text, caret_pos - 1\051;) 99 322 T
+(break;) 99 306 T
+(    case CTL\050\324F\325\051:) 54 274 T
+(if \050caret_pos < JotText_Characters\050text\051\051) 99 258 T
+(    JotText_SetCaret\050text, caret_pos + 1\051;) 99 242 T
+(break;) 99 226 T
+(    case CTL\050\324E\325\051:) 54 194 T
+(JotText_SetCaret\050text, JotText_Characters\050text\051\051;) 99 178 T
+(break;) 99 162 T
+FMENDPAGE
+%%EndPage: "286" 33
+%%Page: "287" 33
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (287) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(    case CTL\050\324A\325\051:) 54 626 T
+(JotText_SetCaret\050text, 0\051;) 99 610 T
+(break;) 99 594 T
+(    case \324\134r\325:) 54 562 T
+(ch = \324\134n\325;) 99 546 T
+(/* Fall into */) 99 530 T
+(    default:) 54 498 T
+(JotText_InsertCharacters\050text, caret_pos, &ch, 1\051;) 99 482 T
+(break;) 99 466 T
+(    }) 54 450 T
+(    JotView_EnsurePositionVisible\050view, JotText_Caret\050text\051\051;) 54 418 T
+(}) 54 402 T
+(/*) 54 370 T
+( * A menu callback has been made. We snarf the font family and try to create that font.) 54 354 T
+( * If we succeed, the global font in view is) 54 338 T
+( * set to the new font; otherwise, an error message is printed.) 54 322 T
+( */) 54 306 T
+( ) 54 290 T
+(void) 54 258 T
+(menu_callback\050tag, data\051) 54 242 T
+({) 54 226 T
+(    JotFont *f;) 54 210 T
+(    char name[128];) 54 194 T
+(    wire_ReadString\050name\051;) 54 162 T
+FMENDPAGE
+%%EndPage: "287" 34
+%%Page: "288" 34
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (288) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(    if \050\050f = JotFont_New\050name, 12, FALSE\051\051 == NULL\051 {) 54 642 T
+(fprintf\050stderr, \322Error \336nding font %s.\134n\323, name\051;) 99 626 T
+(return;) 99 610 T
+(    }) 54 594 T
+(    JotView_SetFont\050TheView, f\051;) 54 578 T
+(}) 54 562 T
+(main\050argc, argv\051) 54 530 T
+(int) 54 514 T
+(argc;) 99 514 T
+(char) 54 498 T
+(**argv;) 99 498 T
+({) 54 482 T
+(    JotText) 54 466 T
+(*text;) 135 466 T
+(    wire_Wire) 54 450 T
+(wire;) 135 450 T
+(    struct stat) 54 434 T
+(stbuf;) 135 434 T
+(    int) 54 418 T
+(fd, menu_tag, nbytes;) 135 418 T
+(    char) 54 402 T
+(*\336lename;) 135 402 T
+( if \050argc < 2\051 {) 54 370 T
+(fprintf\050stderr, \322%s: usage: %s \336le\134n\323, argv[0], argv[0]\051;) 81 354 T
+(exit\0501\051;) 81 338 T
+(    }) 54 322 T
+(    \336lename = argv[1];) 54 306 T
+(    /* A server connection is opened and initialized. */) 54 274 T
+(    if \050\050wire = wire_Open\050NULL\051\051 == wire_INVALID_WIRE\051 {) 54 258 T
+(wire_Perror\050\051;) 81 242 T
+(exit\0501\051;) 81 226 T
+(    }) 54 210 T
+(    Jot_Initialize\050wire\051;) 54 178 T
+FMENDPAGE
+%%EndPage: "288" 35
+%%Page: "289" 35
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (289) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(    /* The \336le is opened and its length is acquired. A text) 54 642 T
+(        object is created with a little extra room and the \336le is) 54 626 T
+(        read into the text object. */) 54 610 T
+(    if \050\050fd = open\050\336lename, 0\051\051 == -1\051 {) 54 578 T
+(perror\050\336lename\051;) 81 562 T
+(exit\0501\051;) 81 546 T
+(    }) 54 530 T
+(    if \050fstat\050fd, &stbuf\051 == -1\051 {) 54 498 T
+(perror\050\336lename\051;) 81 482 T
+(exit\0501\051;) 81 466 T
+(    }) 54 450 T
+(    if \050\050text = JotText_New\050stbuf.st_size + 1024\051\051 == NULL\051 {) 54 418 T
+(fprintf\050stderr, \322Cannot create text object\134n\323\051;) 81 402 T
+(exit\0501\051;) 81 386 T
+(    }) 54 370 T
+(    nbytes = JotText_Read\050text, 0, fd\051;) 54 338 T
+(    printf\050\322Read %d bytes from \336le %s.\134n\323, nbytes, \336lename\051;) 54 322 T
+(    close\050fd\051;) 54 306 T
+(    /*) 54 274 T
+(    * Now allocate a tag for the menu. The menu callback will read a font family ) 54 258 T
+(    * name from the wire and make that the font for the view. When the view is ) 54 242 T
+(    * created, we associate the menu with that canvas using the /setmenu method) 54 226 T
+(    * in ClassCanvas. The ps_initialize routine downloads a couple of useful ) 54 210 T
+(    * functions into the server, as well as) 54 194 T
+(    * creating the font menu.) 54 178 T
+(    */) 54 162 T
+FMENDPAGE
+%%EndPage: "289" 36
+%%Page: "290" 36
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (290) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(    menu_tag = wire_AllocateTags\0501\051;) 54 642 T
+(    wire_RegisterTag\050menu_tag, menu_callback, 0\051;) 54 626 T
+(    ps_joe_initialize\050menu_tag\051;) 54 610 T
+(    /* ) 54 578 T
+(    * The view is created and the text object is associated with it. The canvas ) 54 562 T
+(    * managed by the view is made a client of a baseframe through the ps_initcanvas) 54 546 T
+(    * routine. When the baseframe is mapped, the canvas will be mapped) 54 530 T
+(    * and painted as well.) 54 514 T
+(    */) 54 498 T
+(    TheView = JotView_New\050text\051;) 54 466 T
+(    ps_initcanvas\050JotView_Canvas\050TheView\051\051;) 54 450 T
+(    ) 54 434 T
+(    /* the keyboard callback is called whenever a character is typed in the JotCanvas */) 54 418 T
+(    JotView_SetControllers\050TheView, keyboard_callback, NULL, NULL, NULL\051;) 54 386 T
+(    /* \322Off on your way, hit the open road, there is magic at your) 54 354 T
+(         \336ngers. For the spirit ever lingers, undemanding contact) 54 338 T
+(         in your happy solitude.\323 */) 54 322 T
+(    while \050wire_Notify\050\051\051 {) 54 290 T
+(if \050wire_WouldNotify\050wire_ALLWIRES\051\051) 81 274 T
+(    continue;) 81 258 T
+(JotView_UpdateViews\050\051;) 81 242 T
+( }) 54 226 T
+(}) 54 210 T
+FMENDPAGE
+%%EndPage: "290" 37
+%%Page: "291" 37
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (291) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(% De\336ne a routine and a menu.) 54 642 T
+(%) 54 626 T
+(% init_canvas accepts a JOT canvas parameter. It creates a base window) 54 610 T
+(% and a scrollbar, and inserts the scrollbar and the JOT canvas) 54 594 T
+(% into the base window. Then it attaches the scrollbar to the JOT) 54 578 T
+(% canvas. When it\325s done it creates an event manager and activates) 54 562 T
+(% the base window, which activates the JOT canvas and scrollbar.) 54 546 T
+(%) 54 530 T
+(% The menu is simply a list of well-known font families. When a) 54 514 T
+(% client selects an item from the menu, the selected family name) 54 498 T
+(% is sent up the wire to the client-side menu callback.) 54 482 T
+(%) 54 466 T
+(cdef ps_joe_initialize\050menu_tag\051) 54 434 T
+(    /init_canvas { % JotCanvas => -) 54 418 T
+(5 dict begin) 81 402 T
+(    /cv exch def) 81 386 T
+(    /win cv framebuffer /new ClassBaseWindow send def) 81 370 T
+(    /sbar framebuffer /new ClassVScrollbar send def) 81 354 T
+(    /preferredsize { 500 600 } /installmethod cv send) 81 322 T
+(    cv /settarget sbar send) 81 306 T
+(    sbar /ScrollbarInitialize cv send) 81 290 T
+(    /Scroll /setnoti\336er sbar send) 81 274 T
+(    /Scroll /setpreviewer sbar send) 81 258 T
+(    /East sbar /addclient win send) 81 226 T
+(    0 2 0 2 /setgaps win send) 81 194 T
+(    0 0 /preferredsize win send /reshape win send) 81 162 T
+FMENDPAGE
+%%EndPage: "291" 38
+%%Page: "292" 38
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (292) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(    /place win send) 81 642 T
+(    \050JOE - Jonathan\325s Own Editor\051 /setlabel win send) 81 610 T
+(    /new ClassEventMgr send /activate win send) 81 594 T
+(    /map win send) 81 578 T
+(    win) 81 562 T
+( % window) 432 562 T
+(    ) 54 546 T
+(end) 81 546 T
+(    /JoeWindow exch def) 54 530 T
+(} def) 54 514 T
+(/FontMenu /Grid framebuffer /new ClassMenu send def) 54 482 T
+([ \050Courier\051 \050Helvetica\051 \050Times-Roman\051 \050LucidaSans\051 ]) 54 466 T
+(     /setitemlist FontMenu send) 54 450 T
+({) 54 434 T
+(% index menu) 432 434 T
+(/item exch send 0 get) 90 418 T
+( ) 432 418 T
+(% item-string) 437.39 418 T
+(menu_tag tagprint) 90 402 T
+( ) 432 402 T
+(% item-string) 437.39 402 T
+(typedprint) 90 386 T
+( ) 432 386 T
+(% -) 437.39 386 T
+(} /setnoti\336er FontMenu send) 54 370 T
+(% Call init_canvas with a JotCanvas. This initializes the canvas) 54 338 T
+(% and then sets its menu.) 54 322 T
+(cdef ps_initcanvas\050token cv\051) 54 290 T
+( cv init_canvas) 54 274 T
+( FontMenu /setmenu cv send) 54 258 T
+( true /setmenuable cv send) 54 242 T
+FMENDPAGE
+%%EndPage: "292" 39
+%%Page: "293" 39
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (Jot) 198 108.7 S
+0 F
+0.09 (293) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (27) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(# Make\336le for JOE. TNTHOME should point at the top level of a) 54 642 T
+(# TNT release directory. Just say \322make\323 and JOE will be built.) 54 626 T
+(# To run JOE just say \322joe \336lename\323 Joe is a simple \336le viewer) 54 610 T
+(# program based on JOT.) 54 594 T
+(SRC = joe.c) 54 562 T
+(OBJ = joe.o) 54 546 T
+(CPSFILES = joe_cps.cps) 54 530 T
+(INCLUDE = -I$\050TNTHOME\051/include) 54 514 T
+(LIBPATH = -L$\050TNTHOME\051/lib -L$\050OPENWINHOME\051/lib) 54 498 T
+(CFLAGS += $\050INCLUDE\051 -g) 54 466 T
+(joe:) 54 434 T
+($\050OBJ\051) 108 434 T
+(cc -o joe $\050OBJ\051 $\050LIBPATH\051 -ljot -lwire -lcps) 108 418 T
+(joe.o:) 54 386 T
+(joe_cps.h) 108 386 T
+(.SUFFIXES: .cps) 54 354 T
+(.cps.h:) 54 338 T
+(; cps $*.cps) 91.75 338 T
+(SHAR_EOF) 54 322 T
+(\336) 54 306 T
+(exit 0) 54 290 T
+(#) 54 274 T
+(End of shell archive) 108 274 T
+FMENDPAGE
+%%EndPage: "293" 40
+%%Page: "294" 40
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (27) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (294) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+FMENDPAGE
+%%EndPage: "294" 41
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 40 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Courier
+%%+ Palatino-BoldItalic
+%%+ Palatino-Bold
+%%+ Times-Roman
+%%+ Helvetica
+%%+ Times-Bold

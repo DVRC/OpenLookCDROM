@@ -1,0 +1,446 @@
+%!NeWS-2.1 TNT-2.0
+%
+% This file is a product of Sun Microsystems, Inc. and is provided for
+% unrestricted use provided that this legend is included on all tape
+% media and as a part of the software program in whole or part.  Users
+% may copy or modify this file without charge, but are not authorized to
+% license or distribute it to anyone else except as part of a product
+% or program developed by the user.
+% 
+% THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
+% WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+% PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
+% 
+% This file is provided with no support and without any obligation on the
+% part of Sun Microsystems, Inc. to assist in its use, correction,
+% modification or enhancement.
+% 
+% SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
+% INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY THIS FILE
+% OR ANY PART THEREOF.
+% 
+% In no event will Sun Microsystems, Inc. be liable for any lost revenue
+% or profits or other special, indirect and consequential damages, even
+% if Sun has been advised of the possibility of such damages.
+% 
+% Sun Microsystems, Inc.
+% 2550 Garcia Avenue
+% Mountain View, California  94043
+%
+% Copyright (c) 1990 by Sun Microsystems, Inc.
+%
+%   @(#)gaintool.ps 1.6 91/02/11
+
+
+%
+%   GainTool object creation and initialization
+%
+
+% ---------------------------------------------------------------------------
+%   Notify functions
+%
+%   It is important that notify functions consume all expected parameters
+%   the stack to avoid hanging references which would prevent object
+%   destruction and garbage collection when the application terminates.
+
+%   The client side code provides every object with a unique tag which 
+%   is used to trigger client-side handlers via the wire service.  When
+%   testing the appearance of the window by loading this filie via psh,
+%   that tag will not be set.  The handlers below determine which condition
+%   they are executing under by testing for the presence of the client_tagnum
+%   property.  If found, notification is forwarded to the client, otherwise
+%   a simple message is written to the console.
+
+
+%   This function is used as the notify func for the playGain, recordGain,
+%   and monitorVolume sliders.
+%
+%   value  object  =>  -
+/gainHandler {
+    /client_tagnum null /?property 4 -1 roll send
+    dup null ne {
+	tagprint
+	typedprint  	    	    	% Float value 
+    } {
+	pop
+	/name exch send exch 2 array astore
+	console (% Activated with value %\n)
+	3 -1 roll fprintf
+    } ifelse
+} def
+
+
+%   This function is used as the notify func for the outputChoice exclusive
+%   choice object.
+%	
+%   [ index bool ]  object  =>  -
+/outputHandler {
+    /client_tagnum null /?property 4 -1 roll send
+    dup null ne {
+	tagprint
+	dup 0 get typedprint
+	1 get {1 } {0} ifelse typedprint
+    } {
+	pop
+	/name exch send
+	exch dup 0 get exch 1 get
+	3 array astore
+	console (% Activated with index % becoming %\n)
+	3 -1 roll fprintf
+    } ifelse
+} def
+
+
+%   This function is used as the notify func for the Pause/Resume button.
+%   Since it is a single button, the value is redundant.
+%	
+%   value  object  =>  -
+/pauseHandler {
+    /client_tagnum null /?property 4 -1 roll send
+    dup null ne {
+	tagprint
+    } {
+	pop
+	/name exch send
+	1 array astore
+	console (% Pressed\n) 3 -1 roll fprintf
+    } ifelse
+    
+    pop 	    	    	    	% Consume the value
+} def
+
+
+% ---------------------------------------------------------------------------
+%   Create and initialize various objects.
+%
+
+%
+%   Create a local event manager for this application
+%
+/emgr /new ClassEventMgr send def
+
+
+%----------------------------------------
+%   Create the base window
+%
+/gainWindow
+    null framebuffer /new ClassBaseWindow send
+def
+/gainWindow /setname gainWindow send
+
+%
+% Set the size
+%
+0 0 310 180 /reshape gainWindow send
+
+%
+% Place it on the screen
+%
+/place gainWindow send
+
+%
+% Set the header label
+%
+(Audio Control Panel) /setlabel gainWindow send
+
+%
+% Turn off the resize corners
+%
+/Reshape? false /setattribute gainWindow send
+
+% override
+%   Provide a notify handler for the QUIT base menu item or other user
+%   (as opposed to application code) specified quit action.
+%
+%   menu-object  =>  -
+/QuitFromUser { % menu => -
+    pop
+    /client_tagnum null /?property self send
+    dup null ne {
+	tagprint
+    } {
+	/name self send 1 array astore
+	console (% quit\n) 3 -1 roll fprintf
+	/QuitFromUser super send
+    } ifelse
+}
+/installmethod gainWindow send
+
+
+
+%----------------------------------------
+%   We want to draw a line between the window title and the panel
+%   containing the controls.  Since the /North client isn't being
+%   used for anything else, we will put a horizontal line in it by
+%   createing a -very- short canvas; and making it's background color
+%   match the foreground color of the window.
+%
+/North 
+    framebuffer /new ClassCanvas send
+    /colors gainWindow send pop dup /setcolors 3 index send
+/addclient gainWindow send
+
+
+%----------------------------------------
+%   Create a panel to put our various controls in.
+%   Give it /Calculated layout semantics so that we can place contents
+%   relative to each other.
+%
+/controls1
+    /Calculated framebuffer /new ClassPanel send
+def
+
+%
+% Set to inherit colors from base window instead of superclass
+%
+/colors gainWindow send
+/setcolors controls1 send
+
+%
+% Add it as the main client of the base window
+%
+/Center controls1 /addclient gainWindow send
+
+
+%----------------------------------------
+%   Create the playback volume gain control slider and label
+%
+/playGain
+    framebuffer /new ClassHSlider send
+def
+
+%
+%   Add some tick marks and end boxes; set the min, max, and 
+%   initial values and provide a normalizer function.
+%
+true /setendboxes playGain send
+10 /settickmarks playGain send
+0 100 /setrange playGain send
+0 /setvalue playGain send
+{ round cvi } /setnormalizer playGain send
+
+%
+%   Set the width to 150, let the height default to preferred size
+%
+0 0 150 /preferredsize playGain send exch pop /reshape playGain send 
+
+
+%
+% Set up notifier and previewer functions.  The previewer will be executed
+% while the slider puck is being dragged; the notifier will be executed
+% when the mouse button is released, or when the cable or end boxes are
+% moused.  Also set up a target context in which to execute the notifier
+% and previewer functions
+%
+/gainHandler /setnotifier playGain send
+/gainHandler /setpreviewer playGain send
+currentdict /settarget playGain send
+
+%
+% Put it in the panel, near the top right corner.
+%
+/playGain playGain [
+    /NorthEast { /NorthEast PARENT POSITION 10 5 xysub }
+] /addclient controls1 send
+
+
+%----------------------------------------
+%   Create a label for the slider
+%
+/playGain-label
+    (Play Gain:)  framebuffer /new ClassLabel send
+def
+
+%
+% And add it to the panel, to the left of the slider itself.
+% Position calculation is complicated by the desire to align the baseline
+% of the text with the bottom of the slider endcap, not the bottom of the
+% tick marks.
+%
+/playGain-label playGain-label
+[ /East {
+    /MinEnd /playGain POSITION
+    5 0 xysub
+} ]
+/addclient controls1 send
+
+
+
+%----------------------------------------
+%   Create another slider for the record volume gain
+%
+
+/recordGain
+    framebuffer /new ClassHSlider send
+def
+
+true /setendboxes recordGain send
+10 /settickmarks recordGain send
+0 100 /setrange recordGain send
+0 /setvalue recordGain send
+{ round cvi } /setnormalizer recordGain send
+
+%
+% Make it the same size as the play gain slider
+%
+0 0 /size playGain send /reshape recordGain send
+
+/gainHandler /setnotifier recordGain send
+/gainHandler /setpreviewer recordGain send
+currentdict /settarget recordGain send
+
+%
+% Place it directly under the play gain slider, with a 5 unit gap
+%
+/recordGain recordGain [
+    /NorthEast { /SouthEast /playGain POSITION 0 5 xysub }
+] /addclient controls1 send
+
+
+%----------------------------------------
+%   Create the label for the record slider
+%
+/recordGain-label
+    (Record Gain:)  framebuffer /new ClassLabel send
+def
+
+/recordGain-label recordGain-label [
+    /East {
+	/MinEnd /recordGain POSITION
+	5 0 xysub
+    }
+] /addclient controls1 send
+
+
+
+%----------------------------------------
+%   Create the monitor volume slider
+%
+/monitorVolume
+    framebuffer /new ClassHSlider send
+def
+
+true /setendboxes monitorVolume send
+10 /settickmarks monitorVolume send
+0 100 /setrange monitorVolume send
+0 /setvalue monitorVolume send
+{ round cvi } /setnormalizer monitorVolume send
+
+0 0 /size playGain send /reshape monitorVolume send
+
+/gainHandler /setnotifier monitorVolume send
+/gainHandler /setpreviewer monitorVolume send
+currentdict /settarget monitorVolume send
+
+/monitorVolume monitorVolume [
+    /NorthEast { /SouthEast /recordGain POSITION 0 5 xysub }
+] /addclient controls1 send 
+
+
+%----------------------------------------
+%   Create a label for the monitor volume slider
+%
+/monitorVolume-label
+    (Monitor Volume:)  framebuffer /new ClassLabel send
+def
+
+/monitorVolume-label monitorVolume-label [
+    /East {
+	/MinEnd /monitorVolume POSITION
+	5 0 xysub
+    }
+] /addclient controls1 send
+
+
+%----------------------------------------
+%   Create a label for the output choice object
+%
+/outputChoice-label
+    (Output:)  framebuffer /new ClassLabel send
+def
+
+%
+% Place it near the lower left corner of the panel
+/outputChoice-label outputChoice-label [
+    /SouthWest { /SouthWest PARENT POSITION 10 5 xyadd }
+] /addclient controls1 send
+
+
+%----------------------------------------
+%   Now create the choice object itself
+%
+/outputChoice
+    /Grid framebuffer /new ClassSettings send
+def
+
+%
+% Require exactly one of the choices to be active at any given time
+%
+/Exclusive /setchoicemode outputChoice send
+
+%
+% There are only two choices
+%
+[
+    (Speaker)
+    (Jack) 
+] /setitemlist outputChoice send
+
+%
+% Row major doesn't really matter since there is a single row of two columns.
+%
+[ true 1 2 ] /setlayoutparameters outputChoice send
+
+%
+% Attach a notifier, and set the target
+%
+/outputHandler /setnotifier outputChoice send
+currentdict /settarget outputChoice send
+
+%
+% Add it to the panel, aligned to the right of the label.
+%
+/outputChoice outputChoice [
+    /West { /East PREVIOUS POSITION 5 0 xyadd }
+] /addclient controls1 send
+
+
+%----------------------------------------
+%   Create the Pause/Resume button.
+%
+%   This is a single button which changes between `Pause' and `Resume'.
+%   It would probably be better to use a check box, or an exclusive
+%   choice pair, or just two buttons with one greyed out.  But this
+%   is a demo, and the SunView/XView version changes the button text,
+%   so we'll do the same...
+%
+/pauseButton
+    /Absolute framebuffer /new ClassButtons send
+def
+
+%
+% The toolkit provides button groups, not individual buttons, so this
+% is a group containing a single button placed at absolute position 0, 0
+% relative to the group.
+%
+% We know that the text will alternate between `Pause Play' and
+% `Resume Play', so use the longer to initialize button size and position.
+%
+[ (Resume Play)    [ 0 0 ] ] /setitemlist pauseButton send
+
+%
+% Set up the notifier and target.
+%
+/pauseHandler /setnotifier pauseButton send
+currentdict /settarget pauseButton send
+
+%
+% Align horizontally with the output choice object, but place near
+% the right edge of the panel.
+%
+/pauseButton pauseButton [
+    /East {
+	/East /outputChoice POSITION exch pop
+	/SouthEast PARENT POSITION pop 10 sub exch
+    }
+] /addclient controls1 send 

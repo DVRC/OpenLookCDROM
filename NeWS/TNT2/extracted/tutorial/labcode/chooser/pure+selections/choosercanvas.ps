@@ -1,0 +1,367 @@
+/ChooserSelection ClassSelection 
+dictbegin     
+	/Hue 0 def     	
+	/Saturation 0 def     
+	/Brightness 0 def 
+dictend 
+classbegin    
+	/CanRenderAs 1 dict dup begin 		
+			/HSB nullarray def     
+	end def      
+	/Deselect { % - => - 		
+		/deselect Holder send     
+	} def     	
+	/SingleRequest { % oldval key => newval 		
+		{ 	    	
+			/HSB 	{ 				
+				pop 				
+				Hue Saturation Brightness
+				3 array astore 	    	
+			} 	     	    	
+			% Pretend we actually have something to delete 	
+			/DeleteContents { 				
+				pop 				
+				% tell Holder to change back to black 	
+				[/sethue /setsaturation /setbrightness]	
+				{ 0 exch Holder send} forall
+			    %% We use SendCanvasHandler, since the 
+			    %% /updatesliders method refers to objects
+			    %% defined in our canvas' userdict, which
+			    %% will not be in place here; /SingleRequest
+			    %% may be called by the GlobalEventMgr.
+				createevent dup /Canvas Holder put
+				/updatesliders SendCanvasHandler
+				[0 0 0] 	    	
+			} 	    	
+			/Default {pop /UnknownRequest}  		
+		} case 	
+	} def 
+classend def 
+
+
+/ChooserCanvas ClassCanvas
+dictbegin
+	/Hue 0 def
+	/Saturation 0 def
+	/Brightness 0 def
+	/ColorSelected? false def
+dictend
+classbegin
+        /Menuable? true def
+	/TextFont /ZapfDingbats findfont 100 scalefont def
+	/DisplayString (88) def
+	/StringLowerLeft [-1 -1] def
+	/sethue {
+		/Hue exch def
+		/PreviewColor self send
+	} def
+	/setsaturation {
+		/Saturation exch def
+		/PreviewColor self send
+	} def
+	/setbrightness {
+		/Brightness exch def
+		/PreviewColor self send
+	} def
+	/PreviewColor {
+		gsave self setcanvas
+		/ShowColor self send
+		grestore
+	} def
+	/ShowColor {
+		TextFont setfont
+		Hue Saturation Brightness hsbcolor setcolor
+		/stringfits? self send {
+			StringLowerLeft aload pop
+			moveto DisplayString show
+		} {
+			currentcolor /FillCanvas self send
+		} ifelse
+	} def
+	/Paint {
+		1 1 1 rgbcolor  /FillCanvas self send
+		/ShowColor self send
+		0 0 0 rgbcolor 1 /StrokeCanvas self send
+	} def
+	/stringlowerleft {
+		gsave self setcanvas
+		TextFont setfont
+		/size self send
+		DisplayString stringbbox
+		4 2 roll pop pop
+		xysub
+		2 div exch 2 div exch
+	} def
+	/stringfits? { % - => boolean
+		StringLowerLeft aload pop
+		0 ge exch 0 ge and
+	} def
+	/setdisplaystring { % string => -
+		/DisplayString exch promote
+	        /updateStringLowerLeft self send
+	} def
+	/settextfont { % font => -
+		/settextfont super send
+	        /updateStringLowerLeft self send
+	} def
+	/reshape {
+		/reshape super send
+	        /updateStringLowerLeft self send
+	} def
+    	/updateStringLowerLeft { % - => -
+	/stringlowerleft self send	% llx lly
+	2 array astore			% [llx lly]
+	% Stash the result
+	/StringLowerLeft exch promote	
+    	} def 
+
+	% Selection - related class variables
+	/Selectable? true def 
+	/Receptible? true def 
+	/Keyable? true def 
+	/SelectionClass ChooserSelection def
+	/SelectableType /Graphic def 
+	% Used for dragging, bounding boxes
+	/startX null def
+	/startY null def
+	/OverlayCanvas null def
+
+	% Selection methods
+	/deselect { % - => -
+		/PreviewColor self send
+		/ColorSelected? false def
+	} def
+
+	/HighlightSelection { % boolean => -
+	 	gsave self setcanvas 	{ 
+			/stringfits? self send { % - => boolean 
+		    		2 setlinewidth 0 setgray 
+				TextFont setfont	
+				StringLowerLeft aload pop 	
+		    		newpath moveto DisplayString true 
+				charpath stroke
+			} { 	
+		    		0 0 0 rgbcolor 1 /StrokeCanvas self send 	
+			} ifelse 
+		} { 	
+			/Paint self send
+	 	} ifelse 
+		grestore 
+	} def   
+
+	/pointinpaint? { % x y => boolean
+		gsave self setcanvas
+		/stringfits? self send { 	% x y
+			TextFont setfont
+			StringLowerLeft aload pop
+			newpath moveto
+			DisplayString true charpath
+			pointinpath
+		} {
+			/bbox self send pointinrect?
+		} ifelse
+		grestore
+	} def
+   	/NewSelection { % event rank => selection
+	 	Holder /new SelectionClass send
+	 	exch pop 
+	} def 
+
+	/SelectionContext { % event selection | null => context [bool]
+	 	dup null eq { 
+			pop pop /Background
+	 	} { 	
+		% Resolve the event coordinates to determine whether
+ 		% or not they lie inside the display string 	
+			gsave self setcanvas 
+			pop /Coordinates get aload pop
+	 		/pointinpaint? self send {  % bool
+	 			ColorSelected? { 	
+					/SelectedObject 
+				} { 		
+					/UnselectedObject 
+				} ifelse 	
+			} { 	
+				/Background 	
+			} ifelse 	
+			grestore 
+		} ifelse
+	} def  
+
+ 
+	/SelectionStart  { % event selection => boolean 
+		% Should we start an overlay? 
+		/Pin get /NoPin ne {			% event  
+			self StartOverlay	% - 
+		} {
+			pop
+		} ifelse
+	 	true 
+	} def  
+
+	/StartOverlay { % event canvas => - 
+		gsave self setcanvas 
+		exch /Coordinates get aload pop	% canvas x y 
+		/startY exch promote 
+		/startX exch promote 
+		createoverlay /OverlayCanvas exch promote 
+		OverlayCanvas setcanvas erasepage 
+		grestore 
+	} def 
+ 
+	/SelectionAdjust { % event selection => - 
+		% Are we dragging out a bounding box?
+	 	/Pin get /NoPin ne {	% event  
+			/OverlayCanvas promoted? {	% event 
+ 				gsave self setcanvas	% event
+  				/Coordinates get aload pop 	% x y
+				startX startY 2 copy 6 2 roll
+				xysub
+ 				OverlayCanvas setcanvas 
+				erasepage 
+				0 setgray 0 setlinewidth
+				rectpath	% - 
+ 				stroke			% -
+ 				grestore
+ 			}  {
+ 				pop
+ 			} ifelse
+ 			} {
+ 			pop
+ 		} ifelse
+	} def 
+
+	/SelectionStop { % event selection => -
+	 	dup /Pin get /NoPin ne {	% event selection 	
+			1 index /stringinbbox? self send 
+ 			dup /HighlightSelection self send	% event selection bool
+			{
+				/ColorSelected? true def
+				Hue Saturation Brightness
+				3 index begin
+					/Brightness exch def
+					/Saturation exch def
+					/Hue exch def
+				end		% event selection
+			} if
+ 			StopOverlay		% event selection 
+		} { 		
+			dup /ToggleSelected? get {	% ev sel
+				/ColorSelected? ColorSelected? not def
+	 			ColorSelected? 	% event selection bool
+	 			dup /HighlightSelection self send 
+				{
+					Hue Saturation Brightness
+					3 index begin
+						/Brightness exch def
+						/Saturation exch def
+						/Hue exch def
+					end		% event selection
+				} if
+
+			} if			% event selection
+	 	} ifelse 
+		pop pop 
+	} def  
+
+	/StopOverlay { % - => - 
+		gsave OverlayCanvas setcanvas erasepage grestore 
+		/OverlayCanvas unpromote
+	 	/startX unpromote
+	 	/startY unpromote
+	 	grestore 
+	} def 				 
+
+	/stringinbbox? { % event => bool
+	 	/stringfits? self send {
+	 		gsave self setcanvas 
+			/Coordinates get aload pop	% X Y
+	 		startX startY 4 copy	% X Y stX stY X Y stX stY
+	  		3 -1 roll		% X Y stX stY X stX stY Y
+	 		max 7 1 roll		% XM X Y stX stY X stX 
+			max 6 1 roll		% XM YM X Y stX stY 
+			3 -1 roll		% XM YM X stX Y stY 
+			min 5 1 roll		% Ym XM YM X stX  
+			min 4 1 roll		% Xm Ym XM YM 
+			TextFont setfont
+			StringLowerLeft aload pop
+	 		DisplayString stringbbox % Xm Ym XM YM llx lly sx sy sw sh
+			4 2 roll pop pop
+	 		3 index 3 index xyadd	% Xm Ym XM YM xm ym xM yM
+	 		5 1 roll			% Xm Ym XM yM YM xm ym xM
+	  		6 1 roll			% Xm Ym xM XM yM YM xm ym
+	 		7 1 roll			% Xm ym Ym xM XM yM YM xm
+	 		8 1 roll			% xm Xm ym Ym xM XM yM YM
+	  		le 7 1 roll le 6 1 roll	% b1 b2 xm Xm ym Ym
+	 		ge 5 1 roll ge and and and	% bool
+	 		grestore
+	 	} {
+ 		false
+	 	} ifelse 
+	} def 	  
+
+	/SelectionCancel { % selection => -
+	 	pop
+	 	/OverlayCanvas promoted? {
+	 		StopOverlay
+	 	} if 
+	} def  
+
+	/DragStart { % event selection => - 
+		pop framebuffer StartOverlay 
+	} def      
+
+	/DragAdjust { % event selection => -
+	 	gsave  	pop self setcanvas
+		/stringfits? self send exch
+	 	/Coordinates get aload pop  	% bool x y
+	 	startX startY xysub		% bool offsetx offsety
+	 	OverlayCanvas setcanvas erasepage
+	 	/location self send xyadd   	% bool X+offsetx Y+offsety
+	 	translate
+		0 setlinewidth 0 setgray
+	 	{ 
+			StringLowerLeft aload pop
+			TextFont setfont
+	 		moveto DisplayString true charpath stroke
+	 	} { 
+		    	0 0 moveto
+	      	        0 0 /size self send     % 0 0 w h
+	  	        /rectpath stroke
+	 	} ifelse
+	 	grestore 
+	} def  
+
+	/DragStop { % event selection => -
+	 	pop pop
+	 	StopOverlay 
+	} def  
+
+	% Reception-related stuff 
+	/HandleReception  { % event selection => bool
+	 	/HSB /query 2 index send	% ev sel false | val true
+	 	{
+		    % If we are receiving from ourself, ignore it
+		    % since we can't reposition the string
+		    1 index /Holder get self eq {
+			pop pop pop false
+		    } {
+	 	    	aload pop	    	    	 % ev sel H S B
+	 	    	setbrightness setsaturation sethue % ev sel 
+                        %% We use SendCanvasHandler, since the 
+			%% /updatesliders method refers to objects
+			%% defined in our canvas' userdict, which
+			%% will not be in place here; /SingleRequest
+			%% may be called by the GlobalEventMgr.
+		    	1 index dup /Canvas self put
+			/updatesliders SendCanvasHandler
+	 	    	pop pop true
+		    } ifelse
+	 	} {
+	 	    pop pop false
+	 	} ifelse 
+	} def 
+    %% Overridden later after sliders are defined
+	/updatesliders {pop} def  
+
+classend def

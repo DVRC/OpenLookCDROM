@@ -1,0 +1,277 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#) borderbag.ps 1.17 91/02/11
+%
+/ClassBorderBag ClassBag []
+classbegin
+
+    /Trackable?	true def
+    /Menuable?	true def
+
+    /NGap 0 def
+    /EGap 0 def
+    /SGap 0 def
+    /WGap 0 def
+
+    /NInset 0 def
+    /EInset 0 def
+    /SInset 0 def
+    /WInset 0 def
+
+    % "unshaped" (1x1) clients are reshaped to their preferred size
+    % after they are first added to the client
+    %
+    /addclient { % /name client => -
+        dup 3 1 roll /addclient super send
+        /reshaped? 1 index send not {
+            0 0 /preferredsize 3 index send
+            /reshape 6 -1 roll send
+        } {
+	    pop
+	} ifelse
+    } def
+
+    % set the insets between the edge of the canvas and the clients
+    %
+    /setinsets { % ninset einset sinset winset => -
+        /WInset exch promote
+        /SInset exch promote
+        /EInset exch promote
+        /NInset exch promote
+        /invalidate self send
+    } def
+
+    % return the insets between the edge of the canvas and the clients
+    %
+    /insets { % - => ninset einset sinset winset 
+        NInset EInset SInset WInset
+    } def
+
+    % set the gaps between the central client and the other clients 
+    %
+    /setgaps { % ngap egap sgap wgap => -
+        /WGap exch promote
+        /SGap exch promote
+        /EGap exch promote
+        /NGap exch promote
+        /invalidate self send
+    } def
+
+    % return the gaps between the central client and the other clients
+    %
+    /gaps { % - => ngap egap sgap wgap 
+        NGap EGap SGap WGap
+    } def
+
+    % Reshape each client to accomodate them to the new overall size of
+    % the bag. W and H are temporary variables that hold this size; NH
+    % holds the *current* height of the /North or /-North- client (or
+    % 0 if there is no northen client. This height will be preserved --
+    % only the width of the northern client will be changed.
+    % Similarly for SH, the height of the southern client. The western
+    % and eastern clients have their widths kept constant (EW and WW), but
+    % their heights are varied.
+    % The variables CW and CH are used to calculate the remaining area that
+    % will be left to the central client. CX and CY are its lower left corner.
+    %
+    /Layout {
+	10 dict begin
+	    /size self send /H exch def /W exch def
+	    /NH 0 def /SH 0 def /EW 0 def /WW 0 def
+
+	    ClientDict {
+		LayoutSizeDict 3 -1 roll		% client dict name
+		% check for "standard" client names
+		2 copy known {
+		    /size 4 -1 roll send		% client dict w h
+		    4 2 roll get exec			% -
+		}{
+		    pop pop pop				% -
+		} ifelse
+	    } forall
+
+	    /CX WInset WW WGap add add def
+	    /CY SInset SH SGap add add def
+            /CW W CX EInset EW EGap add add add sub def
+            /CH H CY NInset NH NGap add add add sub def
+
+	    ClientDict {
+		LayoutReshapeDict 3 -1 roll		% client dict name
+		% check for "standard" client names
+		2 copy known {
+		    get exec				% client x y w h
+		    /reshape 6 -1 roll send		% -
+		}{
+		    pop pop pop				% -
+		} ifelse
+	    } forall
+	end
+    } def
+
+    /minsize { % - => minw minh
+        /minsize /CalculateSize self send
+    } def
+
+
+    /preferredsize { % - => preferredw preferredh
+        /preferredsize /CalculateSize self send
+    } def
+ 
+    % CalculateSize calculates the width and height based on the /size
+    % parameter, combining /minsize and /preferredsize into one method.
+    % The interpretation of NH SH EW and WW is as for /Layout.
+    % CW is desired width of the central client (if  it exists) max-ed
+    % against the desired widths of the /North and /South clients (if they exist).
+    % Similarly for /CH.
+    % W is the maximum of the desired widths of /-North- /-South and the sum
+    % of CW EW WW EGap and WGap. Similarly for H.
+    % Finally the insets are added to W and H, and the full desired size is returned.
+    %
+    /CalculateSize { % /minsize|/preferredsize => w h
+	10 dict begin
+	    /Function exch def
+	    /NH 0 def /SH 0 def /EW 0 def /WW 0 def
+
+	    ClientDict {
+		LayoutSizeDict 3 -1 roll		% client dict name
+		% check for "standard" client names
+		2 copy known {
+		    /size 4 -1 roll send		% client dict w h
+		    4 2 roll get exec			% -
+		}{
+		    pop pop pop				% -
+		} ifelse
+	    } forall
+
+	    /W 0 def /H 0 def /CW 0 def /CH 0 def
+
+	    ClientDict {
+		MaxSizeDict 3 -1 roll			% client dict name
+		2 copy known {
+		    % check for "standard" client names	
+		    Function 4 -1 roll send		% client dict w h
+		    4 2 roll get exec			% -
+		}{
+			pop pop pop			% -
+		} ifelse
+	    } forall
+	    
+	    /W CW EGap WGap EW WW add add add add W max def
+	    /H CH NGap SGap NH SH add add add add H max def
+
+	    W EInset WInset add add
+	    H NInset SInset add add
+	end
+    } def
+
+
+    % This dictionary is used by the /Layout method and also by /CalculateSize.
+    % After all clients have been "run through" this dictionary, with their
+    % witdth and height on the stack the variables NH SH EW and WW will be
+    % correctly set. See /Layout.
+    %
+    /LayoutSizeDict	% w h => - (side effect NH SH EW WW)
+	9 dict dup begin
+	    /Center	{pop pop} def
+	    /North	{exch pop /NH exch def} def	/-North- //North def
+	    /South	{exch pop /SH exch def} def	/-South- //South def
+	    /East	{pop /EW exch def} def		/-East-  //East def
+	    /West	{pop /WW exch def} def		/-West-  //West def
+	end
+    def
+
+    % This dictionary is used by /Layout to determine the x y w h for all
+    % clients. It assumes that NH SH EW WW and CX CY CH CH and W and H are
+    % all valid.
+    %
+    /LayoutReshapeDict	% => x y w h
+	9 dict dup begin
+	    /Center	{CX CY CW CH} def
+	    /North	{CX H NInset sub NH sub CW NH} def
+	    /East	{W EInset sub EW sub CY EW CH} def
+	    /South	{CX SInset CW SH} def
+	    /West	{WInset CY WW CH} def
+	    /-North-	{WInset H NInset sub NH sub W EInset sub WInset sub NH} def
+	    /-East-	{W EInset sub EW sub SInset EW H NInset sub SInset sub} def
+	    /-South-	{WInset SInset W EInset sub WInset sub SH} def
+	    /-West-	{WInset SInset WW H SInset sub NInset sub} def
+	end
+    def
+
+    % This dictionary is used to allow each client to influence CH CW H or W in
+    % the CalculateSize method..
+    %
+    /MaxSizeDict	% client => - (side effect W H CW CH)
+	9 dict dup begin
+	    /Center	{CH max /CH exch def CW max /CW exch def} def
+	    /North	{pop CW max /CW exch def} def
+	    /-North-	{pop W max /W exch def} def
+	    /East	{exch pop CH max /CH exch def} def
+	    /-East-	{exch pop H max /H exch def} def
+
+	    /South	//North def		/-South-	//-North- def
+	    /West	//East def		/-West-		//-East- def
+	end
+    def
+
+    IncludeDemos? {
+        /demo { % - => window bag
+  	    10 dict begin
+
+            /DemoCanvas ClassCanvas []
+            classbegin
+                /NewInit { % minw minh prefw prefh hue => -
+                    /NewInit super send
+                    /FillColor exch 1 1 hsbcolor def
+                    /preferredsize [4 2 roll] cvx def
+                    /minsize [4 2 roll] cvx def
+                } def
+
+                /Paint {
+                   FillColor /FillCanvas self send
+                } def
+
+            classend def
+
+            % instantiate a border bag instance
+            /bag framebuffer /new ClassBorderBag send def
+
+            % Instantiate and add the central client
+            /Center 10 10 50 25 .1 framebuffer /new DemoCanvas send
+            /addclient bag send
+
+            % Instantiate and add the eastern client
+            /East 20 20 20 100 .3 framebuffer /new DemoCanvas send
+            /addclient bag send
+
+            % Instantiate and add the western client
+            /West 20 20 20 100 .5 framebuffer /new DemoCanvas send
+            /addclient bag send
+
+            % Instantiate and add a wide northern client
+            /-North- 30 60 50 60 .7 framebuffer /new DemoCanvas send
+            /addclient bag send
+
+            % Instantiate and add the southern client
+            /South 40 70 60 70 .9 framebuffer /new DemoCanvas send
+            /addclient bag send
+
+            5 10 15 20 /setgaps bag send
+	    10 10 10 10 /setinsets bag send
+
+	    /win bag framebuffer /new ClassBaseWindow send def
+	    (BorderBag Demo) /setlabel win send
+            /place win send
+            /new ClassEventMgr send /activate win send
+            /map win send
+	
+	    win bag
+	    end
+        } def
+     } if
+classend def
+

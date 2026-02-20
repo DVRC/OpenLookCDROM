@@ -1,0 +1,186 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#)authorize.ps 1.7 91/02/11
+
+%	authorize.ps: X and NeWS connection authorization
+
+/ClassAuthorization ClassObject []
+classbegin
+
+% Defaults:
+
+% Class variables:
+    %
+    % These will be updated by initauthorization
+    % when it reads /etc/X?.hosts.
+    %
+    /HostRegistry		growabledict	def
+
+    %
+    % For backwards compatibility, put this in systemdict
+    % as well. It would also be nice to get NetSecurityWanted
+    % out of systemdict.
+    %
+    systemdict /RemoteHostRegistry HostRegistry put
+
+    %
+    % Will be updated by initauthorization
+    % when it reads the -auth option file records.
+    %
+    /EnableMITMagicCookie?	false		def
+    /ServerMagicCookie		nullstring	def
+
+    %
+    % AuthorizationMethod is a dictionary of authorization
+    % mechanisms which are supported. The keys are strings or names.
+    % The values are procedures that take a string argument
+    % and based on the string data either return true
+    % (meaning the client is authorized) or false.
+    %
+    /AuthorizationMethod dictbegin
+	%
+	% MIT-MAGIC-COOKIE-1
+	% authorization_data => boolean
+	%
+	/MIT-MAGIC-COOKIE-1 {
+	    EnableMITMagicCookie? {
+		ServerMagicCookie eq
+	    } {
+		false
+	    } ifelse
+	} def
+
+    dictend def
+
+
+% Methods:
+
+    /classinit {
+	%
+	% Initialize the authorization mechanism.
+	% Read /etc/X?.hosts and server -auth files.
+	%
+	initauthorization
+    } def
+
+    %
+    % authorization_name authorization_data => boolean
+    %
+    /clientauthorized? {
+	exch AuthorizationMethod 1 index known {
+	    %
+	    % Call the authorization method procedure
+	    % with the authorization data on the stack.
+	    %
+	    AuthorizationMethod exch get exec
+	} {
+	    pop pop false
+	} ifelse
+
+	{
+	    true		% Our credit line has been approved!
+	} {
+	    % The authorization data failed to authorize us.
+	    % See if host-based access is allowed.
+	    %
+	    NetSecurityWanted {
+	        % See if OriginatingHost is in the host registry.
+	        HostRegistry OriginatingHost known
+	        {
+		    true	% They're in HostRegistry.
+	        } {
+		    console (%\n	% %\n)
+		    [   (XNeWS Network security violation)
+		        (Rejected connection from:)
+		        OriginatingHost
+		    ] fprintf
+		    false
+	        } ifelse
+	    } {
+	        true	% NetSecurityWanted is false, so let 'em in for free.
+	    } ifelse
+	} ifelse
+    } def
+
+
+    % Adds a host to the HostRegistry.
+    %
+    % hostname => --
+    /addhost {
+	HostRegistry exch true put
+    } def
+
+
+    % Removes a host from the HostRegistry.
+    %
+    % hostname => --
+    /removehost {
+	HostRegistry exch undef
+    } def
+
+
+    % Sets host-based access control
+    %
+    % boolean => --
+    /sethostaccesscontrol {
+        systemdict /NetSecurityWanted 2 index put pop
+    } def
+
+
+    % Gets host-based access control
+    %
+    % -- => boolean
+    /hostaccesscontrol {
+	systemdict /NetSecurityWanted get
+    } def
+
+
+    % Return array of hosts that can connect.
+    %
+    % -- => hosts
+    /listhosts {
+    [
+        HostRegistry {
+            pop
+        } forall
+    ]
+    } def
+
+
+    % Return info for XListHosts
+    %
+    % -- => securitywanted [hosts]
+    /xlisthosts {
+	systemdict /NetSecurityWanted get
+        [
+            HostRegistry {
+                pop
+            } forall
+        ]
+    } def
+
+
+    % Return whether any authentication data checking will
+    % actually take place. This is used by the NeWS listener
+    % to provide backward compatibility with old clients that
+    % don't send any authorization data. To run the server this
+    % way, don't enable MIT-MAGIC-COOKIE-1.
+    %
+    /authdatachecked? {
+	EnableMITMagicCookie?
+    } def
+
+classend def % ClassAuthorization
+
+
+%
+% Moved here from init.ps
+%
+systemdict /NetSecurityWanted true put	  % false if everyone is allowed to connect
+
+/classinit ClassAuthorization send
+
+

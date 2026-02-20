@@ -1,0 +1,11114 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 14 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 10 /Palatino-Roman FMDEFINEFONT
+5 15 /Palatino-Italic FMDEFINEFONT
+6 14 /Palatino-Italic FMDEFINEFONT
+7 10 /Courier FMDEFINEFONT
+%%Page: "13" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (13) 548.83 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+136.43 674.29 204 691.29 R
+7 X
+V
+1 F
+1 K
+-0.12 (3-07) 166.79 688.62 S
+-0.12 (3-0) 167.73 684.62 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (T) 199.01 509.03 B
+-2.3 -0.4 (utorial: Building Interfaces) 208.6 509.03 B
+3 F
+7 X
+1 K
+-3.12 (3) 540.57 508.36 S
+4 F
+0 X
+0 K
+0.52 0.1 (The easiest way to learn Devguide is to use it to cr) 198 459.68 B
+0.52 0.1 (eate a user interface. This ) 429.96 459.68 B
+0.52 0.1 (chapter takes you thr) 198 447.28 B
+0.52 0.1 (ough a user) 295.13 447.28 B
+0.52 0.1 (-interface building exer) 348.94 447.28 B
+0.52 0.1 (cise. This example is ) 455.23 447.28 B
+0.52 0.1 (tied to the example in Chapter 4, \322T) 198 434.88 B
+0.52 0.1 (utorial: Generating UI Sour) 362.18 434.88 B
+0.52 0.1 (ce Code\323 on ) 487.08 434.88 B
+0.52 0.1 (page 37.) 198 422.48 B
+5 F
+-0.94 (Using Devguide: A Simple Application) 54 388.74 P
+4 F
+0.52 0.1 (In this example we build the interface for a simple editor) 198 367.08 B
+0.52 0.1 (. In the following ) 458.72 367.08 B
+0.52 0.1 (chapter you learn how to link the interface to the editor backend and cr) 198 354.68 B
+0.52 0.1 (eate a ) 526.23 354.68 B
+0.52 0.1 (working application.) 198 342.28 B
+6 F
+-0.88 (The Finished Interface) 126 309.21 P
+4 F
+0.52 0.1 (When we ar) 198 287.88 B
+0.52 0.1 (e done, the interface will be composed of the windows shown in ) 253.34 287.88 B
+0.52 0.1 (Figur) 198 275.48 B
+0.52 0.1 (e 3-1 thr) 222.32 275.48 B
+0.52 0.1 (ough Figur) 260.21 275.48 B
+0.52 0.1 (e 3-3.) 310.9 275.48 B
+6 F
+-0.88 (Naming Issues) 126 242.41 P
+4 F
+0.19 0.1 (The \336rst pr) 198 221.08 B
+0.19 0.1 (oblem that we face when starting to build even a simple interface is ) 248.48 221.08 B
+-0.04 0.1 (that it is composed of a lar) 198 208.68 B
+-0.04 0.1 (ge number of elements. For the purposes of r) 316.97 208.68 B
+-0.04 0.1 (educing ) 519.1 208.68 B
+0.52 0.1 (confusion, we adopt a naming system wher) 198 196.28 B
+0.52 0.1 (eby elements ar) 397.57 196.28 B
+0.52 0.1 (e named based on ) 469.15 196.28 B
+0.52 0.1 (some combination of their type, their function, their label, and the object they ) 198 183.88 B
+0.52 0.1 (ar) 198 171.48 B
+0.52 0.1 (e in. So, a button with the label File is given the name ) 206.96 171.48 B
+7 F
+1.22 0.1 (FileButton) 457.08 171.48 B
+4 F
+0.52 0.1 (. The ) 518.04 171.48 B
+0.52 0.1 (menu associated with that button is given the name ) 198 159.08 B
+7 F
+1.22 0.1 (FileButtonMenu) 438.29 159.08 B
+4 F
+0.52 0.1 (.) 523.64 159.08 B
+FMENDPAGE
+%%EndPage: "13" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+3 9 /Helvetica-Bold FMDEFINEFONT
+%%Page: "14" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (14) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 466.74 B
+0.47 0.09 (e 3-1) 218.77 466.74 B
+0 F
+0.47 0.09 (The Finished Jot Editor Base W) 248.4 466.74 B
+0.47 0.09 (indow) 376.42 466.74 B
+1 F
+0.47 0.09 (Figur) 198 311.77 B
+0.47 0.09 (e 3-2) 218.77 311.77 B
+0 F
+0.47 0.09 (The Finished Load Pop-up W) 248.4 311.77 B
+0.47 0.09 (indow) 369.36 311.77 B
+1 F
+0.47 0.09 (Figur) 198 156.8 B
+0.47 0.09 (e 3-3) 218.77 156.8 B
+0 F
+0.47 0.09 (The Finished Save As Pop-up W) 248.4 156.8 B
+0.47 0.09 (indow) 381.36 156.8 B
+54 144 558 648 C
+54 481.14 558 638 C
+0 X
+0 K
+%%BeginBinary:  2008     
+398 195 286.56 140.4 0 264.19 485.41 BEGINBITMAPBWc
+
+
+8"j"
+F8O 078#J#
+FBFEL1FF7
+:Z"
+LDF9#j#
+8080K40779%J"
+BF900060I7F:$Z
+EFFFBFJ<"
+9FJ#
+<E73F:#H'
+EE03CFFEFF03E73B8%I&I"
+F83FEEFBFCFF3FE7F3079$H)G"
+FFEF77CE183F3F0720C393C7J(
+8CCCCFF3E673399;"J"9"
+AF5068FJ"9"
+;3E9F;"
+DF;"J"
+FF647J(
+8CE1E3F032738C3:$G"R
+F0001F1F:$G"
+F8003FFF:$
+FFFFFF
+
+9"j
+C0M
+9Z
+O 9"j
+C0M9"Z"
+DFLFE
+
+
+
+
+
+
+
+
+
+<'
+F00000000003<'
+CFFFFFFFFFFC<(
+BF77777777777F<(
+7FFF77FFFFFFBF;)
+FEDD8555DDDDDDDF<(
+FFBFF7FFFFFFCF;)
+FDF737771770076F<(
+FFBF76EFFBEFE7<'
+DD8554CDDDDD<'
+FFBF760FFDDF<(
+77377677763767<(
+FFBF76EFFEBFE7<'
+DD9D551DDD5D;"Q"
+FEC7<(
+F77777777777CF;#P"
+FF7F8F<(
+BDDDDDDDDDDF1F<(
+CFFFFFFFFFFC3F<"`"
+E07F<":#
+F001FF"a:b"
+E07F"Z
+EF1
+7"i"
+F80F7"Y"
+E7F37"D"
+DFFD7"9$>$
+BFDFFFBBFEFF077#9"?$j
+7FDFC3FF7F28><#@"Z
+DFFB07>*>#
+EEFFDF9E3E1FDFBB8FBF2F9$8"?"
+6DDDDF77078#8"A"j$
+DEF7C328;0600039'?"Z$
+F61DDFDFBB0707;F6FFFB9#9"?"
+F5DD7F2F8%8#>"
+DF6DDD9F76DB07'8">#
+EF7FC39E2E5F8E7F2F8S>"J#
+07<00037"D$J$
+BFFEFF2F;F7FFFF7"D$
+DFFDFF077"D$J#
+E7F3FF2F<00077"i$J$
+F80FFF07;F6FFF37Z"
+12FH"
+07H"
+2FH"J"
+07<FBH"J"
+2F<F5C#9"J"
+F77F07<EA8"9":$:"J#
+C3E1F7F8772F<D5738"9";#:"J#
+BFDEFBFF07<EAF39-9"J"
+8EEE3FBFEED298F4E1FBF7712F<FF8%8%8"9"
+9F76EDDFCE7773776E078#:':"
+C7F6DEF77777F8772F8%9"8$9"
+F3875C1FF0FBF760078%9#9"9"
+FB775DFFF7F76F2F:%8"9"9"J#
+BDDFDEEC776E07<00038+8"9"J#
+878BBE3FE1F2DEF8F779712F<FFF38X9"
+07H"
+2FH"
+07H"
+2FH"
+07H"
+2FH"
+07H"
+2FH"
+07H"
+2FC#9"
+F77F078#:#8#:"
+C3BFFDEFF8772F8";"9#:"
+BFFCFBFF079-9"J#
+0E74C7F8F1FCEE3BFBFBF7712F<00038+8"9"J#
+9FBDB3BBF76FFD6DDBBB6E07<FFF38&8&:"
+C7BBD7BBFF2DDDB7F8772F8"8+9"
+F383F873FDAC1D57FBF760078"8'9"9"
+FBBFF77DFDCDFD6F2F9$:#8&
+BDB7BBDEEF6EDB7FFF078*9"9"J#
+87CE77C7F8A3FDEE3E712F<C0338Z"
+007H"J#
+2F<E073H"J#
+07<F0F3H"J"
+2F<F9H"J"
+07<FFH"
+2FH"
+07H"
+2FH"J#
+07<0003"j"J$
+E012F;F70007#F"J#
+FF8007<FFFF7z"J"
+1AAAF<F87"j"
+800077z"
+1AAAF7$Z
+FFF8DF/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+O!FF
+J$
+O F60003J#
+O!FFFB
+
+
+9"j$
+C0J0600039Z
+O 
+
+
+
+
+
+
+
+
+
+
+9"J"
+3FM078#J"
+FBBFM77
+
+
+
+9"J"
+80LC09"J#
+FELDFF7:j"
+L1F
+8#J#
+F800L00078Z
+O"
+
+ENDBITMAP
+%%EndBinary
+3 F
+(JotW) 65.71 611.69 T
+(indow) 87.6 611.69 T
+(FileButton) 65.71 598.11 T
+(FileButtonMenu) 65.71 584.79 T
+(LoadFileMenuItemHandler) 65.71 570.97 T
+(SaveFileMenuItemHandler) 65.71 556.93 T
+(SaveAsFileMenuItemHandler) 65.71 543.6 T
+112.86 613.57 279.29 613.57 2 L
+0.35 H
+2 Z
+N
+178.57 573.57 270.72 573.57 2 L
+N
+273.57 560 180 560 2 L
+N
+189.29 546.43 275 546.43 2 L
+N
+112.14 600.71 272.42 600.71 297.14 595.71 3 L
+N
+135 587.14 250.38 587.14 272.86 582.86 3 L
+N
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 326.17 558 438.74 C
+0 X
+0 K
+%%BeginBinary:  1080     
+490 139 352.8 100.08 0 202.05 330.76 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF
+7"Z"
+DFO+FE#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J"
+2FBF@CF7$J&
+FEDFDF9FCFFEFFE7F"J"J#
+07>CF<F83F#J(J"
+1FFD<E1827E7E1E1E0F7FE8#J(
+CFBF:CCCE7E7CCCCCCF8#J%
+E73F;CFFE7CCF7#J#
+FCE0?CE0C7$J#
+FEF87F>CCCC8"J#9"
+3C<CE7E8F7$J(
+FC00FF:E1E27E061E264F8"J"R
+C3:F17#J"
+FFFF:FF
+
+
+
+
+
+"j"
+18O-06"Z"
+1BO-F6
+
+
+
+
+
+
+9"
+9F7#9"
+FE0FEF8#8"
+67FFCF8)
+739930F0830E49C9:%
+26664E669(
+98E667CE6639DF9#9#
+99E07C9F:#9"
+E7E7BF8"8(
+67674E667E39FF7F8+
+0F99F0F0E30E7E79FEBF7R%
+FCFFFD5F@#
+FAAF>%
+FFFFFD5F@"j
+FEO"@#Z
+FF7FO!A"
+FF
+
+
+
+
+
+
+
+=#
+CE7F<#
+E04E<#
+E7FE=$
+CE70E7>#
+6667<"8"
+E07F<$
+E7CE60>#
+67FF?"
+67>#
+70E7<%
+FFFFFFFF
+
+@"j"
+FCO!03@Z
+O#
+
+
+
+
+
+
+
+
+
+
+
+J"a"
+>E003J"Q"
+>9FFCJ"<#
+>7FFF7FJ#9&
+=FEFF7FFEEFFFBFJ$9"8"
+=FDFF7F0EDFJ"8"
+C7FCFJ+
+=FBFF7E78F87F7EEE3FEFJ$8$
+?7DB777EDDFE7J#8"
+?7BDF0EJ"8$
+@D87EEC1FJ"9#
+@D7EDFFJ$9"
+?7DB776DFJ$8#
+?0E78B9EE3FJ"S"
+=FDC7J"
+FCFJ">"
+=FE8FJ#="
+=FF7F1FJ"<#
+>9FFC3FJ"b"
+>C07FJ"<#
+>E001FFJS
+>
+
+
+
+
+
+
+
+"j"
+18O-06"Z"
+1FO-FE
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF7"j
+C0O,
+#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+3 F
+(LoadFilePopup) 61.49 421.72 T
+(LoadDirT) 61.49 400.67 T
+(extField) 100.27 400.67 T
+(LoadFileT) 61.49 385.53 T
+(extField) 103.27 385.53 T
+126.43 423.57 199.29 423.57 2 L
+0.35 H
+2 Z
+N
+134.29 402.86 211.43 402.86 2 L
+N
+232.85 383.6 163.57 383.6 2 L
+N
+(LoadFileButton) 61.49 362.86 T
+(LoadFileButtonHandler) 61.49 353.82 T
+165 361.43 372.14 361.43 2 L
+N
+(LoadFileButtonHandler) 61.49 377.08 T
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 171.2 558 283.77 C
+0 X
+0 K
+%%BeginBinary:  1262     
+490 139 352.8 100.08 0 203.48 175.79 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J"
+2FBFD397$J&9"8"9"
+FEDFDF4E7FF7FF0F7F91D81"J%@#I#
+078FE7FE6679FF9F83F#J2H"
+3FFD70C13E7C187261FF4F07F4DC39F9F9F39C3FF8#J/9"
+CFBF4E66673E3E73324CFF4E7FF4D9999998#J#8+
+E73F67FF01CCFECE3FF4599C93F837#J+8$
+FCE08FC67333C0FE070FF65819F39817$J"9(9"
+FEF87F7FEFFCE7C7F719FC09F8"J#9$8$8"
+3C773E6EFCE7E9DE67F9D7$J.:"
+FC00FF4E70F13F0F1873E1FCE60FF79C3C38"J"Z
+C358F17#J"
+FFFF5FF
+
+
+
+
+
+"j"
+38O-07"Z"
+3BO-F7
+
+
+
+
+
+
+9"
+9F7#9"
+FE0FEF8#8"
+67FFCF8)
+739930F0830E49C9:%
+26664E669(
+98E667CE6639DF9#9#
+99E07C9F:#9"
+E7E7BF8"8(
+67674E667E39FF7F8+
+0F99F0F0E30E7E79FEBF7R%
+FCFFFD5F@#
+FAAF>%
+FFFFFD5F@"j
+FEO"@#Z
+FF7FO!A"
+FF
+
+
+
+
+
+
+
+=#
+CE7F<#
+E04E<#
+E7FE=$
+CE70E7>#
+6667<"8"
+E07F<$
+E7CE60>#
+67FF?"
+67>#
+70E7<%
+FFFFFFFF
+
+@"j"
+FCO!03@Z
+O#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"d"
+<FE0FJ"T"
+<F9F3J"?"
+<F7FDJ";"9"
+<EFEEFEJ#9"8%
+<DFF0F0FE7FFF7FJ"9#:"
+=EFF7FE3FJ-
+<BFEFE3BB8FF7EEE3FDBC7FBFJ%8&
+=E7DDBB77DDFDBBFF9FJ#8"
+=F1FDF0J*
+=FCE1D707F7EEC1F81CJ%8%
+=FEDDD77FDFFBDF7FJ#8"
+?EF77DDJ%8%
+=E1E2EF8FE3FBD8FFJ"U"
+<DF1FJ"
+G3FJ"?"
+<EFFEJ"?#
+<F7FC7FJ"?#
+<F9F0FFJ"d"
+<FC01J"?"
+<FE07JV
+<
+
+
+
+"j"
+38O-07"Z
+3FO.
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+3 F
+(SaveAsFilePopup) 62.56 267.46 T
+(SaveAsDirT) 62.56 247.13 T
+(extField) 112.35 247.13 T
+(SaveAsFileT) 62.56 231.28 T
+(extField) 115.35 231.28 T
+(SaveAsFileButton) 62.56 207.17 T
+(SaveAsFileButtonHandler) 62.56 198.13 T
+(SaveAsFileButtonHandler) 62.56 222.06 T
+137.86 269.14 200.14 269.14 2 L
+0.35 H
+2 Z
+N
+150 248.43 212.29 248.43 2 L
+N
+233.71 229.17 177.86 229.17 2 L
+N
+178.57 204.86 360.72 204.86 2 L
+N
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "14" 3
+8 13 /Palatino-Italic FMDEFINEFONT
+%%Page: "15" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (15) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.52 0.1 (If ther) 198 641.33 B
+0.52 0.1 (e wer) 226.04 641.33 B
+0.52 0.1 (e several objects that could be called FileButton, we would ) 251.24 641.33 B
+0.52 0.1 (intr) 198 628.93 B
+0.52 0.1 (oduce the window name, e.g. JotW) 214.15 628.93 B
+0.52 0.1 (indowFileButton, etc.) 373.83 628.93 B
+0.52 0.1 (These names ar) 198 608.53 B
+0.52 0.1 (e the names used to r) 268.62 608.53 B
+0.52 0.1 (efer to these interface elements in the C ) 366.77 608.53 B
+0.52 0.1 (and PostScript code. Some elements, such as menu items, do not have names ) 198 596.13 B
+0.52 0.1 (associated with them, but do have callbacks. In this case the callback name is ) 198 583.73 B
+0.52 0.1 (composed of the label, plus the phrase ) 198 571.33 B
+7 F
+1.22 0.1 (MenuItemHandler) 377.45 571.33 B
+4 F
+0.52 0.1 ( to identify it as a ) 468.9 571.33 B
+0.52 0.1 (callback for a menu item. ) 198 558.93 B
+0.05 0.1 (Other elements have both a name and a callback name. In this case the callback ) 198 538.53 B
+0.52 0.1 (name is based on the element name as in ) 198 526.13 B
+7 F
+1.22 0.1 (LoadFile) 389.08 526.13 B
+4 F
+0.52 0.1 (Button and ) 437.86 526.13 B
+7 F
+1.22 0.1 (LoadFileButtonHandler) 198 513.73 B
+4 F
+0.52 0.1 (. ) 325.29 513.73 B
+0.52 0.1 (Clearly) 198 493.33 B
+0.52 0.1 (, we could be mor) 229.78 493.33 B
+0.52 0.1 (e systematic about naming conventions, but this ) 312.48 493.33 B
+0.02 0.1 (illustrates the point that you need to adopt a naming system otherwise you can ) 198 480.93 B
+0.45 0.1 (be easily overwhelmed by the plethora of names. In this simple thr) 198 468.53 B
+0.45 0.1 (ee-window ) 504.18 468.53 B
+0.52 0.1 (example we have sixteen names and callbacks to keep track of. The names ) 198 456.13 B
+0.52 0.1 (could also be a little mor) 198 443.73 B
+0.52 0.1 (e terse to save space and typing.) 311.62 443.73 B
+6 F
+-0.88 (Building the Interface ) 126 410.67 P
+4 F
+-0.08 0.1 (T) 198 389.33 B
+-0.08 0.1 (o cr) 203.31 389.33 B
+-0.08 0.1 (eate an interface with Devguide, you simply drag element glyphs fr) 219.79 389.33 B
+-0.08 0.1 (om the ) 524.32 389.33 B
+0.52 0.1 (Devguide window onto the workspace, wher) 198 376.93 B
+0.52 0.1 (e each glyph turns into an ) 404.43 376.93 B
+0.03 0.1 (interface element. Y) 198 364.54 B
+0.03 0.1 (ou can lay elements down one above another or one next to ) 286.75 364.54 B
+0.52 0.1 (another to assemble the interface you want. ) 198 352.14 B
+8 F
+-0.84 0.13 (Cr) 198 319.73 B
+-0.84 0.13 (eating the Base W) 211.74 319.73 B
+-0.84 0.13 (indow) 305.29 319.73 B
+4 F
+0.52 0.1 (The base window is the foundation for all application interfaces. It is usually ) 198 302.73 B
+0.52 0.1 (the main window your application r) 198 290.33 B
+0.52 0.1 (uns in. ) 364.42 290.33 B
+0.1 (1.) 197.5 269.93 S
+0.52 0.1 (Start building your interface now by dragging a base-window glyph onto ) 210.6 269.93 B
+0.29 0.1 (the workspace. When you dr) 210.6 257.53 B
+0.29 0.1 (op the glyph, it disappears and a base window ) 341.81 257.53 B
+0.52 0.1 (appears in its place.) 210.6 245.14 B
+0.1 (2.) 197.5 224.73 S
+0.52 0.1 (Y) 210.6 224.73 B
+0.52 0.1 (ou can drag the new base window to any position on the workspace by ) 216.45 224.73 B
+0.52 0.1 (pr) 210.6 212.34 B
+0.52 0.1 (essing SELECT in the window header and dragging the window to its ) 220.57 212.34 B
+0.52 0.1 (new position.) 210.6 199.93 B
+65.57 248.6 174.07 278.89 C
+65.57 248.6 174.07 278.89 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  293      
+70 37 50.4 26.64 0 94.29 250.84 BEGINBITMAPBWc
+
+
+"b"
+E01F"<#
+EF03DF7"P"
+7FFB#;"
+EC47F8#;"
+EDD7FE#<"
+E1C71F#;#
+E7FFFF9F"a"
+E601"R
+E7
+
+
+
+
+
+8"
+F88#
+FB7F9$
+78F1E39$
+776EDD8$
+F87F6F8%
+FBB871C19$
+B77EDF:#
+6EDD8%
+F87871E38%
+FFFFFFFF
+"<#
+E1FE1F"="
+EDDF#;"
+EC7FF8"<"
+EFFB7a"
+03"<#
+E0001FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "15" 4
+%%Page: "16" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (16) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (Use the r) 198 641.33 B
+0.52 0.1 (esize corners to str) 239.37 641.33 B
+0.52 0.1 (etch the window to a lar) 324.75 641.33 B
+0.52 0.1 (ger size. The size of this ) 436.75 641.33 B
+0.52 0.1 (base window will be the initial size of your application base window) 198 628.93 B
+0.52 0.1 (. In the ) 513.45 628.93 B
+-0.02 0.1 (illustrations, the base window has been deliberately kept small to minimize the ) 198 616.53 B
+0.52 0.1 (amount of space it takes up.) 198 604.13 B
+1 F
+0.47 0.09 (Figur) 198 419.9 B
+0.47 0.09 (e 3-4) 218.77 419.9 B
+0 F
+0.47 0.09 (The Base W) 248.4 419.9 B
+0.47 0.09 (indow fr) 296.37 419.9 B
+0.47 0.09 (om a Base W) 331.92 419.9 B
+0.47 0.09 (indow Glyph) 384.98 419.9 B
+8 F
+-0.84 0.13 (Adding a Contr) 198 389.23 B
+-0.84 0.13 (ol Ar) 280.86 389.23 B
+-0.84 0.13 (ea to a Base W) 307.48 389.23 B
+-0.84 0.13 (indow) 381.38 389.23 B
+4 F
+0.52 0.1 (The base window usually appears with a set of application contr) 198 372.23 B
+0.52 0.1 (ols under the ) 494.19 372.23 B
+0.47 0.1 (header) 198 359.83 B
+0.47 0.1 (. T) 228.3 359.83 B
+0.47 0.1 (o add contr) 239.27 359.83 B
+0.47 0.1 (ols to a base window) 291.71 359.83 B
+0.47 0.1 (, you must \336rst add a contr) 387.47 359.83 B
+0.47 0.1 (ol ar) 512.28 359.83 B
+0.47 0.1 (ea to ) 532.87 359.83 B
+0.52 0.1 (the window) 198 347.43 B
+0.52 0.1 (.) 251.92 347.43 B
+0.1 (1.) 197.5 327.03 S
+0.52 0.1 (Drag the Contr) 210.6 327.03 B
+0.52 0.1 (ols glyph fr) 279.52 327.03 B
+0.52 0.1 (om Devguide\325s base window to the upper left ) 332.3 327.03 B
+0.52 0.1 (r) 210.6 314.63 B
+0.52 0.1 (egion of the base window you just cr) 214.47 314.63 B
+0.52 0.1 (eated and dr) 383.98 314.63 B
+0.52 0.1 (op the glyph ther) 441.95 314.63 B
+0.52 0.1 (e. A ) 521.51 314.63 B
+0.17 0.1 (small contr) 210.6 302.23 B
+0.17 0.1 (ol ar) 260.98 302.23 B
+0.17 0.1 (ea appears wher) 281.27 302.23 B
+0.17 0.1 (e you dr) 355.58 302.23 B
+0.17 0.1 (opped the glyph. If you get a notice ) 393.41 302.23 B
+0.52 0.1 (informing you that you used an inappr) 210.6 289.83 B
+0.52 0.1 (opriate destination for the contr) 389.86 289.83 B
+0.52 0.1 (ol ) 535.48 289.83 B
+0.52 0.1 (ar) 210.6 277.43 B
+0.52 0.1 (ea, try once again, this time avoid dr) 219.57 277.43 B
+0.52 0.1 (opping the glyph near the base ) 387.8 277.43 B
+0.52 0.1 (window\325s bor) 210.6 265.03 B
+0.52 0.1 (ders or header) 273.55 265.03 B
+0.52 0.1 (.) 339.17 265.03 B
+0.1 (2.) 197.5 244.63 S
+0.52 0.1 (Because you have just placed the contr) 210.6 244.63 B
+0.52 0.1 (ol ar) 387.88 244.63 B
+0.52 0.1 (ea on the workspace, it is ) 408.53 244.63 B
+0.52 0.1 (selected and r) 210.6 232.23 B
+0.52 0.1 (eady for you to r) 274.04 232.23 B
+0.52 0.1 (esize. Eight small black squar) 351.51 232.23 B
+0.52 0.1 (es\321its r) 486.38 232.23 B
+0.52 0.1 (esize ) 523.39 232.23 B
+0.52 0.1 (handles \321appear ar) 210.6 219.83 B
+0.52 0.1 (ound the contr) 302.61 219.83 B
+0.52 0.1 (ol ar) 370.05 219.83 B
+0.52 0.1 (ea\325s bor) 390.7 219.83 B
+0.52 0.1 (ders to indicate that it\325s ) 426.07 219.83 B
+0.52 0.1 (selected. If you click outside the contr) 210.6 207.43 B
+0.52 0.1 (ol ar) 383.88 207.43 B
+0.52 0.1 (ea, it deselects, and the r) 404.53 207.43 B
+0.52 0.1 (esize ) 517.37 207.43 B
+0.52 0.1 (handles go away) 210.6 195.03 B
+0.52 0.1 (. T) 286.6 195.03 B
+0.52 0.1 (o select it again, click SELECT inside the contr) 297.62 195.03 B
+0.52 0.1 (ol ar) 509.77 195.03 B
+0.52 0.1 (ea.) 530.42 195.03 B
+54 144 558 648 C
+55.57 433.9 558 578.4 C
+55.57 433.9 558 578.4 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  744      
+376 191 270.72 137.52 0 197.48 437.72 BEGINBITMAPBWc
+j
+O!#J#
+7FC0K03FE7"Z"
+DFKFB
+#J#
+701FKF80E%J#
+77FE000FIFFEE7$
+FDFFF79"
+F3J$
+:3FFF9F8#E#9#
+C073FE0FE7E7$G"9$I"
+07FDDF67E667FFE0%G$8&E"
+3FFDEEF30F070F393C1C39F9FCJ,
+46E667E67F24F38999999998"G$9"8#
+F51FE63E399C93J'
+46F070E07F00F8"G':"
+FB6667C67FF99F038"I#:$
+FFE677199E67J%9$
+40F120F0F9C9C3E7$EW
+FE00037$
+FF00078#
+FFFF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J)
+E0F033F03C300C0C1J*
+DFE673F3F3F99E7CFCCJ"9"8#
+E7F3FCE7FJ"
+E3FJ&8"
+DFF0F073F07C1"J%8"8"
+07DC73F3F3FCFE0"J">"
+77DE7EEJ#9"8#
+DFE679DCCFFJ*
+DFF0F030303C3E7C0C1JS
+E
+#J#
+701FKF80E#J#
+7FDFKFBFE
+7"j"
+C0K03#J#
+0000K0000
+ENDBITMAP
+%%EndBinary
+3 F
+(Resize Corners) 70 536.43 T
+170.71 538.57 195.71 441.43 2 L
+0.35 H
+2 Z
+N
+140 538.57 170.71 538.57 194.29 570 3 L
+N
+54 144 558 648 C
+0 72 612 720 C
+54 301.6 180 337.89 C
+54 301.6 180 337.89 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  303      
+70 37 50.4 26.64 0 94.29 306.96 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"R"
+EFDF
+7%
+E0F83F077%
+DF77DEFB
+7%
+E0F83F077%
+FFFFFFFF
+
+
+7'
+FE7FF8007FBF7(
+E001FB737E001F7(
+FE7FF8007F1FFF7Q
+
+
+
+
+7$8"
+8FFFFEE37":"
+77FB8'
+1D3834F1FBC77(
+7EECDEF36EFBBB8'
+EDDEF7EEFBBF="
+C77";"
+76FB="
+BB7(
+8F1DDF37F1FBC77R
+
+
+"b"
+E01FT
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "16" 5
+%%Page: "17" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (17) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.1 (3.) 197.5 641.33 S
+0.52 0.1 (Using the r) 210.6 641.33 B
+0.52 0.1 (esize handles r) 261.66 641.33 B
+0.52 0.1 (eshape the contr) 329.35 641.33 B
+0.52 0.1 (ol ar) 404.22 641.33 B
+0.52 0.1 (ea so that it str) 424.87 641.33 B
+0.52 0.1 (etches acr) 492.88 641.33 B
+0.52 0.1 (oss ) 537.43 641.33 B
+0.52 0.1 (the top of the base window) 210.6 628.93 B
+0.52 0.1 (. The mouse cursor changes into a pair of cr) 335.11 628.93 B
+0.52 0.1 (oss-) 536.23 628.93 B
+0.1 0.1 (hairs when you ar) 210.6 616.53 B
+0.1 0.1 (e over a r) 292.58 616.53 B
+0.1 0.1 (esize handle. Y) 334.78 616.53 B
+0.1 0.1 (ou can drag a r) 401.89 616.53 B
+0.1 0.1 (esize handle out of ) 469.91 616.53 B
+0.27 0.1 (the base window and the contr) 210.6 604.13 B
+0.27 0.1 (ol ar) 351.25 604.13 B
+0.27 0.1 (ea will snap back to the edge of the base ) 371.65 604.13 B
+0.1 (window) 210.6 591.73 S
+0.1 (.) 247.24 591.73 S
+1 F
+0.47 0.09 (Figur) 198 407.35 B
+0.47 0.09 (e 3-5) 218.77 407.35 B
+0 F
+0.47 0.09 (Base W) 248.4 407.35 B
+0.47 0.09 (indow with Contr) 278.25 407.35 B
+0.47 0.09 (ol Ar) 351.95 407.35 B
+0.47 0.09 (ea.) 373.02 407.35 B
+8 F
+-0.84 0.13 (Adding Contr) 198 376.69 B
+-0.84 0.13 (ols) 272.43 376.69 B
+4 F
+0.03 0.1 (Now that you have a base window with a contr) 198 359.69 B
+0.03 0.1 (ol ar) 412.47 359.69 B
+0.03 0.1 (ea, you can add a button to ) 432.63 359.69 B
+0.52 0.1 (the contr) 198 347.29 B
+0.52 0.1 (ol ar) 238.52 347.29 B
+0.52 0.1 (ea. This is done in one step.) 259.17 347.29 B
+0.1 (1.) 197.5 326.89 S
+0.51 0.1 (Drag the Button glyph fr) 210.6 326.89 B
+0.51 0.1 (om Devguide\325s base window to the left side of the ) 324 326.89 B
+0.52 0.1 (contr) 210.6 314.49 B
+0.52 0.1 (ol ar) 233.84 314.49 B
+0.52 0.1 (ea and dr) 254.49 314.49 B
+0.52 0.1 (op it ther) 298 314.49 B
+0.52 0.1 (e. ) 340.3 314.49 B
+54 144 558 648 C
+54.95 421.35 558 566 C
+54.95 421.35 558 566 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  709      
+375 191 270 137.52 0 199.11 424.95 BEGINBITMAPBWc
+j"
+O 01#J#
+7FC0K07FD7"Z"
+DFKF7
+#J#
+701FKF01D%J#
+77FE000FIFFDD7$
+FDFFF79"
+F3J%
+9FE7FFF3F8#E#9#
+C073FC1FCFCE$G"9$I"
+07FDDFCFCCCFFFC1%F,E"
+3FFDEEF3CE1E0E1FCCCE72783873F3F9J,
+4DCCCFCCFE49E71333333338"G$9"8#
+F53FCC7C733927J'
+4DE0E1C0FE01E8"G'9#
+FBCCCF8CFFF33E38078"I#9%
+FFCCEF32333CCFJ%9$
+41E241E1F39387C7$EW
+FE00037$
+FF00078#
+FFFF
+
+
+
+
+"j"
+38M397"Z"Z"
+1F5035F0
+
+
+
+#J"J#
+3BFF5FF5FFB9
+
+
+
+
+
+
+
+
+
+#J#
+381FKF039
+
+
+
+
+#J#
+3BFFKFFB9
+
+
+
+
+
+
+
+
+
+#J"J#
+381F5035F039
+
+
+
+7j
+M"Z"
+3FMF9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"J"
+07MC1"J"
+77MDD
+
+
+
+#J#
+701FKF01D#J#
+7FDFKF7FD
+7"j"
+C0K07#J#
+0000K0001
+ENDBITMAP
+%%EndBinary
+3 F
+(Resize Handles) 65 527.34 T
+152.86 529.29 202.14 541.63 2 L
+0.35 H
+2 Z
+N
+135 529.48 201.43 529.48 2 L
+N
+150 529.29 201.71 517.77 2 L
+N
+54 144 558 648 C
+0 72 612 720 C
+67.61 315.15 176.11 344.31 C
+67.61 315.15 176.11 344.31 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  233      
+64 33 46.08 23.76 0 94.93 317.64 BEGINBITMAPBWc
+
+
+
+
+7`"
+03"P"
+FCFC";#
+FBFF7F"<"
+F7BF
+"<"
+EFCF
+
+7"
+E37%
+EDFFDFBF8&
+DD870F1D3F7'
+E1DDDFBEECDF7"9"
+EEED
+8$
+D9DBB67&
+E1E5E7CF1D7Q
+
+
+"<"
+F79F
+"<"
+FB3F";#
+FCFC7F"a"
+FFFF<"
+037Q
+
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "17" 6
+%%Page: "18" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (18) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 490.32 B
+0.47 0.09 (e 3-6) 218.77 490.32 B
+0 F
+0.47 0.09 (Base W) 248.4 490.32 B
+0.47 0.09 (indow with Contr) 278.25 490.32 B
+0.47 0.09 (ol Ar) 351.95 490.32 B
+0.47 0.09 (ea and Button) 373.02 490.32 B
+8 F
+-0.84 0.13 (Adding A T) 198 459.65 B
+-0.84 0.13 (ext Pane) 259.65 459.65 B
+4 F
+0.52 0.1 (Finally) 198 442.65 B
+0.52 0.1 (, add the text pane to the application window) 228.24 442.65 B
+0.52 0.1 (.) 436.85 442.65 B
+0.1 (1.) 197.5 422.25 S
+0.34 0.1 (Drag the T) 210.6 422.25 B
+0.34 0.1 (ext pane glyph and dr) 258.58 422.25 B
+0.34 0.1 (op it in the base window below the contr) 359.47 422.25 B
+0.34 0.1 (ol ) 546.5 422.25 B
+0.1 (ar) 210.6 409.85 S
+0.1 (ea.) 219.57 409.85 S
+0.1 (2.) 197.5 389.45 S
+0.52 0.1 (Use the r) 210.6 389.45 B
+0.52 0.1 (esize handles to r) 251.97 389.45 B
+0.52 0.1 (esize the text pane so that it \336ts underneath the ) 331.69 389.45 B
+0.52 0.1 (contr) 210.6 377.05 B
+0.52 0.1 (ol ar) 233.84 377.05 B
+0.52 0.1 (ea. If you click outside the text pane, it deselects, and the r) 254.49 377.05 B
+0.52 0.1 (esize ) 523.25 377.05 B
+0.52 0.1 (handles go away) 210.6 364.65 B
+0.52 0.1 (. T) 286.6 364.65 B
+0.52 0.1 (o select it again, click SELECT inside the contr) 297.62 364.65 B
+0.52 0.1 (ol ar) 509.77 364.65 B
+0.52 0.1 (ea. ) 530.42 364.65 B
+0.52 0.1 (The mouse cursor changes into a pair of cr) 210.6 352.25 B
+0.52 0.1 (oss-hairs when you ar) 406 352.25 B
+0.52 0.1 (e over a ) 506.89 352.25 B
+0.52 0.1 (r) 210.6 339.85 B
+0.52 0.1 (esize handle.) 214.47 339.85 B
+1 F
+0.47 0.09 (Figur) 198 167.52 B
+0.47 0.09 (e 3-7) 218.77 167.52 B
+0 F
+0.47 0.09 (Base W) 248.4 167.52 B
+0.47 0.09 (indow with Contr) 278.25 167.52 B
+0.47 0.09 (ol Ar) 351.95 167.52 B
+0.47 0.09 (ea, Button and T) 373.02 167.52 B
+0.47 0.09 (ext Pane) 440.45 167.52 B
+198 504.32 556.17 648 C
+198 504.32 556.17 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  845      
+376 191 270.72 137.52 0 202.82 508.61 BEGINBITMAPBWc
+j
+O!#J#
+7FC0K03FE7"Z"
+DFKFB
+#J#
+701FKF80E%J#
+77FE000FIFFEE7$
+FDFFF79"
+F3J$
+:3FFF9F8#E#9#
+C073FE0FE7E7$G"9$I"
+07FDDF67E667FFE0%G$8&E"
+3FFDEEF30F070F393C1C39F9FCJ,
+46E667E67F24F38999999998"G$9"8#
+F51FE63E399C93J'
+46F070E07F00F8"G':"
+FB6667C67FF99F038"I#:$
+FFE677199E67J%9$
+40F120F0F9C9C3E7$EW
+FE00037$
+FF00078#
+FFFF
+
+
+
+
+"j"
+38M1C"Z"
+3BMDC
+
+
+
+
+
+
+
+9b"
+0F8"R"
+FEF79"`"
+FE0F9"P"
+F9F39";"
+F7FD9";"
+EFFE9)
+DFE1FFEF7FFFFF77:";"
+EE379)
+BFEEEEC21CF4FFB7<&
+EF7B737F97:"8#
+E177B7:"
+EE
+;%
+ECEF7B77:&
+E1F2F39CF79"Q"
+DF17@"
+379";"
+EFFE9";#
+F7FC779";#
+F9F0F79"`"
+FC019";"
+FE079R
+8"b"
+FF0F9S
+
+
+
+
+"j"
+38M1C"Z"
+3FMFC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"J"
+07ME0"J"
+77MEE
+
+
+
+#J#
+701FKF80E#J#
+7FDFKFBFE
+7"j"
+C0K03#J#
+0000K0000
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+67.61 410.51 176.11 439.67 C
+67.61 410.51 176.11 439.67 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  354      
+70 38 50.4 27.36 0 94.93 412.26 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"R"
+EFDF="
+F87#
+ED7F7#:"
+FFFFFD7";"
+EAFF7";"
+FFFD
+7%
+F84309337%
+FFFFFFFF7%8"
+E4582024F87%8"
+FFFFFFFFFA7%8"
+E1190423F87%8"
+FFFFFFFFFA7";"
+E4F87";"
+FFFD
+
+
+8%
+FC1FFFFB8#9"
+FF7FFF9&
+7C7760FFFD9&
+7BB77BFFFF:%
+BAFBFFFD9#8"
+783DFF9#8"
+7BFAFD:%
+B77BFFFF9&
+7C777CFFF89$
+FFFFFF="
+FF
+"b"
+E01FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+198 181.52 558 324.12 C
+198 181.52 558 324.12 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1124     
+376 191 270.72 137.52 0 199.67 185.1 BEGINBITMAPBWc
+j
+O!#J#
+7FC0K03FE7"Z"
+DFKFB
+#J#
+701FKF80E%J#
+77FE000FIFFEE7$
+FDFFF79"
+F3J$
+:3FFF9F8#E#9#
+C073FE0FE7E7$G"9$I"
+07FDDF67E667FFE0%G$8&E"
+3FFDEEF30F070F393C1C39F9FCJ,
+46E667E67F24F38999999998"G$9"8#
+F51FE63E399C93J'
+46F070E07F00F8"G':"
+FB6667C67FF99F038"I#:$
+FFE677199E67J%9$
+40F120F0F9C9C3E7$EW
+FE00037$
+FF00078#
+FFFF
+
+
+
+
+"j"
+38M1C"Z"
+3BMDC
+
+
+
+
+
+9"`
+E09"P"
+9F3F9";"
+7FDF8#;"
+FEFFEF8&8"
+FDFE1FFEF7F7:":"
+EFF38)
+FBFEEEEC21CF4FFB;&
+EEF7B737F9:"8#
+1E7B77:"
+EE
+;$
+CEF7B7:%
+1F2F39CF8"Q"
+FDF1?"
+F38"<"
+FEE38#;"
+FF7FC79";"
+9F0F9"`"
+C01F9";"
+E07F9R
+
+
+
+
+
+
+"j"
+38M1C"Z"
+3FMFC
+
+
+
+
+"j$
+38KC0007C7"Z#Z$
+0F3FE07480DFFF
+
+
+J#
+LC000J$
+LFFFFFC#I#J"
+3BFFFFFF4FEJ#
+LE000J$
+LDFFE7C
+7"
+FB7"
+F57"J"
+EAK7E7#J#
+D57FIDEBE7#J#
+EAFFIDD5E7"J#
+F5JDAAE7"J#
+FBJDD5E7"J#
+FFJDFFE
+
+
+
+J#
+LC000J#
+LDFFE
+
+
+
+
+
+
+
+
+
+
+
+
+J#
+LC000J#
+LDFFE
+
+
+
+J#
+LD806
+J#
+LDC0E#J$
+380FI80DE1EJ#
+LDF3EJ"
+MFE
+
+
+#J$
+3BFFIFEC000J$
+LE000FCJ#
+LFFFFJ"
+M1F
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+MFF#I#J"
+380FFE07480J$
+LC0007CJ#
+LDFFF
+
+
+7j#
+KC000"Z"
+3FMFC
+
+
+
+
+
+
+
+
+
+
+"J"
+07ME0"J"
+77MEE
+
+
+
+#J#
+701FKF80E#J#
+7FDFKFBFE
+7"j"
+C0K03#J#
+0000K0000
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "18" 7
+%%Page: "19" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (19) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+8 F
+-0.84 0.13 (Cr) 198 639.33 B
+-0.84 0.13 (eating the Pop-Up W) 211.74 639.33 B
+-0.84 0.13 (indows) 322.85 639.33 B
+4 F
+-0.03 0.1 (Our application r) 198 622.33 B
+-0.03 0.1 (equir) 275.93 622.33 B
+-0.03 0.1 (es two pop-up windows, one for loading the \336le and one ) 299.52 622.33 B
+0.15 0.1 (for saving the \336le under another name. As both of these ar) 198 609.93 B
+0.15 0.1 (e basically the same, ) 462.63 609.93 B
+0.52 0.1 (we will only cover how to build the load pop-up window) 198 597.53 B
+0.52 0.1 (.) 461.79 597.53 B
+0.1 (1.) 197.5 577.13 S
+0.52 0.1 (Drag a Pop-up glyph onto the workspace. When you dr) 210.6 577.13 B
+0.52 0.1 (op the glyph, it ) 466.25 577.13 B
+0.52 0.1 (disappears and a pop-up window appears in its place.) 210.6 564.73 B
+0.1 (2.) 197.5 544.33 S
+0.32 0.1 (Y) 210.6 544.33 B
+0.32 0.1 (ou can drag the new pop-up window to any position on the workspace by ) 216.45 544.33 B
+0.52 0.1 (pr) 210.6 531.93 B
+0.52 0.1 (essing SELECT in the window header and dragging the window to its ) 220.57 531.93 B
+0.52 0.1 (new position.) 210.6 519.53 B
+0.52 0.1 (Y) 198 499.13 B
+0.52 0.1 (ou can use the r) 203.85 499.13 B
+0.52 0.1 (esize corners to str) 276.94 499.13 B
+0.52 0.1 (etch the window to the appr) 362.32 499.13 B
+0.52 0.1 (opriate size, ) 492.59 499.13 B
+0.52 0.1 (but we will do it much mor) 198 486.73 B
+0.52 0.1 (e accurately in a few pages with the pr) 324.59 486.73 B
+0.52 0.1 (operty-) 502.49 486.73 B
+0.52 0.1 (window contr) 198 474.33 B
+0.52 0.1 (ols. ) 261.92 474.33 B
+1 F
+0.47 0.09 (Figur) 198 338.72 B
+0.47 0.09 (e 3-8) 218.77 338.72 B
+0 F
+0.47 0.09 (The Pop-up W) 248.4 338.72 B
+0.47 0.09 (indow fr) 308 338.72 B
+0.47 0.09 (om a Pop-up W) 343.55 338.72 B
+0.47 0.09 (indow Glyph) 408.24 338.72 B
+8 F
+-0.84 0.13 (Adding a Contr) 198 308.05 B
+-0.84 0.13 (ol Ar) 280.86 308.05 B
+-0.84 0.13 (ea to a Pop-up W) 307.48 308.05 B
+-0.84 0.13 (indow) 396.07 308.05 B
+4 F
+0.52 0.1 (The pop-up windows will have contr) 198 291.05 B
+0.52 0.1 (ols and nothing else, so we need to have ) 368.3 291.05 B
+0.52 0.1 (a contr) 198 278.65 B
+0.52 0.1 (ol ar) 229.45 278.65 B
+0.52 0.1 (ea covering the entir) 250.1 278.65 B
+0.52 0.1 (e internal ar) 344 278.65 B
+0.52 0.1 (ea of the pop-up window) 399.33 278.65 B
+0.52 0.1 (. ) 515.01 278.65 B
+0.1 (1.) 197.5 258.25 S
+0.32 0.1 (Drag the Contr) 210.6 258.25 B
+0.32 0.1 (ols glyph fr) 279.12 258.25 B
+0.32 0.1 (om Devguide\325s base window to the center r) 331.5 258.25 B
+0.32 0.1 (egion ) 530.06 258.25 B
+0.52 0.1 (of the pop-up window you just cr) 210.6 245.85 B
+0.52 0.1 (eated and dr) 365.45 245.85 B
+0.52 0.1 (op the glyph ther) 423.42 245.85 B
+0.52 0.1 (e. A small ) 502.98 245.85 B
+0.52 0.1 (contr) 210.6 233.45 B
+0.52 0.1 (ol ar) 233.84 233.45 B
+0.52 0.1 (ea appears wher) 254.49 233.45 B
+0.52 0.1 (e you dr) 329.49 233.45 B
+0.52 0.1 (opped the glyph. If you get a notice ) 368.03 233.45 B
+0.52 0.1 (informing you that you used an inappr) 210.6 221.05 B
+0.52 0.1 (opriate destination for the contr) 389.86 221.05 B
+0.52 0.1 (ol ) 535.48 221.05 B
+0.5 0.1 (ar) 210.6 208.65 B
+0.5 0.1 (ea, try once again, this time avoid dr) 219.57 208.65 B
+0.5 0.1 (opping the glyph near the window\325s ) 387.66 208.65 B
+0.52 0.1 (bor) 210.6 196.25 B
+0.52 0.1 (ders or header) 225.65 196.25 B
+0.52 0.1 (.) 291.28 196.25 B
+0.1 (2.) 197.5 175.85 S
+0.39 0.1 (Using the r) 210.6 175.85 B
+0.39 0.1 (esize handles r) 261.39 175.85 B
+0.39 0.1 (eshape the contr) 328.82 175.85 B
+0.39 0.1 (ol ar) 403.42 175.85 B
+0.39 0.1 (ea so that it covers the entir) 423.93 175.85 B
+0.39 0.1 (e ) 550.13 175.85 B
+0.52 0.1 (internal r) 210.6 163.45 B
+0.52 0.1 (egion of the pop-up window) 252.83 163.45 B
+0.52 0.1 (.) 383.55 163.45 B
+65.57 555.8 174.07 586.08 C
+65.57 555.8 174.07 586.08 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  320      
+70 38 50.4 27.36 0 94.29 557.32 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"<#
+EF03DF7"P"
+7FFB$:"
+EC7D7FF8#;"
+EDF0FE#<"
+E1DD1F$:#
+E7FFFFFF9F"a"
+E601"R
+E7
+
+
+
+
+
+7#
+FE1F8"
+EF8&
+EE3A7FEED38&
+EDD9BFEECD8&
+1DDBB06EDD8%
+FDDBBFEE
+9%
+D9BFECCD8&
+FE3A7FF2D37'
+FFFFFBFFFFDF
+"<#
+E1FE1F"8"8$
+EDFFFFFEDF#;"
+EC7FF8"<"
+EFFB7a"
+03"<#
+E0001FT
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+198 352.72 556.86 458.6 C
+198 352.72 556.86 458.6 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  744      
+490 139 352.8 100.08 0 199.96 356.33 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J$
+2FBF>E7FFF37$J":#
+FEDFDF707FCFC"J";#J#
+07:33CCFF9F83F#J%8'J"
+3FFD:0F2799C9E72783873F3F4FF8#J-
+CFBF732671399C4FE49E7133333338#J&9"8#
+E73F736673399CC33927F7#J";"
+FCE080E017$J":#:"
+FEF87F73EFF33808"J";%
+3C;912333CCFF7$J&:#
+FC00FF73F0F07C9C193878"J&R
+C38FFFF3FFFCF7#
+FFFFJ$
+=FFFFFF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J*
+O%C3C0CFC0F0C030307FJ*
+O%99CFCFCFE679F3F33FJ"9#8"
+O%9FCFF99FJ"
+O%8FJ%8#
+O%C3C1CFC1F073"J%8%
+07O$F1CFCFCFF3F39FF8"J">#
+77O$F9FBBFJ"9#8"
+O%99E7793FJ*
+O%C3C0C0C0F0F9F0307FJT
+O%
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 232.82 180 269.11 C
+54 232.82 180 269.11 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  303      
+70 37 50.4 26.64 0 94.29 238.19 BEGINBITMAPBWc
+
+
+
+"b"
+E01F"R"
+EFDF
+7%
+E0F83F077%
+DF77DEFB
+7%
+E0F83F077%
+FFFFFFFF
+
+
+7'
+FE7FF8007FBF7(
+E001FB737E001F7(
+FE7FF8007F1FFF7Q
+
+
+
+
+7$8"
+8FFFFEE37":"
+77FB8'
+1D3834F1FBC77(
+7EECDEF36EFBBB8'
+EDDEF7EEFBBF="
+C77";"
+76FB="
+BB7(
+8F1DDF37F1FBC77R
+
+
+"b"
+E01FT
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "19" 8
+%%Page: "20" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (20) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 527.95 B
+0.47 0.09 (e 3-9) 218.77 527.95 B
+0 F
+0.47 0.09 (Pop-up W) 248.4 527.95 B
+0.47 0.09 (indow with Contr) 289.88 527.95 B
+0.47 0.09 (ol Ar) 363.58 527.95 B
+0.47 0.09 (ea.) 384.65 527.95 B
+8 F
+-0.84 0.13 (Adding a T) 198 497.28 B
+-0.84 0.13 (ext Field to the Pop-up W) 256.05 497.28 B
+-0.84 0.13 (indow) 389.34 497.28 B
+4 F
+0.52 0.1 (Our pr) 198 480.28 B
+0.52 0.1 (operty window will have two text \336elds, one for the dir) 229.22 480.28 B
+0.52 0.1 (ectory and one ) 484.72 480.28 B
+0.52 0.1 (for the \336le name.) 198 467.88 B
+0.1 (1.) 197.5 447.48 S
+0.52 0.1 (Drag a T) 210.6 447.48 B
+0.52 0.1 (ext \336eld glyph fr) 249.88 447.48 B
+0.52 0.1 (om Devguide\325s base window to the upper r) 326.63 447.48 B
+0.52 0.1 (egion ) 526.24 447.48 B
+0.52 0.1 (of the pop-up window you just cr) 210.6 435.08 B
+0.52 0.1 (eated and dr) 365.45 435.08 B
+0.52 0.1 (op the glyph ther) 423.42 435.08 B
+0.52 0.1 (e. A small ) 502.98 435.08 B
+0.52 0.1 (text \336eld will appear wher) 210.6 422.68 B
+0.52 0.1 (e you dr) 332.09 422.68 B
+0.52 0.1 (opped the glyph.) 370.63 422.68 B
+0.1 (2.) 197.5 402.28 S
+0.52 0.1 (Drag a second T) 210.6 402.28 B
+0.52 0.1 (ext \336eld glyph and dr) 284.44 402.28 B
+0.52 0.1 (op it beneath the \336rst text \336eld.) 384.3 402.28 B
+1 F
+0.47 0.09 (Figur) 198 264.84 B
+0.47 0.09 (e 3-10) 218.77 264.84 B
+0 F
+0.47 0.09 (Pop-up W) 248.4 264.84 B
+0.47 0.09 (indow with T) 289.88 264.84 B
+0.47 0.09 (wo T) 345.1 264.84 B
+0.47 0.09 (ext Fields.) 365.26 264.84 B
+8 F
+-0.84 0.13 (Adding a Button to the Pop-up W) 198 234.17 B
+-0.84 0.13 (indow) 374.86 234.17 B
+4 F
+0.14 0.1 (Both pop-up windows need just one button, a Load button for one pop-up and ) 198 217.17 B
+0.52 0.1 (a Save As button for the other) 198 204.77 B
+0.52 0.1 (. This is done in one step.) 335.26 204.77 B
+0.1 (1.) 197.5 184.37 S
+0.52 0.1 (Drag a Button glyph fr) 210.6 184.37 B
+0.52 0.1 (om Devguide\325s base window to the lower r) 314.97 184.37 B
+0.52 0.1 (egion of ) 513.24 184.37 B
+0.52 0.1 (the pop-up window and dr) 210.6 171.97 B
+0.52 0.1 (op the glyph under the second text-\336eld.) 335.52 171.97 B
+198 541.95 556.8 648 C
+198 541.95 556.8 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  699      
+490 139 352.8 100.08 0 199.87 545.64 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J$
+2FBF>E7FFF37$J":#
+FEDFDF707FCFC"J";#J#
+07:33CCFF9F83F#J%8'J"
+3FFD:0F2799C9E72783873F3F4FF8#J-
+CFBF732671399C4FE49E7133333338#J&9"8#
+E73F736673399CC33927F7#J";"
+FCE080E017$J":#:"
+FEF87F73EFF33808"J";%
+3C;912333CCFF7$J&:#
+FC00FF73F0F07C9C193878"J&R
+C38FFFF3FFFCF7#
+FFFFJ$
+=FFFFFF
+
+
+
+
+"j"
+38O-077"Z"Z"
+1F<C0<FE
+
+
+
+#J"J#
+3BFF<FF<FFF7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A"
+EFA"
+FF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#J#
+381FO+FE07
+
+
+
+
+#J#
+3BFFO+FFF7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#J"J#
+381F<C0<FE07
+
+
+
+7j
+O-"Z
+3FO.
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 422.05 180 458.34 C
+54 422.05 180 458.34 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  167      
+83 21 59.76 15.12 0 94.29 438.94 BEGINBITMAPBWc
+
+
+
+%
+C03FFFEF%
+F9FFFFCF7%
+F0E6027F7$
+E6664E8$
+72CFFF7#
+E0797#
+E7F48$
+664E7F7$
+F0E662P
+
+
+;&
+C000000000;P
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+198 278.84 555.33 386.55 C
+198 278.84 555.33 386.55 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  967      
+490 139 352.8 100.08 0 200.27 283.72 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J$
+2FBF>E7FFF37$J":#
+FEDFDF707FCFC"J";#J#
+07:33CCFF9F83F#J%8'J"
+3FFD:0F2799C9E72783873F3F4FF8#J-
+CFBF732671399C4FE49E7133333338#J&9"8#
+E73F736673399CC33927F7#J";"
+FCE080E017$J":#:"
+FEF87F73EFF33808"J";%
+3C;912333CCFF7$J&:#
+FC00FF73F0F07C9C193878"J&R
+C38FFFF3FFFCF7#
+FFFFJ$
+=FFFFFF
+
+
+
+
+"j"
+38O-07"Z"
+3BO-F7
+
+
+
+
+
+
+
+
+
+
+=%
+E7FF3F3F8'
+C03FFFEFF0278'
+F9FFFFCFF3FF9)
+F0E603F3E70F38339(
+E6664FF3E66733:%8"
+72CFF0663F9'
+E079CFF3E6079#9"
+E7F47F:#8%
+664F773233FE9+
+F0E663F3E70F3933FD7F8T#
+FABFA#
+F55FA#
+FABFA"b"
+FC01A"S
+FEA"
+FF
+
+
+
+
+
+
+
+=%
+E7FF3F3F8'
+C03FFFEFF0278'
+F9FFFFCFF3FF9)
+F0E603F3E70F38339(
+E6664FF3E66733:%8"
+72CFF0663F9'
+E079CFF3E6079#9"
+E7F47F:#8$
+664F7732339(
+F0E663F3E70F398T
+
+
+A"b"
+FE01AT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"j"
+38O-07"Z
+3FO.
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 158.94 180 195.23 C
+54 158.94 180 195.23 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  233      
+64 33 46.08 23.76 0 94.29 167.18 BEGINBITMAPBWc
+
+
+
+
+7`"
+03"P"
+FCFC";#
+FBFF7F"<"
+F7BF
+"<"
+EFCF
+
+7"
+E37%
+EDFFDFBF8&
+DD870F1D3F7'
+E1DDDFBEECDF7"9"
+EEED
+8$
+D9DBB67&
+E1E5E7CF1D7Q
+
+
+"<"
+F79F
+"<"
+FB3F";#
+FCFC7F"a"
+FFFF<"
+037Q
+
+
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "20" 9
+3 14 /Times-Bold FMDEFINEFONT
+9 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "21" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (21) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+0.47 0.09 (Figur) 198 526.51 B
+0.47 0.09 (e 3-1) 218.77 526.51 B
+0.47 0.09 (1) 236.92 526.51 B
+0 F
+0.47 0.09 (Pop-up W) 248.4 526.51 B
+0.47 0.09 (indow with T) 289.88 526.51 B
+0.47 0.09 (wo T) 345.1 526.51 B
+0.47 0.09 (ext Fields and a Button.) 365.26 526.51 B
+6 F
+-0.88 (Customizing the Interface ) 126 495.17 P
+4 F
+0.24 0.1 (Once the elements of a user interface ar) 198 473.84 B
+0.24 0.1 (e in place, you can edit each individual ) 377.14 473.84 B
+0.52 0.1 (element to your speci\336cations. T) 198 461.44 B
+0.52 0.1 (o edit an element, you change settings and ) 345.39 461.44 B
+0.52 0.1 (values in the pr) 198 449.04 B
+0.52 0.1 (operty window that lists the pr) 269.62 449.04 B
+0.52 0.1 (operties of that element.) 412.3 449.04 B
+0.52 0.1 (Y) 198 428.64 B
+0.52 0.1 (ou can open a pr) 203.85 428.64 B
+0.52 0.1 (operty window several ways. ) 281.09 428.64 B
+3 F
+(\245) 198 410.24 T
+4 F
+0.52 0.1 (Y) 210.6 410.24 B
+0.52 0.1 (ou can click SELECT on a UI element to select it, pr) 216.45 410.24 B
+0.52 0.1 (ess MENU to display ) 452.77 410.24 B
+0.29 0.1 (its popup menu, and use the menu to open its pr) 210.6 397.84 B
+0.29 0.1 (operty window) 433.28 397.84 B
+0.29 0.1 (. See Figur) 502.42 397.84 B
+0.29 0.1 (e ) 550.23 397.84 B
+0.52 0.1 (5-9 on page 70.) 210.6 385.44 B
+3 F
+(\245) 198 367.04 T
+4 F
+0.52 0.1 (Y) 210.6 367.04 B
+0.52 0.1 (ou can click SELECT on a UI element to select it, and pr) 216.45 367.04 B
+0.52 0.1 (ess the Pr) 473.11 367.04 B
+0.52 0.1 (operties ) 517.07 367.04 B
+0.52 0.1 (menu button in the Devguide main window) 210.6 354.64 B
+0.52 0.1 (.) 412.14 354.64 B
+3 F
+(\245) 198 336.24 T
+4 F
+0.52 0.1 (Y) 210.6 336.24 B
+0.52 0.1 (ou can pop up the Pr) 216.45 336.24 B
+0.52 0.1 (operties menu fr) 313.44 336.24 B
+0.52 0.1 (om the Devguide window and ) 389.02 336.24 B
+0.52 0.1 (choose the appr) 210.6 323.84 B
+0.52 0.1 (opriate pr) 282.97 323.84 B
+0.52 0.1 (operty window fr) 328.12 323.84 B
+0.52 0.1 (om the menu. See Figur) 408.83 323.84 B
+0.52 0.1 (e 5-6 on ) 517.84 323.84 B
+0.52 0.1 (page 66.) 210.6 311.44 B
+3 F
+(\245) 198 293.04 T
+4 F
+0.52 0.1 (Finally) 210.6 293.04 B
+0.52 0.1 (, you can double click SELECT on a UI element to open its pr) 240.84 293.04 B
+0.52 0.1 (operty ) 522.26 293.04 B
+0.1 (window) 210.6 280.64 S
+0.1 (.) 247.24 280.64 S
+54 254.56 558 270.91 C
+558 267.88 198 267.88 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+9 F
+(Note \320 ) 198 257.73 T
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.28 0.1 (For windows, you can only click in the application ar) 231.84 257.9 B
+0.28 0.1 (ea of the window) 474.12 257.9 B
+0.28 0.1 (. ) 552.52 257.9 B
+0.52 0.1 (If this is cover) 198 245.5 B
+0.52 0.1 (ed by a contr) 262.81 245.5 B
+0.52 0.1 (ol ar) 322.88 245.5 B
+0.52 0.1 (ea, text, or canvas pane, you ar) 343.53 245.5 B
+0.52 0.1 (e fr) 485.53 245.5 B
+0.52 0.1 (equently ) 500.83 245.5 B
+54 221.77 558 229.76 C
+558 226.74 198 226.74 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (unable to access the window pr) 198 233.1 B
+0.52 0.1 (operty window by double clicking.) 342.6 233.1 B
+0.52 0.1 (T) 198 204.7 B
+0.52 0.1 (ry all of these methods now so that you ar) 203.33 204.7 B
+0.52 0.1 (e familiar with each of them.) 397.61 204.7 B
+198 540.51 555.33 648 C
+198 540.51 555.33 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1196     
+490 139 352.8 100.08 0 200.27 544.93 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J$
+2FBF>E7FFF37$J":#
+FEDFDF707FCFC"J";#J#
+07:33CCFF9F83F#J%8'J"
+3FFD:0F2799C9E72783873F3F4FF8#J-
+CFBF732671399C4FE49E7133333338#J&9"8#
+E73F736673399CC33927F7#J";"
+FCE080E017$J":#:"
+FEF87F73EFF33808"J";%
+3C;912333CCFF7$J&:#
+FC00FF73F0F07C9C193878"J&R
+C38FFFF3FFFCF7#
+FFFFJ$
+=FFFFFF
+
+
+
+
+"j"
+38O-07"Z"
+3BO-F7
+
+
+
+
+
+
+
+
+
+
+=%
+E7FF3F3F8'
+C03FFFEFF0278'
+F9FFFFCFF3FF9)
+F0E603F3E70F38339(
+E6664FF3E66733:%8"
+72CFF0663F9'
+E079CFF3E6079#9"
+E7F47F:#8%
+664F773233FE9+
+F0E663F3E70F3933FD7F8T#
+FABFA#
+F55FA#
+FABFA"b"
+FC01A"S
+FEA"
+FF
+
+
+
+
+
+
+
+=%
+E7FF3F3F8'
+C03FFFEFF0278'
+F9FFFFCFF3FF9)
+F0E603F3E70F38339(
+E6664FF3E66733:%8"
+72CFF0663F9'
+E079CFF3E6079#9"
+E7F47F:#8$
+664F7732339(
+F0E663F3E70F398T
+
+
+A"b"
+FE01AT
+
+
+
+
+
+
+
+
+
+
+Jb"
+=0FJ"R"
+<FEF7J"`"
+=FE0FJ"P"
+=F9F3J";"
+=F7FDJ";"
+=EFFEJ)
+=DFE1FFEF7FFFFF77J";"
+>EE37J)
+=BFEEEEC21CF4FFB7J&
+@EF7B737F97J"8#
+>E177B7J"
+>EE
+J%
+?ECEF7B77J&
+>E1F2F39CF7J"Q"
+=DF17J"
+D37J";"
+=EFFEJ";#
+=F7FC77J";#
+=F9F0F7J"`"
+=FC01J";"
+=FE07JR
+=J"b"
+<FF0FJS
+=
+
+"j"
+38O-07"Z
+3FO.
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+65.57 355.7 174.07 385.99 C
+65.57 355.7 174.07 385.99 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  331      
+98 24 70.56 17.28 0 84.29 360.64 BEGINBITMAPBWc
+
+
+7e"
+7F"U"
+FC9F"@"
+FBEF"<"9"
+F7DFF7$9":"
+EFF87FFBFB7#:"9"
+FBBFFFF9-
+DFFBB4E7A78E90DC78FF01FD8+
+B3DB9B767BDBB7FF7DFC8&9"
+B7BDBB76FBBB7#8%
+F87706FBD8397#8'
+FBF77EFBDBFEFFD79$8"
+DBBB76BE9)
+E7878EFCDC71FFEF&Q"
+EFFFFFFFBFF8A"
+F9"9"<"
+F7FFF1"@"
+FBE3"@"
+FC87"e"
+FE0F"@"
+FF3F7V
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "21" 10
+%%Page: "22" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (22) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.84 0.13 (Customizing the Base W) 198 639.33 B
+-0.84 0.13 (indow) 327.55 639.33 B
+4 F
+0.52 0.1 (Start by opening the Base W) 198 622.33 B
+0.52 0.1 (indows pr) 327.37 622.33 B
+0.52 0.1 (operty window) 373.92 622.33 B
+0.52 0.1 (. Since the application ) 443.3 622.33 B
+0.52 0.1 (ar) 198 609.93 B
+0.52 0.1 (ea of the Base window is cover) 206.96 609.93 B
+0.52 0.1 (ed, it is not possible to double click on the ) 348.84 609.93 B
+0.52 0.1 (base window to open its pr) 198 597.53 B
+0.52 0.1 (operty window) 323.16 597.53 B
+0.52 0.1 (. Y) 392.53 597.53 B
+0.52 0.1 (ou will have to use one of the ) 404.1 597.53 B
+0.52 0.1 (other methods.) 198 585.13 B
+1 F
+0.47 0.09 (Figur) 198 163.4 B
+0.47 0.09 (e 3-12) 218.77 163.4 B
+0 F
+0.47 0.09 (The Base W) 248.4 163.4 B
+0.47 0.09 (indows Pr) 296.37 163.4 B
+0.47 0.09 (operty W) 338.26 163.4 B
+0.47 0.09 (indow) 376.27 163.4 B
+198 177.4 557.86 569.4 C
+198 177.4 557.86 569.4 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  7079     
+450 536 324 385.92 0 200.5 180.76 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#>$
+2FBF5F3F39FFFCF7$F">"9#
+FEDFDF8307F3F3J":"9":#
+499FF3333FF7"H.8'
+FD9CE1CCE0E67383873F338783879C9E0E1CFCC18#G$80
+CFBFCCCCCC33333F37333F33F9279C4CCCCCCC9F8#J%:&
+E73F8FF0FF31FCCCCCE498F7#H#:);"
+FCE0C0E503FF37838703F807C37$G$9):#
+FEF87FCFE5C83FFF3333E33FFCCF01F18"G*8#:%
+3C99CEF3E4E473233B3FF33B8CCF33F97$F.9&
+FC00FF83E1F3FCF27393873F07890787CE4E1F33838"G%Z
+C3FFFFFFCC17#J"
+FFFF4E1J"
+7FF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz$
+?AA60003F@$:"Z$
+F3FFF9FE?EFFFBF:"9$<"J"
+E0FE7E73FF?6F:#9#<"J"
+E67F667FFE?EF;$8)J"
+70F0707393C1C39F9833FF?6F;.J$
+E667E67F24F38999999993F3FE?E0003F:$:"8%J$
+E1FE6399C931FFFF?7FFFFF:';$J"
+E6F070E07F00387FFE?FF;&:%J$
+667C67FF99C03E3FFF?70007F<$9'J$
+7E677F9199E67F33FE?EFFF3F:&9)j$
+E0F120F0FFC9C3E67073FFFFF8;01FF6F:X$Z$
+FEFFFB;FDFFEFG"J"
+FF?6FG";$J#
+FEDFFFDF7EFBFG'J#
+FFFFFAFFDDFD:6F5FG";"J#
+FEFF9EEAFG"8)J#
+FFF385DDDD3E1E77F756D57G"8)J#
+FEEDDDDDDCDDDDB7775EEAFG"8)J#
+FFDEDEABDDDDDBDB6F56FFFG">#J"
+FEDAAF5EFG"J"
+FF?6FG"8$8$J"
+FEEDDF779DBDDF5EFG"8#8$J"
+FFF3E7DE5E7D66FG$SJ#
+FEFFF95E000G$J#
+FFFFFB=6FFFG"J"
+FE?EFG"J"
+FF?6FG$j$
+FEFFF8;01FFEFGZ"
+@6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6000G"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6C03G"J"
+FE?ECG"J#
+FF?6E07G"J#
+FE?EF0FG"J#
+FF?6F9FG"J#
+FE?EFFFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"J#
+FE?E000G"J$
+FF?70007FG"J$
+FE?FFFFFFG"J#
+FF?7F8FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J"
+FF?7FG"J"
+FE?FFG"J#
+FF?7FFFG"J"
+FE?FFG"J$
+FF?60003FG"J$
+FE?EFFFBFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"z$
+FE?5560003FGZ
+C
+
+
+
+
+
+
+
+
+
+
+J$
+5EFFFEFA#;$
+F8EF7FEEFEJ"
+5FFA0
+FA6E1E4CF0E7FF79C2EEEE9F0F3BFBB)8%
+6CCE226667FF76EE6EEEDBBBB/
+2FCE66667FFF6F6F55EEEEEDEDB7A&?"
+FB2E0E666057B&
+8CCE6667FFF&8$
+67FF76EFBBCEDEEEB)8&
+CE266670E7FF79F3EF2F3EED7FAQ"R#
+FCFABFG"=#
+FFF55FJ#
+9FABFG"j"
+FC=03GS"Z
+FE6J"
+9FF
+
+
+
+
+
+
+
+
+C%;"
+FE7FFF3F77A#;'
+FE7FBFF7F07F777FJ$
+4F7FF7FB.
+7E1E4F0F33FFBCE1F7F8761CE9B%8(
+7CCE2667BB77F7F7777B67B*8#
+7FCE66673FFFB7B7F077AFB%:"
+7E0E6607F7B%
+7CCE667FE+
+7733FFBB77F7F6777B6FB%8(
+06260F0FBCF9F079779CEFAQ#Q
+FE7FG#
+FFFF
+G"j"
+FE=01GZ
+?
+
+
+
+
+
+
+
+
+
+D#
+FE7F>"8";(8'
+83BFFE7E7FFF0F0F0FE73FFFEFE787>"8"<';$
+993F667FFEF6F6F78FD77B?)8&9&
+C3C20C3C9E0E70E767FFF6FEFF33FFEFB7FB>-@"
+9B9999399C4CCE6667FF24E777>'8"8&8'
+87999F3F9CCC7FFFFF8E0E0FE03FFFEEF7F7>&8"8"8$8"9#
+93819F3C1C6000F6F6F7E703EF?+@$
+9F9F399CCC8E67FFFF99EFF7DF>$8%8#<"9"
+999D9DCE4E6767E7FE33BF>*9%="
+98C3C38C4CCFCE70E7FF0F0F0F03>P#T8Q
+FCCFC#
+FE1FC#
+FFFFJ'8'
+4FC000000000FFE0000000007JQ8Q
+4
+
+
+
+G"g"
+FC7FJ"Q
+701HP"
+F9
+
+
+>%F"
+CFF3FF9F7F<$9$:":"
+F3FFCEC3DFFE0FFE>#8$9#>"
+FCFF999FFCFEF7FF=18%
+93C833879F9F061830E7FCFDFBA78F4FF1CF4F78=+9$8%
+89CCF3339F8F9CCCE6679B7737EFB73777="8%8"9$8%
+99F39FC39F7FBB7777DF7B776F@';"
+839FF19E0CE007@(:"
+339FF99CCCE7FF7FB"9'9%
+9967FCFEF7BB77EFB77777>/9%
+CE33899FC3C62630E7FCFF0F878FF1CF7778<V8&P
+FFBFFFFFF9
+J"
+4FF
+
+H`"
+01Jb
+7GY
+
+G"j"
+FE21FJ"U"
+907DFH"Q"
+7FE7
+
+
+
+A%:":(9"
+E07FFFDF0FBFE7FBDFFBFC3FFEA%:"<"8#
+E7FFFF9F77F9FDDFB&8'8*
+C3C3061C937698F1C7A70FDE70FDDA63C71E9C3FB%:1
+99999CCC776FBB9BBFE7FADDBBFDD9DDBEEE6EFFA":"9"8"9%9"
+E07FF7BB5BDBFDDBEEA"9#8%9"8&
+E70CFF0EF07383FBFC3BC1CE0EE"9%:(
+FC7EF7FDBF9BDBFDFBDFF6FEE#:#:#8$
+ECF37DBB9DBBDDF6EEB%:&8#8&
+C3C3C61CF8E3C7BBCFDE7CE38F1EEF3FAQ8Q"U
+E7
+
+
+
+Hb"
+07Jf"
+91FGZ
+4
+G"j
+FE0JP"
+<FEH"S"
+7FFC
+
+
+D";#8#9"8"
+9FF77FFDFDFEFBC";"9";"
+879FDF0EC#<"="
+33FFFF7FC%8)8%
+3F9838736F877771863D3DC77EDDC7C3C%9(:#
+1F9F333377776FDDDCDDBBBBBBC%<#:#
+879E733FDFDD0EEBC$8#8&8$
+E39C707E0773DE1DDD837EF783C%8"8&9#
+F39CF3FFF77DDDDDDDBFEBBFC%9#:"9$
+3399F3B36776BBDDBBB3C%9(:#
+87983873977963E62C3DC7C7CBC*P8%
+FFFFFFFFFE7FFFFF7FFFFFFFFFJ#
+4FCFFJ"
+4FF
+
+He
+Ja
+<GZ
+1
+
+
+
+
+
+
+
+B#
+FE7F
+C%
+70E1E4E7C%
+664CE267C%
+67CCE67F
+
+D$
+4CE667C#
+70E1BP
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j
+FE1J"S"
+91FFEH"Q"
+7F9F
+
+
+J":$
+87FDFFFDF>"9#;"<"
+CFC03F7BC3B#;"<"
+F9FF3BDD>*9%9(
+CE1C3C9FF9E7327873CE9A678FE74E1C74DC78E3>%8$8&9(
+CCC99C4F3133335BB6799B77DB3DDBB3DBB7DF?$8$8&8&
+F99CCF73333F4B7AFBBBF7C3BD7DDBB7C$9"9"8"8&
+F273306B87DDD837D839E7D$8"9";&
+F333FF7377DBF7DBFEFB?"9"8"9"<'
+E9F8B3B6DB7D9BB7DBBE>$8%8#8"8)
+CE1C3CF9F078737BCE8BC3E77E5C77DC71C7>P%8Q"S
+F3F3FFFF9F
+C#
+FFFF
+
+Hb"
+1FJe
+9GZ
+2
+
+
+
+
+
+
+E"
+FB>"9%
+7F5D7FFFF7=#9%
+FEFFBEFFFFFB=+
+FF75F5F5FF5D75F57777=+
+FEEEEEEAFFEAEEEFFBEF=+
+FF77DDF77F5F7F77F7FF=*
+FEEFEEEEFFEAFAFAFA=+
+FF77DDF77F77777D777F=+
+FEEFEEEEFFEEEEFEFBAF=+
+FF75F5F77F7F7575F777>T
+
+
+G"z"
+FD=5557GZ
+?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C#
+F9CF:#8$
+F81FFDFE73:#8"
+F9FFF9;-
+F33879307E738793C1CE1C93<+
+333899FE73338999CCCC:%8$9"
+F833333903F3997F:$9#9#
+F9F97073830CFF<#9"9"
+73F933FC;$;%
+FCF3B991CCECF3:-
+F81CF8799C7E738999C9CE1C:X
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+G"b*`(
+FE01FFC0000000007FF00FFE0000000003HR*P(
+FDFFDFFFFFFFFF7FF7EFFEFFFFFFFFFB
+
+
+
+;"9"@"?":$
+F3FCFB9FFBFF7F8#<#9"9">$9#8"8#
+E73FFE077F0FEFFF7BF87B7FFE038#="8":#C#;#
+E67F7FFE77FFFBBFFFDF9/8':#:%:#
+F0E73278787260FE7CCE1E4C1833769BA678E9778E10BB874E1F9E9F8)8&9%;#;$:#
+E5E667313333324CCCCE2673F37B99B767777B77377F6E6F8"8(8$9%@%:$
+E173333F31CCFE0C6671FFFBBBBF6FF87B7777DEF6EF8$8#8'8"8$:":"
+E4E07238337E5C0E66787F0EB86FAF07FB9&;%8"8"<";#
+67F2F33333FE667E3F7EB77FBB678$:)=":"<";#
+E66778C8FE7F3CEE667F33DF7797DF6E80;#:$;$:#
+E730F9F0787893E4FE073E1E671073B8AFE18F7CF7779F9E1F8$W8P"9$9&9$
+FFFFF3BFFFFFFFFFFFF7FFFFFFFEFFJ"A"
+83F8F:"I"A"<"
+FFFFFFFF
+
+
+Hb*`(
+01FFC0000000007FF00FFE0000000003GZ
+=
+G"b#a)`#`"
+FE07FFFFE0000000003FF87FF00FHR1P#P"
+F7FF7FFFFFFFFFFEFFEFFFFFFFFFBFFB7FF7EF
+
+
+
+J"
+EDF:#:#9"8%<$:$9#;#
+FC71FE077FFE1FFEF707FF7FE0FFDDF83FFBEFA"8":">"<$9#;#
+7FFEEF7FEFFFFDFBDFF9CF<,8':$:$9$;$
+C3CCE0E1FE7CCE1E4C1833EEEC21CF4F1F4E18E9DDD87FED31E19DDC7F:'8&9&:$;#9$9&
+FD2999CCCFCCCCCE2673F3EEF7B736FF377767DDFFECEEDDFAAF6DDBBF>"8"8$8"8#:%9#;#;#
+C70C6671FF1E7B760F77776FE1EBEDFEAEF5>*8"9#9$:#<":&
+E1C0FE7E5C0E66787FEE773F7F7770EFF7F0FB6EF6B83F;"8#9%=";#:"<#<#
+99F8CFFE667E3FDF77EFEBEED9BBFF=+9$>":";$:%
+C8FCCEFE7F3CEE667F33CEF7B76FDDDDEEE5EF6F7BBF;-8'9%9%8%;$
+F9C3E4C1E1FE073E1E6710731F2F39CF763F077798EFE0DDDE7FF83DF17D9F7C7F:X"R9%9%8%9P
+FEFFFFFFFFFFFFFFFFFFFFFFFDJ"
+LE3J"
+LFF
+
+
+Hb#a)`#`"
+07FFFFE0000000003FF87FF00FGZ
+E
+
+
+
+
+
+
+
+
+
+
+;"e"
+FC7F;"U"
+F39F;"@"
+EFEF;">$
+DFF7FFF7;#?"
+BFE1FB<"?"
+EFF9;-
+7FEFE74C7869CF774F87FFFD=+
+DB3BB767B7773777FFFC<)
+E1BD7BB76F7B7777<%
+EFBD7837>#
+7BF6=*
+DB7BB96FB7677766DB=)
+E77C7F6FCF977796;'P"
+BFFFFFFFFF7FF8?#;#j
+F8FFF9FF>;"9"<"Z
+DFFFF1?;"@"
+EFE3;"@"
+F387;"e"
+F80F;"@"
+FC3F;W
+
+
+
+
+;"e"
+FC3F;"U"
+F3CF;"@"
+EFF7;"8";$
+DFFEFBFFFB;#?"
+BFC3FD<"?"
+DDFC;-
+7FDDC7C6EC34E7BBA7C3FFFE=)8"
+BBBEDBB3DBBB9BBB7F<)
+C3FB7EBBB7BDBBBB<%
+DDC37E3B=%
+BB7EDB37>)
+BECCB7DBB3BBB36D<*
+C3C5C6EFB7E7CBBBCB;'P"
+BFFFFFFFFFBFFC?#<"j
+FC7FFF>;"9#;"Z
+DFFFFFF8?;"@"
+EFF1;"@"
+F3C3;"e"
+F807;"@"
+FC1F;W
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J'8'
+6C0000000003FE0000000007FJ'8'
+63FFFFFFFFFCF9FFFFFFFFF9FJ#:"8":"
+5FEFFF77FEFJ"9':"
+5FDFEFFFBFFFEFFF7J$9&8#
+5FBFF3FFDFFFDFF0FF7FBJ"9"9"
+;FC77F9J*8%
+5F7FEDE9E9EDDFEFFFB1E38E1FDJ#8"8&
+86E6E7F76EDF777FCJ#;"
+8EEEE0EJ#8":$
+6FC0EEB6E0E70J#=%
+6FDEE76FFB7F7J";$
+:F7EFB777J#;%
+81E1E771C78F9J*P"
+5FBFFFEFEFFEFFC7FFDF8J$<"
+:CFFCFFF9J"P$;"
+5FDF8FFFEF1J";%:"
+5FEF1FFFF7FE3J#:"8":"
+5FF3FC39F87J'8'
+6800000000007C0000000000FJ":"8":"
+6C01FE03FJQ8Q
+6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "22" 11
+%%Page: "23" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (23) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.52 0.1 (Refer to the scr) 198 641.33 B
+0.52 0.1 (een snapshot of the Base W) 267.2 641.33 B
+0.52 0.1 (indows pr) 392.33 641.33 B
+0.52 0.1 (operty window in Figur) 438.89 641.33 B
+0.52 0.1 (e ) 548.66 641.33 B
+0.52 0.1 (3-12 and change your Base W) 198 628.93 B
+0.52 0.1 (indows pr) 333.01 628.93 B
+0.52 0.1 (operty window to corr) 379.56 628.93 B
+0.52 0.1 (espond to this ) 483.01 628.93 B
+0.1 (one.) 198 616.53 S
+0.1 (1.) 197.5 596.13 S
+0.01 0.1 (In the Name \336eld, change ) 210.6 596.13 B
+7 F
+0.03 0.1 (window1) 329.38 596.13 B
+4 F
+0.01 0.1 ( to ) 372.06 596.13 B
+7 F
+0.03 0.1 (JotWindow) 386.19 596.13 B
+4 F
+0.01 0.1 (. This is the name that we ) 440.14 596.13 B
+0.52 0.1 (will use in the pr) 210.6 583.73 B
+0.52 0.1 (ogram to r) 288.95 583.73 B
+0.52 0.1 (efer to the base window) 337.25 583.73 B
+0.52 0.1 (.) 446.64 583.73 B
+0.1 (2.) 197.5 563.33 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 563.33 B
+7 F
+1.22 0.1 (Base Window) 329.42 563.33 B
+4 F
+0.52 0.1 ( to ) 397.71 563.33 B
+7 F
+1.22 0.1 (Jot Editor) 412.86 563.33 B
+4 F
+0.52 0.1 (. This is the text ) 474.3 563.33 B
+0.52 0.1 (that appears in the header of the base window) 210.6 550.93 B
+0.52 0.1 (.) 422.82 550.93 B
+0.1 (3.) 197.5 530.53 S
+0.36 0.1 (None of the other \336elds need to change. Click on the Apply button to make ) 210.6 530.53 B
+0.52 0.1 (your changes take ef) 210.6 518.13 B
+0.52 0.1 (fect. Then dismiss the window) 304.83 518.13 B
+0.52 0.1 (.) 444.02 518.13 B
+1 F
+0.47 0.09 (Figur) 198 345.8 B
+0.47 0.09 (e 3-13) 218.77 345.8 B
+0 F
+0.47 0.09 (Edited Base W) 248.4 345.8 B
+0.47 0.09 (indow) 307.92 345.8 B
+198 359.8 558 502.4 C
+198 359.8 558 502.4 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1174     
+376 191 270.72 137.52 0 199.67 363.38 BEGINBITMAPBWc
+j
+O!#J#
+7FC0K03FE7"Z"
+DFKFB
+#J#
+701FKF80E%J#
+77FE000FIFFEE7$
+FDFFF79"
+F3J#
+9FCE78#G(
+C073F9FFDFE07CE77F$J%I"
+07FDDF49FE7FCFEE0%H)F"
+3FFDEEF3C307E7E0E418727FFCJ(
+6999FE7CCE673328"J"9#
+F55E031FFJ"9"
+8E7338"
+FB8"J"
+FF6C8J(
+6C3C7E064E718737$G"R
+FE0003E37$G"
+FF0007FF8#
+FFFF
+
+
+
+
+"j"
+38M1C"Z"
+3BMDC
+
+
+
+
+
+
+
+
+
+9"`"
+FE039"P"
+F9FC9";#
+F7FF7F9"<"
+EFBF9&8"
+DFE1FFEF7FDF:";"
+EECF9)
+BFEEEEC21CF4FFEF<&
+EF7B737FE7:"8#
+E177B7:"
+EE
+;%
+ECEF7B77:&
+E1F2F39CF79"Q"
+DFC7@"
+CF9"<"
+EF8F9"<"
+F71F9";#
+F9FC3F9"a"
+FC7F9";#
+FE01FF9R
+
+
+
+
+
+
+"j"
+38M1C"Z"
+3FMFC
+
+"j$
+38KC0007C"Z$
+3BJFEDFFF
+
+
+J#
+LC000J$
+LFFFFFC
+J#
+LE000J$
+LDFFE7C
+7"
+FB7"
+F57"J"
+EAK7E7#J#
+D57FIDEBE7#J#
+EAFFIDD5E7"J#
+F5JDAAE7"J#
+FBJDD5E7"J#
+FFJDFFE
+
+
+
+J#
+LC000J#
+LDFFE
+
+
+
+
+
+
+
+
+
+
+
+
+J#
+LC000J#
+LDFFE
+
+
+
+J#
+LD806
+J#
+LDC0EJ#
+LDE1EJ#
+LDF3EJ"
+MFE
+
+
+J#
+LC000J$
+LE000FCJ#
+LFFFFJ"
+M1F
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+MFF
+J$
+LC0007CJ#
+LDFFF
+
+
+"j#
+38KC000"Z"
+3FMFC
+
+
+
+
+
+J)
+E0F033F03C300C0C1J*
+DFE673F3F3F99E7CFCCJ"9"8#
+E7F3FCE7FJ"
+E3FJ&8"
+DFF0F073F07C1"J%8"8"
+07DC73F3F3FCFE0"J">"
+77DE7EEJ#9"8#
+DFE679DCCFFJ*
+DFF0F030303C3E7C0C1JS
+E
+#J#
+701FKF80E#J#
+7FDFKFBFE
+7"j"
+C0K03#J#
+0000K0000
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "23" 12
+%%Page: "24" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (24) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.84 0.13 (Customizing the Base W) 198 639.33 B
+-0.84 0.13 (indow Button) 327.55 639.33 B
+4 F
+0.52 0.1 (The base window has just one button which we will edit so that the window ) 198 622.33 B
+0.52 0.1 (looks like the one shown in Figur) 198 609.93 B
+0.52 0.1 (e 3-14. ) 351.32 609.93 B
+1 F
+0.47 0.09 (Figur) 198 436.94 B
+0.47 0.09 (e 3-14) 218.77 436.94 B
+0 F
+0.47 0.09 (The Completed Base window) 248.4 436.94 B
+0.47 0.09 (.) 368.61 436.94 B
+4 F
+0.52 0.1 (Double-click on the button in the base window to open the button pr) 198 412.28 B
+0.52 0.1 (operty ) 514.28 412.28 B
+0.52 0.1 (window and make the following changes.) 198 399.88 B
+0.1 (1.) 197.5 379.48 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 379.48 B
+7 F
+1.22 0.1 (button1) 331.91 379.48 B
+4 F
+0.52 0.1 ( to ) 374.59 379.48 B
+7 F
+1.22 0.1 (FileButton) 389.74 379.48 B
+4 F
+0.52 0.1 (. This is the name that ) 450.71 379.48 B
+0.52 0.1 (we will use in the pr) 210.6 367.08 B
+0.52 0.1 (ogram to r) 305.39 367.08 B
+0.52 0.1 (efer to this button.) 353.69 367.08 B
+0.1 (2.) 197.5 346.68 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 346.68 B
+7 F
+1.22 0.1 (Button) 329.42 346.68 B
+4 F
+0.52 0.1 ( to ) 366 346.68 B
+7 F
+1.22 0.1 (File) 381.16 346.68 B
+4 F
+0.52 0.1 (, or something else appr) 405.54 346.68 B
+0.52 0.1 (opriate. ) 516.08 346.68 B
+0.52 0.1 (This is the text that appears in the body of the button.) 210.6 334.28 B
+0.1 (3.) 197.5 313.88 S
+0.52 0.1 (Y) 210.6 313.88 B
+0.52 0.1 (ou can adjust the button location by changing the pixel values in the ) 216.45 313.88 B
+0.36 0.1 (Location X & Y text \336elds or by positioning the button by hand, as we have ) 210.6 301.48 B
+0.52 0.1 (alr) 210.6 289.08 B
+0.52 0.1 (eady done.) 222.57 289.08 B
+0.1 (4.) 197.5 268.68 S
+0.52 0.1 (Change the Button W) 210.6 268.68 B
+0.52 0.1 (idth Is selection to Fixed and insert the value ) 308.85 268.68 B
+7 F
+1.22 0.1 (55) 518.44 268.68 B
+4 F
+0.52 0.1 ( \050or ) 530.63 268.68 B
+0.49 0.1 (some other appr) 210.6 256.28 B
+0.49 0.1 (opriate value\051 into the adjacent text \336eld so the button will ) 285.43 256.28 B
+0.52 0.1 (be lar) 210.6 243.88 B
+0.52 0.1 (ge enough to accommodate the text and the menu-button mark.) 236.21 243.88 B
+0.1 (5.) 197.5 223.48 S
+-0.06 0.1 (In the Menu Name \336eld, insert the name ) 210.6 223.48 B
+7 F
+-0.14 0.1 (FileButtonMenu) 395.64 223.48 B
+4 F
+-0.06 0.1 (. This will be the ) 480.99 223.48 B
+0.52 0.1 (name that we will use to access the menu associated with this button. The ) 210.6 211.08 B
+0.52 0.1 (menu-button mark only appears in the button after you cr) 210.6 198.68 B
+0.52 0.1 (eate the menu.) 477.03 198.68 B
+0.1 (6.) 197.5 178.28 S
+0.36 0.1 (None of the other \336elds need to change. Click on the Apply button to make ) 210.6 178.28 B
+0.52 0.1 (your changes take ef) 210.6 165.88 B
+0.52 0.1 (fect. Then dismiss the window) 304.83 165.88 B
+0.52 0.1 (.) 444.02 165.88 B
+198 450.94 557.14 594.2 C
+198 450.94 557.14 594.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1051     
+376 191 270.72 137.52 0 200.78 453.81 BEGINBITMAPBWc
+j
+O!#J#
+7FC0K03FE7"Z"
+DFKFB
+#J#
+701FKF80E%J#
+77FE000FIFFEE7$
+FDFFF79"
+F3J#
+9FCE78#G(
+C073F9FFDFE07CE77F$J%I"
+07FDDF49FE7FCFEE0%H)F"
+3FFDEEF3C307E7E0E418727FFCJ(
+6999FE7CCE673328"J"9#
+F55E031FFJ"9"
+8E7338"
+FB8"J"
+FF6C8J(
+6C3C7E064E718737$G"R
+FE0003E37$G"
+FF0007FF8#
+FFFF
+
+
+
+
+"j"
+38M1C"Z"
+3BMDC
+
+
+
+
+
+
+
+9f"
+7F8"V"
+FEBF9"`"
+FE7F9"P"
+F99F9";"
+F7EF9$9"
+EFFFEEF79#:"
+DFF0FB:#9"
+F7FEF99(
+BFF7EEE3FF01FD<%
+DDFF7DFC:"9"
+F0BB:$
+F7EEC1<$
+DFFFD7<"
+DD<$
+E3FFEF9"P"
+DFF8?"
+F99";"
+EFF19";"
+F7E39";"
+F9879"`"
+FC0F9";"
+FE3F9R
+8"f"
+FF7F9W
+
+
+
+
+"j"
+38M1C"Z"
+3FMFC
+
+"j$
+38KC0007C"Z$
+3BJFEDFFF
+
+
+J#
+LC000J$
+LFFFFFC
+J#
+LE000J$
+LDFFE7C
+7"
+FB7"
+F57"J"
+EAK7E7#J#
+D57FIDEBE7#J#
+EAFFIDD5E7"J#
+F5JDAAE7"J#
+FBJDD5E7"J#
+FFJDFFE
+
+
+
+J#
+LC000J#
+LDFFE
+
+
+
+
+
+
+
+
+
+
+
+
+J#
+LC000J#
+LDFFE
+
+
+
+J#
+LD806
+J#
+LDC0EJ#
+LDE1EJ#
+LDF3EJ"
+MFE
+
+
+J#
+LC000J$
+LE000FCJ#
+LFFFFJ"
+M1F
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+MFF
+J$
+LC0007CJ#
+LDFFF
+
+
+"j#
+38KC000"Z"
+3FMFC
+
+
+
+
+
+
+
+
+
+
+"J"
+07ME0"J"
+77MEE
+
+
+
+#J#
+701FKF80E#J#
+7FDFKFBFE
+7"j"
+C0K03#J#
+0000K0000
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "24" 13
+%%Page: "25" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (25) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+0.47 0.09 (Figur) 198 279.86 B
+0.47 0.09 (e 3-15) 218.77 279.86 B
+0 F
+0.47 0.09 (The Buttons Pr) 248.4 279.86 B
+0.47 0.09 (operty W) 309.67 279.86 B
+0.47 0.09 (indow) 347.69 279.86 B
+0.47 0.09 (.) 373.05 279.86 B
+198 293.86 557.14 648 C
+198 293.86 557.14 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  8526     
+450 486 324 349.92 0 199.14 296.33 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#
+2FBF8E7E77$I"=%
+FEDFDF07FE0FFFBDJ":"9$
+733FF67FF397"J1
+FD539C399C1CCE7070E7E67320061E4F07F8#J0
+CFBF4999999CCE666667E6F3339CCE267FF8#J$9#
+E73F:67FE1FE6637#J#:$:"
+FCE0581CB07FE6F707$J$9$:#
+FEF87F49FCB917FFE677C7F8"J,9"
+3C4339DE7C9C8E646767E67237E7$I1
+FC00FF07C3E7F9E4E7270E7E0F938C61E660FF8"J%V
+C34FFFFFF997#J"
+FFFF7C3J"
+:FF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz%
+>5554C0007FG"Z#
+FD?DFFF?%:"J"
+FE0FFFBDFF>FE@$:"J"
+67FF39FD>FFA(J"
+320061E4F067FF>FE@)J$
+6F3339CCE267E7FD>FFC000@"9%J%
+1FE663FFFF>FEFFFFFF@":$J"
+6F70FFFD>FF@":$J$
+677C7FFF>FEE000A"9$J%
+237E67FD>FFDFFE7F@+j#
+0F938C61E660E7FFFFF0;03FE?S$Z#
+FDFFF7;FBFFG"J"
+FF>FEG"8#J$
+FDFBBF:FFDF7EG*J$
+FFFFF43BBFE1FFEF7F6FEDEBEG'J$
+FDFFF5FFBFEE9FFDD5EG"8(J$
+FFFBB8EEEEC21CF45FEDAAEG"9(J$
+FDB76EEEEF7B737F4FFDD5EG'8#J$
+FFFFF43BB76177B75FEDFFEG'J"
+FDFFF5FBB06E9FFG"9#J"
+FFB7EE9FEG":&J"
+FD6EECEF7B775FFG"9'J"
+FFB8E1F2F39CF75FEG$SJ$
+FDFFF74FFC000G"J$
+FF>FEDFFEG"J"
+FD>FFG"J"
+FF>FEG$j#
+FDFFF0;03FFGZ"
+?FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEC000G"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FED806G"J"
+FD>FFG"J$
+FF>FEDC0EG"J$
+FD>FFDE1EG"J$
+FF>FEDF3EG"J$
+FD>FFDFFEG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J$
+FD>FFC000G"J%
+FF>FEE000FFG"J$
+FD>FFFFFFG"J$
+FF>FEFF1FG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEFFFFG"J"
+FD>FFG"J%
+FF>FEC0007FG"J$
+FD>FFDFFFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"z#
+FC?AAC000GZ
+C
+
+
+
+
+
+
+
+
+
+
+H#
+FEEFA#;'
+F8EF0EEFF87FFBDFH%
+7FEFFBBFA0
+FA6E1E4CF0E7FF7EEE3BBBB0873D3FB&8(
+6CCE226667EDDBBBBBDEDCDFB.
+2FCE66667FFF0EEDD87BBBDDEDA&8%
+FB2E0E66607EEC1BBBB&8#
+8CCE6667FFEDFBF"9'
+67DBBB3BDEDDD6B&8(
+CE266670E7EE387CBCE73D8AAY"
+D5J"
+9AAJ"
+9D5G"j"
+FC=03GS"Z
+F76J"
+9FF
+
+
+
+
+
+
+
+
+C(
+FCFFFE7FFFFEEFA"<"
+FC0EH"
+7FB*
+FC3C9E1E67FF7EEE3FB%9#
+F99C4CCEEDDFB(
+FF9CCCCE7FFF0EB%8$
+FC1CCC0E7EEC1FB%9#
+F99CCCFEEDFFE#9"
+EE67DFB%9#
+0C4C1E1EEE3FAU
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j
+FC3J"W"
+77FFEH&
+FFFFFFFFFE
+
+
+A$A$8"
+F9FFFCDFFFFB77?":#8%8":"
+F9FE7FFC07FFFBC387H#:":#
+FFBFBDBFF7@(8$8-
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C7@(8$:+
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB@#9#9#:%8$
+FF3963FFDD7BBBBBBF87EFDDDD@'9$8$8(
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83@(8$?&
+F33999FCFE7C7FBDFD7BFEEDDDDDBFC%9#8$:"9"
+DCFE7E67DBBBBDDEFBEEBB?)8$8%8'
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC7?S8$8$T
+FFFFFFFFFDFBJ"
+9F9J#
+9FFFF
+
+H`
+Ji
+7GZ
+4
+
+
+
+
+
+
+C"
+FC?"9":&9&
+CFBC9CFFFE1F3FF3CFFFF7C3C"<$<#
+3FFDEEDFC7BD@.9&
+C3C3860CE1E4E7FFC9CFFFEDEFF9D9FFF7FD@*>"
+9999333CCCE267FFC399A#8(:#8"
+9FF3E67FFFE3FFFFDDFCBFFBB";"8":#8"
+83C9BDFE7FF7B">">"
+337DEFA":(:"8"
+9D67FF9CCFFEFEDF79DF?';$="
+C0C3C3898CE1FC0F3F81?Y9P
+
+
+J'9&
+4F8000000001F0000000003JQ9P
+4
+
+
+
+G"j"
+FC87FJ"Z
+:3F/HS
+
+
+
+J%:#8"9"
+4FDDFFFBFDFDFFB7FB#:#8":"<"8"
+807FFE1FC3E77F7DB#;"8#>":"
+F3FFFFBFFFFF39C%8#8#8*8$
+CE64F0E7FDDDB071DBD3D3A63BBB8E18F8E3D3DDD$;$9-
+6266679FBF6ECDCD9DDBBB7777777F55DDCDD$8"8$9$8";"
+E6667F1DC7BEEEDDDDBDF7DDC$9"8$8"8&8#
+E4E660FDF3BDE081BC1D7B87706DC1C%;$8"8'8"
+E5E667FFFBBBEFBDBDFD7B7777F7DFC"8"9"8#<#8'
+F1679DB7EEDEFB767F7DDDDDD9C%8'9)8$
+F3E0F0E7FE5DDF87B071C3C3BE3EFB8B98F9E3DDE5B'R8Y
+FFE7E7FFFFFC
+C#
+FFFF
+
+Hc
+Jj
+:0GZ
+:
+G"j"
+FC003G"U"
+FDF8J"P"
+<F9F3
+
+
+A$<(9"8"
+3F3FCFF7FFEFFFFDFDFEFBEF9%8(8":%8#<$
+E0FFFBDFE7E73F3BCFFE7FFEDFDDFDDEFC3BF0303F9%8%A":#<$
+E67FF39FE667FF33DFFDFFF7F7FF:&8'8*8%
+7320061E4F3820C9FE7067F8F4F1EFDDDDE1869FFB771F0F:.8$9$9$9$
+F3339CCE27F24F3333C4FE67E7F7736EDDDE6F76EEEFF0707F9":":%8#8#8&;$
+E167CCFE63FFFF77EABDEFF9FC3BAEFFBFBF9";#:"9$=%
+E6F00F70F87760FDFBDE0E:":#:#8$?#
+73F99F7C7FF7776FAEFE:"<"9#:&;$9#
+72327E676EEFF77DD976EECFF7B79&9#8#8$9#:$9$
+E0F938C61E393860E718B0F1E5E6771F2FF8787F9Y"U"P9$
+FDF9FFFFFF
+
+J"`"
+EE01FJR
+EJ"`"
+<F803G"f
+FCGZ
+2
+
+
+
+
+
+
+
+
+
+
+
+H#
+FEEF<#9#;*
+E38FF8EF0EEFF87FFBDFFFFDF7H%9#
+7FEFFBBFFCE7=5
+78E1E4F33FA6E1E4CF0E7FF7EEE3BBBB0873D3CE78F4F77<%8&8+
+E94CCE276CCE226667EDDBBBBBDEDCDD577737?"8.9"
+672FCE66667FFF0EEDD87BBBDDED77>"8&8%:#
+0EFB2E0E66607EEC1BBBB707<$9&8#<"
+ECCCFE8CCE6667FFEDFB7F>$;"9+
+EE672367DBBB3BDEDDDDF7777767<,8'8$
+EFCE1E6793FBCE266670E7EE387CBCE73D8F7797<Z
+8
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+<#;#
+FE78F39F:(
+1DFFDE73FFFCE7<#
+9FF3:&8'
+4DC306609C0F27839C3927;$8'
+999E73E66713339999:"9&8#
+459DFC07E73398FF:"9%8#
+65C9FCE7079819:"9%8#
+71CBFCE66799F9>":%
+E32399D9E7:-
+79C3C673E7FCE71333939C39:&S
+FFFFFFFFCF
+>"
+FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"R*P(
+FEFBFFEFFFFFFFFEFFFBEFFEFFFFFFFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7;"9"=%:$8'9$9"
+FBFEFEFFFFFBFBFFEFBFFEFFFBFFFBEFFEFFFB8%9$9':$8.8"
+F77FFFF7FDFF577FFFFF7F5FFFFDFFDF7FFF7FF7FD7FFF7F7FDFFF7F57F78%9$8';38"
+EEFFFFFBFEFEFFFEFFFFFEFFFFFBFFEFEFFFFBFEFFFBFBBFFFFFFFEFFEFFFFFB85
+LF7F5F7777D7D7775FF7DDF5F5D5D77FF7F77DFF77DFD77FDFFDFFFDF55FF7FF7FFFFD75F5FDFFF7FDFDFDFF785
+LEFEEEFBBBBBBBAEEFEFEEEEEAEFBFBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBFFBFFFEFFEFFFFEEEFFB85
+LF5F77777777F75DDFF5DDDDF7775FFFF7F77FFFFFF7F77FDFFDFFF777FFF7FF7FD7F77777FDFFF7FDFF7FFF785
+LEEEAFAFBBBBABBEEFEFEFEAEEEFAFFFEFFAEFBBBBAEFAFFBFFEFEFAFFBFEFFFBFBFBFFFFFFEFFEFFFEFEEFFB85
+LF577F7F7777777DDFF7F5DFF777F7FFF7F7FFFFFF77FFFFDFFDFFF7F7FFF7FF7FFFF77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEAFEFFBEEEEEFFBBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBBFFFFFEFFEFFFFEEEFFB85
+LF775FDF57D7DD7F5FF577F5F775577FF7F7FFFFFFDFFDFFDFFDFF5DF7DFF7FF7FFFFF777DFDFFF7FDFDF5FF78$W$8-8+
+FFFFFBFEFFFFFFFFBFFBFFEFFFFFFFFEFFFBFFFFFFEFFEFFFFFEFFFB:"B#;%9$8"8(
+F7FF7F7FFDFFDFFF7FF7DFDFFF7FFFFFFFF7:"B#;%9$8"8$9"
+FFFEFFFFFBFFEFFEFFFBFFEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABGZ
+=
+Hr5
+55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG#Q1P#P"
+FF7FF7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFD7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$8%:$;"
+FF7FF7FF7FFDFFF7DFFF7FFDFF7FF7DF:#:#;%:%9,8&9"
+FEFBFEAFFEFEBFFEEFFFBFAFFEFFEFEAFFFFFFBFFBFABFFEFFFBFBEFEF:#:#9(938&9"
+FD75FF7F7FFFFF7FFFFFF7F7FF7F7FFF7FFFFDFFF7FFFFFDFF7FFDFFDFFF7FF7FDDFDF:5
+O$FEFBEBEEEAEBFEFEEEBEEEBABBFEFEEEEEABEFEFBFEFFFBFFFEEBAEBFEFFEFEFFFFAFFBFFBFBEFBBEBFEFFFBFBEFBFFEFFEF:5
+O$FD7DDDDDDFDDFF7DDDDF7777F7FF7FFFFFF7F777FFF7FF7F7F777777FDFFF7FFDDDDFF7FFDFFFDFFDDFF7FF7FFFF7DDFFFDF:5
+O$FFABBBEEEFEEFEAEEEEEEEFBFFFEFEBEEEFFFBFEFFEFFFBFAFFFFFEFFEFFEFEBEBFFFFBFFBFBEFFEFFFEFFFBFAAEFFFBBFEF:5
+O$FD7DDDDDF5D5FF7F5D5F777D7FFF7FFFFFF77F777FF7FF7F7F77757FFDFFF7FFF7DDFF7FFDFFFDF5DDFF7FF7FF7FF7FD7FDF:5
+O$FFBBBBEEFAEFFEFEFEFEEEFEBFFEFEEEEEFFFBFFFFEFFFBFFFFFFFEFFEFFEFEFEBFFFFBFFBFBEFEEFBFEFFFBFBEEFEBBFFEF:5
+O$FDDDDDDDFDDFFF7F7DFF777F77FF7FFFDFF7F777DFF7FF7F7F77777FFDFFF7FFDDDDFF7FFDFFDDFFF5FF7FF7FFFF7F7FFFDF:5
+O$FFFBEBEEEBEBFEAFBEBEEFBAFBFEFEBFAFBBEFFEBFEFFFBFAFFFBAEFFEFFEFEAFFFEFFBFFBFABFFBFFFEFFFBFBEFBFFEFFEF;X"Q5P"
+7F7F7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFDFFFFFFFDFF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBEBFEFFFBEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDFFFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FHZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "25" 14
+%%Page: "26" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (26) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.84 0.13 (Cr) 198 639.33 B
+-0.84 0.13 (eating the File-Button Menu) 211.74 639.33 B
+4 F
+0.52 0.1 (Y) 198 622.33 B
+0.52 0.1 (ou can only access the menu pr) 203.85 622.33 B
+0.52 0.1 (operty window by opening the Pr) 347.66 622.33 B
+0.52 0.1 (operties ) 502.92 622.33 B
+0.49 0.1 (menu, shown in Figur) 198 609.93 B
+0.49 0.1 (e 3-12 and selecting Menus.... Open the Menus pr) 299.12 609.93 B
+0.49 0.1 (operty ) 525.3 609.93 B
+0.52 0.1 (window now) 198 597.53 B
+0.52 0.1 (.) 257.67 597.53 B
+0.52 0.1 (Make the following changes in the Menus pr) 198 577.13 B
+0.52 0.1 (operty window) 403 577.13 B
+0.52 0.1 (.) 472.37 577.13 B
+0.1 (1.) 197.5 556.73 S
+0.52 0.1 (Click on the Cr) 210.6 556.73 B
+0.52 0.1 (eate button to cr) 280.04 556.73 B
+0.52 0.1 (eate a menu.) 354.89 556.73 B
+0.1 (2.) 197.5 536.33 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 536.33 B
+7 F
+1.22 0.1 (menu1) 331.91 536.33 B
+4 F
+0.52 0.1 ( to ) 362.4 536.33 B
+7 F
+1.22 0.1 (FileButtonMenu) 377.55 536.33 B
+4 F
+0.52 0.1 (. This is the name ) 462.9 536.33 B
+0.52 0.1 (that we will use in the pr) 210.6 523.93 B
+0.52 0.1 (ogram to r) 326.24 523.93 B
+0.52 0.1 (efer to this menu.) 374.54 523.93 B
+0.1 (3.) 197.5 503.53 S
+0.52 0.1 (Click on the Insert button to cr) 210.6 503.53 B
+0.52 0.1 (eate a menu item.) 351.62 503.53 B
+0.1 (4.) 197.5 483.13 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 483.13 B
+7 F
+1.22 0.1 (Item) 329.42 483.13 B
+4 F
+0.52 0.1 ( to ) 353.81 483.13 B
+7 F
+1.22 0.1 (Load File...) 368.96 483.13 B
+4 F
+0.52 0.1 ( or something else ) 443.34 483.13 B
+0.12 0.1 (appr) 210.6 470.73 B
+0.12 0.1 (opriate. This is the text that appears in the body of the menu as the \336rst ) 231.78 470.73 B
+0.1 (item.) 210.6 458.33 S
+0.1 (5.) 197.5 437.93 S
+0.52 0.1 (In the menu-item Handler text \336eld located at the bottom of the Menus ) 210.6 437.93 B
+0.5 0.1 (pr) 210.6 425.53 B
+0.5 0.1 (operty window) 220.57 425.53 B
+0.5 0.1 (, insert the text ) 289.93 425.53 B
+7 F
+1.17 0.1 (ps_LoadFileMenuItemHandler) 361.5 425.53 B
+4 F
+0.5 0.1 (. This is ) 519.27 425.53 B
+0.52 0.1 (the callback that will be called when this menu item is chosen. The ) 210.6 413.13 B
+7 F
+1.22 0.1 (ps_) 520.26 413.13 B
+4 F
+0.52 0.1 ( ) 538.55 413.13 B
+0.52 0.1 (pr) 210.6 400.73 B
+0.52 0.1 (e\336x indicates that this will be a server) 220.57 400.73 B
+0.52 0.1 (-side callback, i.e. the callback will ) 394.25 400.73 B
+0.52 0.1 (be written in the server in PostScript and will not initiate a call acr) 210.6 388.33 B
+0.52 0.1 (oss the ) 515.83 388.33 B
+0.52 0.1 (wir) 210.6 375.93 B
+0.52 0.1 (e to the client machine.) 225.91 375.93 B
+0.1 (6.) 197.5 355.54 S
+0.52 0.1 (Click on the Insert button again and again change the wor) 210.6 355.54 B
+0.52 0.1 (d ) 477.58 355.54 B
+7 F
+1.22 0.1 (Item) 486.91 355.54 B
+4 F
+0.52 0.1 ( in the ) 511.29 355.54 B
+0.52 0.1 (Label \336eld, this time to ) 210.6 343.14 B
+7 F
+1.22 0.1 (Save Current File) 319.58 343.14 B
+4 F
+0.52 0.1 (.) 425.66 343.14 B
+0.1 (7.) 197.5 322.73 S
+0.52 0.1 (In the menu-item Handler text \336eld located at the bottom of the Menus ) 210.6 322.73 B
+0.32 0.1 (pr) 210.6 310.33 B
+0.32 0.1 (operty window) 220.57 310.33 B
+0.32 0.1 (, insert ) 289.75 310.33 B
+7 F
+0.76 0.1 (SaveFileMenuItemHandler) 323.75 310.33 B
+4 F
+0.32 0.1 (. This is the callback ) 463.23 310.33 B
+0.49 0.1 (that will be called when the second menu item is chosen. The lack of a ) 210.6 297.93 B
+7 F
+1.14 0.1 (ps_) 536.62 297.93 B
+4 F
+0.49 0.1 ( ) 554.91 297.93 B
+-0.05 0.1 (pr) 210.6 285.54 B
+-0.05 0.1 (e\336x indicates that this will be a client-side callback, i.e. the callback will be ) 220.57 285.54 B
+0.52 0.1 (written in C to be r) 210.6 273.14 B
+0.52 0.1 (un on the client machine and will be initiated by a call ) 298.71 273.14 B
+0.52 0.1 (acr) 210.6 260.73 B
+0.52 0.1 (oss the wir) 224.1 260.73 B
+0.52 0.1 (e to the client machine.) 274.05 260.73 B
+FMENDPAGE
+%%EndPage: "26" 15
+%%Page: "27" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (27) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+0.47 0.09 (Figur) 198 147.71 B
+0.47 0.09 (e 3-16) 218.77 147.71 B
+0 F
+0.47 0.09 (The Menus Pr) 248.4 147.71 B
+0.47 0.09 (operty W) 306.04 147.71 B
+0.47 0.09 (indow) 344.05 147.71 B
+0.47 0.09 (.) 369.42 147.71 B
+198 161.71 557.14 648 C
+198 161.71 557.14 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  7998     
+395 676 280.64 480.29 0 199.65 165.42 BEGINBITMAPBWc
+j"
+O#1F
+"Z"
+3FO"9F
+
+
+8"
+F88#
+C73F8#J#
+2FBF5E7E77$F"=#
+FEDFDF07FE38J":"
+433FF7"H0
+FD39C399C1CCE7070E7E38E1E4F3383F8#G/
+CFBF999999CCE666667E94CCE27333FF8#J#8$
+E73F767FEE673317#H#:"8"8#
+FCE081CB07C0387F7$G$9%8#
+FEF87F9FCB917FFECCCF3E3F8"G/
+3C339DE7C9C8E646767ECCCEE6723F7$F0
+FC00FF07C3E7F9E4E7270E7EFCE1E679307F8"G%V
+C3FFFFFF997#J"
+FFFF4C3J"
+7FF
+
+
+
+
+"j"
+38O!03"Z
+3FO"
+
+
+
+
+
+
+
+A"z$
+FA>AAA60003A"Z$
+EF>FEFFFB:#;"J"
+E38FFF>F6A"J"
+EF>FE;(J"
+8E1E4F33833FFF>F6:)J$
+E94CCE27333F3FEF>FE0003=&J$
+67331FFFFF>F7FFFF<"8$J"
+0E87FFEF>FF:$8$J$
+ECCCFEE3FFFF>F70007<'J$
+EE6723F33FEF>FEFFF3:+j#
+EFCE1E6793073FFFFF80;1FF6:R$Z#
+EFFFBF;DFFEA"J"
+FF>F6A"8"J#
+EFDD;FEFBA$8$8"J#
+FFFFA10FFF7BBE4F6F5A':"J#
+EFFFAFFDFF779C4FEEAA"8,G$
+FFDDC7777610E7A79CF1E9EEF6D573A"9*H$
+EFBB77777BDB9BAAEEE6FEEAF3A$8"8#8"H#
+FFFFA10FBDBBEEF6FFA':#I"
+EFFFAFDD8377B6E0FEA"9"<"I"
+FFBFEFF6A"9+G"
+EFBB77677BDBBBBEEEEEECFEA"9&8$G"
+FFC70F979CE7F1EEF2F6A$VG$
+EFFFBFFE0003A"J$
+FF>F6FFF3A"J"
+EF>FEA"J"
+FF>F6A$j#
+EFFF80;1FFEAZ"
+?F6A"J"
+EF>FEA"J"
+FF>F6A"J"
+EF>FEA"J"
+FF>F6A"J"
+EF>FEA"J"
+FF>F6A"J"
+EF>FEA"J"
+FF>F6A"J"
+EF>FEA"J$
+FF>F60003A"J$
+EF>FEFFF3A"J"
+FF>F6A"J"
+EF>FEA"J"
+FF>F6A"J"
+EF>FEA"J$
+FF>F6C033A"J"
+EF>FEA"J$
+FF>F6E073A"J$
+EF>FEF0F3A"J#
+FF>F6F9A"J#
+EF>FEFFA"J"
+FF>F6A"J"
+EF>FEA"J"
+FF>F6A"J$
+EF>FE0003A"J$
+FF>F70007A"J$
+EF>FFFFFFA"J#
+FF>F7F8A"J"
+EF>FFA"J"
+FF>F7A"J"
+EF>FFA"J"
+FF>F7A"J"
+EF>FFA"J"
+FF>F7A"J"
+EF>FFA"J"
+FF>F7A"J"
+EF>FFA"J#
+FF>F7FFA"J"
+EF>FFA"J$
+FF>F60003A"J$
+EF>FEFFFBA"J"
+FF>F6A"J"
+EF>FEA"J"
+FF>F6A"z$
+E5>55560003AZ
+B
+
+
+
+
+
+
+
+
+
+A"`"8'
+FC1F80000000000FA"P*
+F3E7FFFE7FFFFFFFFFF3A";%:"
+EFFBFFFDFFFDA";$8"8"
+DFFDFFFBBBFEA#8-
+BFF0FEFFFEFFF7F83FBBBFFFFF7FB#:&9"
+EF7F7FF7FBFFBF3FA1
+7FDFE98F1C31FF7FEFFBFC3B0FE03FBFC'8'
+E776EEEEFF3FFBBBBFEFBF9FC#;#8#
+EF77F87BF77FD$9#
+070EE0FBFBD$=#
+7EEEEFFAFFB&;"
+EF6F76EEEE3BB&9&
+F0EF8F1731F83CBBCFFDA"P$Q"
+BFFE3FF71FH"="
+7F3FA";$;"
+DFFC7FFBFEA";$;#
+EFF8FFFDFC7FA";%:#
+F3E1FFFE7FF0FFA"`$`"
+F803FFFF01A";"8":"
+FC0F8007AR8Q
+
+
+
+
+
+
+
+
+
+
+B#
+F77F;#:'8#
+C77FF8777FC3FFDEEFBFA%:#
+FBFF7FDDE73F;4
+D370F267873FFBF771DDDD8439E9E73C7A7BBF<%9"8(
+667113336EDEF6E6EABBB9BB;+8#8"
+D17E733333FFF8776EC3EF6EBB;#8':$
+D97003FFFBF760DDEDB83B;#8"9"<#
+DC663F6FBBFB?#8,
+3B3F6EDDD9DEF6EEEFBBBBBB3F;&9&8%
+DE7133338771C3E5E739BC7BBCBF;Z
+3
+
+A"j"
+E0=1FAZ
+?
+
+
+
+
+
+
+
+
+
+=#
+9FE7;$
+FE019D;$
+FFCFF9=%
+90670E7F=$
+99E666?#
+67FF?"
+07?"
+7F?#
+767F=$
+9C670E<P
+
+
+A"j"
+C0=3FAZ
+?
+
+
+
+
+
+
+
+A$
+F0007FA$
+EFFFBFC">"
+9FF7;#>"
+FC03C3;#:#8"
+FF9FEE03BD<(8)
+9E7327873FEEFB7FE7A67A678F4F87>&9(
+13333FEF77DB99B99B773777=%;'
+773333FFBDBBBBBBF777<%8"="
+9F273303AF87=$@"
+2F333F77='8#;"
+8F333B3FEFDFBDDB67=$8"8#9$
+9F0787FFC3E78B7797<&:S
+FF3F3FFFFFA$
+F0001F=#8$
+FFFFF8003FA$
+FFFFFF
+
+
+
+
+
+
+
+
+
+
+:"
+F98#="
+FC3FFE8#="
+F99FF88+
+F3F879CCE4CF27833FFE9(
+F339CCE227133F<&
+E667331FFF?"
+87?"
+E38%9#
+F9D339C8F33F8%9"
+FC3879E4078U
+
+
+A'
+E0000000007FAQ
+
+
+
+
+A"j"
+E0301J"U"
+47FFDA"R"
+E7FE
+
+
+C"8#="8#
+F7FEFEDFFBFB9#9"9">%
+C71FF3F0BDFFBFC3B#="8#
+F77F9DDDFF:(8'9*
+1C3C9E67F3833F774F4F1E9EE3E70FDDDD3D3C7A7B8F9%8":&8+
+D2999C4E3F3736EE6EDDADDBBFDDDCDCDBB9BB77<"8#9%9#8%
+CE1FFF7777EEEEA5BDDDDDDFBB:#9"8#8$8"8"8%
+981C87F0F70EEEC1B5C3DC3BBB079$9"8"8%8"8"8%
+D999FCE3F776EEEEDFB9DFDBBBBB7F;'="9"="
+DCCE47F3F33FDDDB779(;%8$9%
+DF9C3CCF27F30777161EE3BDE7CFDC587B8F9S"R8U
+E7
+
+
+
+A"c
+E0Jf"
+401AZ
+5
+
+
+
+
+
+
+="
+9C9#
+E73F
+:(
+38793C1CE1C93F:&
+3338999CCC9$9#
+E03F39C7FF9#9#
+E738C0CF:"9"
+33CF=%
+1CCECF3F:&
+38999C9CE19S
+
+
+A"j"
+E0=1FAZ
+?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A"z$
+F5>554C0007A"Z$
+DF>FDFFF7;";"J"
+9DFF>ED;";"J"
+99DF>FD;(J"
+9061E4CF067FFF>ED;(J$
+99CCE2267E7FDF>FC0007=&J$
+E6663FFFFF>EFFFFF<'J"
+C0E6670FFFDF>FF<"8$J$
+CFC7FFFF>EE000F<"8$J$
+CEE67FDF>FDFFE7;)j#
+9C61E6660E7FFFFF<3FED;Q$Z#
+DFFF7F;BFFDA"J"
+FF>EDA":$J#
+DFDFFFBB7FDF7A$9"J#
+FFFF5FC38EDEBA";#J#
+DFDFFB7FDD5A"8'J#
+FF9E3E1FDFBB8F6EDAAA"8$8"J#
+DF6DDDDF776FDD5A%8"J#
+FFFF5EF7C38EDFFA"8'J"
+DFF61DDFDFBB076FDA"8#9"J"
+FFF5DD7F6EDA'8#J"
+DFFF5F6DDD9F76DB5FDA'8"J"
+FFFF439E2E5F8E6EDA$RJ$
+DFFF7F5FC0007A"J$
+FF>EDFFE7A"J"
+DF>FDA"J"
+FF>EDA#j#
+DFFF<3FFDAZ"
+?EDA"J"
+DF>FDA"J"
+FF>EDA"B#F"
+DFF77FFDA$9":$G"
+FFFFC3E1F7F877EDA$9";#G"
+DFFFBFDEFBFFFDA"8-F"
+FF8EEE3FBFEED298F4E1FBF771EDA'8%8"F"
+DFFF9F76EDDFCE7773776EFDA%:'G"
+FFFFC7F6DEF77777F877EDA'9"8$F"
+DFFFF3875C1FF0FBF760FDA'9#9"F$
+FFFFFB775DFFF7F76FEC0007A"9%8"9"F$
+DFBDDFDEEC776EFDFFE7A-8"F"
+FFFF878BBE3FE1F2DEF8F77971EDA"YF"
+DFFDA"J"
+FF>EDA"J"
+DF>FDA"J$
+FF>ED8067A"J"
+DF>FDA"J$
+FF>EDC0E7A"J#
+DF>FDE1A"J#
+FF>EDF3A"B#F#
+DFF77FFDFFA%:#8#G"
+FFFFC3BFFDEFF877EDA$;"9#G"
+DFFFBFFCFBFFFDA"8-F"
+FF0E74C7F8F1FCEE3BFBFBF771EDA-8"F$
+DFFF9FBDB3BBF76FFD6DDBBB6EFC0007A(8&G$
+FFFFC7BBD7BBFF2DDDB7F877EE000FA$8+F$
+DFFFF383F873FDAC1D57FBF760FFFFFFA$8'9"F#
+FFFFFBBFF77DFDCDFD6FEFF1A"8$:#8$D"
+DFBDB7BBDEEF6EDB7FFFA,9"F"
+FFFF87CE77C7F8A3FDEE3E71EFA"ZD"
+DF0FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J"
+FF>EFA"J"
+DF>FFA"J#
+FF>EFFFA"J"
+DF>FFA"J$
+FF>EC0007A"J$
+DF>FDFFF7A"J"
+FF>EDA"J"
+DF>FDA"J"
+FF>EDA"z$
+CA>AAAC0007AZ
+B
+
+
+
+
+
+
+
+
+A"a"8'
+FE07E00000000003A"Q"8'
+F9F99FFFFFFFFFFCA"<"8":#
+F7FE7FFF7FA"<'9"
+EFFF7FFEFFFFEEBFA#9"8'8"
+DFF7DFBFFDFE0FEEEFDFI"8#9"
+9FFFEFCFA+8&
+BFF74F1C7487F01FDFFB0EC3F80FEFC(8'
+36FBB3DFF7DFCFFEEEEFFBEFE7C'9"8#
+76FBB7DFFBBF1EFDDFC$<"
+773837FED&<#
+DBF7DFFD7FFEBFE"="
+B7CEC'9&
+763C77E7FEFF0F2EF3FF7FA"R#Q"
+DF8FFDC7I"="
+9FCFA"=#<"
+EF1FFE8FA"<%;"
+F7FE3FFF7F1FA"<%:#
+F9F87FFF9FFC3FA"b$`"
+FCFFFFC07FA"<"8":#
+FE03E001FFAS8Q
+
+
+
+
+
+
+
+
+
+
+=$:$
+CFFFE7F7FFEE;";"9"
+CFF7F0E#
+F7FE<-
+C3C9E1E67FF7E78F87F7EEE3<$9$8"
+99C4CCDB7777DD<+
+F9CCCCE7FFF7BDF777F0<$:&
+C1CCC08777F7EEC1<$:"9"
+99CCCF77DF>(8#
+CEE67FF7DB7767DDB6;%8%8"
+C0C4C1E1F0E78B97E3;Y
+
+
+A"j"
+C0=3FAZ
+?
+
+
+
+A"j"
+C020FF"X"
+07EFA'
+CFFFFFFFFFE7
+
+
+;$@"8%
+9FFFCFFDBFFFF77F9":"9(9#
+9FE7C07FFFBFE7FC3DF877B#9#9#
+FBFFFBDDFBFF:$8#82
+8793C3067FE3BB0FE7F7FDBBA7A7FBF771E9E3D33C7F:'9$:#8'
+338999CFE67EDDBBBF9B9B6EE6DDCCDBBF:#9#9";)
+F3993FFFD7BBBBF8776EEEFDDD:'9#9#8)
+839981CFE70FC1EFDDD7FBF760EEE1DDD83F:$8"9#?'
+33999FC7DFD76FEEDDDDDBFF<"8#8#8$:":"
+9DE67FDDBBFBDDEF6EBF9(9)9'
+818983C3CFE60EE3BBCFE7FC1DEF8771EEE2DDDC7F9S+T
+CFFFFFFFFFE7FFFFDFBFI"
+9FI#
+FFFF
+
+A'
+C00000000007Fi"
+0FAZ
+4
+A"i"
+C03FH"R"
+03BFA"Q"
+CFF3
+
+
+G"9%
+EFFE7FFFDF:"9"9#;'
+3BE7EF7FF83FFDFFFFDD:"="<#
+33E7FBDF:(8%9'
+20C3C99FE7067F79D34CF1EE3863DDD87F:'8&9'
+3399C44FE67EEB76CF336EEDDDDDDDDDFF<,;"
+CCCFE63FFFCFE96F5F777EFD;"8#8"9"9$
+81E70FED70EC1DE1;"9"8"9"9$
+9FC7EE6EEDFDDD;"9#8#;%
+9DE67F76DFDDDDDDD9:#8#8#8+
+38C3E60EEF79716FF3F83E3DE2E5DE7F:R"Q"R
+CFF3
+
+
+
+A"a"
+C003Hc"
+3FAZ
+0
+
+
+
+
+
+9"`"
+FE079"P"
+F9F99";"
+F7FE9"8"8#
+EFF7FF7F9$:"
+DFF87FBF:#:"
+F7BF9F9)
+BFEFFCF79D3FFFDF;'
+FB776CFFFFCF;$
+F7B6F5
+
+:'
+F7BB776DEDBF:%
+F87CF79D9"Q"
+DF8F@#j"
+9FC0=3F9"<"Z
+EF1F?9";#
+F7FE3F9";#
+F9F87F9"a"
+FCFF9";"
+FE039R
+
+
+
+
+
+:"
+3F7#
+FE1F7#
+FCCF8*
+FE6727933C3C9E667F8(
+7E671388999C4E7&8$
+FE1E673399CE67FF7#9#
+FF8E981C8"9#
+CE99FC7$9%
+FCCE47DCCE467F7*
+FE1F2707999C3CCF267U
+
+
+A"j"
+C0=3FAZ
+?
+
+
+
+
+
+
+
+
+
+="?$A#
+39DFFBBFFDDF9#?"8&8#8"
+CE7FDFDC3BBFF7DFFDDFDEG&
+DDFFBFF39F:*84
+70F27839C3927FF4F19E3E1DFBB8F39E3D3DDD863D33DEE3D3E1DC74:&8#84
+6671333999F36F6DDDDDFBB7755DDCDDDDDDDCCDDEDDCDDDDBB39$9$8&9"9&8"
+C07E738FFFF7DEF7DDDC3BDDDDDDC0FDDDB79#9#8"8)8&8#
+CE70819F73F61DDDFBB076DC1DDC1DDDDEE1D837:"9"9"8#8%8#8"8#
+669F7DF5DDB7F6DDFDDDFDDDDBF7<&9%8(:$
+32399D9E7FDF6DDD9D77DDDDDD9DDDDDD9DBB7:&818&
+71333939C3F0E3FFC39E2E5DFBB8F7DE3DDE5DE63DE2DDE5DC779S$Z
+F7FF814C"
+FFA"
+FFA"j"
+C0=3FAZ
+?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+G'8'
+F80000000007FC000000000FG'8'
+E7FFFFFFFFF9F3FFFFFFFFF3G":"8":"
+DFFEEFFDG"9&:"
+BFDFFF7FFFDFFEG#:%8$
+7FE7BFFFBFE1FEFF7FJ"8":"
+79FEE3FF1
+FEFFDBD3D3DBBFDFFF7FEEE3C71C3FBFI#8"9&
+CDCDCFDDBEEEFF9FI#;"
+DDDDE1H"8#9%
+81DD7FEDC1CE0EH"=%
+BDEEDFF6FEJ#:$
+5DEFFDDF6EEI#<%
+C3C3E38F1F3FF+P"
+FF7FFFDFDFFDFF8FFFBF1FJ$="
+5F9FF9F3FG"P$:"
+BF1FFFDFFEG":%:#
+DFFE3FFFEFFC7FG":%:#
+E7F87FFFF3F0FFG"`)
+F0FFFFF80000000001G":"8":"
+F803FC07GQ8Q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j"
+O#1F
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "27" 16
+%%Page: "28" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (28) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.1 (8.) 197.5 641.33 S
+0.01 0.1 (Repeat the pr) 210.6 641.33 B
+0.01 0.1 (ocess one mor) 271.06 641.33 B
+0.01 0.1 (e time to insert ) 334.64 641.33 B
+7 F
+0.02 0.1 (Store as New File...) 404.6 641.33 B
+4 F
+0.01 0.1 ( as the ) 526.59 641.33 B
+0.52 0.1 (thir) 210.6 628.93 B
+0.52 0.1 (d menu item.) 226.75 628.93 B
+0.1 (9.) 197.5 608.53 S
+0.4 0.1 (In the item Handler text \336eld, insert ) 210.6 608.53 B
+7 F
+0.93 0.1 (SaveAsFileMenuItemHandler) 378.14 608.53 B
+4 F
+0.4 0.1 (. This ) 529.82 608.53 B
+0.52 0.1 (is the callback that will be called when the thir) 210.6 596.13 B
+0.52 0.1 (d menu item is chosen.) 424.66 596.13 B
+0.1 (10.) 192.41 575.73 S
+0.36 0.1 (None of the other \336elds need to change. Click on the Apply button to make ) 210.6 575.73 B
+0.52 0.1 (your changes take ef) 210.6 563.33 B
+0.52 0.1 (fect. Then dismiss the window) 304.83 563.33 B
+0.52 0.1 (. Y) 444.02 563.33 B
+0.52 0.1 (ou may have noticed ) 455.58 563.33 B
+0.52 0.1 (that selecting another item also causes your changes to take ef) 210.6 550.93 B
+0.52 0.1 (fect.) 495.18 550.93 B
+0.52 0.1 (At this point the File button in the Jot Editor base window should have the ) 198 530.53 B
+0.52 0.1 (menu-button mark, as shown in Figur) 198 518.13 B
+0.52 0.1 (e 3-14 on page 24.) 371.98 518.13 B
+8 F
+-0.84 0.13 (Customizing the Pop-up W) 198 485.73 B
+-0.84 0.13 (indows) 342.24 485.73 B
+4 F
+0.52 0.1 (Open the pop-up W) 198 468.73 B
+0.52 0.1 (indows pr) 289.36 468.73 B
+0.52 0.1 (operty window \050Figur) 335.91 468.73 B
+0.52 0.1 (e 3-18\051 and make the ) 437.07 468.73 B
+0.52 0.1 (following changes so that the pop-up window looks like the one shown in ) 198 456.33 B
+0.52 0.1 (Figur) 198 443.93 B
+0.52 0.1 (e 3-17.) 222.32 443.93 B
+1 F
+0.47 0.09 (Figur) 198 308.09 B
+0.47 0.09 (e 3-17) 218.77 308.09 B
+0 F
+0.47 0.09 (The Sized and Labeled Pop-up W) 248.4 308.09 B
+0.47 0.09 (indow) 386.27 308.09 B
+0.47 0.09 (.) 411.63 308.09 B
+4 F
+0.1 (1.) 197.5 283.42 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 283.42 B
+7 F
+1.22 0.1 (popup1) 331.91 283.42 B
+4 F
+0.52 0.1 ( to ) 368.49 283.42 B
+7 F
+1.22 0.1 (LoadFilePopup) 383.64 283.42 B
+4 F
+0.52 0.1 (. This is the name ) 462.9 283.42 B
+0.52 0.1 (that we will use in the pr) 210.6 271.02 B
+0.52 0.1 (ogram to r) 326.24 271.02 B
+0.52 0.1 (efer to the pop-up window) 374.54 271.02 B
+0.52 0.1 (.) 497.41 271.02 B
+0.1 (2.) 197.5 250.62 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 250.62 B
+7 F
+1.22 0.1 (Popup Window) 329.42 250.62 B
+4 F
+0.52 0.1 ( to ) 403.8 250.62 B
+7 F
+1.22 0.1 (Jot: Load) 418.95 250.62 B
+4 F
+0.52 0.1 (. This is the text ) 475.04 250.62 B
+0.52 0.1 (that appears in the header of the pop-up window) 210.6 238.22 B
+0.52 0.1 (.) 436.31 238.22 B
+0.1 (3.) 197.5 217.82 S
+0.52 0.1 (In the Rectangle \336eld, change the width fr) 210.6 217.82 B
+0.52 0.1 (om its curr) 403.34 217.82 B
+0.52 0.1 (ent value to ) 453.35 217.82 B
+7 F
+1.22 0.1 (4) 510.64 217.82 B
+4 F
+0.52 0.1 (80, or ) 516.74 217.82 B
+0.52 0.1 (some similar appr) 210.6 205.42 B
+0.52 0.1 (opriate value, and change the height fr) 293.15 205.42 B
+0.52 0.1 (om its curr) 470.83 205.42 B
+0.52 0.1 (ent ) 520.83 205.42 B
+0.52 0.1 (value to ) 210.6 193.02 B
+7 F
+1.22 0.1 (90) 250.62 193.02 B
+4 F
+0.52 0.1 (, or some similar appr) 262.81 193.02 B
+0.52 0.1 (opriate value.) 363.8 193.02 B
+0.1 (4.) 197.5 172.62 S
+0.36 0.1 (None of the other \336elds need to change. Click on the Apply button to make ) 210.6 172.62 B
+0.52 0.1 (your changes take ef) 210.6 160.22 B
+0.52 0.1 (fect.) 304.83 160.22 B
+198 322.09 557.14 428.2 C
+198 322.09 557.14 428.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1243     
+490 139 352.8 100.08 0 200.77 325.1 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J"
+2FBF@CF7$J&
+FEDFDF9FCFFEFFE7F"J"J#
+07>CF<F83F#J(J"
+3FFD<E1827E7E1E1E0F7FF8#J(
+CFBF:CCCE7E7CCCCCCF8#J%
+E73F;CFFE7CCF7#J#
+FCE0?CE0C7$J#
+FEF87F>CCCC8"J#9"
+3C<CE7E8F7$J(
+FC00FF:E1E27E061E264F8"J"R
+C3:F17#J"
+FFFF:FF
+
+
+
+
+
+"j"
+38O-07"Z"
+3BO-F7
+
+
+
+
+
+
+
+
+
+
+=%
+FE7FF3F38'
+FC03FFFEFF028(
+FF9FFFFCFF3FFF:)
+0E603F3E70F3833F9)
+9E6664FF3E667333:%9"
+672CFF06FF:&
+079CFF3E60:#8#
+7F4C67F3:#9%
+766473233FEF9+
+9F0E663F3E70F3933FD79T"
+ABB"
+55B"
+ABB"b"
+C01FB"S
+EFB"
+FF
+
+
+
+
+
+
+
+=%
+FE7FF3F38'
+FC03FFFEFF028(
+FF9FFFFCFF3FFF:)
+0E603F3E70F3833F9)
+9E6664FF3E667333:%9"
+672CFF06FF:&
+079CFF3E60:#8#
+7F4C67F3:#9$
+766473233F9)
+9F0E663F3E70F3939T
+
+
+B"b"
+E01FBT
+
+
+
+
+J"`
+>E0J"P"
+>9F3FJ";"
+>7FDFJ#;"
+=FEFFEFJ&8"
+=FDFE1FFEF7F7J":"
+?EFF3J)
+=FBFEEEEC21CF4FFBJ&
+@EEF7B737F9J"8#
+?1E7B77J"
+?EE
+J$
+@CEF7B7J%
+?1F2F39CFJ"Q"
+=FDF1J"
+DF3J"<"
+=FEE3J#;"
+=FF7FC7J";"
+>9F0FJ"`"
+>C01FJ";"
+>E07FJR
+>
+
+
+
+
+
+
+
+
+
+
+
+"j"
+38O-07"Z
+3FO.
+
+
+
+
+
+J*
+O%C3C0CFC0F0C030307FJ*
+O%99CFCFCFE679F3F33FJ"9#8"
+O%9FCFF99FJ"
+O%8FJ%8#
+O%C3C1CFC1F073"J%8%
+07O$F1CFCFCFF3F39FF8"J">#
+77O$F9FBBFJ"9#8"
+O%99E7793FJ*
+O%C3C0C0C0F0F9F0307FJT
+O%
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "28" 17
+%%Page: "29" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (29) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.1 (5.) 197.5 641.33 S
+0.19 0.1 (If you can no longer see some of your interface elements, r) 210.6 641.33 B
+0.19 0.1 (esize the window ) 475.68 641.33 B
+0.52 0.1 (by hand and move the elements to a position wher) 210.6 628.93 B
+0.52 0.1 (e they will always be ) 443.76 628.93 B
+0.52 0.1 (visible, and then r) 210.6 616.53 B
+0.52 0.1 (edo steps 3 and 4.) 293.34 616.53 B
+1 F
+0.47 0.09 (Figur) 198 218.37 B
+0.47 0.09 (e 3-18) 218.77 218.37 B
+0 F
+0.47 0.09 (The Pop-up W) 248.4 218.37 B
+0.47 0.09 (indows Pr) 308 218.37 B
+0.47 0.09 (operty W) 349.89 218.37 B
+0.47 0.09 (indow) 387.9 218.37 B
+0.47 0.09 (.) 413.27 218.37 B
+198 232.37 557.14 600.8 C
+198 232.37 557.14 600.8 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  7282     
+450 506 324 364.32 0 199.14 234.72 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#@$
+2FBF4E7E7CFFFE77$E"=#;#
+FEDFDF07FE0FF9F9I":"9"<#
+33FF6799FF7"G08'
+FD39C399C1CCE7070E7E661E4FFF3393CE4F070E7E608#F,8*
+CFBF999999CCE666667E64CE2789FC93CE266666664F8#J)9&
+E73F667FE6CCE6603339966666724C77#G#:'9";"
+FCE081CB07FE1CCE67FF03E17$F$9$;#:#
+FEF87F9FCB917FFE7CFE6700F88"F*:";%
+3C339DE7C9C8E646767E23466799FC7$E09&
+FC00FF07C3E7F9E4E7270E7E7E1E0FFF938367270F99C18"F%Q&S
+C3FFFFFF99FE7FFFFF9F7#I"
+FFFFC3J"<#8"
+6FFFFFFFF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+G"z$
+FE>AAA98000@$:"Z#
+CFFFE7FB?BFFE7#;#="J"
+FE0FF9F9FF>FD8"<#<"J"
+6799FFFB>FF8'8)J"
+661E4FFF3393CE4F070E7E60CFFF>FD8$8,J$
+64CE2789FC93CE266666664FCFFB>FF80008'9(J$
+6CCE6603339966666724C7FFFF>FDFFFF8%9";$J"
+1CCE67FF03E1FFFB>FF8";#:%J$
+7CFE6700F8FFFF>FDC001<";'J$
+23466799FCCFFB>FFBFFC8'9*j#
+7E1E0FFF938367270F99C1CFFFFFE0;07FD7(T$Z#
+FFFFFE7FFFFF9FFBFFEF;F7FFG"J"
+FF>FD9#8"?":$J#
+FFFFFFFBFBFF777FFBEG$9%J$
+FFFFEB8777FE1F5FDBD7CG";%J$
+FBBFF7FEEF5FFBABCG"8,G$
+FFF3C7C3BF771EEF3D3DDD3FFDB55CG"8,G$
+FBEDBBBBBF76EEEEDCDDDCDFFFBABCG"8%8%H$
+FFDEFBBB87EDEDDDDDFDBFFCG"9'J"
+FBC3BBBF760E1D5FFG"9"9#J"
+FFBBFEFD5FDG"8$8&H"
+FBEDBBB3EEFEDDDD9DFFG/G"
+FFFFE873C5CBBF771EFF3C3E5C3FFDG$R%G$
+FBFFEFFDFFFDFFFF8000G"J$
+FF>FDBFFCG"?$H"
+FBFFFFFFFFG"J"
+FF>FDG$j#
+FBFFE0;07FFGZ"
+?FDG"J"
+FB>FFG"J"
+FF>FDG"=#J"
+FBFDDF5FFG%8'I"
+FFFFF87FCFFE1DDFF87FFDG%:%I"
+FBFFF7FFFFDFFBBFFFG"8-F"
+FFF1DDC7B78EFDDC7BBCF4F774FDG1E"
+FBFFF3EEDDBBB77EFDDBBBBB7377737FFFG%:"8%F"
+FFFFF8FE1DB7B77777FDG-I"
+FBFFFE70EB83039EFDD83877FFG-I$
+FFFFFF6EEBBF7BEEFDDBFBF7FD8000G"9#:%G$
+FBF7BBBBFB7776FFBFFCG1E"
+FFFFF0F177C77B1EFDDC7BFCF0F970FFFDG"V$F"
+FBF7FFF7FFG"J"
+FF>FDG"A$F"
+FBFFFFFFFFG"J$
+FF>FDB00CG"J"
+FB>FFG"J$
+FF>FDB81CG"J$
+FB>FFBC3CG"J$
+FF>FDBE7CG"J$
+FB>FFBFFCG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J$
+FB>FF8000G"J$
+FF>FDC001G"J$
+FB>FFFFFFG"J$
+FF>FDFE3FG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"J"
+FB>FFG"J$
+FF>FDFFFFG"J"
+FB>FFG"J$
+FF>FD8000G"J$
+FB>FFBFFEG"J"
+FF>FDG"J"
+FB>FFG"J"
+FF>FDG"z#
+F9?558000GZ
+B
+
+
+
+
+
+
+
+
+
+
+J#
+57FEEA#;"8"8"
+F8EF7F70C3J%
+577FEFFDDA3
+FA6E1E4CF0E7FF7E78F877EEE3DDE7A7BBA7B*8'
+6CCE226667FF7DB777DDDDDB9BBB9BB+9%
+2FCE66667FFF7BDF7770BDBBBBBBA&9'
+FB2E0E6660D87777EEC1C3B&8"9#
+8CCE6667FFD7DFDFF&8'
+67FF7DB776DDDFDBBBB3BAB*8(
+CE266670E7FF0E78B9E3DFE787CB853FAZ%
+/BFFFBABFJ#
+<B55FJ%
+:FFFFFABFG"j"
+FC=03GV"Z
+FE3J"
+<FF
+
+
+
+
+
+
+
+
+C%<"
+FCFFFE7FFEA"<$
+FC7FEFFE
+B-
+FC3C9E1E67FF79C2FEFCF1F0B%8'
+F99C4CCE76EEFEFB6EEEB,
+FF9CCCCE7FFF6F6FFEF7BEB%<"
+FC1CCC0EB0B%<"
+F99CCCFEAEE*
+EE67FF76EEFEFB6EECB%8'
+0C4C1E1E79F2FE1CF172AQ"Q
+FCG"
+FF
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+D#
+FE7F>"8"<'8&
+83BF9F9FFFF3C3E7F9CFFFE1F3>"8"<"8$;#
+993F99EBBDDBDEED?)8&9"8"
+C3C20C3C9E0E70E799FFDBBDBDCCDE>/
+9B9999399C4CCE6667FFC939FFBB>'8"8%9%
+87999F3F9CCC7F3FFF7BC3F80FFFE0>&8"8"8#9%
+93819F3C1C60C001BDF9CFFFFE?.
+9F9F399CCC8E67FFFFE67FFFFB>$8%8"9"9%
+999D9DCE4E676779DBCCFFDEED>*;#;#
+98C3C38C4CCFCE70E7C3E7E1F3>P#T8P
+FCCFC#
+FE1FC#
+FFFFJ&9&
+500000000038000000001JP9P
+5
+
+
+
+G"g"
+FC01J"P"
+801FDHQ"
+F9
+
+
+>%>"8"
+CFF3FF9F7FF7<$9$:"<"
+F3FFCEC3DFFE0F0F>#8$9#;#
+FCFF999FFCFEF7FEF7=5
+793C833879F9F061830E7FCFDFF79E38F87F9FDFBA78F4F=+9%9$
+89CCF3339F8F9CCCE66776DF77779B7737="8%8"9#;$
+99F39FC39F7F6F5FBB7777@';#;"
+839FF19E0CE0670707@(:#;"
+339FF99CCCE7FF7B7F7FB"9.
+9967FCFEF776FB7767F9FEF7BB77>5
+5CE33899FC3C62630E7FCFF0F79C78F97F9FF0F878F<V8P8%
+FFBFFFFF
+J"
+;FF
+
+Ha"
+01Ja"
+801GY
+
+G"j"
+FC23FG"R"
+FDE0J"U
+9E7
+
+
+
+A"8"9#:(9"
+C0BFFE1F7FE7F7BFF7F87FFDA"8":"<"8#
+CF3FEFF3FBBFB&8'8*
+87860C3927ED31E38F4E1FBCE1FBB4C78E3D387FB%92
+33333999ECEEDF77377FE7F5BB77FBB3BB7DDCDDFFA"9#8"9"8&8"
+C198FFED77F4B7B7FBB7DDA"8#9%9"8&
+CF38191DE0E707F6F877839C1DD#9%9)
+39F9FDEFFB7FF737B7FBF7BFEDFDE#9$:#8$
+D9E7EEFB773B77BBEDDDB%:&8#8&
+87878C39F1C78F779FBCF9C71E3DDE7FAQ"R"U
+FDE7
+
+
+
+J"e
+9E0G"c
+FCGZ
+4
+G"j"
+FC/01G"T"
+FDFCJP"
+<F9
+
+
+D";"9#9"8"
+3FEEFBFBFDF7C";"9":#
+0F3FBFFE1DB$;">"
+FE67FFEFFFC/8%
+7F3070E7FDFEDF0EEEE30C7A7B8FFDBB8F87C%8):#
+3F3E6667DEEEEEDFBBB9BB777777B&<#:#
+FF0F3CE67FBFBB1DD7C$8#8&8$
+C738E0FC0EE7BC3BBB07FDEF07C(8&9#
+E739E7FFFDFDEEFBBBBBBB7FD77FB&9#:"9$
+FE6733E767CEEC77BB7767B&8):#
+FF0F3070E7EF2EF2C7CC587B8F8F97C)Q"P
+FFFFFFFFFDFFFFFEFCJ"
+4F9J"
+4FF
+
+J`"
+<01G"e
+FCGZ
+1
+G"c"
+FE7FJ%
+603FFFFFFH&
+7FFFFFFFF3
+
+
+B%
+F9FFFE7F?#>&
+F07F87FFDFF3FD?#9#9"
+F33FFFFF7B@-8"
+3338393C9E7273FE7EFDDD87D3A':"8"
+33F89C4E7133DFCD@(="
+7331F99CCE733FDD?%
+F0F33879?%
+F3F33E39@#:&
+F23F33FE7F7BD9@&:$
+F930799C1E87E5E7?)8'
+FFFFFFFFFCFFFFFFFFFFFFF3FFFF
+C"
+FF
+
+H&
+0000000003J%
+600000000GU
+
+
+
+
+
+
+
+C#
+F9CF;"9#
+07FE73;"
+33;%8'
+39C3C9E18793C1CE1C93<$8&
+99C4CC338999CCCC="8$9"
+CC03F3997F>%9#
+C0FE73830CFF>"8"9"
+CF33FC;"8":%
+33CE91CCECF3;%8&
+07C3CCE18999C9CE1C;W
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F9CF:#8$
+F81FFDFE73:#8"
+F9FFF9;-
+F33879307E738793C1CE1C93<+
+333899FE73338999CCCC:%8$9"
+F833333903F3997F:$9#9#
+F9F97073830CFF<#9"9"
+73F933FC;$;%
+FCF3B991CCECF3:-
+F81CF8799C7E738999C9CE1C:X
+
+
+G"j"
+FE=01GZ
+?
+
+
+
+G"b*`(
+FE01FFC0000000007FF00FFE0000000003HR*P(
+FDFFDFFFFFFFFF7FF7EFFEFFFFFFFFFB
+
+
+
+;"9"@"?":$
+F3FCFB9FFBFF7F8#<#9"9">$9#8"8#
+E73FFE077F0FEFFF7BF87B7FFE038#="8":#C#;#
+E67F7FFE77FFFBBFFFDF9/8':#:%:#
+F0E73278787260FE7CCE1E4C1833769BA678E9778E10BB874E1F9E9F8)8&9%;#;$:#
+E5E667313333324CCCCE2673F37B99B767777B77377F6E6F8"8(8$9%@%:$
+E173333F31CCFE0C6671FFFBBBBF6FF87B7777DEF6EF8$8#8'8"8$:":"
+E4E07238337E5C0E66787F0EB86FAF07FB9&;%8"8"<";#
+67F2F33333FE667E3F7EB77FBB678$:)=":"<";#
+E66778C8FE7F3CEE667F33DF7797DF6E80;#:$;$:#
+E730F9F0787893E4FE073E1E671073B8AFE18F7CF7779F9E1F8$W8P"9$9&9$
+FFFFF3BFFFFFFFFFFFF7FFFFFFFEFFJ"A"
+83F8F:"I"A"<"
+FFFFFFFF
+
+
+Hb*`(
+01FFC0000000007FF00FFE0000000003GZ
+=
+G"b#a)`#`"
+FE07FFFFE0000000003FF87FF00FHR1P#P"
+F7FF7FFFFFFFFFFEFFEFFFFFFFFFBFFB7FF7EF
+
+
+
+J"
+EDF:#:#9"8%<$:$9#;#
+FC71FE077FFE1FFEF707FF7FE0FFDDF83FFBEFA"8":">"<$9#;#
+7FFEEF7FEFFFFDFBDFF9CF<,8':$:$9$;$
+C3CCE0E1FE7CCE1E4C1833EEEC21CF4F1F4E18E9DDD87FED31E19DDC7F:'8&9&:$;#9$9&
+FD2999CCCFCCCCCE2673F3EEF7B736FF377767DDFFECEEDDFAAF6DDBBF>"8"8$8"8#:%9#;#;#
+C70C6671FF1E7B760F77776FE1EBEDFEAEF5>*8"9#9$:#<":&
+E1C0FE7E5C0E66787FEE773F7F7770EFF7F0FB6EF6B83F;"8#9%=";#:"<#<#
+99F8CFFE667E3FDF77EFEBEED9BBFF=+9$>":";$:%
+C8FCCEFE7F3CEE667F33CEF7B76FDDDDEEE5EF6F7BBF;-8'9%9%8%;$
+F9C3E4C1E1FE073E1E6710731F2F39CF763F077798EFE0DDDE7FF83DF17D9F7C7F:X"R9%9%8%9P
+FEFFFFFFFFFFFFFFFFFFFFFFFDJ"
+LE3J"
+LFF
+
+
+Hb#a)`#`"
+07FFFFE0000000003FF87FF00FGZ
+E
+
+
+
+
+
+
+
+
+
+
+;"e"
+FC7F;"U"
+F39F;"@"
+EFEF;">$
+DFF7FFF7;#?"
+BFE1FB<"?"
+EFF9;-
+7FEFE74C7869CF774F87FFFD=+
+DB3BB767B7773777FFFC<)
+E1BD7BB76F7B7777<%
+EFBD7837>#
+7BF6=*
+DB7BB96FB7677766DB=)
+E77C7F6FCF977796;'P"
+BFFFFFFFFF7FF8?#;#j
+F8FFF9FF>;"9"<"Z
+DFFFF1?;"@"
+EFE3;"@"
+F387;"e"
+F80F;"@"
+FC3F;W
+
+
+
+
+;"e"
+FC3F;"U"
+F3CF;"@"
+EFF7;"8";$
+DFFEFBFFFB;#?"
+BFC3FD<"?"
+DDFC;-
+7FDDC7C6EC34E7BBA7C3FFFE=)8"
+BBBEDBB3DBBB9BBB7F<)
+C3FB7EBBB7BDBBBB<%
+DDC37E3B=%
+BB7EDB37>)
+BECCB7DBB3BBB36D<*
+C3C5C6EFB7E7CBBBCB;'P"
+BFFFFFFFFFBFFC?#<"j
+FC7FFF>;"9#;"Z
+DFFFFFF8?;"@"
+EFF1;"@"
+F3C3;"e"
+F807;"@"
+FC1F;W
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J'8'
+6C0000000003FE0000000007FJ'8'
+63FFFFFFFFFCF9FFFFFFFFF9FJ#:"8":"
+5FEFFF77FEFJ"9':"
+5FDFEFFFBFFFEFFF7J$9&8#
+5FBFF3FFDFFFDFF0FF7FBJ"9"9"
+;FC77F9J*8%
+5F7FEDE9E9EDDFEFFFB1E38E1FDJ#8"8&
+86E6E7F76EDF777FCJ#;"
+8EEEE0EJ#8":$
+6FC0EEB6E0E70J#=%
+6FDEE76FFB7F7J";$
+:F7EFB777J#;%
+81E1E771C78F9J*P"
+5FBFFFEFEFFEFFC7FFDF8J$<"
+:CFFCFFF9J"P$;"
+5FDF8FFFEF1J";%:"
+5FEF1FFFF7FE3J#:"8":"
+5FF3FC39F87J'8'
+6800000000007C0000000000FJ":"8":"
+6C01FE03FJQ8Q
+6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "29" 18
+9 11 /Palatino-BoldItalic FMDEFINEFONT
+%%Page: "30" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (30) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.84 0.13 (Customizing the Pop-up W) 198 639.33 B
+-0.84 0.13 (indow T) 342.24 639.33 B
+-0.84 0.13 (ext Fields) 384.51 639.33 B
+4 F
+0.1 0.1 (Now that we have sized the pop-up window) 198 622.33 B
+0.1 0.1 (, we need to size and label the text ) 399.77 622.33 B
+0.52 0.1 (\336elds. Open the T) 198 609.93 B
+0.52 0.1 (ext Fields pr) 278.88 609.93 B
+0.52 0.1 (operty window \050Figur) 335.69 609.93 B
+0.52 0.1 (e 3-20\051 and make the ) 436.85 609.93 B
+0.52 0.1 (following changes, so that the pop-up windows look like the one in ) 198 597.53 B
+0.52 0.1 (Figur) 198 585.13 B
+0.52 0.1 (e 3-19.) 222.32 585.13 B
+1 F
+0.47 0.09 (Figur) 198 449.29 B
+0.47 0.09 (e 3-19) 218.77 449.29 B
+0 F
+0.47 0.09 (The Pop-up W) 248.4 449.29 B
+0.47 0.09 (indow with Edited T) 308 449.29 B
+0.47 0.09 (ext Fields) 392.87 449.29 B
+9 F
+0.11 (LoadDirT) 198 421.95 S
+0.11 (extField) 245.89 421.95 S
+4 F
+0.52 0.1 (Note that Figur) 198 405.62 B
+0.52 0.1 (e 3-20 shows the changes for ) 268.49 405.62 B
+7 F
+1.22 0.1 (LoadFileTextField) 402.94 405.62 B
+4 F
+0.52 0.1 (.) 506.58 405.62 B
+0.1 (1.) 197.5 385.22 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 385.22 B
+7 F
+1.22 0.1 (text\336eld1) 331.91 385.22 B
+4 F
+0.52 0.1 ( to ) 386.78 385.22 B
+7 F
+1.22 0.1 (LoadDirTextField) 401.93 385.22 B
+4 F
+0.52 0.1 (. This is the ) 499.48 385.22 B
+0.52 0.1 (name that we will use in the pr) 210.6 372.82 B
+0.52 0.1 (ogram to r) 354.18 372.82 B
+0.52 0.1 (efer to the dir) 402.48 372.82 B
+0.52 0.1 (ectory text \336eld.) 465.25 372.82 B
+0.1 (2.) 197.5 352.42 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 352.42 B
+7 F
+1.22 0.1 (Text) 329.42 352.42 B
+4 F
+0.52 0.1 ( ) 353.81 352.42 B
+7 F
+1.22 0.1 (Field ) 356.93 352.42 B
+4 F
+0.52 0.1 (to ) 394.73 352.42 B
+7 F
+1.22 0.1 (Directory) 406.76 352.42 B
+4 F
+0.52 0.1 (. This is the text that ) 460.52 352.42 B
+0.52 0.1 (appears as the label of the text \336eld.) 210.6 340.02 B
+0.1 (3.) 197.5 319.62 S
+0.07 0.1 (In the Location \336eld, change the X co-or) 210.6 319.62 B
+0.07 0.1 (dinate fr) 390.79 319.62 B
+0.07 0.1 (om its curr) 429.22 319.62 B
+0.07 0.1 (ent value to ) 478.32 319.62 B
+7 F
+0.16 0.1 (8) 534.27 319.62 B
+4 F
+0.07 0.1 (, or ) 540.36 319.62 B
+0.52 0.1 (some similar appr) 210.6 307.22 B
+0.52 0.1 (opriate value, and change the Y co-or) 293.15 307.22 B
+0.52 0.1 (dinate fr) 464.5 307.22 B
+0.52 0.1 (om its ) 503.39 307.22 B
+0.52 0.1 (curr) 210.6 294.82 B
+0.52 0.1 (ent value to ) 229.18 294.82 B
+7 F
+1.22 0.1 (8) 286.48 294.82 B
+4 F
+0.52 0.1 (, or some similar appr) 292.58 294.82 B
+0.52 0.1 (opriate value.) 393.57 294.82 B
+0.1 (4.) 197.5 274.42 S
+0.25 0.1 (In the Field Length \336eld, insert the value to ) 210.6 274.42 B
+7 F
+0.59 0.1 (50) 410.87 274.42 B
+4 F
+0.25 0.1 (, or some similar appr) 423.06 274.42 B
+0.25 0.1 (opriate ) 522.99 274.42 B
+0.52 0.1 (value. This parameter adjusts the length of the text \336eld in the window) 210.6 262.02 B
+0.52 0.1 (.) 536.22 262.02 B
+0.1 (5.) 197.5 241.62 S
+0.23 0.1 (In the Stor) 210.6 241.62 B
+0.23 0.1 (e Length \336eld, insert the value to ) 257.94 241.62 B
+7 F
+0.55 0.1 (80) 410.95 241.62 B
+4 F
+0.23 0.1 (, or some similar appr) 423.15 241.62 B
+0.23 0.1 (opriate ) 523 241.62 B
+0.52 0.1 (value. This parameter adjusts the length of the text \336eld array in memory) 210.6 229.22 B
+0.52 0.1 (.) 546.26 229.22 B
+0.1 (6.) 197.5 208.82 S
+0.36 0.1 (None of the other \336elds need to change. Click on the Apply button to make ) 210.6 208.82 B
+0.52 0.1 (your changes take ef) 210.6 196.42 B
+0.52 0.1 (fect.) 304.83 196.42 B
+198 463.29 557.14 569.4 C
+198 463.29 557.14 569.4 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1058     
+490 139 352.8 100.08 0 200.77 466.3 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J"
+2FBF@CF7$J&
+FEDFDF9FCFFEFFE7F"J"J#
+07>CF<F83F#J(J"
+3FFD<E1827E7E1E1E0F7FF8#J(
+CFBF:CCCE7E7CCCCCCF8#J%
+E73F;CFFE7CCF7#J#
+FCE0?CE0C7$J#
+FEF87F>CCCC8"J#9"
+3C<CE7E8F7$J(
+FC00FF:E1E27E061E264F8"J"R
+C3:F17#J"
+FFFF:FF
+
+
+
+
+
+"j"
+38O-07"Z"
+3BO-F7
+
+
+
+
+
+
+9"
+9F7#9"
+FE0FEF8#8"
+67FFCF8)
+739930F0830E49C9:%
+26664E669(
+98E667CE6639DF9#9#
+99E07C9F:#9"
+E7E7BF8"8(
+67674E667E39FF7F8+
+0F99F0F0E30E7E79FEBF7R%
+FCFFFD5F@#
+FAAF>%
+FFFFFD5F@"j
+FEO"@#Z
+FF7FO!A"
+FF
+
+
+
+
+<j"
+O&01;"Z"
+FEO&FE
+=#
+CE7F<#
+E04E<#
+E7FE=$
+CE70E7>#
+6667<"8"
+E07F<$
+E7CE60>#
+67FF?"
+67>#
+70E7<%
+FFFFFFFF
+
+@"j"
+FCO!02@Z"
+O"FE;"j"
+FFO&01<Z
+O'
+
+
+
+
+
+
+
+
+
+J"`
+>E0J"P"
+>9F3FJ";"
+>7FDFJ#;"
+=FEFFEFJ&8"
+=FDFE1FFEF7F7J":"
+?EFF3J)
+=FBFEEEEC21CF4FFBJ&
+@EEF7B737F9J"8#
+?1E7B77J"
+?EE
+J$
+@CEF7B7J%
+?1F2F39CFJ"Q"
+=FDF1J"
+DF3J"<"
+=FEE3J#;"
+=FF7FC7J";"
+>9F0FJ"`"
+>C01FJ";"
+>E07FJR
+>
+
+
+
+
+
+
+
+"j"
+38O-07"Z
+3FO.
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "30" 19
+%%Page: "31" 19
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (31) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+0.47 0.09 (Figur) 198 242.68 B
+0.47 0.09 (e 3-20) 218.77 242.68 B
+0 F
+0.47 0.09 (The T) 248.4 242.68 B
+0.47 0.09 (ext Fields Pr) 271.29 242.68 B
+0.47 0.09 (operty W) 322.41 242.68 B
+0.47 0.09 (indow) 360.43 242.68 B
+0.47 0.09 (.) 385.79 242.68 B
+4 F
+0.4 0.1 (Similar sorts of changes need to be made for the LoadFileT) 198 218.01 B
+0.4 0.1 (extField in this pop-) 465.99 218.01 B
+0.36 0.1 (up window) 198 205.61 B
+0.36 0.1 (, and in the SaveAsDirT) 249.83 205.61 B
+0.36 0.1 (extField and the SaveAsFileT) 358.07 205.61 B
+0.36 0.1 (extField in the ) 489.76 205.61 B
+0.52 0.1 (Save As pop-up window) 198 193.21 B
+0.52 0.1 (. The key pieces of information ar) 310.72 193.21 B
+0.52 0.1 (e the following.) 464.79 193.21 B
+198 256.68 557.14 648 C
+198 256.68 557.14 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  10219    
+450 536 324 385.92 0 199.14 260.33 BEGINBITMAPBWc
+j"
+O*3F
+
+"Z"
+1FO(FE
+
+8"
+F88#
+C73F8#J#<%
+2FBF73F3FF3FF9F9F7$G#='
+FEDFDFF83FE01FFFF7F813J#:"8'
+5F99FFFFCFFFFE7F9FF7"J3
+FD4CE1CCE0E67383873FCF87301F9F3879C1C1F8#H-8%
+CFBFCCCCCCCE67333333FCF33327339999FF8#J"8%8"
+E73F93F3967F833987#J#9"8*
+FCE040E5C30F03CE7F9F303999C3F7$I$8'8%
+FEF87FFE5C8E33FFFCF3FA673F999F1F8"I)8#8%
+3C9CEF3E4E473233B3B3273B991F9F7$G.8%
+FC00FFF83E1F3FCF27393873FCF87331879C983F8"H&Y
+C3FFFFFFFCCF7#J#
+FFFF5FE1FJ#
+8FFFF
+
+
+
+
+"j"
+18O(06"Z"
+1FO(FE
+
+
+
+
+
+
+
+Hz$
+?AA60003FB'Z$
+E7FF3F3FFFFE?EFFFBF=':"J"
+C03FFFEFF027FF?6F=':"J"
+F9FFFFCFF3FFFE?EF>+J"
+F0E603F3E70F383833FF?6F>+J$
+E6664FF3E6673333F3FE?E0003F?%8$J$
+72CFF06631FFFF?7FFFFF>+J"
+E079CFF3E60733387FFE?FF>#9&J$
+E7F47F333E3FFF?70007F?#8&J$
+664F77323F33FE?EFFF3F>+J"
+F0E663F3E70F393073FF?6F=U"J"
+FE?EFG"J"
+FF?6FG":$:%F#
+FEFEFFF7FEFFDFDFEFBFG$9(I#
+FFFFFEC1F7F01FFFEF0E6F5FG";%8"I#
+FEDEFFFEFF7FEEAFG"8.F#
+FFFCF1F0DF769EF8EEC37EE3DE1F6D57G"8$8)F#
+FEFB6EEE7EF76EEF7EDDDDDFEEAFG"8#9&I#
+FFF7BEFEF775EF0E6FFFG"9":&H"
+FEB0F07BEF7EC1EFG"9":#8"H"
+FFAEF7F5DF6FG"8&8"8$F"
+FEFB6EECDEF66EDDDD9FEFG"8%8(F"
+FF1CF172C1F8EEF37EE3DE5F6FG"ZF#
+FE/E000G"J#
+FF?6FFFG"J"
+FE?EFG"J"
+FF?6FG"J"
+FE?EFG$j$
+FFFFF8;01FF6FG$Z$
+FEFFFB;FDFFEFG"J"
+FF?6FG":$;$F"
+FEFEFFDDEFFDFDEFG$9"8%I"
+FFFFFAE101FFFEF06FG";%8#H"
+FEEFFDFFEFF7FFEFG"8.F"
+FFFCF1F0EFDDC7EF8EEC37EE3DE16FG"8$8)F"
+FEFB6EEEBBEF76EEF7EDDDDDEFG"8%9$I"
+FFF7BEEEE1775EF06FG"9,G"
+FEB0EEEFDD83EF07BEF7EC1DEFG"9"9(G#
+FFAEBFEF7F5EF7EDFD6000G"8$8%8#F#
+FEFB6EECBBEF76EEDDD9EFFFG"8$8)F"
+FF1CF172C7EF8EEF37EE3DE56FG$XF"
+FEFFFBEFG"J"
+FF?6FG"J"
+FE?EFG"J#
+FF?6C03G$j$
+FEFFF8;01FFECGZ#
+@6E07G"J#
+FE?EF0FG"J#
+FF?6F9FG">":%D#
+FEDFFBFF7F7FEFFFG%8*G"
+FFFFFE1FF3FF07DFC07FFFBC3B6FG%:(G"
+FEFFFDFF7BFFFBFFFFBDFFEFG"8/E"
+FFFC7771EDE37DDA7BE3BB0DFB8F786FG2E#
+FEFFFCFBB76EEDDF7DD9FBDDBBBDFB7777E000G%;"8$G$
+FFFFFE3FDBD7BC3B70007FG)9&F$
+FEFFFF9C3AE0C0E7C1EFBDFB07FFFFFFG"8&9#8"F#
+FFDBBAEFDEFBDFD77F7F8FG"9#8"8#8#E"
+FEBDEE7BDDBB7776FFG*8'E"
+FFFFFC3C5DF1DEC707E3BBCDFB8F797FG"ZD#
+FE1FFAFG"J#
+FF?7FDFG"J#
+FE?FFAFG"J#
+FF?7FDFG"J#
+FE?FFAFG"J#
+FF?7FDFG"J#
+FE?FFAFG"J#
+FF?7FFFG"J"
+FE?FFG"J$
+FF?60003FG"J$
+FE?EFFFBFG"J"
+FF?6FG"J"
+FE?EFG"J"
+FF?6FG"z$
+FE?5560003FGZ
+C
+
+
+
+
+
+
+
+
+
+
+J#;$
+57FEEF7FEFEA#;"8"8"8#
+F8EF7F70807877J%8#
+577FEFFF77BFFA5
+4FA6E1E4CF0E7FF7E78F877EEE3F7C7761BF71EF0B*8)
+6CCE226667FF7DB777DDF7BB777BF6EEEEB+:$
+2FCE66667FFF7BDF7770AF7876A&9,
+FB2E0E6660D87777EEC1F783DF7BF60EB&8"9%8"
+8CCE6667FFD7DFF7BFAFFEF&8%8#
+67FF7DB776DDF7BB77EEECB*8)
+CE266670E7FF0E78B9E3F7C7779BF71EF2AZ
+4
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C(
+FCFFFE7FFFFEEFA"<"
+FC0EH"
+7FB*
+FC3C9E1E67FF7EEE3BB%9#
+F99C4CCEEDDBB*
+FF9CCCCE7FFF0EEDDFB%8$
+FC1CCC0E7EEC1FB%9#
+F99CCCFEEDFFE#9"
+EE67DBB%9#
+0C4C1E1EEE3BAU
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j8"f"
+FC3FE3FJ"W"="Q"
+77FFE03BFH&G&
+FFFFFFFFFE7FFFFFFFF3
+
+
+A$A$8"A"9"
+F9FFFCDFFFFB77FCFD?":#8%8":"A'
+F9FE7FFC07FFFBC3877FFBDFF3FE7DH#:":#
+FFBFBDBFF7@(8$8-;*
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C77C7087F3FDBD3E7771@(8$:+;$8%
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB7BBBDFBCDDB76E@#9#9#:%8$A$
+FF3963FFDD7BBBBBBF87EFDDDDBDDBD7@'9$8$8(;#8&
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83783BF81DDBDAE0@(8$?&;#8#8"
+F33999FCFE7C7FBDFD7BFEEDDDDDBF7BFBFBDDEFC%9#8$:"9"<":$
+DCFE7E67DBBBBDDEFBEEBBBBDDBDEE?)8$8%8';$8%
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC70C7BE7DC3E7DF1?S8$8$T;%P
+FFFFFFFFFDFBFFFFFFF3J"
+9F9J#
+9FFFF
+
+H`G&
+0000000003Ji=b"
+73FGZ8X
+4
+
+
+
+
+
+
+C"
+FC?"9":"8#9&
+CFBC9C9F9FF3CFFFC3C3C"=#<#
+3F5F5FBDBD@.9&
+C3C3860CE1E4E7FFC9CFFEDEDFF9D9FFFDFD@-;"
+9999333CCCE267FFC3CFFDDD99A#8(:&
+9FF3E67FFFE3FFFBDBFCBFFFE3FBB";&9&
+83C9FFF8080FFE7FFFFDF7B"=$="
+33FFDFDFEFA":%=%
+9D67FF9CCF79FFBDDF?'D#
+C0C3C3898CE1C381?Y9P
+
+
+J'9&
+4F8000000001F0000000003JQ9P
+4
+
+
+
+G"j"
+FC407J"R"
+>1FF7HW"
+9F
+
+
+>%=$<"="
+F3FF9F9FFEFFEFDFF7=#9#;"A#
+F813807F3EEF7F=#9#D"8":"
+F9FFF3FFFFE7FF>58'
+6F3879C1FF3CE64F0E7FCFEDEE9E9E3D3DDD33C74DE3F7774CF1D378F?$8$93
+33999F626667E6E6DDCDDDCCDBB3DDFF9FEB777336ECF77F=#;$9*8(
+F833E6667FEEEEFDDDDDDDDBB7DBE9777776EDF6FF=$9$8#8"9#9"9"
+F9F303E4E660FC0EE1D837ED0D?"9(8"9#9"9"
+3FE5E667FFFCFDEEDDDBF7EEFD?&8"="8#9"8$
+3B991FF3F167D9B7DD76EDF77F?)93
+879C9FF3F3E0F0E7E1EEE2DDE5DDDC77DE3F9FEF7977771DF78F=Q)T"R
+E7E7FFFFFCFFFFEF9F
+C#;"
+FFFFFF
+
+Hg"
+1FJc"
+>07GZ
+6
+
+
+
+
+
+
+I"
+F7A"<#=#
+EBBEFBFEFBA"<#=#
+DD5D7FFD75A,;&
+EEEBEEFAFAEFFFBEFBBBBFFEFBEBBBBFA,;&
+DDDDF7777777FF5F77DDDFFD7DDDDD7FA,;&
+EBFEEEEEEEFFFFEAFBBBFFFFABFBEBFFA+<%
+DDF5F777757FFF5F77DDFD7DD5F7A+<%
+EBEEEEEEEFFFFFEEFBBBFFBBBBFBA,;&
+DDDDF7777777FF7777DDDFFDDDDDDD7FA,;&
+EEEAEEFEFAEFFFFEFBBBBFFFFBEEBBBFA&Q<%
+FFFFFFF77FFFFFFFFFD#
+FAFFD"
+FFJ':&
+6FAAAAAAAAABFEAAAAAAAAAJQ:P
+6
+
+
+
+
+
+
+
+
+
+<%;"
+FE7FF3F3E7<"9"9"8$
+02F9FDFE079F<#<"9#
+3FFFF9FF6F</
+3E70F383F9F8793C1064E7FEFEF7=-
+667333F9F3389999E267FE0E<";"8%
+0639E67FFFF6<#9"
+3E60F0=#8%
+67F3F3F99919>#8)
+7323B99C99E667FEF76F=.
+70F393F818799F9C6667FF0F9F<R#P
+F99FC#
+FC3FC#
+FFFFG'
+FC000000000FGQ
+
+
+
+
+
+
+
+
+
+
+?";"
+F3E7:#:"9"9#
+FC3DF9FD0F9F:#>"8$
+F999F9FEF76F;0
+F061C98783F9F8793C1064E7FEF6F7:.
+F8F9CCC93333F9F3389999E267:%:"8%
+FC39CCC739E67FFF0E:&8";#
+FF19CCCF03F0FEF6;"8"8%
+993FF3F99919:"9#8)
+F93B23B99C99E667FEF76F:1
+FC3C61CF8793F818799F9C6667FF0F9F:T#P
+F99FC#
+FC3FC#
+FFFFG'
+FC000000000FGQ
+
+
+
+
+G"j"
+FC41FJ"T"
+<0FDFHU"
+CF
+
+
+C">"8"<"9"
+FCBFFBFDBF>":":#<"8"
+87BCFE1FBFF0>":";";"9#
+333FEFFFF77F=+8*8)
+FE79C9E1C9860CE1E4E7EE3C7C3FF7F69B0C7F71E3E1FFE7A7B77F?)8*8'
+C4CCC9333CCCE267EDDBBBBFF7767BBBBF6EDDDDFFDB9B?%8#8(9(
+CCCCC7F3E67F1DDFBBB01B6EFBF0EEFDDD80BDBB@$<08#
+C0CF83DC1C3BBFFAAEFBB83FCFF6E0E1DDFFBAFF@$<$:'
+CFCF33EDFBBBBBFFCFF76FDD=%;"9&8"8(
+FF33CCCE67DBBB3FFDDEBF6EDDD9FFDBBBBD>(:%9#8&
+87C1E1CF898CE1EE3C5CBFCC7F71E2E5FFE7>#R"U"R"
+FFCFFCCFFBJ"
+DF3?"J"
+FF:FF
+
+He"
+0FJe"
+<1FGZ
+6
+
+
+
+
+
+
+
+
+
+
+
+<#;#<#?#
+FE78F39F7FEEFDDF:(="8"8$8"
+1DFFDE73FFFCE77F7087FFBDDE<#C%
+9FF377FEFFBB:&85
+4DC306609C80F27839C3927FF7E78F877EEE3BBBB0873D3DEE3D3E1DC74;$8'8$8"8*
+999E73E667133399997DB777DDBDEDCDDEDDCDDDDBB3:"9&8(8"8&8"
+459DFC07E73398FFFF7BDF777087DEDDC0FDDDB7:"9%8#9':#8#
+65C9FCE7079819D87777EEC1BBDEE1D837:"9%8#9"9"<"8#
+71CBFCE66799F9D7DFDDDBF7>":)8&:$
+E32399D9E7FF7DB776DDBBB3BDEDD9DBB7:-8$8&8&
+79C3C673E7FCE71333939C390E78B9E387CBCE73E2DDE5DC77:&Z
+FFFFFFFFCF:
+>"
+FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"R*P(
+FEFBFFEFFFFFFFFEFFFBEFFEFFFFFFFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7;"9"=%:$8'9$9"
+FBFEFEFFFFFBFBFFEFBFFEFFFBFFFBEFFEFFFB8%9$9':$8.8"
+F77FFFF7FDFF577FFFFF7F5FFFFDFFDF7FFF7FF7FD7FFF7F7FDFFF7F57F78%9$8';38"
+EEFFFFFBFEFEFFFEFFFFFEFFFFFBFFEFEFFFFBFEFFFBFBBFFFFFFFEFFEFFFFFB85
+LF7F5F7777D7D7775FF7DDF5F5D5D77FF7F77DFF77DFD77FDFFDFFFDF55FF7FF7FFFFD75F5FDFFF7FDFDFDFF785
+LEFEEEFBBBBBBBAEEFEFEEEEEAEFBFBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBFFBFFFEFFEFFFFEEEFFB85
+LF5F77777777F75DDFF5DDDDF7775FFFF7F77FFFFFF7F77FDFFDFFF777FFF7FF7FD7F77777FDFFF7FDFF7FFF785
+LEEEAFAFBBBBABBEEFEFEFEAEEEFAFFFEFFAEFBBBBAEFAFFBFFEFEFAFFBFEFFFBFBFBFFFFFFEFFEFFFEFEEFFB85
+LF577F7F7777777DDFF7F5DFF777F7FFF7F7FFFFFF77FFFFDFFDFFF7F7FFF7FF7FFFF77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEAFEFFBEEEEEFFBBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBBFFFFFEFFEFFFFEEEFFB85
+LF775FDF57D7DD7F5FF577F5F775577FF7F7FFFFFFDFFDFFDFFDFF5DF7DFF7FF7FFFFF777DFDFFF7FDFDF5FF78$W$8-8+
+FFFFFBFEFFFFFFFFBFFBFFEFFFFFFFFEFFFBFFFFFFEFFEFFFFFEFFFB:"B#;%9$8"8(
+F7FF7F7FFDFFDFFF7FF7DFDFFF7FFFFFFFF7:"B#;%9$8"8$9"
+FFFEFFFFFBFFEFFEFFFBFFEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABGZ
+=
+Hr5
+55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG#Q1P#P"
+FF7FF7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFD7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$8%:$;"
+FF7FF7FF7FFDFFF7DFFF7FFDFF7FF7DF:#:#;%:%9,8&9"
+FEFBFEAFFEFEBFFEEFFFBFAFFEFFEFEAFFFFFFBFFBFABFFEFFFBFBEFEF:#:#9(938&9"
+FD75FF7F7FFFFF7FFFFFF7F7FF7F7FFF7FFFFDFFF7FFFFFDFF7FFDFFDFFF7FF7FDDFDF:5
+O$FEFBEBEEEAEBFEFEEEBEEEBABBFEFEEEEEABEFEFBFEFFFBFFFEEBAEBFEFFEFEFFFFAFFBFFBFBEFBBEBFEFFFBFBEFBFFEFFEF:5
+O$FD7DDDDDDFDDFF7DDDDF7777F7FF7FFFFFF7F777FFF7FF7F7F777777FDFFF7FFDDDDFF7FFDFFFDFFDDFF7FF7FFFF7DDFFFDF:5
+O$FFABBBEEEFEEFEAEEEEEEEFBFFFEFEBEEEFFFBFEFFEFFFBFAFFFFFEFFEFFEFEBEBFFFFBFFBFBEFFEFFFEFFFBFAAEFFFBBFEF:5
+O$FD7DDDDDF5D5FF7F5D5F777D7FFF7FFFFFF77F777FF7FF7F7F77757FFDFFF7FFF7DDFF7FFDFFFDF5DDFF7FF7FF7FF7FD7FDF:5
+O$FFBBBBEEFAEFFEFEFEFEEEFEBFFEFEEEEEFFFBFFFFEFFFBFFFFFFFEFFEFFEFEFEBFFFFBFFBFBEFEEFBFEFFFBFBEEFEBBFFEF:5
+O$FDDDDDDDFDDFFF7F7DFF777F77FF7FFFDFF7F777DFF7FF7F7F77777FFDFFF7FFDDDDFF7FFDFFDDFFF5FF7FF7FFFF7F7FFFDF:5
+O$FFFBEBEEEBEBFEAFBEBEEFBAFBFEFEBFAFBBEFFEBFEFFFBFAFFFBAEFFEFFEFEAFFFEFFBFFBFABFFBFFFEFFFBFBEFBFFEFFEF;X"Q5P"
+7F7F7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFDFFFFFFFDFF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBEBFEFFFBEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDFFFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FHZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "31" 20
+%%Page: "32" 20
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (32) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+9 F
+0.11 (LoadFileT) 198 640.67 S
+0.11 (extField) 247.82 640.67 S
+4 F
+0.08 0.1 (The T) 198 624.33 B
+0.08 0.1 (ext Fields pr) 223.01 624.33 B
+0.08 0.1 (operty window in Figur) 278.94 624.33 B
+0.08 0.1 (e 3-20 shows the changes for this text ) 387.38 624.33 B
+0.1 (\336eld.) 198 611.93 S
+0.1 (1.) 197.5 591.53 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 591.53 B
+7 F
+1.22 0.1 (text\336eld2) 331.91 591.53 B
+4 F
+0.52 0.1 ( to ) 386.78 591.53 B
+7 F
+1.22 0.1 (LoadFileTextField) 401.93 591.53 B
+4 F
+0.52 0.1 (.) 505.58 591.53 B
+0.1 (2.) 197.5 571.13 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 571.13 B
+7 F
+1.22 0.1 (Text) 329.42 571.13 B
+4 F
+0.52 0.1 ( ) 353.81 571.13 B
+7 F
+1.22 0.1 (Field ) 356.93 571.13 B
+4 F
+0.52 0.1 (to ) 394.73 571.13 B
+7 F
+1.22 0.1 (File) 406.76 571.13 B
+4 F
+0.52 0.1 (. ) 431.15 571.13 B
+0.1 (3.) 197.5 550.73 S
+0.52 0.1 (In the Location \336eld, set X to ) 210.6 550.73 B
+7 F
+1.22 0.1 (44) 346.33 550.73 B
+4 F
+0.52 0.1 (, and set Y to 32. These numbers wer) 358.52 550.73 B
+0.52 0.1 (e ) 527.66 550.73 B
+0.52 0.1 (arrived at by using the align facility on the element pop-up menu.) 210.6 538.33 B
+0.1 (4.) 197.5 517.93 S
+0.52 0.1 (In the Field Length \336eld, insert the value to ) 210.6 517.93 B
+7 F
+1.22 0.1 (50) 413.27 517.93 B
+4 F
+0.52 0.1 (.) 425.46 517.93 B
+0.1 (5.) 197.5 497.53 S
+0.52 0.1 (In the Stor) 210.6 497.53 B
+0.52 0.1 (e Length \336eld, insert the value to ) 258.51 497.53 B
+7 F
+1.22 0.1 (80) 413.52 497.53 B
+4 F
+0.52 0.1 (.) 425.71 497.53 B
+0.1 (6.) 197.5 477.13 S
+0.46 0.1 (In the Notify Handler text \336eld, insert the text ) 210.6 477.13 B
+7 F
+1.08 0.1 (LoadFileButtonHandler) 424.95 477.13 B
+4 F
+0.46 0.1 (. ) 552.24 477.13 B
+0.3 0.1 (This is the callback that will be called when the Return key is pr) 210.6 464.73 B
+0.3 0.1 (essed while ) 502.29 464.73 B
+0.52 0.1 (this text \336eld has the focus or when the Load File button is pr) 210.6 452.33 B
+0.52 0.1 (essed.) 494.18 452.33 B
+0.1 (7.) 197.5 431.93 S
+0.52 0.1 (Click on the Apply button or select another text \336eld in the T) 210.6 431.93 B
+0.52 0.1 (ext Fields ) 490.65 431.93 B
+0.52 0.1 (scr) 210.6 419.53 B
+0.52 0.1 (olling list to make your changes take ef) 223.34 419.53 B
+0.52 0.1 (fect.) 403.39 419.53 B
+9 F
+0.11 (SaveAsDirT) 198 390.47 S
+0.11 (extField) 257.08 390.47 S
+4 F
+0.1 (1.) 197.5 374.13 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 374.13 B
+7 F
+1.22 0.1 (text\336eld3) 331.91 374.13 B
+4 F
+0.52 0.1 ( to ) 386.78 374.13 B
+7 F
+1.22 0.1 (SaveAsDirTextField) 401.93 374.13 B
+4 F
+0.52 0.1 (.) 511.67 374.13 B
+0.1 (2.) 197.5 353.73 S
+0.35 0.1 (The r) 210.6 353.73 B
+0.35 0.1 (est of the pr) 234.45 353.73 B
+0.35 0.1 (operty changes for SaveAsDirT) 288.99 353.73 B
+0.35 0.1 (extField ar) 430.32 353.73 B
+0.35 0.1 (e the same as for ) 478.5 353.73 B
+0.52 0.1 (the LoadDirT) 210.6 341.33 B
+0.52 0.1 (extField. ) 271.15 341.33 B
+0.1 (3.) 197.5 320.93 S
+0.52 0.1 (Click on the Apply button or select another text \336eld in the T) 210.6 320.93 B
+0.52 0.1 (ext Fields ) 490.65 320.93 B
+0.52 0.1 (scr) 210.6 308.54 B
+0.52 0.1 (olling list to make your changes take ef) 223.34 308.54 B
+0.52 0.1 (fect.) 403.39 308.54 B
+9 F
+0.11 (SaveAsFileT) 198 279.47 S
+0.11 (extField) 259.02 279.47 S
+4 F
+0.1 (1.) 197.5 263.14 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 263.14 B
+7 F
+1.22 0.1 (text\336eld4) 331.91 263.14 B
+4 F
+0.52 0.1 ( to ) 386.78 263.14 B
+7 F
+1.22 0.1 (SaveAsFileTextField) 401.93 263.14 B
+4 F
+0.52 0.1 (.) 517.77 263.14 B
+0.1 (2.) 197.5 242.73 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 242.73 B
+7 F
+1.22 0.1 (Text) 329.42 242.73 B
+4 F
+0.52 0.1 ( ) 353.81 242.73 B
+7 F
+1.22 0.1 (Field ) 356.93 242.73 B
+4 F
+0.52 0.1 (to ) 394.73 242.73 B
+7 F
+1.22 0.1 (File) 406.76 242.73 B
+4 F
+0.52 0.1 (. ) 431.15 242.73 B
+0.1 (3.) 197.5 222.34 S
+0.52 0.1 (In the Location \336eld, set X to 44, and set Y to 32.) 210.6 222.34 B
+0.1 (4.) 197.5 201.93 S
+0.52 0.1 (In the Field Length \336eld, insert the value to ) 210.6 201.93 B
+7 F
+1.22 0.1 (50) 413.27 201.93 B
+4 F
+0.52 0.1 (.) 425.46 201.93 B
+0.1 (5.) 197.5 181.53 S
+0.52 0.1 (In the Stor) 210.6 181.53 B
+0.52 0.1 (e Length \336eld, insert the value to ) 258.51 181.53 B
+7 F
+1.22 0.1 (80) 413.52 181.53 B
+4 F
+0.52 0.1 (.) 425.71 181.53 B
+FMENDPAGE
+%%EndPage: "32" 21
+%%Page: "33" 21
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (33) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.1 (6.) 197.5 641.33 S
+0.52 0.1 (In the Notify Handler text \336eld, insert the text ) 210.6 641.33 B
+7 F
+0.98 0.1 (SaveAsFileButtonHandler) 210.6 628.93 B
+4 F
+0.42 0.1 (. This is the callback that will be called when ) 350.08 628.93 B
+0.52 0.1 (the Return key is pr) 210.6 616.53 B
+0.52 0.1 (essed while this text \336eld has the focus, or when the ) 301.87 616.53 B
+0.52 0.1 (Save File As button is pr) 210.6 604.13 B
+0.52 0.1 (essed.) 323.31 604.13 B
+0.1 (7.) 197.5 583.73 S
+0.52 0.1 (Click on the Apply button or select another text \336eld in the T) 210.6 583.73 B
+0.52 0.1 (ext Fields ) 490.65 583.73 B
+0.52 0.1 (scr) 210.6 571.33 B
+0.52 0.1 (olling list to make your changes take ef) 223.34 571.33 B
+0.52 0.1 (fect. Then dismiss the window) 403.39 571.33 B
+0.52 0.1 (.) 542.59 571.33 B
+8 F
+-0.84 0.13 (Customizing the Pop-up W) 198 538.93 B
+-0.84 0.13 (indow Buttons) 342.24 538.93 B
+4 F
+0.52 0.1 (Each of the pop-up windows have just one button. W) 198 521.93 B
+0.52 0.1 (e will edit these so that ) 442.29 521.93 B
+0.52 0.1 (the pop-up windows look like the one shown in Figur) 198 509.53 B
+0.52 0.1 (e 3-21.) 445.82 509.53 B
+0.52 0.1 (Open the Buttons pr) 198 489.13 B
+0.52 0.1 (operty window \050Figur) 291.22 489.13 B
+0.52 0.1 (e 3-22\051 and make the following ) 392.37 489.13 B
+0.1 (changes.) 198 476.73 S
+0.1 (1.) 197.5 456.33 S
+-0.01 0.1 (Select the button associated with the Load pop-up window fr) 210.6 456.33 B
+-0.01 0.1 (om the Buttons ) 486.72 456.33 B
+0.52 0.1 (scr) 210.6 443.93 B
+0.52 0.1 (olling list in the button pr) 223.34 443.93 B
+0.52 0.1 (operty window) 341.81 443.93 B
+0.52 0.1 (. If your ar) 411.18 443.93 B
+0.52 0.1 (e following this text ) 460.38 443.93 B
+0.52 0.1 (exactly) 210.6 431.53 B
+0.52 0.1 (, this was the second button you cr) 241.29 431.53 B
+0.52 0.1 (eated, and its name is button2. If ) 401.51 431.53 B
+0.29 0.1 (you ar) 210.6 419.13 B
+0.29 0.1 (e unsur) 239.8 419.13 B
+0.29 0.1 (e which is the corr) 273.95 419.13 B
+0.29 0.1 (ect button, double-clicking on the button in ) 357.75 419.13 B
+0.52 0.1 (the Load pop-up window causes that button to be selected in the Buttons ) 210.6 406.73 B
+0.52 0.1 (pr) 210.6 394.33 B
+0.52 0.1 (operty window) 220.57 394.33 B
+0.52 0.1 (.) 289.95 394.33 B
+1 F
+0.47 0.09 (Figur) 198 258.49 B
+0.47 0.09 (e 3-21) 218.77 258.49 B
+0 F
+0.47 0.09 (The Completed Load File Pop-up W) 248.4 258.49 B
+0.47 0.09 (indow) 397.12 258.49 B
+4 F
+0.1 (2.) 197.5 233.82 S
+0.42 0.1 (In the Name \336eld, change ) 210.6 233.82 B
+7 F
+0.98 0.1 (button2) 331.41 233.82 B
+4 F
+0.42 0.1 ( to ) 374.09 233.82 B
+7 F
+0.98 0.1 (LoadFileButton) 389.04 233.82 B
+4 F
+0.42 0.1 (. This is the name ) 474.39 233.82 B
+0.52 0.1 (that we will use in the pr) 210.6 221.42 B
+0.52 0.1 (ogram to r) 326.24 221.42 B
+0.52 0.1 (efer to this button.) 374.54 221.42 B
+0.1 (3.) 197.5 201.02 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 201.02 B
+7 F
+1.22 0.1 (Button) 329.42 201.02 B
+4 F
+0.52 0.1 ( to ) 366 201.02 B
+7 F
+1.22 0.1 (Load File) 381.16 201.02 B
+4 F
+0.52 0.1 (, or something else ) 437.24 201.02 B
+0.52 0.1 (appr) 210.6 188.62 B
+0.52 0.1 (opriate. This is the text that appears in the body of the button.) 231.78 188.62 B
+198 272.49 557.14 378.6 C
+198 272.49 557.14 378.6 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1107     
+490 139 352.8 100.08 0 199.86 275.95 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF7"Z"
+DFO+FE
+#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J"
+2FBF@CF7$J&
+FEDFDF9FCFFEFFE7F"J"J#
+07>CF<F83F#J(J"
+3FFD<E1827E7E1E1E0F7FF8#J(
+CFBF:CCCE7E7CCCCCCF8#J%
+E73F;CFFE7CCF7#J#
+FCE0?CE0C7$J#
+FEF87F>CCCC8"J#9"
+3C<CE7E8F7$J(
+FC00FF:E1E27E061E264F8"J"R
+C3:F17#J"
+FFFF:FF
+
+
+
+
+
+"j"
+38O-07"Z"
+3BO-F7
+
+
+
+
+
+
+9"
+9F7#9"
+FE0FEF8#8"
+67FFCF8)
+739930F0830E49C9:%
+26664E669(
+98E667CE6639DF9#9#
+99E07C9F:#9"
+E7E7BF8"8(
+67674E667E39FF7F8+
+0F99F0F0E30E7E79FEBF7R%
+FCFFFD5F@#
+FAAF>%
+FFFFFD5F@"j
+FEO"@#Z
+FF7FO!A"
+FF
+
+
+
+
+
+
+
+=#
+CE7F<#
+E04E<#
+E7FE=$
+CE70E7>#
+6667<"8"
+E07F<$
+E7CE60>#
+67FF?"
+67>#
+70E7<%
+FFFFFFFF
+
+@"j"
+FCO!03@Z
+O#
+
+
+
+
+
+
+
+
+
+J"c"
+=F003J"S"
+=EFFDJ"a"
+>E003J"Q"
+>9FFCJ"<#
+>7FFF7DJ#9&
+=EEFF7FFEEFFFBDJ$9"8"
+=EDFF7F0EDDJ"8"
+C7FCDJ+
+=EBFF7E78F87F7EEE3FEDJ$8$
+?7DB777EDDFE5J#8"
+?7BDF0EJ"8$
+@D87EEC1FJ"9#
+@D7EDFFJ$9"
+?7DB776DFJ$8#
+?0E78B9EE3FJ"S"
+=EDC5J"
+FCDJ">"
+=EE8DJ#="
+=EF7F1DJ"<#
+>9FFC3DJ"b"
+>C07DJ"<#
+>E001FDJS
+>J"c"
+=F003JU
+=
+
+
+
+
+
+"j"
+38O-07"Z
+3FO.
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF
+7"j
+C0O,#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "33" 22
+%%Page: "34" 22
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (34) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 279.86 B
+0.47 0.09 (e 3-22) 218.77 279.86 B
+0 F
+0.47 0.09 (The Buttons Pr) 248.4 279.86 B
+0.47 0.09 (operty W) 309.67 279.86 B
+0.47 0.09 (indow with LoadFileButton Selected) 347.69 279.86 B
+4 F
+0.1 (4.) 197.5 255.19 S
+0.52 0.1 (Y) 210.6 255.19 B
+0.52 0.1 (ou can adjust the button location by changing the pixel values in the ) 216.45 255.19 B
+0.52 0.1 (Location text \336elds or by positioning the button by hand, as we have ) 210.6 242.79 B
+0.52 0.1 (alr) 210.6 230.39 B
+0.52 0.1 (eady done.) 222.57 230.39 B
+0.1 (5.) 197.5 209.99 S
+0.52 0.1 (In the Notify Handler text \336eld, insert ) 210.6 209.99 B
+7 F
+1.22 0.1 (LoadFileButtonHandler) 388.23 209.99 B
+4 F
+0.52 0.1 (. This is ) 515.52 209.99 B
+0.52 0.1 (the callback that will be called when this button is pr) 210.6 197.59 B
+0.52 0.1 (essed. The lack of a ) 454.01 197.59 B
+7 F
+1.22 0.1 (ps_) 210.6 185.19 B
+4 F
+0.52 0.1 ( pr) 228.89 185.19 B
+0.52 0.1 (e\336x indicates that this will be a client-side callback, i.e. the callback ) 241.98 185.19 B
+0.45 0.1 (will be written in C to be r) 210.6 172.79 B
+0.45 0.1 (un on the client machine and will be initiated by ) 332.46 172.79 B
+0.52 0.1 (a call acr) 210.6 160.39 B
+0.52 0.1 (oss the wir) 251.09 160.39 B
+0.52 0.1 (e to the client machine.) 301.03 160.39 B
+198 293.86 557.14 648 C
+198 293.86 557.14 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  9026     
+450 486 324 349.92 0 199.14 296.33 BEGINBITMAPBWc
+j"
+O*3F
+"Z
+3FO)
+
+
+8"
+F88#
+C73F8#J#
+2FBF8E7E77$I"=%
+FEDFDF07FE0FFFBDJ":"9$
+733FF67FF397"J1
+FD539C399C1CCE7070E7E67320061E4F07F8#J0
+CFBF4999999CCE666667E6F3339CCE267FF8#J$9#
+E73F:67FE1FE6637#J#:$:"
+FCE0581CB07FE6F707$J$9$:#
+FEF87F49FCB917FFE677C7F8"J,9"
+3C4339DE7C9C8E646767E67237E7$I1
+FC00FF07C3E7F9E4E7270E7E0F938C61E660FF8"J%V
+C34FFFFFF997#J"
+FFFF7C3J"
+:FF
+
+
+
+
+"j"
+38O(07"Z
+3FO)
+
+
+
+
+
+
+
+Hz%
+>5554C0007FG"Z#
+FD?DFFF?%:"J"
+FE0FFFBDFF>FE@$:"J"
+67FF39FD>FFA(J"
+320061E4F067FF>FE@)J$
+6F3339CCE267E7FD>FFC000@"9%J%
+1FE663FFFF>FEFFFFFF@":$J"
+6F70FFFD>FF@":$J$
+677C7FFF>FEE000A"9$J%
+237E67FD>FFDFFE7F@)J"
+0F938C61E660E7FF>FE?S"J"
+FD>FFG"J"
+FF>FEG"8#J$
+FDFBBF:FFDF7EG*J$
+FFFFFC3BBFE1FFEF7F6FEDEBEG'J$
+FDFFFDFFBFEE9FFDD5EG"8(J$
+FFFBB8EEEEC21CF45FEDAAEG"9(J$
+FDB76EEEEF7B737F4FFDD5EG'8#J$
+FFFFFC3BB76177B75FEDFFEG'J"
+FDFFFDFBB06E9FFG"9#J"
+FFB7EE9FEG":&J"
+FD6EECEF7B775FFG"9'J"
+FFB8E1F2F39CF75FEG"UJ$
+FD4FFC000G"J$
+FF>FEDFFEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG$j#
+FFFFF0;03FEG$Z#
+FDFFF7;FBFFG"J"
+FF>FEG":$J"
+FDFDFFBB7FFG$9'I"
+FFFFF5C3BBFE1FFEF7FEG";%J"
+FDDFFBFEEF5FFG"8,G"
+FFF9E3E1DFBB8EEEEC21CF4FFEG"8$8'G"
+FDF6DDDD76EEEEF7B737FFG"8%8"8#G"
+FFEF7DDDC31E7B77FEG"9'J"
+FD61DDDFBB06EE5FFG"9"9"J$
+FF5D7E6FEC000G"8$8&H$
+FDF6DDD976EECEF7B7FFDFFEG'8&H"
+FFFFF439E2E58E1F2F39CFFEG$VG"
+FDFFF7FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FED806G$j#
+FDFFF0;03FFGZ$
+?FEDC0EG"J$
+FD>FFDE1EG"J$
+FF>FEDF3EG"=#J$
+FDFEEF5FFDFFEG%8)G"
+FFFFFC3FE7FF0EEFF87FFBDFFEG%:%I"
+FDFFFBFF7FEFFBBFFFG"8.E"
+FFF8EEE3DBC77EEE3BBBB0873D3FFEG1E$
+FDFFF9F76EDDDBBF7EEDDBBBBBDEDCDFFFC000G%:(F%
+FFFFFC7F0EEDD87BBBDDEDFEE000FFG-I$
+FDFFFF3875C181CF7EEC1BBBFFFFFFG"8)J$
+FFB775DFBDF77EEDFB4FEFF1FG"9#:&F"
+FD7BDDDBBB3BDEDDFFG0F"
+FFFFF878BBE3BD8F7EEE387CBCE73DFEG"ZE"
+FD/FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"J"
+FD>FFG"J$
+FF>FEFFFFG"J"
+FD>FFG"J%
+FF>FEC0007FG"J$
+FD>FFDFFFG"J"
+FF>FEG"J"
+FD>FFG"J"
+FF>FEG"z#
+FC?AAC000GZ
+C
+
+
+
+
+
+
+
+
+
+
+J#
+57FEEA#;"8"8$
+F8EF7F7087FFBDJ%
+577FEFFBBA3
+FA6E1E4CF0E7FF7E78F877EEE3BBBB0873D3B*8"8$
+6CCE226667FF7DB777DDBDEDCDB+8"8#
+2FCE66667FFF7BDF777087DEDDA&9'
+FB2E0E6660D87777EEC1BBB&8"9"
+8CCE6667FFD7DFF&8(
+67FF7DB776DDBBB3BDEDDD3FB*8(
+CE266670E7FF0E78B9E387CBCE73DC9FAZ#
+1FD5FJ#
+<FAAFJ#
+<FD5FG"j"
+FC=03GW"Z
+7F2J"
+=FF
+
+
+
+
+
+
+
+
+C%:$
+FCFFFE7F7FFEEFA"<"9"
+FC7F0EJ"
+67FB.
+FC3C9E1E67FF7E78F87F7EEE3FB%8$8#
+F99C4CCE7DB777EDDFB)8"
+FF9CCCCE7FFF7BDF0EB%9"8$
+FC1CCC0ED87EEC1FB%9"9#
+F99CCCFED7EDFFE'9"
+EE67FF7DB776DFB%8$8#
+0C4C1E1E0E78B9EE3FAY
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"j
+FC3J"W"
+77FFEH&
+FFFFFFFFFE
+
+
+A$A$8"
+F9FFFCDFFFFB77?":#8%8":"
+F9FE7FFC07FFFBC387H#:":#
+FFBFBDBFF7@(8$8-
+F8793C3CFE7067BE3BB07FDBBA7A7FBF771E9E3D33C7@(8$:+
+F338999CFE67E7BDDBBBB9B9BFBF76EE6DDCCDBB@#9#9#:%8$
+FF3963FFDD7BBBBBBF87EFDDDD@'9$8$8(
+F839981CFE70BC1EFB7DDD7BBF760EEE1DDD83@(8$?&
+F33999FCFE7C7FBDFD7BFEEDDDDDBFC%9#8$:"9"
+DCFE7E67DBBBBDDEFBEEBB?)8$8%8'
+F818983C3CFE60E7BE3BBCC1DEF87B771EEE2DDDC7?S8$8$T
+FFFFFFFFFDFBJ"
+9F9J#
+9FFFF
+
+H`
+Ji
+7GZ
+4
+
+
+
+
+
+
+C"
+FC?"9":'8&
+CFBC9CFFFE1E1F3FF3CFFFC3F3C"<%;#
+3FFDEDEEDFBDEB@/8&
+C3C3860CE1E4E7FFC9CFFFEFEDEFF9D9FFBFDB@*>"8"
+9999333CCCE267FFC399BBA#8)9&
+9FF3E67FFFE3FFFFDFDDFCBFFF837BB";"8#9&
+83C9BFBDFE7FFFBD01B">#="
+337F7DFBA":)9"
+9D67FF9CCFFEFEFEDF79?';%;"
+C0C3C3898CE1FC0C0F3FC3?Z8P
+/
+
+J'9&
+4F8000000001F0000000003JQ9P
+4
+
+
+
+G"j"
+FC87FJ"Z
+:3F/HS
+
+
+
+J%:#8"9"
+4FDDFFFBFDFDFFB7FB#:#8":"<"8"
+807FFE1FC3E77F7DB#;"8#>":"
+F3FFFFBFFFFF39C%8#8#8*8$
+CE64F0E7FDDDB071DBD3D3A63BBB8E18F8E3D3DDD$;$9-
+6266679FBF6ECDCD9DDBBB7777777F55DDCDD$8"8$9$8";"
+E6667F1DC7BEEEDDDDBDF7DDC$9"8$8"8&8#
+E4E660FDF3BDE081BC1D7B87706DC1C%;$8"8'8"
+E5E667FFFBBBEFBDBDFD7B7777F7DFC"8"9"8#<#8'
+F1679DB7EEDEFB767F7DDDDDD9C%8'9)8$
+F3E0F0E7FE5DDF87B071C3C3BE3EFB8B98F9E3DDE5B'R8Y
+FFE7E7FFFFFC
+C#
+FFFF
+
+Hc
+Jj
+:0GZ
+:
+G"j"
+FC003J"P"
+<03FBHU"
+F3
+
+
+A$<(9"8"
+3F3FCFF7FFEFFFFDFDFEFBEF9%8(8":%8#
+E0FFFBDFE7E73F3BCFFE7FFEDFDDFDDEFC3B9%8%A":#
+E67FF39FE667FF33DFFDFF:&8'8*8%
+7320061E4F3820C9FE7067F8F4F1EFDDDDE1869FFB771F0F:.8$9$9$
+F3339CCE27F24F3333C4FE67E7F7736EDDDE6F76EEEF9":":%8#8#8&
+E167CCFE63FFFF77EABDEFF3FC3BAE9";#:"9$=%
+E6F00F70F87760FDFBDE0E:":#:#8$?#
+73F99F7C7FF7776FAEFE:"<"9#:&;$
+72327E676EEFF77DD976EECF9&9#8#8$9#:$
+E0F938C61E393860E718B0F1E5E6771F2F9Y"U"P
+FCF3
+
+J(
+EEAAAAAAAAAAABFJR
+EHe"
+03Ja"
+<03GZ
+2
+
+
+
+
+
+
+
+
+
+
+
+
+<#9#
+E38FF8EF
+=+
+8E1E4F33FA6E1E4CF0E7<%8&
+E94CCE276CCE226667?"8&
+672FCE66667F>"8&
+0EFB2E0E6660<$9&
+ECCCFE8CCE6667FF>$;"
+EE672367<,
+EFCE1E6793FBCE266670E7<V
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+<#;#<#?#
+FE78F39F7FEEFDDF:(="8"8$8"
+1DFFDE73FFFCE77F7087FFBDDE<#C%
+9FF377FEFFBB:&85
+4DC306609C80F27839C3927FF7E78F877EEE3BBBB0873D3DEE3D3E1DC74;$8'8$8"8*
+999E73E667133399997DB777DDBDEDCDDEDDCDDDDBB3:"9&8(8"8&8"
+459DFC07E73398FFFF7BDF777087DEDDC0FDDDB7:"9%8#9':#8#
+65C9FCE7079819D87777EEC1BBDEE1D837:"9%8#9"9"<"8#
+71CBFCE66799F9D7DFDDDBF7>":)8&:$
+E32399D9E7FF7DB776DDBBB3BDEDD9DBB7:-8$8&8&
+79C3C673E7FCE71333939C390E78B9E387CBCE73E2DDE5DC77:&Z
+FFFFFFFFCF:
+>"
+FFG"j"
+FC=03GZ
+?
+
+
+
+
+
+
+
+
+
+C#
+F39F:#8$
+F03FFBFCE7:#8"
+F3FFF3;%8'
+E670F2600F27839C3927<+
+667133FCE66713339999:%8$8#
+F066667307E73398FF:$9#8#
+F3F2E0E7079819<#8#8#
+E7F3E66799F9;$;%
+F9E7732399D9E7:-
+F039F0F338FCE71333939C39:X
+
+
+G"j"
+FC=03GZ
+?
+
+
+
+G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"R*P(
+FEFBFFEFFFFFFFFEFFFBEFFEFFFFFFFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7;"9"=%:$8'9$9"
+FBFEFEFFFFFBFBFFEFBFFEFFFBFFFBEFFEFFFB8%9$9':$8.8"
+F77FFFF7FDFF577FFFFF7F5FFFFDFFDF7FFF7FF7FD7FFF7F7FDFFF7F57F78%9$8';38"
+EEFFFFFBFEFEFFFEFFFFFEFFFFFBFFEFEFFFFBFEFFFBFBBFFFFFFFEFFEFFFFFB85
+LF7F5F7777D7D7775FF7DDF5F5D5D77FF7F77DFF77DFD77FDFFDFFFDF55FF7FF7FFFFD75F5FDFFF7FDFDFDFF785
+LEFEEEFBBBBBBBAEEFEFEEEEEAEFBFBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBFFBFFFEFFEFFFFEEEFFB85
+LF5F77777777F75DDFF5DDDDF7775FFFF7F77FFFFFF7F77FDFFDFFF777FFF7FF7FD7F77777FDFFF7FDFF7FFF785
+LEEEAFAFBBBBABBEEFEFEFEAEEEFAFFFEFFAEFBBBBAEFAFFBFFEFEFAFFBFEFFFBFBFBFFFFFFEFFEFFFEFEEFFB85
+LF577F7F7777777DDFF7F5DFF777F7FFF7F7FFFFFF77FFFFDFFDFFF7F7FFF7FF7FFFF77777FDFFF7FDFF7FFF785
+LEEEFFAFBBBBBBBEAFEFFBEEEEEFFBBFEFFFEFBBBBFEFFFFBFFEFEFFFFBFEFFFBFBBBBFFFFFEFFEFFFFEEEFFB85
+LF775FDF57D7DD7F5FF577F5F775577FF7F7FFFFFFDFFDFFDFFDFF5DF7DFF7FF7FFFFF777DFDFFF7FDFDF5FF78$W$8-8+
+FFFFFBFEFFFFFFFFBFFBFFEFFFFFFFFEFFFBFFFFFFEFFEFFFFFEFFFB:"B#;%9$8"8(
+F7FF7F7FFDFFDFFF7FF7DFDFFF7FFFFFFFF7:"B#;%9$8"8$9"
+FFFEFFFFFBFFEFFEFFFBFFEFFEFFFBG#<$9$;$9"
+FF7FFDFFDFFF7FF7DFFF7FF7G#<$9$;$9"
+FEFFFBFFEFFEFFFBEFFEFFFBG"s5
+FF554FFD5555555557FF555555555555FFF5555555557G"r5
+FEAA5ABFFEAAAAAAAAAFFFAAAAAAAAAAAAFFEAAAAAAAAABGZ
+=
+Hr5
+55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG#Q1P#P"
+FF7FF7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFD7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$8%:$;"
+FF7FF7FF7FFDFFF7DFFF7FFDFF7FF7DF:#:#;%:%9,8&9"
+FEFBFEAFFEFEBFFEEFFFBFAFFEFFEFEAFFFFFFBFFBFABFFEFFFBFBEFEF:#:#9(938&9"
+FD75FF7F7FFFFF7FFFFFF7F7FF7F7FFF7FFFFDFFF7FFFFFDFF7FFDFFDFFF7FF7FDDFDF:5
+O$FEFBEBEEEAEBFEFEEEBEEEBABBFEFEEEEEABEFEFBFEFFFBFFFEEBAEBFEFFEFEFFFFAFFBFFBFBEFBBEBFEFFFBFBEFBFFEFFEF:5
+O$FD7DDDDDDFDDFF7DDDDF7777F7FF7FFFFFF7F777FFF7FF7F7F777777FDFFF7FFDDDDFF7FFDFFFDFFDDFF7FF7FFFF7DDFFFDF:5
+O$FFABBBEEEFEEFEAEEEEEEEFBFFFEFEBEEEFFFBFEFFEFFFBFAFFFFFEFFEFFEFEBEBFFFFBFFBFBEFFEFFFEFFFBFAAEFFFBBFEF:5
+O$FD7DDDDDF5D5FF7F5D5F777D7FFF7FFFFFF77F777FF7FF7F7F77757FFDFFF7FFF7DDFF7FFDFFFDF5DDFF7FF7FF7FF7FD7FDF:5
+O$FFBBBBEEFAEFFEFEFEFEEEFEBFFEFEEEEEFFFBFFFFEFFFBFFFFFFFEFFEFFEFEFEBFFFFBFFBFBEFEEFBFEFFFBFBEEFEBBFFEF:5
+O$FDDDDDDDFDDFFF7F7DFF777F77FF7FFFDFF7F777DFF7FF7F7F77777FFDFFF7FFDDDDFF7FFDFFDDFFF5FF7FF7FFFF7F7FFFDF:5
+O$FFFBEBEEEBEBFEAFBEBEEFBAFBFEFEBFAFBBEFFEBFEFFFBFAFFFBAEFFEFFEFEAFFFEFFBFFBFABFFBFFFEFFFBFBEFBFFEFFEF;X"Q5P"
+7F7F7FF7FFFFFFFFFFDFFF7FFFFFFFF7FFDFFFFFFFDFF7FF7DFG#<$:$:#9%;"
+FEFFEFFFBFFEFFEFBFFBEBFEFFFBEFG#<$:$:#9%;"
+FF7FF7FF7FFDFFF77FFDFFFF7FF7DFG#<$:$:#:$;"
+FEFFEFFFBFFEFFEFBFFBFEFFFBEFG#<$:$:#:$;"
+FF7FF7FF7FFDFFF77FFDFF7FF7DFG"r5
+FEAA=AFFFAAAAAAAAAAAAFFEAAAAAAAAABFFAAAAAAAAAAAFFFAAAAAAAAAAAAFG"r5
+FF55=57FF555555555555FFF5555555557FFD55555555557FF555555555555FHZ
+D
+
+
+
+
+
+
+
+
+
+
+@"`"
+E07F@"P"
+9F9F@";"
+7FEF?#8"8"
+FEFF7FF7?$:"
+FDFF87FBA":"
+7BF9?)
+FBFEFFCF79D3FFFDB&
+B776CFFFFCB$
+7B6F5F
+
+@'
+FF7BB776DEDBA$
+87CF79?"Q"
+FDF8F#j
+F9FF>?"<"Z
+FEF1??#;"
+FF7FE3@";"
+9F87@"`"
+C00F@";"
+E03F@R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+E'8'9d"
+FC0000000003FE00000000077FE'8'8"T"
+F3FFFFFFFFFCF9FFFFFFFFF9FC9FE":%:"8"?"
+EFFF7FFFF7FEFBEFE"9&:%8"<"
+DFEFFFBFFFEFFF7FFFF7FBF7E#:%9'8'
+BFF3DFFFDFF07FBFFFEFFBDFF01FFFEFFFFBJ"8#9"<#9"
+5CFF77F9FFEFFF9E5
+;7FEDE9E9EDDFEFFFBFF771E38E1FDFFFDFFBDC7BA7FEF8EEC3FFFDG#8"9&9*
+E6E6E76EDF777FCFDBBB9BFEF76EEFFFFCG#;#<%8"
+EEEEF0EEF81BBBBB75F"8#9%:$8#
+C0EEBFF6E0E707FBD83BF07BF"=%;#8#
+DEF76FFB7FDBFBF7F5I#:$<"9$
+EF7F6EFB77BB6EEEDBG#<%:(
+E1E171C78F9FDC7B87FEF8EEF2E*P(P"
+BFFFEFEFFEFFC7FFDF8FFFEFFFFFFFBFF8I$="A"
+FCFFCF9FF9E"P$;$9";"
+DF8FFFEF1FFFF7FFF1E";$:%?"
+EF1FFFF7FE3FFFFBE3E":%:%?"
+F3FC3FFFF9F87FFFFC87E"`$`$d"
+F87FFFFCFFFFFE0FE":%:"8"?"
+FC01FFFFFE03FF3FEQ8Q9U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j
+O*
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "34" 23
+%%Page: "35" 23
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Building Interfaces) 202.58 108.7 B
+0 F
+0.09 (35) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (3) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.1 (6.) 197.5 641.33 S
+0.28 0.1 (None of the other \336elds need to change. Click on the Apply button or select ) 210.6 641.33 B
+0.52 0.1 (another button fr) 210.6 628.93 B
+0.52 0.1 (om the Buttons scr) 288.86 628.93 B
+0.52 0.1 (olling list to make your changes take ) 374.46 628.93 B
+0.1 (ef) 210.6 616.53 S
+0.1 (fect.) 218.74 616.53 S
+0.52 0.1 (Y) 198 596.13 B
+0.52 0.1 (ou need to make similar changes to the Save As button.) 203.85 596.13 B
+0.1 (1.) 197.5 575.73 S
+0.52 0.1 (Select the button associated with the Save As pop-up window \050pr) 210.6 575.73 B
+0.52 0.1 (obably ) 510.9 575.73 B
+0.52 0.1 (button3\051 fr) 210.6 563.33 B
+0.52 0.1 (om the Buttons scr) 259.48 563.33 B
+0.52 0.1 (olling list in the button pr) 345.09 563.33 B
+0.52 0.1 (operty window) 463.55 563.33 B
+0.52 0.1 (.) 532.92 563.33 B
+0.1 (2.) 197.5 542.93 S
+0.52 0.1 (In the Name \336eld, change ) 210.6 542.93 B
+7 F
+1.22 0.1 (button3) 331.91 542.93 B
+4 F
+0.52 0.1 ( to ) 374.59 542.93 B
+7 F
+1.22 0.1 (SaveAsFileButton) 389.74 542.93 B
+4 F
+0.52 0.1 (. This is the ) 487.29 542.93 B
+0.52 0.1 (name that we will use in the pr) 210.6 530.53 B
+0.52 0.1 (ogram to r) 354.18 530.53 B
+0.52 0.1 (efer to this button.) 402.48 530.53 B
+0.1 (3.) 197.5 510.13 S
+0.52 0.1 (In the Label \336eld, change ) 210.6 510.13 B
+7 F
+1.22 0.1 (Button) 329.42 510.13 B
+4 F
+0.52 0.1 ( to ) 366 510.13 B
+7 F
+1.22 0.1 (Save File As) 381.16 510.13 B
+4 F
+0.52 0.1 (, or something else ) 456.75 510.13 B
+0.52 0.1 (appr) 210.6 497.73 B
+0.52 0.1 (opriate. This is the text that appears in the body of the button.) 231.78 497.73 B
+0.1 (4.) 197.5 477.33 S
+0.52 0.1 (Adjust the button location if you like.) 210.6 477.33 B
+0.1 (5.) 197.5 456.93 S
+0.52 0.1 (In the Notify Handler text \336eld, insert ) 210.6 456.93 B
+7 F
+1.22 0.1 (SaveAsFileButtonHandler) 388.23 456.93 B
+4 F
+0.52 0.1 (.) 527.72 456.93 B
+0.1 (6.) 197.5 436.53 S
+0.28 0.1 (None of the other \336elds need to change. Click on the Apply button or select ) 210.6 436.53 B
+0.52 0.1 (another button fr) 210.6 424.13 B
+0.52 0.1 (om the Buttons scr) 288.86 424.13 B
+0.52 0.1 (olling list to make your changes take ) 374.46 424.13 B
+0.52 0.1 (ef) 210.6 411.73 B
+0.52 0.1 (fect. Then dismiss the window) 218.74 411.73 B
+0.52 0.1 (.) 357.93 411.73 B
+0.52 0.1 (At this point, your interface is done.) 198 391.33 B
+6 F
+-0.88 (T) 126 358.27 P
+-0.88 (esting the Interface) 133 358.27 P
+4 F
+0.52 0.1 (During and after cr) 198 336.93 B
+0.52 0.1 (eating an interface, you will want to see how its elements ) 286.39 336.93 B
+0.35 0.1 (feel when you use them. Devguide pr) 198 324.54 B
+0.35 0.1 (ovides a quick test mode to allow you to ) 369.78 324.54 B
+0.52 0.1 (get a feel for how your interface will look and work. T) 198 312.14 B
+0.52 0.1 (o \336nd out exactly how ) 447.07 312.14 B
+0.52 0.1 (your interface will look and feel you need to compile and link it to your ) 198 299.73 B
+0.52 0.1 (application code.) 198 287.33 B
+0.52 0.1 (T) 198 266.93 B
+0.52 0.1 (o perform a quick test of your user interface, ) 203.31 266.93 B
+3 F
+(\245) 198 248.53 T
+4 F
+0.52 0.1 (Click SELECT on the T) 210.6 248.53 B
+0.52 0.1 (est option in the interface setting in the upper right ) 314.79 248.53 B
+0.52 0.1 (corner of the Devguide window) 210.6 236.14 B
+0.52 0.1 (. Refer to Figur) 356.21 236.14 B
+0.52 0.1 (e 2-5 on page 8. Devguide ) 425.42 236.14 B
+0.52 0.1 (enters test mode. ) 210.6 223.73 B
+0.52 0.1 (T) 198 203.34 B
+0.52 0.1 (ry testing your editor interface now) 203.33 203.34 B
+0.52 0.1 (. Make sur) 365.76 203.34 B
+0.52 0.1 (e your menu comes up when ) 414.12 203.34 B
+0.52 0.1 (you pr) 198 190.93 B
+0.52 0.1 (ess the MENU button on your File button and that it has all the corr) 228.43 190.93 B
+0.52 0.1 (ect ) 541.12 190.93 B
+0.47 0.1 (menu items. Also, verify that your pop-up windows look and behave the way ) 198 178.53 B
+0.52 0.1 (you expect them to. They won\325t do very much just yet.) 198 166.14 B
+65.57 228.87 174.07 264.15 C
+65.57 228.87 174.07 264.15 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  244      
+92 27 66.24 19.44 0 94.29 240.81 BEGINBITMAPBWc
+
+
+"e"
+C03F"P
+DF<&
+3FFFFFFFFF
+
+
+9#
+DDFD7";$
+C301FFFD7$9"
+DDFFFDEF8$9$
+DDDDE18F187F:"9$
+DD76FDFF7"
+C37"<#
+DD073D>#
+7FDD8$9"
+D9DDD9777%9$
+C3E5DDE58E3E7F7%8%
+FFFFFFFFFFFFFFFF
+
+
+
+<`
+"`
+C0W
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "35" 24
+%%Page: "36" 24
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (3) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (36) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+-0.04 0.1 (Y) 198 641.33 B
+-0.04 0.1 (ou can\325t edit in test mode. T) 203.85 641.33 B
+-0.04 0.1 (o edit, you must r) 328.46 641.33 B
+-0.04 0.1 (eturn to build mode, Devguide\325s ) 408.25 641.33 B
+0.52 0.1 (default mode: ) 198 628.93 B
+3 F
+(\245) 198 610.53 T
+4 F
+0.52 0.1 (Click SELECT on the Build option in the interface setting. Devguide enters ) 210.6 610.53 B
+0.52 0.1 (build mode. ) 210.6 598.13 B
+0.52 0.1 (Y) 198 577.73 B
+0.52 0.1 (ou can now r) 203.85 577.73 B
+0.52 0.1 (esume editing the interface. ) 264.21 577.73 B
+6 F
+-0.88 (Saving the Interface) 126 544.67 P
+4 F
+0.12 0.1 (When you\325r) 198 523.33 B
+0.12 0.1 (e done working on an interface and want to save it for later editing ) 251.63 523.33 B
+0.52 0.1 (or sour) 198 510.93 B
+0.52 0.1 (ce code generation, use the Save As command in the Devguide File ) 230.61 510.93 B
+0.52 0.1 (button menu. Refer to Figur) 198 498.53 B
+0.52 0.1 (e 2-5 on page 8. If you have not alr) 326.13 498.53 B
+0.52 0.1 (eady done so, ) 486.31 498.53 B
+0.52 0.1 (save your interface now in a \336le named ) 198 486.13 B
+7 F
+1.22 0.1 (jot_editor) 382.58 486.13 B
+4 F
+0.52 0.1 (.) 442.8 486.13 B
+0.24 0.1 (The interface is saved as a GIL \336le, short for Graphical Interface Language \336le. ) 198 465.73 B
+0.52 0.1 (The interface is stor) 198 453.33 B
+0.52 0.1 (ed under the \336le name ) 288.02 453.33 B
+7 F
+1.22 0.1 (jot_editor.G) 394.92 453.33 B
+4 F
+0.52 0.1 (. Devguide ) 468.08 453.33 B
+0.22 0.1 (automatically appends ) 198 440.93 B
+7 F
+0.51 0.1 (.G) 304.12 440.93 B
+4 F
+0.22 0.1 ( to any GIL \336le it cr) 316.32 440.93 B
+0.22 0.1 (eates so you can easily identify it ) 405.01 440.93 B
+0.52 0.1 (as a GIL \336le.) 198 428.53 B
+5 F
+(Onward) 54 394.8 T
+4 F
+0.52 0.1 (That\325s it for this quick and easy intr) 198 373.13 B
+0.52 0.1 (oduction to Devguide. T) 362.04 373.13 B
+0.52 0.1 (urn to the ) 472.86 373.13 B
+0.52 0.1 (following tutorial on linking your user) 198 360.73 B
+0.52 0.1 (-interface code with your application ) 374.98 360.73 B
+0.52 0.1 (code to complete this intr) 198 348.33 B
+0.52 0.1 (oduction to Devguide and GNT) 314.62 348.33 B
+0.52 0.1 (.) 459.47 348.33 B
+FMENDPAGE
+%%EndPage: "36" 25
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 24 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Courier
+%%+ Helvetica-Bold
+%%+ Times-Bold
+%%+ Palatino-Bold
+%%+ Palatino-BoldItalic

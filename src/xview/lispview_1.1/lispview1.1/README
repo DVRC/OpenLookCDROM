@@ -1,0 +1,127 @@
+LispView 1.1 README
+-------------------
+LispView is a generic Application Programmer's Interface (API) that provides
+Lisp programmers with a powerful set of tools to build sophisticated
+Graphical User Interface (GUI) applications; these tools include both GUI
+components and basic window system services.  In addition to the available
+GUI components, LispView supports output functions for windows (familiar to X
+Window System programmers) as well as a sophisticated input model for
+handling events.  LispView provides sets of generic functions for reading
+and writing the state of an object. These include: label, choices, value,
+mapped, state, layout, parent, and bounding-region. For example, to create a
+window, you make an instance of the class window. Similarly, to create a
+text field, you make an instance of text-field. To find the dimensions of
+the window, apply the generic function bounding-region to it.  Use the same
+function if you want the bounding region of the text field.
+
+LispView can also translate an interface developed with the OpenWindows(TM)
+Developers' Guide (Devguide) interface builder.
+
+Compatibility
+------------- 
+LispView is known to work without modification on Sun Common Lisp(TM) 4.0.2
+and Lucid Common Lisp(TM), with CLOS, on a SPARCsystem (or Sun-4(TM))
+computer.  The LispView build uses the OpenWindows(TM) 2.0 libraries
+supplied with this release.  The resulting LispView images have been run
+successfully with the OpenWindows 3.0 server as well as the OpenWindows 2.0
+server.
+
+This release of LispView has not been tested with Lisp 4.0.1, although it
+may work with Lisp 4.0.1.  Note that the Lisp 4.0.2 Patch Set has an updated
+CLOS module, as well as additional patches.
+Sun Support customers may obtain the 4.0.2 Patch Set through the usual
+support channels. Request the latest revision of Sun Patch ID 100327.
+
+What's Included:
+----------------
+	src - LispView source code implemented in the Common Lisp Object System
+	xview - Generic source interface to the XView(TM) 2.0 libraries
+	doc - Programming Manual in both PostScript(R) and Frame Maker(TM) format
+	lispview.sbin - A LispView module built with the files in this
+			source release
+	demos - A few demo examples
+	guide - Translators from Devguide to LispView, and LispView to Devguide
+	test - Tests for LispView
+	util - Various utility programs
+
+Utilities included in util:
+---------------------------
+	grapher - a graphing package and documentation
+	3D-graphics - an interface to Sun's XGL(TM) 2.0 graphics library
+	list-viewer - a generic scrollable list package
+	presentations - a mini-presentation type 
+	with-fast-output - support for fast output
+	textedit - a simple interface to the XView text editor
+	contrib - a repository for user donated code
+...and more
+
+The LispView module included with this release differs slightly from the
+module included with the Lisp 4.0.2 Patch Set.  The present module does
+not have new features; it does have a number of bug fixes.  Two of the
+utilities, the grapher and the XGL interface, are new with this release.
+Also the LispView Manual in this release has some revisions since the
+version included with the 4.0.2 Patch Set.
+
+
+Documentation
+-------------
+A LispView Programming Manual is provided in both PostScript and Frame Maker format.
+For a list of KNOWN PROBLEMS see the on-line file "doc/known-problems".
+RELEASE NOTES are contained in the on-line file "doc/release-notes."  Grapher
+documenation is provided as well as various on-line documents which may be found
+in the relevant directories.  Reference material on LispView:
+Muller, Hans, "LispView: Leverage Through Integration," CACM, v.34 #9, Sept. 1991, 
+p. 59 ff.
+Muller, Hans, "LispView: Using CLOS to bridge the gap between CommonLisp and a 
+C toolkit" Lisp Pointers, v.4 #1, March 1991.
+
+
+Building LispView
+-----------------
+See the on-line file "README.build" for information on building a LispView
+module and on building a LispView image (a Lisp image that contains LispView).
+
+Porting LispView:
+-----------------
+
+XView 3.0 and Xlib R5 have recently been made available; a port would benefit
+from features and fixes in those releases.  Porting LispView to other Lisp
+implementations would necessitate changes to the foreign function interface
+as required for those dialects of Lisp.  XView is available on multiple
+platforms.  In theory, with XView and a Common Lisp available for a
+platform, a port should be feasible.  LispView contains a device driver
+layer which would prove useful when porting to other window systems.
+
+
+Feedback
+--------
+This Release is provided "as is" without express or implied warranty of any kind.
+Comments and questions about LispView should be posted to comp.lang.lisp 
+(or comp.windows.open-look).  Questions about this source donation should be
+directed to lispview@Eng.Sun.Com.
+
+----------------------------------------------------------------------
+Sun, Sun Microsystems, SunOS, Sun-4, Sun Common Lisp, XView, LispView,
+and OpenWindows are trademarks or registered trademarks of Sun
+Microsystems, Inc.  UNIX and OPEN LOOK are registered trademarks of
+UNIX System Laboratories, Inc. All other product names mentioned
+herein are the trademarks of their respective owners.
+
+All SPARC trademarks are trademarks or registered trademarks of SPARC
+International, Inc.  SPARCstation, SPARCserver, and SPARCsystem are
+licensed exclusively to Sun Microsystems, Inc.  Products bearing SPARC
+trademarks are based upon an architecture developed by Sun
+Microsystems, Inc.
+
+The OPEN LOOK and Sun Graphical User Interfaces were developed by Sun
+Microsystems, Inc. for its users and licensees.  Sun acknowleges the
+pioneering efforts of Xerox in researching and developing the concept
+of visual or graphical user interfaces for the computer industry.  Sun
+holds a non-exclusive license from Xerox to the Xerox Graphical User
+Interface, which license also covers Sun's licensees who implement
+OPEN LOOK GUI's and otherwise comply with Sun's written license
+agreements.
+
+The X Window System is a product of the Massachusetts Institute of
+Technology.
+

@@ -1,0 +1,7753 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 10 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 12 /Times-Roman FMDEFINEFONT
+1 12 /Times-Bold FMDEFINEFONT
+2 18 /AvantGarde-Demi FMDEFINEFONT
+3 14 /AvantGarde-Demi FMDEFINEFONT
+4 14 /Courier-Bold FMDEFINEFONT
+%%Page: "43" 43
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(43) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Bor) 218.39 677.6 B
+1.04 0.18 (derBag Methods) 246.49 677.6 B
+3 F
+0.14 (Cr) 276.25 623.47 S
+0.14 (eation) 291.81 623.47 S
+4 F
+1.71 0.14 (/bbag framebuffer /new ClassBorderBag send def) 78 597.07 B
+3 F
+0.81 0.14 (Inserting Clients) 251.23 544.27 B
+4 F
+1.71 0.14 (/position client /addclient bbag send) 78 517.87 B
+1.71 0.14 (% position is one of: /Center, /East, /-East-,) 78 491.47 B
+1.71 0.14 (% /West, /-West-, /North, /-North-, /South, or) 78 465.07 B
+1.71 0.14 (% /-South-) 78 438.67 B
+FMENDPAGE
+%%EndPage: "43" 42
+5 10 /Helvetica-Bold FMDEFINEFONT
+%%Page: "42" 42
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(42) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (Dif) 191.3 281.67 B
+0.81 0.14 (fer) 209.33 281.67 B
+0.81 0.14 (ent Arrangements of Clients) 226.99 281.67 B
+0.81 0.14 (in a Bor) 254.45 255.27 B
+0.81 0.14 (derBag) 307.45 255.27 B
+72 108 540 720 C
+72 315 540 720 C
+72 315 540 720 R
+7 X
+0 K
+V
+63 519.12 225 666 R
+3 X
+V
+0.5 H
+0 Z
+0 X
+N
+85.68 542.16 202.32 642.96 R
+7 X
+V
+0 X
+N
+210.42 542.16 225 642.96 R
+7 X
+V
+0 X
+N
+85.68 519.12 202.32 534.24 R
+7 X
+V
+0 X
+N
+85.68 652.32 202.32 666 R
+7 X
+V
+0 X
+N
+63 542.16 78.39 642.96 R
+7 X
+V
+0 X
+N
+5 F
+(/Center) 126.78 590.4 T
+(/North) 129.29 655.92 T
+(/East) 0 -270 220.87 580.62 TF
+(/West) 0 -270 74.26 582.04 TF
+(/South) 129.26 522 T
+72 324 216 468 R
+3 X
+V
+0 X
+N
+72 324 195.84 432 R
+7 X
+V
+0 X
+N
+203.04 324 216 432 R
+7 X
+V
+0 X
+N
+72 441 216 468 R
+7 X
+V
+0 X
+N
+(/Center) 125.99 380.16 T
+(/-North-) 125.96 452.16 T
+(/East) 0 -270 213.84 369.01 TF
+342 519.12 486 666 R
+3 X
+V
+0 X
+N
+342 542.16 465.84 666 R
+7 X
+V
+0 X
+N
+473.04 542.16 486 666 R
+7 X
+V
+0 X
+N
+342 519.12 465.84 532.08 R
+7 X
+V
+0 X
+N
+(/Center) 386.7 601.2 T
+(/South) 388.37 522 T
+(/East) 0 -270 482.18 591.7 TF
+342 323.28 486 468 R
+3 X
+V
+0 X
+N
+362.16 347.04 486 468 R
+7 X
+V
+0 X
+N
+342 347.04 354.96 468 R
+7 X
+V
+0 X
+N
+362.16 322.56 486 335.52 R
+7 X
+V
+0 X
+N
+(/Center) 406.86 404.64 T
+(/South) 408.53 326.88 T
+(/West) 0 -270 351.72 392.11 TF
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "42" 41
+%%Page: "41" 41
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(41) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Noti\336ers and Reading the W) 170.38 677.6 B
+1.04 0.18 (ir) 419.45 677.6 B
+1.04 0.18 (e) 429.74 677.6 B
+4 F
+0.14 (wire_EnterNoti\336er\050\051;) 118 627.87 S
+0.14 (wire_ExitNoti\336er\050\051;) 118 601.47 S
+0.14 (or) 78 548.67 S
+1.71 0.14 (wire_Notify\050 timeout \051) 118 495.87 B
+1.71 0.14 (struct timeval* timeout;) 118 469.47 B
+1.71 0.14 (int wire_ReadInt\050\051;) 118 390.27 B
+1.71 0.14 (char * wire_ReadString\050 char * str\051;) 118 363.87 B
+1.71 0.14 (\337oat wire_ReadFloat\050\051;) 118 337.47 B
+FMENDPAGE
+%%EndPage: "41" 40
+%%Page: "40" 40
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(40) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Allocating and Registering T) 165.28 677.6 B
+1.04 0.18 (ags) 414.88 677.6 B
+4 F
+1.71 0.14 (int tag, menutag, buttontag;) 118 627.87 B
+1.71 0.14 (int * tagarray[] = {&menutag, &buttontag,0};) 118 601.47 B
+1.71 0.14 (tag = wire_AllocateTags\0501\051;) 118 548.67 B
+1.71 0.14 (wire_AllocateNamedTags\050 tagarray \051;) 118 495.87 B
+1.71 0.14 (extern MenuCallback\050\051;) 118 443.07 B
+1.71 0.14 (wire_RegisterTag\050menutag, MenuCallback, NULL\051;) 118 390.27 B
+FMENDPAGE
+%%EndPage: "40" 39
+%%Page: "39" 39
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(39) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Opening, Closing, Setting the W) 153.47 677.6 B
+1.04 0.18 (ir) 436.9 677.6 B
+1.04 0.18 (e ) 447.2 677.6 B
+4 F
+1.71 0.14 (wire_Wire thiswire;) 118 605.87 B
+1.71 0.14 (thiswire = wire_Open\050NULL\051;) 118 553.07 B
+1.71 0.14 (if \050thiswire == wire_Current\050\051\051) 118 500.27 B
+1.71 0.14 (wire_SetCurrent\050 thiswire \051;) 118 447.47 B
+1.71 0.14 (wire_Close\050 thiswire \051;) 118 394.67 B
+FMENDPAGE
+%%EndPage: "39" 38
+%%Page: "38" 38
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(38) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (A Callback Handler) 217.35 677.6 B
+3 F
+0.14 (C:) 298.51 627.87 S
+4 F
+0.14 (void) 118 601.47 S
+1.71 0.14 (QuitHandler\050 tag, data \051) 118 575.07 B
+1.71 0.14 (int tag;) 118 548.67 B
+1.71 0.14 (caddr_t data;) 118 522.27 B
+0.14 ({) 118 495.87 S
+1.71 0.14 (quit = TRUE;) 144 469.47 B
+0.14 (}) 118 443.07 S
+3 F
+0.14 (C++:) 289.98 394.67 S
+4 F
+1.71 0.14 (void ) 118 368.27 B
+1.71 0.14 (QuitHandler\050int tag, caddr_t data\051) 118 341.87 B
+0.14 ({) 118 315.47 S
+1.71 0.14 (quit = TRUE;) 144 289.07 B
+0.14 (}) 118 262.67 S
+FMENDPAGE
+%%EndPage: "38" 37
+%%Page: "37" 37
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(37) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Useful ClassW) 167.29 677.6 B
+1.04 0.18 (ir) 288.92 677.6 B
+1.04 0.18 (eClient Methods) 299.21 677.6 B
+4 F
+0.14 (/wire_de\336netag) 78 623.47 S
+1.71 0.14 (/QUIT 0 /wire_de\336netag self send) 78 570.67 B
+0.14 (/wire_settoken) 78 517.87 S
+1.71 0.14 (3 /wire_settoken self send) 78 465.07 B
+1.71 0.14 (/wire_sendclient ) 78 412.27 B
+1.71 0.14 ([.44 \050Hue\051] /COLOR_CHANGE /wire_sendclient self send) 78 359.47 B
+FMENDPAGE
+%%EndPage: "37" 36
+%%Page: "36" 36
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(36) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Canvas Painting and Geometry ) 165.19 677.6 B
+0.18 (Methods) 267.77 657.2 S
+4 F
+1.71 0.14 (/Paint % override in subclasses) 118 607.47 B
+1.71 0.14 (/PaintChildren % override in subclasses) 118 581.07 B
+1.71 0.14 (color /FillCanvas) 118 554.67 B
+1.71 0.14 (color inset /StrokeCanvas) 118 528.27 B
+1.71 0.14 (/TextFont %\050variable\051 the default font) 118 501.87 B
+1.71 0.14 (/bbox % x y w h) 118 449.07 B
+1.71 0.14 (/location % x y) 118 422.67 B
+1.71 0.14 (/size % w h) 118 396.27 B
+1.71 0.14 (x y /move) 118 369.87 B
+1.71 0.14 (x y w h /reshape) 118 343.47 B
+0.14 (/map) 118 317.07 S
+0.14 (/unmap) 118 290.67 S
+1.71 0.14 (event-manager /activate) 118 264.27 B
+FMENDPAGE
+%%EndPage: "36" 35
+%%Page: "35" 35
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(35) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Using a PostScript Fragment ) 182.37 677.6 B
+1.04 0.18 (to Cr) 227.24 647.2 B
+1.04 0.18 (eate a Label) 270.77 647.2 B
+4 F
+0.14 (/zipmessage) 78 619.47 S
+1.71 0.14 ({/paint eq) 118 593.07 B
+0.14 ({) 144 566.67 S
+1.71 0.14 (/Times-Italic \336ndfont 30 scalefont setfont) 144 540.27 B
+0.14 (/printZip) 144 513.87 S
+1.71 0.14 ( {0 0 moveto \050Zip\051 show} def) 144 487.47 B
+1.71 0.14 (50 10 translate) 144 461.07 B
+1.71 0.14 (.95 -.05 0 % start increment end) 144 434.67 B
+1.71 0.14 ( {setgray printZip -1 .5 translate} for) 144 408.27 B
+1.71 0.14 (1 setgray printZip) 144 355.47 B
+0.14 (}) 144 329.07 S
+1.71 0.14 ({64 64} ifelse) 144 302.67 B
+0.14 (}) 118 276.27 S
+1.71 0.14 (framebuffer /new ClassLabel send ) 78 249.87 B
+0.14 (def) 78 223.47 S
+FMENDPAGE
+%%EndPage: "35" 34
+%%Page: "34" 34
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(34) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (A Message Using a PostScript Fragment) 168.6 245.67 B
+0.81 0.14 (as a DisplayItem) 248.1 219.27 B
+72 108 540 720 C
+72 279 540 720 C
+72 279 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  3215     
+477 214 404.17 183.02 0 99.83 437.98 BEGINBITMAPBWc
+
+
+
+
+"j"
+F0O+01"Z"
+F7O+FD"z"
+F3O+BBB9"Z"
+F7O+FD"z"
+F2O+AAA9"Z"
+F7O+FD"z"
+F3O+BBB9"Z"
+F7O+FD&z"
+F2AAAEEEEAO'AAA9"Z"
+F7O+FD&z"
+F3BBBBBBABO'BBB9"Z"
+F7O+FD%z"
+F2AAAA88O(AAA9%Z"
+F7FFFF7FO(FD&z"
+F3BBBBAFABO'BBB9"Z"
+F7O+FD%z"
+F2AAAA8AO(AAA9%Z"
+F7FFFFDFO(FD&z"
+F3BBBBBBABO'BBB9"Z"
+F7O+FD"z"
+F2O+AAA9"Z"
+F7O+FD%z"
+F3BBBAAAO(BBB9"Z"
+F7O+FD"z"
+F2O+AAA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z%z"
+F2AE4EEEF0070F8@EEA9"Z&Z"
+F75FE44E4787F?FD"z&z"
+F35AAAE01E0000A?AAB9"Z&Z"
+F75FC97C15117?FD#z%z"
+F2AE5EE23800A0A?EEA9"Z%Z"
+F76DF0575F7?FD"z(x"y"
+F36AAAF01E3E8CAAAAA222AAAB9"Z(x"Y"
+F76FE116179E7FFF77F5FFD#z(x"y"
+F2AE5EEFC00E060E0EEEAAABEEEA9"Z(a"Z"
+F76F85565E4E57FDC1F5FD"z/z"
+F36AAF800C0C0E02AA82222222222222A5AAB9"Z(a(Z"
+F76F115C1C1E157D017F7F7F7F7F7F7/FD#z(<)y"
+F2AE5EEE00AC0C0C00AE80AAAAAAAAAAAAAAEEEA9"Z(<"Z"
+F76C555C5C5C555DC1F5FD"z(y"y"
+F35AAABC01381818022AABAAAB9"Z'zY"
+F76817191939155/7FFD#z)Xz"
+F2AE4EEEF00A3B18700AAAF/EEA9"Z)CZ"
+F75FE45E7E78C4555FF/FD"z(z"
+F35AABFFFC383F8002A=AAB9"Z)V$Y"
+F75F0000003011557709F0F0FFD#z"8'u$y"
+F2AE4EEEC070008AAA66EEE0E6666EEA9"Z)U$Y"
+F7655555645555FE67F9E6667FD"z)u$y"
+F36AA8000260002AAA22AAA8A2222AAB9"Z)U$Y"
+F76F55556155577E67F9E6667FD#z(u$y"
+F2AE6EEAABF80AAAAE66EEE8E6666EEA9"Z(U$Y"
+F77DDD0155DFFE67F9E6667FD"z'u$y"
+F38AAA8022AABA22AAA8A2222AAB9"Z%V$Y"
+F791157FFF09F0F0FFD)z&z"
+F2AEEEEEEEEEEEF30EEEFEFC8AAEF=EEA9"Q"Z#Z"
+F7F02F55F>FD*z"z"
+F3AAAAAAAAAAAAA83A3AABA=AAB9"Q#Z"Z"
+F7F80F277>FD*z"z"
+F2AEEEEEEEEEEEEC032EEEA>EEA9"Q#Z"
+F7FC00O#FD"r"z#z"
+F3AA002AAABBA=AAB9"Q#Z"
+F7FE07O#FD*z"
+F2AEEEEEEEEEEEEF02O#EEA9"R"Z"
+F711O#FD"r"z"
+F3AA98O#AAB9"R#Z"
+F79C7FO"FD#r"z"
+F2AEEE2EO"EEA9"S"Z"
+F71FO"FD"s"z"
+F3AA8AO"AAB9"S"Z"
+F7CFO"FD#r"z"
+F2AEEEFEO"EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD#z"
+F2AEO*EEA9"Z"
+F7O+FD"z"
+F3O+AAB9"Z"
+F7O+FD"z"
+F2O+AAA9"Z"
+F7O+FD"z"
+F3O+BBB9"Z"
+F7O+FD"z"
+F2O+AAA9"j"
+F0O+01Z
+O-
+
+
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "34" 33
+%%Page: "33" 33
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(33) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Cr) 155.59 708 B
+1.04 0.18 (eating a Menu with a Submenu) 175.59 708 B
+4 F
+0.14 (/WorkspaceMenu) 78 658.27 S
+1.71 0.14 (/Grid framebuffer /new ClassMenu send) 118 631.87 B
+0.14 (def) 78 605.47 S
+0.14 (/ProgramsMenu) 78 579.07 S
+1.71 0.14 (/Grid framebuffer /new ClassMenu send) 118 552.67 B
+0.14 (def) 78 526.27 S
+0.14 (/UtilitiesMenu) 78 499.87 S
+1.71 0.14 (/Grid framebuffer /new ClassMenu send) 118 473.47 B
+0.14 (def) 78 447.07 S
+1.71 0.14 ([\050Command Tool\051 \050TextEditor\051 \050FileManager\051 \050Mail ) 78 420.67 B
+0.14 (Tool\051]) 78 404.27 S
+1.71 0.14 (/setitemlist ProgramsMenu send) 78 377.87 B
+1.71 0.14 ([\050Refresh\051 \050Reset Keyboard\051 \050Save Workspace\051 ) 78 351.47 B
+0.14 (\050Console...\051]) 78 335.07 S
+1.71 0.14 (/setitemlist UtilitiesMenu send ) 78 308.67 B
+1.71 0.14 ([[\050Programs\051 ProgramsMenu] [\050Utilities\051 ) 78 282.27 B
+1.71 0.14 (UtilitiesMenu] \050Properties...\051 \050Exit...\051] ) 78 265.87 B
+1.71 0.14 (/setitemlist WorkspaceMenu send) 78 239.47 B
+1.71 0.14 (% Make them all pinnable) 78 213.07 B
+1.71 0.14 ([WorkspaceMenu ProgramsMenu UtilitiesMenu]) 78 186.67 B
+1.71 0.14 ({true /setpinnable 3 -1 roll send} forall) 78 160.27 B
+FMENDPAGE
+%%EndPage: "33" 32
+%%Page: "32" 32
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(32) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (A Menu with Submenus) 224.61 245.67 B
+72 108 540 720 C
+72 279 540 720 C
+72 279 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  2387     
+479 202 433.89 169.64 0 88.11 406.36 BEGINBITMAPBWc
+
+
+
+
+
+"j"
+FEO,3F7#J#
+FF80O)FFBF8"Z"
+BFO(FE8"j"
+A0O(027#J"
+E020O)037%Z"
+EFFC001FO'FB8$
+FBFFEF:"
+E7
+9"
+807$J#
+0FFBBEO(F83F7$J"
+7FFBDDO(FF
+9"
+EB
+9"
+F79"
+FF
+8$
+FC00078$
+FE000F8$
+FFFFFF
+
+7"j"
+70O*07
+7"Z
+7FO+7"j"
+70O*077"Z"
+77O*F7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jg"
+<1FJ"V"
+<7FDFJ"j"
+GF0/03J"Z"
+GF7/FB
+J"s"
+=FBBBBFJU
+=J#s
+=EE0EEEJ#S?"9"8#
+=FEEFFDF7F83FJ+8"=#:#
+=BAA939A1A2393383B9BBF0F80FF97FJ+8#<#:#
+=FEECF6DD9DDCCDBFFA7FEF7FFF7FF83FJ,8,9#
+<7EEEECEE4CAECCCCAEEA8EDFF9E99E99E3D3E1FF7E7CF97FJ,9,8#
+<7FFE1DEF5DBE1DDDCFFBEFF6E66E66DDCDDDFF7DBB77F83FJ,8'8$8#
+=BAB9AB19B99999B3BB9BB7EF6EEEEEFDDD7BD7B7F97FJ,<">#
+=FEFDF6E5BDDDDDF7FA7FF7E1F83FJ,=">#
+<7EEEECE8ECAE2CCC8EE8EEDDF97FJ&Q8$:*
+<7FFFFFFFFDEF76EED9FF7DBB76DBFFF83FJ+8#9(8#
+=BBBBBBA3BBBBBBBBBBBBF0F9E2DDE5FF7E7CF6F97FJU8Y#
+=F83FJt"F#
+=EEEFF97FJUF#
+=F83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ$J#
+?FBBBFD5F83FJ&J#
+=FEF77BBBBD5F97FJ$B">#
+?7FBFBFBBF83FJ)9(=#
+>F61BBB0DC78FFFF9C07FFFB83FBBBFF97FJ*8'>#
+>F77BBBBDBB7FFFFA7FFBFFFFBBFFBFF83FJ#9(<#
+EFB9FE3BB0BFC3B0E74F97FJ#8"9(<#
+B839FEFDDBBBBFBBBBDB3F83FJ#8":'<#
+BBFEF9FD7B87BBBBBD7F97FJ"8#9%?#
+BBBFA7FC1EFBBFBF83FJ+9#A#
+=FF0F9BBBCDC71FFFF9FFDFD7F97FJS:#8%;#
+>DDBB3BBDB7B6F83FJ(<#
+JE3BBC83CBBCE77F97FJT;#
+IF83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ"I#
+CF7F83FJ#9"J#
+=FE1FFE4F97FJ":"<"B#
+>EFFFDDF83FJ)9"8"@#
+>ED39E9E3A4371E3FE1BEF97FJ)9%@#
+>ECF6E6DD9EF6EDFFEFFDFF9CF83FJ&=*:#
+>EDEF6EDDBEDDC79CF1E9E3C38E9FF97FJ"8"8#;):#
+>1DC10E7FBBAAEEE6DDBB767FF83FJ"8"8#9"9$8":#
+>FDDFFFBFE1FEEEFDFFF97FJ$8$8*;#
+?F6EEDDEFB6DFEFDD83B6F0EEE1BB06F83FJ(;(;#
+?F9E1E3BF371C76BFB6EEEEDDB37EF97FJ%Q:#9%9#
+=FFFFFFEFBBBECB76F6DFF83FJ(;#
+KC7BEF16EE2FB8EF97FJ">R%9#
+@FFFBFFFFFFF83FJ"<#
+O"C7F97FJ"<#
+O"FFF83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ"J#
+?FB7F83FJ%J#
+=FC1FFBBF6F97FJ$A#8"=#
+=FDFFFFFBBFFEF83FJ$>#8"?#
+>FBBB0FEFBF01F97FJ">&?#
+@BFE73FFFBFEFF83FJ$@#8#=#
+=FC3D7B3C7BCF9EF97FJ$?$8#=#
+=FDFEFBEABBBBB76EF83FJ#@"9#=#
+>FD7BBF7AF6F97FJ%=$A#
+>FBBBBB6FEDBC3BF83FJ%?#A#
+=FC1BBBCBBBBBF97FJP=":%;#
+=EFB76EDB7FF83FJ#8#=#
+JBC5BCF9EF97FJT;#
+IF83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ#
+O)F83FJ#
+O)F97FJ#
+O)F83FJf"E#
+<07F97FJ"J#
+<FC:F83FJ"u"j#
+<FD5550/017FJ"fE#
+<FC003FJ"z"
+<FD;557FJW"j"
+<C0/3FJ"z"
+HD5/557FJZ
+H1
+
+
+7"j"
+70O*077"Z
+7FO+
+
+
+
+
+
+
+
+
+
+
+7"J"
+0FO*F87"J#
+EFO*FBBF
+
+
+
+7#J#
+E03FO(FE037#J"
+FFBFO)FF
+8"j
+80O)7#J#
+0000O)003FZ
+O.
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "32" 31
+%%Page: "31" 31
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(31) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Cr) 138.91 677.6 B
+1.04 0.18 (eating a Scr) 158.91 677.6 B
+1.04 0.18 (olling List and Scr) 267.18 677.6 B
+1.04 0.18 (ollbar) 422.36 677.6 B
+4 F
+1.71 0.14 (% Create the scrolling list, and then its scrollbar) 78 649.87 B
+0.14 (/MyList) 78 623.47 S
+1.71 0.14 (framebuffer /new ClassScrollList send) 118 597.07 B
+0.14 (def) 78 570.67 S
+0.14 (/MyListSbar) 78 544.27 S
+1.71 0.14 (framebuffer /new ClassVScrollbar send) 118 517.87 B
+0.14 (def) 78 491.47 S
+1.71 0.14 (% Have the scrollbar notify the list) 78 465.07 B
+1.71 0.14 (MyList /settarget MyListSbar send) 78 438.67 B
+1.71 0.14 (/scroll /setnoti\336er MyListSbar send) 78 412.27 B
+1.71 0.14 (% Make the scrollbar the list\325s scrollbar) 78 385.87 B
+1.71 0.14 (MyListSbar /setscrollbar MyList send) 78 359.47 B
+1.71 0.14 (% Associate them geometrically in a border bag) 78 306.67 B
+0.14 (/ListBag) 78 280.27 S
+1.71 0.14 (framebuffer /new ClassBorderBag send) 118 253.87 B
+0.14 (def) 78 227.47 S
+1.71 0.14 (/Center MyList /addclient ListBag send) 78 201.07 B
+1.71 0.14 (/East MyListSbar /addclient ListBag send) 78 174.67 B
+1.34 0.14 (% Reshape the border bag to whatever size is desired) 78 148.27 B
+1.71 0.14 (0 0 <somewidth> <someheight> /reshape ListBag send) 78 121.87 B
+FMENDPAGE
+%%EndPage: "31" 30
+%%Page: "30" 30
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(30) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (A Scr) 207.8 245.67 B
+0.81 0.14 (olling List and Scr) 244.04 245.67 B
+0.81 0.14 (ollbar) 364.74 245.67 B
+72 108 540 720 C
+72 279 540 720 C
+72 279 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1340     
+475 199 423.09 164.68 0 89.91 384.33 BEGINBITMAPBWc
+
+
+
+
+"j"
+F0O+01#J#
+F7FCO)07FD7"Z"
+FDO)F7
+7"J#
+01O)F01D7$J#
+7FE000O'FFDD8$
+DFFF7F:"
+3F
+8#
+DC07%J"
+F07FDDF7O(C1%J"
+F3FFDEEFO(F9
+8#
+DF5F
+9"
+BF9"
+FF
+8#
+E0008$
+F0007F8$
+FFFFFF
+
+
+
+
+7"j"
+80O*397"Z"
+BFO*B9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"z$
+;D585530001FJZ$
+;9F7FFDFJ"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J$
+;FF8F0001FJ"J$
+;DF8BFFFFFJ"J"
+;FF8FFJ"J$
+;DF8B8003FJ"J$
+;FF8F7FF9FJ"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J#
+;FF8F7DFJ"J#
+;DF8B7AFJ"J#
+;FF8F757J"J#
+;DF8B6ABJ"J#
+;FF8F757J"J#
+;DF8B7FFJ"J"
+;FF8F7J"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J$
+;FF8F0001FJ"J$
+;DF8B7FF9FJ"J"
+;FF8F7J"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"
+O&F7J"J$
+;FF8B0001FJ"J$
+;DF8F7FF9FJ"J"
+;FF8B7J"J"
+;DF8F7J"J"
+;FF8B7J"J"
+;DF8F7J"J#
+;FF8B601J"J"
+;DF8F6J"J#
+;FF8B703J"J#
+;DF8F787J"J#
+;FF8B7CFJ#
+O&F7FFJ"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"J$
+;FF8F0001FJ"J$
+;DF8B8003FJ"J$
+;FF8FFFFFFJ"J#
+;DF8BFC7J"J"
+;FF8FFJ"J"
+;DF8BFJ"J"
+;FF8FFJ"J"
+;DF8BFJ"J"
+;FF8FFJ"J"
+;DF8BFJ"J"
+;FF8FFJ"J"
+;DF8BFJ"J"
+;FF8FFJ"J#
+;DF8BFFFJ"J"
+;FF8FFJ"J$
+;DF8B0001FJ"J$
+;FF8F7FFDFJ"J"
+;DF8B7J"J"
+;FF8F7J"J"
+;DF8B7J"z$
+;EA8AAB0001FJZ
+;<
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7"j"
+80O*397Z"
+O+F9
+
+
+
+
+
+
+
+
+
+
+#J"
+F07FO*C1"J"
+F7O+DD
+
+
+
+7"J#
+01O)F01D7"J#
+FDO)F7FD
+7"j"
+FCO)07#J#
+F000O)0001Z
+O-
+
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "30" 29
+%%Page: "29" 29
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(29) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Cr) 194.59 677.6 B
+1.04 0.18 (eating a V) 214.59 677.6 B
+1.04 0.18 (ertical Slider) 307.35 677.6 B
+1.04 0.18 (Display Range: 0 to 100) 200.92 647.2 B
+4 F
+0.14 (/vslider) 78 593.07 S
+1.71 0.14 (framebuffer /new ClassVSlider send) 118 566.67 B
+0.14 (def) 78 540.27 S
+1.71 0.14 (0 100 /setrange vslider send) 78 487.47 B
+1.71 0.14 (0 /setvalue vslider send) 78 461.07 B
+1.71 0.14 (10 /settickmarks vslider send) 78 434.67 B
+FMENDPAGE
+%%EndPage: "29" 28
+%%Page: "28" 28
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(28) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (A Slider) 279.57 227.67 B
+72 108 540 720 C
+72 261 540 720 C
+72 261 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1200     
+260 353 238.23 314.49 0 180 306.51 BEGINBITMAPBWc
+J"
+@F6J"
+@FFJ"
+@F7"j"
+E0?FF#J#
+EFF8<03FE7"Z"
+FB<FB
+#J#
+EE03<F80E7$J#
+FFC001:FFEE8#
+BFFE:"
+7F
+8#
+B80E%J"
+E0FFBBEE;E0%J"
+E7FFBDDE;FC
+8#
+BEBEJ"
+@F38#J"
+BF7E<FF9"
+FE
+8#
+C0008$
+E000FF8#
+FFFF
+
+J"
+@F7J"
+@FF
+7j"
+>1C7"Z"
+7F=DC
+J"
+@F3J"
+@FFJ"
+@F7J"
+@FF
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+@F3J"
+@FF
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+@F6J"
+@FFJ"
+@F7J"
+@FF
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+@F3J"
+@FF
+
+
+
+
+
+
+J"
+@F7J"
+@FF
+
+
+
+J"
+@F3J"
+@FFJ"
+@F7J"
+@FF
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+@F3D#F"
+F003FFD#
+F7FB
+
+D#
+F003D#
+FFFF
+
+J"
+@F7J"
+@FF
+E#
+1F03D#
+FEEFF"
+FFJ"
+@F6J"
+@FFJ"
+@F7J"
+@FF
+
+
+
+
+F"
+03
+F"
+FF
+
+
+
+
+J"
+@F3J"
+@FF
+
+F"
+03
+F"
+FF
+
+
+
+
+
+
+
+J"
+@F3F"E"
+03FFJ"
+@F7F"E"
+FFFF
+
+
+
+
+
+
+
+
+F"
+03
+F"
+FF
+J"
+@F3J"
+@FF
+
+
+
+
+
+F"
+03
+F"
+FF
+J"
+@FCJ"
+@FF
+J"
+@F6J"
+@FFJ"
+@F7J"
+@FF
+F"
+03
+F"
+FF
+
+
+
+
+
+
+
+
+F"E"
+03F3J"
+@FFF"
+FF
+
+
+
+
+
+
+
+
+F"E"
+03FCJ"
+@FFF"
+FFJ"
+@F3D#F"
+E001FFD#F"
+DFFEF7J"
+@FF
+
+
+
+
+F"
+03D#
+E001D$
+FFFFFF
+
+
+
+
+D#F"
+F003F3D#F"
+F7FBFF
+
+D#
+F003D#
+FFFF
+
+
+
+
+
+J"
+@FCJ"
+@FF
+J"
+@F6J"
+@FFJ"
+@F7J"
+@FF
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+@F3J"
+@FF
+
+
+
+
+
+
+
+
+
+J"
+@FCJ"
+@FF
+J"
+@F3J"
+@FFJ"
+@F7J"
+@FF
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+@F3J"
+@FF
+
+
+
+
+
+
+
+
+
+J"
+@FCJ"
+@FF
+J"
+@F6J"
+@FFJ"
+@F7J"
+@FF
+
+7j"
+>1C7Z"
+>FC
+
+
+
+
+
+
+
+
+J"
+@F3J"
+@FF"J"
+E0>E0"J"
+EE>EE
+
+
+
+7"J#
+03<F80E#J#
+EFFB<FBFE
+7"j"
+F8<03#J$
+E000<0000FCZ
+A
+J"
+@F3
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "28" 27
+%%Page: "27" 27
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(27) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Cr) 194.39 677.6 B
+1.04 0.18 (eating a Setting Gr) 214.39 677.6 B
+1.04 0.18 (oup) 382.89 677.6 B
+4 F
+0.14 (/ColorModelSetting) 78 597.07 S
+1.71 0.14 (/Grid framebuffer /new ClassSettings send) 118 570.67 B
+0.14 (def) 78 544.27 S
+1.71 0.14 (/Exclusive /setchoicemode ColorModelSetting send) 78 491.47 B
+1.71 0.14 ([\050RGB\051 \050HSB\051] /setitemlist ColorModelSetting send) 78 438.67 B
+1.71 0.14 ([0] /setvalue ColorModelSetting send) 78 385.87 B
+1.71 0.14 (% Inherited from ClassLayout - layout by rows, 1 ) 78 333.07 B
+1.71 0.14 (row, 2 columns) 78 316.67 B
+1.71 0.14 ([true 1 2] /setlayoutparameters ColorModelSetting ) 78 290.27 B
+0.14 (send) 78 273.87 S
+FMENDPAGE
+%%EndPage: "27" 26
+%%Page: "26" 26
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(26) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (A Settings Gr) 247.81 200.67 B
+0.81 0.14 (oup) 337.19 200.67 B
+72 108 540 720 C
+72 234 540 720 C
+72 234 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  816      
+477 199 420.91 166.35 0 92.09 400.65 BEGINBITMAPBWc
+
+
+
+
+"j"
+F0O+01#J#
+F7FCO)07FD7"Z"
+FDO)F7
+7"J#
+01O)F01D7$J#
+7FE000O'FFDD8$
+DFFF7F:"
+3F
+8#
+DC07%J"
+F07FDDF7O(C1%J"
+F3FFDEEFO(F9
+8#
+DF5F
+9"
+BF9"
+FF
+8#
+E0008$
+F0007F8$
+FFFFFF
+
+
+
+
+7"j"
+80O*397"Z"
+BFO*B9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"d
+:C0J&
+?3FFFFFFFFEJ&
+:CFFFFFFFFF
+
+
+G":$
+3FFCFFE7E"9#<$8$
+87FE38E1F0E1DEE187E"A$9#
+33EEEF6EDFBBD-8#
+FE7F0F38727E38E1E0E1E67FDFEEE*?"
+7E6733327E94CCCCCCCFH#:'8$
+31FEE7FFCFE1DFE1C0E387H":"9$8$
+33C0EDDF6EDEF9BBJ"8"9";"
+4CCCFEEFDD#<%8"
+FF3AC8CEE67FEFE*:#9#
+870F3873FEFCE1E4E1F061C387EV%8$
+CFFFFFFFFFFFFF
+
+
+
+J&
+:C000000000J`
+?JU
+:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7"j"
+80O*397Z"
+O+F9
+
+
+
+
+
+
+
+
+
+
+#J"
+F07FO*C1"J"
+F7O+DD
+
+
+
+7"J#
+01O)F01D7"J#
+FDO)F7FD
+7"j"
+FCO)07#J#
+F000O)0001Z
+O-
+
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "26" 25
+%%Page: "25" 25
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(25) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Cr) 163.03 677.6 B
+1.04 0.18 (eating a Menu and Attaching ) 183.04 677.6 B
+1.04 0.18 (it to a Menu Button) 221.07 647.2 B
+4 F
+0.14 (/FontMenu) 78 593.07 S
+1.71 0.14 (/Grid framebuffer /new /ClassMenu send) 118 566.67 B
+0.14 (def) 78 540.27 S
+1.71 0.14 ([\050Courier\051 \050Times-Roman\051 \050Zapf Dingbats\051]) 78 513.87 B
+1.71 0.14 (/setitemlist FontMenu send) 78 487.47 B
+1.71 0.14 (0 /setdefault FontMenu send) 78 461.07 B
+0.14 (/FontMenuButton) 78 408.27 S
+1.71 0.14 (/Spaced framebuffer /new ClassMenuButtons send) 118 381.87 B
+0.14 (def) 78 355.47 S
+1.71 0.14 (% FontMenu must have been previously de\336ned) 78 302.67 B
+0.87 0.14 ([[\050Fonts\051 FontMenu]] /setitemlist FontMenuButton send) 78 276.27 B
+FMENDPAGE
+%%EndPage: "25" 24
+%%Page: "24" 24
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(24) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (A menu Button with a Menu) 209.31 200.67 B
+72 108 540 720 C
+72 234 540 720 C
+72 234 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1735     
+472 197 418.42 168.54 0 94.58 407.46 BEGINBITMAPBWc
+
+
+
+"j"
+C0O+07#J#
+DFF0O)1FF77"Z"
+F7O)DF7"j"
+F4O)5F#J#
+DC04O)4077%Z
+DDFF8003O(8#
+7FFD9"
+FC
+8#
+701C%J"
+C1FF77DCO(07%J"
+CFFF7BBCO(E7
+8#
+7D7C
+8#
+7EFC8"
+7F
+8#
+80008#
+C0018#
+FFFF
+
+"j
+CEO+
+"Z
+CFO+"j
+CEO+7Z"
+O*FE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"a"
+8F87FJ"Q"
+8E79FJ)
+8DFBBBBBBBBBBBBEFJ"Q"
+8BFF7J)
+86EC2EEEE6EEEEEFBJ)
+87FDFFFFF7FFFFFF9J*
+7FEFB9B8B0A18BB01BDJ)
+8FFDFB73777FF7DFCJ)
+8EEC26A6666EEAAECJ)
+8FFDF7B7779FFBBFCJ)
+8BB9B3B333ABB93BCJ)
+8FFDFB7777EFFD7FCJ)
+8EECECE6680EEEEECJ#Q"
+7FF7FF8J)
+87BBBBBBBBBBBBBB9J"Q"
+8BFF1J)
+8DEEEEEEEEEEEEEE3J"Q"
+8E787J"a"
+8F00FJ"<"
+8F83FJ&<&
+4FE00000000000000003FJY"
+5BF
+J"e"
+68007J#U"
+5FE7FF9J#@"
+5FDFFFEJ":"<$
+5FBEFFF7F83J$@#
+5F7FE1FBFABJ#8">"
+6FDEFFF83J);#
+5EFFBFF3DDA6E3A7FDFABJ'<"
+7FEDDD9EDD9FF83J&="
+7FDEDDBEDDBABJ#="
+:EC1B83J#="
+:EDFBABJ'="
+6FDEEDD9BEDDB83J(<#
+5F7FE1F3E5BEE3BBFABJQ="
+683J"B#
+5FB7FABJ"A$
+5FDFEFF83J#@$
+5FE7FF9FFABJ#e$
+5FF8007FF83JX"
+6ABJ"
+C83J"
+CABJ"
+C83J"
+CABJ"A"
+7FD83J#:"<"
+6F80DE1ABJ#:"<"
+6FF7FEE83J%8(
+77DD33C78F3D33C7A7FFFABJ$8(
+8CCDBB7EDCCDBB9BFFF83J"8'8"
+8DDC061DEDDDFBBABJ%8#8"
+9D839FFEDDC3B83J%8#8"
+9DBFEFFEEDBBBABJ"8";"
+:BEED83J#8%8"
+9DC71F3DDDC5BABJW"
+783J"
+CABJ"
+C83J"
+CABJ"
+C83J"
+CABJ"
+C83J"
+CABJ"
+C83J"
+CABJ$8":"
+9FCFFFEDF83J':"8"
+6F81FFFFBF83EBFABJ#8#="
+6FFDFFBDF83J.
+7BC7A70FBEEE9E1D3C70C7FFFABJ$8)
+77BB9BBE6DDCDBBBBFFFF83J$9%9"
+6FE7FBBEEDDDDFBABJ#<#8"
+7FC3BC3BC83J$:(
+6FDFBBBD9DDBBBF7FFFABJ":$;"
+6FBDEEEE583J/
+6F81C587BF83EEEFDC3C5C8FFFFABJ,8"
+6FFFFFBFFFFFFFFFDFFFFFF83J";"
+=E3ABJ":";"
+8FFFF83J"
+CABJ"
+C83J"
+CABJ"
+C83J"
+CABJ"
+C83Ji"
+52BJ#C"
+4FFF803J"x"
+5FAAAABJ"h"
+5F803J"x"
+5FAAAABJZ
+5/
+
+7j
+O+"Z
+CFO+
+
+
+
+
+
+
+
+
+
+
+"J"
+C1O+07"J"
+DDO+77
+
+
+
+#J"
+DC07O)C0#J#
+DFF7O)DFF7
+7"j"
+F0O)1F#J#
+C000O)0007Z
+O-
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "24" 23
+%%Page: "23" 23
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(23) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Cr) 196.64 684 B
+1.04 0.18 (eating a Button Gr) 216.64 684 B
+1.04 0.18 (oup) 380.64 684 B
+4 F
+0.14 (/AlertButtons) 78 634.27 S
+1.71 0.14 (/Spaced framebuffer /new ClassButtons send) 118 607.87 B
+0.14 (def) 78 581.47 S
+-0.98 0.14 ([\050Save\051 \050Discard\051 \050Cancel\051] /setitemlist AlertButtons ) 78 528.67 B
+0.14 (send) 78 512.27 S
+1.71 0.14 (0 /setdefault AlertButtons send) 78 459.47 B
+1.71 0.14 (% Inherited from ClassLayout) 78 406.67 B
+1.71 0.14 (20 0 /setgaps AlertButtons send) 78 380.27 B
+FMENDPAGE
+%%EndPage: "23" 22
+%%Page: "22" 22
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(22) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (A Button Gr) 252.7 214.67 B
+0.81 0.14 (oup) 332.29 214.67 B
+72 108 540 720 C
+72 270 540 720 C
+72 270 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1414     
+500 283 445.58 262.91 0 85.42 349.09 BEGINBITMAPBWc
+
+
+
+9"j
+F8O,9#J#
+FBFEO)03FE;Z"
+O)FB
+:"J#
+80O)F80E:%J#
+BFF0007FO&FFEE;$
+EFFFBF="
+9F
+;#
+EE039%J"
+F83FEEFBO(E09%J"
+F9FFEF77O(FC
+<"
+AF
+<"
+DF<"
+FF
+;$
+F0001F;$
+F8003F;$
+FFFFFF
+
+
+
+
+:"j"
+C0O*1C:"Z"
+DFO*DC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"j"
+C0O-7F#J#
+DFF0O*01FF7"Z"
+F7O*FD
+#J#
+DC07O*FC07#J#
+DDFFO*FFF78#
+FE3F8#
+F1CF8#
+CBEF8#
+B7F7"J"
+C1O,F0$J"
+CFFF77O*FE8#
+73EF8#
+79CF8#
+380F8#
+BE1F8"
+8F8#
+003F8#
+30FF8"
+FF
+
+
+
+
+
+"j"
+CEO,0E7Z"
+O,EE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J#
+O.001CJ#
+O.7FFC
+
+
+
+
+
+
+
+
+
+
+J"
+O/E0J"
+O/EE
+
+
+
+J#
+O.780EG&:"`"9"`"G#
+F800000003F801F81F7BFEG&:"P#8"P"
+E7FFFFFFFCE7FE7FE7E7G"9#9";#8";"G"
+DFFF7FDFFFBFDFFB03G":"9$9#8":#G#
+BFBFBFFFEFEFDFBFFEFD0000G#9"9#;"8#:"G#
+7FC3DF7F83EF7FE1FE7FFFH"9":#:"9";"
+BFCFBDFFE7DE7FF(83
+FEFFBF8EEE3FEFFEFFBEEE3C63A70FF7FFFEFFBFE3D3E31EFFH&;':'
+9F76EDDFE7EDFBDD9EEFF3DDCDDEEEFF3FH#?$<$
+C7F6F7FDBEFDDDBEH%<$="8"
+F3875C1FEE77E1E10EH%<$="8"
+FB775DFFEFB7DDDDFEJ#;$8":"8#
+4BDDFBDEFBBCFDEDEEEH%;':&
+878BBE3F83EC7C62BF2FE1E2DDE31EF(8#Q%P"
+FF7FFFFFFFFFC7FF7FE3FFFF7FFEJ"@"?"
+6CFE77FG":"9"<"8";"
+BF8FBFC7BFFCG":"9"<"8";#
+DF1FDF8FDFF8FFG"9#9";#8";"
+E7FC3FE7FE1FE7E1G'9"a"8"`"
+F0000000007FF03FF003G"9#9"<"8";"
+F801FFF8FFF80FGP:R9R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7j"
+O,0E"Z"
+CFO,FE
+
+
+
+
+
+
+
+
+
+
+"J"
+C1O,F0"J"
+DDO,F7
+
+
+
+#J#
+DC07O*FC07#J#
+DFF7O*FDFF
+7"j"
+F0O*01#J#
+C000O*0000Z
+O/
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "22" 21
+%%Page: "21" 21
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(21) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (Changing slider updates numeric \336eld) 172.64 684.27 B
+0.81 0.14 (T) 137.29 657.87 B
+0.81 0.14 (yping new value in numeric \336eld updates slider) 143.14 657.87 B
+0.81 0.14 (Have the contr) 132.37 631.47 B
+0.81 0.14 (ols notify each other by executing:) 235.6 631.47 B
+4 F
+1.71 0.14 (MySlider /settarget MyNumericField send) 78 583.07 B
+1.71 0.14 (MyNumericField /settarget MySlider send) 78 556.67 B
+1.71 0.14 ({ ) 78 503.87 B
+1.71 0.14 (% PostScript to get numeric ) 118 503.87 B
+1.71 0.14 (% \336eld\325s value, normalize it, ) 118 477.47 B
+1.71 0.14 ( ) 78 451.07 B
+1.71 0.14 (% and leave it on the stack) 118 451.07 B
+1.71 0.14 (% goes here) 118 424.67 B
+1.71 0.14 ( /setvalue MySlider send) 78 398.27 B
+1.71 0.14 (} /setnoti\336er MyNumericField send) 78 371.87 B
+1.71 0.14 ({ ) 78 319.07 B
+1.71 0.14 (% PostScript to get slider\325s ) 118 319.07 B
+1.71 0.14 ( ) 78 292.67 B
+1.71 0.14 (% value and leave it on the ) 118 292.67 B
+1.71 0.14 ( ) 78 266.27 B
+1.71 0.14 (% stack goes here) 118 266.27 B
+1.71 0.14 ( /setvalue MyNumeric\336eld send) 78 239.87 B
+1.71 0.14 (} /setnoti\336er MySlider send) 78 213.47 B
+FMENDPAGE
+%%EndPage: "21" 20
+%%Page: "20" 20
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(20) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.81 0.14 (Slider and T) 138.69 281.67 B
+0.81 0.14 (ext \336eld associated with each other) 218.53 281.67 B
+0.81 0.14 (.) 469.11 281.67 B
+72 108 540 720 C
+72 315 540 720 C
+72 315 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  701      
+473 196 443.2 174.76 0 87.8 419.23 BEGINBITMAPBWc
+
+
+
+"j"
+E0O+03#J#
+EFF8O)0FFB7"Z"
+FBO)EF
+#J#
+EE03O)E03B7$J#
+FFC001O'FFBB8#
+BFFE:"
+7F
+8#
+B80E%J"
+E0FFBBEEO(83%J"
+E7FFBDDEO(F3
+8#
+BEBE
+8#
+BF7E9"
+FE
+8#
+C0008$
+E000FF8#
+FFFF
+
+
+
+
+7j"
+O+737"Z
+7FO*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J#
+7F00FJ#
+7EFF7E";"F$
+F33FFEFCFCE":#F%
+EDFEDFF8FB7B7FE":#F%
+DEFDEFFEF7B7BFJ"g
+8F0J"W"
+8F77F
+
+E":#8"g&
+EDFEDFF0FFFEFB7B7FE":#8"W8$
+F3FF3FF7FCFCFFE";"F$
+FFFFFFFFFF
+J#
+7F00FE&90
+8000000001E7FE7FE7FE7FE7FE7FE7FE7FE7FE7FEP
+
+
+
+
+JZ
+7/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7j
+O+7Z"
+O+F3
+
+
+
+
+
+
+
+
+
+
+"J"
+E0O+83"J"
+EEO+BB
+
+
+
+7"J#
+03O)E03B#J#
+EFFBO)EFFB
+7"j"
+F8O)0F#J#
+E000O)0003Z
+O-
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "20" 19
+%%Page: "19" 19
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(19) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Adding Contr) 126.87 681.6 B
+1.04 0.18 (ols to a Contr) 246.33 681.6 B
+1.04 0.18 (ol Ar) 366.79 681.6 B
+1.04 0.18 (ea using) 408.52 681.6 B
+1.04 0.18 (/Calculated Layout) 219.49 651.2 B
+4 F
+0.14 (/panel) 78 623.47 S
+1.71 0.14 (/Calculated framebuffer /new ClassPanel send) 118 597.07 B
+0.14 (def) 78 570.67 S
+1.71 0.14 (/Center panel /addclient win send) 78 544.27 B
+1.71 0.14 (% Place a slider centered in the panel, with a ) 78 517.87 B
+1.71 0.14 (% 10-point gap between the top of the slider and ) 78 491.47 B
+1.71 0.14 (% the top edge of the panel.) 78 465.07 B
+1.71 0.14 (/slider1 slider1 ) 78 438.67 B
+1.71 0.14 ([/North ) 118 412.27 B
+1.71 0.14 ( ) 78 385.87 B
+1.71 0.14 ({/North PARENT POSITION 0 10 xysub}) 144 385.87 B
+1.71 0.14 (] ) 118 359.47 B
+1.71 0.14 (/addclient panel send) 78 333.07 B
+1.71 0.14 (% Add another slider below with 10 pt gap) 78 280.27 B
+1.71 0.14 (/slider2 slider2) 78 253.87 B
+1.71 0.14 ([/North ) 118 227.47 B
+1.71 0.14 ( ) 78 201.07 B
+1.71 0.14 ({/South PREVIOUS POSITION 0 10 xysub}) 144 201.07 B
+1.71 0.14 (] ) 118 174.67 B
+1.71 0.14 (/addclient panel send) 78 148.27 B
+FMENDPAGE
+%%EndPage: "19" 18
+%%Page: "18" 18
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(18) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+72 108 540 720 C
+72 279 540 720 C
+72 279 540 720 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1006     
+419 191 419 176.77 0 94 399.23 BEGINBITMAPBWc
+
+
+"j
+C0O%#J#
+DFF0O"03FE7"Z"
+F7O"FB
+#J#
+DC07O"F80E%J#
+DDFF8003O FFEE8#
+7FFD9"
+FCJ"
+O&F68#J"
+701CO"FF%J"
+C1FF77DCO!E0%J"
+CFFF7BBCO!FC
+8#
+7D7CJ"
+O&E78#J"
+7EFCO"FF8"
+7F
+8#
+80008#
+C0018#
+FFFF
+
+
+
+
+"j"
+CEO$1C7Z#
+O$DCE3J"
+O&FF
+
+
+
+
+J#
+4FC03J#
+4FBFD
+
+
+J"g"
+5FC3FJ"W"G"
+5FDDFF3J"
+O&FF
+J"g"
+5FC3FJ"X
+5FD
+J"
+O&E7J#J"
+4FC03>FFJ#
+4FFFF
+
+
+
+
+
+
+
+
+J#
+4FC03J#J"
+4FBFD>F3J"
+O&FF
+
+J"g"
+5FC3FJ"W"
+5FDDF
+
+J"g"
+5FC3FJ"X
+5FD
+
+J#
+4FC03J#J"
+4FFFF>F6J"
+O&FF
+
+
+
+J"
+O&E7J"
+O&FF
+
+
+
+
+
+
+
+
+
+
+J"
+O&E3J"
+O&FF
+
+
+
+
+
+
+
+
+
+
+J"
+O&F3J"
+O&FF
+
+
+
+J"
+O&E7J"
+O&FF
+
+
+
+
+
+
+
+
+
+
+J"
+O&F3J"
+O&FF
+
+
+
+J"
+O&F2J"
+O&FAJ"
+O&FCJ"
+O&FEJ"
+O&EBJ"
+O&FFJ"
+O&FEJ"
+O&FAJ"
+O&FBJ"
+O&FEJ"
+O&FAJ"
+O&F5J"
+O&EA
+J"
+O&EDJ"
+O&FEJ"
+O&EAJ"
+O&EBJ"
+O&ECJ"
+O&EAJ"
+O&FFJ"
+O&F1J"
+O&FFJ"
+O&EFJ"
+O&FBJ"
+O&FC
+J"
+O&F7J"
+O&EDJ"
+O&ECJ"
+O&EDJ"
+O&ECJ"
+O&F87j#
+O$1CF2"Z#
+CFO$FCF6J"
+O&EFJ"
+O&FAJ"
+O&ED
+J"
+O&FA
+
+J"
+O&EDJ"
+O&FFJ"
+O&FAJ"
+O&ED"J#
+C1O$E0EF"J#
+DDO$EEFCJ"
+O&FFJ"
+O&FCJ"
+O&FF
+#J#
+DC07O"F80E#J#
+DFF7O"FBFE
+7"j"
+F0O"03#J#
+C000O"0000Z
+O&
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "18" 17
+%%Page: "17" 17
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(17) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+3 F
+0 X
+0.14 (Cr) 274.22 684.27 S
+0.14 (eation:) 289.78 684.27 S
+4 F
+1.71 0.14 (/win null framebuffer /new ClassBaseWindow send def) 78 657.87 B
+1.71 0.14 (/pup null framebuffer /new ClassPopupWindow send def) 78 631.47 B
+3 F
+0.81 0.14 (Setting attributes:) 246.34 583.07 B
+4 F
+1.71 0.14 (/Label? true /setattribute win send) 78 556.67 B
+1.71 0.14 (\050Hello\051 /setlabel win send) 78 508.27 B
+3 F
+0.14 (Placing:) 278.3 459.87 S
+4 F
+1.71 0.14 (/place win send) 78 433.47 B
+3 F
+0.81 0.14 (Inherited fr) 208.56 385.07 B
+0.81 0.14 (om ClassCanvas:) 283 385.07 B
+4 F
+1.71 0.14 (eventmgr /activate win send) 78 358.67 B
+1.71 0.14 (/map win send) 78 332.27 B
+3 F
+0.81 0.14 (Inherited fr) 200.92 279.47 B
+0.81 0.14 (om ClassBor) 275.36 279.47 B
+0.81 0.14 (derBag) 360.99 279.47 B
+4 F
+1.71 0.14 (/Center myclient /addclient win send) 78 253.07 B
+FMENDPAGE
+%%EndPage: "17" 16
+%%Page: "16" 16
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(16) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+72 108 540 720 C
+72.84 108 539.16 720 C
+72.84 108 539.16 720 R
+7 X
+0 K
+V
+3 F
+0 X
+(A Base W) 225.84 180 T
+(indow with label ) 288.99 180 T
+%%BeginBinary:  711      
+469 379 448.07 336.3 0 83.77 311.7 BEGINBITMAPBWc
+
+
+
+
+"j"
+F8O*07#J#
+FBFEO(1FF78Z"
+O(DF
+7"J#
+80O(C0777%J"
+BFF0007FO%FF8$
+EFFFBF:"
+9FJ"
+?9C8#J#
+EE038FE73%J"
+F83FEEFBO'07%J$J"
+F9FFEF77:879CE18E7J$
+>339CCC9"J"
+AF903J#
+=73039"J"
+DF:3F9"J"
+FF:3BJ$
+>879CE18$JP
+F0001F78$
+F8003F8$
+FFFFFF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#J"
+F83FO)07#J"
+FBBFO)77
+
+
+
+7"J"
+80O(C07"J#
+FEO(DFF7
+8j"
+O(1F#J#
+F800O(0007Z
+O,
+
+
+
+
+
+
+
+ENDBITMAP
+%%EndBinary
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "16" 15
+5 24 /AvantGarde-Demi FMDEFINEFONT
+%%Page: "15" 15
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(15) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+202.52 601.23 409.48 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (Client-server Split) 202.52 605.6 B
+2 F
+0.18 (Server:) 156.6 573.2 S
+1.04 0.18 (Low-latency r) 180.6 544.8 B
+1.04 0.18 (esponse) 301.85 544.8 B
+1.04 0.18 (Hit detection) 180.6 516.4 B
+1.04 0.18 (Br) 180.6 488 B
+1.04 0.18 (oadcast communication) 196.83 488 B
+0.18 (Client:) 156.6 457.6 S
+1.04 0.18 (Computation intensive) 180.6 429.2 B
+1.04 0.18 (Data intensive) 180.6 400.8 B
+1.04 0.18 (System calls) 180.6 372.4 B
+1.04 0.18 (File manipulation) 180.6 344 B
+FMENDPAGE
+%%EndPage: "15" 14
+6 18 /Courier-Bold FMDEFINEFONT
+%%Page: "14" 14
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(14) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+165.4 601.23 327.02 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (Client-side Ar) 165.4 605.6 B
+326.38 601.23 431.2 603.39 R
+V
+1.39 0.24 (chitectur) 326.38 605.6 B
+431.01 601.23 446.6 603.39 R
+V
+1.39 0.24 (e) 431.01 605.6 B
+2 F
+1.04 0.18 (C-1: ) 156.6 573.2 B
+6 F
+2.19 0.18 (#include) 200.28 573.2 B
+2 F
+1.04 0.18 ( \336les) 288.07 573.2 B
+1.04 0.18 (C-2: Callbacks) 156.6 542.8 B
+1.04 0.18 (C-3: Allocation) 156.6 512.4 B
+1.04 0.18 (C-4: Registration of callbacks and tags) 156.6 482 B
+1.04 0.18 (C-5: Server initialization) 156.6 451.6 B
+1.04 0.18 (C-6: Noti\336cation) 156.6 421.2 B
+FMENDPAGE
+%%EndPage: "14" 13
+%%Page: "13" 13
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(13) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+163.12 601.23 236.52 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (Server) 163.12 605.6 B
+236.28 601.23 329.3 603.39 R
+V
+1.39 0.24 (-side Ar) 236.28 605.6 B
+328.66 601.23 433.48 603.39 R
+V
+1.39 0.24 (chitectur) 328.66 605.6 B
+433.29 601.23 448.88 603.39 R
+V
+1.39 0.24 (e) 433.29 605.6 B
+2 F
+1.04 0.18 (PS-1: De\336nition) 156.6 542.8 B
+1.04 0.18 (PS-2: Instantiation) 156.6 512.4 B
+1.04 0.18 (PS-3: Composition) 156.6 482 B
+1.04 0.18 (PS-4: Start-up) 156.6 451.6 B
+FMENDPAGE
+%%EndPage: "13" 12
+%%Page: "12" 12
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(12) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+170.04 601.23 441.96 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (Example Send Context) 170.04 605.6 B
+3 F
+0.81 0.14 (can is an instance of ClassCanvas) 185.95 575.87 B
+4 F
+1.71 0.14 (/Paint can send) 78 523.07 B
+3 F
+0.81 0.14 (Dictionary stack) 249.76 284.27 B
+72 108 540 720 C
+101.25 306 510.75 492 C
+101.25 306 510.75 492 R
+7 X
+0 K
+V
+220.02 325.29 328.02 343.29 R
+V
+0.5 H
+2 Z
+0 X
+N
+220.02 352.29 328.02 370.29 R
+7 X
+V
+0 X
+N
+220.02 375 328.02 393 R
+7 X
+V
+0 X
+N
+220.02 402 328.02 420 R
+7 X
+V
+0 X
+N
+220.02 428.31 328.02 446.31 R
+7 X
+V
+0 X
+N
+220.02 455.31 328.02 473.31 R
+7 X
+V
+0 X
+N
+4 F
+(can) 364.02 459.6 T
+(ClassCanvas) 364.02 432.6 T
+(ClassDrawable) 364.02 406.29 T
+(ClassObject) 364.02 379.29 T
+(userdict) 364.02 356.57 T
+(systemdict) 364.02 329.57 T
+220.02 474 175.02 425 2 L
+N
+220.02 375 175.02 424 2 L
+N
+(send) 119.25 422.57 T
+(context) 119.25 408.57 T
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "12" 11
+%%Page: "11" 11
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(11) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+228.43 601.23 383.57 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (NeWS Syntax) 228.43 605.6 B
+2 F
+1.04 0.18 (Function call:) 156.6 542.8 B
+1.04 0.18 ([ar) 180.6 514.4 B
+1.04 0.18 (gument]* function) 204.38 514.4 B
+1.04 0.18 (mycan setcanvas) 180.6 486 B
+1.04 0.18 (Method send:) 156.6 427.2 B
+1.04 0.18 ([ar) 180.6 398.8 B
+1.04 0.18 (gument]* methodname object send) 204.38 398.8 B
+1.04 0.18 (0 0 250 400 /r) 180.6 342 B
+1.04 0.18 (eshape can send) 301.92 342 B
+FMENDPAGE
+%%EndPage: "11" 10
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(10) 528.01 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+271.94 601.23 340.06 603.39 R
+0 X
+V
+5 F
+0.24 (NeWS) 271.94 605.6 S
+2 F
+0.18 (Of) 156.6 573.2 S
+0.18 (fers:) 177.79 573.2 S
+1.04 0.18 (De\336ne Classes and Cr) 180.6 544.8 B
+1.04 0.18 (eate Instances) 377.88 544.8 B
+1.04 0.18 (Reclamation of Unused Storage) 180.6 516.4 B
+1.04 0.18 (T) 180.6 488 B
+1.04 0.18 (ype Checking) 188.12 488 B
+0.18 (Lacks:) 156.6 457.6 S
+1.04 0.18 (Checking of Function Parameters) 180.6 429.2 B
+1.04 0.18 (Access Pr) 180.6 400.8 B
+1.04 0.18 (otection of Data and Methods) 267.49 400.8 B
+FMENDPAGE
+%%EndPage: "10" 9
+4 10 /Palatino-Roman FMDEFINEFONT
+%%Page: "9" 9
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(9) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+4 F
+0 X
+0.52 0.1 ( ) 306 713.33 B
+229.29 615.23 382.71 617.39 R
+V
+5 F
+1.39 0.24 (Lisp / Flavors) 229.29 619.6 B
+2 F
+1.04 0.18 (Multiple inheritance) 156.78 526 B
+1.04 0.18 (Fine-grained contr) 156.78 495.6 B
+1.04 0.18 (ol over access to data ) 321.57 495.6 B
+1.04 0.18 (Automatic garbage collection) 156.78 465.2 B
+1.04 0.18 (Dynamic modi\336cation of classes) 156.78 434.8 B
+FMENDPAGE
+%%EndPage: "9" 8
+%%Page: "8" 8
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(8) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+4 F
+0 X
+0.52 0.1 ( ) 306 713.33 B
+282.01 615.23 330.23 617.39 R
+V
+5 F
+0.24 (C++) 282.01 619.6 S
+2 F
+1.04 0.18 (It is possible to pr) 156.78 556.8 B
+1.04 0.18 (ogram without using any) 312.83 556.8 B
+1.04 0.18 ( OOP featur) 156.6 526.4 B
+1.04 0.18 (es.) 261.27 526.4 B
+1.04 0.18 (Multiple inheritance supported) 156.78 496 B
+-0.37 0.18 (Run-time type and ar) 156.78 465.6 B
+-0.37 0.18 (gument checking ar) 343.35 465.6 B
+-0.37 0.18 (e ) 523.46 465.6 B
+0.18 (possible.) 156.6 445.2 S
+1.04 0.18 (Fine-grained contr) 156.78 414.8 B
+1.04 0.18 (ol over access to data ) 321.57 414.8 B
+1.04 0.18 (and methods) 156.6 394.4 B
+1.04 0.18 (No garbage collection) 156.78 364 B
+1.04 0.18 (No dynamic modi\336cation of classes) 156.78 333.6 B
+FMENDPAGE
+%%EndPage: "8" 7
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(7) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+252.39 601.23 359.61 603.39 R
+0 X
+V
+5 F
+0.24 (Smalltalk) 252.39 605.6 S
+2 F
+1.04 0.18 (Everything is an object \050even integers\051) 156.78 532.4 B
+1.04 0.18 (Single inheritance class structur) 156.78 502 B
+1.04 0.18 (e) 438.43 502 B
+1.04 0.18 (Run-time checking of method ar) 156.78 471.6 B
+1.04 0.18 (guments) 449.01 471.6 B
+-0.25 0.18 (Message-passing is the only way to invoke ) 156.78 441.2 B
+1.04 0.18 (an action) 156.6 420.8 B
+1.04 0.18 (All data is private unless an access ) 156.78 390.4 B
+1.04 0.18 (method is pr) 156.6 370 B
+1.04 0.18 (ovided) 268.46 370 B
+1.04 0.18 (Automatic garbage collection) 156.78 339.6 B
+1.04 0.18 (Dynamic modi\336cation of classes) 156.78 309.2 B
+FMENDPAGE
+%%EndPage: "7" 6
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(6) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+1.04 0.18 (Multiple Inheritance) 217.15 677.6 B
+72 108 540 720 C
+72 108.6 539 671.6 C
+72 108.6 539 671.6 R
+7 X
+0 K
+V
+73 540 538 576 R
+V
+3 F
+0 X
+0.14 (V) 279.68 566.67 S
+0.14 (ehicle) 288.5 566.67 S
+126 433 305 469 R
+7 X
+V
+0 X
+0.81 0.14 (Ship ) 201.09 459.67 B
+70.5 324 215.5 360 R
+7 X
+V
+0 X
+0.81 0.14 (Canoe ) 119.42 350.67 B
+309.17 432.33 485.67 468.33 R
+7 X
+V
+0 X
+0.14 (Plane) 378.18 459 S
+392.5 324 537.5 360 R
+7 X
+V
+0 X
+0.81 0.14 (Jet ) 454.86 350.67 B
+232.5 324 377.5 360 R
+7 X
+V
+0 X
+0.81 0.14 ( Seaplane ) 269.68 350.67 B
+306 558 221 473 2 L
+0.5 H
+2 Z
+N
+306 558 387 477 2 L
+N
+396 450 306 365 2 L
+N
+216 450 306 366 2 L
+N
+397 450 464 365 2 L
+N
+216 449 143 365 2 L
+N
+72 108 540 720 C
+0 0 612 792 C
+FMENDPAGE
+%%EndPage: "6" 5
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(5) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+202.82 601.23 275.93 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (OOP T) 202.82 605.6 B
+274.73 601.23 298.24 603.39 R
+V
+1.39 0.24 (er) 274.73 605.6 B
+298.36 601.23 409.18 603.39 R
+V
+1.39 0.24 (minology) 298.36 605.6 B
+2 F
+0.18 (Object) 156.6 573.2 S
+0.18 (Class) 156.6 542.8 S
+0.18 (Message) 156.6 512.4 S
+0.18 (Method) 156.6 482 S
+0.18 (Inheritance:) 156.6 451.6 S
+1.04 0.18 (Single inheritance) 180.6 423.2 B
+1.04 0.18 (Multiple inheritance) 180.6 394.8 B
+0.18 (Overriding) 156.6 364.4 S
+FMENDPAGE
+%%EndPage: "5" 4
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(4) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+210.8 601.23 401.2 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (TNT weaknesses) 210.8 605.6 B
+2 F
+1.04 0.18 (Client-server split: ) 156.6 529.2 B
+1.04 0.18 (two pr) 180.6 500.8 B
+1.04 0.18 (ogramming models) 236.37 500.8 B
+1.04 0.18 (PostScript language:) 156.6 470.4 B
+1.04 0.18 (Contr) 180.6 442 B
+1.04 0.18 (ol structur) 228.67 442 B
+1.04 0.18 (es) 315.74 442 B
+1.04 0.18 (Lack of explicit parameter passing) 180.6 413.6 B
+1.04 0.18 (Namespace pr) 180.6 385.2 B
+1.04 0.18 (oblems) 314.45 385.2 B
+FMENDPAGE
+%%EndPage: "4" 3
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(3) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+229 601.23 304.03 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (TNT Str) 229 605.6 B
+303.84 601.23 383 603.39 R
+V
+1.39 0.24 (engths) 303.84 605.6 B
+2 F
+1.04 0.18 (Flexibility thr) 156.6 542.8 B
+1.04 0.18 (ough subclass mechanism) 266.52 542.8 B
+1.04 0.18 (Thin W) 156.6 512.4 B
+1.04 0.18 (ir) 213.29 512.4 B
+1.04 0.18 (e) 223.58 512.4 B
+1.04 0.18 (PostScript Imaging) 156.6 482 B
+FMENDPAGE
+%%EndPage: "3" 2
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(2) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+263.69 601.23 348.31 603.39 R
+0 X
+V
+5 F
+1.39 0.24 (TNT is...) 263.69 605.6 B
+2 F
+0.18 (Interpr) 156.6 542.8 S
+0.18 (eted) 213.85 542.8 S
+0.18 (Object-Oriented) 156.6 512.4 S
+1.04 0.18 (Classes parallel OPEN LOOK components) 156.6 482 B
+FMENDPAGE
+%%EndPage: "2" 1
+2 36 /Helvetica-BoldOblique FMDEFINEFONT
+%%Page: "1" 1
+612 792 0 FMBEGINPAGE
+0 0 612 792 C
+0 0 612 792 R
+7 X
+0 K
+V
+72 744 540 756 R
+V
+0 F
+0 X
+(1) 534 748 T
+72 32 540 44 R
+7 X
+V
+72 720 72 108 2 L
+4 H
+2 Z
+4 X
+N
+112 71 558 71 2 L
+N
+117 36 495 63 R
+7 X
+V
+1 F
+0 X
+(Programming with The NeWS Toolkit) 207.72 55 T
+35 35 107 107 R
+7 X
+V
+0 X
+-35 -35 72 72 BEGINPRINTCODE
+% Sun Logo for Frame Maker - a skinny version for small prints
+%
+% stolen from NeWS/lib/NeWS/demomenu.ps Sunlogo definition
+% and modified to scale to fill bounding textrect
+% 
+% "greyvalue" accepts numbers from 0 (black) to 1 (white)
+
+% Frame Maker "printer code" textrect puts x y w h on stack
+
+/greyvalue 0.66 def
+/height exch def
+/width exch def
+/ypos exch def
+/xpos exch def
+
+gsave
+
+width 2 div height 10.5 div translate
+width 10.5 div height 10.5 div scale 
+45 rotate
+
+/Uchar {
+		newpath
+		-.2 0 moveto
+		0 0 .2 180 360 arc
+		0 2.9 rlineto
+		.7 0 rlineto
+		0 -2.9 rlineto
+		0 0 .9 0 180 arcn
+		0 2.9 rlineto
+		.7 0 rlineto
+		closepath
+		greyvalue setgray
+		fill
+		} def
+/2Uchar { Uchar gsave 4 4 translate Uchar grestore
+		} def
+ 4 { 2Uchar 6 0 translate 90 rotate } repeat
+    
+grestore
+
+
+ENDPRINTCODE
+72 108 540 720 R
+7 X
+V
+2 F
+0 X
+(TNT) 271.01 632 T
+(The NeWS Toolkit) 153 556 T
+FMENDPAGE
+%%EndPage: "1" 0
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 43 -1
+%%DocumentFonts: Times-Roman
+%%+ Times-Bold
+%%+ AvantGarde-Demi
+%%+ Courier-Bold
+%%+ Helvetica-Bold
+%%+ Palatino-Roman
+%%+ Helvetica-BoldOblique

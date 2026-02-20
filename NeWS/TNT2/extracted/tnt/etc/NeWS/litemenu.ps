@@ -1,0 +1,599 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%		@(#)litemenu.ps 23.5 91/02/11
+%
+%  Play pop-up menu class implementation.
+%
+
+/DefaultFamily		/Times-Roman def
+/DefaultPointSize	14 def
+/DefaultFont		DefaultFamily findfont DefaultPointSize scalefont def
+
+%
+%  MenuItem fields:
+%	/Key
+%	/Menu
+%	/Action
+%	/w /h
+%
+%  Added by PullRight:
+%	/x /y
+%	/X /Y /W /H
+%
+
+/LiteMenu Object [
+    /MenuKeys
+    /MenuActions
+    /MenuItems
+    /MenuValue
+    /ChildMenu
+    /ParentMenu
+    /MenuEventMgr
+    
+    /MenuCanvas
+    /MenuX
+    /MenuY
+    /MenuWidth
+    /MenuHeight
+] classbegin
+    /MenuInterests	null def
+    /ParentCanvas	{ framebuffer } def
+    /MenuFont		DefaultFont def
+    /RetainCanvas?	false def
+    /MouseXDelta	0 def
+    /MouseYDelta	12 def
+    /MenuItemSize	20 def
+    
+    /MenuTextColor		0 0 0 rgbcolor def
+    /MenuFillColor		1 1 1 rgbcolor def
+    /MenuBorderColor		MenuTextColor def
+
+    /IconString {icondict exch get cvis} def % iconname => str (one char)
+% ADD IMAGES (Canvases)
+    /&ShowThingDict 20 dict dup begin
+	/fonttype {setfont dup truetype exec} def
+	/colortype {setcolor dup truetype exec} def
+	/integertype {rmoveto dup truetype exec} def
+	/realtype {rmoveto dup truetype exec} def
+	/stringtype {0 currentfont fontdescent rmoveto show} def	
+	/nametype {iconfont setfont IconString show} def
+	/arraytype {
+	    dup xcheck {/paint exch exec} {aload pop dup truetype exec} ifelse
+	} def
+	/packedarraytype /arraytype load def
+	/dicttype {/paint exch send} def
+    end def
+    /&ThingSizeDict 20 dict dup begin
+	/fonttype {setfont dup truetype exec} def
+	/colortype {setcolor dup truetype exec} def
+	/integertype {pop pop dup truetype exec} def
+	/realtype {pop pop dup truetype exec} def
+
+	/stringtype {stringwidth pop currentfont fontheight} def
+	/nametype {iconfont setfont IconString stringbbox 4 2 roll pop pop} def
+	/arraytype {
+	    dup xcheck {/size exch exec} {aload pop dup truetype exec} ifelse
+	} def
+	/packedarraytype /arraytype load def
+	/dicttype {/size exch send} def
+    end def
+
+    /new {	% 	 keys actions  =>  menu
+		%  -or-  keys/actions (one array) => menu
+        /new super send
+        begin
+        gsave
+	    % 1 array form -> 2 arrays
+	    dup 0 get dup xcheck exch type /dicttype eq or not {
+		dup 0 2 pickarray exch 1 2 pickarray
+	    } if
+	    /MenuActions exch def
+	    /MenuKeys exch def
+	    MenuActions length MenuKeys length lt {
+		/MenuActions [ % pad out actions w/ last proc
+		    MenuActions aload pop
+		    MenuKeys length MenuActions length sub {dup} repeat
+		] def
+	    } if
+	    MakeMenuItems
+	    currentdict
+	grestore
+	end
+    } def
+
+    /layout { SubClassResponsibility } def
+    /paint { SubClassResponsibility } def
+    /reshape { SubClassResponsibility } def
+
+    /popup { % - => -
+    % Note: this is obsolete!  Use <event> /showat ...
+	gsave framebuffer setcanvas currentcursorlocation grestore
+        /showat self send
+    } def
+    % Note: Could remove MenuX, MenuY from object. 
+    /showat { % x y -or- event => -
+	MenuEventMgr null ne {MenuEventMgr waitprocess pop} if
+	MenuWidth null eq {
+	    /layout self send
+	    MenuCanvas null ne {/reshape self send} if
+	} if
+	MenuCanvas null eq {
+	    /MenuCanvas ParentCanvas newcanvas def
+	    MenuCanvas /Retained RetainCanvas? put
+	    /reshape self send
+	} if
+
+	gsave framebuffer setcanvas 
+	dup type /eventtype eq {
+	    begin XLocation MouseXDelta add YLocation MouseYDelta add end
+	} if
+        /MenuY exch MenuHeight sub def % Adjust for top-left
+        /MenuX exch def
+
+	% correct for menu being beyond framebuffer
+	clippath pathbbox
+	/MenuY exch MenuHeight sub MenuY min 0 max def
+	/MenuX exch MenuWidth  sub MenuX min 0 max def
+	pop pop
+	grestore
+
+	MenuCanvas savebehindcanvas 
+        MenuCanvas setcanvas MenuX MenuY movecanvas
+        MenuCanvas canvastotop
+        MenuCanvas mapcanvas	% note that this causes damage, thus
+        			% causes paint to be called.
+	/MenuValue null def
+	/activate self send
+	unblockinputqueue
+    } def
+
+    /popdown { % - => -
+	ChildMenu null ne { /popdown ChildMenu send } if
+	ParentMenu null ne { % IF WE AXE ParentMenu; then child popdown's will
+			 % have to also set child to null.
+	    ParentMenu /ChildMenu null put
+	    /ParentMenu null store
+	} if
+	MenuCanvas null ne {MenuCanvas unmapcanvas} if  % spin needs this??
+	RetainCanvas? not {
+	    /MenuCanvas null store
+	    /MenuInterests null store
+%	    /MenuWidth null store
+	} if % framebuffer setcanvas?
+	MenuEventMgr null ne {
+	    MenuEventMgr /MenuEventMgr null store killprocess
+	} if
+    } def
+
+    /insertitem { % index key proc => -
+        3 copy MakeMenuItem
+        /MenuItems MenuItems 4 2 roll arrayinsert def
+        /MenuActions MenuActions 4 index 4 -1 roll arrayinsert def
+        /MenuKeys MenuKeys 4 2 roll arrayinsert def
+        /MenuWidth null def
+    } def
+
+    /deleteitem { % index => -
+        /MenuItems MenuItems 2 index arraydelete def
+        /MenuActions MenuActions 2 index arraydelete def
+        /MenuKeys MenuKeys 3 -1 roll arraydelete def
+        /MenuWidth null def
+    } def
+
+    /changeitem { % index key proc => -
+        2 index /deleteitem self send
+        /insertitem self send
+    } def
+
+% This should return the menu, in case of recursion!
+    /searchkey { % key => index true -or- false
+        true /searchitem self send
+    } def
+    /searchaction { % action => index true -or- false
+        false /searchitem self send
+    } def
+    /searchitem { % keyoraction bool => index true -or- false
+        0 exch {MenuKeys} {MenuActions} ifelse {	% key index ithkey
+            2 index eq {exit} if
+            1 add
+        } forall
+        exch pop		% index
+        dup MenuItems length eq {pop false} {true} ifelse
+    } def
+
+    /currentkey { % - => key
+        MenuItems MenuValue get /Key get
+    } def
+
+    /currentindex { % - => index
+        MenuValue
+    } def
+
+    /makeinterests { % - => -
+        /MenuInterests [
+            ParentMenu null eq {
+                MenuButton {UpProc pop} /UpTransition null excleventmgrinterest
+            } if
+	    /MouseDragged {DragProc pop}  null MenuCanvas excleventmgrinterest
+	    /EnterEvent {EnterProc pop} null MenuCanvas eventmgrinterest
+	    /ExitEvent {ExitProc pop} null MenuCanvas eventmgrinterest
+	    /Damaged {DamageProc pop} null MenuCanvas eventmgrinterest
+	] def
+    } def
+
+    /activate { % - => - (activate the menu)
+	/makeinterests self send
+	MenuInterests length 0 ne {
+	    /MenuEventMgr MenuInterests forkeventmgr store
+	    % Use interaction lock to lock out the flashing of the
+	    % focus highlight line; which turns out to be necessary
+	    % for "savebehind" to be effective.
+	    InteractionLock monitorlocked not { 
+		{ InteractionLock { MenuEventMgr waitprocess } monitor } fork pop
+	    } if
+	} if
+    } def
+
+    /DragProc	nullproc def
+    /EnterProc	nullproc def
+    /ExitProc	nullproc def
+
+    /leafmenu { % - => menu (..at leaf)
+        ChildMenu null eq {self} {/leafmenu ChildMenu send} ifelse
+    } def
+    /domenu { % menu => - (execute menu's action)
+	MenuValue getmenuaction dup type /dicttype eq 
+	    { dup /MenuValue 0 put /domenu exch send }
+	    { cvx exec }
+	ifelse
+    } def
+    /UpProc { % - => -
+	/leafmenu self send				% menu
+	ChildMenu null ne {/popdown ChildMenu send} if		% menu
+	MenuCanvas unmapcanvas % lightweight popdown for me!
+	% Note: could use a slight optimization:
+	% if not a pullright, use self send.
+	% send itself should handle this properly!
+	% dup self eq {pop /domenu self send} {/domenu exch send} ifelse
+	/domenu exch send
+	/popdown self send
+    } def
+
+    /DamageProc {
+	damagepath clipcanvas /paint self send newpath clipcanvas
+    } def
+    
+    % utilities
+    /MenuGSave {gsave MenuFont setfont initmatrix MenuCanvas setcanvas} def
+
+    /MakeMenuItems { % - => - (Make the MenuItems array)
+        /MenuItems MenuKeys length array def
+        MenuKeys MenuActions MenuItems dup % Keys Actns MIs MIs
+        0 1 2 index length 1 sub {	   % Keys Actns MIs MIs index
+            4 index 1 index get		   % Keys Actns MIs MIs index key
+            4 index 2 index get		   % Keys Actns MIs MIs index key actn
+            MakeMenuItem put dup	   % Keys Actns MIs MIs
+        } for
+        pop pop pop pop
+    } def
+
+    /MakeMenuItem { % key action => item
+	MenuItemSize dict begin		% key action
+	    /Key 3 -1 roll def		% action
+	    dup type /dicttype eq {
+		/Menu exch def
+		/Action nullproc def
+	    } {
+		/Action exch def
+		/Menu null def
+	    } ifelse
+	    /w null def
+	    /h null def
+	    currentdict			% dict
+	end
+    } def
+
+    /ThingSize { % thing => width height
+    //&ThingSizeDict begin
+    gsave
+	dup truetype exec
+    grestore
+    end
+    } def
+
+    /ShowThing { % thing x y => -
+    //&ShowThingDict begin
+    gsave
+	moveto dup truetype exec
+    grestore
+    end
+    } def
+classend def
+
+/LitePullRightMenu LiteMenu
+dictbegin
+    /MinX		0 def
+    /PaintedValue	null def
+    /CellWidth		0 def
+    /CellHeight		0 def
+    /CellRows		null def
+    /CellCols		null def
+dictend
+classbegin
+    /CenterItems?	true def
+    /StrokeSelection?	false def % hilight: true strokes, false fills.
+    /PullRightDelta	16 def
+    /PullRightMargin	20 def
+    /Shadow		8 def
+    /ShadowColor	.5 .5 .5 rgbcolor def
+    /Border		8 def
+    /Frame		2 def
+    /CellHorizGap	1 def
+    /CellVertGap	1 def
+    /RowMajor?		true def
+    % Layout: one of /Vertical, /Horizontal, [<rows> <cols>]
+    /LayoutStyle	/Vertical def
+
+    /layout {
+    gsave MenuFont setfont initmatrix
+	LayoutStyle /Vertical eq {
+	    /CellRows MenuKeys length def
+	    /CellCols 1 def
+	} {
+	    LayoutStyle /Horizontal eq {
+		/CellCols MenuKeys length def
+		/CellRows 1 def
+	    } {
+%	        /CellRows MenuKeys length CellCols div ceiling def
+	        LayoutStyle aload pop
+	        /CellCols exch def /CellRows exch def
+	    } ifelse
+	} ifelse
+
+	/CellHeight 0 def
+	/CellWidth 0 def
+        MenuItems {
+            begin
+                w null eq
+		    {/Key load ThingSize /w 2 index def /h 1 index def}
+		    {w h} ifelse
+            end
+	    /CellHeight exch CellHeight max def
+	    /CellWidth exch CellWidth max def
+        } forall
+	/CellHeight CellHeight CellVertGap 2 mul add def
+	/CellWidth  CellWidth  CellHorizGap 2 mul add def
+
+        /ArrayWidth  CellCols CellWidth  mul Border 2 mul add def
+        /ArrayHeight CellRows CellHeight mul Border 2 mul add def
+        /MenuWidth  ArrayWidth  Shadow add def
+        /MenuHeight ArrayHeight Shadow add def
+	
+	0 Border MenuHeight Border sub CellHeight sub	% i X Y
+	MenuItems {					% i X Y dict
+	    begin					% i X Y
+		/Y exch def /X exch def			% i
+		/W CellWidth def /H CellHeight def
+		
+		CenterItems? {
+		    /x X CellWidth w sub 2 div add def
+		    /y Y CellVertGap add def
+		} {
+		    /x X CellHorizGap add def
+		    /y Y CellVertGap add def
+		} ifelse
+		
+		1 add
+		RowMajor? {
+		    dup CellCols eq {
+		        pop 0 Border Y CellHeight sub
+		    } {
+			X CellWidth add Y
+		    } ifelse
+		} {
+		    dup CellRows eq {
+		        pop 0 X CellWidth add
+		        MenuHeight Border sub CellHeight sub
+		    } {
+			X Y CellHeight sub
+		    } ifelse
+		} ifelse
+	    end
+	} forall pop pop pop
+    grestore
+    } def
+
+    /reshape {
+    MenuGSave
+	framebuffer setcanvas
+%FUN!	    random 20 mul 10 sub rotate
+	Shadow 0 ArrayWidth ArrayHeight rectpath
+	0 Shadow moveto ArrayWidth ArrayHeight rect
+	MenuCanvas reshapecanvas
+	/rtarr /rtarr_m MenuCanvas setstandardcursor
+    grestore
+    } def
+
+    /showat {
+	PaintedValue null ne MenuCanvas null ne and MenuWidth null ne and {
+	    % /paint self send
+	    % God! Fix the paint stuff to be more atomic!!
+		/MenuValue null store PaintMenuValue
+	} if
+	/PaintedValue null store
+	/showat super send
+    } def
+
+    /paint {
+    MenuGSave
+        PaintMenuFrame
+	PaintMenuItems
+	PaintedValue PaintBox
+    grestore
+    } def
+
+    /PaintMenuFrame {
+        % clear all of menu
+        MenuFillColor fillcanvas
+        Shadow 0 ne {
+            % paint shadow
+            ShadowColor setcolor
+	    Shadow 0 ArrayWidth Shadow rectpath fill % bottom stripe
+	    ArrayWidth Shadow Shadow ArrayHeight rectpath fill % side stripe
+        } if
+	% paint frame
+	Frame 0 ne { % optimize Frame = 1 case?
+	    MenuBorderColor setcolor
+	    Frame 0 Shadow ArrayWidth ArrayHeight rectframe eofill
+	} if
+    } def
+    /PaintMenuItems {
+        MenuTextColor setcolor
+        MenuItems {
+            begin /Key load x y end ShowThing
+        } forall
+    } def
+    /DragProc { % FIX: use menuitems & /Menu field
+    MenuGSave
+	CurrentEvent begin
+	    XLocation dup YLocation
+	end		% x x y
+	SetMenuValue	% x
+	MenuValue PaintedValue eq {			% x
+	    /MinX 1 index MinX min store		% x
+	    dup MinX sub PullRightDelta ge		% x bool
+	    exch ArrayWidth PullRightMargin sub ge or	% bool
+	    ChildMenu null eq and {
+		CheckPullRight
+	    } if
+	} {
+	    /MinX exch store
+	    ChildMenu null ne { /popdown ChildMenu send } if
+	    PaintMenuValue
+	    PullRightDelta 0 eq {CheckPullRight} if
+        } ifelse
+    grestore
+    } def
+    /CheckPullRight {
+	MenuValue getmenuaction dup type /dicttype eq {
+	    /ChildMenu exch store
+	    ChildMenu /ParentMenu self put
+	    LayoutStyle /Horizontal eq {
+		framebuffer setcanvas
+		MenuCanvas getcanvaslocation		% x y
+		MenuItems MenuValue get begin X Y end	% x y X Y
+		3 -1 roll add 3 1 roll add exch		% x' y'
+		/showat ChildMenu send
+	    } {
+		CurrentEvent /showat ChildMenu send
+	    } ifelse
+	} {pop} ifelse
+    } def
+
+    /EnterProc {
+	ChildMenu null ne PullRightDelta 0 ne and {
+	    /popdown ChildMenu send
+	    /MinX CurrentEvent /XLocation get store
+	} if
+	DragProc
+    } def
+    /ExitProc {
+	% DragProc
+	ChildMenu null eq {
+	    DragProc
+	} if
+    } def
+
+    /PaintMenuValue { % - => - (Highlights current item, un-hilighting prev.)
+    MenuGSave
+	PaintedValue	 PaintBox
+	MenuValue        PaintBox
+	/PaintedValue	 MenuValue store
+    grestore
+    } def
+    /PaintBox { % value => -
+        dup null ne {
+	    MenuItems exch get begin X Y W H end rectpath
+            5 setrasteropcode StrokeSelection? {stroke} {fill} ifelse
+        } {pop} ifelse
+    } def
+
+    /SetMenuValue { % x y => - (Sets /MenuValue)
+    % Note: Fix to check for in current item first!
+	0 MenuItems {			% x y i item
+	    begin
+		2 index X ge		% x y i bool
+		2 index Y ge and	% x y i bool
+		dup { % leave early!
+		3 index X W add le and	% x y i bool
+		2 index Y H add le and	% x y i bool
+		} if
+	    end
+	    {exit} if
+	    1 add			% x y i
+	} forall
+	/MenuValue exch dup MenuItems length ge {pop null} if store
+	pop pop
+    } def
+
+% This is faster but only works for fixed size case:
+%    /SetMenuValue { % x y => - (Sets /MenuValue)
+%	XYToColRow
+%	1 index CellCols ge 2 index 0 lt or
+%	1 index CellRows ge 2 index 0 lt or or {
+%	    pop pop null
+%	} {
+%	    ColRowToIndex
+%	    dup MenuKeys length ge {pop null} if
+%	} ifelse
+%	/MenuValue exch store
+%    } def
+%    /ColRowToIndex { % col row => index
+%	RowMajor? {CellCols mul add} {exch CellRows mul add} ifelse
+%    } def
+%    /XYToColRow { % x y => col row
+%        exch Border sub CellWidth  div floor
+%        % exch Border sub Shadow sub CellHeight div floor
+%        % CellRows 1 sub exch sub % flip to top-to-bottom!
+%        exch Border sub Shadow sub CellHeight div ceiling CellRows exch sub
+%    } def
+classend def
+    
+/DefaultMenu LitePullRightMenu def
+
+% ---------- Utilities ----------
+
+/pickarray { %  array initial interval => array
+% Returns array that is a regular subset of input array
+% Thus "A 0 2 pickarray" returns the even members of A
+10 dict begin
+    /Interval exch def
+    /Init exch def
+    /Array exch def
+    [
+	Init Interval Array length 1 sub {
+	    Array exch get
+	} for
+    ]
+end
+} def
+
+/getmenuaction { % index => action
+    dup null ne {
+	MenuActions 1 index MenuActions length 1 sub min get
+    } {nullproc} ifelse
+    exch pop
+} def
+
+% ============================ SunViewMenu =================================
+SunView? {
+/SunViewMenu LitePullRightMenu []
+classbegin
+    /MenuFont		/Courier-Bold findfont 12 scalefont def
+    /CenterItems?	false def
+classend def
+} if

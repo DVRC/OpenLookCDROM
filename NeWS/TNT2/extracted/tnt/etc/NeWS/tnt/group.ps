@@ -1,0 +1,419 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)group.ps 1.26 91/02/11
+%
+
+ 
+/ClassItemGroup [ClassLayout ClassRegion] [] 
+classbegin
+
+    /ItemList		nullarray def
+    /CurrentItem	null def
+
+    /ItemListValid?	false def
+    /FixedItemSize?	{ Placement /Grid eq } def
+
+    /List { % - => ItemList
+        ItemList
+    } def
+
+    /Move { % x y item => -
+        begin 
+            /ItemY exch def
+            /ItemX exch def
+        end
+    } def
+
+    /Size { % item | self => width height
+        dup self eq {
+            /size exch send
+        }{
+           begin ItemWidth ItemHeight end
+        } ifelse
+    } def
+
+    /Location { % item | self => x y
+        dup self eq {
+            pop 0 0
+        }{
+            begin ItemX ItemY end
+        } ifelse
+   
+    } def
+
+    /ResolveReference { % self | item-index => self | item
+        dup type /integertype eq {
+            ItemList exch get
+        } if
+    } def
+
+    /CellSize { % <cell width> <cell height>
+        ItemWidth ItemHeight
+    } def
+
+    /NewInit { % placement parent-canvas => instance
+        /NewInit super send
+        /Placement exch promote
+    } def
+
+    /setitemlist { % [<item> ...]
+                   % [<item> <layout> ...]
+        /invalidate self send
+        /ItemListValid? unpromote
+        Placement dup /Absolute eq exch /Calculated eq or {
+            dup length 2 idiv dup
+            array /ItemList exch promote
+            1 sub 0 1 3 2 roll {
+                2 copy 2 mul
+                2 getinterval aload pop
+                exch /NewItem self send
+                dup 3 -1 roll /SetLayoutData self send
+                ItemList 3 1 roll put
+                pause
+            } for
+            pop
+        }{
+            dup length dup array /ItemList exch promote
+           1 sub 0 1 3 2 roll {
+                2 copy get
+                /NewItem self send
+                ItemList 3 1 roll put
+                pause
+            } for
+            pop
+        } ifelse
+    } def
+
+    /insertitem { % <item index> <item>
+                  % <item index> <item> <layout> => -
+        /invalidate self send
+        /ItemListValid? unpromote
+        Placement dup /Absolute eq exch /Calculated eq or {
+            exch /NewItem self send
+            dup 3 -1 roll /SetLayoutData self send
+        }{
+            /NewItem self send
+        } ifelse
+
+        ItemList 3 1 roll arrayinsert
+        /ItemList exch promote
+    } def
+          
+     /deleteitem { % <item index> => -
+        /invalidate self send
+        /ItemListValid? unpromote
+        ItemList exch arraydelete
+        /ItemList exch promote
+    } def
+
+    /replaceitem { % <item index> <item> => -
+        /invalidate self send
+        /ItemListValid? unpromote
+        /NewItem self send
+        ItemList 3 1 roll 			% il i# i
+	Placement dup /Absolute eq exch /Calculated eq or {
+	    3 copy 3 1 roll			% il i# i i il i#
+	    get /LayoutData self send		% il i# i i ld
+	    /SetLayoutData self send		% il i# i
+	} if
+	put					
+      } def
+
+    /appenditem { % item
+                  % item layout
+        /invalidate self send
+        /ItemListValid? unpromote
+        Placement dup /Absolute eq exch /Calculated eq or {
+            exch /NewItem self send
+            dup 3 -1 roll /SetLayoutData self send
+        }{
+             /NewItem self send
+        } ifelse
+
+        ItemList exch arrayappend
+        /ItemList exch promote 
+    } def   
+
+    /paintitem { % <item index> => -
+	/?validate self send
+	gsave Parent setcanvas		
+	    X Y translate	
+	    /Item self send /PaintItem self send
+	grestore
+    } def
+
+    /PaintItem { % itemdict => -
+	SubclassResponsibility
+    } def
+
+    /NewItem { % item => itemdict
+        SubclassResponsibility
+    } def     
+
+    /itemsize { % <item index> => width height
+        /?validate self send
+        ItemList exch get begin
+            ItemWidth ItemHeight
+        end
+    } def
+
+    /itembbox { % <item index> => x y width height
+        /?validate self send
+        ItemList exch get begin
+            ItemX ItemY ItemWidth ItemHeight
+        end
+    } def
+
+    /itemlocation { % <item index> => x y 
+        /?validate self send
+        ItemList exch get begin
+            ItemX ItemY
+        end
+    } def
+
+    /itemlist {
+        /itemcount self send dup array
+        0 1 4 -1 roll 1 sub {
+            2 copy /item self send
+            exch 4 1 roll put
+            pause
+        } for
+    } def
+
+    /itemcount {
+        ItemList length
+    } def
+
+    /item { % <item index> => <item description>
+        SubclassResponsibility
+    } def
+
+    /Item { % <item index> => item
+        ItemList exch get
+    } def
+
+    /pointtoitem { % x y => <item index> true  |  false
+        /?validate self send
+        Placement /Grid eq {
+            /PointInGrid? self send
+        }{
+            false 3 1 roll				% f x y
+            0 1 ItemList length 1 sub {			% f x y i#
+                3 copy /PointInItem? self send {	% f x y i#
+                    true				% f x y i# t
+                    5 2 roll				% i# t f x y
+                    3 -1 roll pop exit			% i# t x y
+                }{
+                    pop					% f x y
+                } ifelse
+            } for
+            pop pop					% i# t  |  f
+        } ifelse
+    } def
+
+    /pointinitem? { % x y <item index> => boolean
+        /?validate self send
+        /PointInItem? self send
+    } def
+        
+    /PointInItem? { % x y <item index> => boolean
+        /Item self send begin
+            ItemX ItemY ItemWidth ItemHeight 
+        end
+        pointinrect?
+    } def
+
+    /PointInGrid? { % x y => <item index> true | false
+    	% "1 sub" is to account for half-open borders in "pointinrect?";
+    	% note that it's only needed for Y due to inverted coord system
+	Height 1 index sub 1 sub
+	ItemHeight VerticalGap add div cvi 0 max	% X Y row
+	2 index HorizontalGap add
+	ItemWidth HorizontalGap add div cvi 0 max	% X Y row col
+        exch					% X Y col row
+ 
+        % Is row or column outside grid?
+        2 copy Rows ge exch Columns ge or {
+            pop pop pop pop false		% false
+        }{
+            LayoutByRow? {
+                Columns mul add
+            }{
+                exch Rows mul add
+            } ifelse				% X Y <item index>
+
+            dup /itemcount self send ge {
+                pop pop pop false		% false
+            }{
+		% ensure that point is not in gap surrounding item
+                dup 4 1 roll /PointInItem? self send {
+                    true			% <item index> true
+                }{
+                    pop false			% false
+                } ifelse
+            } ifelse
+        } ifelse
+    } def
+
+    /setfixeditemsize { % bool => -
+	/FixedItemSize? exch promote
+	/invalidate self send
+    } def
+
+    /fixeditemsize? {
+	FixedItemSize?
+    } def
+
+    /validate {
+        /?ValidateItemList self send
+        /Layout self send
+        /validate super send
+    } def
+
+    /?ValidateItemList {
+        ItemListValid? not {
+            /ValidateItemList self send
+        } if
+    } def
+
+    /ValidateItemList {
+        /ItemListValid? true promote
+    } def
+
+    /preferredsize {
+	/?ValidateItemList self send
+	/preferredsize super send
+    } def
+
+    /minsize { % - => -
+	/?ValidateItemList self send
+	/minsize super send
+    } def
+
+
+    /settextfont { % font => -
+	/settextfont super send
+	self isinstance? {
+	    /ItemListValid? unpromote
+	} if
+    } def
+
+    /set3D { % bool => -
+	/set3D super send
+	self isinstance? {
+	    /ItemListValid? unpromote
+	} if
+    } def
+
+    /ItemTrack { % <item index> => -
+	dup /Item self send 			% index item
+	begin VisualState end			% index state
+	/Active eq {				% index
+	    /CurrentItem 1 index promote
+	    /ItemStart self send		% -
+	}{
+	    /CurrentItem unpromote
+	    pop					% -
+	} ifelse
+    } def
+
+    /TrackStart { % Event => -
+        begin XLocation YLocation end		% x y		
+        /pointtoitem self send {		% index
+	    /ItemTrack self send
+        } if
+    } def
+
+    /TrackStop { % Event => -
+	pop
+        CurrentItem null ne {			% event
+            CurrentItem /ItemStop self send
+            /CurrentItem unpromote
+        } if
+    } def
+
+    /TrackMotion { % Event => -
+        begin XLocation YLocation end
+        CurrentItem null ne {
+            2 copy CurrentItem /pointinitem? self send {
+		% motion within current item
+		CurrentItem /ItemMotion self send
+                pop pop
+            }{
+                CurrentItem /ItemCancel self send
+                /pointtoitem self send {
+		    % crossing between items
+		    /ItemTrack self send
+                }{
+                    % exit from item into background
+                    /CurrentItem unpromote
+                } ifelse
+            } ifelse
+        }{
+            % entrance into item from background
+            /pointtoitem self send {
+		/ItemTrack self send
+            } if
+        } ifelse
+    } def
+            
+    /TrackCancel { % Event => -
+        pop
+        CurrentItem null ne {
+            CurrentItem /ItemCancel self send
+            /CurrentItem unpromote
+        } if
+    } def
+
+    /ItemStart { % <item index> => -
+	pop
+    } def
+
+    /ItemCancel { % <item index> => -
+	pop
+    } def
+
+    /ItemStop { % <item index> => -
+        pop
+    } def
+
+    /ItemMotion { % <item index> => -
+        pop
+    } def
+
+    % Default executed if item does not have its own help, is to return
+    % help keyword for the group.
+    /ItemHelpKeyword { % - => keyword
+	HelpKeyword
+    } def
+
+    /itemhelpkeyword { % item-index => keyword
+	ItemList exch get	    % item
+	begin ItemHelpKeyword end
+    } def
+
+    /setitemhelpkeyword { % item-index keyword => -
+	ItemList 3 -1 roll get	       % keyword item
+	begin /ItemHelpKeyword exch def end
+    } def
+
+    % OVERRIDE: by implementation of /itemhelpkeyword, if the item
+    % has no keyword defined, the string for the group will be used
+    /helpkeyword { % event => string
+	gsave
+	Parent setcanvas
+	/location self send translate
+	begin Coordinates aload pop end	    	    % x y
+	/pointtoitem self send {
+	    /itemhelpkeyword self send
+	} {
+	    ItemHelpKeyword % pass through to region??
+	} ifelse
+	grestore
+    } def
+
+classend def

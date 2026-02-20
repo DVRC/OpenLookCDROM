@@ -1,0 +1,145 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#) obsolete.ps 23.8 91/02/11
+%
+
+% The Obsolete service provides looks at *all* obsolete events
+% generated in the system.  It provides two kinds of service:
+%
+%    -First, it divides the /Obsolete events into three catagories,
+%     based on whether the obsolete object is an instance, a class,
+%     or a basic NeWS object.  Instances are sent the /obsolete
+%     message, classes are presented to the "classdestroy" utility,
+%     and basic NeWS objects are currently ignored.
+%    
+%    -Second, it provides very simple "cycle" management for instances
+%     by allowing "holder" objects to be notified when "target" objects
+%     become obsolete.  Think of this as dependency notification: when
+%     an object becomes obsolete, one or more dependent objects can be
+%     notified of this in order to clean up the dependency.
+%
+/ClassObsoleteService ClassInterest [/Clients]
+classbegin
+    % Initialize the instance.
+    %
+    /NewInit { % - => -
+	null null 1 dict dup begin
+	    /Obsolete { % event => -
+		/HandleObsolete 1 index /Interest get send
+	    } def
+	end /NewInit super send
+	/ClientData growabledict def
+    } def
+
+    % Add a target-holder pair.
+    % The target is a key in a dictionary stored in the ClientData
+    % of the /Obsolete interest.  The value for the key is the holder,
+    % or if there are multiple holders, the value is an array of holders. 
+    %
+    /addclient { % target holder => -
+	ClientData 2 index known {
+	    soften				% target holder
+	    ClientData 2 index get		% target holder oldholder
+	    dup type /arraytype eq {		% target holder array
+		exch				% target array holder
+		2 copy arraycontains? {pop} {arrayappend} ifelse
+	    } {					% target holder oldholder
+		2 copy eq {pop} {2 array astore} ifelse
+	    } ifelse
+	} {					% target newholder
+	    soften exch soften exch
+	} ifelse				% target holder
+	ClientData 3 1 roll put
+    } def
+
+    % Remove a target-holder pair.
+    % 
+    /removeclient { % target holder => -
+	ClientData 2 index known {		% target holder
+	    ClientData 2 index get		% target holder oldholder
+	    dup type /arraytype eq {		% target holder array
+		dup 3 -1 roll			% target a a holder
+		arrayindex {			% target a i
+		    arraydelete			% target a'
+		    dup length 1 eq {0 get} if	% target array|obj
+		    ClientData 3 1 roll put	% -
+		} {				% target a
+		    pop pop			% -
+		} ifelse
+	    } {					% target holder oldholder
+		eq {ClientData exch undef} {pop} ifelse
+	    } ifelse
+	} {pop pop} ifelse
+    } def
+    
+    % Handlers for Obsolete event.
+    %
+    % The initial callback breaks the handling of obsolete objects
+    % into three classes of objects:
+    %    1-Instances: send /obsolete to object and /HandleObsoleteTarget
+    %      to any target handlers attached to the object. 
+    %    2-Classes: send /classdestroy to the class
+    %    3-Other NeWS objects: currently a no-op
+    % Note: /HandleObsoleteTarget sendees do not have to call /removeclient
+    % to remove themselves as holders of the obsolete target.  This is done
+    % automatically for them.
+    %
+    /HandleObsoleteInstance { % ins => -
+	/obsolete exch send
+    } def
+    /HandleObsoleteClass { % class => -
+	classdestroy
+    } def
+    /HandleObsoleteOther { % NeWS-obj => -
+	pop	% REMIND: shouldn't this at least issue a warning?
+    } def
+    /HandleObsolete { % event => -
+	/Action get dup			% obj obj
+	dup isobject? {			% obj obj
+	    dup /ClassName known {
+		HandleObsoleteClass
+	    } {
+		HandleObsoleteInstance
+	    } ifelse
+	} {
+	    HandleObsoleteOther
+	} ifelse			% obj
+	
+	ClientData 1 index known {
+	    dup ClientData 1 index get		% ins ins holder
+	    dup type /arraytype eq {		% ins ins holder-array
+	    	% copy the array so the loop isn't screwed up if holders
+	    	% call /removeclient
+	    	dup length array copy {		% ins ins holder
+		    /HandleObsoleteTarget exch send	% ins
+		    dup				% ins ins
+		} forall
+		pop				% ins
+	    } {					% ins ins holder
+		/HandleObsoleteTarget exch send	% ins
+	    } ifelse
+	    ClientData exch undef		% -
+	} {pop} ifelse
+    } def
+    
+classend def
+
+% Install a backstop in ClassObject so subclassers can (and should) always
+% do a super send if they override HandleObsoleteTarget.
+/HandleObsoleteTarget { % object => -
+    pop
+} /installmethod ClassObject send
+
+% Install an instance of the obsolete service in systemdict.
+% If there is already one, remove it.
+systemdict /ObsoleteService known {
+    systemdict /ObsoleteService get isobject? {
+	/destroy ObsoleteService send
+    } if
+} if
+systemdict /ObsoleteService /new ClassObsoleteService send put
+ObsoleteService /addclient GlobalEventMgr send

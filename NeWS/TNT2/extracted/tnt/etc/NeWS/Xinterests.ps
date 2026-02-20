@@ -1,0 +1,64 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%       @(#)Xinterests.ps 23.4 91/02/11
+%
+%	Xinterests.ps
+%
+% Interests which are expressed and revoked in C, by the X interpreter process,
+% on behalf of the input agent.
+%
+
+Xcompat_private begin
+
+%
+% Cluster of defs to support StructureNotifyMask.
+% DestroyNotify must be handled separately because obsolescence
+% happens on the object specified in the Action, not the Canvas field.
+% Note that the event contains the canvas in both the Canvas field
+% and the Action field for all the other structure events.
+%
+/DestroyInterest createevent dup begin
+    /Name /Obsolete def
+    /Priority XPriority	def
+end def
+
+/SubdestroyInterest createevent dup begin
+    /Name 1 dict
+	dup /Obsolete /SubObsolete put def
+    /Priority XPriority	def
+end def
+
+% These routines get called from withing the X interpreter.
+% /X11-SetFontPath and X11-SetDefaultFontPath call BuildFontPath 
+% and  BuildDefaultFontPath respectively, directly from the server.
+
+/X11-GetKeyControl {	%  --  =>  string
+    computeXmask xmask
+} def
+
+/X11-GetFontPath {	%  --  =>  string
+    systemdict /fontpath get
+} def
+
+% interests generated one per client
+
+/UniversalInterest createevent dup begin % one interest per client
+    /Name dictbegin
+
+	/Reply		Xcompat_private /writeXevent get def
+
+	% the selection handlers
+	XSelectionInterests { def } forall
+
+	/X11-DoItEvent {
+            dup /Action get exec
+	} def
+
+    dictend def
+    /Priority XPriority	def
+end def
+
+end % of Xcompat_private

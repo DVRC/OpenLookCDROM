@@ -1,0 +1,85 @@
+This directory contains a partial implementation of a "polyhedron construction
+set" system, built on top of Lispview and a Lisp/XGL interface.
+
+Directions:
+
+  0. Unpack the compressed tar file, as follows:  (Or, if you got this as part
+     of the lisp-xgl-2.0 package, just say "make polyhedron".)
+
+       % mkdir <destination directory>
+       % cd <destination directory>
+       % uncompress < <dir of .tar.Z file>/polyhedra.tar.Z | tar xvf -
+
+  1.  In Lisp with xgl 2.0 and the lisp/xgl 2.0 interface loaded, cd to this
+      directory.  (This demo depends on Lispview.)
+
+  2.  Type (load "build.lisp")
+
+  3.  Assuming everything goes well, in the user package say (watch
+      dodecahedron) or something similar to get things started.  Do a refresh
+      on the window.
+
+
+Known deficiencies:
+
+  1.  The UI could be much simpler, for instance
+
+	- A start/stop button would be much more useful than choosing the
+	  number of rotations.  I don't know how to implement this.  (Lispview
+	  help, please?)
+
+	- The scale slider would be much friendlier if we could get the model
+	  to continuously resize as the user moves the slider.  Again, I don't
+	  know how to implement this.  (Lispview help, please?)
+
+	- Instead of giving a percentage of how much to rotate per rotation,
+	  it should take a rotational velocity and dynamically determine the
+	  angle increments based on how long it's taking per frame.
+
+        - The axis theta and axis phi sliders should go away, since I never
+	  finished implementing them (as an alternative to choosing the
+	  rotation axes.)
+
+	- 3D rotation by directional mouse-stroking would be nice.
+
+  2.  The user package is being polluted.  We should eliminate the use-package
+      line from build.lisp, and modify the UI so that it neither lives in user
+      nor expects the application symbols to be accessible from there.
+
+  3.  Shouldn't have to do an initial refresh.
+
+  4.  Compiling model.lisp and/or ph.lisp for the first time gives lots of
+      warnings.  Why is this?  Is it something inherent about CLOS?
+
+  5.  I experimented with double-buffering to get animation to be smooth.
+      However, it's slower and eats up the color map too fast when there is no
+      hardware support (and so colormap double buffering is used).  There's
+      apparently a way to share hardware colormap entries, but I don't yet
+      know how to do this.  The function CreateXlibColormap in the demo
+      program sphere.c gives a hint.  Loading db-*.lisp enables this stuff.
+
+  6.  So far, the system only generates convex polyhedra.  This allows for a
+      very simple hidden surface removal algorithm, namely back-face culling.
+      As such, it shows off the GX graphics accelerator fairly nicely, but
+      doesn't take advantage of the GS or GT (Sun's current 3D accelerators,
+      having zbuffering and smooth shading hardware).  There's some commented
+      out zbuffering code in model.lisp that works, but is pretty slow without
+      hardware support.  (I haven't tried it on a GS or GT.)  However, I
+      should probably have an OO framework in place for handling different
+      zbuffer-vs-not.
+
+  7.  I started on a module to generate "uniform polyhedra".  (A uniform
+      polyhedron is one made up of regular (equilateral and equiangular)
+      polygons and having the same sequence of polygons at each vertex.)
+      These are greatly varied and beautiful.  I'm going to finish this
+      sometime, so let me know if you're interested, and I'll notify you when
+      it's done.  Fast correct rendering can be done using bsp trees when on
+      non-zbuffered hardware.
+
+
+
+
+Acknowledgments:
+
+  I got the vertex positions for the five Platonic solids from Roman Maeder's
+  "Polyhedra.m" Mathematica package.

@@ -1,0 +1,1651 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 5 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 20 /Palatino-Italic FMDEFINEFONT
+2 11 /Palatino-Roman FMDEFINEFONT
+3 11 /Palatino-Bold FMDEFINEFONT
+%%Page: "i" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (i) 555.29 108.7 S
+197 482 558 482 2 L
+0.5 H
+2 Z
+N
+1 F
+(Contents) 198 489 T
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+0.11 (Pr) 198 459.01 S
+0.11 (eface) 209 459.01 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 237.09 459.01 S
+0.11 (xix) 543.14 459.01 S
+3 F
+0.11 (1.) 207.54 438.01 S
+0.11 (Introduction) 225 438.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 291.36 438.01 S
+0.11 (1) 552.4 438.01 S
+2 F
+0.11 (What is Devguide?) 234 417.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 417.01 S
+0.11 (1) 552.4 417.01 S
+0.11 (The Application Envir) 234 396.01 S
+0.11 (onment) 344.54 396.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 396.01 S
+0.11 (2) 552.4 396.01 S
+0.11 (What Devguide and GNT do for you) 234 375.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . .) 417.05 375.01 S
+0.11 (3) 552.4 375.01 S
+0.11 (How you interact with Devguide) 234 354.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . .) 399.91 354.01 S
+0.11 (3) 552.4 354.01 S
+3 F
+0.11 (2.) 207.54 333.01 S
+0.11 (Getting Started) 225 333.01 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 333.01 S
+0.11 (5) 552.4 333.01 S
+2 F
+0.11 (Installing Devguide and GNT) 234 312.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 312.01 S
+0.11 (5) 552.4 312.01 S
+0.11 (Starting Devguide) 234 291.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 291.01 S
+0.11 (6) 552.4 291.01 S
+0.11 (Quitting Devguide) 234 270.01 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 270.01 S
+0.11 (7) 552.4 270.01 S
+0.11 (The Devguide W) 234 249.01 S
+0.11 (indow) 317.68 249.01 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 249.01 S
+0.11 (7) 552.4 249.01 S
+0.11 (Devguide Contr) 252 228.01 S
+0.11 (ols) 332.07 228.01 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 348.5 228.01 S
+0.11 (8) 552.4 228.01 S
+0.11 (Devguide Element Information) 252 207.01 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . .) 408.48 207.01 S
+0.11 (9) 552.4 207.01 S
+0.11 (Devguide Element Glyphs) 252 186.01 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . .) 385.63 186.01 S
+0.11 (10) 546.79 186.01 S
+0.11 (On-line Help) 234 165.01 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 165.01 S
+0.11 (1) 547.4 165.01 S
+0.11 (1) 552.4 165.01 S
+FMENDPAGE
+%%EndPage: "i" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+%%Page: "ii" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (ii) 54 108.7 S
+1 F
+0.09 (GNT for Devguide ) 198 108.7 S
+0 F
+0.09 (\321) 270.19 108.7 S
+1 F
+0.09 (Mar) 279.27 108.7 S
+0.09 (ch 1991) 295.34 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+0.11 (Onwar) 234 640.67 S
+0.11 (d) 268.38 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 640.67 S
+0.11 (12) 546.79 640.67 S
+3 F
+0.11 (3.) 207.54 619.67 S
+0.11 (T) 225 619.67 S
+0.11 (utorial: Building Interfaces) 231.02 619.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . .) 371.35 619.67 S
+0.11 (13) 546.79 619.67 S
+2 F
+0.11 (Using Devguide: A Simple Application) 234 598.67 S
+0.11 ( . . . . . . . . . . . . . . . . .) 431.33 598.67 S
+0.11 (13) 546.79 598.67 S
+0.11 (The Finished Interface) 252 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 365.64 577.67 S
+0.11 (13) 546.79 577.67 S
+0.11 (Naming Issues) 252 556.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 556.67 S
+0.11 (13) 546.79 556.67 S
+0.11 (Building the Interface) 252 535.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 535.67 S
+0.11 (15) 546.79 535.67 S
+0.11 (Customizing the Interface) 252 514.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 514.67 S
+0.11 (21) 546.79 514.67 S
+0.11 (T) 252 493.67 S
+0.11 (esting the Interface) 257.83 493.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 354.21 493.67 S
+0.11 (35) 546.79 493.67 S
+0.11 (Saving the Interface) 252 472.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 472.67 S
+0.11 (36) 546.79 472.67 S
+0.11 (Onwar) 234 451.67 S
+0.11 (d) 268.38 451.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 451.67 S
+0.11 (36) 546.79 451.67 S
+3 F
+0.11 (4.) 207.54 430.67 S
+0.11 (T) 225 430.67 S
+0.11 (utorial: Generating UI Source Code) 231.02 430.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . .) 414.2 430.67 S
+0.11 (37) 546.79 430.67 S
+2 F
+0.11 (Using Devguide: A Simple Application) 234 409.67 S
+0.11 ( . . . . . . . . . . . . . . . . .) 431.33 409.67 S
+0.11 (37) 546.79 409.67 S
+0.11 (Generating Code with GNT) 252 388.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . .) 391.34 388.67 S
+0.11 (37) 546.79 388.67 S
+0.11 (T) 252 367.67 S
+0.11 (esting the User Interface Code Early On) 257.83 367.67 S
+0.11 (. . . . . . . . . . . . .) 457.04 367.67 S
+0.11 (39) 546.79 367.67 S
+0.11 (Changing the Interface and Regenerating Code) 252 346.67 S
+0.11 (. . . . . . . .) 485.61 346.67 S
+0.11 (40) 546.79 346.67 S
+0.11 (Modifying the User) 252 325.67 S
+0.11 (-Interface Code) 349.09 325.67 S
+0.11 (. . . . . . . . . . . . . . . . . .) 428.48 325.67 S
+0.11 (40) 546.79 325.67 S
+0.11 (Compiling the Application Code) 252 304.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . .) 417.05 304.67 S
+0.11 (53) 546.79 304.67 S
+0.11 (Debugging User) 234 283.67 S
+0.11 (-Interface Code) 315.28 283.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . .) 394.2 283.67 S
+0.11 (54) 546.79 283.67 S
+0.11 (Summary) 234 262.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 282.8 262.67 S
+0.11 (54) 546.79 262.67 S
+3 F
+0.11 (5.) 207.54 241.67 S
+0.11 (Reference: Building Interfaces) 225 241.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 241.67 S
+0.11 (55) 546.79 241.67 S
+2 F
+0.11 (How to Use this Chapter) 234 220.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 220.67 S
+0.11 (55) 546.79 220.67 S
+0.11 (Starting Devguide) 234 199.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 199.67 S
+0.11 (56) 546.79 199.67 S
+0.11 (Important T) 234 178.67 S
+0.11 (erminology) 293.07 178.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 178.67 S
+0.11 (56) 546.79 178.67 S
+0.11 (The Devguide W) 234 157.67 S
+0.11 (indow) 317.68 157.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 157.67 S
+0.11 (57) 546.79 157.67 S
+FMENDPAGE
+%%EndPage: "ii" 3
+%%Page: "iii" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Contents) 198 108.7 S
+0 F
+0.09 (iii) 549.88 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+0.11 (Basic Devguide Operations) 234 640.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . .) 371.35 640.67 S
+0.11 (58) 546.79 640.67 S
+0.11 (Loading, Saving, and Closing Files) 252 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . .) 425.62 619.67 S
+0.11 (58) 546.79 619.67 S
+0.11 (Recovering Dismissed Pop-Up W) 252 598.67 S
+0.11 (indows) 417.39 598.67 S
+0.11 (. . . . . . . . . . . . .) 457.04 598.67 S
+0.11 (61) 546.79 598.67 S
+0.11 (Editing Options) 252 577.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 577.67 S
+0.11 (62) 546.79 577.67 S
+0.11 (The Pr) 252 556.67 S
+0.11 (operties Menu Button) 284.58 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . .) 394.2 556.67 S
+0.11 (63) 546.79 556.67 S
+0.11 (Building vs. T) 252 535.67 S
+0.11 (esting) 320.51 535.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 535.67 S
+0.11 (65) 546.79 535.67 S
+0.11 ( The Information Ar) 252 514.67 S
+0.11 (ea) 351.87 514.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 365.64 514.67 S
+0.11 (66) 546.79 514.67 S
+0.11 (Building a User Interface) 234 493.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 493.67 S
+0.11 (67) 546.79 493.67 S
+0.11 (Placing & Sizing UI Elements) 252 472.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . .) 399.91 472.67 S
+0.11 (67) 546.79 472.67 S
+0.11 (Selecting Elements) 252 451.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 345.64 451.67 S
+0.11 (68) 546.79 451.67 S
+0.11 (UI Element Pr) 234 430.67 S
+0.11 (operty W) 304.06 430.67 S
+0.11 (indows) 349.96 430.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . .) 388.49 430.67 S
+0.11 (70) 546.79 430.67 S
+0.11 (Base W) 252 409.67 S
+0.11 (indows) 287.92 409.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 409.67 S
+0.11 (71) 546.79 409.67 S
+0.11 (Pop-up W) 252 388.67 S
+0.11 (indows) 302.13 388.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 339.93 388.67 S
+0.11 (72) 546.79 388.67 S
+0.11 (Contr) 252 367.67 S
+0.11 (ol Ar) 280.45 367.67 S
+0.11 (eas) 305.64 367.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 367.67 S
+0.11 (74) 546.79 367.67 S
+0.11 (T) 252 346.67 S
+0.11 (erm Panes) 257.83 346.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 311.36 346.67 S
+0.11 (77) 546.79 346.67 S
+0.11 (Canvas Panes) 252 325.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 325.67 S
+0.11 (78) 546.79 325.67 S
+0.11 (T) 252 304.67 S
+0.11 (ext Panes) 257.83 304.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 304.67 S
+0.11 (79) 546.79 304.67 S
+0.11 (Buttons) 252 283.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 291.36 283.67 S
+0.11 (80) 546.79 283.67 S
+0.11 (Messages) 252 262.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 262.67 S
+0.11 (81) 546.79 262.67 S
+0.11 (Settings) 252 241.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 241.67 S
+0.11 (82) 546.79 241.67 S
+0.11 (T) 252 220.67 S
+0.11 (ext Fields) 257.83 220.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 220.67 S
+0.11 (84) 546.79 220.67 S
+0.11 (Sliders) 252 199.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 199.67 S
+0.11 (85) 546.79 199.67 S
+0.11 (Gauges) 252 178.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 291.36 178.67 S
+0.11 (86) 546.79 178.67 S
+0.11 (Scr) 252 157.67 S
+0.11 (olling Lists) 267.12 157.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 157.67 S
+0.11 (87) 546.79 157.67 S
+FMENDPAGE
+%%EndPage: "iii" 4
+%%Page: "iv" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (iv) 54 108.7 S
+1 F
+0.09 (GNT for Devguide ) 198 108.7 S
+0 F
+0.09 (\321) 270.19 108.7 S
+1 F
+0.09 (Mar) 279.27 108.7 S
+0.09 (ch 1991) 295.34 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+0.11 (Editing Help T) 252 640.67 S
+0.11 (ext) 324.86 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 339.93 640.67 S
+0.11 (88) 546.79 640.67 S
+0.11 (Making and Editing Menus) 252 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . .) 391.34 619.67 S
+0.11 (89) 546.79 619.67 S
+0.11 (Customizing UI Element Pr) 234 598.67 S
+0.11 (operties) 370.87 598.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . .) 411.34 598.67 S
+0.11 (93) 546.79 598.67 S
+0.11 (Selecting UI Elements) 252 577.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 577.67 S
+0.11 (93) 546.79 577.67 S
+0.11 (Naming and Labeling a UI Element) 252 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . .) 428.48 556.67 S
+0.11 (94) 546.79 556.67 S
+0.11 (Sizing and Locating a UI Element) 252 535.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . .) 419.91 535.67 S
+0.11 (95) 546.79 535.67 S
+0.11 (Setting UI Ornaments) 252 514.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 514.67 S
+0.11 (96) 546.79 514.67 S
+0.11 (Setting Icon Attributes) 252 493.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 365.64 493.67 S
+0.11 (98) 546.79 493.67 S
+0.11 (Setting UI Attributes) 252 472.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 357.07 472.67 S
+0.11 (99) 546.79 472.67 S
+0.11 (Handling Events) 252 451.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 337.07 451.67 S
+0.11 (104) 541.19 451.67 S
+0.11 (Setting Colors) 252 430.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 430.67 S
+0.11 (106) 541.19 430.67 S
+0.11 (Adding Help T) 252 409.67 S
+0.11 (ext) 326.52 409.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 342.78 409.67 S
+0.11 (107) 541.19 409.67 S
+0.11 (Making Y) 252 388.67 S
+0.11 (our Changes Permanent) 299.64 388.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . .) 419.91 388.67 S
+0.11 (107) 541.19 388.67 S
+3 F
+0.11 (6.) 207.54 367.67 S
+0.11 (Reference: Generating UI Source Code) 225 367.67 S
+0.11 ( . . . . . . . . . . . . . . . . . .) 425.62 367.67 S
+0.11 (109) 541.19 367.67 S
+2 F
+0.11 (The Devguide-GNT Model) 234 346.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 368.49 346.67 S
+0.11 (109) 541.19 346.67 S
+0.11 (How to Use GNT) 234 325.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 325.67 S
+0.11 (1) 542.4 325.67 S
+0.11 (1) 547.4 325.67 S
+0.11 (1) 552.4 325.67 S
+0.11 (Choosing GNT Command-Line Options) 252 304.67 S
+0.11 (. . . . . . . . . . . . . .) 451.33 304.67 S
+0.11 (1) 542.4 304.67 S
+0.11 (1) 547.4 304.67 S
+0.11 (1) 552.4 304.67 S
+0.11 (GNT Shell Scripts) 252 283.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 342.78 283.67 S
+0.11 (1) 541.79 283.67 S
+0.11 (13) 546.79 283.67 S
+0.11 (Overview of GNT and the Files it Pr) 234 262.67 S
+0.11 (oduces) 413.07 262.67 S
+0.11 ( . . . . . . . . . . . . . .) 448.47 262.67 S
+0.11 (1) 541.79 262.67 S
+0.11 (13) 546.79 262.67 S
+0.11 (.G Files) 252 241.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 291.36 241.67 S
+0.11 (1) 541.79 241.67 S
+0.11 (15) 546.79 241.67 S
+0.11 (.make and Make\336le) 252 220.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 220.67 S
+0.11 (1) 541.79 220.67 S
+0.11 (15) 546.79 220.67 S
+0.11 (.c and .cc Files) 252 199.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 199.67 S
+0.11 (1) 541.79 199.67 S
+0.11 (15) 546.79 199.67 S
+0.11 (.h Files) 252 178.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 178.67 S
+0.11 (1) 541.79 178.67 S
+0.11 (15) 546.79 178.67 S
+0.11 (.cps Files) 252 157.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 157.67 S
+0.11 (1) 541.79 157.67 S
+0.11 (15) 546.79 157.67 S
+FMENDPAGE
+%%EndPage: "iv" 5
+%%Page: "v" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Contents) 198 108.7 S
+0 F
+0.09 (v) 552.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+0.11 (_cps.h & _cps.c Files) 252 640.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 354.21 640.67 S
+0.11 (1) 541.79 640.67 S
+0.11 (16) 546.79 640.67 S
+0.11 (.ps Files) 252 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 619.67 S
+0.11 (1) 541.79 619.67 S
+0.11 (16) 546.79 619.67 S
+0.11 (.new Files) 252 598.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 598.67 S
+0.11 (1) 541.79 598.67 S
+0.11 (16) 546.79 598.67 S
+0.11 (Integrating GNT Files with Y) 234 577.67 S
+0.11 (our Pr) 377.55 577.67 S
+0.11 (ogram Files.) 408.7 577.67 S
+0.11 ( . . . . . . . . . .) 471.33 577.67 S
+0.11 (1) 541.79 577.67 S
+0.11 (17) 546.79 577.67 S
+0.11 (T) 252 556.67 S
+0.11 (esting) 257.83 556.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 556.67 S
+0.11 (1) 541.79 556.67 S
+0.11 (17) 546.79 556.67 S
+0.11 (The Function Main) 252 535.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 348.5 535.67 S
+0.11 (1) 541.79 535.67 S
+0.11 (17) 546.79 535.67 S
+0.11 (Callbacks) 252 514.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 514.67 S
+0.11 (1) 541.79 514.67 S
+0.11 (18) 546.79 514.67 S
+0.11 (T) 252 493.67 S
+0.11 (ags and T) 257.83 493.67 S
+0.11 (okens) 304.9 493.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 493.67 S
+0.11 (1) 541.79 493.67 S
+0.11 (19) 546.79 493.67 S
+0.11 (Identifying Callbacks in the Generated C Code.) 252 472.67 S
+0.11 ( . . . . . . .) 488.46 472.67 S
+0.11 (121) 541.19 472.67 S
+0.11 (What is Passed to the Client) 252 451.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . .) 391.34 451.67 S
+0.11 (122) 541.19 451.67 S
+0.11 (What is on the wir) 252 430.67 S
+0.11 (e.) 343.41 430.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 354.21 430.67 S
+0.11 (124) 541.19 430.67 S
+0.11 (Adding Y) 252 409.67 S
+0.11 (our UI Code) 299.61 409.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 409.67 S
+0.11 (126) 541.19 409.67 S
+0.11 (The T) 252 388.67 S
+0.11 (ext-Canvas Facility) 279.41 388.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 388.67 S
+0.11 (127) 541.19 388.67 S
+0.11 (Rolling Y) 234 367.67 S
+0.11 (our Own Communications) 279.48 367.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . .) 414.2 367.67 S
+0.11 (127) 541.19 367.67 S
+0.11 (C to PostScript Communications) 252 346.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . .) 414.2 346.67 S
+0.11 (127) 541.19 346.67 S
+0.11 (PostScript to C Communications) 252 325.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . .) 414.2 325.67 S
+0.11 (134) 541.19 325.67 S
+0.11 (Changing the Client-Server Split) 234 304.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . .) 397.06 304.67 S
+0.11 (136) 541.19 304.67 S
+0.11 (T) 252 283.67 S
+0.11 (esting Server) 257.83 283.67 S
+0.11 (-Side Code) 322.19 283.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 283.67 S
+0.11 (138) 541.19 283.67 S
+0.11 (Subclassing with GNT) 234 262.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 345.64 262.67 S
+0.11 (139) 541.19 262.67 S
+0.11 (Subclassing TNT OPEN LOOK Classes) 252 241.67 S
+0.11 (. . . . . . . . . . . . . . .) 445.62 241.67 S
+0.11 (139) 541.19 241.67 S
+0.11 (Subclassing Class Canvas) 252 220.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . .) 379.92 220.67 S
+0.11 (140) 541.19 220.67 S
+0.11 (Loading Y) 252 199.67 S
+0.11 (our Subclassing Files) 302.67 199.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . .) 408.48 199.67 S
+0.11 (141) 541.19 199.67 S
+0.11 (A Subclassing Example) 252 178.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 368.49 178.67 S
+0.11 (143) 541.19 178.67 S
+0.11 (Optimizing Client-Server Communications) 234 157.67 S
+0.11 ( . . . . . . . . . . . . . .) 448.47 157.67 S
+0.11 (147) 541.19 157.67 S
+FMENDPAGE
+%%EndPage: "v" 6
+%%Page: "vi" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (vi) 54 108.7 S
+1 F
+0.09 (GNT for Devguide ) 198 108.7 S
+0 F
+0.09 (\321) 270.19 108.7 S
+1 F
+0.09 (Mar) 279.27 108.7 S
+0.09 (ch 1991) 295.34 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+0.11 (Don\325t Send It) 252 640.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 319.93 640.67 S
+0.11 (147) 541.19 640.67 S
+0.11 (Use Pr) 252 619.67 S
+0.11 (ocedur) 284.65 619.67 S
+0.11 (es) 318.93 619.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 619.67 S
+0.11 (147) 541.19 619.67 S
+0.11 (Use User T) 252 598.67 S
+0.11 (okens) 305.59 598.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 337.07 598.67 S
+0.11 (149) 541.19 598.67 S
+3 F
+0.11 (A.) 204.49 577.67 S
+0.11 (The GIL File Format) 225 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 577.67 S
+0.11 (151) 541.19 577.67 S
+2 F
+0.11 (An Overview of the GIL File Format) 234 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . .) 417.05 556.67 S
+0.11 (151) 541.19 556.67 S
+0.11 (File Str) 252 535.67 S
+0.11 (uctur) 286.99 535.67 S
+0.11 (e) 313.39 535.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 319.93 535.67 S
+0.11 (152) 541.19 535.67 S
+0.11 (An Example) 252 514.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 514.67 S
+0.11 (152) 541.19 514.67 S
+0.11 (The Graphical Intermediate Language Syntax) 252 493.67 S
+0.11 (. . . . . . . . .) 479.9 493.67 S
+0.11 (154) 541.19 493.67 S
+0.11 (A Quick Sketch of BNF) 252 472.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 368.49 472.67 S
+0.11 (155) 541.19 472.67 S
+0.11 (Basic T) 234 451.67 S
+0.11 (ypes) 268.2 451.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 451.67 S
+0.11 (156) 541.19 451.67 S
+0.11 (Miscellaneous) 234 430.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 430.67 S
+0.11 (157) 541.19 430.67 S
+0.11 (Attribute/V) 234 409.67 S
+0.11 (alue Pairs) 293.58 409.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 342.78 409.67 S
+0.11 (157) 541.19 409.67 S
+0.11 (Elements) 234 388.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 279.94 388.67 S
+0.11 (159) 541.19 388.67 S
+0.11 (Notes) 234 367.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 265.66 367.67 S
+0.11 (165) 541.19 367.67 S
+3 F
+0.11 (B.) 205.71 346.67 S
+0.11 (Graphical Property-W) 225 346.67 S
+0.11 (indow Index) 337.56 346.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . .) 402.77 346.67 S
+0.11 (167) 541.19 346.67 S
+2 F
+0.11 (Base W) 234 325.67 S
+0.11 (indows) 269.92 325.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 308.5 325.67 S
+0.11 (168) 541.19 325.67 S
+0.11 (Buttons) 234 304.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 274.23 304.67 S
+0.11 (169) 541.19 304.67 S
+0.11 (Canvas Panes) 234 283.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 283.67 S
+0.11 (170) 541.19 283.67 S
+0.11 (Contr) 234 262.67 S
+0.11 (ol Ar) 262.45 262.67 S
+0.11 (eas) 287.64 262.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 262.67 S
+0.11 (171) 541.19 262.67 S
+0.11 (Gauges) 234 241.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 274.23 241.67 S
+0.11 (172) 541.19 241.67 S
+0.11 (Help Editor) 234 220.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 220.67 S
+0.11 (173) 541.19 220.67 S
+0.11 (Menus I) 234 199.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 199.67 S
+0.11 (174) 541.19 199.67 S
+0.11 (Menus II) 234 178.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 279.94 178.67 S
+0.11 (175) 541.19 178.67 S
+0.11 (Messages) 234 157.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 282.8 157.67 S
+0.11 (176) 541.19 157.67 S
+FMENDPAGE
+%%EndPage: "vi" 7
+%%Page: "vii" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Contents) 198 108.7 S
+0 F
+0.09 (vii) 547.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+2 F
+0 X
+0.11 (Pop-up W) 234 640.67 S
+0.11 (indows) 284.13 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 640.67 S
+0.11 (177) 541.19 640.67 S
+0.11 (Scr) 234 619.67 S
+0.11 (olling Lists) 249.12 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 619.67 S
+0.11 (178) 541.19 619.67 S
+0.11 (Settings I) 234 598.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 282.8 598.67 S
+0.11 (179) 541.19 598.67 S
+0.11 (Settings II) 234 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 577.67 S
+0.11 (180) 541.19 577.67 S
+0.11 (Sliders) 234 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 268.51 556.67 S
+0.11 (181) 541.19 556.67 S
+0.11 (T) 234 535.67 S
+0.11 (erm Panes) 239.83 535.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 535.67 S
+0.11 (182) 541.19 535.67 S
+0.11 (T) 234 514.67 S
+0.11 (ext Fields) 239.83 514.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 514.67 S
+0.11 (183) 541.19 514.67 S
+0.11 (T) 234 493.67 S
+0.11 (ext Panes) 239.83 493.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 493.67 S
+0.11 (184) 541.19 493.67 S
+3 F
+0.11 (C.) 205.1 472.67 S
+0.11 (GNT Generated Files) 225 472.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 337.07 472.67 S
+0.11 (185) 541.19 472.67 S
+2 F
+0.11 (Index) 198 451.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 228.52 451.67 S
+0.11 (187) 541.19 451.67 S
+FMENDPAGE
+%%EndPage: "vii" 8
+%%Page: "viii" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (viii) 54 108.7 S
+1 F
+0.09 (GNT for Devguide ) 198 108.7 S
+0 F
+0.09 (\321) 270.19 108.7 S
+1 F
+0.09 (Mar) 279.27 108.7 S
+0.09 (ch 1991) 295.34 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+185 83.74 393.76 101.24 R
+7 X
+V
+FMENDPAGE
+%%EndPage: "viii" 9
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 8 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Palatino-Bold

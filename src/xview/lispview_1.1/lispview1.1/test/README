@@ -1,0 +1,77 @@
+
+This directory contains a test suite for LispView.  It does not
+cover every possible usage of every LispView feature, in fact it
+doesn't really come close.  It does hit many areas that have caused
+problems in the past.  [The subdirectories "guide" and "doc-examples"
+contain additional test material which is separate from the test suite
+described here.]
+
+To run the LispView test suite, start a LispView image, change to the
+production mode of the compiler, load build.lisp, and then run
+(LVT:test-lispview).   Have a look at the definition of test-lispview
+in defs.lisp to see what keyword arguments are available.
+
+Formal tests are still needed for all areas, especially for the later
+sections of the Manual which are not dealt with by this suite
+(Chapters 15-18 -- viewports, menus, sliders, text fields, etc.)  (The
+"guide" and "doc-examples" subdirectories contain some tests on these
+topics, as do the LispView demos and utilities.)  The following simple
+example outlines the procedure for adding material to the suite; see
+defs.lisp for more details, and individual test files for more
+extensive examples (including use of interactive tests and facilities
+like dependent-test and check-accessor).
+
+One could add a couple of tests as follows (the example uses numeric
+fields):
+
+(1) Create a file like example.lisp given below, in the test suite
+directory.  This defines a new test test-numeric-field-0 (which is counted
+as three items, the overall test and two subtests).
+
+(2) In the LispView image to be tested, load the test suite files
+package.sbin, defs.sbin, and basic.sbin.  (Note that loading build.lisp
+would both compile and load these files, along with others.)
+
+(3) Compile (with the production compiler) and load the "example" file.
+
+(4) To run just the new test, evaluate:
+(lvt:test-lispview :tests '(lvt::test-numeric-field-0))
+
+(5) Later, you might want to incorporate this into the suite by adding the
+file "example" to the "files" list in build.lisp (put it somewhere after
+"package", "defs", and "basic") and adding the symbol
+test-numeric-field-0 to the *standard-tests* list in defs.lisp.
+
+;----------------------example.lisp-----------------------------
+
+(in-package "LISPVIEW-TEST")
+
+(def-test test-numeric-field-0 ()
+  (:type :test :interactive nil)
+  (with-paneled-base-window (p :label "Numeric Field Test-0")
+    (let* ((start-label "NUMBER")
+	   (start-val 3)
+	   (new-val 84)
+	   (num-fld (make-instance 'numeric-field :parent p
+				   :label start-label :value start-val
+				   :status :realized)))
+      (independent-test
+       (unless (and (string= (label num-fld) start-label)
+		    (= (value num-fld) start-val))
+	 (error "Initialization failed for ~S" num-fld)))
+
+      (independent-test
+       (unless (and (= (setf (value num-fld) new-val) new-val)
+		    (= (value num-fld) new-val))
+	 (error "Accessor VALUE failed for ~S" num-fld))))))
+
+;-----------------end of example.lisp------------------------------
+
+Note:
+Some of the non-interactive parts of the test suite do rapid sequences
+of window operations which can give console messages such as
+"olwm: Warning: X Error: BadWindow".  This is a known Window Manager
+problem in OpenWindows Version 2.0; it does not interfere with the test
+suite.  We have not seen the problem in running the tests with the
+OpenWindows Version 3.0 Window Manager.
+

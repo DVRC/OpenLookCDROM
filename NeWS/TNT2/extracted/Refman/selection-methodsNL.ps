@@ -1,0 +1,4812 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 20 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 15 /Palatino-Italic FMDEFINEFONT
+5 10 /Palatino-Roman FMDEFINEFONT
+6 10 /Palatino-Italic FMDEFINEFONT
+7 9 /Helvetica FMDEFINEFONT
+%%Page: "173" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (173) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (20-0) 158.58 672.33 S
+-0.12 (20-0) 158.58 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (ClassSelection) 199.01 509.03 S
+3 F
+7 X
+1 K
+-3.12 (20) 536.13 508.36 S
+4 F
+0 X
+0 K
+-0.94 ( Intr) 54 456.34 P
+-0.94 (oduction) 80.71 456.34 P
+5 F
+0.52 0.1 (A selection is an indication of some data of inter) 198 434.68 B
+0.52 0.1 (est to the user) 419.89 434.68 B
+0.52 0.1 (, almost always ) 483.56 434.68 B
+0.13 0.1 (some information visible on the scr) 198 422.28 B
+0.13 0.1 (een that is about to be used in an operation. ) 357.15 422.28 B
+-0.01 0.1 (The most common example is text that is to be moved or copied fr) 198 409.88 B
+-0.01 0.1 (om one place ) 495.74 409.88 B
+0.52 0.1 (to another) 198 397.48 B
+0.52 0.1 (. Many other objects can be selected, and many operations besides ) 244.07 397.48 B
+0.52 0.1 (move/copy ar) 198 385.08 B
+0.52 0.1 (e possible; for instance, a window may be selected so that its ) 263.21 385.08 B
+0.52 0.1 (pr) 198 372.68 B
+0.52 0.1 (operties may be inquir) 207.98 372.68 B
+0.52 0.1 (ed or manipulated. The NeWS T) 311.34 372.68 B
+0.52 0.1 (oolkit pr) 459.04 372.68 B
+0.52 0.1 (ovides a ) 498.27 372.68 B
+0.52 0.1 (ClassSelection, whose instances \050) 198 360.28 B
+6 F
+0.52 0.1 (Selections) 348.39 360.28 B
+5 F
+0.52 0.1 (\051 describe such a selected chunk of ) 389.55 360.28 B
+0.1 (data.) 198 347.88 S
+0.52 0.1 (The window system has a global r) 198 327.48 B
+0.52 0.1 (egistry that keeps track of a few selections; ) 355.07 327.48 B
+0.44 0.1 (r) 198 315.08 B
+0.44 0.1 (egistering a selection causes any pr) 201.87 315.08 B
+0.44 0.1 (eviously r) 362.38 315.08 B
+0.44 0.1 (egister) 407.62 315.08 B
+0.44 0.1 (ed value to be deselected, ) 437.62 315.08 B
+0.52 0.1 (and makes the curr) 198 302.68 B
+0.52 0.1 (ent selection available to all clients of the window system. ) 286.22 302.68 B
+0.52 0.1 (This r) 198 290.28 B
+0.52 0.1 (egistry is implemented inside ClassSelection thr) 224.48 290.28 B
+0.52 0.1 (ough utility pr) 443.46 290.28 B
+0.52 0.1 (ocedur) 510.46 290.28 B
+0.52 0.1 (es ) 541.64 290.28 B
+0.52 0.1 (de\336ned in systemdict.) 198 277.88 B
+0.52 0.1 (The instance variables for ClassSelection contain attributes of the selection. ) 198 257.48 B
+0.52 0.1 (Some of these ar) 198 245.08 B
+0.52 0.1 (e r) 273.41 245.08 B
+0.52 0.1 (equir) 285.28 245.08 B
+0.52 0.1 (ed by ClassSelection\325s pr) 308.87 245.08 B
+0.52 0.1 (ocessing: ) 422.27 245.08 B
+6 F
+0.52 0.1 (Holder) 466.22 245.08 B
+5 F
+0.52 0.1 ( is the object ) 494.59 245.08 B
+0.52 0.1 (r) 198 232.68 B
+0.52 0.1 (esponsible for the selection \050which is, by default, the canvas on which the ) 201.87 232.68 B
+0.52 0.1 (selection appears\051, and ) 198 220.28 B
+6 F
+0.52 0.1 (Rank) 305.78 220.28 B
+5 F
+0.52 0.1 ( is a global identi\336er that may be any non-null ) 327.28 220.28 B
+0.32 0.1 (PostScript object The standar) 198 207.88 B
+0.32 0.1 (d ranks ar) 329.86 207.88 B
+0.32 0.1 (e ) 375.92 207.88 B
+7 F
+0.27 -0.27 (/PrimarySelection) 383.72 207.88 B
+5 F
+0.32 0.1 (, ) 449.54 207.88 B
+7 F
+0.27 -0.27 (/SecondarySelection) 455.06 207.88 B
+5 F
+0.32 0.1 (, and ) 532.35 207.88 B
+7 F
+-0.27 (/ShelfSelection) 198 195.48 S
+5 F
+-0 0.1 (. ) 253.9 195.48 B
+7 F
+-0.27 (/ShelfSelection) 259.09 195.48 S
+5 F
+-0 0.1 ( is also commonly r) 314.99 195.48 B
+-0 0.1 (eferr) 402.68 195.48 B
+-0 0.1 (ed to as the ClipBoar) 423.8 195.48 B
+-0 0.1 (d. Other ) 517.83 195.48 B
+0.52 0.1 (variables ar) 198 183.08 B
+0.52 0.1 (e attributes that support the user interface for making selections, ) 250.94 183.08 B
+0.52 0.1 (see T) 198 170.68 B
+0.52 0.1 (able 20-2 on page 182. Finally) 220.54 170.68 B
+0.52 0.1 (, a Selection usually also contains ) 354.82 170.68 B
+0.52 0.1 (information stor) 198 158.28 B
+0.52 0.1 (ed by the client to identify the selection.) 272.06 158.28 B
+FMENDPAGE
+%%EndPage: "173" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+3 10 /Palatino-Bold FMDEFINEFONT
+8 9 /Courier FMDEFINEFONT
+9 14 /Palatino-Italic FMDEFINEFONT
+10 13 /Palatino-Italic FMDEFINEFONT
+11 9 /Helvetica-Bold FMDEFINEFONT
+12 8 /Palatino-Roman FMDEFINEFONT
+13 7 /Palatino-Roman FMDEFINEFONT
+14 7 /Palatino-Italic FMDEFINEFONT
+%%Page: "174" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (174) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+54 631.66 558 648 C
+558 644.98 198 644.98 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+3 F
+(Note \320 ) 198 634.82 T
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.23 0.1 (Ther) 231.84 634.99 B
+0.23 0.1 (e is a \336le in the demo/bin dir) 252.74 634.99 B
+0.23 0.1 (ectory on the TNT r) 386.38 634.99 B
+0.23 0.1 (elease tape called ) 476.11 634.99 B
+8 F
+0.37 (circles) 198 622.59 P
+5 F
+0.18 0.1 ( that demonstrates many of the concepts discussed in this chapter) 235.75 622.59 B
+0.18 0.1 (. It is ) 532.9 622.59 B
+0.15 0.1 (str) 198 610.19 B
+0.15 0.1 (ongly advised that you use the cir) 209.56 610.19 B
+0.15 0.1 (cles demo in conjunction with this chapter ) 363.33 610.19 B
+54 586.46 558 594.46 C
+558 591.43 198 591.43 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (when you ar) 198 597.79 B
+0.52 0.1 (e trying to use selections in your application.) 255.7 597.79 B
+9 F
+-0.88 (How this chapter is or) 126 556.73 P
+-0.88 (ganized) 246.87 556.73 P
+5 F
+0.52 0.1 (This chapter is divided into thr) 198 535.4 B
+0.52 0.1 (ee main categories of information:) 340.63 535.4 B
+0.52 0.1 (The section) 198 515 B
+6 F
+0.52 0.1 ( Retrieving selection values) 249.75 515 B
+5 F
+0.52 0.1 ( on page 176 tells you how to ask an ) 364.53 515 B
+0.52 0.1 (existing selection for its value.) 198 502.6 B
+0.52 0.1 (The section) 198 482.2 B
+6 F
+0.52 0.1 ( Making selections) 249.75 482.2 B
+5 F
+0.52 0.1 ( on page 181 tells you how to make a selection. ) 327.73 482.2 B
+0.52 0.1 (Making selections is somewhat mor) 198 469.8 B
+0.52 0.1 (e complicated, connected as it is to issues ) 361.41 469.8 B
+0.52 0.1 (of user interface and UI independence. ) 198 457.4 B
+0.52 0.1 (The section ) 198 437 B
+6 F
+0.52 0.1 (Responding to selection r) 252.87 437 B
+0.52 0.1 (equests) 358.27 437 B
+5 F
+0.52 0.1 ( on page 185 tells you how your ) 388.04 437 B
+0.52 0.1 (selection should r) 198 424.6 B
+0.52 0.1 (espond to r) 278.76 424.6 B
+0.52 0.1 (equests posed to it.) 330.79 424.6 B
+10 F
+-0.84 0.13 (De\336nition of \322selection client\323) 198 392.2 B
+5 F
+0.52 0.1 ( The \322client\323 and \322selection client\323 mentioned in this chapter both r) 198 375.2 B
+0.52 0.1 (efer to the ) 508.33 375.2 B
+0.51 0.1 (canvas in which ther) 198 362.8 B
+0.51 0.1 (e is a selection. In most cases this is the ) 292.84 362.8 B
+11 F
+0.44 -0.27 (/Holder) 476.29 362.8 B
+5 F
+0.51 0.1 ( but that is ) 505.36 362.8 B
+0.06 0.1 (not a r) 198 350.4 B
+0.06 0.1 (equir) 227.12 350.4 B
+0.06 0.1 (ement because ther) 250.71 350.4 B
+0.06 0.1 (e can be mor) 337.55 350.4 B
+0.06 0.1 (e than one canvas associated with a ) 394.84 350.4 B
+0.52 0.1 (single ) 198 338 B
+11 F
+0.45 -0.27 (/Holder) 227.93 338 B
+5 F
+0.52 0.1 ( \050see ) 257.01 338 B
+11 F
+0.45 -0.27 (/Holder) 280.78 338 B
+5 F
+0.52 0.1 ( on page 66 in ClassCanvas\051.) 309.85 338 B
+9 F
+-0.88 (How applications get information about selections) 126 304.93 P
+5 F
+0.4 0.1 (Some users of ClassSelection will make selections, other users will want to get ) 198 283.6 B
+0.52 0.1 (information about selections. ClassSelection pr) 198 271.2 B
+0.52 0.1 (ovides the means for both ) 410.94 271.2 B
+0.22 0.1 (cr) 198 258.8 B
+0.22 0.1 (eating selections and getting information fr) 206.4 258.8 B
+0.22 0.1 (om them. For example, a series of ) 402.46 258.8 B
+0.52 0.1 (selection-r) 198 246.4 B
+0.52 0.1 (elated transactions involving a dialog window might look like) 244.79 246.4 B
+12 F
+0.42 0.08 (1) 529.72 250.4 B
+5 F
+0.52 0.1 (:) 533.79 246.4 B
+0.1 (1.) 197.5 226 S
+0.52 0.1 (A user pr) 210.6 226 B
+0.52 0.1 (esses the \322Load\323 button in an application window) 254.09 226 B
+0.52 0.1 (.) 483.45 226 B
+54 164 558 191 C
+198 171.49 342 171.49 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+13 F
+0 X
+0 K
+0.07 (1.) 198 159.33 S
+-0.45 0.07 (If the dialog box wanted to make its own selections rather than just use another window\325s selections then it ) 205.2 159.33 B
+-0.45 0.07 (would have to be Selectable. See ) 205.2 151.33 B
+14 F
+-0.45 0.07 (Selectables) 306.22 151.33 B
+13 F
+-0.45 0.07 ( on page 65 in ClassCanvas.) 337.15 151.33 B
+FMENDPAGE
+%%EndPage: "174" 3
+%%Page: "175" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (175) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.1 (2.) 197.5 641.33 S
+0.52 0.1 (A dialog window opens. The dialog window tries to \336ll in the name of the ) 210.6 641.33 B
+0.52 0.1 (\336le using the curr) 210.6 628.93 B
+0.52 0.1 (ent ) 291.79 628.93 B
+7 F
+0.45 -0.27 (/PrimarySelection) 309.07 628.93 B
+5 F
+0.52 0.1 (, e.g., some text selected in a command ) 374.89 628.93 B
+0.1 (tool.) 210.6 616.53 S
+0.1 (3.) 197.5 596.13 S
+0.52 0.1 (The dialog box \336rst must determine if a ) 210.6 596.13 B
+7 F
+0.45 -0.27 (/PrimarySelection) 395.85 596.13 B
+5 F
+0.52 0.1 ( exists. It would use ) 461.67 596.13 B
+11 F
+0.45 -0.27 (/getselection) 210.6 583.73 B
+5 F
+0.52 0.1 (. \050See ) 262.03 583.73 B
+11 F
+0.45 -0.27 (/getselection) 289.42 583.73 B
+5 F
+0.52 0.1 ( on page 176.\051) 340.85 583.73 B
+0.1 (4.) 197.5 563.33 S
+0.52 0.1 (Now that it has the selection, the dialog window must determine if it can ) 210.6 563.33 B
+0.52 0.1 (use it. The dialog window is expecting text; ClassSelection \322labels\323 a ) 210.6 550.93 B
+0.52 0.1 (selection that contains only text, ) 210.6 538.53 B
+7 F
+0.45 -0.27 (/ContentsAscii) 360.75 538.53 B
+5 F
+0.52 0.1 ( \050see T) 414.41 538.53 B
+0.52 0.1 (able 20-1 on page 178\051. ) 443.49 538.53 B
+0.52 0.1 (The dialog box would use the ClassSelection method ) 210.6 526.13 B
+11 F
+0.45 -0.27 (/query) 455.73 526.13 B
+5 F
+0.52 0.1 ( to determine if ) 481.08 526.13 B
+0.52 0.1 (the curr) 210.6 513.73 B
+0.52 0.1 (ent selection was text. \050See ) 246.46 513.73 B
+11 F
+0.45 -0.27 (/query) 371.59 513.73 B
+5 F
+0.52 0.1 ( on page 176.\051) 396.94 513.73 B
+0.1 (5.) 197.5 493.33 S
+0.52 0.1 (The dialog pr) 210.6 493.33 B
+0.52 0.1 (ocesses the selection and performs the appr) 272.38 493.33 B
+0.52 0.1 (opriate action; in ) 471.53 493.33 B
+0.52 0.1 (this case the text is installed as the default value in the dialog\325s text \336eld.) 210.6 480.93 B
+0.25 0.1 (The application that is going to cr) 198 460.53 B
+0.25 0.1 (eate selections and r) 351.1 460.53 B
+0.25 0.1 (espond to queries has its ) 442.79 460.53 B
+0.52 0.1 (own associated series of transactions; see ) 198 448.13 B
+6 F
+0.52 0.1 ( Making selections) 388.82 448.13 B
+5 F
+0.52 0.1 ( on page 181.) 466.79 448.13 B
+9 F
+-0.88 (The context of selection pr) 126 415.07 P
+-0.88 (ocessing) 269.67 415.07 P
+5 F
+0.52 0.1 (It is important to r) 198 393.73 B
+0.52 0.1 (ecognize that a selection can exist without being r) 282.8 393.73 B
+0.52 0.1 (egister) 510.75 393.73 B
+0.52 0.1 (ed ) 540.75 393.73 B
+0.52 0.1 (in the global database\321instances of \050subclasses of\051 ClassSelection ar) 198 381.33 B
+0.52 0.1 (e used ) 510.09 381.33 B
+0.52 0.1 (privately in several parts of the system befor) 198 368.93 B
+0.52 0.1 (e being made available to the ) 402.65 368.93 B
+0.52 0.1 (world at lar) 198 356.54 B
+0.52 0.1 (ge.) 251.92 356.54 B
+0.52 0.1 (A second important point is that much of the pr) 198 336.14 B
+0.52 0.1 (ocessing described in this ) 418.41 336.14 B
+0.52 0.1 (chapter is initiated outside the application\325s context, i.e., its user) 198 323.73 B
+0.52 0.1 (dict and ) 491.96 323.73 B
+0.52 0.1 (stdin/stdout ar) 198 311.33 B
+0.52 0.1 (e not available.) 268.01 311.33 B
+0.52 0.1 (For instance, global UI code will r) 198 290.93 B
+0.52 0.1 (ecognize that a function key has been ) 353.44 290.93 B
+0.41 0.1 (r) 198 278.53 B
+0.41 0.1 (eleased, or a drag action performed, signaling that a selection transfer should ) 201.87 278.53 B
+0.52 0.1 (take place. Similarly) 198 266.14 B
+0.52 0.1 (, the UI layer) 289.47 266.14 B
+0.52 0.1 (, not the application, is r) 348.89 266.14 B
+0.52 0.1 (esponsible for ) 460.68 266.14 B
+0.52 0.1 (determining which user actions indicate a selection is to be made or adjusted.) 198 253.73 B
+0.52 0.1 (One implication of this second point is that the selection\325s methods ar) 198 233.34 B
+0.52 0.1 (e often ) 517.69 233.34 B
+0.31 0.1 (invoked in some for) 198 220.93 B
+0.31 0.1 (eign pr) 289.2 220.93 B
+0.31 0.1 (ocess \050the global event manager) 321.56 220.93 B
+0.31 0.1 (, or even in another ) 466.09 220.93 B
+0.52 0.1 (client\325s pr) 198 208.53 B
+0.52 0.1 (ocess\051. They must, consequently) 243.02 208.53 B
+0.52 0.1 (, be self-contained\321if they need ) 388.88 208.53 B
+0.52 0.1 (some data such as the connection to the C-side client, that must be r) 198 196.14 B
+0.52 0.1 (eachable ) 510.02 196.14 B
+0.52 0.1 (fr) 198 183.73 B
+0.52 0.1 (om the selection instance. Context is important when communicating with a ) 205.3 183.73 B
+FMENDPAGE
+%%EndPage: "175" 4
+%%Page: "176" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (176) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (c-client because of the way NeWS communicates with the client-side \050see the ) 198 641.33 B
+6 F
+0.52 0.1 (NeWS 2.1 Pr) 198 628.93 B
+0.52 0.1 (ogrammer) 254.1 628.93 B
+0.52 0.1 (\325) 296.36 628.93 B
+0.52 0.1 (s Guide) 298.68 628.93 B
+5 F
+0.52 0.1 ( for an explanation of NeWS-Client ) 330.73 628.93 B
+0.1 (communication\051.) 198 616.53 S
+4 F
+-0.94 ( Retrieving selection values) 54 582.8 P
+5 F
+0.52 0.1 (Applications can r) 198 561.13 B
+0.52 0.1 (etrieve the value of a selection by sending a message to it. ) 281.57 561.13 B
+0.52 0.1 (This may r) 198 548.73 B
+0.52 0.1 (equir) 247.27 548.73 B
+0.52 0.1 (e that the application \336rst \336nd that selection in the global ) 270.86 548.73 B
+0.09 0.1 (r) 198 536.33 B
+0.09 0.1 (egistry) 201.87 536.33 B
+0.09 0.1 (. T) 231.71 536.33 B
+0.09 0.1 (o \336nd the selection in the r) 242.3 536.33 B
+0.09 0.1 (egistry use ) 362.86 536.33 B
+11 F
+0.08 -0.27 (/getselection) 414.54 536.33 B
+5 F
+0.09 0.1 (. T) 465.97 536.33 B
+0.09 0.1 (o get information ) 476.56 536.33 B
+0.52 0.1 (about a selection\325s attributes use ) 198 523.93 B
+11 F
+0.45 -0.27 (/query) 349.73 523.93 B
+5 F
+0.52 0.1 ( or ) 375.08 523.93 B
+11 F
+0.45 -0.27 (/request) 390.92 523.93 B
+5 F
+0.52 0.1 (; ) 423.72 523.93 B
+11 F
+0.45 -0.27 (/request) 429.44 523.93 B
+5 F
+0.52 0.1 ( is the mor) 462.24 523.93 B
+0.52 0.1 (e general ) 511.45 523.93 B
+0.52 0.1 (\050and complex\051 method.) 198 511.53 B
+7 F
+(getselection) 54 491.8 T
+(rank ) 198 491.8 T
+11 F
+(getselection) 217.98 491.8 T
+7 F
+( selection | null ) 270.42 491.8 T
+5 F
+0.52 0.1 (Returns selection curr) 198 472.13 B
+0.52 0.1 (ently r) 297.77 472.13 B
+0.52 0.1 (egister) 327.58 472.13 B
+0.52 0.1 (ed under) 357.58 472.13 B
+7 F
+0.45 -0.27 ( rank) 398.98 472.13 B
+5 F
+0.52 0.1 (, or ) 418.05 472.13 B
+7 F
+0.45 -0.27 (null) 436.49 472.13 B
+5 F
+0.52 0.1 ( if none exists. The ) 449.4 472.13 B
+0.52 0.1 (standar) 198 459.73 B
+0.52 0.1 (d ranks ar) 231.88 459.73 B
+0.52 0.1 (e: ) 278.35 459.73 B
+7 F
+0.45 -0.27 (/PrimarySelection) 288.95 459.73 B
+5 F
+0.52 0.1 (, ) 354.78 459.73 B
+7 F
+0.45 -0.27 (/SecondarySelection) 360.49 459.73 B
+5 F
+0.52 0.1 (, and ) 437.79 459.73 B
+7 F
+0.45 -0.27 (/ShelfSelection) 463.84 459.73 B
+5 F
+0.52 0.1 (, but ) 519.74 459.73 B
+0.52 0.1 (rank may be any non-null PostScript object. ) 198 447.33 B
+11 F
+0.5 (getselection) 198 426.93 P
+5 F
+0.52 0.1 ( is a utility pr) 250.44 426.93 B
+0.52 0.1 (ocedur) 312.86 426.93 B
+0.52 0.1 (e in systemdict, you don\325t send it to an object ) 344.04 426.93 B
+0.52 0.1 (but just call it. For example to determine if a ) 198 414.53 B
+7 F
+0.45 -0.27 (/PrimarySelection) 405.18 414.53 B
+5 F
+0.52 0.1 ( exists you could ) 471 414.53 B
+0.1 (do:) 198 402.13 S
+7 F
+(/PrimarySelection getselection dup null ne) 224.64 386.4 T
+(% selection bool) 432 386.4 T
+(/query) 54 367.4 T
+(key /) 198 367.4 T
+11 F
+(query) 216.98 367.4 T
+7 F
+( false | value true ) 241.45 367.4 T
+5 F
+0.52 0.1 (Retrieves a single attribute of a selection. ) 198 347.73 B
+7 F
+0.45 -0.27 (key) 388.73 347.73 B
+5 F
+0.52 0.1 ( is the name of the attribute ) 401.9 347.73 B
+0.52 0.1 (desir) 198 335.33 B
+0.52 0.1 (ed \050e.g., ) 220.31 335.33 B
+7 F
+0.5 (/ContentsAscii) 259.41 335.33 P
+5 F
+0.52 0.1 (; see T) 316.85 335.33 B
+0.52 0.1 (able 20-2 on page 182 for a list of attribute ) 345.1 335.33 B
+0.52 0.1 (keys\051 and r) 198 322.93 B
+0.52 0.1 (eturns the associated value and tr) 249.29 322.93 B
+0.52 0.1 (ue. If ther) 403.56 322.93 B
+0.52 0.1 (e is no such value, it ) 448.33 322.93 B
+0.52 0.1 (r) 198 310.54 B
+0.52 0.1 (eturns false. ) 201.87 310.54 B
+0.52 0.1 (For example, to use ) 198 290.14 B
+11 F
+0.45 -0.27 (/query) 290.77 290.14 B
+5 F
+0.52 0.1 ( to r) 316.12 290.14 B
+0.52 0.1 (etrieve just the characters of a selection you ) 335.14 290.14 B
+0.52 0.1 (could do the following:) 198 277.73 B
+7 F
+(/PrimarySelection getselection dup null ne) 252 264 T
+({) 419.34 264 T
+(% sel ) 432 264 T
+(/ContentsAscii /query 3 -1 roll send ) 270 251 T
+({) 411.86 251 T
+(% val ) 432 251 T
+(...process the value...) 288 238 T
+(% - ) 432 238 T
+(} if ) 270 225 T
+(} { ) 252 212 T
+(pop ) 270 199 T
+(} ifelse) 252 186 T
+(% - ) 432 186 T
+FMENDPAGE
+%%EndPage: "176" 5
+8 14 /Times-Bold FMDEFINEFONT
+%%Page: "177" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (177) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+(/request) 54 642 T
+(request-dictionary /) 198 642 T
+11 F
+(request) 274.42 642 T
+7 F
+( response-dictionary) 306.88 642 T
+5 F
+0.52 0.1 (Retrieves one or mor) 198 622.33 B
+0.52 0.1 (e attributes of a selection at a time) 293.61 622.33 B
+12 F
+0.42 0.08 (1) 450.84 626.33 B
+5 F
+0.52 0.1 (. ) 454.92 622.33 B
+7 F
+0.45 -0.27 (request-dictionary) 460.64 622.33 B
+5 F
+0.52 0.1 ( is a ) 527.2 622.33 B
+-0.07 0.1 (dictionary that contains the complete r) 198 609.93 B
+-0.07 0.1 (equest. Each key in the dictionary names ) 371.8 609.93 B
+0.52 0.1 (a selection attribute or an operation the selection should perform. For an ) 198 597.53 B
+0.52 0.1 (operation, the corr) 198 585.13 B
+0.52 0.1 (esponding value in the dictionary may be a parameter or ) 282.54 585.13 B
+0.52 0.1 (array of parameters. For r) 198 572.73 B
+0.52 0.1 (equested attributes, the original value in the ) 315.92 572.73 B
+0.52 0.1 (dictionary doesn\325t matter) 198 560.33 B
+0.52 0.1 (.) 312.71 560.33 B
+11 F
+0.45 -0.27 ( /request) 315.3 560.33 B
+5 F
+0.52 0.1 ( should be used when any of the following ) 350.78 560.33 B
+0.52 0.1 (ar) 198 547.93 B
+0.52 0.1 (e true:) 206.96 547.93 B
+8 F
+(\245) 198 529.53 T
+5 F
+0.52 0.1 (Y) 210.6 529.53 B
+0.52 0.1 (ou ar) 216.45 529.53 B
+0.52 0.1 (e asking a selection to do an operation that takes ar) 240.21 529.53 B
+0.52 0.1 (guments to ) 475.81 529.53 B
+0.52 0.1 (complete. ) 210.6 517.13 B
+8 F
+(\245) 198 504.73 T
+5 F
+0.52 0.1 (The r) 210.6 504.73 B
+0.52 0.1 (equester and holder must negotiate the form of the r) 234.62 504.73 B
+0.52 0.1 (equested data ) 475.36 504.73 B
+0.52 0.1 (\050described below\051.) 210.6 492.33 B
+8 F
+(\245) 198 479.93 T
+5 F
+0.52 0.1 (When the cost of communicating with the holder of the selection is high ) 210.6 479.93 B
+0.52 0.1 (\050e.g., the holder must communicate with its C-side client thr) 210.6 467.53 B
+0.52 0.1 (ough a slow ) 486.18 467.53 B
+0.52 0.1 (communication link in or) 210.6 455.13 B
+0.52 0.1 (der to r) 326.37 455.13 B
+0.52 0.1 (espond to any r) 360.53 455.13 B
+0.52 0.1 (equest\051, it may be ) 432.35 455.13 B
+0.52 0.1 (advantageous to batch queries in a single call to ) 210.6 442.73 B
+11 F
+0.5 (/request) 433.6 442.73 P
+5 F
+0.52 0.1 (. ) 468.56 442.73 B
+0.52 0.1 (The selection will r) 198 422.33 B
+0.52 0.1 (eturn a similar dictionary \050or modi\336ed copy of the same ) 285.21 422.33 B
+-0.05 0.1 (dictionary) 198 409.93 B
+-0.05 0.1 (, as convenient\051, with r) 243.29 409.93 B
+-0.05 0.1 (esults and r) 345.87 409.93 B
+-0.05 0.1 (equested attributes in the value for ) 398.11 409.93 B
+0.52 0.1 (each key wher) 198 397.54 B
+0.52 0.1 (ever possible; if it cannot stor) 263.98 397.54 B
+0.52 0.1 (e a r) 398.92 397.54 B
+0.52 0.1 (esult, it will stor) 419.01 397.54 B
+0.52 0.1 (e the value ) 493.63 397.54 B
+7 F
+0.5 (/UnknownRequest) 198 385.14 P
+5 F
+0.52 0.1 (. ) 271.43 385.14 B
+54 196 558 223 C
+198 203.49 342 203.49 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+13 F
+0 X
+0 K
+0.07 (1.) 198 191.33 S
+-0.45 0.07 (The default implementation for /r) 205.2 191.33 B
+-0.45 0.07 (equest in ClassSelection is in terms of /SingleRequest: the r) 311.46 191.33 B
+-0.45 0.07 (equest-dict is ) 494.47 191.33 B
+-0.45 0.07 (enumerated with forall, and each r) 205.2 183.33 B
+-0.45 0.07 (equest/value pair is passed to /SingleRequest. \050If /RequestSequence is ) 312.24 183.33 B
+-0.45 0.07 (found, it is passed to its own enumerator) 205.2 175.33 B
+-0.45 0.07 (, which in turn calls /SingleRequest. When /RequestChoice is ) 330.93 175.33 B
+-0.45 0.07 (implemented it will work in the same way) 205.2 167.33 B
+-0.45 0.07 (.\051 If a selection holder wishes to do batch pr) 335.05 167.33 B
+-0.45 0.07 (ocessing of r) 468.46 167.33 B
+-0.45 0.07 (equests, it ) 506.92 167.33 B
+-0.45 0.07 (should override the /r) 205.2 159.33 B
+-0.45 0.07 (equest method. Any such override is then r) 274.83 159.33 B
+-0.45 0.07 (esponsible for supporting ) 407.99 159.33 B
+-0.45 0.07 (/RequestSequence and /RequestChoice \050see T) 205.2 151.33 B
+-0.45 0.07 (able 20-1 on page 178\051.) 349.03 151.33 B
+FMENDPAGE
+%%EndPage: "177" 6
+8 8 /Palatino-Bold FMDEFINEFONT
+%%Page: "178" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (178) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (The following example illustrates use of ) 198 641.33 B
+11 F
+0.5 (/request) 384.4 641.33 P
+5 F
+0.52 0.1 ( to ask an editor wher) 419.36 641.33 B
+0.52 0.1 (e the ) 520.14 641.33 B
+0.52 0.1 (selection is and in what sour) 198 628.93 B
+0.52 0.1 (ce \336le. A debugger might do this so that it could ) 329.28 628.93 B
+0.52 0.1 (set a br) 198 616.53 B
+0.52 0.1 (eakpoint ther) 231.41 616.53 B
+0.52 0.1 (e.) 292.15 616.53 B
+0.22 0.1 (The set of r) 198 450.93 B
+0.22 0.1 (equest keys passed to the selection holder is open-ended; any set of ) 248.94 450.93 B
+0.52 0.1 (clients that can agr) 198 438.53 B
+0.52 0.1 (ee on the interpr) 284.31 438.53 B
+0.52 0.1 (etation of a new key) 360.27 438.53 B
+0.52 0.1 (, may use that key to ) 452.34 438.53 B
+0.45 0.1 (communicate among themselves. A convention for the most common r) 198 426.13 B
+0.45 0.1 (equests ) 521.32 426.13 B
+0.52 0.1 (has not yet been established; but a number of the most useful ar) 198 413.73 B
+0.52 0.1 (e suggested ) 492.04 413.73 B
+0.52 0.1 (her) 198 401.33 B
+0.52 0.1 (e. In general, r) 212.67 401.33 B
+0.52 0.1 (equest names should develop parallel to the conventions of ) 278.86 401.33 B
+0.52 0.1 (the X1) 198 388.93 B
+0.52 0.1 (1 W) 226.59 388.93 B
+0.52 0.1 (indow System, as documented in David Rosenthal\325s ) 244.35 388.93 B
+6 F
+0.52 0.1 (Inter-Client ) 485.35 388.93 B
+0.52 0.1 (Communication Conventions Manual) 198 376.53 B
+5 F
+0.52 0.1 ( \050distributed by the X Consortium\051. ) 355.68 376.53 B
+0.52 0.1 (The following table summarizes the conventional r) 198 356.13 B
+0.52 0.1 (equest keys. Certain keys ) 430.62 356.13 B
+0.52 0.1 (r) 198 343.73 B
+0.52 0.1 (equest that the client modify the selection in some way) 201.87 343.73 B
+0.52 0.1 (. T) 452.99 343.73 B
+0.52 0.1 (wo \322action-type\323 ) 464.03 343.73 B
+-0.14 0.1 (keys ar) 198 331.33 B
+-0.14 0.1 (e speci\336ed her) 229.96 331.33 B
+-0.14 0.1 (e: ) 294.54 331.33 B
+7 F
+-0.14 (/DeleteContents) 304.48 331.33 P
+5 F
+-0.14 0.1 ( and ) 368.92 331.33 B
+7 F
+-0.14 (/ReplaceContents) 391.05 331.33 P
+5 F
+-0.14 0.1 (.Most keys r) 462.48 331.33 B
+-0.14 0.1 (epr) 517.2 331.33 B
+-0.14 0.1 (esent ) 532.06 331.33 B
+0.52 0.1 (r) 198 318.93 B
+0.52 0.1 (equests for the Selection to r) 201.87 318.93 B
+0.52 0.1 (ender its value in a named format.) 331.58 318.93 B
+1 F
+0.47 0.09 (T) 198 299.2 B
+0.47 0.09 (able 20-1) 202.58 299.2 B
+0 F
+0.47 0.09 (Request keys) 241.2 299.2 B
+54 284.74 558 289.2 C
+54 286.9 558 286.9 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+54 270.27 558 274.74 C
+54 272.43 558 272.43 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+3 F
+0 X
+0 K
+0.52 0.1 (Key Name) 54 278.07 B
+8 F
+0.42 0.08 (1) 103.35 282.07 B
+3 F
+0.1 (Argument) 168 278.07 S
+0.52 0.1 (Result ) 252 278.07 B
+7 F
+0.09 (/Canvas) 54 257.21 S
+5 F
+0.1 (none) 168 257.21 S
+0.52 0.1 (the selected object, if it is a NeWS canvas. ) 252 257.21 B
+7 F
+0.09 (/ContentsAscii) 54 240.81 S
+5 F
+0.1 (none) 168 240.81 S
+0.52 0.1 (a PostScript string containing the selected text, without text ) 252 240.81 B
+0.52 0.1 (attributes \050font, typeface, etc.\051 ) 252 228.41 B
+54 164 558 191 C
+198 171.49 342 171.49 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+13 F
+0 X
+0 K
+0.07 (1.) 198 159.33 S
+-0.45 0.07 ( Those keys marked with * ar) 205.2 159.33 B
+-0.45 0.07 (e not curr) 294.46 159.33 B
+-0.45 0.07 (ently implemented by The NeWS T) 323.96 159.33 B
+-0.45 0.07 (oolKit, but ar) 432.38 159.33 B
+-0.45 0.07 (e de\336ned so that ) 473.23 159.33 B
+-0.45 0.07 (clients who wish to use such r) 205.2 151.33 B
+-0.45 0.07 (equests will have a common interface. ) 297.09 151.33 B
+54 144 558 648 C
+54 468 558 613.2 C
+198 469.2 555.34 608.23 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+7 F
+(/PrimarySelection getselection dup null ne ) 203.98 594.89 T
+({% sel) 373.81 594.89 T
+(dictbegin) 240 584.89 T
+(% construct request dict) 329.98 584.89 T
+(/FileName null def) 258 574.89 T
+(/StartIndex null def) 258 564.89 T
+(dictend) 240 554.89 T
+(% sel request) 329.98 554.89 T
+(/request 3 -1 roll send) 240 544.89 T
+(% response ) 329.98 544.89 T
+(begin ) 240 534.89 T
+(... process response ... ) 276 524.89 T
+(end ) 240 514.89 T
+(} {) 240 504.89 T
+(% no such selection;) 329.98 504.89 T
+( null ) 412.4 504.89 T
+(pop ) 258 494.89 T
+(} ifelse ) 240 484.89 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "178" 7
+%%Page: "179" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (179) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+0.09 (/ContentsPostScript) 54 641.33 S
+5 F
+0.1 (none) 168 641.33 S
+-0.13 0.1 (a PostScript object, which, when executed, will r) 252 641.33 B
+-0.13 0.1 (ecr) 468.8 641.33 B
+-0.13 0.1 (eate the selected ) 482.1 641.33 B
+0.47 0.1 (value. \050This is likely to be most useful for graphical objects, which ) 252 628.93 B
+0.52 0.1 (can be r) 252 616.53 B
+0.52 0.1 (edrawn in a new envir) 288.17 616.53 B
+0.52 0.1 (onment.\051 ) 391.92 616.53 B
+7 F
+0.09 (/DeleteContents) 54 600.13 S
+5 F
+0.1 (none) 168 600.13 S
+0.52 0.1 (the contents of the selection ar) 252 600.13 B
+0.52 0.1 (e deleted. T) 391.23 600.13 B
+0.52 0.1 (ells the client to delete ) 443.7 600.13 B
+0.52 0.1 (the contents of the selection. This is not the same as mer) 252 587.73 B
+0.52 0.1 (ely ) 509.77 587.73 B
+0.45 0.1 (deselecting or destr) 252 575.33 B
+0.45 0.1 (oying the Selection instance; e.g., in a text item ) 341.05 575.33 B
+7 F
+0.52 0.09 (/DeleteContents) 252 562.93 B
+5 F
+0.52 0.1 ( means r) 317.79 562.93 B
+0.52 0.1 (emove the selected span of characters fr) 357.06 562.93 B
+0.52 0.1 (om ) 539.65 562.93 B
+0.52 0.1 (the text. Since ther) 252 550.53 B
+0.52 0.1 (e ar) 336.7 550.53 B
+0.52 0.1 (e no parameters r) 353.67 550.53 B
+0.52 0.1 (equir) 434.05 550.53 B
+0.52 0.1 (ed for this operation, ) 457.64 550.53 B
+0.3 0.1 (either of ) 252 538.13 B
+11 F
+0.3 0.09 (/query) 292.88 538.13 B
+5 F
+0.3 0.1 ( or ) 320.39 538.13 B
+11 F
+0.3 0.09 (/request) 335.79 538.13 B
+5 F
+0.3 0.1 ( will work for it. Assuming the holder is ) 371.47 538.13 B
+0.52 0.1 (willing and able to comply) 252 525.73 B
+0.52 0.1 (, a null value will be r) 373.95 525.73 B
+0.52 0.1 (eturned. ) 475.13 525.73 B
+7 F
+-0.27 (/ReplaceContents) 54 509.33 S
+5 F
+0.1 (*) 121.11 509.33 S
+0.1 (none) 168 509.33 S
+7 F
+0.52 0.09 (/ReplaceContents) 252 509.33 B
+5 F
+0.52 0.1 ( involves a deletion, just like ) 324.87 509.33 B
+7 F
+0.52 0.09 (/DeleteContents) 459.14 509.33 B
+5 F
+0.52 0.1 (; but ) 524.93 509.33 B
+0.52 0.1 (then new data passed as an ar) 252 496.93 B
+0.52 0.1 (gument to the r) 390.17 496.93 B
+0.52 0.1 (equest should be ) 461.34 496.93 B
+0.18 0.1 (stor) 252 484.53 B
+0.18 0.1 (ed in place of the deleted material, and the r) 269.12 484.53 B
+0.18 0.1 (eplacement should ) 469.67 484.53 B
+0.52 0.1 (be selected. In this case \050wher) 252 472.13 B
+0.52 0.1 (e the r) 388.21 472.13 B
+0.52 0.1 (equester must be able to pass ) 417.37 472.13 B
+0.52 0.1 (an ar) 252 459.73 B
+0.52 0.1 (gument to the r) 275.1 459.73 B
+0.52 0.1 (equest\051, the ) 346.27 459.73 B
+11 F
+0.52 0.09 (/query) 401.99 459.73 B
+5 F
+0.52 0.1 ( method will not work. ) 429.5 459.73 B
+0.52 0.1 (Instead, the ) 252 447.33 B
+11 F
+0.52 0.09 (/request) 308.27 447.33 B
+5 F
+0.52 0.1 ( method is used, with a r) 343.95 447.33 B
+0.52 0.1 (equest dict for its ) 458.7 447.33 B
+0.52 0.1 (ar) 252 434.93 B
+0.52 0.1 (gument. In the r) 260.96 434.93 B
+0.52 0.1 (equest dict, the key ) 335.2 434.93 B
+7 F
+0.52 0.09 (/ReplaceContents) 427.04 434.93 B
+5 F
+0.52 0.1 ( is de\336ned, ) 499.92 434.93 B
+0.52 0.1 (with the r) 252 422.54 B
+0.52 0.1 (eplacement contents as its value. This style of passing ) 296.98 422.54 B
+-0.03 0.1 (parameters enables a consistent interface to be maintained between ) 252 410.14 B
+0.52 0.1 (r) 252 397.73 B
+0.52 0.1 (equester and selection holder) 255.87 397.73 B
+0.52 0.1 (, r) 389.05 397.73 B
+0.52 0.1 (egar) 398.64 397.73 B
+0.52 0.1 (dless of the particular ) 418.15 397.73 B
+0.1 (r) 252 385.33 S
+0.1 (equests.) 255.87 385.33 S
+12 F
+0.08 (1) 292.1 389.33 S
+7 F
+0.52 0.09 (/FirstIndex *) 54 368.93 B
+5 F
+0.1 (none) 168 368.93 S
+0.52 0.1 (the count of how many objects of size ) 252 368.93 B
+7 F
+0.45 -0.27 (Level) 428.15 368.93 B
+5 F
+0.52 0.1 ( pr) 448.28 368.93 B
+0.52 0.1 (ecede the \336rst object ) 461.38 368.93 B
+0.52 0.1 (in the selection. ) 252 356.54 B
+7 F
+0.52 0.09 (/Level *) 54 340.14 B
+5 F
+0.1 (none) 168 340.14 S
+0.52 0.1 (the multi-click level of the selection.) 252 340.14 B
+7 F
+0.52 0.09 (/LastIndex *) 54 323.73 B
+5 F
+0.1 (none) 168 323.73 S
+0.52 0.1 (the count of how many objects of size ) 252 323.73 B
+7 F
+0.45 -0.27 (Level) 428.15 323.73 B
+5 F
+0.52 0.1 ( pr) 448.28 323.73 B
+0.52 0.1 (ecede the last such ) 461.38 323.73 B
+0.52 0.1 (object in the selection. ) 252 311.33 B
+7 F
+0.52 0.09 (/RequestChoice *) 54 294.93 B
+5 F
+0.52 0.1 ([r) 168 294.93 B
+0.52 0.1 (equest ar) 175.3 294.93 B
+0.52 0.1 (g  ... ]) 216.67 294.93 B
+0.52 0.1 (a list of alternative r) 252 294.93 B
+0.52 0.1 (equests \050with parameters for each\051 of which ) 344.55 294.93 B
+0.52 0.1 (the holder should r) 252 282.54 B
+0.52 0.1 (espond to one.) 340.16 282.54 B
+7 F
+0.09 (/RequestSequence) 54 266.14 S
+5 F
+0.52 0.1 ([r) 168 266.14 B
+0.52 0.1 (equest ar) 175.3 266.14 B
+0.52 0.1 (g ... ]) 216.67 266.14 B
+0.52 0.1 (a list of r) 252 266.14 B
+0.52 0.1 (equests \050with parameters for each\051 which the holder ) 293.02 266.14 B
+0.52 0.1 (should r) 252 253.73 B
+0.52 0.1 (espond to in or) 290.14 253.73 B
+0.52 0.1 (der) 359.77 253.73 B
+0.52 0.1 (.) 374.17 253.73 B
+54 172 558 199 C
+198 179.49 342 179.49 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+13 F
+0 X
+0 K
+0.07 (1.) 198 167.33 S
+-0.45 0.07 (Note: No T) 205.2 167.33 B
+-0.45 0.07 (oolkit selections curr) 238.75 167.33 B
+-0.45 0.07 (ently support \050or attempt to use\051 the /ReplaceContents r) 303.4 167.33 B
+-0.45 0.07 (equest. It is ) 478.13 167.33 B
+-0.45 0.07 (speci\336ed her) 205.2 159.33 B
+-0.45 0.07 (e so that clients who may choose to implement it will have a consistent pr) 244.88 159.33 B
+-0.45 0.07 (otocol. The pr) 470.69 159.33 B
+-0.45 0.07 (otocol ) 513.39 159.33 B
+-0.45 0.07 (described in the table matches that in the ICCCM.) 205.2 151.33 B
+FMENDPAGE
+%%EndPage: "179" 8
+%%Page: "180" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (180) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+7 F
+0.09 (/SelectionObjsize) 54 641.33 S
+5 F
+0.1 (none) 168 641.33 S
+0.52 0.1 (the size of the selection as measur) 252 641.33 B
+0.52 0.1 (ed in bytes. Note the lower) 407.52 641.33 B
+0.52 0.1 (-case ) 531.73 641.33 B
+0.52 0.1 (\325s\325 in \322Objsize\323. In or) 252 628.93 B
+0.52 0.1 (der to paste TNT selections into XV) 348.45 628.93 B
+0.52 0.1 (iew ) 511.07 628.93 B
+0.52 0.1 (applications you must include ) 252 616.53 B
+7 F
+0.52 0.09 (/SelectionObjsize) 393.39 616.53 B
+5 F
+0.52 0.1 ( in your ) 464.35 616.53 B
+11 F
+0.45 -0.27 (/SingleRequest) 252 604.13 B
+5 F
+0.52 0.1 ( de\336nition \050page 186\051.) 313.14 604.13 B
+7 F
+0.52 0.09 (/T) 54 587.73 B
+0.52 0.09 (ransferSelection *) 61.84 587.73 B
+5 F
+0.52 0.1 (dict[ .../Sour) 168 587.73 B
+0.52 0.1 (ce: Selection... ]) 226.51 587.73 B
+0.52 0.1 (one selection is r) 252 571.33 B
+0.52 0.1 (equested to perform a transfer between itself and ) 328.43 571.33 B
+0.52 0.1 (another; see the note at the end of the next section.) 252 558.93 B
+0.52 0.1 (Since ) 198 538.53 B
+11 F
+0.5 (/query) 224.82 538.53 P
+5 F
+0.52 0.1 ( r) 251.79 538.53 B
+0.52 0.1 (etrieves only one selection attribute at a time, the r) 258.77 538.53 B
+0.52 0.1 (equester can ) 491.22 538.53 B
+0.52 0.1 (easily contr) 198 526.13 B
+0.52 0.1 (ol the or) 250.35 526.13 B
+0.52 0.1 (der in which r) 288.74 526.13 B
+0.52 0.1 (equests ar) 353.84 526.13 B
+0.52 0.1 (e pr) 399.56 526.13 B
+0.52 0.1 (ocessed. This is not so easy ) 417.54 526.13 B
+0.52 0.1 (with ) 198 513.73 B
+11 F
+0.5 (/request) 221.84 513.73 P
+5 F
+0.52 0.1 (: The or) 256.8 513.73 B
+0.52 0.1 (der of objects in a dictionary is unde\336ned, so if ther) 292.09 513.73 B
+0.52 0.1 (e is a ) 529.16 513.73 B
+0.45 0.1 (r) 198 501.33 B
+0.45 0.1 (equir) 201.87 501.33 B
+0.45 0.1 (ed or) 225.46 501.33 B
+0.45 0.1 (der to the r) 249.03 501.33 B
+0.45 0.1 (equests, the r) 300.27 501.33 B
+0.45 0.1 (equester must take special pains. It should ) 360.63 501.33 B
+0.52 0.1 (de\336ne only one key in the r) 198 488.93 B
+0.52 0.1 (equest dictionary) 324.41 488.93 B
+0.52 0.1 (, ) 402.11 488.93 B
+7 F
+0.5 (/RequestSequence) 407.82 488.93 P
+5 F
+0.52 0.1 (, and its value ) 484.26 488.93 B
+0.52 0.1 (should be an array) 198 476.53 B
+0.52 0.1 (. The 0th, 2nd, etc. elements of the array will be taken as ) 282.87 476.53 B
+0.52 0.1 (r) 198 464.13 B
+0.52 0.1 (equests, and the following \050odd-number) 201.87 464.13 B
+0.52 0.1 (ed\051 element for each will be the ) 385.71 464.13 B
+0.52 0.1 (corr) 198 451.73 B
+0.52 0.1 (esponding parameter/value. In the dict r) 216.01 451.73 B
+0.52 0.1 (eturned by ) 403.8 451.73 B
+11 F
+0.5 (/request) 456.75 451.73 P
+5 F
+0.52 0.1 (, the value ) 491.71 451.73 B
+0.52 0.1 (associated with ) 198 439.33 B
+7 F
+0.5 (/RequestSequence) 271.38 439.33 P
+5 F
+0.52 0.1 ( will be an array in which the odd-number) 347.82 439.33 B
+0.52 0.1 (ed ) 543.35 439.33 B
+0.52 0.1 (elements ar) 198 426.93 B
+0.52 0.1 (e the values r) 250.29 426.93 B
+0.52 0.1 (eturned by the selection holder) 311.77 426.93 B
+0.52 0.1 (. ) 453.5 426.93 B
+0.52 0.1 (A similar mechanism allows the r) 198 406.54 B
+0.52 0.1 (equester and holder to negotiate over the ) 351.92 406.54 B
+0.52 0.1 (form of r) 198 394.14 B
+0.52 0.1 (esponse. The r) 239.05 394.14 B
+0.52 0.1 (equester uses the key ) 304.81 394.14 B
+7 F
+0.5 (/RequestChoice) 405.57 394.14 P
+5 F
+0.52 0.1 (, which is de\336ned ) 469.5 394.14 B
+0.19 0.1 (to an array similar to the one used with ) 198 381.73 B
+7 F
+0.18 (/RequestSequence) 380.09 381.73 P
+5 F
+0.19 0.1 (. In this case, the keys ) 456.53 381.73 B
+0.52 0.1 (in the even-number) 198 369.33 B
+0.52 0.1 (ed positions of the array ar) 287.54 369.33 B
+0.52 0.1 (e included in the or) 411.47 369.33 B
+0.52 0.1 (der of the ) 501.24 369.33 B
+0.52 0.1 (r) 198 356.93 B
+0.52 0.1 (equester) 201.87 356.93 B
+0.52 0.1 (\325s pr) 240.84 356.93 B
+0.52 0.1 (efer) 261.14 356.93 B
+0.52 0.1 (ence. The holder may then choose any of the r) 278.22 356.93 B
+0.52 0.1 (equests in the ) 490 356.93 B
+-0.02 0.1 (RequestChoice to r) 198 344.54 B
+-0.02 0.1 (espond to; the key ) 283.11 344.54 B
+7 F
+-0.01 (/RequestChoice) 368.33 344.54 P
+5 F
+-0.02 0.1 ( is r) 432.27 344.54 B
+-0.02 0.1 (ede\336ned to a new array ) 448.65 344.54 B
+0.39 0.1 (containing the single key r) 198 332.14 B
+0.39 0.1 (esponded to and its corr) 318.96 332.14 B
+0.39 0.1 (esponding value. If none of ) 429.86 332.14 B
+0.52 0.1 (the choices is acceptable, the array should be r) 198 319.73 B
+0.52 0.1 (eplaced by ) 410.62 319.73 B
+7 F
+0.5 (/UnknownRequest) 462.87 319.73 P
+5 F
+0.52 0.1 (. \050If ) 536.3 319.73 B
+0.52 0.1 (one of the choices in the ) 198 307.33 B
+7 F
+0.45 -0.27 (/RequestChoice) 312.09 307.33 B
+5 F
+0.52 0.1 ( array is in turn a ) 372.24 307.33 B
+7 F
+0.5 (/RequestSequence) 455.72 307.33 P
+5 F
+0.52 0.1 (, it is ) 532.16 307.33 B
+0.52 0.1 (deemed r) 198 294.93 B
+0.52 0.1 (esponded to only if all the r) 240.99 294.93 B
+0.52 0.1 (equests in the sequence ar) 368.44 294.93 B
+0.52 0.1 (e acceptable.\051 ) 487.87 294.93 B
+54 268.86 558 285.2 C
+558 282.18 198 282.18 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+3 F
+(Note \320 ) 198 272.03 T
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.49 0.1 (Like ) 231.84 272.19 B
+7 F
+0.47 (/ReplaceContents) 254.68 272.19 P
+5 F
+0.49 0.1 (, the ) 326.11 272.19 B
+7 F
+0.47 (/RequestChoice) 349.04 272.19 P
+5 F
+0.49 0.1 ( key is not curr) 412.98 272.19 B
+0.49 0.1 (ently supported ) 482.27 272.19 B
+0.26 0.1 (by the NeWS T) 198 259.79 B
+0.26 0.1 (oolkit. Individual clients may choose to implement it if they ar) 266.07 259.79 B
+0.26 0.1 (e ) 550.25 259.79 B
+54 236.07 558 244.06 C
+558 241.03 198 241.03 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (willing to r) 198 247.39 B
+0.52 0.1 (un the risk of having their code become obsolete. ) 249.16 247.39 B
+0.52 0.1 (The full details of r) 198 219 B
+0.52 0.1 (equest pr) 285.83 219 B
+0.52 0.1 (ocessing ar) 328.22 219 B
+0.52 0.1 (e described below under \322Responding ) 378.54 219 B
+0.52 0.1 (to Requests.\323 ) 198 206.6 B
+FMENDPAGE
+%%EndPage: "180" 9
+%%Page: "181" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (181) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+9 F
+-0.88 ( When and how to transfer a selection value) 126 638.67 P
+5 F
+0.52 0.1 (Clients will occasionally decide on their own initiative that they should ) 198 617.33 B
+0.52 0.1 (r) 198 604.93 B
+0.52 0.1 (etrieve a selection value; for instance, the debugger example above would ) 201.87 604.93 B
+0.52 0.1 (pr) 198 592.53 B
+0.52 0.1 (obably be trigger) 207.98 592.53 B
+0.52 0.1 (ed by invocation of a \322Br) 285.78 592.53 B
+0.52 0.1 (eakpoint\323 panel button or menu ) 400.71 592.53 B
+0.43 0.1 (command. But most of the time, global user interface code will determine that ) 198 580.13 B
+0.52 0.1 (a selection transfer is called for) 198 567.73 B
+0.52 0.1 (. If a client can accept input fr) 339.69 567.73 B
+0.52 0.1 (om the user ) 476.72 567.73 B
+0.52 0.1 (\050keystr) 198 555.33 B
+0.52 0.1 (okes or mouse drawings, for instance\051, then it should generally also be ) 229.19 555.33 B
+0.52 0.1 (r) 198 542.93 B
+0.52 0.1 (eady to accept the contents of a selection. Whenever the UI code determines ) 201.87 542.93 B
+0.52 0.1 (this is appr) 198 530.53 B
+0.52 0.1 (opriate, it will send an event to the destination of the transfer) 249.38 530.53 B
+0.52 0.1 (. ) 530.59 530.53 B
+0.52 0.1 (In or) 198 510.13 B
+0.52 0.1 (der for your canvas to r) 219.93 510.13 B
+0.52 0.1 (eceive these transfer events you must make it ) 328.6 510.13 B
+0.52 0.1 (Receptible. See Chapter 5, ) 198 497.73 B
+6 F
+0.52 0.1 (Drag and Dr) 319.57 497.73 B
+0.52 0.1 (op\321r) 374.28 497.73 B
+0.52 0.1 (eceptible canvases on page 71.) 397.82 497.73 B
+4 F
+-0.94 ( Making selections ) 54 464 P
+9 F
+(Cr) 126 429.67 T
+(eation) 140.52 429.67 T
+7 F
+(/new) 54 409 T
+(rank holder ) 198 409 T
+11 F
+(/new) 245.45 409 T
+7 F
+( selection) 265.43 409 T
+5 F
+0.52 0.1 (Cr) 198 389.33 B
+0.52 0.1 (eates an instance of ClassSelection.) 209.05 389.33 B
+0.23 0.1 (A selection client is a canvas that can contain a selection, or be one itself \050e.g. a ) 198 368.93 B
+0.52 0.1 (text window or a frame\051. ) 198 356.53 B
+0.52 0.1 (Selection clients will subclass two classes: ClassSelection and ClassCanvas. In ) 198 336.14 B
+0.45 0.1 (both, ther) 198 323.73 B
+0.45 0.1 (e ar) 242.13 323.73 B
+0.45 0.1 (e subclass r) 259.03 323.73 B
+0.45 0.1 (esponsibility methods that the client must implement ) 311.29 323.73 B
+0.52 0.1 (in its own subclass. If your canvas is handling text you may want to subclass ) 198 311.33 B
+0.52 0.1 (ClassT) 198 298.93 B
+0.52 0.1 (extCanvas instead of ClassCanvas.) 227.27 298.93 B
+0.52 0.1 (Below is a typical sequence of operations for a selection-client application: ) 198 278.53 B
+0.1 (1.) 197.5 258.14 S
+0.52 0.1 (Subclass ClassCanvas to be Selectable and to pr) 210.6 258.14 B
+0.52 0.1 (ovide de\336nitions of the ) 428.38 258.14 B
+0.31 0.1 (selectable subclass r) 210.6 245.73 B
+0.31 0.1 (esponsibility methods and ) 301.33 245.73 B
+11 F
+0.27 -0.27 (/SelectableT) 424.29 245.73 B
+0.27 -0.27 (ype) 472.83 245.73 B
+5 F
+0.31 0.1 ( \050see ) 487.51 245.73 B
+6 F
+0.31 0.1 (Selectables) 510.86 245.73 B
+5 F
+0.31 0.1 ( ) 555.09 245.73 B
+0.52 0.1 (on page 65 in ClassCanvas\051.) 210.6 233.34 B
+0.1 (2.) 197.5 212.93 S
+0.52 0.1 (Subclass ClassSelection to pr) 210.6 212.93 B
+0.52 0.1 (ovide subclass r) 341.74 212.93 B
+0.52 0.1 (esponsibility methods.) 414.66 212.93 B
+0.1 (3.) 197.5 192.53 S
+0.52 0.1 (Activate an instance of your subclass of ClassCanvas \050see ) 210.6 192.53 B
+6 F
+0.52 0.1 (Activation and ) 476.26 192.53 B
+0.52 0.1 (deactivation) 210.6 180.14 B
+5 F
+0.52 0.1 ( on page 46 in ClassCanvas\051. Because ) 260.83 180.14 B
+11 F
+0.5 (/Selectable?) 434.46 180.14 P
+5 F
+0.52 0.1 ( is ) 486.91 180.14 B
+7 F
+0.5 (true) 500.49 180.14 P
+5 F
+0.52 0.1 ( the ) 515.97 180.14 B
+0.52 0.1 (canvas is added to a global inter) 210.6 167.73 B
+0.52 0.1 (est managed by UI-speci\336c code.) 359 167.73 B
+FMENDPAGE
+%%EndPage: "181" 10
+%%Page: "182" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (182) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.1 (4.) 197.5 641.33 S
+0.52 0.1 (The UI code matches certain events \050which events get matched depends on ) 210.6 641.33 B
+0.29 0.1 (the particular UI\051, and decides a selection action has occurr) 210.6 628.93 B
+0.29 0.1 (ed, e.g., SELECT ) 479.93 628.93 B
+0.52 0.1 (goes down over the canvas.) 210.6 616.53 B
+0.1 (5.) 197.5 596.13 S
+0.52 0.1 (The UI code sends the ) 210.6 596.13 B
+11 F
+0.5 (/NewSelection) 315.6 596.13 P
+5 F
+0.52 0.1 ( message to the canvas. ) 376.54 596.13 B
+11 F
+0.45 -0.27 (/NewSelection) 486.67 596.13 B
+5 F
+0.52 0.1 ( ) 544.09 596.13 B
+0.52 0.1 (r) 210.6 583.73 B
+0.52 0.1 (eturns a new Selection of the appr) 214.47 583.73 B
+0.52 0.1 (opriate class \050i.e., an instance of the ) 371.02 583.73 B
+0.52 0.1 (client\325s Selection subclass cr) 210.6 571.33 B
+0.52 0.1 (eated in step 2\051. See ) 338.21 571.33 B
+11 F
+0.45 -0.27 (/NewSelection) 432.1 571.33 B
+5 F
+0.52 0.1 ( on page 67 in ) 489.52 571.33 B
+0.1 (ClassCanvas.) 210.6 558.93 S
+0.1 (6.) 197.5 538.53 S
+0.52 0.1 (The UI code then sets instance variables within that selection \050selection ) 210.6 538.53 B
+0.45 0.1 (attributes\051 to indicate what\325s going on \050multiclick level, etc.\051. See T) 210.6 526.13 B
+0.45 0.1 (able 20-2 ) 514.56 526.13 B
+0.52 0.1 (for a list of the r) 210.6 513.73 B
+0.52 0.1 (elevant instance variables. Y) 285.05 513.73 B
+0.52 0.1 (ou should r) 413.67 513.73 B
+0.52 0.1 (ealize that it is the ) 466.61 513.73 B
+0.52 0.1 (UI code that sets these variables. When the selection is deliver) 210.6 501.33 B
+0.52 0.1 (ed to your ) 495.24 501.33 B
+0.21 0.1 (canvas you can query the selection as to the value of the variables you want ) 210.6 488.93 B
+0.52 0.1 (to know about.) 210.6 476.53 B
+0.1 (7.) 197.5 456.13 S
+0.52 0.1 (Next the UI code calls mor) 210.6 456.13 B
+0.52 0.1 (e canvas subclass r) 333.13 456.13 B
+0.52 0.1 (esponsibility methods to get ) 419.39 456.13 B
+0.43 0.1 (the client to \336nish r) 210.6 443.73 B
+0.43 0.1 (esolving the operation. E.g., the ADJUST button may be ) 299.7 443.73 B
+0.52 0.1 (used to extend the selection, causing the UI code to call the ) 210.6 431.33 B
+6 F
+0.52 0.1 (canvas\325) 485.37 431.33 B
+0.52 0.1 (s) 515.68 431.33 B
+5 F
+0.52 0.1 ( ) 519.67 431.33 B
+11 F
+0.45 -0.27 (/SelectionStart) 210.6 418.93 B
+5 F
+0.52 0.1 ( method \050see ) 269.48 418.93 B
+11 F
+0.45 -0.27 (/SelectionStart) 331.23 418.93 B
+5 F
+0.52 0.1 ( on page 69 in ClassCanvas\051. ) 390.11 418.93 B
+0.1 (8.) 197.5 398.54 S
+0.52 0.1 (When the UI code decides that the user action is complete \050e.g., a mouse ) 210.6 398.54 B
+0.52 0.1 (button is r) 210.6 386.14 B
+0.52 0.1 (eleased\051, it noti\336es the canvas that the selection is complete \050see ) 257.99 386.14 B
+11 F
+0.4 -0.27 (/SelectionStop ) 210.6 373.73 B
+5 F
+0.47 0.1 (on page 70 in ClassCanvas\051 and then r) 271.88 373.73 B
+0.47 0.1 (egisters the Selection in ) 447.62 373.73 B
+0.23 0.1 (the global dictionary so that other applications can access it, via ) 210.6 361.33 B
+11 F
+0.22 (getselection) 502.86 361.33 P
+5 F
+0.23 0.1 (.) 555.3 361.33 B
+0.44 0.1 (Note that most of the selection actions ar) 198 340.93 B
+0.44 0.1 (e driven by the UI code. Clients need ) 384.81 340.93 B
+0.52 0.1 (write r) 198 328.54 B
+0.52 0.1 (elatively little code for their particular selections. In particular) 228.72 328.54 B
+0.52 0.1 (, clients ) 512.35 328.54 B
+0.52 0.1 (should ) 198 316.14 B
+6 F
+0.52 0.1 (not) 232.27 316.14 B
+5 F
+0.52 0.1 ( try to interpr) 245.89 316.14 B
+0.52 0.1 (et raw device events\321some ar) 308.42 316.14 B
+0.52 0.1 (e not r) 447.89 316.14 B
+0.52 0.1 (eadily accessible ) 477.72 316.14 B
+0.19 0.1 (to the client; most ar) 198 303.73 B
+0.19 0.1 (e subject to user) 290.7 303.73 B
+0.19 0.1 (-modi\336cation \050some left-handers swap the ) 363.4 303.73 B
+0.04 0.1 (meaning of the mouse buttons and function keys for left-handed use\051; and user ) 198 291.33 B
+0.03 0.1 (interfaces ar) 198 278.93 B
+0.03 0.1 (e subject to many changes an application will do well to ignor) 253.1 278.93 B
+0.03 0.1 (e if it ) 532.41 278.93 B
+0.52 0.1 (can. ) 198 266.53 B
+1 F
+0.47 0.09 (T) 198 246.8 B
+0.47 0.09 (able 20-2) 202.58 246.8 B
+0 F
+0.47 0.09 (Class Selection attributes used in making selections.) 241.2 246.8 B
+54 232.34 558 236.8 C
+54 234.5 558 234.5 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+54 217.87 558 222.34 C
+54 220.03 558 220.03 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+3 F
+0 X
+0 K
+0.52 0.1 (Key \050Name\051) 108 225.67 B
+0.52 0.1 (V) 210 225.67 B
+0.52 0.1 (alue T) 216.77 225.67 B
+0.52 0.1 (ype) 245.58 225.67 B
+0.52 0.1 (Interpretation ) 336 225.67 B
+7 F
+(/DeleteSource?) 108 203.81 T
+5 F
+(boolean) 210 203.81 T
+0.38 (Meaningful only if the selection is being passed to a ) 276 203.81 P
+3 F
+0.38 (/DragStart) 510.63 203.81 P
+5 F
+0.52 (or ) 275.98 191.81 P
+3 F
+0.52 (/DragAdjust) 288.4 191.81 P
+5 F
+0.52 ( canvas method, in which case the key is true if) 345.21 191.81 P
+(the operation is a Move rather than a Copy. ) 275.98 179.81 T
+7 F
+-0.27 (/T) 108 162.81 S
+-0.27 (oggleSelected?) 114.45 162.81 S
+5 F
+(boolean) 210 162.81 T
+0.22 (This key is defined only if the SelectableType of the canvas that) 276 162.81 P
+0.98 (made the selection is ) 275.98 150.81 P
+7 F
+0.98 (/Canvas) 374.23 150.81 P
+5 F
+0.98 ( or ) 407.2 150.81 P
+7 F
+0.88 -0.27 (/Graphic) 423.57 150.81 B
+5 F
+0.98 (. For ) 455.37 150.81 P
+7 F
+0.88 -0.27 (/Canvas) 479.8 150.81 B
+5 F
+0.98 ( Selectable) 510.87 150.81 P
+FMENDPAGE
+%%EndPage: "182" 11
+%%Page: "183" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (183) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+-0.5 (types, it shows a change in the previewed-state \050as distinguished) 275.98 641.33 P
+-0.47 (from the true state\051 of the selection. E.g., Adjust-down on an icon) 275.98 629.33 P
+0.77 ([de]- hilites it immediately, and then toggles its hiliting as you) 275.98 617.33 P
+(slide off and on the icon. ) 275.98 605.33 T
+1.13 (In /Graphic selections, it is set from ) 276 588.33 P
+11 F
+1 -0.27 (/SelectionStart) 444.85 588.33 B
+5 F
+1.13 ( \050page 69 in) 503.73 588.33 P
+1.24 (ClassCanvas\051 through ) 275.98 576.33 P
+11 F
+1.11 -0.27 (/SelectionStop) 378.92 576.33 B
+5 F
+1.24 ( \050page 70 in ClassCanvas\051.) 437.56 576.33 P
+-0.62 (Its interpretation depends on the form of the adjustment, indicat-) 275.98 564.33 P
+(ed by the Pin value at SelectionStart time:) 275.98 552.33 T
+7 F
+-0.27 (/Pin) 275.98 535.33 S
+5 F
+(=) 290.38 535.33 T
+7 F
+-0.27 (/NoPin) 296.44 535.33 S
+5 F
+0.21 (The object under the cursor is being toggled.) 360 535.33 P
+0.82 (If the client is doing any previewing on ) 360 523.33 P
+11 F
+0.74 -0.27 (/Se-) 542.6 523.33 B
+2.28 -0.27 (lectionAdjust) 360 511.33 B
+5 F
+2.55 ( \050page 69 in ClassCanvas\051, the) 413.42 511.33 P
+0.84 (last object toggled must be cached so that it) 360 499.33 P
+(may be restored.) 360 487.33 T
+7 F
+-0.27 (/Pin) 275.98 470.33 S
+5 F
+(=) 290.38 470.33 T
+7 F
+-0.27 (/AtPoint) 296.44 470.33 S
+5 F
+-0.35 (There is no object under the cursor. A bound-) 360 470.33 P
+0.82 (ing box should be started, and all selectable) 360 458.33 P
+-0.05 (objects enclosed by it at ) 360 446.33 P
+11 F
+-0.04 -0.27 (/SelectionStop) 466.35 446.33 B
+5 F
+-0.05 ( should) 524.99 446.33 P
+(be toggled.) 360 434.33 T
+7 F
+-0.27 (/Holder) 126 417.33 S
+5 F
+(any) 216 417.33 T
+(Determines who is the selection client.) 276 417.33 T
+7 F
+-0.27 (/InsertionPoint) 126 400.33 S
+5 F
+(name) 216 400.33 T
+-0.62 (Tells the client the selection\325s insertion point if some value is cop-) 276 400.33 P
+-0.32 (ied to the selection. In particular, if this is a primary selection the) 275.98 388.33 P
+(canvas should change its input focus location. name is one of: ) 275.98 376.33 T
+7 F
+-0.27 (/LowEnd) 275.98 359.33 S
+5 F
+(The low end of the existing selection \050first\051) 360 359.33 T
+7 F
+-0.27 (/HighEnd) 275.98 342.33 S
+5 F
+(the high end of the existing selection \050last\051) 360 342.33 T
+7 F
+-0.27 (/NearEnd) 275.98 325.33 S
+5 F
+1.33 (whichever of first/last is closest to the cur-) 360 325.33 P
+(rent point) 360 313.33 T
+7 F
+-0.27 (/FarEnd) 275.98 296.33 S
+5 F
+1.89 (whichever of first/last is furthest from the) 360 296.33 P
+(current point) 360 284.33 T
+7 F
+-0.27 (/AtPoint) 275.98 267.34 S
+5 F
+(the cursor position \050current\051) 360 267.34 T
+7 F
+-0.27 (/Level) 126 250.34 S
+5 F
+(int) 216 250.34 T
+0.58 (The \322size\323 of objects to be selected. For instance, in text, 1 may) 276 250.34 P
+-0.12 (indicate a character, 2 a word, 3 a line or sentence, etc. Essential-) 275.98 238.34 P
+(ly, for OPEN LOOK, ) 275.98 226.34 T
+7 F
+(/Level) 369.55 226.34 T
+5 F
+( is a multi-click count.) 393.52 226.34 T
+7 F
+-0.27 (/PendingDelete?) 126 209.34 S
+5 F
+(boolean) 216 209.34 T
+-0.27 (true if the selection should be replaced by the next user input ac-) 276 209.34 P
+(tion \050always, for primary selections in OPEN LOOK\051. ) 275.98 197.34 T
+7 F
+-0.27 (/Pin) 126 180.34 S
+5 F
+(any) 216 180.34 T
+-0.14 (Tells the client where to \322anchor\323 the selection during an ) 276 180.34 P
+11 F
+-0.14 (/Selec-) 529.02 180.34 P
+-0.2 (tionAdjust) 275.98 168.34 P
+5 F
+-0.2 ( operation. The pin can be a name, in which case it can) 320.41 168.34 P
+2.22 (be evaluated using ) 275.98 156.34 P
+11 F
+2.22 (/ComputeNamedPosition) 368.51 156.34 P
+5 F
+2.22 ( \050described below) 475.37 156.34 P
+FMENDPAGE
+%%EndPage: "183" 12
+%%Page: "184" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (184) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.74 (under \322Utilities\323\051, or it may be an arbitrary value \050typically an) 275.98 641.33 P
+0.16 (int\051 representing a previously computed anchor point. The pos-) 275.98 629.33 P
+(sible names are:) 275.98 617.33 T
+7 F
+-0.27 (/LowEnd) 275.98 600.33 S
+5 F
+(The low end of the existing selection \050first\051) 360 600.33 T
+7 F
+-0.27 (/HighEnd) 275.98 583.33 S
+5 F
+(The high end of the existing selection \050last\051) 360 583.33 T
+7 F
+-0.27 (/NearEnd) 275.98 566.33 S
+5 F
+1.09 (Whichever of first/last is closest to the cur-) 360 566.33 P
+(rent point) 360 554.33 T
+7 F
+-0.27 (/FarEnd) 275.98 537.33 S
+5 F
+1.62 (Whichever of first/last is furthest from the) 360 537.33 P
+(current point) 360 525.33 T
+7 F
+-0.27 (/AtPoint) 275.98 508.33 S
+5 F
+(The cursor position \050current\051) 360 508.33 T
+7 F
+-0.27 (/NoPin) 275.98 491.33 S
+5 F
+0.28 (No pin. One use for ) 360 491.33 P
+7 F
+0.25 -0.27 (/NoPin) 451.14 491.33 B
+5 F
+0.28 ( is toggling the se-) 476.49 491.33 P
+(lected state of the object under the cursor.) 360 479.33 T
+7 F
+-0.27 (/Rank) 126 462.33 S
+5 F
+(any) 216 462.33 T
+0.8 (Most selections have ) 276 462.33 P
+7 F
+0.8 (Rank eq /PrimarySelection) 372.38 462.33 P
+5 F
+0.8 (. Selections made) 480.35 462.33 P
+0.29 (while some function-keys are down have ) 275.98 450.33 P
+7 F
+0.29 (Rank eq /SecondarySe-) 462 450.33 P
+1.22 (lection) 275.98 438.33 P
+5 F
+1.22 (. \050These get reflected differently, and have special uses.\051) 301.95 438.33 P
+0.08 (The Clipboard has ) 275.98 426.33 P
+7 F
+0.08 (Rank eq /Shelf-Selection) 360.43 426.33 P
+5 F
+0.08 (. Other Ranks are pos-) 459.49 426.33 P
+(sible. ) 275.98 414.33 T
+7 F
+-0.27 (/Registered?) 126 397.33 S
+5 F
+(boolean) 216 397.33 T
+-0.45 (true if the selection has been registered in the global database via) 276 397.33 P
+11 F
+(/setselection) 275.98 385.33 T
+5 F
+(. ) 330.42 385.33 T
+7 F
+-0.27 (/SelectResult) 126 368.33 S
+(?) 175.43 368.33 T
+5 F
+(boolean) 216 368.33 T
+0.76 (Determines whether data that has been transferred via a selec-) 276 368.33 P
+0.55 (tion operation \050e.g., Cut and Paste\051 should be selected after the) 275.98 356.33 P
+(transfer.) 275.98 344.33 T
+7 F
+-0.27 (/Style) 126 327.33 S
+5 F
+(any) 216 327.33 T
+-0.38 (The style of highlighting recommended by the UI manager. Cur-) 276 327.33 P
+0.22 (rently defined values are ) 275.98 315.33 P
+7 F
+0.22 (/Default) 389.32 315.33 P
+5 F
+0.22 (, ) 420.3 315.33 P
+7 F
+0.22 (/Invert) 425.52 315.33 P
+5 F
+0.22 (, ) 450.49 315.33 P
+7 F
+0.22 (/Outline) 455.71 315.33 P
+5 F
+0.22 (, ) 486.69 315.33 P
+7 F
+0.22 (/StrikeThru) 491.91 315.33 P
+5 F
+0.22 (, and) 535.86 315.33 P
+7 F
+-0.6 (/Underscore) 275.98 303.33 P
+5 F
+-0.61 (. Clients may ignore this value if they think it does not) 324.92 303.33 P
+-0.45 (apply to their selection type, basing their highlighting instead on) 275.98 291.33 P
+7 F
+(/Rank) 275.98 279.34 T
+5 F
+( and ) 299.45 279.34 T
+7 F
+(/PendingDelete?) 321.37 279.34 T
+5 F
+(. ) 387.81 279.34 T
+0.52 0.1 (Finally) 198 259.34 B
+0.52 0.1 (, to assist clients in corr) 228.24 259.34 B
+0.52 0.1 (ectly r) 335.81 259.34 B
+0.52 0.1 (e\337ecting changes to the selection, every ) 364.25 259.34 B
+0.12 0.1 (time the ) 198 246.93 B
+11 F
+0.11 (/SelectionAdjust) 237.77 246.93 P
+5 F
+0.12 0.1 ( message is sent, the accompanying selection will have ) 308.19 246.93 B
+0.14 0.1 (the name ) 198 234.53 B
+7 F
+0.13 (/Changed) 242.46 234.53 P
+5 F
+0.14 0.1 ( de\336ned to an array of some of the above names; each key in ) 281.42 234.53 B
+0.52 0.1 (the array has changed value since the pr) 198 222.14 B
+0.52 0.1 (evious adjustment. ) 383.2 222.14 B
+FMENDPAGE
+%%EndPage: "184" 13
+%%Page: "185" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (185) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+9 F
+-0.88 (Registering a new selection; unr) 126 638.67 P
+-0.88 (egistering an old one ) 304.05 638.67 P
+5 F
+0.39 0.1 (When the UI layer decides that a selection speci\336cation has been completed, it ) 198 617.33 B
+0.52 0.1 (sends ) 198 604.93 B
+11 F
+0.5 (/setselection) 226.8 604.93 P
+5 F
+0.52 0.1 ( to the selection; the default implementation r) 281.25 604.93 B
+0.52 0.1 (egisters the ) 490.36 604.93 B
+0.5 0.1 (instance in the global database. Clients may override ) 198 592.53 B
+11 F
+0.48 (/setselection) 442.99 592.53 P
+5 F
+0.5 0.1 ( if they need ) 497.44 592.53 B
+0.52 0.1 (to adjust state or maintain any additional information when one of their ) 198 580.13 B
+0.52 0.1 (selections becomes publicly available. Of course, it is also possible for a client ) 198 567.73 B
+0.52 0.1 (to cr) 198 555.33 B
+0.52 0.1 (eate a new selection on its own initiative and send it ) 218.44 555.33 B
+11 F
+0.5 (/setselection) 462.22 555.33 P
+5 F
+0.52 0.1 (; it will ) 516.67 555.33 B
+0.52 0.1 (get r) 198 542.93 B
+0.52 0.1 (egister) 218.89 542.93 B
+0.52 0.1 (ed just the same. ) 248.89 542.93 B
+0.52 0.1 (Just as a client may r) 198 522.53 B
+0.52 0.1 (egister a selection on its own initiative, it can unr) 293.64 522.53 B
+0.52 0.1 (egister ) 519.39 522.53 B
+0.52 0.1 (one by sending ) 198 510.13 B
+11 F
+0.5 (/unsetselection) 270.93 510.13 P
+5 F
+0.52 0.1 ( to it. A warning given above bears r) 336.36 510.13 B
+0.52 0.1 (epeating ) 505.14 510.13 B
+0.34 0.1 (her) 198 497.73 B
+0.34 0.1 (e: It often happens that a ) 212.67 497.73 B
+11 F
+0.33 (/Deselect) 328.97 497.73 P
+5 F
+0.34 0.1 ( message is generated in the client which ) 368.44 497.73 B
+0.52 0.1 (is making a new selection \050the cause of this one being Deselected\051; the ) 198 485.33 B
+0.52 0.1 (message-send in this context is in danger of communicating with the wr) 198 472.93 B
+0.52 0.1 (ong ) 528.45 472.93 B
+0.52 0.1 (client. For instance, printing data over the curr) 198 460.53 B
+0.52 0.1 (ent pr) 411.82 460.53 B
+0.52 0.1 (ocess\325s standar) 439.08 460.53 B
+0.52 0.1 (d out is ) 506.95 460.53 B
+0.52 0.1 (likely to send it over the wr) 198 448.13 B
+0.52 0.1 (ong connection. Clients must take car) 325.27 448.13 B
+0.52 0.1 (e to stor) 496.73 448.13 B
+0.52 0.1 (e ) 533.9 448.13 B
+0.06 0.1 (some access back to their generating client in selections they cr) 198 435.73 B
+0.06 0.1 (eate, so they can ) 481.26 435.73 B
+0.52 0.1 (communicate with it r) 198 423.33 B
+0.52 0.1 (eliably when that selection r) 299.18 423.33 B
+0.52 0.1 (eceives a message while ) 428.2 423.33 B
+0.05 0.1 (r) 198 410.93 B
+0.05 0.1 (unning in another pr) 201.97 410.93 B
+0.05 0.1 (ocess. Other messages that may be sent to a selection face ) 296.13 410.93 B
+0.52 0.1 (analogous dangers: ) 198 398.54 B
+11 F
+0.5 (/SingleRequest) 289.34 398.54 P
+5 F
+0.52 0.1 ( and ) 354.27 398.54 B
+11 F
+0.5 (/destroy) 377.72 398.54 P
+5 F
+0.52 0.1 ( in particular ar) 412.68 398.54 B
+0.52 0.1 (e liable to be ) 484.36 398.54 B
+0.52 0.1 (sent to a selection while r) 198 386.14 B
+0.52 0.1 (unning in some pr) 314.83 386.14 B
+0.52 0.1 (ocess other than the selection\325s ) 399.33 386.14 B
+0.52 0.1 (Holder) 198 373.73 B
+0.52 0.1 (\325s client. Equivalent car) 230.86 373.73 B
+0.52 0.1 (e is r) 337.3 373.73 B
+0.52 0.1 (equir) 359.64 373.73 B
+0.52 0.1 (ed in these cases to r) 383.23 373.73 B
+0.52 0.1 (espond in the ) 478.2 373.73 B
+0.52 0.1 (pr) 198 361.33 B
+0.52 0.1 (oper context. ) 207.98 361.33 B
+7 F
+(/Deselect ) 54 341.6 T
+(- ) 198 341.6 T
+11 F
+(/Deselect) 203.49 341.6 T
+7 F
+( -) 242.96 341.6 T
+5 F
+0.52 0.1 (When a new selection is r) 198 321.93 B
+0.52 0.1 (egister) 315.45 321.93 B
+0.52 0.1 (ed, any old selection alr) 345.46 321.93 B
+0.52 0.1 (eady r) 454.54 321.93 B
+0.52 0.1 (egister) 483.37 321.93 B
+0.52 0.1 (ed under ) 513.38 321.93 B
+0.47 0.1 (that rank is sent a ) 198 309.54 B
+11 F
+0.45 (/Deselect) 282.71 309.54 P
+5 F
+0.47 0.1 ( message. ) 322.17 309.54 B
+11 F
+0.45 (/Deselect) 369.03 309.54 P
+5 F
+0.47 0.1 ( is a strict subclassr) 408.49 309.54 B
+0.47 0.1 (esponsibility ) 497.12 309.54 B
+0.07 0.1 (method: ther) 198 297.14 B
+0.07 0.1 (e is no implementation in ClassSelection. The subclasser) 256.15 297.14 B
+0.07 0.1 (\325s method ) 510.6 297.14 B
+0.52 0.1 (should at least dehighlight the selection; most selections will also destr) 198 284.73 B
+0.52 0.1 (oy ) 522.41 284.73 B
+0.52 0.1 (themselves. However) 198 272.34 B
+0.52 0.1 (, a deselected selection might be r) 295.25 272.34 B
+0.52 0.1 (etained, for instance to ) 449.6 272.34 B
+0.52 0.1 (support r) 198 259.93 B
+0.52 0.1 (estoring the selection in an Undo operation. ) 240.63 259.93 B
+4 F
+-0.94 (Responding to selection r) 54 226.2 P
+-0.94 (equests ) 203.28 226.2 P
+5 F
+0.52 0.1 (Selections r) 198 204.53 B
+0.52 0.1 (espond to r) 249.83 204.53 B
+0.52 0.1 (equests thr) 301.86 204.53 B
+0.52 0.1 (ough either of two methods, ) 351.76 204.53 B
+11 F
+0.45 -0.27 (/request) 484.83 204.53 B
+5 F
+0.52 0.1 ( or ) 517.63 204.53 B
+11 F
+0.45 -0.27 (/SingleRequest) 198 192.14 B
+5 F
+0.52 0.1 (, and you must override ride ) 259.14 192.14 B
+6 F
+0.52 0.1 (at least one) 394.3 192.14 B
+5 F
+0.52 0.1 ( of them. Because the ) 441.51 192.14 B
+0.52 0.1 (default implementation of ) 198 179.74 B
+11 F
+0.45 -0.27 (/request) 320.41 179.74 B
+5 F
+0.52 0.1 ( is de\336ned using ) 353.21 179.74 B
+11 F
+0.45 -0.27 (/SingleRequest) 432.33 179.74 B
+5 F
+0.52 0.1 (, most ) 493.48 179.74 B
+0.52 0.1 (subclassers of ClassSelection can simply de\336ne ) 198 167.34 B
+11 F
+0.45 -0.27 (/SingleRequest) 415.49 167.34 B
+5 F
+0.52 0.1 ( to meet their ) 476.64 167.34 B
+0.1 (needs.) 198 154.94 S
+FMENDPAGE
+%%EndPage: "185" 14
+%%Page: "186" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (186) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (In this section only ) 198 641.33 B
+11 F
+0.45 -0.27 (/SingleRequest) 288.22 641.33 B
+5 F
+0.52 0.1 ( is discussed. For information on ) 349.36 641.33 B
+11 F
+0.45 -0.27 (/request) 502.56 641.33 B
+5 F
+0.52 0.1 ( see ) 535.36 641.33 B
+0.52 0.1 (page 177.) 198 628.93 B
+7 F
+(/SingleRequest) 54 609.2 T
+(oldvalue request-key ) 198 609.2 T
+11 F
+(/SingleRequest) 283.42 609.2 T
+7 F
+( newvalue) 348.34 609.2 T
+5 F
+0.52 0.1 (The key passed to a selection\325s ) 198 589.53 B
+11 F
+0.5 (/SingleRequest) 341.64 589.53 P
+5 F
+0.52 0.1 ( method identi\336es the natur) 406.57 589.53 B
+0.52 0.1 (e of ) 534.17 589.53 B
+0.06 0.1 (the r) 198 577.13 B
+0.06 0.1 (equest. Most keys r) 218.69 577.13 B
+0.06 0.1 (epr) 305.76 577.13 B
+0.06 0.1 (esent r) 320.63 577.13 B
+0.06 0.1 (equests for the selection to r) 350.54 577.13 B
+0.06 0.1 (ender its value in ) 476.93 577.13 B
+0.43 0.1 (a named format \050see T) 198 564.73 B
+0.43 0.1 (able 20-1\051. For these r) 299.51 564.73 B
+0.43 0.1 (equests, the value curr) 397.52 564.73 B
+0.43 0.1 (ently on the ) 500.45 564.73 B
+0.19 0.1 (stack \050) 198 552.33 B
+7 F
+0.16 -0.27 (oldvalue) 227.2 552.33 B
+5 F
+0.19 0.1 (\051 is to be discar) 258.51 552.33 B
+0.19 0.1 (ded, and the client should put the r) 326.91 552.33 B
+0.19 0.1 (equested value ) 487.17 552.33 B
+0.52 0.1 (on the stack. ) 198 539.93 B
+0.1 0.1 (Certain keys r) 198 519.53 B
+0.1 0.1 (equest that the client modify the selection in some way) 261.31 519.53 B
+0.1 0.1 (. For these ) 508.65 519.53 B
+0.5 0.1 (r) 198 507.13 B
+0.5 0.1 (equests, the ) 201.87 507.13 B
+7 F
+0.48 (oldvalue) 258.46 507.13 P
+5 F
+0.5 0.1 ( on the stack contains ar) 291.93 507.13 B
+0.5 0.1 (guments, if any) 402.73 507.13 B
+0.5 0.1 (, to be used in the ) 472.74 507.13 B
+0.52 0.1 (operation. Even if no ar) 198 494.73 B
+0.52 0.1 (guments ar) 306.24 494.73 B
+0.52 0.1 (e needed, the ) 357.53 494.73 B
+11 F
+0.5 (/SingleRequest) 421.53 494.73 P
+5 F
+0.52 0.1 ( method must ) 486.45 494.73 B
+0.48 0.1 (be sur) 198 482.33 B
+0.48 0.1 (e to r) 225.93 482.33 B
+0.48 0.1 (emove the value fr) 249.76 482.33 B
+0.48 0.1 (om the stack; likewise, even if ther) 335.33 482.33 B
+0.48 0.1 (e is no r) 493.77 482.33 B
+0.48 0.1 (eturn ) 530.58 482.33 B
+0.52 0.1 (value, ) 198 469.93 B
+11 F
+0.5 (/SingleRequest) 228.58 469.93 P
+5 F
+0.52 0.1 ( must stor) 293.51 469.93 B
+0.52 0.1 (e something \050typically \325null\325\051 on the stack. This ) 339.61 469.93 B
+0.52 0.1 (ensur) 198 457.53 B
+0.52 0.1 (es a uniform interface to ) 223.14 457.53 B
+11 F
+0.5 (/SingleRequest) 338.14 457.53 P
+5 F
+0.52 0.1 (. \050If neither the ) 403.07 457.53 B
+7 F
+0.5 (oldvalue) 474.65 457.53 P
+5 F
+0.52 0.1 ( nor the ) 508.12 457.53 B
+7 F
+0.5 (newvalue) 198 445.13 P
+5 F
+0.52 0.1 ( is meaningful, the ) 235.96 445.13 B
+7 F
+0.5 (oldvalue) 324.51 445.13 P
+5 F
+0.52 0.1 ( can simply be left on the stack as the ) 357.98 445.13 B
+0.52 0.1 (r) 198 432.73 B
+0.52 0.1 (eturned value. See the ) 201.87 432.73 B
+7 F
+0.5 (/DeleteContents) 306.52 432.73 P
+5 F
+0.52 0.1 ( case in the example below) 370.96 432.73 B
+0.52 0.1 (.\051 ) 493.26 432.73 B
+54 406.66 558 423 C
+558 419.98 198 419.98 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+3 F
+(Note \320 ) 198 409.83 T
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (In or) 231.84 409.99 B
+0.52 0.1 (der to paste TNT selections into XV) 253.77 409.99 B
+0.52 0.1 (iew applications you ) 416.39 409.99 B
+6 F
+0.52 0.1 (must) 514.55 409.99 B
+5 F
+0.52 0.1 ( ) 535.5 409.99 B
+0.52 0.1 (de\336ne ) 198 397.59 B
+7 F
+0.45 -0.27 (/SelectionObjsize) 229.16 397.59 B
+5 F
+0.52 0.1 ( in your ) 294 397.59 B
+11 F
+0.45 -0.27 (/SingleRequest) 333.67 397.59 B
+5 F
+0.52 0.1 ( override. See T) 394.81 397.59 B
+0.52 0.1 (able 20-1 on page ) 465.58 397.59 B
+54 373.86 558 381.86 C
+558 378.83 198 378.83 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (178 for a de\336nition of ) 198 385.19 B
+7 F
+0.45 -0.27 (/SelectionObjsize) 300 385.19 B
+5 F
+0.52 0.1 (.) 364.84 385.19 B
+0.52 0.1 (For any r) 198 356.8 B
+0.52 0.1 (equest \050value or action\051, the client may choose not to support the ) 240.04 356.8 B
+0.52 0.1 (r) 198 344.4 B
+0.52 0.1 (equested key) 201.87 344.4 B
+0.52 0.1 (. If so, ) 260.47 344.4 B
+11 F
+0.5 (/SingleRequest) 291.81 344.4 P
+5 F
+0.52 0.1 ( should pop ) 356.73 344.4 B
+7 F
+0.45 -0.27 (oldvalue) 415.01 344.4 B
+5 F
+0.52 0.1 ( and r) 446.32 344.4 B
+0.52 0.1 (eturn ) 473.65 344.4 B
+7 F
+0.5 (/UnknownRequest) 198 332 P
+5 F
+0.52 0.1 (. ) 271.43 332 B
+0.52 0.1 (A typical ) 198 311.6 B
+11 F
+0.5 (/SingleRequest) 242.88 311.6 P
+5 F
+0.52 0.1 ( method might look like: ) 307.81 311.6 B
+7 F
+(/SingleRequest { % oldvalue request-key => newvalue ) 216 297.87 T
+({) 252 284.87 T
+(/ContentsAscii) 270 284.87 T
+({pop Rank <get value> Holder send} ) 360 284.87 T
+(/SelectionObjsize) 270 271.87 T
+({pop Rank <get value> Holder send length} ) 360 271.87 T
+(/Level) 270 258.87 T
+({pop Level} ) 360 258.87 T
+(/Canvas) 270 245.87 T
+({pop Holder} ) 360 245.87 T
+(/DeleteContents) 270 232.87 T
+({Rank /DeleteSel Holder send} % leave junkval) 360 232.87 T
+(/Default) 270 219.87 T
+({pop /UnknownRequest} ) 360 219.87 T
+(} case ) 252 206.87 T
+(} def ) 252 193.87 T
+FMENDPAGE
+%%EndPage: "186" 15
+6 10 /Times-Roman FMDEFINEFONT
+%%Page: "187" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (187) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (Note that ) 198 641.33 B
+11 F
+0.5 (/SingleRequest) 244.17 641.33 P
+5 F
+0.52 0.1 ( need not support ) 309.1 641.33 B
+7 F
+0.5 (/RequestSequence) 393.94 641.33 P
+5 F
+0.52 0.1 ( or ) 470.38 641.33 B
+7 F
+0.5 (/RequestChoice) 486.22 641.33 P
+5 F
+0.52 0.1 (. ) 550.16 641.33 B
+0.52 0.1 (Since clients making such r) 198 628.93 B
+0.52 0.1 (equests must always go thr) 322.27 628.93 B
+0.52 0.1 (ough the ) 447.11 628.93 B
+11 F
+0.5 (/request) 490.77 628.93 P
+5 F
+0.52 0.1 ( ) 525.73 628.93 B
+0.27 0.1 (method \050rather than ) 198 616.53 B
+11 F
+0.26 (/query) 292.52 616.53 P
+5 F
+0.27 0.1 (\051, it is left to the ) 319.49 616.53 B
+11 F
+0.26 (/request) 394.19 616.53 P
+5 F
+0.27 0.1 ( method to handle br) 429.15 616.53 B
+0.27 0.1 (eaking ) 524.91 616.53 B
+0.52 0.1 (up the ) 198 604.13 B
+7 F
+0.5 (/RequestSequence) 230.63 604.13 P
+5 F
+0.52 0.1 ( or ) 307.07 604.13 B
+7 F
+0.5 (/RequestChoice) 322.91 604.13 P
+5 F
+0.52 0.1 ( into a series of calls to ) 386.85 604.13 B
+11 F
+0.5 (/SingleRequest) 198 591.73 P
+5 F
+0.52 0.1 (. ) 262.92 591.73 B
+4 F
+-0.94 ( Utilities) 54 558 P
+9 F
+-0.88 (Utility selection class) 126 523.67 P
+5 F
+0.52 0.1 (The NeWS T) 198 502.33 B
+0.52 0.1 (oolkit de\336nes a subclass of particular inter) 255.31 502.33 B
+0.52 0.1 (est to clients and/or ) 449.51 502.33 B
+0.52 0.1 (implementors of selections. The subclasses is StringSelection.) 198 489.93 B
+0.52 0.1 (A StringSelection only knows how to r) 198 469.53 B
+0.52 0.1 (ender itself as ContentsAscii. ) 375.16 469.53 B
+0.24 0.1 (StringSelection\325s value never changes; it r) 198 457.13 B
+0.24 0.1 (esponds to queries by looking up the ) 386.81 457.13 B
+0.52 0.1 (queried keys in a constant dict. This is to make it easy for clients to wrap a ) 198 444.73 B
+0.52 0.1 (string inside a selection pr) 198 432.33 B
+0.52 0.1 (eparatory to handing it to a canvas via a ) 318.73 432.33 B
+7 F
+0.5 (/TransferSelection) 198 419.93 P
+5 F
+0.52 0.1 ( r) 270.92 419.93 B
+0.52 0.1 (equest. \050See ) 277.91 419.93 B
+11 F
+0.5 (/sendtocanvas) 334.59 419.93 P
+5 F
+0.52 0.1 ( on page 188.\051 A StringSelection is ) 397.02 419.93 B
+0.52 0.1 (intended to be cr) 198 407.53 B
+0.52 0.1 (eated dir) 275.58 407.53 B
+0.52 0.1 (ectly via ) 316.21 407.53 B
+3 F
+0.52 0.1 (/new) 357.75 407.53 B
+5 F
+0.52 0.1 ( instead of via the ) 380.54 407.53 B
+11 F
+0.5 (/NewSelection) 465.94 407.53 P
+5 F
+0.52 0.1 ( ) 526.88 407.53 B
+0.52 0.1 (method, and thus does not expect rank/holder ar) 198 395.13 B
+0.52 0.1 (guments; its ) 424.55 395.13 B
+11 F
+0.5 (/new) 483.3 395.13 P
+5 F
+0.52 0.1 ( method ) 503.28 395.13 B
+0.52 0.1 (takes just a string. ) 198 382.73 B
+9 F
+-0.88 (Utility methods) 126 349.67 P
+7 F
+(/ComputeNam) 54 329 T
+(edPosition) 111.93 329 T
+(first last current position-name ) 198 329 T
+11 F
+(/ComputeNamedPosition) 320.87 329 T
+7 F
+( position ) 427.73 329 T
+0.5 (first) 198 309.33 P
+5 F
+0.52 0.1 (, ) 212.48 309.33 B
+7 F
+0.5 (last) 218.2 309.33 P
+5 F
+0.52 0.1 (, ) 232.18 309.33 B
+7 F
+0.5 (current) 237.9 309.33 P
+5 F
+0.52 0.1 (, and ) 265.87 309.33 B
+7 F
+0.5 (position) 291.92 309.33 P
+5 F
+0.52 0.1 ( ar) 322.89 309.33 B
+0.52 0.1 (e numeric values r) 334.98 309.33 B
+0.52 0.1 (eferring to the location of a ) 419.74 309.33 B
+0.23 0.1 (selection \050in the client\325s interpr) 198 296.93 B
+0.23 0.1 (etation\051; ) 338.46 296.93 B
+7 F
+0.22 (first/last) 378.49 296.93 P
+5 F
+0.23 0.1 ( ar) 409.46 296.93 B
+0.23 0.1 (e the endpoints of an existing ) 421.25 296.93 B
+0.52 0.1 (selection, while ) 198 284.54 B
+7 F
+0.5 (current) 271.59 284.54 P
+5 F
+0.52 0.1 ( is typically the position corr) 299.56 284.54 B
+0.52 0.1 (esponding to the ) 430.96 284.54 B
+0.51 0.1 (coor) 198 272.14 B
+0.51 0.1 (dinates of a r) 217.52 272.14 B
+0.51 0.1 (ecent event. p) 277.62 272.14 B
+7 F
+0.5 (osition-name) 340.93 272.14 P
+5 F
+0.51 0.1 ( is one of the values de\336ned for the ) 392.38 272.14 B
+7 F
+0.5 (Pin) 198 259.73 P
+5 F
+0.52 0.1 ( in a Selection, and is interpr) 210.99 259.73 B
+0.52 0.1 (eted as follows: ) 342.58 259.73 B
+7 F
+(/LowEnd) 216 242.34 T
+6 F
+(the low end of the existing selection \050) 294 242.34 T
+7 F
+(first) 444.18 242.34 T
+6 F
+(\051 ) 458.66 242.34 T
+7 F
+(/HighEnd) 216 225.34 T
+6 F
+(the high end of the existing selection \050) 294 225.34 T
+7 F
+(last) 446.96 225.34 T
+6 F
+(\051 ) 460.94 225.34 T
+7 F
+(/NearEnd) 216 208.34 T
+6 F
+(whichever of ) 294 208.34 T
+7 F
+(first/last) 348.95 208.34 T
+6 F
+( is closer to ) 379.91 208.34 T
+7 F
+(current) 428.21 208.34 T
+6 F
+( ) 456.18 208.34 T
+7 F
+(/FarEnd) 216 191.34 T
+6 F
+(whichever of ) 294 191.34 T
+7 F
+(first/last) 348.95 191.34 T
+6 F
+( is further from ) 379.91 191.34 T
+7 F
+(current) 443.2 191.34 T
+6 F
+( ) 471.17 191.34 T
+7 F
+(/AtPoint) 216 174.34 T
+6 F
+(the cursor position \050) 294 174.34 T
+7 F
+(current) 374.23 174.34 T
+6 F
+(\051 ) 402.2 174.34 T
+FMENDPAGE
+%%EndPage: "187" 16
+%%Page: "188" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (188) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (This is used for interpr) 198 641.33 B
+0.52 0.1 (eting the Pin to establish one endpoint in pr) 303.09 641.33 B
+0.52 0.1 (eparation ) 504.8 641.33 B
+0.52 0.1 (for subsequent ) 198 628.93 B
+11 F
+0.45 -0.27 (/SelectionAdjust) 268.57 628.93 B
+5 F
+0.52 0.1 ( messages. ) 334.67 628.93 B
+7 F
+(/computepin) 54 609.2 T
+(first last current ) 198 609.2 T
+11 F
+(/computepin) 261.93 609.2 T
+7 F
+( pin-point ) 315.36 609.2 T
+5 F
+0.52 0.1 (If the Selection\325s ) 198 589.53 B
+7 F
+0.5 (Pin) 276.14 589.53 P
+5 F
+0.52 0.1 ( is a name, ) 289.12 589.53 B
+11 F
+0.5 (/computepin) 341.46 589.53 P
+5 F
+0.52 0.1 ( calls) 394.89 589.53 B
+3 F
+0.52 0.1 ( ) 418 589.53 B
+11 F
+0.5 (/ComputeNamedPosition) 421.12 589.53 P
+5 F
+0.52 0.1 ( and ) 527.98 589.53 B
+0.52 0.1 (stor) 198 577.13 B
+0.52 0.1 (es the r) 215.12 577.13 B
+0.52 0.1 (esult as the new value of ) 248.61 577.13 B
+7 F
+0.5 (Pin) 365.73 577.13 P
+5 F
+0.52 0.1 (. Otherwise the thr) 378.71 577.13 B
+0.52 0.1 (ee input values ar) 464.81 577.13 B
+0.52 0.1 (e ) 546.62 577.13 B
+0.44 0.1 (discar) 198 564.73 B
+0.44 0.1 (ded and the pr) 225.05 564.73 B
+0.44 0.1 (eviously computed ) 292.82 564.73 B
+7 F
+0.42 (Pin) 382.93 564.73 P
+5 F
+0.44 0.1 ( value is r) 395.92 564.73 B
+0.44 0.1 (eturned unchanged. This ) 441.11 564.73 B
+-0.02 0.1 (should be done on every ) 198 552.33 B
+11 F
+-0.02 (/SelectionStart) 311.82 552.33 P
+5 F
+-0.02 0.1 ( or ) 374.75 552.33 B
+11 F
+-0.02 (/SelectionAdjust) 389.51 552.33 P
+5 F
+-0.02 0.1 (; the UI manager will ) 459.92 552.33 B
+0.52 0.1 (override ) 198 539.93 B
+7 F
+0.5 (Pin) 239.51 539.93 P
+5 F
+0.52 0.1 ( again if the anchor is to change. ) 252.49 539.93 B
+7 F
+(/computerange) 54 520.2 T
+(first last) 198 520.2 T
+11 F
+( ) 228.96 520.2 T
+7 F
+(current ) 231.46 520.2 T
+11 F
+(/computerange) 261.93 520.2 T
+7 F
+( newfirst newlast ) 326.35 520.2 T
+5 F
+0.52 0.1 (Same as ) 198 500.53 B
+11 F
+0.5 (/computepin) 237.93 500.53 P
+5 F
+0.52 0.1 (, but it r) 291.36 500.53 B
+0.52 0.1 (eturns the pinned position and the curr) 328.66 500.53 B
+0.52 0.1 (ent ) 509.06 500.53 B
+0.52 0.1 (position, in sorted or) 198 488.13 B
+0.52 0.1 (der) 293.55 488.13 B
+0.52 0.1 (. ) 307.95 488.13 B
+7 F
+(/CanRenderAs) 54 467.73 T
+(- ) 198 467.73 T
+11 F
+(/CanRenderAs) 203.49 467.73 T
+7 F
+( dictionary) 265.42 467.73 T
+5 F
+( \050Variable\051) 306.37 467.73 T
+0.52 0.1 (Determines which data-r) 198 447.73 B
+0.52 0.1 (endering r) 311.2 447.73 B
+0.52 0.1 (equest keys, e.g., ) 358.71 447.73 B
+7 F
+0.45 -0.27 (/ContentsAscii) 438.84 447.73 B
+5 F
+0.52 0.1 ( \050see T) 492.5 447.73 B
+0.52 0.1 (able 20-) 521.58 447.73 B
+0.52 0.1 (1 for a list of the keys\051 a selection r) 198 435.33 B
+0.52 0.1 (esponds to; the dictionary should not ) 358.58 435.33 B
+-0.06 0.1 (contain any of the action-generating keys \050e.g., ) 198 422.93 B
+7 F
+-0.05 -0.27 (/DeleteContents) 410.64 422.93 B
+5 F
+-0.06 0.1 (\051. The dictionary is ) 471.04 422.93 B
+0.52 0.1 (of the form: ) 198 410.53 B
+7 F
+0.45 -0.27 (/request-key:any) 255.06 410.53 B
+5 F
+0.52 0.1 (.) 316.06 410.53 B
+0.47 0.1 (The cut and copy operations use ) 198 390.13 B
+11 F
+0.4 -0.27 (/CanRenderAs) 349.77 390.13 B
+5 F
+0.47 0.1 ( to \336gur) 408.46 390.13 B
+0.47 0.1 (e out what data formats ) 445.31 390.13 B
+0.52 0.1 (the selection supports. The T) 198 377.73 B
+0.52 0.1 (oolkit\325s cut/copy code then queries the selection ) 329.05 377.73 B
+0.52 0.1 (for each of those formats and stor) 198 365.33 B
+0.52 0.1 (es the values on the clipboar) 352.32 365.33 B
+0.52 0.1 (d.) 482.94 365.33 B
+54 339.26 558 355.6 C
+558 352.58 198 352.58 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+3 F
+(Note \320 ) 198 342.42 T
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (The list should NOT include ) 231.84 342.59 B
+7 F
+0.45 -0.27 (/Canvas) 365.61 342.59 B
+5 F
+0.52 0.1 (, even though the selection\325s ) 396.68 342.59 B
+11 F
+0.44 (/SingleRequest) 198 330.19 P
+5 F
+0.46 0.1 ( method might handle such a r) 262.92 330.19 B
+0.46 0.1 (equest. This is because copying a ) 403.9 330.19 B
+7 F
+0.04 (/Canvas) 198 317.79 P
+5 F
+0.05 0.1 ( value to the ClipBoar) 230.97 317.79 B
+0.05 0.1 (d would r) 329.52 317.79 B
+0.05 0.1 (esult in the canvas staying on the scr) 374.21 317.79 B
+0.05 0.1 (een ) 539.66 317.79 B
+54 294.07 558 302.06 C
+558 299.03 198 299.03 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+5 F
+0 X
+0 K
+0.52 0.1 (after its application has been destr) 198 305.39 B
+0.52 0.1 (oyed. ) 355.24 305.39 B
+7 F
+(/sendtocanvas) 54 277.67 T
+(canvas [delete?]) 198 277.67 T
+11 F
+( /sendtocanvas) 263.45 277.67 T
+7 F
+( - ) 328.38 277.67 T
+5 F
+0.16 0.1 (Sends the selection to the given canvas if the canvas is r) 198 258 B
+0.16 0.1 (eceptible. The selection ) 450.29 258 B
+0.52 0.1 (need not be r) 198 245.6 B
+0.52 0.1 (egister) 258.47 245.6 B
+0.52 0.1 (ed with the global manager) 288.47 245.6 B
+0.52 0.1 (. The optional boolean says ) 413.76 245.6 B
+-0.02 0.1 (whether the selection should be deleted after the transfer) 198 233.2 B
+-0.02 0.1 (. \050Default is false.\051 The ) 454.19 233.2 B
+0.52 0.1 (canvas can be null to send the event to the canvas\050es\051 curr) 198 220.8 B
+0.52 0.1 (ently under the ) 464.85 220.8 B
+0.52 0.1 (pointer) 198 208.4 B
+0.52 0.1 (. For example, the following would send a string to the curr) 230.14 208.4 B
+0.52 0.1 (ent input ) 504.57 208.4 B
+0.52 0.1 (focus: ) 198 196 B
+7 F
+(\050random string\051 /new StringSelection send ) 216 182.27 T
+(currentinputfocus /sendtocanvas 3 -1 roll send ) 216 169.27 T
+FMENDPAGE
+%%EndPage: "188" 17
+%%Page: "189" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+0.09 (ClassSelection) 198 108.7 S
+0 F
+0.09 (189) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (20) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+(clearselection) 54 642 T
+(rank ) 198 642 T
+11 F
+(clearselection) 217.98 642 T
+7 F
+( - ) 277.92 642 T
+5 F
+0.46 0.1 (Removes the selection \050if any\051 curr) 198 622.33 B
+0.46 0.1 (ently r) 356.64 622.33 B
+0.46 0.1 (egister) 386.39 622.33 B
+0.46 0.1 (ed for the given rank fr) 416.4 622.33 B
+0.46 0.1 (om the ) 523.23 622.33 B
+0.52 0.1 (global r) 198 609.93 B
+0.52 0.1 (egistry and deselects it. De\336ned in systemdict. ) 232.94 609.93 B
+FMENDPAGE
+%%EndPage: "189" 18
+%%Page: "190" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (20) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (190) 54 108.7 S
+1 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+FMENDPAGE
+%%EndPage: "190" 19
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 18 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Helvetica
+%%+ Palatino-Bold
+%%+ Courier
+%%+ Helvetica-Bold
+%%+ Times-Bold
+%%+ Times-Roman

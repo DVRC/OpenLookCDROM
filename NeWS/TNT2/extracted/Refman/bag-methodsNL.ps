@@ -1,0 +1,2063 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 10 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 9 /Palatino-Italic FMDEFINEFONT
+5 10 /Palatino-Roman FMDEFINEFONT
+6 10 /Palatino-Italic FMDEFINEFONT
+7 15 /Palatino-Italic FMDEFINEFONT
+8 9 /Helvetica FMDEFINEFONT
+9 9 /Helvetica-Bold FMDEFINEFONT
+%%Page: "17" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (17) 548.83 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (2-0) 159.51 672.33 S
+-0.12 (2-0) 159.51 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (ClassBag) 199.01 509.03 S
+3 F
+7 X
+1 K
+-3.12 (2) 540.57 508.36 S
+4 F
+0 X
+0 K
+0.47 0.09 (Figur) 198 417.6 B
+0.47 0.09 (e 2-1) 218.77 417.6 B
+0 F
+0.47 0.09 (The ClassBag subtr) 248.4 417.6 B
+0.47 0.09 (ee) 327.1 417.6 B
+5 F
+0.22 0.1 (A bag is a canvas subclass explicitly designed to manage a collection of canvas ) 198 392.93 B
+0.52 0.1 (and r) 198 380.53 B
+0.52 0.1 (egion clients. A bor) 222.21 380.53 B
+0.52 0.1 (derbag is an example of a bag that is designed to ) 311.17 380.53 B
+0.52 0.1 (manage one major client and up to four minor clients. \050See ) 198 368.13 B
+6 F
+0.52 0.1 (ClassBorderBag) 470.21 368.13 B
+5 F
+0.52 0.1 ( on ) 536.01 368.13 B
+0.52 0.1 (page 23.\051) 198 355.73 B
+0.52 0.1 (Mor) 198 335.33 B
+0.52 0.1 (eover) 216.98 335.33 B
+0.52 0.1 (, each client of a bag must r) 241.37 335.33 B
+0.52 0.1 (espond to the following methods:) 368.03 335.33 B
+0.1 (/map) 198 318.93 S
+0.1 (/destr) 252 318.93 S
+0.1 (oy) 280.81 318.93 S
+0.1 (/mapped?) 306 318.93 S
+0.52 0.1 (/r) 198 302.53 B
+0.52 0.1 (epar) 208.02 302.53 B
+0.52 0.1 (ent ) 227.98 302.53 B
+0.52 0.1 (/activate \050canvas client only\051) 252 302.53 B
+0.52 0.1 (/paint ) 198 286.13 B
+0.52 0.1 (/deactivate \050canvas client only\051) 252 286.13 B
+0.18 0.1 (ClassBag is the most general type of container; pr) 198 265.73 B
+0.18 0.1 (oviding some contr) 422.24 265.73 B
+0.18 0.1 (ol over an ) 509.84 265.73 B
+0.02 0.1 (arbitrary number of canvases and r) 198 253.33 B
+0.02 0.1 (egions. ClassBag manages canvas activation ) 356.66 253.33 B
+0.52 0.1 (\050i.e., activating the bag also activates its canvas clients\051 as well as pr) 198 240.93 B
+0.52 0.1 (oviding a ) 509.4 240.93 B
+0.52 0.1 (convenient place to enfor) 198 228.53 B
+0.52 0.1 (ce layout policies on clients.) 313.3 228.53 B
+7 F
+(Cr) 54 194.8 T
+(eation) 69.57 194.8 T
+8 F
+(/new) 54 173.8 T
+(parentcanvas ) 198 173.8 T
+9 F
+(/new) 254.45 173.8 T
+8 F
+( instance) 274.43 173.8 T
+5 F
+0.52 0.1 (Returns an instance of ClassBag.) 198 154.13 B
+54 144 558 466.34 C
+198 432 558 456.34 C
+198 432 558 456.34 R
+7 X
+0 K
+V
+9 F
+0 X
+(ClassObject) 244.91 444.17 T
+(ClassDrawable) 319.92 443.69 T
+297.7 446.15 317.7 446.15 2 L
+0.5 H
+2 Z
+N
+384.08 446.03 404.08 446.03 2 L
+N
+464.43 445.41 484.43 445.41 2 L
+N
+(ClassCanvas) 406.82 443.8 T
+(ClassBag) 485.92 442.77 T
+54 144 558 466.34 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "17" 2
+%%Page: "18" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (2) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (18) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+7 F
+-0.94 (Activation and deactivation) 54 638 P
+5 F
+0.52 0.1 (A bag can r) 198 616.33 B
+0.52 0.1 (eceive user input if it is active and ceases to r) 251.03 616.33 B
+0.52 0.1 (eact to user input ) 458.96 616.33 B
+0.52 0.1 (when it is deactivated. See ) 198 603.93 B
+6 F
+0.52 0.1 (Activation and deactivation) 322.57 603.93 B
+5 F
+0.52 0.1 ( on page 46 and ) 438.26 603.93 B
+6 F
+0.52 0.1 (ClassEventMgr) 198 591.53 B
+5 F
+0.52 0.1 ( on page 48 both in ClassCanvas.) 263.15 591.53 B
+8 F
+(/activate) 54 571.8 T
+(event-manager ) 198 571.8 T
+9 F
+(/activate) 260.94 571.8 T
+8 F
+( -) 296.91 571.8 T
+5 F
+0.28 0.1 (T) 198 552.13 B
+0.28 0.1 (urns on event management for the bag and all its canvas clients. ) 203.33 552.13 B
+8 F
+0.24 -0.27 (event-manager) 498.19 552.13 B
+5 F
+0.28 0.1 ( ) 555.12 552.13 B
+0.52 0.1 (is an instance of ClassEventMgr) 198 539.73 B
+0.52 0.1 (. Checks to see if the bag alr) 343.48 539.73 B
+0.52 0.1 (eady has an event ) 472.41 539.73 B
+0.52 0.1 (manager; if it does, the given event manager instance is just popped of) 198 527.33 B
+0.52 0.1 (f the ) 522.28 527.33 B
+0.52 0.1 (stack and ) 198 514.93 B
+9 F
+0.52 0.09 (/activate) 244.44 514.93 B
+5 F
+0.52 0.1 ( does nothing.) 281.22 514.93 B
+8 F
+(/deactivate) 54 495.2 T
+(- ) 198 495.2 T
+9 F
+(/deactivate) 203.49 495.2 T
+8 F
+( -) 249.95 495.2 T
+5 F
+-0.03 0.1 (T) 198 475.53 B
+-0.03 0.1 (urns of) 203.33 475.53 B
+-0.03 0.1 (f event management for the bag and its canvas clients. Any of the bag\325s ) 235.12 475.53 B
+0.52 0.1 (canvas clients that have their own event manager stay active.) 198 463.13 B
+0.52 0.1 (If the bag has no event manager then ) 198 442.73 B
+9 F
+0.45 -0.27 (/deactivate) 371.71 442.73 B
+5 F
+0.52 0.1 ( does nothing.) 415.2 442.73 B
+7 F
+-0.94 (Bag clients) 54 409 P
+5 F
+0.52 0.1 (Clients ar) 198 387.33 B
+0.52 0.1 (e added to bags using ) 241.79 387.33 B
+9 F
+0.45 -0.27 (/addclient) 345.55 387.33 B
+5 F
+0.52 0.1 ( and r) 384.8 387.33 B
+0.52 0.1 (emoved fr) 412.13 387.33 B
+0.52 0.1 (om them using ) 458.75 387.33 B
+9 F
+0.45 -0.27 (/removeclient) 198 374.93 B
+5 F
+0.52 0.1 (. If you want to move a client fr) 252.43 374.93 B
+0.52 0.1 (om one bag to another you must ) 398.16 374.93 B
+0.52 0.1 (\336rst r) 198 362.53 B
+0.52 0.1 (emove it fr) 222.88 362.53 B
+0.52 0.1 (om the bag it\325s in and then add it to the new bag.) 272.78 362.53 B
+8 F
+(/addclient) 54 342.8 T
+(name client ) 198 342.8 T
+9 F
+(/addclient) 246.45 342.8 T
+8 F
+( -) 288.4 342.8 T
+5 F
+0.32 0.1 (Adds ) 198 323.14 B
+8 F
+0.32 0.09 (client) 225.54 323.14 B
+5 F
+0.32 0.1 ( to the bag and associates it with ) 247.06 323.14 B
+8 F
+0.32 0.09 (name) 398.73 323.14 B
+5 F
+0.32 0.1 (. ) 421.57 323.14 B
+8 F
+0.32 0.09 (name) 427.09 323.14 B
+5 F
+0.32 0.1 ( is any valid dictionary ) 449.93 323.14 B
+0.36 0.1 (key) 198 310.73 B
+0.36 0.1 (, i.e., any non-null value. Each client\325s ) 213.09 310.73 B
+8 F
+0.31 -0.27 (name) 388.82 310.73 B
+5 F
+0.36 0.1 ( ) 410.22 310.73 B
+6 F
+0.36 0.1 (must be) 413.18 310.73 B
+5 F
+0.36 0.1 ( unique. ) 445.8 310.73 B
+8 F
+0.36 0.09 (client) 486.09 310.73 B
+5 F
+0.36 0.1 ( is either a ) 507.6 310.73 B
+0.52 0.1 (canvas or a r) 198 298.33 B
+0.52 0.1 (egion. The client is r) 256.66 298.33 B
+0.52 0.1 (epar) 349.72 298.33 B
+0.52 0.1 (ented to the bag. If the bag has been ) 369.67 298.33 B
+0.52 0.1 (activated the canvas is activated also.) 198 285.93 B
+0.52 0.1 (If you do not need handles for your bag clients you can use \322dup\323 as the ) 198 265.53 B
+0.52 0.1 (client\325s unique name. I.e., you could do:) 198 253.14 B
+8 F
+(<create a canvas client, e.g., myclientcanvas>) 210.6 237.4 T
+(dup /addclient mybag send) 210.6 222.4 T
+5 F
+0.46 0.1 (Not only does this ensur) 198 202.73 B
+0.46 0.1 (e that each client has a unique handle, it also lets you ) 310.42 202.73 B
+0.52 0.1 (use the client itself as the ar) 198 190.34 B
+0.52 0.1 (gument to ) 325.53 190.34 B
+9 F
+0.45 -0.27 (/removeclient) 375.55 190.34 B
+5 F
+0.52 0.1 (:) 429.98 190.34 B
+8 F
+(myclientcanvas /removeclient mybag send) 210.6 174.6 T
+FMENDPAGE
+%%EndPage: "18" 3
+%%Page: "19" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassBag) 198 108.7 S
+0 F
+0.09 (19) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (2) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (Finally ) 198 641.33 B
+9 F
+0.52 0.09 (/addclient) 232.47 641.33 B
+5 F
+0.52 0.1 ( invalidates the bag so its layout method is called the next ) 275.32 641.33 B
+0.52 0.1 (time r) 198 628.93 B
+0.52 0.1 (epainting or layout is necessary) 225.16 628.93 B
+0.52 0.1 (. For an explanation of the The NeWS ) 368.95 628.93 B
+0.52 0.1 (T) 198 616.53 B
+0.52 0.1 (oolkit\325s validation scheme see ) 203.31 616.53 B
+6 F
+0.52 0.1 (Validation) 342.75 616.53 B
+5 F
+0.52 0.1 ( on page 44 in ClassCanvas.) 386.5 616.53 B
+8 F
+(/client) 54 596.8 T
+(name ) 198 596.8 T
+9 F
+(/client) 222.98 596.8 T
+8 F
+( client true | false) 248.95 596.8 T
+5 F
+0.52 0.1 (Sear) 198 577.13 B
+0.52 0.1 (ches the bag\325s client list to determine if ) 217.2 577.13 B
+8 F
+0.52 0.09 (name) 399.49 577.13 B
+5 F
+0.52 0.1 ( is known. If it is known, ) 422.33 577.13 B
+9 F
+-0.07 0.09 (/client) 198 564.73 B
+5 F
+-0.08 0.1 ( r) 224.6 564.73 B
+-0.08 0.1 (eturns tr) 230.99 564.73 B
+-0.08 0.1 (ue and the client instance that was associated with ) 269.52 564.73 B
+8 F
+-0.07 0.09 (name) 499.15 564.73 B
+5 F
+-0.08 0.1 ( during ) 521.99 564.73 B
+0.52 0.1 (the call to ) 198 552.33 B
+9 F
+0.52 0.09 (/addclient) 246.08 552.33 B
+5 F
+0.52 0.1 (. If ) 288.94 552.33 B
+8 F
+0.45 -0.27 (name) 304.67 552.33 B
+5 F
+0.52 0.1 ( is not known, ) 326.07 552.33 B
+9 F
+0.52 0.09 (/client) 394.8 552.33 B
+5 F
+0.52 0.1 ( r) 421.4 552.33 B
+0.52 0.1 (eturns false.) 428.39 552.33 B
+8 F
+(/clientcount) 54 532.6 T
+(- ) 198 532.6 T
+9 F
+(/clientcount) 203.49 532.6 T
+8 F
+( number-of-clients) 253.93 532.6 T
+5 F
+0.52 0.1 (Returns the number of clients managed by the bag. ) 198 512.93 B
+8 F
+0.52 0.09 (number-of-clients) 435.46 512.93 B
+5 F
+0.52 0.1 ( includes ) 506.41 512.93 B
+0.52 0.1 (both canvas and r) 198 500.53 B
+0.52 0.1 (egion clients.) 279.64 500.53 B
+8 F
+(/clientlist) 54 480.8 T
+(- ) 198 480.8 T
+9 F
+(/clientlist) 203.49 480.8 T
+8 F
+( [client1 client2 ...]) 242.45 480.8 T
+5 F
+0.19 0.1 (Returns an array that contains all the clients \050both canvases and r) 198 461.13 B
+0.19 0.1 (egions\051 in the ) 493.77 461.13 B
+0.1 (bag.) 198 448.73 S
+8 F
+(/regionclientcount) 54 429 T
+(- ) 198 429 T
+9 F
+(/regionclientcount) 203.49 429 T
+8 F
+( number-of-region-clients) 281.39 429 T
+5 F
+0.52 0.1 (Returns the number of r) 198 409.33 B
+0.52 0.1 (egion clients in the bag. If ther) 308.47 409.33 B
+0.52 0.1 (e ar) 448.25 409.33 B
+0.52 0.1 (e no r) 465.22 409.33 B
+0.52 0.1 (egions in the ) 491.69 409.33 B
+0.52 0.1 (bag ) 198 396.93 B
+9 F
+0.52 0.09 (/regionclientcount) 217.5 396.93 B
+5 F
+0.52 0.1 ( r) 297.02 396.93 B
+0.52 0.1 (eturns 0.) 304.01 396.93 B
+8 F
+(/regionclientlist) 54 377.2 T
+(- ) 198 377.2 T
+9 F
+(/regionclientlist) 203.49 377.2 T
+8 F
+( [ region-client1 region-client2 . . . ]) 269.92 377.2 T
+5 F
+0.52 0.1 (Returns an array that contains all the r) 198 357.53 B
+0.52 0.1 (egion clients in the bag.) 374.84 357.53 B
+8 F
+(/removeclient) 54 337.8 T
+(name ) 198 337.8 T
+9 F
+(/removeclient) 222.98 337.8 T
+8 F
+( oldclient true | false) 280.92 337.8 T
+5 F
+0.52 0.1 (Removes the client associated with ) 198 318.14 B
+8 F
+0.45 -0.27 (name) 360.73 318.14 B
+5 F
+0.52 0.1 ( fr) 382.13 318.14 B
+0.52 0.1 (om the bag and invalidates the bag ) 392.54 318.14 B
+0.15 0.1 (\050if ) 198 305.73 B
+8 F
+0.13 -0.27 (name) 210.62 305.73 B
+5 F
+0.15 0.1 ( is found\051. Returns the client instance and tr) 232.01 305.73 B
+0.15 0.1 (ue if ) 430.57 305.73 B
+8 F
+0.13 -0.27 (name) 453.53 305.73 B
+5 F
+0.15 0.1 ( exists; otherwise, ) 474.92 305.73 B
+0.52 0.1 (false is r) 198 293.33 B
+0.52 0.1 (eturned. ) 236.21 293.33 B
+0.37 0.1 (If the r) 198 272.93 B
+0.37 0.1 (emoved client is a canvas and it has the ) 228.87 272.93 B
+6 F
+0.37 0.1 (same) 412.79 272.93 B
+5 F
+0.37 0.1 ( event manager as the bag, ) 433.18 272.93 B
+9 F
+0.52 0.09 (/removeclient) 198 260.53 B
+5 F
+0.52 0.1 ( deactivates it, which means that if a client is activated ) 257.11 260.53 B
+6 F
+0.52 0.1 (befor) 510.5 260.53 B
+0.52 0.1 (e) 530.44 260.53 B
+5 F
+0.52 0.1 ( it is ) 534.43 260.53 B
+0.52 0.1 (added to a bag, it is ) 198 248.14 B
+6 F
+0.52 0.1 (not) 292.02 248.14 B
+5 F
+0.52 0.1 ( deactivated automatically when it is r) 305.64 248.14 B
+0.52 0.1 (emoved.) 481.31 248.14 B
+7 F
+(Destruction) 54 214.4 T
+8 F
+(/destroy) 54 193.4 T
+(- ) 198 193.4 T
+9 F
+(/destroy) 203.49 193.4 T
+8 F
+( -) 238.45 193.4 T
+5 F
+0.52 0.1 (Destr) 198 173.73 B
+0.52 0.1 (oys the bag and its clients. ) 222.29 173.73 B
+9 F
+0.45 -0.27 (/destroy) 346.67 173.73 B
+5 F
+0.52 0.1 ( executes in the global event manager) 379.47 173.73 B
+0.52 0.1 (.) 551.18 173.73 B
+0.52 0.1 (See also ) 198 153.34 B
+6 F
+0.52 0.1 (Callback context) 237.36 153.34 B
+5 F
+0.52 0.1 ( on page 48 and ) 305.81 153.34 B
+9 F
+0.45 -0.27 (/destroy) 382.04 153.34 B
+5 F
+0.52 0.1 ( on page 74 in ClassCanvas.) 414.84 153.34 B
+FMENDPAGE
+%%EndPage: "19" 4
+%%Page: "20" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (2) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (20) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+7 F
+(Miscellaneous) 54 638 T
+8 F
+(/validate) 54 617 T
+(- ) 198 617 T
+9 F
+(/validate) 203.49 617 T
+8 F
+( -) 239.46 617 T
+5 F
+0.52 0.1 (Updates the appearance of the bag to r) 198 597.33 B
+0.52 0.1 (e\337ect any changes \050r) 375.95 597.33 B
+0.52 0.1 (eshaping, new ) 469.47 597.33 B
+0.11 0.1 (clients added, etc.\051 that may have taken place. Y) 198 584.93 B
+0.11 0.1 (ou should not call this yourself ) 414.77 584.93 B
+0.52 0.1 (because painting causes validation. In those cases wher) 198 572.53 B
+0.52 0.1 (e you want immediate ) 451.07 572.53 B
+0.52 0.1 (validation, call ) 198 560.13 B
+9 F
+0.45 -0.27 (/?validate) 268.49 560.13 B
+5 F
+0.52 0.1 (. \050See page 45) 307.25 560.13 B
+9 F
+0.52 0.09 ( ) 369.7 560.13 B
+8 F
+0.52 0.09 (in ) 372.8 560.13 B
+5 F
+0.52 0.1 (ClassCanvas) 383.08 560.13 B
+9 F
+0.52 0.09 ( ) 440.43 560.13 B
+5 F
+0.52 0.1 (for an explanation of ) 443.54 560.13 B
+0.52 0.1 (validation.\051) 198 547.73 B
+9 F
+0.52 0.09 ( /validate) 250.03 547.73 B
+5 F
+0.52 0.1 ( calls ) 289.92 547.73 B
+9 F
+0.52 0.09 (/layout) 316.14 547.73 B
+5 F
+0.52 0.1 (.) 345.74 547.73 B
+8 F
+(/layout) 54 528 T
+(-) 198 528 T
+9 F
+(/layout) 200.99 528 T
+8 F
+( -) 229.96 528 T
+5 F
+0.36 0.1 (Initiates layout for a bag. Establishes the layout context by making the bag the ) 198 508.33 B
+0.52 0.1 (curr) 198 495.93 B
+0.52 0.1 (ent canvas and then calls ) 216.58 495.93 B
+9 F
+0.45 -0.27 (/Layout) 334.36 495.93 B
+5 F
+0.52 0.1 (.) 364.42 495.93 B
+7 F
+-0.94 (Subclasser methods) 54 462.2 P
+8 F
+(/FixChildren) 54 441.2 T
+(- ) 198 441.2 T
+9 F
+(/FixChildren) 203.49 441.2 T
+8 F
+( -) 255.43 441.2 T
+5 F
+0.52 0.1 (Handles the r) 198 421.53 B
+0.52 0.1 (epainting of damaged bag clients by sending ) 260.14 421.53 B
+9 F
+0.45 -0.27 (/FixAll) 468.63 421.53 B
+5 F
+0.52 0.1 ( to all the ) 493.71 421.53 B
+0.52 0.1 (bag\325s clients. See ) 198 409.13 B
+6 F
+0.52 0.1 (Canvas damage handling) 277.73 409.13 B
+5 F
+0.52 0.1 ( on page 51 in ClassCanvas for an ) 382.58 409.13 B
+0.52 0.1 (explanation of how canvases handle damage r) 198 396.73 B
+0.52 0.1 (epair) 409.54 396.73 B
+0.52 0.1 (. See the ) 431.95 396.73 B
+6 F
+0.52 0.1 (NeWS 2.1 ) 473.19 396.73 B
+0.52 0.1 (Pr) 198 384.33 B
+0.52 0.1 (ogrammer) 208.01 384.33 B
+0.52 0.1 (\325) 250.27 384.33 B
+0.52 0.1 (s Guide) 252.6 384.33 B
+5 F
+0.52 0.1 ( for an explanation of damage.) 284.64 384.33 B
+8 F
+(/Layout) 54 364.6 T
+(- ) 198 364.6 T
+9 F
+(/Layout) 203.49 364.6 T
+8 F
+( -) 235.45 364.6 T
+5 F
+0.52 0.1 (Lays out the clients of the bag. Subclasses override ) 198 344.93 B
+9 F
+0.52 0.09 (/Layout) 433.78 344.93 B
+5 F
+0.52 0.1 ( to implement a ) 466.37 344.93 B
+0.52 0.1 (particular layout policy) 198 332.54 B
+0.52 0.1 (. If you ar) 304.24 332.54 B
+0.52 0.1 (e going to subclass ClassBag, you must ) 349.4 332.54 B
+0.52 0.1 (pr) 198 320.14 B
+0.52 0.1 (ovide a de\336nition of ) 207.98 320.14 B
+9 F
+0.52 0.09 (/Layout) 303.94 320.14 B
+5 F
+0.52 0.1 (.) 336.53 320.14 B
+8 F
+(/PaintChildren) 54 300.4 T
+(- ) 198 300.4 T
+9 F
+(/PaintChildren) 203.49 300.4 T
+8 F
+( -) 264.42 300.4 T
+5 F
+0.52 0.1 (Paints the clients of the bag by sending ) 198 280.73 B
+9 F
+0.52 0.09 (/PaintAll) 380.76 280.73 B
+5 F
+0.52 0.1 ( to all client instances. First, ) 417.53 280.73 B
+0.52 0.1 (r) 198 268.34 B
+0.52 0.1 (egions ar) 201.87 268.34 B
+0.52 0.1 (e painted in insertion or) 243.32 268.34 B
+0.52 0.1 (der) 353.64 268.34 B
+0.52 0.1 (, then canvases ar) 368.05 268.34 B
+0.52 0.1 (e painted in insertion ) 449 268.34 B
+0.1 (or) 198 255.93 S
+0.1 (der) 207.43 255.93 S
+0.1 (.) 221.83 255.93 S
+7 F
+-0.94 (Mouse tracking for r) 54 222.2 P
+-0.94 (egions in bags) 175.76 222.2 P
+5 F
+0.52 0.1 (The following mouse tracking methods ar) 198 200.53 B
+0.52 0.1 (e included in ClassBag to handle ) 389.46 200.53 B
+0.52 0.1 (mouse tracking for r) 198 188.14 B
+0.52 0.1 (egion clients. For an explanation of mouse tracking see ) 291.37 188.14 B
+6 F
+0.42 0.1 (Mouse tracking) 198 175.73 B
+5 F
+0.42 0.1 ( on page 55 in ClassCanvas. T) 263.02 175.73 B
+0.42 0.1 (o see how r) 398.74 175.73 B
+0.42 0.1 (egions handle tracking ) 451.26 175.73 B
+0.52 0.1 (see ) 198 163.34 B
+6 F
+0.52 0.1 (Mouse tracking) 215.23 163.34 B
+5 F
+0.52 0.1 ( on page 147 in ClassRegion.) 280.35 163.34 B
+FMENDPAGE
+%%EndPage: "20" 5
+%%Page: "21" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassBag) 198 108.7 S
+0 F
+0.09 (21) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (2) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+8 F
+(/TrackMotion) 54 642 T
+(event ) 198 642 T
+9 F
+(/TrackMotion) 222.48 642 T
+8 F
+( -) 278.41 642 T
+(/TrackStart) 54 623 T
+(event ) 198 623 T
+9 F
+(/TrackStart) 222.48 623 T
+8 F
+( false | [/label...] true | /name true) 269.43 623 T
+(/TrackStop) 54 604 T
+(event ) 198 604 T
+9 F
+(/TrackStop) 222.48 604 T
+8 F
+( -) 268.93 604 T
+(/TrackCancel) 54 585 T
+(event ) 198 585 T
+9 F
+(/TrackCancel) 222.48 585 T
+8 F
+( -) 278.43 585 T
+7 F
+(Menus) 54 552 T
+5 F
+0.52 0.1 (The following menu methods ar) 198 530.33 B
+0.52 0.1 (e included in ClassBag to handle menus for ) 345.09 530.33 B
+0.52 0.1 (r) 198 517.93 B
+0.52 0.1 (egion clients. For an explanation of canvas menus see ) 201.87 517.93 B
+6 F
+0.52 0.1 (Canvas menus) 450.12 517.93 B
+5 F
+0.52 0.1 ( on page ) 510.99 517.93 B
+0.1 0.1 (53 in ClassCanvas. For an explanation of how r) 198 505.53 B
+0.1 0.1 (egions handle menus see ) 410.89 505.53 B
+6 F
+0.1 0.1 (Region ) 526.38 505.53 B
+0.52 0.1 (menus) 198 493.13 B
+5 F
+0.52 0.1 ( on page 147 in ClassRegion.) 225.16 493.13 B
+8 F
+(/MenuStart) 54 473.4 T
+(invoker posname event ) 198 473.4 T
+9 F
+(/MenuStart) 293.41 473.4 T
+8 F
+(invoker posname event menu true ) 342.72 473.4 T
+-0.27 (| invoker posname event false) 342 462.4 S
+(| invoker posname event null true) 342 451.4 T
+(/MenuStop) 54 432.4 T
+(menu ) 198 432.4 T
+9 F
+(/MenuStop) 222.98 432.4 T
+8 F
+( -) 268.91 432.4 T
+FMENDPAGE
+%%EndPage: "21" 6
+%%Page: "22" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (2) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (22) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+FMENDPAGE
+%%EndPage: "22" 7
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 6 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Helvetica
+%%+ Helvetica-Bold

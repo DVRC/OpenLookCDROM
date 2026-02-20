@@ -1,0 +1,119 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#) ISOkeys.ps 23.6 91/02/11
+%    ISOkeys.ps: registers a key suite for the ISOLatin-1 character set
+
+% Interface: A client whose /KeyStart is going to request /ISOKey (or
+%	/ISOKeyUp) must first call /addsuite ISOLatinKeys send.  This
+%	is typically done during the client's class definition.  The
+%	first such client will autoload this file and register the
+%	suite with the KeyService; subsequence calls are no-ops.
+
+/ISOLatinKeys ClassObject []
+classbegin
+
+% Variables:
+
+    /ISOLatin000M	growabledict	def	%  map for Meta-keys
+    /ISOLatin0S0M	growabledict	def	%  map for Meta-Shift-keys
+
+    /ISOLatinKeyDicts [
+	{   ascii000	    ascii0S0	    ascii00L	    ascii0S0
+	    asciiC00	    asciiC00	    asciiC00	    asciiC00
+	    //ISOLatin000M  //ISOLatin0S0M  //ISOLatin000M  //ISOLatin0S0M
+	    asciiC00	    asciiC00	    asciiC00	    asciiC00
+	} ClassKeyboard send
+    ] def
+
+% Methods:
+
+    /addsuite { % - => -
+    	/ISOKey
+    	    ISOLatinKeyDicts
+	    /MetaShiftsDict KeyService send
+	    /addsuite KeyService send
+	/addsuite nullproc promote
+    } def
+
+% Utilities:
+
+   /GetKey { % str => num
+	/keyforsymbol ClassKeyboard send
+   } def
+
+%	Now build the keymaps
+
+    ISOLatin000M (1) GetKey 161 put	% /exclamdown             Meta-1
+    ISOLatin000M (2) GetKey 162 put	% /cent                   Meta-2
+    ISOLatin0S0M (2) GetKey 163 put	% /sterling         Meta-Shift-2
+    ISOLatin0S0M (4) GetKey 164 put	% /currency         Meta-Shift-4
+    ISOLatin000M (4) GetKey 165 put	% /yen                    Meta-4
+    ISOLatin0S0M (5) GetKey 167 put	% /section          Meta-Shift-5
+    ISOLatin000M (6) GetKey 170 put	% /ordfeminine            Meta-6
+    ISOLatin000M (,) GetKey 171 put	% /guillemotleft          Meta-,
+    ISOLatin000M (=) GetKey 182 put	% /paragraph              Meta-=
+    ISOLatin0S0M (=) GetKey 183 put	% /bullet           Meta-Shift-=
+    ISOLatin0S0M (6) GetKey 186 put	% /ordmasculine     Meta-Shift-6
+    ISOLatin000M (.) GetKey 187 put	% /guillemotright         Meta-.
+    ISOLatin0S0M (/) GetKey 191 put	% /questiondown     Meta-Shift-/
+    ISOLatin0S0M (Q) GetKey 192 put	% /Agrave           Meta-Shift-Q
+    ISOLatin0S0M (A) GetKey 193 put	% /Aacute           Meta-Shift-A
+    ISOLatin0S0M (Z) GetKey 194 put	% /Acircumflex      Meta-Shift-Z
+    ISOLatin0S0M (1) GetKey 195 put	% /Atilde           Meta-Shift-1
+    ISOLatin0S0M (S) GetKey 196 put	% /Adieresis        Meta-Shift-S
+    ISOLatin0S0M (X) GetKey 197 put	% /Aring            Meta-Shift-X
+    ISOLatin0S0M (W) GetKey 198 put	% /AE               Meta-Shift-W
+    ISOLatin0S0M (C) GetKey 199 put	% /Ccedilla         Meta-Shift-C
+    ISOLatin0S0M (3) GetKey 200 put	% /Egrave           Meta-Shift-3
+    ISOLatin0S0M (E) GetKey 201 put	% /Eacute           Meta-Shift-E
+    ISOLatin0S0M (D) GetKey 202 put	% /Ecircumflex      Meta-Shift-D
+    ISOLatin0S0M (R) GetKey 203 put	% /Edieresis        Meta-Shift-R
+    ISOLatin0S0M (8) GetKey 204 put	% /Igrave           Meta-Shift-8
+    ISOLatin0S0M (I) GetKey 205 put	% /Iacute           Meta-Shift-I
+    ISOLatin0S0M (K) GetKey 206 put	% /Icircumflex      Meta-Shift-K
+    ISOLatin0S0M (M) GetKey 207 put	% /Idieresis        Meta-Shift-M
+    ISOLatin0S0M (N) GetKey 209 put	% /Ntilde           Meta-Shift-N
+    ISOLatin0S0M (9) GetKey 210 put	% /Ograve           Meta-Shift-9
+    ISOLatin0S0M (O) GetKey 211 put	% /Oacute           Meta-Shift-O
+    ISOLatin0S0M (L) GetKey 212 put	% /Ocircumflex      Meta-Shift-L
+    ISOLatin0S0M (0) GetKey 213 put	% /Otilde           Meta-Shift-0
+    ISOLatin0S0M (P) GetKey 214 put	% /Odieresis        Meta-Shift-P
+    ISOLatin0S0M (;) GetKey 216 put	% /Oslash           Meta-Shift-;
+    ISOLatin0S0M (7) GetKey 217 put	% /Ugrave           Meta-Shift-7
+    ISOLatin0S0M (U) GetKey 218 put	% /Uacute           Meta-Shift-U
+    ISOLatin0S0M (J) GetKey 219 put	% /Ucircumflex      Meta-Shift-J
+    ISOLatin0S0M (H) GetKey 220 put	% /Udieresis        Meta-Shift-H
+    ISOLatin000M (B) GetKey 223 put	% /germandbls             Meta-B
+    ISOLatin000M (Q) GetKey 224 put	% /agrave                 Meta-Q
+    ISOLatin000M (A) GetKey 225 put	% /aacute                 Meta-A
+    ISOLatin000M (Z) GetKey 226 put	% /acircumflex            Meta-Z
+    ISOLatin000M (S) GetKey 228 put	% /adieresis              Meta-S
+    ISOLatin000M (X) GetKey 229 put	% /aring                  Meta-X
+    ISOLatin000M (W) GetKey 230 put	% /ae                     Meta-W
+    ISOLatin000M (C) GetKey 231 put	% /ccedilla               Meta-C
+    ISOLatin000M (3) GetKey 232 put	% /egrave                 Meta-3
+    ISOLatin000M (E) GetKey 233 put	% /eacute                 Meta-E
+    ISOLatin000M (D) GetKey 234 put	% /ecircumflex            Meta-D
+    ISOLatin000M (R) GetKey 235 put	% /edieresis              Meta-R
+    ISOLatin000M (8) GetKey 236 put	% /igrave                 Meta-8
+    ISOLatin000M (I) GetKey 237 put	% /iacute                 Meta-I
+    ISOLatin000M (K) GetKey 238 put	% /icircumflex            Meta-K
+    ISOLatin000M (M) GetKey 239 put	% /idieresis              Meta-M
+    ISOLatin000M (N) GetKey 241 put	% /ntilde                 Meta-N
+    ISOLatin000M (9) GetKey 242 put	% /ograve                 Meta-9
+    ISOLatin000M (O) GetKey 243 put	% /oacute                 Meta-O
+    ISOLatin000M (L) GetKey 244 put	% /ocircumflex            Meta-L
+    ISOLatin000M (0) GetKey 245 put	% /otilde                 Meta-0
+    ISOLatin000M (P) GetKey 246 put	% /odieresis              Meta-P
+    ISOLatin000M (;) GetKey 248 put	% /oslash                 Meta-;
+    ISOLatin000M (7) GetKey 249 put	% /ugrave                 Meta-7
+    ISOLatin000M (U) GetKey 250 put	% /uacute                 Meta-U
+    ISOLatin000M (J) GetKey 251 put	% /ucircumflex            Meta-J
+    ISOLatin000M (H) GetKey 252 put	% /udieresis              Meta-H
+    ISOLatin000M (Y) GetKey 253 put	% /ydieresis              Meta-Y
+    ISOLatin0S0M (Y) GetKey 255 put	% /Ydieresis        Meta-Shift-Y
+
+classend def

@@ -1,0 +1,14 @@
+
+LispView Interface for the XView Textsw Module
+
+Documentation: textedit.doc
+
+Textedit interface:
+   textedit-defs.lisp
+   textedit.lisp
+   xview-textedit.lisp
+
+Loading the file build.lisp into a LispView image recompiles and
+reloads the textedit interface.
+
+Demo ("Cheap source code finder using textedit"): textedit-demo.lisp

@@ -1,0 +1,589 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	%Z%%M% %I% %E%
+%
+% This file is machine-generated; editing it is probably futile.
+% Change one of keybdinit.ps, keyboard.ps or writemaps.ps instead.
+
+/ascii000 dictbegin
+ 28498 104 def
+ 28499 106 def
+ 28500 107 def
+ 28501 108 def
+ 28502 59 def
+ 28503 58 def
+ 28504 92 def
+ 28505 13 def
+ 28506 13 def
+ 28516 122 def
+ 28517 120 def
+ 28431 10 def
+ 28518 99 def
+ 28519 118 def
+ 28520 98 def
+ 28521 110 def
+ 28522 109 def
+ 28523 44 def
+ 28524 46 def
+ 28525 47 def
+ 28527 92 def
+ 28541 43 def
+ 28537 32 def
+ 28445 27 def
+ 28446 49 def
+ 28447 50 def
+ 28448 51 def
+ 28449 52 def
+ 28450 53 def
+ 28451 54 def
+ 28452 55 def
+ 28453 56 def
+ 28454 57 def
+ 28455 48 def
+ 28456 45 def
+ 28457 94 def
+ 28458 93 def
+ 28459 8 def
+ 28466 127 def
+ 28469 9 def
+ 28470 113 def
+ 28471 119 def
+ 28472 101 def
+ 28473 114 def
+ 28474 116 def
+ 28475 121 def
+ 28476 117 def
+ 28477 105 def
+ 28478 111 def
+ 28479 112 def
+ 28480 64 def
+ 28481 91 def
+ 28482 127 def
+ 28487 45 def
+ 28493 97 def
+ 28494 115 def
+ 28495 100 def
+ 28496 102 def
+ 28497 103 def
+dictend def
+/asciiC00 dictbegin
+ 28496 6 def
+ 28497 7 def
+ 28498 8 def
+ 28499 10 def
+ 28500 11 def
+ 28501 12 def
+ 28445 27 def
+ 28504 28 def
+ 28505 13 def
+ 28506 13 def
+ 28457 30 def
+ 28458 29 def
+ 28459 8 def
+ 28516 26 def
+ 28517 24 def
+ 28518 3 def
+ 28519 22 def
+ 28520 2 def
+ 28521 14 def
+ 28522 13 def
+ 28480 0 def
+ 28527 28 def
+ 28477 9 def
+ 28469 9 def
+ 28470 17 def
+ 28471 23 def
+ 28472 5 def
+ 28473 18 def
+ 28474 20 def
+ 28475 25 def
+ 28476 21 def
+ 28537 0 def
+ 28478 15 def
+ 28479 16 def
+ 28481 27 def
+ 28541 43 def
+ 28482 127 def
+ 28487 45 def
+ 28431 10 def
+ 28493 1 def
+ 28494 19 def
+ 28495 4 def
+dictend def
+/ascii0S0 dictbegin
+ 28472 69 def
+ 28473 82 def
+ 28474 84 def
+ 28475 89 def
+ 28476 85 def
+ 28477 73 def
+ 28478 79 def
+ 28479 80 def
+ 28480 96 def
+ 28481 123 def
+ 28482 127 def
+ 28487 45 def
+ 28502 43 def
+ 28493 65 def
+ 28494 83 def
+ 28495 68 def
+ 28496 70 def
+ 28497 71 def
+ 28498 72 def
+ 28499 74 def
+ 28500 75 def
+ 28501 76 def
+ 28431 10 def
+ 28503 42 def
+ 28504 124 def
+ 28505 13 def
+ 28506 13 def
+ 28525 63 def
+ 28523 60 def
+ 28524 62 def
+ 28448 35 def
+ 28446 33 def
+ 28522 77 def
+ 28521 78 def
+ 28519 86 def
+ 28517 88 def
+ 28516 90 def
+ 28445 27 def
+ 28518 67 def
+ 28447 34 def
+ 28520 66 def
+ 28449 36 def
+ 28450 37 def
+ 28451 38 def
+ 28452 39 def
+ 28453 40 def
+ 28454 41 def
+ 28527 95 def
+ 28456 61 def
+ 28457 126 def
+ 28458 125 def
+ 28459 8 def
+ 28537 32 def
+ 28541 43 def
+ 28469 9 def
+ 28470 81 def
+ 28471 87 def
+dictend def
+/ascii00L dictbegin
+ 28498 72 def
+ 28499 74 def
+ 28500 75 def
+ 28501 76 def
+ 28502 59 def
+ 28503 58 def
+ 28504 92 def
+ 28505 13 def
+ 28506 13 def
+ 28516 90 def
+ 28517 88 def
+ 28431 10 def
+ 28518 67 def
+ 28519 86 def
+ 28520 66 def
+ 28521 78 def
+ 28522 77 def
+ 28523 44 def
+ 28524 46 def
+ 28525 47 def
+ 28527 92 def
+ 28541 43 def
+ 28537 32 def
+ 28445 27 def
+ 28446 49 def
+ 28447 50 def
+ 28448 51 def
+ 28449 52 def
+ 28450 53 def
+ 28451 54 def
+ 28452 55 def
+ 28453 56 def
+ 28454 57 def
+ 28455 48 def
+ 28456 45 def
+ 28457 94 def
+ 28458 93 def
+ 28459 8 def
+ 28466 127 def
+ 28469 9 def
+ 28470 81 def
+ 28471 87 def
+ 28472 69 def
+ 28473 82 def
+ 28474 84 def
+ 28475 89 def
+ 28476 85 def
+ 28477 73 def
+ 28478 79 def
+ 28479 80 def
+ 28480 64 def
+ 28481 91 def
+ 28482 127 def
+ 28487 45 def
+ 28493 65 def
+ 28494 83 def
+ 28495 68 def
+ 28496 70 def
+ 28497 71 def
+dictend def
+/ascii000M dictbegin
+dictend def
+/asciiC00M dictbegin
+dictend def
+/ascii0S0M dictbegin
+dictend def
+/ascii00LM dictbegin
+dictend def
+/KeyTable dictbegin
+ 65 [ 28493 /letter ] def
+ 66 [ 28520 /letter ] def
+ 67 [ 28518 /letter ] def
+ 68 [ 28495 /letter ] def
+ 69 [ 28472 /letter ] def
+ 70 [ 28496 /letter ] def
+ 73 [ 28477 /letter ] def
+ /PageUp [ 28486 /text_func ] def
+ /FunctionL9 [ 28511 /function ] def
+ /Kana_HA [ 28496 /kana ] def
+ /ESCkey [ 28445 /anydown ] def
+ /FunctionR15 [ 28530 /function ] def
+ 77 [ 28522 /letter ] def
+ 78 [ 28521 /letter ] def
+ 79 [ 28478 /letter ] def
+ 80 [ 28479 /letter ] def
+ 81 [ 28470 /letter ] def
+ 82 [ 28473 /letter ] def
+ 83 [ 28494 /letter ] def
+ 85 [ 28476 /letter ] def
+ /FunctionL10 [ 28513 /function ] def
+ /Kana_HI [ 28519 /kana ] def
+ 87 [ 28471 /letter ] def
+ 88 [ 28517 /letter ] def
+ 89 [ 28475 /letter ] def
+ 90 [ 28516 /letter ] def
+ /Kana_PS [ 28504 /kana ] def
+ 92 [ 28527 /unshifted ] def
+ 93 [ 28458 /unshifted ] def
+ 94 [ 28457 /unshifted ] def
+ 95 [ 28527 /shifted ] def
+ 96 [ 28480 /shifted ] def
+ /Kana_FU [ 28447 /kana ] def
+ /NumPad9 [ 28486 /number ] def
+ /Kana_A [ 28448 /kana ] def
+ /FunctionF1 [ 28421 /function ] def
+ /Kana_HE [ 28457 /kana ] def
+ /Kana_I [ 28472 /kana ] def
+ /FunctionAlt [ 28435 /function ] def
+ /PrintScreen [ 28438 /text_func ] def
+ /Kana_U [ 28449 /kana ] def
+ /FunctionF2 [ 28422 /function ] def
+ /Caps [ 28535 /lock_key ] def
+ /Kana_HO [ 28456 /kana ] def
+ 123 [ 28481 /shifted ] def
+ 124 [ 28504 /shifted ] def
+ 125 [ 28458 /shifted ] def
+ 126 [ 28457 /shifted ] def
+ /Kana_E [ 28450 /kana ] def
+ /NumPadEnter [ 28506 /anydown ] def
+ /FunctionF3 [ 28424 /function ] def
+ /Kana_MA [ 28499 /kana ] def
+ /Kana_O [ 28451 /kana ] def
+ /FunctionF4 [ 28426 /function ] def
+ /Kana_KA [ 28474 /kana ] def
+ /NumPadMinus [ 28487 /anydown ] def
+ /Kana_MI [ 28521 /kana ] def
+ /Kana_KI [ 28497 /kana ] def
+ /FunctionF5 [ 28428 /function ] def
+ /NumLock [ 28514 /lock_key ] def
+ /Kana_MU [ 28458 /kana ] def
+ /NumPadDot [ 28466 /number ] def
+ /Kana_KU [ 28498 /kana ] def
+ /FunctionF6 [ 28430 /function ] def
+ /RightMeta [ 28538 /shift_key ] def
+ /Kana_ME [ 28525 /kana ] def
+ /NumPadPlus [ 28541 /anydown ] def
+ /Kana_KE [ 28503 /kana ] def
+ /FunctionF7 [ 28432 /function ] def
+ /Kana_MO [ 28522 /kana ] def
+ /NumPadSlash [ 28462 /number ] def
+ /BSkey [ 28459 /anydown ] def
+ /UpArrowkey [ 28485 /cursor ] def
+ /Kana_KO [ 28520 /kana ] def
+ /FunctionF8 [ 28433 /function ] def
+ /LeftShift [ 28515 /shift_key ] def
+ /Kana_YA [ 28452 /kana ] def
+ /FunctionR1 [ 28437 /function ] def
+ /HTkey [ 28469 /anydown ] def
+ /NumPadStar [ 28463 /number ] def
+ /FunctionF9 [ 28434 /function ] def
+ /Kana_SA [ 28517 /kana ] def
+ /Kana_YU [ 28453 /kana ] def
+ /LFkey [ 28431 /anydown ] def
+ /DownArrowkey [ 28529 /cursor ] def
+ /FunctionR2 [ 28438 /function ] def
+ /NumPadEqual [ 28461 /number ] def
+ /CRkey [ 28505 /anydown ] def
+ /Kana_SHI [ 28495 /kana ] def
+ /FunctionF10 [ 28423 /function ] def
+ /Kana_YO [ 28454 /kana ] def
+ /FunctionR3 [ 28439 /function ] def
+ /RightArrowkey [ 28509 /cursor ] def
+ /Kana_SU [ 28473 /kana ] def
+ /NumPadDel [ 28466 /unshifted ] def
+ /End [ 28528 /text_func ] def
+ /Kana_RA [ 28478 /kana ] def
+ /FunctionF11 [ 28425 /function ] def
+ /FunctionR4 [ 28461 /function ] def
+ /SPkey [ 28537 /anydown ] def
+ /ScrollLock [ 28439 /text_func ] def
+ /LeftArrowkey [ 28507 /cursor ] def
+ /Kana_SE [ 28479 /kana ] def
+ /Kana_FS [ 28524 /kana_shift ] def
+ /Kana_RI [ 28501 /kana ] def
+ /FunctionR5 [ 28462 /function ] def
+ /DELkey [ 28482 /anydown ] def
+ /FunctionF12 [ 28427 /function ] def
+ /Kana_SO [ 28518 /kana ] def
+ /Kana_OB [ 28481 /kana_shift ] def
+ /Homekey [ 28484 /cursor ] def
+ /Kana_RU [ 28524 /kana ] def
+ /FunctionRight [ 28538 /function ] def
+ 32 [ 28537 /anydown ] def
+ /FunctionR6 [ 28463 /function ] def
+ /LeftMeta [ 28536 /shift_key ] def
+ /FunctionLeft [ 28536 /function ] def
+ /YENCtrlkey [ 28504 /controlled ] def
+ /Kana_tsu [ 28516 /kana_shift ] def
+ /Kana_NE [ 28523 /kana ] def
+ /Kana_TA [ 28470 /kana ] def
+ /Kana_CB [ 28458 /kana_shift ] def
+ /RightShift [ 28526 /shift_key ] def
+ /Kana_RE [ 28502 /kana ] def
+ /Kana_SVS [ 28481 /kana ] def
+ /Break [ 28439 /non_character ] def
+ /FunctionR7 [ 28484 /function ] def
+ /Kana_yu [ 28453 /kana_shift ] def
+ /Kana_NU [ 28446 /kana ] def
+ /NumPad8 [ 28485 /number ] def
+ /PageDn [ 28530 /text_func ] def
+ 91 [ 28481 /unshifted ] def
+ /Kana_CHI [ 28493 /kana ] def
+ /Kana_CM [ 28523 /kana_shift ] def
+ /Kana_yo [ 28454 /kana_shift ] def
+ /Kana_RO [ 28527 /kana ] def
+ 86 [ 28519 /letter ] def
+ /Altgraph [ 28429 /lock_key ] def
+ /FunctionR8 [ 28485 /function ] def
+ /Kana_NI [ 28477 /kana ] def
+ 84 [ 28474 /letter ] def
+ /NumPad7 [ 28484 /number ] def
+ 76 [ 28501 /letter ] def
+ /FunctionL1 [ 28417 /function ] def
+ /Kana_TSU [ 28516 /kana ] def
+ /Kana_CJ [ 28525 /kana_shift ] def
+ /Kana_ya [ 28452 /kana_shift ] def
+ /Kana_WA [ 28455 /kana ] def
+ 74 [ 28499 /letter ] def
+ 75 [ 28500 /letter ] def
+ /FunctionR9 [ 28486 /function ] def
+ 72 [ 28498 /letter ] def
+ 71 [ 28497 /letter ] def
+ /Kana_NA [ 28476 /kana ] def
+ /NumPad6 [ 28509 /number ] def
+ /FunctionL2 [ 28419 /function ] def
+ /Kana_TE [ 28471 /kana ] def
+ /Kana_WO [ 28455 /kana_shift ] def
+ /NumPad0 [ 28510 /number ] def
+ /Kana_N [ 28475 /kana ] def
+ /Execute [ 28531 /function ] def
+ /Kana_u [ 28449 /kana_shift ] def
+ /FunctionR10 [ 28507 /function ] def
+ /Kana_TO [ 28494 /kana ] def
+ 61 [ 28456 /shifted ] def
+ /Kana_VS [ 28480 /kana ] def
+ 0 [ 28480 /controlled ] def
+ /FunctionL3 [ 28441 /function ] def
+ /Kana_o [ 28451 /kana_shift ] def
+ /Kana_a [ 28448 /kana_shift ] def
+ /NumPad1 [ 28528 /number ] def
+ 58 [ 28503 /unshifted ] def
+ /HenkanMode [ 28533 /function ] def
+ 57 [ 28454 /unshifted ] def
+ 56 [ 28453 /unshifted ] def
+ 52 [ 28449 /unshifted ] def
+ /Kana_e [ 28450 /kana_shift ] def
+ /Kana_i [ 28472 /kana_shift ] def
+ /FunctionR11 [ 28508 /function ] def
+ /FunctionL4 [ 28442 /function ] def
+ 49 [ 28446 /unshifted ] def
+ /NumPad2 [ 28529 /number ] def
+ /Insert [ 28510 /text_func ] def
+ 48 [ 28455 /unshifted ] def
+ 50 [ 28447 /unshifted ] def
+ 45 [ 28456 /unshifted ] def
+ 42 [ 28503 /shifted ] def
+ 40 [ 28453 /shifted ] def
+ 37 [ 28450 /shifted ] def
+ 27 [ 28481 /controlled ] def
+ /Alternate [ 28435 /shift_key ] def
+ /FunctionL5 [ 28465 /function ] def
+ 28 [ 28527 /controlled ] def
+ /NumPad3 [ 28530 /number ] def
+ /FunctionR12 [ 28509 /function ] def
+ 29 [ 28458 /controlled ] def
+ 30 [ 28457 /controlled ] def
+ 36 [ 28449 /shifted ] def
+ 34 [ 28447 /shifted ] def
+ 33 [ 28446 /shifted ] def
+ 35 [ 28448 /shifted ] def
+ /FunctionL6 [ 28467 /function ] def
+ /Compose [ 28483 /shift_key ] def
+ /YENkey [ 28504 /unshifted ] def
+ 38 [ 28451 /shifted ] def
+ 39 [ 28452 /shifted ] def
+ /NumPad4 [ 28507 /number ] def
+ 41 [ 28454 /shifted ] def
+ 43 [ 28502 /shifted ] def
+ 44 [ 28523 /unshifted ] def
+ /FunctionR13 [ 28528 /function ] def
+ 47 [ 28525 /unshifted ] def
+ 46 [ 28524 /unshifted ] def
+ /FunctionL7 [ 28488 /function ] def
+ /Pause [ 28437 /non_character ] def
+ /Kanji [ 28532 /function ] def
+ /HELPKey [ 28534 /non_character ] def
+ 51 [ 28448 /unshifted ] def
+ /NumPad5 [ 28508 /number ] def
+ 53 [ 28450 /unshifted ] def
+ 54 [ 28451 /unshifted ] def
+ 55 [ 28452 /unshifted ] def
+ /LeftControl [ 28492 /shift_key ] def
+ 59 [ 28502 /unshifted ] def
+ 62 [ 28524 /shifted ] def
+ 60 [ 28523 /shifted ] def
+ /FunctionR14 [ 28529 /function ] def
+ /FunctionL8 [ 28489 /function ] def
+ /Kana_NO [ 28500 /kana ] def
+ 63 [ 28525 /shifted ] def
+ 64 [ 28480 /unshifted ] def
+dictend def
+/numpadN dictbegin
+ 28486 57 def
+ 28466 46 def
+ 28462 47 def
+ 28463 42 def
+ 28461 61 def
+ 28485 56 def
+ 28484 55 def
+ 28509 54 def
+ 28510 48 def
+ 28528 49 def
+ 28529 50 def
+ 28530 51 def
+ 28507 52 def
+ 28508 53 def
+dictend def
+/CursKeyStrings dictbegin
+ 28485 (\033[A) def
+ 28529 (\033[B) def
+ 28509 (\033[C) def
+ 28507 (\033[D) def
+ 28484 (\033[H) def
+dictend def
+/FKeyNames dictbegin
+ 28437 /FunctionR1 def
+ 28438 /FunctionR2 def
+ 28439 /FunctionR3 def
+ 28441 /FunctionL3 def
+ 28442 /FunctionL4 def
+ 28507 /FunctionR10 def
+ 28508 /FunctionR11 def
+ 28509 /FunctionR12 def
+ 28511 /FunctionL9 def
+ 28513 /FunctionL10 def
+ 28461 /FunctionR4 def
+ 28462 /FunctionR5 def
+ 28463 /FunctionR6 def
+ 28465 /FunctionL5 def
+ 28529 /FunctionR14 def
+ 28467 /FunctionL6 def
+ 28528 /FunctionR13 def
+ 28532 /Kanji def
+ 28530 /FunctionR15 def
+ 28531 /Execute def
+ 28536 /FunctionLeft def
+ 28533 /HenkanMode def
+ 28428 /FunctionF5 def
+ 28426 /FunctionF4 def
+ 28425 /FunctionF11 def
+ 28417 /FunctionL1 def
+ 28538 /FunctionRight def
+ 28419 /FunctionL2 def
+ 28424 /FunctionF3 def
+ 28421 /FunctionF1 def
+ 28422 /FunctionF2 def
+ 28423 /FunctionF10 def
+ 28484 /FunctionR7 def
+ 28485 /FunctionR8 def
+ 28486 /FunctionR9 def
+ 28427 /FunctionF12 def
+ 28488 /FunctionL7 def
+ 28489 /FunctionL8 def
+ 28430 /FunctionF6 def
+ 28432 /FunctionF7 def
+ 28433 /FunctionF8 def
+ 28434 /FunctionF9 def
+ 28435 /FunctionAlt def
+dictend def
+/FKeyStrings dictbegin
+ 28437 (\033[208z) def
+ 28438 (\033[209z) def
+ 28439 (\033[210z) def
+ 28441 (\033[194z) def
+ 28442 (\033[195z) def
+ 28507 (\033[217z) def
+ 28508 (\033[218z) def
+ 28509 (\033[219z) def
+ 28511 (\033[200z) def
+ 28513 (\033[201z) def
+ 28461 (\033[211z) def
+ 28462 (\033[212z) def
+ 28463 (\033[213z) def
+ 28465 (\033[196z) def
+ 28529 (\033[221z) def
+ 28467 (\033[197z) def
+ 28528 (\033[220z) def
+ 28532 ( ) def
+ 28530 (\033[222z) def
+ 28531 ( ) def
+ 28536 (\033[240z) def
+ 28533 ( ) def
+ 28428 (\033[228z) def
+ 28426 (\033[227z) def
+ 28425 (\033[234z) def
+ 28417 (\033[192z) def
+ 28538 (\033[241z) def
+ 28419 (\033[193z) def
+ 28424 (\033[226z) def
+ 28421 (\033[224z) def
+ 28422 (\033[225z) def
+ 28423 (\033[233z) def
+ 28484 (\033[214z) def
+ 28485 (\033[215z) def
+ 28486 (\033[216z) def
+ 28427 (\033[235z) def
+ 28488 (\033[198z) def
+ 28489 (\033[199z) def
+ 28430 (\033[229z) def
+ 28432 (\033[230z) def
+ 28433 (\033[231z) def
+ 28434 (\033[232z) def
+ 28435 (\033[243z) def
+dictend def

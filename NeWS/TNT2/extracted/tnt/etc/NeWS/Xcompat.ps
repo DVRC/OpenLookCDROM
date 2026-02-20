@@ -1,0 +1,115 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%       @(#)Xcompat.ps 23.3 91/02/11
+%
+%	Xcompat.ps
+%
+% Compatibility PostScript for the X side of the merge.
+%
+%	1. an interest for keyboard events
+%	2. parse a WindowChange event into appropriate Enters and Exits
+%
+
+/Xcompat_private 2560 dict def
+initxoperators
+
+(NeWS/Xaccess.ps) LoadFile pop
+(NeWS/Xselection.ps) LoadFile pop
+(NeWS/Xresource.ps) LoadFile pop
+
+Xcompat_private begin
+
+% ===== global constants =====
+
+/XPriority	   0	def
+/verbose?	false	def
+
+% ===== initialization =====
+
+% Table for all client save sets
+/XSaveSets growabledict def
+
+/XInputMgr GlobalSystemEventMgr def
+
+end	% Xcompat_private
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Utilities
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% return true if the given canvas is a X canvas.  Return false otherwise
+systemdict /XCanvas? {	% canvas => --
+    dup type /canvastype eq {
+        /BorderWidth get null ne
+    } {
+	pop false
+    } ifelse
+} ?put
+
+
+
+
+%
+% Load these files without Xcompat_private on the stack
+%
+
+%
+% Interests for event-masks
+%
+(NeWS/Xinterests.ps) LoadFile pop
+
+Xcompat_private begin
+
+% this computes the repeat keys bitmask for the X11-GetKeyControl event.
+/offset 16#6f01 8 sub def
+
+%
+% REMIND: this may have architecture dependancies???
+%
+/setbit {               %  index mask-as-string  =>  index
+    1 index dup 8 idiv exch 8 mod       % i m B b
+    1 exch bitshift                     % i m B 1<<b
+    2 index 2 index get or put          % i
+} def
+
+
+%
+% REMIND: We really shouldn't be looking into the Global eventmgr for this
+% dict, but we need to get the repeat keys somehow.  There should be an
+% interface for this
+%
+/xmask null def
+/computeXmask {
+    /xmask 32 string store
+    /RepeatKeys ClassRepeatKeys send {			%  keycode keycode
+	pop						%  keycode
+	offset sub xmask setbit pop
+    } forall
+} def
+
+% this sets autoRepeat keys
+
+/XAutoRepeat {          % keycode boolean ==> -
+    {
+	/DecNonRepeater GlobalSystemEventMgr send
+    } {
+	/IncNonRepeater GlobalSystemEventMgr send
+    } ifelse end
+} def
+
+/XAutoRepeatDefault {   % keycode => -
+    /ClassForKey GlobalSystemEventMgr send {
+	/anydown
+	/letter
+	/shifted
+	/unshifted 	{ /DecNonRepeater GlobalSystemEventMgr send }
+	/Default	{ /IncNonRepeater GlobalSystemEventMgr send }
+    } case
+} def
+
+end	%  Xcompat_private

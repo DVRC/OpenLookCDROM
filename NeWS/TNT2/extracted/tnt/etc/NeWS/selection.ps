@@ -1,0 +1,557 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%     @(#) selection.ps 23.17 91/02/11
+%	select.ps:	ClassSelection: semantic machinery for selections
+%       Copyright (c) 1989 Sun Microsystems, Inc.
+
+/ClassSelection ClassObject dictbegin
+    % public
+    %	Must recipient acknowledge receipt of D&D trigger message?
+    /AcknowledgeDrop?	    false   	    	def
+
+    % private
+    %	When this is true, the /begintransfer was automatically generated
+    %	and an /endtransfer should be generated if necessary on return
+    %	from the application /HandleReception method.
+    %
+    /CheckAutoEnd?  	    false   	    	def
+
+    % public
+    %	Should the source be deleted after transfer.  (D&D)
+    %	(Subtly different from /PendingDelete?)
+    /DeleteSource?  	    false    	    	def
+
+    % public
+    %	Identify the holder of a selection; normally by the canvas in
+    %	which it is made.  Selections which can be extended across more
+    %	than one canvas are recognized by having the same holder.
+    /Holder		    null	    	def
+
+    % public
+    %	Where should the insertion point be placed?
+    /InsertionPoint 	    /AtPoint        	def
+
+    % public
+    %	Indicate the size object being selected.  0 => empty;
+    %	1 => an atomic object (character, graphic point, ...)
+    %	2 => the next larger grouping (e.g. word), etc.
+    /Level		    1			def
+
+    % public
+    %	Should the selection contents be deleted if the next operation
+    %	inserts data in the selection's buffer?
+    %	(Subtly different from /DeleteSource?)
+    /PendingDelete?	    true		def
+
+    % public
+    %	Which end of the selection should remain fixed in an Adjust?
+    %	Value is one of {/LowEnd, /HighEnd, /NearEnd, /FarEnd, /AtPoint}.
+    /Pin		    /AtPoint	    	def
+
+    % public
+    %	Is selection still being defined by user?
+    /Preview?		    true		def
+
+    % public
+    %	Is the selection Primary, Secondary, or what?
+    /Rank		    0		    	def
+
+    % public
+    %	Has the selection been set in the selection database?
+    /Registered?	    false		def
+
+    % public
+    %	Should the destination be selected after insertion?
+    /SelectResult?  	    false	    	def
+
+    % public
+    %	How should a selection be rendered?  Nearly, but not exactly,
+    %	redundant with PendingDelete? -- currently-known values are
+    %	/Default, /Invert, /Outline, /StrikeThru, /UnderScore
+    /Style		    /Default	    	def
+
+    % public
+    %	When was the selection made?
+    /Time		    0		    	def
+
+    % public
+    %	Is this a transient selection which should be destroyed once the
+    %	transfer is complete?
+    /Transient?	    	    false   	    	def
+
+dictend 
+classbegin
+
+% Class variables
+
+    /Holders		growabledict	def	%  holder: dict[ sel: sel ]
+
+    /Selections		growabledict	def	%  rank: selection
+
+    % Array of data transfer request-keys to which this class of selection
+    % can respond. Should be overridden by subclassers.
+    % /Canvas has been taken out of this because it can cause a reference
+    % to keep a dead application on the screen until a new shelf selection
+    % is made.
+    %
+    /CanRenderAs    	nulldict    	def
+
+
+    % Cursors for feedback during Drag and Drop.
+    % REMIND: For V3, use new target and `not' instead of beye and stop.
+    %
+    /NeutralMoveCursor  /move /Cursors ClassCanvas send exch get    def
+    /NeutralCopyCursor  /copy /Cursors ClassCanvas send exch get    def
+    
+    false {
+	% Emulate V3 D&D cursors as best as possible...
+	/ValidMoveCursor    /beye /Cursors ClassCanvas send exch get    def
+	/ValidCopyCursor    /beye /Cursors ClassCanvas send exch get    def
+	/InvalidMoveCursor  /stop /Cursors ClassCanvas send exch get    def
+	/InvalidCopyCursor  /stop /Cursors ClassCanvas send exch get    def
+    } {
+	% Since V2 XView doesn't do the new D&D cursors, it would be
+	% confusing for us to...
+	/ValidMoveCursor    /move /Cursors ClassCanvas send exch get    def
+	/ValidCopyCursor    /copy /Cursors ClassCanvas send exch get    def
+	/InvalidMoveCursor  /move /Cursors ClassCanvas send exch get    def
+	/InvalidCopyCursor  /copy /Cursors ClassCanvas send exch get    def
+    } ifelse
+% Defaults
+
+    %	During extended transfer operations (LOAD, INCR, etc.) this
+    %	flag will be true to indicate that neither the selection nor
+    %	the selected data should be modified except through selection
+    %	requests.
+    /TransferInProgress?    false   def
+
+
+% Methods
+
+    /NewInit { % rank holder => -; initialize new instance
+	/NewInit super send
+	/Holder		exch soften def
+	/Rank		exch def
+	/Registered?	false def
+    } def
+
+    /Deselect { % - => -
+	SubClassResponsibility
+    } def
+
+    /destroy { % - => -
+	Registered? { unsetselection } if
+	/Holder null def
+	/destroy super send
+    } def
+
+    /request { %  request  =>  response
+	/transferinprogress? self send not {
+	    /begintransfer self send
+	    /CheckAutoEnd? true promote
+	} if
+	
+    	dup dup {				% dict dict key oldval
+    	    1 index dup /RequestSequence eq {	% dict dict /RS seq /RS
+    	    	self send			% dict dict /RS seq'
+    	    } {
+    	    	/SingleRequest self send	% dict dict key newval
+    	    } ifelse
+    	    put dup				% dict dict
+    	} forall
+    	pop
+    } def
+    
+    /RequestSequence { %  seq => seq'
+    	[
+	    true 3 -1 roll {			    	% mark ... odd? key/val
+		exch {				    	% mark ... key
+		    false
+		} {					% mark ... key oldval
+		    1 index dup /RequestSequence eq {	% mark ... /RS seq /RS
+			self send
+		    } {
+			/SingleRequest self send	% mark ... key newval
+		    } ifelse
+		    true
+		} ifelse
+	    } forall				% mark key1 newval1 ... bool
+	    pop
+	]
+    } def
+    
+    % This method is actually a subclass responsibility, but ClassSelection
+    % provides a backstop implementation for compatibility with clients of
+    % an older interface, who override /request instead of /SingleRequest.
+    % The backstop method tests to catch subclassers who fail to override
+    % EITHER method.
+    %
+    /SingleRequest { %  oldval key  =>  newval
+    	/SingleRequest where pop
+    	/request where not {dup} if
+    	eq {
+	    SubClassResponsibility
+	} {
+	    dictbegin dup 3 -1 roll def dictend		% key rdict
+	    /request self send				% key rdict'
+	    exch get
+	} ifelse
+    } def
+
+
+    % public
+    %	Process a request for a single key (such as /ContentsAscii).
+    %	Returns the value and true, unless the value is /UnknownRequest,
+    %	in which case it returns just false.
+    %
+    %	key  =>  value  true
+    %	key  =>  false
+    /query { %  key => value true   ||  false
+	/transferinprogress? self send not {
+	    /begintransfer self send
+	    /CheckAutoEnd? true promote
+	} if
+	
+    	null exch /SingleRequest self send		% val
+    	dup /UnknownRequest eq { pop false } { true } ifelse
+    } def
+    
+    /AddHolder { % - => -
+	% stash for reaper; if Holder is null, it'll never get reaped
+	% but at least we won't crash
+	Holder null ne {
+	    Holders Holder 2 copy known {
+		get
+	    } {
+		growabledict dup 4 1 roll put
+	    } ifelse self dup put
+	} if
+    } def
+
+    /RemoveHolder { % - => -
+	Holder null ne {
+	    Holders Holder get
+	    dup self undef length 0 eq {
+	    	Holders Holder undef
+	    } if
+	} if
+    } def
+
+    % Class method called when a client is removed from the selection service.
+    % Destroys any registered selections belong to the obsolete Holder.
+    % REMIND: Should we do anything for unregistered selections?
+    %
+    /reapholder { % holder => -
+    	Holders exch 2 copy known {
+    	    2 copy get {			% Holders holder sel sel
+    	    	/unsetselection exch send	% Holders holder sel
+    	    	/destroy exch send		% Holders holder
+    	    } forall
+    	    undef				% -
+    	} {
+	    pop pop
+	} ifelse
+    } def
+
+    /setselection { % - => -
+	Rank getselection dup null ne {		%  old-sel
+	    dup self ne {
+		/unsetselection exch send
+	    } {
+		pop
+	    } ifelse
+	} {
+	    pop
+	} ifelse
+	/AddHolder self send
+	Time null eq {
+	    /Time currenttime store
+	} if
+	Selections Rank self put
+	/Registered? true store
+    } def
+
+    /UnsetSelection { % - => -
+	/Registered? false store
+	Selections Rank undef
+	/RemoveHolder self send
+    } def
+
+    /unsetselection { % - => -
+	Selections Rank get self eq {
+	    /UnsetSelection self send
+	    /Deselect self send
+	} if
+    } def
+
+
+    %	Return whether the third arg is closer to the 2nd than to the 1st.
+    %
+    /PastMidPoint? { % first last current => first last bool
+	2 index 2 index add 2 div ge
+    } def
+
+    %	Given first, last, and current positions, and a desired
+    %	position-name, return the appropriate position
+    %
+    /ComputeNamedPosition { % first last current positionname =>  pos
+	{					%  first last cur
+	    /LowEnd     { pop pop }
+	    /HighEnd    { pop exch pop }
+	    /NearEnd    { PastMidPoint? {exch} if pop }
+	    /FarEnd     { PastMidPoint? not {exch} if pop }
+	    /AtPoint
+	    /Default    { 3 1 roll pop pop }
+	} case
+    } def
+
+
+    % Compute the pinned position given first, last, and current positions,
+    % using the /Pin in the selection.  Returns the pinned position and also
+    % stores it in the selection instance.  If the /Pin is not a name, it
+    % is assumed to be a previously-saved pinned position and is unchanged.
+    %
+    /computepin { % first last current => pin-point
+    	Pin dup type /nametype eq {
+    	    ComputeNamedPosition
+	    /Pin 1 index store
+    	} {
+    	    4 1 roll pop pop pop
+    	} ifelse
+    } def
+
+
+    % Same as /computepin (q.v.), but returns the pinned position and the
+    % current position, in sorted order.
+    %
+    /computerange { % first last current => newfirst newlast
+    	dup 4 1 roll			% curr first last curr
+    	/computepin self send		% curr pinpt
+    	2 copy gt {exch} if
+    } def
+
+
+% REMIND:   The static selection mechanism will not work with the X11
+%   	    clipboard application under development.  This renders
+%   	    /checkpoint (and /CheckPoint) effectively obsolete.  They are 
+%   	    retained for V2 Beta for the NeWS based clipboard, but should 
+%   	    not be used by any application code.
+%
+%     % Make a static copy of this selection.  The default implementation
+%     % copies all of the values listed in the /CanRenderAs class var.
+%     % Cleverer subclasses can try to avoid copying data until such time
+%     % as the original data is about to become invalid.  The only rules are
+%     % that the selection returned by /checkpoint (a) must respond to all
+%     % requests for its value the same as the original selection does, and
+%     % (b) must continue to respond with the checkpointed values even if
+%     % the original selection subsequently changes.
+%     %
+%     /checkpoint { % rank => selection
+%     	/Checkpoint self send
+%     } def
+%     
+%     % Do the actual work of /checkpoint.  Subclassers should generally
+%     % override /checkpoint, leaving /Checkpoint available as a means of
+%     % subsequently creating a static snapshot if the data is about to be
+%     % modified.
+%     %
+    /Checkpoint { % rank => selection
+	CanRenderAs dictbegin { pop null def } forall dictend
+	/request self send			% rank valuedict
+	exch null /new ClassStaticSelection send
+    } def
+    
+    % Send this selection to a canvas via a /TransferSelection event.  The
+    % selection need not be registered with the global manager.  The optional
+    % bool says whether the selection should be deleted after the transfer.
+    % (Default is false.)  The canvas can be null to send the event to the
+    % canvas(es) currently under the pointer.
+    %
+    /sendtocanvas { % canvas [delete?] => -
+    	dup type /booleantype ne {false} if	%  cv bool
+	/DeleteSource? exch promote 	    	%  cv
+    	createevent begin
+    	    /Name /TransferSelection def
+    	    /Action self def
+    	    /Canvas exch def
+    	currentdict end
+    	sendevent
+    } def
+
+
+    % subclass method
+    %	This message will be sent to clone this selection into
+    %	the given rank for Drag and Drop or Clipboard.
+    %
+    %	rank  =>  new-selection
+    /CopySelection {	    %	rank  =>  new-selection
+	growabledict self 1 index copy	    %  rank  new-selection
+	dup /Rank 4 -1 roll def	    	    %  new-selection
+    } def
+
+
+    %  CLASS METHOD
+    /getselection { %  rank  =>  dict | null
+	Selections exch 2 copy known {
+	    get
+	} {
+	    pop pop null
+	} ifelse
+    } def
+
+
+    %	Set the cursor to indicate whether the dragged object is
+    %	over neutral area, a valid drop site, or an invalid drop
+    %	site.  A null parameter indicates neutral area, a canvas
+    %	parameter will always be Receptible.
+    %
+    %	This is done in ClassSelection so that subclasses can
+    %	easily override the specific cursor changes involved.
+    %	I.e. The UI specifies a different neutral drag cursor
+    %	for text.
+    %
+    %	event canvas  =>  -
+    %	event null    =>  -
+    /SetDragCursor {	%   event  canvas|null  =>  -
+	dup null eq {	    	    	    	    	    %  event  null
+	    pop pop
+	    { NeutralMoveCursor } { NeutralCopyCursor }
+	} { 	    	    	    	    	    	    %  event  canvas
+	    self /DropTarget? 3 -1 roll send {      	    %  -
+	        { ValidMoveCursor } { ValidCopyCursor }
+	    } {	    	    	    	    	    	    %  -
+	        { InvalidMoveCursor } { InvalidCopyCursor }
+	    } ifelse	    	    	    	    	    %  {} {}
+	} ifelse	    	    	    	    	    %  {} {}
+        DeleteSource? 3 1 roll ifelse grabcursor
+    } def
+
+
+    % public
+    %	Return a boolean indicating whether there is a dtat transfer
+    %	transaction sequence currently in progress.
+    %
+    %	-  =>  bool
+    /transferinprogress? {
+	/TransferInProgress? self send
+    } def
+		
+
+    % public
+    %	This method is invoked to acknowledge that the selection
+    %	transfer request has been received.  No action is required.
+    %
+    %	This is mostly for X11 D&D compatability.
+    %
+    %	-  =>  -
+    /acknowledgedrop {	%   -  =>  -
+	/AcknowledgeDrop? false promote
+    } def
+
+
+    % public
+    % 	Indicate that a data transfer sequence is starting.
+    %
+    %	-  =>  -
+    /begintransfer {	%   -  =>  -
+	/TransferInProgress? true promote
+	AcknowledgeDrop? { acknowledgedrop } if
+    } def
+
+
+    % public
+    %	Handle cleanup after a selection transfer completes.
+    %	The bool indicates whether the transfer was successfull or not.
+    %
+    %	bool  =>  -
+    /endtransfer {	%   bool  =>  -
+	DeleteSource? and {
+	    /DeleteContents /query self send { pop } if
+	} if
+	
+	Transient? { /destroy self send } if
+
+	/TransferInProgress? unpromote
+    } def
+		
+classend def	% ClassSelection
+
+
+% ClassStaticSelection is a selection whose value never changes; it responds to
+% queries by looking up the queried keys in a constant dict.
+%
+/ClassStaticSelection ClassSelection [/Values] 
+classbegin
+
+% Methods
+
+    /NewInit { % valuedict rank holder => -
+	/NewInit super send
+	/Values exch def
+    } def
+    
+    /Deselect nullproc def
+
+    /destroy { % - => -
+	/Values null store
+    } def
+    
+    /SingleRequest { %  oldval key  =>  newval
+    	exch pop
+    	Values 1 index known {
+    	    Values exch get
+    	} {
+    	    pop /UnknownRequest
+    	} ifelse
+    } def
+
+    % Override class var with method.
+    %
+    /CanRenderAs { % - => dict
+	growabledict dup begin
+	    Values { pop null def } forall
+	end
+    } def
+    
+classend def	% ClassStaticSelection
+
+
+% ClassStringSelection is a special case of ClassStaticSelection that
+% only knows how to render itself as ContentsAscii.  This is to make it
+% easy for clients to wrap a string inside a selection preparatory to
+% handing it to a canvas via a /TransferSelection request.  A
+% ClassStringSelection is intended to be created directly via /new
+% instead of via a Selectable's /newselection, and thus does not expect
+% rank/holder arguments.
+%
+/ClassStringSelection ClassStaticSelection []
+classbegin
+
+    /NewInit { % string => -
+	dictbegin
+	    /SelectionObjsize	    1 index length  def
+	    /ContentsAscii  	    exch    	    def
+	dictend				% valuedict
+	null null			% valuedict rank holder
+	/NewInit super send
+    } def
+
+classend def	% ClassStringSelection
+
+
+%   Systemdict utilities
+
+/clearselection { %  rank  =>  --
+    getselection dup null ne {
+	/unsetselection exch send
+    } {
+	pop
+    } ifelse
+} def
+
+/getselection { %  rank  =>  dict | null
+    /getselection ClassSelection send
+} def

@@ -1,0 +1,735 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#)focus.ps 23.16 91/02/11
+
+%   focus.ps:	machinery for handling input focus in the NeWS server
+
+%
+% This class is not meant to be instantiated.
+% All methods are sent to the class.
+%
+
+/ClassFocus [
+% ClassFullScreenInterest	% not used for now, see later comments
+	ClassObject] [ ]
+classbegin
+
+% Defaults:
+
+    /FocusMgrPriority	/FocusManagerPriority ClassInterest send	def
+
+    UserProfile
+	% don't use ?def since it looks at entire dict stack
+	dup /SetFocus		PointButton	?put
+	dup /RestoreFocus	AdjustButton	?put
+	dup /FocusStyle		/ClickFocus	?put
+	pop
+
+% Class variables:
+
+    %	FocusMode says how focus is currently being managed.  Current legal
+    %	values are /ClickFocus and /CursorFocus; a value is set after the
+    %	class has been defined.
+    %
+    /FocusMode	null	def
+
+    %	Clients = canvases that have asked to be focus clients.
+    %	Forwarders = canvases willing to pass the focus to interior clients.
+    %	Noticers = want to know when their interior gets/loses focus.  (This
+    %	   may end up being specific to windows hence done in that class.)
+    %
+    /Clients		growabledict	def
+    /Forwarders		growabledict	def
+    /Noticers		growabledict	def
+
+    %	Auxiliary dicts to handle forwarding.
+    %	For each client, we keep:
+    %	- an array of its ancestors who are forwarders, so they can be
+    %	  updated whenever the client becomes the most recent focus; and
+    %	- when the client last got the focus.
+    %	For each forwarder, we keep:
+    %	- a count of how many of its descendants are focus clients; and
+    %	- which one most recently had the focus (a cache which may be null
+    %	  if that client has since been removed).
+    %
+    /ForwarderAncestors	growabledict	def
+    /LastFocusTime	growabledict	def
+    /ClientTally	growabledict	def
+    /MostRecentClient	growabledict	def
+    
+    %	Interests to match the three dicts above.  The name/action for
+    %	forwarders will be filled in when the focusmode is known.
+    %
+    /FocusInterest
+	Clients /DownTransition dictbegin
+	    UserProfile /SetFocus get
+	    	[false /ClientClick] self buildsend def
+	    UserProfile /RestoreFocus get
+	    	[true /ClientClick] self buildsend def
+	dictend
+	/new ClassInterest send
+	    dup /Priority FocusMgrPriority 0.1 add put
+	    dup /Synchronous true put
+	    dup /Exclusive false put
+	def
+    /ForwardInterest
+	Forwarders false false /new ClassInterest send
+	    dup /Priority FocusMgrPriority 0.2 add put
+	    dup /Synchronous true put
+	    dup /Exclusive false put
+	def
+    /NoticeInterest
+    	Noticers
+    	/SubTreeAction ClassInterest send
+    	dictbegin
+    	    /AcceptFocus /HandleNotice self buildsend def
+    	    /RestoreFocus //AcceptFocus def
+    	    /LoseFocus //AcceptFocus def
+    	dictend
+    	/new ClassInterest send
+	    dup /Priority FocusMgrPriority put
+	    dup /Synchronous true put
+	    dup /Exclusive false put
+	def
+    [ FocusInterest ForwardInterest NoticeInterest ]
+    	/addclients GlobalEventMgr send
+
+% Since the fullscreen use didn't work anyway (see comments on /SetUpDependent)
+% there's no point to having this interest to tell us when to turn it off.  But
+% the code is retained in case we decide later we really do need it and need to
+% figure out how to make fullscreen work.
+
+%    %	We don't need the full Notify/Dependent regalia here, but we will
+%    %	need an interest that can watch for mouse-up and turn off the
+%    %	fullscreen pseudo-grab.
+%    %
+%    /DependentInterest
+%    	null
+%    	dictbegin
+%    	    /UpTransition /CleanUp self buildsend def
+%    	dictend
+%    	false	% (/Name will be filled in dynamically)
+%    	/new ClassInterest send
+%    	    dup /Synchronous true put
+%    	    dup /Priority FocusMgrPriority put
+%    	    dup /Exclusive false put
+%    	def
+
+    %	FocusInhibitions indicates a setfocus should not take effect,
+    %	because the UI is in some state that redefines the focus actions.
+    %	It's a counter, to allow for nested transactions.  PendingFocus
+    %	is a client that would have been given the focus if not inhibited;
+    %	it may get it when FocusInhibitions goes to 0.
+    %
+    %	Note that this currently does not (a) inhibit X from taking the
+    %	focus away nor (b) allow X to inhibit NeWS taking the focus.
+    %	(Note however that X function keys do not inhibit X clients from
+    %	taking the focus!)
+    %
+    /FocusInhibitions	0		def
+    /PendingFocus	/None		def
+
+% Dead Zone:
+
+    %	We can't assume that we're in charge of the framebuffer, but neither
+    %	can we assume that whatever window manager DOES control it will do
+    %	the right thing for background focus.  In particular, OLWM does not
+    %	detect "entering the background", but rather detects "leaving a
+    %	window", and only detects the latter for X-based windows.  Therefore
+    %	we have to have our own interest in entering the background, but make
+    %	it apply only when the current focus is one of our clients.  We also
+    %	try to find the OLWM "dead zone" focus (which beeps at all keystrokes)
+    %	so we can share it; if not found, we use a totally nonresponsive one.
+    %
+    /DeadZone {FindDeadZone} def % computed when needed
+
+    /FindDeadZone { % - => canvas (also stores in class var)
+	gsave
+	/DeadZone null store
+	rootcanvases {
+	    dup setcanvas				% root
+	    /TopChild get {				% window
+		dup null eq {pop exit} if
+		dup false getbbox			% window x y w h
+		10 eq exch 10 eq exch and		% window x y 10x10?
+		exch pop exch -10 eq and		% window deadDims?
+		1 index /XID get 0 ne and {		% Xdeadzone
+		    /DeadZone exch store
+		    null
+		}{
+		    /CanvasBelow get			% nextwindow
+		} ifelse
+	    } loop
+	    DeadZone null ne {exit} if
+	} forall
+	grestore
+	DeadZone null eq {
+	    /DeadZone framebuffer newcanvas store
+	} if
+	DeadZone
+    } def
+
+    %	The interest that watches for entering the background.
+    %
+    /EnterRootInterest
+	rootcanvases
+	/SelfAction ClassInterest send
+	dictbegin
+	    /EnterEvent /EnterRoot self buildsend def
+	dictend
+	/new ClassInterest send
+	    dup /Priority FocusMgrPriority put
+	    dup /Synchronous true put
+	    dup /Exclusive false put
+	def
+
+% Methods:
+
+    %	Revoke all interests and clean out all dicts of canvases.  Also null
+    %	out references to the interests, to break the loop since the interests
+    %	include executable matches that point to ClassFocus.
+    %
+    %	NOTE: This method breaks if sent to a subclass, but at present
+    %	we never subclass ClassFocus.
+    %
+    /cleanoutclass { % - => -
+	% get cv's on stack since /removeclient affects forall over dict
+        [ Clients {pop} forall ] {/removeclient self send} forall
+        [ Forwarders {pop} forall ] {/removeforwarder self send} forall
+        [ Noticers {pop} forall ] {/removenoticer self send} forall
+        % gun the interests
+	[ /FocusInterest /ForwardInterest /NoticeInterest /EnterRootInterest ] {
+	    dup load
+	    /removeclient GlobalEventMgr send
+	    null store
+	} forall
+%	% and the dependent interest
+%	/Active? DependentInterest send {
+%	    nullevent /CleanUp self send
+%	} if
+%	/DependentInterest null store
+    } def
+
+    %	Canvas is declared to be interested in receiving focus.
+    %
+    /addclient { % canvas => -
+    	soften LastFocusTime 1 index 0 put
+	dup Clients NewClient
+	[ 1 index {
+	    Forwarders 1 index known {
+	    	soften dup
+	    	ClientTally 1 index 2 copy get 1 add put
+	    } if
+	    /Parent get dup null eq {pop exit} if
+	} loop ]
+	ForwarderAncestors 3 1 roll put
+    } def
+
+    %	Canvas is declared interested in forwarding focus to interior clients.
+    %
+    /addforwarder { % canvas => -
+    	soften dup Forwarders NewClient	% cv
+    	dup /FindAllClients self send	% cv [clients]
+    	2 copy length ClientTally 3 1 roll put
+    	dup {				% cv [clients] client
+    	    ForwarderAncestors exch soften
+    	    2 copy get			% cv [cls] FA client [ancestors]
+    	    dup 5 index arraycontains? {% cv [cls] FA client [ancestors]
+    	    	pop pop pop		% cv [cls]
+    	    }{
+    	    	4 index arrayappend put	% cv [cls]
+    	    } ifelse
+    	} forall			% cv [clients]
+    	/FindLatestClient self send
+    	MostRecentClient 3 1 roll put
+    } def
+
+    %	Canvas is declared interested in knowing when focus enters/leaves
+    %	its interior.
+    %
+    /addnoticer { % canvas => -
+    	Noticers NewClient
+    } def
+
+    %	The guts of the three add* methods.
+    %
+    /NewClient { % canvas dict => -
+	1 index soften dup put			% cv
+	self /addclient ObsoleteService send
+    } def
+    
+    %	Remove a canvas from various classes of focus interest.
+    %
+    /removeclient { % canvas => -
+    	Clients 1 index known {
+    	    ForwarderAncestors 1 index get {		% client forwarder
+    	    	MostRecentClient 1 index get
+    	    	2 index eq {
+    	    	    MostRecentClient 1 index null put
+    	    	} if
+    	    	ClientTally exch 2 copy get 1 sub 0 max put
+    	    } forall					% client
+    	    ForwarderAncestors 1 index undef
+    	    LastFocusTime 1 index undef
+	    Clients 1 index undef
+	    % see if we still care about obsolescence
+	    Forwarders 1 index known
+	    Noticers 2 index known or not {
+	    	dup self /removeclient ObsoleteService send
+	    } if
+	} if
+	pop
+    } def
+    
+    /removeforwarder { % canvas => -
+	Forwarders 1 index known {
+	    % remove this forwarder from all ancestor arrays
+	    ForwarderAncestors {		% forwarder client ancestors
+	    	dup 3 index arrayindex {	% forwarder client ancs index
+	    	    arraydelete
+	    	    ForwarderAncestors 3 1 roll put
+	    	}{				% forwarder client ancs
+	    	    pop pop
+	    	} ifelse
+	    } forall
+	    ClientTally 1 index undef
+	    MostRecentClient 1 index undef
+	    Forwarders 1 index undef
+	    % see if we still care about obsolescence
+	    Clients 1 index known
+	    Noticers 2 index known or not {
+	    	dup self /removeclient ObsoleteService send
+	    } if
+	} if
+	pop
+    } def
+    
+    /removenoticer { % canvas => -
+	Noticers 1 index known {
+	    Noticers 1 index undef
+	    % see if we still care about obsolescence
+	    Clients 1 index known
+	    Forwarders 2 index known or not {
+	    	dup self /removeclient ObsoleteService send
+	    } if
+	} if
+	pop
+    } def
+
+    %	If a client or forwarder goes obsolete, remove it from our dicts.
+    %
+    /HandleObsoleteTarget { % target => -
+    	dup /removeclient self send
+    	dup /removeforwarder self send
+    	dup /removenoticer self send
+    	/HandleObsoleteTarget super send
+    } def
+
+    %	Establish a new policy as the current focus mode.
+    %
+    /setmode { % modename => -
+	dup FocusMode eq { pop } {
+	    dup /ClickFocus eq 1 index /CursorFocus eq or /undefined assert
+	    /FocusMode exch store
+	    % construct /Name and /Action for forwarders
+	    FocusMode {
+	    	/ClickFocus {
+	    	    EnterRootInterest /removeclient GlobalEventMgr send
+		    [UserProfile /SetFocus get UserProfile /RestoreFocus get]
+		    dictbegin
+		    	/DownTransition /ForwardClick self buildsend def
+		    dictend
+	    	}
+	    	/CursorFocus {
+	    	    EnterRootInterest /addclient GlobalEventMgr send
+	    	    /EnterEvent
+	    	    dictbegin
+	    	    	0 /ForwardEnter self buildsend def
+	    	    	1 /ForwardMaybe self buildsend def
+	    	    	2 0 load def
+	    	    	3 0 load def
+	    	    	4 1 load def
+	    	    dictend
+	    	}
+	    } case					% name action
+	    ForwardInterest begin
+	    	/Action exch def
+	    	/Name exch def
+	    end
+	    createevent dup begin
+		/Name /NewFocusMode def
+		/Action FocusMode def
+		/TimeStamp lasteventtime def
+	    end sendevent
+	    /ValidateFocus self send
+	} ifelse
+    } def
+
+    %	See if current focus should retain focus given change of mode.
+    %	Currently, only /CursorFocus might reject the focus.
+    %
+    /ValidateFocus { % - => -
+    	FocusMode {
+    	    /CursorFocus {
+    	    	% simulate entry to deepest focus-forwarder
+    	    	null canvasesunderpoint		% [fb cv ...]
+    	    	arrayreverse {
+    	    	    Forwarders 1 index known {
+			/ForwardCanvas self send
+			exit
+		    } if
+		    pop
+		} forall
+    	    }
+    	} case
+    } def
+    
+    %	Return the name of the current focus policy.
+    %
+    /currentmode { % - => keyword
+	FocusMode
+    } def
+
+    % 	Make a canvas be the current input focus.  This is the method to be
+    %	called by external agents that want to set the focus independently
+    %	of the current focus mode.
+    % 
+    /setfocus { % canvas|null|/ReDistribute [time] => -
+	dup type /realtype ne			%  cv [time]
+	1 index type /integertype ne and {	%  cv
+	    lasteventtime			%  cv time
+	} if
+	true SetAndNotify
+    } def
+
+    %	return the current focus
+    %
+    /currentfocus { % - => canvas|null|/ReDistribute
+	getkeyboardfocus
+    } def
+
+    %	return whether the argument is the current focus
+    %
+    /hasfocus? { % canvas|null|/ReDistribute => bool
+	getkeyboardfocus eq
+    } def
+
+    %	return whether the given canvas is a focus client  (obsolete??)
+    %
+    /isfocusclient? { % canvas => bool
+	Clients 1 index known
+    } def
+
+    %	Prevent or allow setting the current input focus.
+    %
+    /inhibitfocus { % bool => -
+	{ 1 } { -1 } ifelse
+	FocusInhibitions add /FocusInhibitions exch store
+	FocusInhibitions 0 le {
+	    PendingFocus /None ne {
+		PendingFocus /setfocus self send
+		/PendingFocus /None store
+	    } if
+	    /FocusInhibitions 0 store
+	} if
+    } def
+
+    %	Return the current inhibition status.
+    %
+    /inhibitfocus? { % - => bool
+	FocusInhibitions 0 gt
+    } def
+
+    %	Clear any stuck focus inhibitions (probably as part of a reset-input).
+    %
+    /clearinhibitions { %
+	/FocusInhibitions 0 store
+	/PendingFocus /None store 
+    } def
+
+    %	cache a canvas as the focus-to-be when a transient mode ends
+    %
+    /setpendingfocus { % null|canvas  =>  --
+	/PendingFocus exch store
+    } def
+
+    %	Return a pending focus.
+    %
+    /pendingfocus { %  --  =>  canvas|null
+	PendingFocus dup /None eq {
+	    pop null
+	} if
+    } def
+
+%   Methods for responding to events.
+
+    %	Handle when the focus enters or leaves a noticer's subtree.
+    %	Noticers are assumed to implement the method /HandleFocusNotice.
+    %
+    /HandleNotice { % ev => -
+    	dup /Name get /LoseFocus ne		% ev enter?
+    	/HandleFocusNotice 3 -1 roll		% enter? /HFN ev
+    	/Canvas get send
+    	unblockinputqueue
+    } def
+
+    %	Implement click-to-type behavior in actual focus clients.
+    %
+    /ClientClick { % ev restore? => -
+    	exch
+    	% dup /SetUpDependent self send		% restore? ev
+	unblockinputqueue
+	/inhibitfocus? self send {
+	    pop pop
+	}{
+	    /Canvas get dup /hasfocus? self send {
+	    	pop pop
+	    }{					% restore? canvas
+	    	lasteventtime 3 -1 roll SetAndNotify
+	    } ifelse
+	} ifelse
+    } def
+
+    %	Implement click-to-type focus forwarding.
+    %
+    /ForwardClick { % ev => -
+    	% dup /SetUpDependent self send		% ev
+    	unblockinputqueue
+    	/inhibitfocus? self send {
+    	    pop
+    	}{
+    	    /Canvas get /ForwardCanvas self send
+    	} ifelse
+    } def
+
+    %	Implement follow-mouse focus forwarding when mouse enters forwarder.
+    %
+    /ForwardEnter { % ev => -
+    	unblockinputqueue
+    	/Canvas get /ForwardCanvas self send
+    } def
+
+    %	Implement follow-mouse focus forwarding when mouse enters subtree.
+    %	Suppresses forwarding if another forwarder is closer to the leaf.
+    %	(This hair isn't needed for ForwardClick because the event only
+    %	matches the deepest canvas in the Forwarders dict; but the server
+    %	generates a SEPARATE event for EACH canvas involved in a crossing.)
+    %	NOTE: Uses an apparently undocumented server feature; ClientData of
+    %	an EnterEvent seems to contain the actual destination canvas!?
+    %
+    /ForwardMaybe { % ev => -
+    	dup /Canvas get				% ev this-cv
+    	1 index /ClientData get {		% ev this-cv descendant-cv
+    	    2 copy eq {exit} if
+    	    dup null eq {exit} if
+    	    Forwarders 1 index known {exit} if
+    	    /Parent get
+    	} loop					% ev cv cv'
+    	eq {
+    	    /ForwardEnter self send
+    	}{
+   	    pop unblockinputqueue
+   	} ifelse
+    } def
+    
+    %	Implement follow-mouse focus forwarding from specified canvas.
+    %
+    /ForwardCanvas { % canvas => -
+    	Forwarders 1 index known {
+    	    MostRecentClient 1 index get		% forwarder client
+    	    dup null ne {
+    	    	dup IsMapped? not {pop null} if
+    	    } if
+    	    dup null eq {
+		pop soften ClientTally 1 index get	% forwarder #clients
+		0 gt {
+		    dup /FindAllClients self send	% forwarder [clients]
+		    /FindLatestClient self send		% forwarder client
+		    2 copy MostRecentClient 3 1 roll put
+		}{
+		    null
+		} ifelse
+    	    } if					% forwarder client
+	    % forwarders always take the focus even if nowhere to put it
+	    dup null ne {exch} if pop			% focus-dest
+	    /inhibitfocus? self send {
+		/setpendingfocus self send
+	    }{
+		dup /hasfocus? self send {
+		    pop
+		}{
+		    lasteventtime true
+		    % fork a process that will set the focus AGAIN after about
+		    % 1/30 sec; this works around a race with X window mgr
+		    { 3 -1 roll 0.0005 sleep
+		      dup getkeyboardfocus ne {setkeyboardfocus} if
+		    } fork pop
+		    SetAndNotify
+		} ifelse
+	    } ifelse
+    	}{
+    	    pop % this canvas is no longer a forwarder
+    	} ifelse
+    } def
+
+    /EnterRoot { % ev => -
+	pop getkeyboardfocus
+	Clients 1 index known
+	Forwarders 3 -1 roll known or {
+	    DeadZone lasteventtime true SetAndNotify
+	} if
+	unblockinputqueue
+    } def
+
+%   Utilities
+
+    %	Establish a new focus, and send all notification events.
+    %	Uses an undocumented (grumble grumble) NeWS primitive.
+    %
+    /SetAndNotify { % focus' time restore?  =>  --
+    	Clients 3 index known {
+    	    LastFocusTime 3 index soften 3 index put
+    	    ForwarderAncestors 3 index get {	% f' t r? forwarder
+    	    	MostRecentClient exch 4 index soften put
+    	    } forall
+    	} if
+	3 -1 roll setkeyboardfocus pop
+    } def
+
+%    %	Activate the dependent interest to swallow the matching mouse-up.
+%    %	Also activates fullscreen grab.
+%    %
+%    %	Note: Fullscreen seems to interact badly with track/selection; a
+%    %	trackable+selectable focus client never sees the selection event if
+%    %	tracking redistributes it.  So we're not using fullscreen here, which
+%    %	means we might sometimes see bad interaction with an X window manager.
+%    %
+%    /SetUpDependent { % ev => -
+%	/Name get				% restore? ev button
+%	DependentInterest /Name 3 -1 roll put	% restore? ev
+%	dup /activate DependentInterest send
+%	/activatefullscreen self send
+%    } def
+%
+%    %	Clean up after the mouse goes up (if we responded to the Down).
+%    %	If event is nullevent, we're being called from cleanoutclass.
+%    %
+%    /CleanUp { % ev => -
+%    	/deactivate DependentInterest send
+%    	/deactivatefullscreen self send
+%    	nullevent ne { unblockinputqueue } if
+%    } def
+
+    %	Traverse the subtree of a focus-forwarder, and return an array of
+    %	all focus clients found.
+    %
+    /FindAllClients { % cv => [clients]
+    	[ exch RecurseForClients ]
+    } def
+    /RecurseForClients { % cv => client client ...
+    	Clients 1 index known {dup} if
+    	[ exch /TopChild get {
+    	    dup null eq {pop exit} if
+    	    dup /CanvasBelow get
+    	} loop ] {
+    	    RecurseForClients
+    	} forall
+    } def
+    
+    %	Given an array of clients, find the one that most recently
+    %	had the focus (and is still mapped).  Return a soft reference.
+    %
+    /FindLatestClient { % [clients] => latest|null
+    	null -1 3 -1 roll {			% cv time cv'
+    	    LastFocusTime 1 index get		% cv time cv' time'
+    	    dup 3 index gt {
+    	    	1 index IsMapped? {
+    	    	    4 2 roll
+    	    	} if
+    	    } if pop pop
+    	} forall pop soften
+    } def
+    
+    %	Utility to test if a canvas and all its ancestors are mapped.
+    %
+    /IsMapped? { % cv => bool
+    	{
+    	    dup null eq {exit} if
+    	    dup /Mapped get not {exit} if
+    	    /Parent get
+    	} loop
+    	null eq
+    } def
+
+%   Changes to workspace properties
+
+    /HandleDefaults { % name value => -
+	exch /setinput eq {
+	    cvn {
+		/followmouse { /CursorFocus /setmode self send }
+		/select { /ClickFocus /setmode self send }
+	    } case
+	} {
+	    pop
+	} ifelse
+    } def
+
+    /classinit { % - => -
+    	/setinput self /addclient DefaultsService send
+	FocusMode null eq {
+	    UserProfile /FocusStyle get
+	    /setmode self send
+	} if
+    } def
+    
+classend def	%  ClassFocus
+/classinit ClassFocus send
+    
+
+%  backwards-compatibility hacks
+
+systemdict begin
+
+    /addfocusclient { % cv [time] => --
+	/addclient ClassFocus send
+    } def
+    /currentfocusmode {
+	/currentmode ClassFocus send
+    } def
+    /currentinputfocus {
+	/currentfocus ClassFocus send
+    } def
+    /currentfocustimestamp {
+	/currenttimestamp ClassFocus send
+    } def
+    /hasfocus? {
+	/hasfocus? ClassFocus send
+    } def
+    /inhibitfocus? {
+	/inhibitfocus? ClassFocus send
+    } def
+    /isfocusclient? {
+	/isfocusclient? ClassFocus send
+    } def
+    /pendingfocus {
+	/setpendingfocus ClassFocus send
+    } def
+    /removefocusclient {
+	/removeclient ClassFocus send
+    } def
+    /restartfocushandler nullproc def
+    /setfocusmode {
+	/setmode ClassFocus send
+    } def
+    /setfocustimestamp {
+	/settimestamp ClassFocus send
+    } def
+    /setinputfocus {		% cv|null|/ReDistribute [time] [process] => --
+	dup type /processtype eq {pop} if	%  cv [time]
+	/setfocus ClassFocus send
+    } def
+
+end	%  systemdict

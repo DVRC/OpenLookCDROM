@@ -1,0 +1,288 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)notice.ps 23.7 91/02/11
+%
+%	NoticeFrame implementation.
+%
+%	Used for simple dialogs which need to be "Noticed" immediately.
+%	Allows multi-line prompts and one or more buttons with
+%	user settable labels, callbacks and key bindings.
+%
+
+
+/NoticeBag ClassBag [ /Lines /FormerFocusOwner /Gap /CursorLocation ]
+classbegin
+    /FocusClient? true def
+
+    /DefaultButton null def
+
+    /MinGap 8 def
+    /MaxGap 32 def
+    /VGap 20 def
+
+    /TextSize 14 def
+    /TextFamily /LucidaSans-Bold def
+
+    /TextFont {
+	/TextFont super send false printermatchfont
+	/TextFont 1 index def
+    } def
+
+    /executecallback {	% proc => -
+	self send
+	self /parentdescendant ClassFrame send {
+	    /destroy exch send
+	} if
+    } def
+
+    % Create a button and add it as a client of the notice bag.	 If
+    % a key, as in keyboard key, was also supplied make the name of
+    % the client in the bag be that key.  Thus when a keystroke is
+    % received it is looked up in the bag.  If there is a client by
+    % that name it is highlighted and its callback is executed.	 If
+    % there is no client by that name then we will ring the bell.
+
+    /CreateButton { % label callback key|null => -
+	/toChar ClassKeyboard send 3 1 roll
+	1 array astore
+	{/executecallback /parent 4 -1 roll send send} append cvx
+	Canvas /new ClassButton send
+	/addclient self send
+    } def
+
+    /NewInit { % [ (prompt) ... ] [ [ (label) { } (key) ] ... ] => instance
+	/NewInit super send
+	{
+	    aload pop
+	    /CreateButton self send
+	} forall
+	dup isarray? not { [ exch ] } if
+	/Lines exch def
+    } def
+
+    /Layout {
+	/Layout super send
+
+	0
+	/clientlist self send {
+	    /minsize exch send pop add
+	} forall					% butw
+
+	/clientcount self send 1 sub dup 0 ne {
+	    Width 40 sub 2 index sub			% white space
+	    exch div
+	    MaxGap min
+	    MinGap max
+	} if						% gap
+	/Gap exch def
+							% butw
+	Gap /clientcount self send 1 sub mul add	% butw+gaps
+	Width exch sub 2 div
+	VGap				% x y
+	/clientlist self send {		% x y b
+	    3 copy			% x y b x y b
+	    /minsize exch send		% x y b x y w h
+	    1 index 6 1 roll		% x y w b x y w h
+	    /reshape 6 -1 roll send	% x y w
+	    3 -1 roll add Gap add exch	% x' y
+	} forall
+	pop pop
+    } def
+
+    /setdefault { % index => -
+	dup null ne {
+	    /clientcount self send 1 sub min
+	    0 max
+	} if
+	/DefaultButton exch def
+    } def
+
+    /PaintCanvas {
+	/PaintCanvas super send
+
+	TextFont setfont
+	/lineh currentfont fontheight 4 add def
+
+	/size self send		    % w h
+	VGap sub		    % w h'
+	currentfont fontascent sub  % w h''
+	exch 2 div exch		    % w' h''
+	Lines {
+	    3 copy pop
+	    moveto cshow
+	    lineh sub
+	} forall
+	pop pop
+	DefaultButton null ne { 
+	    CursorLocation null eq {
+		gsave
+		    framebuffer setcanvas
+		    [ currentcursorlocation ]
+		    /CursorLocation exch def
+		grestore
+		/clientlist self send DefaultButton get
+		/bbox exch send
+		2 div exch 2 div exch
+		rect2points
+		setcursorlocation
+		pop pop
+	    } if
+	} if
+    } def
+
+    /ReadChar { % ev => -
+	/Name get /client self send {
+	    true /setvalue 2 index send
+	    /callnotify exch send
+	}{
+	    beep
+	} ifelse
+    } def
+
+    /MakeInterests { % - => interests
+	/MakeInterests super send
+
+	/ReadChar self soften buildsend Canvas
+	/defaultkeys ClassKeysInterest send
+    } def
+
+    /activate {
+	/activate super send
+	/FormerFocusOwner currentinputfocus def
+	Canvas setinputfocus
+    } def
+
+    /deactivate {
+	FormerFocusOwner 0 ne {
+	    FormerFocusOwner setinputfocus
+	    /FormerFocusOwner 0 def
+	} if
+	/deactivate super send
+    } def
+
+    /destroy {
+	CursorLocation null ne {
+	    gsave
+		framebuffer setcanvas
+		CursorLocation aload pop setcursorlocation
+		/CursorLocation null def
+	    grestore
+	} if
+	/destroy super send
+    } def
+
+    /minsize {	% - => minw minh
+	gsave
+	    TextFont setfont
+    
+	    0 0
+	    /clientlist self send {
+		/minsize exch send
+		exch 4 -1 roll add 3 1 roll max
+	    } forall					% w h
+    
+	    exch					% w h
+	    MinGap /clientcount self send 1 sub mul add % h w'
+	    Lines {
+		stringwidth pop max
+	    } forall					% h w'
+	    40 add
+    
+	    exch VGap 3 mul add
+	    currentfont fontheight 4 add Lines length mul add
+	grestore
+    } def
+
+classend def
+
+
+/NoticeFrame ClassNoticeFrame [/Self /BlockingCanvas]
+classbegin
+
+    /EventsConsumed /AllEvents def
+    /SaveBehind true def
+    /Selectable? false def
+
+    /NewInit {
+	[NoticeBag] append [] /NewInit super send
+	null /setmenu self send
+	/Self self def
+    } def
+
+    /setdefault {   % index|null => -
+	/setdefault /Client /sendclient self send
+    } def
+
+    % Unmap the blocking canvas first when destroying so Obsolete
+    % events can pass through to the framebuffer.  This is not
+    % necessary if Obsolete interests are pre-child but we cannot rely
+    % on that any longer.
+    %
+    /destroy {	% - => -
+	/unmap self send
+	BlockingCanvas null ne {
+	    BlockingCanvas /Mapped false put
+	    /BlockingCanvas null def
+	} if
+	/Self null def
+	/destroy super send
+    } def
+
+    /zoom { % - => -
+	pop
+    } def
+
+    % Create a blocking canvas to intercept events when the notice is up.
+    %
+    /map {  % - => -
+	BlockingCanvas null eq {
+	gsave
+	    framebuffer setcanvas
+	    framebuffer newcanvas
+	    dup /Transparent true put
+	    dup /EventsConsumed /AllEvents put
+	    clippath dup reshapecanvas
+	    dup /Mapped true put
+	    /BlockingCanvas exch def
+	grestore
+	} if
+	BlockingCanvas canvastotop
+	/totop self send
+	/map super send
+    } def
+
+
+    /DefaultPosition { % w h => x y
+	gsave
+	    /parent self send
+	    dup setcanvas
+	    /bbox exch send		% w h x y w' h'
+	    2 div 3 -1 roll add		% w h x cy w'
+	    3 1 roll 2 div add exch	% w h cx cy
+	    4 2 roll			% cx cy w h
+	    2 div 3 -1 roll exch sub	% cx w y
+	    3 1 roll 2 div sub exch	% x y
+	grestore
+    } def
+
+    IncludeDemos? {
+	% Create a simple notifier that prints the result on stderr.
+	%
+	/demo { % - => NoticeFrameInstance
+	    [ [ (NoticeFrame Demo) (does multiline too!) ]
+		[
+		[ (Left Label) { (You picked the left callback) == } ( ) ]
+		[ (Right Label) { (You picked the right callback) == } (\r) ]
+		]
+	    ] framebuffer /new NoticeFrame send
+	    1 /setdefault 2 index send
+	    /place 1 index send
+	    /activate 1 index send
+	    /map 1 index send
+	} def
+    } if
+classend def

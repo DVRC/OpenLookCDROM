@@ -1,0 +1,201 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)region.ps 1.18 91/02/11
+%
+
+/ClassRegion ClassDrawable []
+classbegin
+
+    /X		0 def
+    /Y		0 def
+    /Width	0 def
+    /Height	0 def
+    /Parent	null def
+
+    /NewInit { % placement parent-canvas => instance
+        /NewInit super send
+        /reparent self send
+    } def
+
+    /eventmgr { % - => process
+    	% cheat slightly (avoid cross-object send to save time)
+    	Parent /EventMgr get
+    } def
+
+    /pointinregion? { % x y => boolean
+        /bbox self send pointinrect?
+    } def
+
+    /framebufferof { % - => framebuffer
+        /framebufferof Parent send
+    } def
+
+    /destroy { % - => -
+        /Parent unpromote
+        /destroy super send
+    } def
+
+    /reparent { % ParentCanvas => -
+        soften
+        /Parent exch promote
+    } def
+
+    /location { % - => x y
+        X Y
+    } def
+
+    /size { % - => width height
+        Width Height
+    } def
+
+    /move { % x y => -
+        /Y exch promote
+        /X exch promote
+    } def
+
+    /reshape { % x y w h => -
+        /invalidate self send
+        /Height exch promote
+        /Width exch promote
+        /Y exch promote
+        /X exch promote
+    } def
+
+    /reshaped? { % - => bool
+        /size self send max 0 gt
+    } def
+
+    /bbox { % - => x y w h
+	/location self send /size self send
+    } def
+
+    % Translate to put this region's origin at 0,0; then execute the given
+    % method; then untranslate.  Assumes currentcanvas is the region's
+    % Parent.  This method is for use by ClassBag and is not (currently)
+    % part of the public (read: frozen) API.
+    %
+    /sendtranslated { % <args> /method => <results>
+    	X Y translate
+    	cvx exec
+    	X neg Y neg translate
+    } def
+
+    /paint { % - => -
+        gsave Parent setcanvas
+            /paint super send
+        grestore
+    } def
+ 
+    /PaintAll { % - => -
+	/?validate self send
+	X Y translate		% x y = parent relative origin
+	/Paint self send
+	/PaintChildren self send
+	X neg Y neg translate
+    } def
+
+    /Paint { % - => -
+        0 0 /size self send rectpath
+        BackgroundColor setcolor fill
+    } def
+
+    /FixAll { % - => -
+	/?validate self send
+	X Y translate		% x y = parent relative origin
+	/Fix self send
+	/FixChildren self send
+	X neg Y neg translate
+    } def
+
+    /capture { % file array array => -
+        gsave Parent setcanvas
+            /capture super send
+        grestore
+    } def
+
+    /CaptureAll { % - => -
+	/?validate self send
+	X Y translate		% x y = parent relative origin
+	/Capture self send
+	/CaptureChildren self send
+	X neg Y neg translate
+    } def
+
+    /TrackStart { % Event => -
+       pop
+    } def
+
+    /TrackStop { % Event => -
+        pop
+    } def
+
+    /TrackMotion { % Event => -
+        pop
+     } def
+
+    /TrackCancel { % Event => -
+        pop
+    } def
+
+    IncludeDemos? {
+        /demo { % - => window instance
+           growabledict begin
+
+               % instantiate a panel
+               /panel /Absolute framebuffer /new ClassPanel send def
+               
+               /DemoRegion ClassRegion []
+               classbegin
+                   /Toggle false def
+
+                   /TrackStart {
+                       pop Toggle not /Toggle exch promote
+		       /Paint self send
+                   } def
+
+		   /TrackCancel {
+                       pop /Toggle false promote
+		       /Paint self send
+		   } def
+
+                   /Paint {
+                       0 0 Width Height Toggle Paint3DBox 
+                   } def
+               classend def
+
+		/region1 framebuffer /new DemoRegion send def
+		0 0 100 100 /reshape region1 send
+		0 0 0 hsbcolor .2 .6 .9 hsbcolor /setcolors region1 send	
+
+		/Grid framebuffer /new ClassMenu send
+		[(Hello)] /setitemlist 2 index send
+		(Region Menu) /setlabel 2 index send
+		/setmenu region1 send
+		/region1 region1 [10  10] /addclient panel send
+
+		/region2 framebuffer /new DemoRegion send def
+		0 0 40 40 /reshape region2 send
+		/region2 region2 [120 35] /addclient panel send
+		0 0 0 hsbcolor .4 .6 .9 hsbcolor /setcolors region2 send	
+
+		/preferredsize {180 120} /promote panel send
+
+                % instantiate a window and insert the bag
+                /win panel framebuffer /new ClassBaseWindow send def
+
+                (Demo of 2 regions) /setlabel win send
+		/Footer?  false /setattribute win send
+                /place win send
+                /new ClassEventMgr send /activate win send
+                /map win send
+                win [region1 region2]
+            end
+        } def
+    } if
+
+
+classend def        

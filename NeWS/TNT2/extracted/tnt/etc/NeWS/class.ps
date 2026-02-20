@@ -1,0 +1,853 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) class.ps 23.13 91/02/11
+%
+%  Objects and Classes.
+%
+
+%
+% classbegin & classend:
+% Create a sub-class of the given class.
+%    The instancevariables may be either an array or a dict.
+%    The advantage of using a dict is that the variables will be
+%    pre-initialized to a value you chose, rather than "null".
+%
+% The shared indentation between classbegin-classend emphasizes their
+% dependence on paired usage: classbegin installs a dict and some
+% initial values; classend completes the process, popping the dict.
+%
+/classbegin { % classname superclass insvars => - ; Puts newclass on dictstack
+    %  Re-use previously defined class so subclassers point
+    %  to correct dict after a class is redefined.
+    %  The check for isclass? is for autoloads.
+    currentdict 3 index known {			% ..insvars dict
+	currentdict 3 index get dup isclass? {	% ..insvars dict'
+	    dup /SubClasses get exch		% ..insvars array dict
+	    /cleanoutclass 1 index send begin	% ..insvars array
+	    /SubClasses exch def		% ..insvars
+	} {pop dictbegin} ifelse
+    } {dictbegin} ifelse
+
+	% NewInsVars: convert array to dict,
+	% noting whether a dict copy will work for the instance
+	/DictCopyOK? true def
+	dup isarray? {			% name superclass insvars
+	    dup length 0 eq {
+		pop nulldict
+	    } {
+		dictbegin
+		    {null def} forall
+		dictend			% name superclass insvardict
+	    } ifelse
+	} { % if it's already a dict, decide whether we can copy the values
+	    dup {
+		ShouldCopyIns? {
+		    /DupInsVars ne {
+			/DictCopyOK? false def
+			exit
+		    } if
+		} {
+		    pop
+		} ifelse
+	    } forall
+	} ifelse			% insvardict
+	% move DupInsVars to class.
+	dup /DupInsVars known {		% name superclass insvardict
+	    /DupInsVars 2 copy 2 copy	% .. ivd /DIV ivd /DIV ivd /DIV
+	    get def exch undef		% name superclass insvardict
+	} {
+	    /DupInsVars nulldict def
+	} ifelse			% name superclass insvardict
+	/NewInsVars	exch def	% name superclass
+
+	% Convert ParentClasses to an array; null -> []
+	dup isarray? not {[exch dup null eq {pop} if]} if
+
+	% If this is an unrooted class, give the poor orphan its own
+	% version of utilities that ClassObject provides to its legitimate
+	% descendants.
+	dup length 0 eq {
+	    /cleanoutclass {currentdict cleanoutdict} def
+%	    /DefaultClass {self} def
+	} if
+
+	% Save ParentClasses & ClassName
+	/ParentClasses	exch def	% name
+	/ClassName	exch def	% -
+	
+	% Initialize SubClasses if not redefining the class.
+	currentdict /SubClasses nullarray ?put
+
+	%  Figure the order of all the superclasses of this class.
+	CreateParentDictArray
+	
+	%  Now set up the dictstack as though we'd done a send to this class.
+	currentdict ParentDictArray
+	end {begin} forall begin
+
+} def
+ 
+/classend { %  - => classname newclass
+	% Compile all the methods in this class.
+	currentdict methodcompileall
+
+	% Add me to my ParentClasses' SubClasses list:
+	ParentClasses {				% class
+	    /SubClasses 2 copy get		% class /SubClasses array
+	    dup currentdict arraycontains?	% only add if not there!
+		{pop pop pop} {[currentdict soften] append put} ifelse
+	} forall
+	
+	% Construct InstanceVars: the sum of all super class's instance vars.
+	/InstanceVars dictbegin
+	    ParentClasses {/InstanceVars get {def} forall} forall
+	    DupInsVars {		% dupname value
+		currentdict 2 index known not {
+		    console (%: % is not duplicate instance variable.\n)
+		    [ClassName 5 index] fprintf
+		} if
+		def
+	    } forall
+	    NewInsVars {		% uniquename value
+		currentdict 2 index known {
+		    console (%: % is duplicate instance variable.\n)
+		    [ClassName 5 index] fprintf
+		} if
+		def
+	    } forall
+	dictend def
+
+	currentdict /DupInsVars undef
+	currentdict /NewInsVars undef
+
+	ClassName	% return the class name
+	currentdict	% and the class
+	ParentDictArray
+    end					% classname newclass PDA
+
+    % But first, end all the parentdicts we began in classbegin.
+    arrayreverse {
+	currentdict ne {
+	    console (Dict stack disorder at classend of %.\n)
+	    [4 index] fprintf
+	    exit
+	} if
+	end
+    } forall
+
+    % Execute user's defaults.  The UserProfile procedure is called
+    % expecting:  classname newclass => classname newclass
+    systemdict /UserProfile known {
+        UserProfile 2 index known {
+            UserProfile 2 index get exec
+        } if
+    } if
+} def
+
+/classdestroy { % class => -; remove a class from the system.
+    {	% Remove me from my super classes.
+	ParentClasses {			% super
+	    /SubClasses 2 copy get	% super /SubClasses array
+	    dup self arrayindex {	% super /SubClasses array i
+	        arraydelete put		% -
+	    } {				% super /SubClasses array
+		pop pop			% super
+		console (classdestroy: % not found in %\n)
+		[ClassName /classname 6 -1 roll send] fprintf
+	    } ifelse			% -
+	} forall
+	% cleanout the class.
+	/cleanoutclass self send		% name
+    } exch send
+} def
+
+% Redefine an instance variable.
+% This maintains a second dict, DupInsVars, in the current dict.
+/redef { % name obj => -; redefine an instance variable
+     currentdict /DupInsVars known not {
+	/DupInsVars growabledict def
+     } if
+     DupInsVars 3 1 roll put
+} def
+
+
+% send & sendstack:
+%	Send a message to an object.
+%	Get the current send stack (popped send contexts)
+%
+% Bug: this does not pop contexts properly if there is a non-object
+% dict on stack between object and top of dict stack.
+%
+% The C version of send imposes the restriction that the end of the send
+% must see the same object on the stack.
+%
+%  DS Note: send should leave behind a "self" defined so that beginning
+%	    an object will still return the current receiver
+%  CR Note: We might want to have a "quicksend" that does no context checks.
+%
+/PushSend {
+    dup /ParentDictArray get
+    dup type /dicttype eq {
+	dup /ParentDictArray get
+	{begin} forall begin begin
+    } {
+	{begin} forall begin
+    } ifelse
+} def
+/PopSend {
+    ParentDictArray type /dicttype eq {end} if
+    ParentDictArray length 1 add {end} repeat
+} def
+
+/SendBegin {
+    % pop off any existing instance.
+    currentdict /ParentDictArray known {
+	currentdict
+	PopSend
+	1 dict begin /PoppedSendContext! exch def
+    } if
+    
+    % push on the object context.
+    PushSend
+} def
+/SendEnd {
+    % pop context.
+    PopSend
+
+	% restore existing instance.
+    currentdict /PoppedSendContext! known {
+	PoppedSendContext! end
+	PushSend
+    } if
+} def
+
+/send {
+    SendBegin
+	cvx exec
+    SendEnd
+} ?def
+
+% This builds one of two forms of /sendstack based on whether or not
+% the C version of send is being used.
+/sendstack % - => array
+    currentprocess /SendContexts known {{
+	currentprocess /SendContexts get
+    }} {{
+	[   self currentprocess /DictionaryStack get arrayreverse {
+		/PoppedSendContext! 2 copy known {get} {pop pop} ifelse
+	    } forall
+	]
+    }} ifelse
+?def
+
+/GetParentDictArray { % - => ParentDictArray of self
+    ParentDictArray dup type /dicttype eq {
+	/ParentDictArray get
+    } if
+} def
+
+% Send a message to my super class without changing send context.
+%   The topmost arg (object) is the "seed"; is either the instance
+%   which has just invoked supersend, or the current class.
+%   If it's an instance, its ParentDictArray is simply its parent
+%   class; conveniently, this is where the search begins.  If a
+%   class, the search starts with the predecessor of the seed in
+%   the *current* ParentDictArray.
+%   Of course, if "message" isn't a literal name,
+%   the whole thing just degenerates to "exec."
+%
+/supersend { % <args> message object => <results>
+    1 index dup type /nametype ne
+    exch xcheck or {
+	pop					% method
+    } {
+	%   Set up search path on stack.  If self is an instance,
+	%   it's [ PDA(parent), parent ]; else [ PDA(self), self ]
+	%
+	ParentDictArray dup type /arraytype ne {  % msg seed PDA
+	    dup /ParentDictArray get		% msg seed parent PDA
+	    aload length 1 add			% msg seed parent supers n
+	    dup 1 add -1 roll exch		% msg seed supers parent n
+	    [ 1 index 2 add 1 roll		% msg seed [ supers parent n
+	} {
+	    [ exch aload length 1 add self exch	% msg seed [ supers self n
+	} ifelse
+	dup 3 add -1 roll			% msg [ supers self n seed
+
+	%   Now decide whether seed is a class; if so,
+	%   search-list on stack need to be stripped down past seed
+	%
+	dup /ClassName known {
+	    exch {				% msg [ supers.. seed
+		2 copy eq { pop exit } if	% msg [ supers seed
+		exch pop
+	    } repeat		  %  msg [ seed | msg [ supers seed
+	    pop dup type /marktype eq {	% bad seed!
+		console (supersend: unknown super!\n) nullarray fprintf
+		NotDefined
+	    } if				% msg [ supers
+	    counttomark dup 3 add -1 roll exch	% [ supers msg n
+	} {		%  seed is instance:	% msg [ supers parent n seed
+	    pop dup 3 add -1 roll exch		% [ supers msg n
+	} ifelse
+    
+	%	In either case, we now have on the stack the list
+	%	of classes we should search, along with a count of them.
+	{					% [ Obj..super msg
+	    2 copy known { exit } if
+	    exch pop				% [ Obj..super' msg
+	} repeat		%  [ msg | [ Obj..super' msg
+	1 index type /marktype eq {		% bad message!
+	    NotDefined
+	} if					% [ Obj..super method
+	get counttomark 1 add 1 roll		% method [ Obj..super
+	cleartomark				% method
+    } ifelse exec
+} ?def
+
+% Find start of super chain used by method compiler.
+% If compiling in an instance, return 0 (start of list);
+% otherwise return the current class.
+/SuperSendSeed { % - => class|0; get start of super chain
+    % Note: currentdict version only works if method compiler does
+    % not use a local dict.
+    /ParentDictArray where pop
+    dup /ClassName known {soften} {pop /self cvx} ifelse
+} def
+
+/CompileSend { % ...(self|super) 'send' => ...
+    1 index /self eq {
+	% Optimize "self send", except if within a begin/end context.
+	%
+	% The "xcheck" below is to make sure operators like "ifelse"
+	% are not confused for method names like /foo.  This is only
+	% required when autobinding is off. The test is:
+	%    condition {/method1} {/method2} ifelse self send
+	% should produce
+	%    {/method1} {/method2} ifelse cvx exec
+	% not
+	%    {/method1} {/method2} ifelse
+	MethodCompilerDictLevel 0 le {
+	    /Unchanged? false store
+	    pop pop
+	    dup type /nametype eq 1 index xcheck not and
+	        {cvx} {{cvx exec} aload pop} ifelse
+	} if
+    } {
+	1 index /super eq {
+	    /Unchanged? false store
+	    pop pop
+	    SuperSendSeed /supersend load
+	    dup isarray? {
+		pop /supersend cvx              % PostScript version
+	    } if
+	    MethodCompilerDictLevel 0 gt {
+		% I think this works even if the method is recompiled?
+		2 array astore cvx {self send} aload pop
+	    } if
+	} if
+    } ifelse
+} def
+
+/CompileSuperSend { % ... class 'supersend' => ... thisclass 'supersend'
+    /Unchanged? false store
+    exch pop SuperSendSeed exch
+} def
+
+/CompileDictBegin { % - => -
+    /MethodCompilerDictLevel MethodCompilerDictLevel 1 add store
+} def
+
+/CompileDictEnd { % - => -
+    /MethodCompilerDictLevel MethodCompilerDictLevel 1 sub store
+} def
+
+/CompileLocalDicts { % num 'SetLocalDicts' => -
+    /Unchanged? false store
+    pop /MethodCompilerDictLevel exch store
+} def
+
+/CompilePromote { % ... 'promote' => ... 'def'
+    MethodCompilerDictLevel 0 le {
+	/Unchanged? false store
+	pop /def load
+    } if
+} def
+
+% Define both the name and operator version of an operator name.
+% Note: "put" rather than "def" to avoid executing code within the scope
+% of "Temp".  This is to avoid accidentally using tokens in temp that are
+% bound compiler directives rather than "themselves".  Because "end"
+% is redefined to do something in the method compiler; Temp begin .. end
+% will fail!
+/OperatorPut { % dict key val => dict
+    exch 3 copy cvx exch put		% dict val key
+    systemdict 1 index known {
+	systemdict exch get		% dict val key'
+	dup type /operatortype eq {	% dict val key'(operator form)
+	    3 copy exch put		% dict val key'
+	} if				% dict val key|key'
+    } if
+    pop pop
+} def
+
+%
+% methodcompile: Crack open the methods and fix for "super send" & "self send"
+%	/keyword self send	=> keyword (if no extra dicts on stack)
+%	<other> self send	=> <other> cvx exec (ditto)
+%	<any> super send	=> <any> class supersend
+%	class supersend		=> currentclass supersend
+%	promote			=> def (if no extra dicts on stack)
+%
+% Note that /methodcompile can be used as a pseudo-method:
+%	{..} /methodcompile FooClass send
+% will compile {..} for FooClass. (It returns the new executable array)
+% 
+
+% The method compiler's token dict.
+/Temp 20 dict 
+    /send		//CompileSend		OperatorPut
+    /supersend		//CompileSuperSend	OperatorPut
+    /begin		//CompileDictBegin	OperatorPut
+    /end		//CompileDictEnd	OperatorPut
+    /SetLocalDicts	//CompileLocalDicts	OperatorPut
+    /dictbegin		//CompileDictBegin	OperatorPut
+    /dictend		//CompileDictEnd	OperatorPut
+    /promote		//CompilePromote	OperatorPut
+def
+
+% Parse an array for tokens in the Temp dict.  Execute associated
+% proc from dict if token found.
+/MethodCompile { % method => newmethod
+    dup xcheck exch dup type /packedarraytype eq exch	% cvx? pack? proc
+    [ exch {						% cvx? pack? [ .. token
+	dup isarray? {
+	    MethodCompile
+	} {
+	    //Temp 1 index known {
+	    	% don't change "/promote foo send" into "def foo send"
+		dup xcheck {
+		    //Temp 1 index get exec
+		} if
+	    } if
+	} ifelse
+    } forall						% cvx? pack? [ ...
+    counttomark dup 3 add -1 roll			% cvx? [ ... size pack?
+    { packedarray exch pop } { pop ] } ifelse		% cvx? newarray
+    exch { cvx } if					% newproc
+} def
+
+/Temp 3 dict def
+/methodcompile { % method => newmethod
+    //Temp begin
+	/MethodCompilerDictLevel 0 def
+	/Unchanged? true def
+	MethodCompile
+    end
+} def
+
+/methodcompileall { % dict => -
+    //Temp begin
+    	/AlreadyCompiled growabledict def
+    	dup dup {				% dict dict key value
+    	    dup xcheck 1 index isarray? and {
+    	    	AlreadyCompiled 1 index known {
+    	    	    AlreadyCompiled exch get
+    	    	} {
+    	    	    /MethodCompilerDictLevel 0 def
+    	    	    /Unchanged? true def
+    	    	    dup MethodCompile		% dict dict key proc proc'
+    	    	    Unchanged? {pop dup} if
+    	    	    AlreadyCompiled 2 index 2 index put
+    	    	    exch pop
+    	    	} ifelse			% dict dict key proc'
+    	    	put dup				% dict dict
+    	    } {
+    	    	pop pop				% dict dict
+    	    } ifelse
+    	} forall pop pop			% -
+    	/AlreadyCompiled nulldict def
+    end
+} def
+
+%   CreateParentDictArray operates in the context of a class,
+%	and defines ParentDictArray in that class.  If the class
+%	has no ParentClasses, the ParentDictArray is nullarray.
+%	With a single parent class, it is [<super's parents> super].
+%	For multiple parent classes, a hairy shuffle is required.
+/CreateParentDictArray {
+    ParentClasses dup length {
+	0		{pop nullarray}
+	1		{0 get dup /ParentDictArray get [3 -1 roll] append}
+	/Default	{ShuffleSuperClasses}
+    } case
+    /ParentDictArray exch def
+    SubClasses {/CreateParentDictArray exch send} forall
+} def
+
+%   ShuffleSuperClasses Finds an order for the superclasses of a class
+%   which multiply inherits, and thereby creates the ParentDictArray.
+%   It builds a linked list in a dict to construct the order, starting
+%   with the superclasses mentioned explicitly in the superclasses array.
+%   0 is defined to the head of the list; each element is defined to its
+%   successor; and the last is defined to null.  Then it works through
+%   the ancestors of those classes, inserting them into the array in a
+%   correct position.  Ancestors are handled in root-to-leaf order
+%   within first-to-last order on the supers.  When the order has been
+%   determined, the elements of the list are copied into an array, in
+%   root-to-leaf order, and the dict is discarded.
+/ShuffleSuperClasses { % [supers] => [parent-dicts]
+    growabledict begin			%  the list, plus some locals
+	dup arrayreverse 0 exch aload	%  [supers] 0 sup-n .. sup-0 [reversed]
+	null exch length 1 add {	%  [sups] 0 sup-n .. sup-0 0
+	    2 copy def pop
+	} repeat pop			%  [sups]
+	/LastSuper null store
+	{   /CurrentClass 0 store	%  sup (one from the array)
+	    dup /ParentDictArray get {	%  sup anc
+		currentdict 1 index known {
+		    CurrentClass {	%  sup anc CC; existing ancestor valid?
+			dup LastSuper eq { BadOrder } if
+			2 copy eq {pop exit} if
+			load dup null eq { BadOrder } if
+		    } loop
+		} {			%  sup anc (unknown; splice it in)
+		    dup CurrentClass load def
+		    CurrentClass 1 index def
+		} ifelse
+		/CurrentClass exch store % sup
+	    } forall			%  sup
+	    /LastSuper exch store	%
+	} forall	%  list is complete; now turn it into an array
+	[0 {load dup null eq {exit} if dup} loop pop]	%  PDA
+    end					% discard the list-dict
+} def
+
+%    Report an apparent error in superclass structure.  Note that in some
+%    weird cases (typically, when the client has already specified an
+%    order among some of the ancestors), the shuffle may barf when a valid
+%    order exists.  The client can always specify the order completely in
+%    this case; the diagnostics generated here should help in finding
+%    that order.  After printing the diagnostics, this routine executes
+%    an intentionally undefined name, in order to induce an error.
+/BadOrder { % class ancestor superclass => -error-
+    console
+    (Bad superclass order in definition of class %.\nSupers requested:\n)
+    [ClassName] fprintf
+    SubClasses {
+	console (% ) [4 -1 roll /ClassName get] fprintf
+    } forall
+    console (\nAncestors processed:\n) writestring
+    0 {
+	load dup null eq {
+	  console (\n) writestring pop exit
+	} {
+	  console (% ) [ 3 index /ClassName get] fprintf
+	} ifelse
+    } loop
+    console
+    (%, as ancestor of %, conflicted with previous placement of/by %\n)
+    [4 index /ClassName get 6 index /ClassName get
+     5 index null eq {CurrentClass} {LastSuper} ifelse /ClassName get
+    ] fprintf
+    SuperClassOrderError		% purposely undefined
+} def
+
+%   utilities for copying compound instance variables
+%	first, the dict of which types to copy:
+/Temp 10 dict dup begin
+    /arraytype		{dup length array copy} def
+    /canvastype		{dup /Parent get newcanvas copycanvas} def
+    /dicttype		{dup maxlength dict copy} def
+    /eventtype		{createevent copy} def
+    /stringtype		{dup length string copy} def
+end def
+
+%   Test for whether an instance variable should be copied.
+/ShouldCopyIns? { % obj
+    //Temp exch truetype known
+} def
+
+%   Copy a compound instance variable.
+/CopyCompoundIns { % obj => obj'
+    dup xcheck exch
+    //Temp 1 index truetype get exec
+    exch {cvx} if
+} def
+
+
+%
+% SubClassResponsibility: this is a method implementation to be used by an
+% abstract superclass to force some subclass to implement the method.  Thus:
+%	/foo {SubClassResponsibility} def
+% states that the superclass requires the /foo method to be specified by a
+% subclass.
+%
+/SubClassResponsibility {NotDefined} def % Deliberate error!
+
+% Test for objects of various kinds.
+/Temp 6 dict dup begin
+     /dicttype dup def
+     /canvastype dup def
+     /eventtype dup def
+     /processtype dup def
+end def
+/isobject? { % obj => bool; test for "sendable" object (instance or class).
+    //Temp 1 index type known {
+	/ParentDictArray known
+    } {pop false} ifelse
+} def
+/isclass? { % obj => bool; test for class.
+    //Temp 1 index type known {
+	/ClassName known
+    } {pop false} ifelse
+} def
+/isinstance? { % obj => bool; test for instance of class.
+    //Temp 1 index type known {
+	dup /ParentDictArray known exch /ClassName known not and
+    } {pop false} ifelse
+} def
+
+
+/self { % - => obj; put current object on stack
+    % Note no "super" provided: it is always a method selector,
+    % never an object.
+    /ParentDictArray where pop
+} ?def
+
+%
+% ClassObject is a class having no superclasses, thus is the root of the
+% class hierarchy.
+% Note: PostScript does not *require* a single root class hierarchy.
+%	Other classes can be defined with no superclasses.  For example,
+%	a utility class might be defined this way.  It is not general
+%	practice, however, and should only be done by an expert.
+%
+/ClassObject nullarray [] classbegin
+
+% Class Variables
+    /ObjectName	{ClassName} def
+
+% methods
+    % Make a new instance.
+    % NOTE: currently we do not make copies of compound instance
+    % variables that were specified via the dictbegin dictend form of
+    % passing instance variables to classbegin.  Classes needing that
+    % form of initialization should do it within /NewInit itself.  Thus, to
+    % initialize foo to a unique string use:
+    %    /NewInit {
+    %        /foo (initial value) def
+    %    } def
+    /new { % <args> => instance ; create initialized instance of a class
+	/NewObject self send
+	{/NewInit self send self} exch send
+    } def
+    /NewObject { % <creation args> => instance; create instance of a class
+	InstanceVars growabledict DictCopyOK? {
+	    copy
+	} {
+	    begin
+		{   dup ShouldCopyIns? {
+			CopyCompoundIns
+		    } if def
+		} forall
+	    currentdict end
+	} ifelse
+	dup /ParentDictArray self put
+    } def
+    /NewInit % <initialization args> => -; initialize new instance of a class
+        nullproc	% no-op, here to catch calls from subclasses
+    def
+    % Make an existing dict an instance.
+    % Mainly used by direct subclasses of ClassObject that want to turn
+    % an existing NeWS magic dict into an instance.  Note that this
+    % can also be used to turn things like framebuffer into a sendable
+    % object:  framebuffer /NewMagic ClassCanvas send!
+    /NewMagic { % <creation args> dict => instance ; turn dict into instance
+	dup begin InstanceVars {
+	    dup ShouldCopyIns? {
+		CopyCompoundIns
+	    } if def
+	} forall end
+	dup /ParentDictArray self put
+    } def
+    
+    % Destroy an existing object; currently a no-op.
+    % Here so subclasses can safely call /destroy super send.
+    /destroy nullproc def % - => -; destroy the object.
+    
+    % Handle an object going obsolete (only soft refs remain).  Default is
+    % to call /destroy, since /destroy should break any cyclic references,
+    % which is usually enough to deal with obsolescence.
+    /obsolete { % - => -; handle Obsolete.
+	/destroy self send
+    } def
+
+%    % Send /new to the default class of this class or instance.
+%    /newdefault { % - => instance
+%	/new /defaultclass self send send
+%    } def
+%
+%    % (Re-)create the parentDictArray for a class -- 
+%    % useful when a class is ammended by substitution.
+%    /createparentdictarray { % - => -
+%	CreateParentDictArray
+%    } def
+%
+%    % Return the default class for this class.
+%    /defaultclass { % - => class; return default implementation
+%	/DefaultClass where {
+%	    self eq {
+%		DefaultClass
+%	    } {
+%		self
+%	    } ifelse
+%	} {
+%	    self
+%	} ifelse
+%    } def
+    
+    % /doit: compile & execute proc; generally sent to instance, not class.
+    /doit { % <args> proc => <results>
+%        /DoIt exch /methodcompile self send exch pop exec
+	/methodcompile self send exec
+    } def
+    
+    % Install a method in the object.  Method compiles the proc for this
+    % object, thus "self" and "super" handled.  Generally used
+    % to install an "instance method".
+    /installmethod { % name proc => -; compile and install a new method.
+	/methodcompile self send def
+    } def
+    
+    % Routines to handle promotion of defaults to instance vars.
+    % promote: promote a class variable to an instance variable.
+    % promoted?: check if the variable is an instance variable.
+    % ?promote: promote variable if it differs from the class version.
+    % unpromote: remove variable from instance vars.
+    /promote {self 3 1 roll put} def % name object => -
+    /promoted? {self exch known} def % name => bool
+    /unpromote {self exch undef} def % name => -; instance var name removed
+    /?promote { % name object => -
+	% Note: the value of the variable is determined by /send because
+	% it may be executable.
+	2 copy exch self send eq {pop pop} {/promote self send} ifelse
+    } def
+    
+    % Each object has a name as well as a class name.  It defaults
+    % to the class name.  Sending /setname to an instance will promote
+    % /ObjectName to be an instance variable.
+    %
+    /name { ObjectName } def % - => name
+    /setname { /ObjectName exch promote } def % name => -
+    /named? { /ObjectName promoted? } def % - => bool
+    
+    % Class enquiries:
+    /class? { self /ClassName known } def % - => bool ;true if I'm a class.
+    /classname { ClassName } def % - => name ;return my class name.
+    /class { /ClassName where pop } def % - => class; return my class object.
+    % Note that we may not return a reference to the classes actual
+    % ParentDictArray, but a newly created array (in the case of instances).
+    /superclasses { % - => array ;return inheritance array.
+        ParentDictArray
+	dup type /dicttype eq {
+	    dup /ParentDictArray get
+	    exch 1 array astore append
+	} if
+    } def
+    /subclasses {SubClasses} def % - => array ;return subclass array.
+
+    % Test if obj is instance of my class
+    /instanceof? { % obj => bool ; true if obj is ins of my class.
+	/classname exch send ClassName eq	% bool
+    } def
+
+    % Test if obj is instance of my class or any of my subclasses
+    /descendantof? { % obj => bool
+	/class exch send /class self send 2 copy eq {   % obj-class our-class
+	    pop pop true
+	} {
+	    exch /ParentDictArray get exch arraycontains?
+	} ifelse
+    } def
+
+    % Test if object can respond to method.
+    /understands? { % keyword => bool ; true if obj defines keyword.
+	where dup {exch pop} if
+    } def
+
+    % Find topmost instance of this class on the send stack;
+    % Sent to class, not instance.
+    /topmostinstance { % - => null|obj
+	/class self send null				% class null
+	sendstack 1 1 index length 1 sub getinterval {	% class null obj
+	    dup /instanceof? 4 index send		% class null obj bool
+	    {exch pop exit} {pop} ifelse		% class obj|null
+	} forall					% class obj|null
+	exch pop					% obj|null
+    } def
+    /topmostdescendant { % - => null|obj
+	/class self send null				% class null
+	sendstack 1 1 index length 1 sub getinterval {	% class null obj
+	    dup /descendantof? 4 index send		% class null obj bool
+	    {exch pop exit} {pop} ifelse		% class obj|null
+	} forall					% class obj|null
+	exch pop					% obj|null
+    } def
+    /sendtopmost { % <args> method => <result>; do a send to topmostdescendant
+	/topmostdescendant self send send
+    } def
+
+    % Allow app-specific properties to be associated with an object.
+    % These are simply key/value pairs that are stored in a created-on-demand
+    % dictionary.
+    /Properties nulldict def
+
+    % Associate a key/value pair within the object.
+    /setproperty { % key value => -
+	Properties nulldict eq {
+            /Properties growabledict promote
+	} if
+	Properties 3 1 roll put
+    } def
+
+    % Given the property key, return the property value.
+    /property { % key => value
+	Properties exch get
+    } def
+
+    % Return the value if this property, if present. If not present, return
+    % the argument passed to the method.
+    /?property { % key defaultvalue => value
+	Properties 3 1 roll ?get
+    } def
+
+    % Return the properties dictionary for browsing.
+    % It should be treated as a READ-ONLY object. Do not do puts into it.
+    /properties { % - => property-dictionary.
+	Properties
+    } def
+    
+
+    % Prepare the class dict for reuse.
+    % Note that /cleanoutclass is not a true method;
+    % it should *not* call super (would clean them too!)
+    % The default behavior is to undef everything.
+    /cleanoutclass { % - => -; prepare the class dict for reuse 
+	currentdict cleanoutdict
+    } def
+
+classend def
+
+
+% Compatability:
+/Object {
+    console
+	(Warning: Please change your use of "Object" to "ClassObject".\n)
+	fprintf
+    ClassObject
+} def

@@ -1,0 +1,107 @@
+Testing the Devguide Translator:
+================================
+
+overview.G
+
+An example application that complies with the OPEN LOOK style guide.
+Programmers should follow this style whenever possible.
+
+
+all-items.G
+
+Gives a visual picture of as many LispView objects as possible in one window.
+All the Lisp code is contained within the ".G" file, e.g. notify_handler
+slots contain code to be executed.  Most panel items are in color.
+
+
+menu-show.G
+
+Test the "menu" slot available for windows and panels.
+
+
+pictures.G
+
+A collection of image labels for panel items.
+
+
+lists.G
+
+Test the various combinations of scrolling lists.
+
+
+menus.G
+
+Test all the possible menu types, extend to test ownership for multiple
+base windows.
+
+
+sub-menus.G
+
+Test menus with submenus.
+
+
+slide.G
+
+Test all the combinations of sliders and gauges.
+
+
+buttons.G
+
+Test all kinds of buttons including fixed width buttons.
+
+
+fields.G
+
+Test numeric, text and message fields including bold/non-bold messages.
+
+
+events.G
+
+Test all kinds of events including keyboard and drag events.  Should be
+extended to test if all LispView objects can handle events e.g. (base,
+popup, window, panel, viewport)
+
+
+notify-handlers.G
+
+Test the various kinds of handlers for setting values and pressing buttons.
+
+
+test-bg-colors.G
+
+Test some colors for panels.
+
+
+test-blank-menu-item.G
+
+Test blank menu items.
+
+
+drag.G
+
+Test drag events in base, popup, and panels.
+
+
+viewports.G
+
+Test horizontal, vertical and both h&v scrollbarss on viewports.
+
+
+popup.G
+
+Test popup-windows.
+
+
+done-handler-test.G
+
+Test if the done handler slot runs.
+
+
+OTHER TESTS:
+
+copy-image.G
+
+uses the image label of a button when calling copy-area
+
+
+

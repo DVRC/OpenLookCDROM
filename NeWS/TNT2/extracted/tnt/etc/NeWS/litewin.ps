@@ -1,0 +1,852 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#)litewin.ps 23.4 91/02/11
+%
+%  Play window class implementation.
+%
+%	Copyright (c) 1986, 1988 Sun Microsystems, Inc.
+
+/LiteWindow Object
+dictbegin
+    /FrameCanvas	null def
+    /ClientCanvas	null def
+    /IconCanvas		null def
+
+    /FrameX		0 def
+    /FrameY		0 def
+    /FrameWidth		0 def
+    /FrameHeight	0 def
+    /ClientWidth	0 def
+    /ClientHeight	0 def
+
+    /Iconic?		false def
+    /IconX		null def
+    /IconY		null def
+
+    /KeyFocus?		false def
+    /KeyFocus=		true def
+    /FrameInterests	null def
+    /FrameEventMgr	null def
+
+    /EatUpEvent		null def
+    /EatDragEvent	null def
+
+    /FixClient?		false def
+    /PaintProcess	null def
+
+    /CloseControl	null def
+    /StretchControl	null def
+    /errordict		null def
+dictend
+classbegin
+% These were instance vars; may cause bugs.
+    /PaintClient	nullproc def
+    /FrameLabel		nullstring def
+    /IconLabel		nullstring def
+    /IconImage		null def
+    /ClientMenu		null def
+
+    /ParentCanvas	null def
+    /FrameFont		/Times-Italic findfont 12 scalefont def
+    /IconFont		/Times-Roman findfont 12 scalefont def
+    
+    /FrameTextColor	0 0 0 rgbcolor def
+    /FrameFillColor	1 1 1 rgbcolor def
+    /FrameBorderColor	FrameTextColor def
+    /KeyFocusColor	FrameBorderColor def
+    /ClientFillColor	FrameFillColor def
+    
+    /IconTextColor	FrameTextColor def
+    /IconBorderColor	FrameBorderColor def
+    /IconFillColor	FrameFillColor def
+    
+    /ZoomSteps		3 def
+
+    /BorderLeft		16 def
+    /BorderBottom	16 def
+    /BorderRight	16 def
+    /BorderTop		16 def
+    /ClientMinWidth	16 def
+    /ClientMinHeight	16 def
+    /ControlSize	16 def
+
+    /IconWidth		64 def
+    /IconHeight		64 def
+
+    /FrameMenu		null def
+    /IconMenu		null def
+
+    /ForkPaintClient?	true def % ???????????????????
+
+    /InstanceVarExtra	25 def	% !! Lots of room for folks!
+
+    /ErrorHandlers 10 dict begin
+	/killprocess {
+	    FrameEventMgr currentprocess eq {
+		/errordict null store
+		/destroy self send
+	    } {
+		quit
+	    } ifelse
+	} def
+    currentdict end def
+
+% Frame Procs
+    /CreateFrameCanvas { % - => -  (Create empty frame canvas)
+        /FrameCanvas ParentCanvas newcanvas def
+	FrameCanvas /EventsConsumed /MatchedEvents put
+	/beye /beye_m FrameCanvas setstandardcursor
+    } def
+    /FramePath {rectpath} def
+    /ShapeFrameCanvas { % - => - ([Re]set frame canvas' shape)
+	gsave
+	ParentCanvas setcanvas
+	FrameX FrameY translate 0 0 FrameWidth FrameHeight FramePath
+	FrameCanvas reshapecanvas
+%	MoveFrameControls
+	grestore
+    } def
+    /PaintFrame	{ % - => - (Paint frame canvas)
+        PaintFrameBorder
+        /paintframelabel self send
+        PaintFrameControls
+        PaintFocus 
+    } def
+    /PaintFrameBorder { % - => - (Paint frame border areas)
+        FrameFillColor fillcanvas FrameBorderColor strokecanvas
+        BorderLeft .5 sub BorderBottom .5 sub
+        FrameWidth BorderLeft BorderRight add sub 1 add
+        FrameHeight BorderBottom BorderTop add sub 1 add
+        FramePath stroke
+    } def
+    /InvokePaintFocus { /KeyFocus? exch store
+	KeyFocus= { /KeyFocus= false store
+	    { InteractionLock {
+		 PaintFocus /KeyFocus= true store 
+		} monitor } fork pop
+	} if
+    }  def
+    % Install the NeWS colormap (called on EnterEvents)
+    %
+    /HandleColormap { % event => -; install the NeWS colorcube for the frame
+	/Canvas get /Colormap get /Installed true put
+    } def
+    /EnterFrame { dup HandleColormap true InvokePaintFocus } def
+    /EnterIcon { dup HandleColormap } def
+    /ExitFrame  { false InvokePaintFocus } def
+    /PaintFocus { 
+	gsave
+%	FrameCanvas setcanvas
+%	KeyFocus? {KeyFocusColor} {FrameFillColor} ifelse setcolor
+%	BorderLeft FrameHeight BorderTop 2 div sub moveto
+%	FrameFont setfont FrameLabel stringwidth pop
+%	dup FrameWidth exch sub 2 div BorderLeft sub dup
+%	0 rlineto exch 0 rmoveto 0 rlineto stroke
+
+	FrameCanvas setcanvas
+	KeyFocus? {KeyFocusColor} {FrameFillColor} ifelse setcolor
+	ControlSize FrameHeight BorderTop 2 div sub moveto
+	FrameFont setfont FrameLabel stringwidth pop
+	dup FrameWidth exch sub 2 div ControlSize sub dup
+	0 rlineto exch 0 rmoveto 0 rlineto stroke
+	grestore
+    } def
+    
+    /CallPaintProcs {
+    gsave
+	FrameCanvas setcanvas
+	FixClient? {damagepath clipcanvas} if
+	PaintFrame? {PaintFrame} if
+	ClientCanvas null ne {ClientCanvas setcanvas} if /PaintClient self send
+	FixClient? {FrameCanvas setcanvas newpath clipcanvas} if
+    grestore
+    } def
+    /ForkOrExecPaintProcs { % frametoo? fix? => -
+        /FixClient? exch def
+        /PaintFrame? exch def
+        
+	PaintProcess null ne {
+	gsave
+	    PaintProcess killprocessgroup
+	    /PaintProcess null store
+	    FrameCanvas setcanvas newpath clipcanvas
+	    FixClient? {
+	        /FixClient? false def
+	        damagepath % clear damage path
+	    } if
+	grestore
+	} if
+
+	ForkPaintClient? {
+	    % must ensure that newprocessgroup is executed before continuing
+	    {
+		newprocessgroup
+		/PaintProcess {
+		    CallPaintProcs
+		    /PaintProcess null store
+		} fork def
+	    } fork waitprocess pop
+	} {
+	    CallPaintProcs
+	} ifelse
+    } def
+    
+    /FixFrame	{ % - => - (Paint frame canvas after damage)
+        true true ForkOrExecPaintProcs
+    } def
+    /PaintFrameLabel { % - => - (Paint frame text label)
+	FrameWidth 2 div
+	FrameHeight BorderTop sub
+	    BorderTop currentfont fontascent sub 2 div
+	    currentfont fontdescent
+	    max 1 add add
+	moveto FrameLabel cshow
+    } def
+    /DestroyFrame { % - => - (Destroys frame)
+%        IconCanvas /Mapped false put
+%        FrameCanvas /Mapped false put
+%        FrameEventMgr killprocess
+    } def
+
+% Client-canvas Procs
+    /CreateClientCanvas {
+        /ClientCanvas FrameCanvas newcanvas def
+	/ptr /ptr_m ClientCanvas setstandardcursor
+	ClientCanvas begin
+	    /Mapped true def
+	    /EventsConsumed /MatchedEvents def		% was Opaque
+	end
+    } def
+    /ClientPath {FramePath} def
+    /ShapeClientCanvas { % - => - ([Re]set client canvas' shape)
+	ClientCanvas null ne {
+	    gsave
+	    FrameCanvas setcanvas
+	    BorderLeft BorderBottom translate
+	    0 0 ClientWidth ClientHeight ClientPath
+	    ClientCanvas reshapecanvas
+	    grestore
+	} if
+    } def
+    /DestroyClient { % - => - (Destroy client canvas &c.)
+%        currentprocess killprocessgroup
+	ClientCanvas null ne {ClientCanvas /KbdCompat undef} if
+	% (obsolete event won't get seen once we kill the process; bletch)
+	FrameEventMgr null ne {FrameEventMgr killprocessgroup} if
+    } def
+% Icon Procs
+    /CreateIconCanvas {
+        /IconCanvas ParentCanvas newcanvas def
+	/xcurs /xcurs_m IconCanvas setstandardcursor
+    } def
+    /IconPath {FramePath} def
+    /ShapeIconCanvas {
+	gsave
+	ParentCanvas setcanvas
+%	0 0 translate 0 0 IconWidth IconHeight IconPath
+	0 0 IconWidth IconHeight IconPath
+	IconCanvas reshapecanvas
+	grestore
+    } def
+    /PaintIcon { % - => - (Paint icon canvas)
+	gsave
+        IconCanvas setcanvas
+        IconImage null eq {
+	    IconFillColor fillcanvas IconBorderColor strokecanvas
+        } {
+            IconFillColor fillcanvas IconBorderColor setcolor
+            0 0 moveto IconImage showicon
+        } ifelse
+        PaintIconLabel
+        % send a WindowEvent!
+	grestore
+    } def
+    /FixIcon { % - => - (Fix a damaged icon)
+	gsave IconCanvas setcanvas
+	damagepath clipcanvas
+	PaintIcon
+	newpath clipcanvas grestore
+    } def
+    /PaintIconLabel { % - => - (Paint icon text label)
+	gsave
+	IconTextColor setcolor IconFont setfont
+	IconWidth 2 div 3 moveto IconLabel cshow
+	grestore
+    } def
+
+% Icon => Frame Zoom
+    /ZoomPaintInit { % - => - (Initialize the zoom painting.)
+	fboverlay setcanvas
+    } def
+    /ZoomPaint { % x y w h => - (Draw the zoom shape.)
+	Iconic? {IconPath} {FramePath} ifelse stroke
+    } def
+    /ZoomProc { % - => - (Perform the zoom animation.)
+    gsave
+	ZoomPaintInit
+	[IconX IconY IconWidth IconHeight]
+	[FrameX FrameY FrameWidth FrameHeight]
+	Iconic? {exch} if
+	ZoomSteps {
+	    aload pop ZoomPaint pause
+	} Zoom
+	erasepage
+    grestore
+    } def
+    /Zoom { %  r1 r2 nsteps proc => - (Zoom style animator.)
+    10 dict begin
+	/proc exch def
+	/nsteps exch def
+	/r2 exch def
+	/r1 exch def
+	/rdeltas r2 r1 {sub} arrayop def
+	1 1 nsteps {
+	    /i exch def
+	    r1 rdeltas {i mul nsteps 1 add div add} arrayop proc
+	} for
+    end
+    } def
+
+% Frame Controls & Menus
+    /CreateFrameControls { % - => - (Create frame control canvases/items)
+    gsave
+	FrameCanvas setcanvas
+        /CloseControl FrameCanvas newcanvas dup begin
+	    /Mapped true def
+	    /EventsConsumed /AllEvents def
+	end def
+        /StretchControl FrameCanvas newcanvas dup begin
+	    /Mapped true def
+	    /EventsConsumed /AllEvents def
+	end def
+	0 0 ControlSize dup BorderTop le exch BorderLeft le or
+	    {ControlSize ControlSize} {BorderTop BorderTop} ifelse
+	rectpath CloseControl reshapecanvas
+	% 0 0 BorderTop BorderTop rectpath CloseControl reshapecanvas
+	0 0 ControlSize dup BorderRight le exch BorderBottom le or
+	    {ControlSize ControlSize} {BorderRight BorderBottom} ifelse
+	rectpath StretchControl reshapecanvas
+	% 0 0 BorderRight BorderBottom rectpath StretchControl reshapecanvas
+    grestore
+    } def
+    /CreateFrameInterests { % - => - (Create frame control interests)
+        FrameInterests begin
+	    /FrameTopEvent
+	        PointButton {/clicktotop self send pop}
+	        /DownTransition FrameCanvas syncheventmgrinterest def
+	    /FrameCloseEvent
+	        PointButton {/clickflipiconic self send pop}
+	        /DownTransition CloseControl syncheventmgrinterest def
+	    /FrameStretchEvent
+	        PointButton {/stretchcorner self send pop}
+	        /DownTransition StretchControl syncheventmgrinterest def
+	    /FrameMoveEvent
+	        AdjustButton {/slide self send pop}
+	        /DownTransition FrameCanvas syncheventmgrinterest def
+	    /FrameMenuEvent
+		MenuButton {/showat FrameMenu send}
+	        /DownTransition FrameCanvas syncheventmgrinterest def
+	    /FrameDamageEvent
+		/Damaged {/FixFrame self send pop}
+		null FrameCanvas eventmgrinterest def
+	    /FrameEnterEvent
+		/EnterEvent {/EnterFrame self send pop}
+		[0 1 3 4] FrameCanvas eventmgrinterest def
+	    /FrameExitEvent
+		/ExitEvent {/ExitFrame self send pop}
+		[0 1 3 4] FrameCanvas eventmgrinterest def
+	    /FrameDoItEvent
+		/DoItEvent {gsave /ClientData get cvx exec grestore}
+		/Window null eventmgrinterest def
+	    /FrameIconicFcnKeyEvent
+		/WindowFunction {/flipiconic self send pop}
+		/FlipIconic FrameCanvas eventmgrinterest def
+	    /FrameFrontFcnKeyEvent
+		/WindowFunction {/totop self send pop}
+		/FlipFront FrameCanvas eventmgrinterest def
+        end
+    } def
+    /CreateFrameMenu { % - => - (Create frame menu)
+	% Note: Store menu in class to share menus, especially if retained.
+	FrameMenu null eq {
+	/FrameMenu [
+	    (Move)	{/slide ThisWindow send}
+	    (Move Constrained)
+		{getfbclick pop pop /slideconstrained ThisWindow send}
+	    (Top)	{/totop ThisWindow send}
+	    (Bottom)	{/tobottom ThisWindow send}
+	    (Zap)	{/destroy ThisWindow send}
+	    (Resize)	{/reshapefromuser ThisWindow send}
+	    (Stretch Corner)
+	    	{getfbclick pop pop /stretchcorner ThisWindow send}
+	    (Stretch Edge)
+	    	{getfbclick pop pop /stretchwindowedge ThisWindow send}
+	    (Close)	{/flipiconic ThisWindow send}
+	    (Redisplay)	{/paint ThisWindow send}
+	] /new DefaultMenu send store
+	} if
+    } def
+    /CreateIconControls nullproc def % - => - (Create icon controls)
+    /CreateIconInterests { % - => - (Create icon control interests)
+        FrameInterests begin
+	    /IconOpenEvent
+	        PointButton {/clickflipiconic self send pop}
+	        /DownTransition IconCanvas syncheventmgrinterest def
+	    /IconMoveEvent
+	        AdjustButton {/slide self send pop}
+	        /DownTransition IconCanvas syncheventmgrinterest def
+	    /IconMenuEvent
+	        MenuButton {/showat IconMenu send}
+	        /DownTransition IconCanvas syncheventmgrinterest def
+	    /IconDamageEvent
+		/Damaged {/FixIcon self send pop}
+		null IconCanvas eventmgrinterest def
+	    /IconEnterEvent
+		/EnterEvent {/EnterIcon self send pop}
+		[0 1 3 4] IconCanvas eventmgrinterest def
+	    /IconIconicFcnKeyEvent
+		/WindowFunction {/flipiconic self send pop}
+		/FlipIconic IconCanvas eventmgrinterest def
+	    /IconFrontFcnKeyEvent
+		/WindowFunction {/totop self send pop}
+		/FlipFront IconCanvas eventmgrinterest def
+        end
+    } def
+    /CreateIconMenu { % - => - (Create icon menu)
+	% Note: Store menu in class to share menus, especially if retained.
+	IconMenu null eq {
+	/IconMenu [
+	    (Move)		{/slide ThisWindow send}
+	    (Top)		{/totop ThisWindow send}
+	    (Bottom)		{/tobottom ThisWindow send}
+	    (Zap)		{/destroy ThisWindow send}
+	    (Open)		{/flipiconic ThisWindow send}
+	    (Open & Resize)	{/reshapefromuser ThisWindow send
+	    			/flipiconic ThisWindow send}
+	    (Redisplay)		{/paint ThisWindow send}
+	] /new DefaultMenu send def
+	} if
+    } def
+    /MoveFrameControls { % - => - ([Re]set frame control shapes)
+    gsave
+	CloseControl setcanvas
+%	BorderLeft BorderTop eq {0}{BorderLeft 1 sub} ifelse % ??
+%	FrameHeight BorderTop sub BorderTop ControlSize sub 2 div add
+	0 FrameHeight BorderTop sub BorderTop ControlSize sub 2 div add
+	movecanvas
+
+	StretchControl setcanvas
+	FrameWidth BorderRight sub 0 movecanvas
+    grestore
+    } def
+    /PaintFrameControls { % - => - (Paint frame control areas)
+    gsave % because of the set canvas
+	CloseControl setcanvas 0 1 moveto /cycle showicon
+	StretchControl setcanvas 0 0 moveto /stretchSE showicon
+    grestore
+    } def
+    /ForkFrameEventMgr {
+	/errordict ErrorHandlers store
+	ClientMenu null ne {
+	    FrameInterests /ClientMenuEvent
+		MenuButton {/showat ClientMenu send}
+		/DownTransition ClientCanvas eventmgrinterest put
+	} if
+	/FrameEventMgr FrameInterests forkeventmgr def
+	FrameEventMgr cvx /ProcessName (lite frame event manager) put
+    } def
+
+% Methods:
+
+    /new { % parentcanvas => window
+	/new super send begin
+	    /ParentCanvas exch def
+	    /FrameInterests 30 dict def
+%	    CheckCanvases (see note below)
+	    currentdict
+	end
+    } def
+    /destroy { % - => -
+	DestroyFrame DestroyClient
+    } def
+
+    /reshape { % x y w h => -  (Re-shapes window from BBox)
+	/FrameHeight exch store
+	/FrameWidth exch store
+	/FrameY exch store
+	/FrameX exch store
+	
+	% Make sure the size is larger than the min.
+	% Note that we keep the top left stable, thus decrease y if necessary.
+	BorderTop BorderBottom add ClientMinHeight add	% minHt
+	FrameHeight 1 index lt {			% minHt toosmall?
+	    /FrameY FrameY				% minHt /y y
+	        2 index	FrameHeight			% minHt /y y minHt ht
+	        sub sub 0 max store			% minHt
+	    /FrameHeight exch store			% -
+	} {pop} ifelse
+	/FrameWidth FrameWidth
+	    BorderRight BorderLeft add ClientMinWidth add max store
+	/ClientWidth	FrameWidth BorderRight sub BorderLeft sub store
+	/ClientHeight	FrameHeight BorderTop sub BorderBottom sub store
+
+	CheckCanvases
+	ShapeFrameCanvas
+	MoveFrameControls
+	ShapeClientCanvas
+    } def
+    /reshapefromuser { % - => - (Interactively resize window)
+	null BBoxFromUser	% x y w h
+	/reshape self send
+    } def
+
+    /map { % - => - (Causes the icon or window to be mapped)
+	CheckCanvases
+	FrameEventMgr null eq {ForkFrameEventMgr} if
+	GetCanvas /Mapped true put
+    } def
+    /unmap { % - => - (Causes the icon or window to be unmapped)
+	CheckCanvases
+	% Unmap both canvases??
+	GetCanvas /Mapped false put
+    } def
+    /flipiconic { % - => -  (swaps between open & closed)
+	/unmap self send
+	/Iconic? Iconic? not def
+	IconX null eq {
+	    FrameX FrameY FrameHeight add IconHeight sub /move self send
+	} if
+	ZoomProc
+	/map self send
+    } def
+
+    /move { % x y => -  (Moves window/icon to x y.  Does not change mapping)
+	CheckCanvases
+	gsave
+	Iconic?
+	    {IconCanvas /IconX /IconY}
+	    {FrameCanvas /FrameX /FrameY} ifelse
+	3 index def 3 index def
+	3 1 roll			% cv x y
+	ParentCanvas setcanvas
+	dtransform
+	3 -1 roll setcanvas
+	idtransform movecanvas
+%	setcanvas [1 0 0 1 0 0] setmatrix movecanvas
+	grestore
+    } def
+
+    /paint { % - => -  (Repaints window/icon)
+	Iconic?
+	    {/painticon self send}
+	    {/paintframe self send /paintclient self send} ifelse
+%	    {true false ForkOrExecPaintProcs} ifelse
+    } def
+    /paintclient { % - => -  (Repaints client)
+	false false ForkOrExecPaintProcs
+    } def
+    /paintframe { % - => -  (Repaints frame)
+	gsave FrameCanvas setcanvas PaintFrame grestore
+    } def
+    /paintframelabel { % - => -  (Repaints frame label)
+	gsave
+	FrameCanvas setcanvas FrameTextColor setcolor FrameFont setfont
+	PaintFrameLabel
+	grestore
+    } def
+    /painticon { % - => -  (Repaints icon)
+	gsave IconCanvas setcanvas PaintIcon grestore
+    } def
+    
+    /reflectfocus { % bool => -  (Accept/reject focus)
+        pop	% ignore for now
+    } def
+
+    /totop {GetCanvas canvastotop} def% - => -  (Puts window/icon on top)
+    /tobottom {GetCanvas canvastobottom} def % - => - (" " bottom)
+
+    /eatuptrans { % ev => ev
+	EatUpEvent null ne { EatUpEvent revokeinterest } if
+	/EatUpEvent null store
+	EatDragEvent null ne { EatDragEvent revokeinterest } if
+	/EatDragEvent null store
+        unblockinputqueue
+    } def
+
+    /CreateEaterInterests { 
+	/EatUpEvent
+	    1 index /Name get { /eatuptrans self send pop }
+	    /UpTransition null syncheventmgrinterest
+	dup expressinterest store
+	/EatDragEvent
+	    /MouseDragged { pop }
+	    null null excleventmgrinterest
+	dup expressinterest store
+	unblockinputqueue
+    } def
+
+    /clicktotop {
+	/CreateEaterInterests self send
+	/totop self send
+    } def
+
+    /clickflipiconic {
+	/CreateEaterInterests self send
+	/flipiconic self send
+    } def
+
+    /slide { % - => -  (Interactively move window)
+	{
+	    GetCanvas setcanvas
+	    InteractionLock { interactivemove } monitor
+	    currentcanvas ParentCanvas setcanvas getcanvaslocation
+	    /move self send
+	} fork pop
+    } def
+    /slideconstrained { % - => - (Interactively move window in one direction)
+    % Probably should take which edge as an argument.
+	gsave
+	ParentCanvas setcanvas
+	currentcursorlocation ClosestEdge
+	/GA_constraint 1 3 -1 roll 2 mod sub store
+	/slide self send
+	grestore
+    } def
+    /stretchcorner { % - => - (Interactively stretch window via corner)
+    % Probably should take which corner as an argument.
+	gsave
+	ParentCanvas setcanvas
+	currentcursorlocation FarthestCorner
+%	ParentCanvas setcanvas 2 copy setcursorlocation
+	BBoxFromUser /reshape self send
+	grestore
+    } def
+    /stretchwindowedge { % - => - (Interactively stretch window via edge)
+    % Probably should take which edge as an argument.
+	gsave
+	ParentCanvas setcanvas
+	currentcursorlocation ClosestEdge
+	[   [FrameWidth FrameHeight 1 FrameY]	% edge array
+	    [FrameWidth FrameHeight 0 FrameX]
+	    [0 0 1 FrameY FrameHeight add]
+	    [0 0 0 FrameX FrameWidth add]
+	] exch get aload pop			% dx dy constraint val
+	/GA_value exch store
+	/GA_constraint exch store
+	FrameY add exch FrameX add exch		% x y
+	BBoxFromUser /reshape self send
+	grestore
+    } def
+    
+% Utilities:
+    /ClosestEdge { % x y => edge (0=left, 1=bottom, 2=right, 3=top)
+    10 dict begin
+	/y exch def /x exch def
+	/deltas
+	    [FrameX FrameY FrameWidth FrameHeight rect2points]
+	    [x y x y] {sub abs} arrayop
+	    def
+	0 deltas 0 get			% 0 deltas[0]
+	1 1 3 {				% imin deltas[imin] i
+	    deltas 1 index get		% imin deltas[imin] i deltas[i]
+	    2 index 1 index gt {4 2 roll} if pop pop
+	}for
+	pop
+    end
+    } def
+    /FarthestCorner { % x y =>  x' y'
+    10 dict begin
+	/y exch def /x exch def
+	/x0 FrameX def /y0 FrameY def
+    
+	FrameX x sub abs FrameX FrameWidth add x sub abs
+	lt {/x0 x0 FrameWidth add def} if
+	FrameY y sub abs FrameY FrameHeight add y sub abs
+	lt {/y0 y0 FrameHeight add def} if
+    
+	x0 y0
+    end
+    } def
+    /GetCanvas { % - => canvas  (Returns window/icon canvas)
+	Iconic? {IconCanvas} {FrameCanvas} ifelse
+    } def
+    /CheckCanvases { % - => - (Makes sure canvases &c. are created)
+    % Note: this deferred initialization is a hold over from package
+    % days.  It allows clients to have different shapes via over-riding
+    % methods as instance methods.  This is a bad idea: it is *far* better
+    % to subclass.  We keep this only for compatability.
+	FrameCanvas null eq {
+	    CreateFrameCanvas
+	    CreateClientCanvas
+	    CreateIconCanvas
+
+	    CreateFrameControls
+	    CreateFrameInterests
+	    CreateFrameMenu
+	    
+	    CreateIconControls
+	    CreateIconInterests
+	    CreateIconMenu
+    
+	    /ShapeIconCanvas self send
+	} if
+    } def
+    /BBoxFromUser { % null -or- x0 y0 => x y w h (Interactively get bbox)
+	gsave
+	fboverlay setcanvas %% Use ParentCanvas!
+	dup null eq {pop getwholerect} {2 copy getrect} ifelse
+	waitprocess aload pop points2rect
+	grestore
+    } def
+    /stopmainloop nullproc def % some clients expect this to be defined???
+classend def
+
+% ============================= ScrollWindow =============================
+/ScrollWindow {
+systemdict /Item known not { (NeWS/liteitem.ps) run } if
+/ScrollWindow LiteWindow
+dictbegin
+    /HScrollbar		null def
+    /VScrollbar		null def
+dictend
+classbegin
+    /BorderLeft		1 def
+    /BorderBottom	18 def
+    /BorderRight	18 def
+    
+    /createscrollbars { % - => - (Create scrollbar canvases/items)
+        /HScrollbar
+            [0 1 .01 .1 null] 0 {} FrameCanvas /new SimpleScrollbar send
+            dup /BarVertical? false put
+            def
+        /VScrollbar
+            [1 0 .01 .1 null] 0 {} FrameCanvas /new SimpleScrollbar send
+            def
+    } def
+    /shapescrollbars { % - => - (Shape scrollbar canvases/items)
+%	0 0 FrameWidth BorderRight sub 1 add BorderBottom
+%	BorderLeft 0
+%	FrameWidth BorderRight sub BorderLeft sub 1 add BorderBottom
+	BorderLeft 1 sub 0
+	FrameWidth BorderRight sub BorderLeft sub 2 add BorderBottom
+	/reshape HScrollbar send
+
+	FrameWidth BorderRight sub BorderBottom 1 sub
+	BorderRight FrameHeight BorderBottom sub BorderTop sub 2 add
+	/reshape VScrollbar send
+    } def
+    /paintscrollbars	{ % - => - (Paint frame canvas)
+	/paint HScrollbar send
+	/paint VScrollbar send
+    } def
+
+    /destroy { % - => - (Create frame control canvases/items)
+        /HScrollbar null def
+        /VScrollbar null def
+        /destroy super send
+    } def
+    /CreateFrameControls { % - => - (Create frame control canvases/items)
+        /CreateFrameControls super send
+        createscrollbars
+    } def
+    /CreateFrameInterests { % - => - (Create frame control interests)
+        /CreateFrameInterests super send
+        FrameInterests begin
+        % Append the scroll bar "start" interests to the frame interests.
+        % The odd "forall" is used to create unique names for inclusion
+        % in the frame interests dictionary.
+            /HScrollbarInterests /makestartinterests HScrollbar send def
+            /VScrollbarInterests /makestartinterests VScrollbar send def
+%            /makestartinterests HScrollbar send {
+%                (HScrollbar) 1 index /Name get cvx 100 string cvs append
+%                cvn exch def
+%            } forall
+%            /makestartinterests VScrollbar send {
+%                (VScrollbar) 1 index /Name get cvx 100 string cvs append
+%                cvn exch def
+%            } forall
+	    /EMgrDoItInterest /EventMgr ClientCanvas null doitinterest def
+        end
+    } def
+    /MoveFrameControls { % - => - ([Re]set frame control shapes)
+        /MoveFrameControls super send
+        shapescrollbars
+    } def
+    /PaintFrameControls { % - => - (Paint frame control areas)
+    gsave
+%	CloseControl setcanvas 0 1 moveto /box showicon
+%	StretchControl setcanvas 0 0 moveto /stretchSE showicon
+	/PaintFrameControls super send
+        paintscrollbars
+    grestore
+    } def
+classend store
+ScrollWindow
+} def
+
+% ---------- Utilities ----------
+
+/getfbclick {gsave fboverlay setcanvas getclick grestore} def % - => x y
+
+/ThisWindow { % - => null|window ; returns topmost window on send stack
+    null sendstack { 
+	dup /FrameCanvas known
+	     { exch pop exit } { pop } ifelse
+    } forall
+} def
+
+/DefaultWindow LiteWindow def
+/textcolor 0 0 0 rgbcolor def
+/backgroundcolor 1 1 1 rgbcolor def
+
+
+%/sendallwindows { % proc => - (Distributes proc to all windows!!)
+%    createevent dup begin
+%	/Name /DoItEvent def
+%	/Action /Window def
+%	/ClientData 2 index def
+%    end sendevent pop
+%} def
+
+% =========================== SunViewWindow ================================
+SunView? {
+/SunViewWindow LiteWindow []
+classbegin
+    /FrameTextColor	1 1 1 rgbcolor def
+    /FrameFillColor	0 0 0 rgbcolor def
+
+    /FrameFont		/Courier-Bold findfont 12 scalefont def
+    /IconFont		FrameFont def
+
+    /BorderWidth	4 def
+    /BorderLeft		BorderWidth def
+    /BorderBottom	BorderWidth def
+    /BorderRight	BorderWidth def
+    /BorderTop		16 def
+
+    /PaintFocus { 
+	gsave FrameCanvas setcanvas
+	KeyFocus? {KeyFocusColor} {1 1 1 rgbcolor} ifelse setcolor
+	1 1 BorderWidth 2 sub FrameHeight BorderTop sub 1 sub
+	    rectpath fill
+	1 1 FrameWidth 2 sub BorderWidth 2 sub rectpath fill
+	FrameWidth BorderWidth sub 1 add 1
+	    BorderWidth 2 sub FrameHeight BorderTop sub 1 sub
+	    rectpath fill
+	grestore
+    } def
+    /PaintFrameLabel {
+	gsave
+	FrameTextColor setcolor FrameFont setfont
+	BorderWidth 1 add FrameHeight 12 sub moveto
+	FrameLabel show
+	% Temp: clear client here! FIX SOON!!!
+	ClientCanvas setcanvas 1 fillcanvas
+	grestore
+    } def
+    /PaintFrameControls {} def
+classend def
+} if

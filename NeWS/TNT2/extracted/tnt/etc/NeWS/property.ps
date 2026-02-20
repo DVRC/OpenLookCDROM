@@ -1,0 +1,190 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)property.ps 23.9 91/02/11
+%
+
+%%----------------------------------------------------------------------
+% alist splits a list of atoms in a string at the given delimiter.
+%
+% Example: (This:is:a:test) (:) alist => [(This) (is) (a) (test)]
+
+/alist { % string delimiter => array
+    [ 3 1 roll
+	{
+	    search {
+		3 1 roll
+	    } {
+		]
+		exit
+	    } ifelse
+	} loop
+} def
+
+%%----------------------------------------------------------------------
+% XColorDecode converts X11 color specifications to NeWS color objects.
+% either form of X11 color specification is accepted.
+%
+% Examples:
+%   (#ff0000) XColorDecode => color(1.00,0.00,0.00) true
+%   (red) XColorDecode => color(1.00,0.00,0.00) true
+%   (unknowncolorname) XColorDecode => false
+
+/XColorDecode { % (#rrbbgg) -or- (ColorName) => color true -or- false
+    dup 0 get (#) 0 get eq {				% str
+	dup length 1 sub dup 6 ne {			% str len
+	    pop pop false				% false
+	} {						% str 6
+	    1 exch getinterval (<%>) sprintf cvx exec	% <RGB>
+	    dup 0 get 255 div exch			% red <RGB>
+	    dup 1 get 255 div exch			% red green <RGB>
+		2 get 255 div				% red green blue
+	    rgbcolor true				% color true
+	} ifelse
+    } { 
+	ColorDict exch 1 index 1 index known {		% dict /name
+	    get true					% color true
+	} {						% dict /name
+	    pop pop false				% false
+	} ifelse
+    } ifelse
+} def
+
+
+
+%%----------------------------------------------------------------------
+% UpdateResources looks at all of the items in given string for ones
+%  beginning with "OpenWindows." and then sets the appropriate property
+%  with the value on the right side of the "colon-tab".
+%
+%  This is called from the Resource Manager's PropertyNotify handler.
+%
+
+/UpdateResources { % string => -
+    (\n) alist {
+	(OpenWindows.) search {		% val (OpenWindows.) ()
+	    pop pop			% val
+	    (:\011) search {		% val (:\011) key
+		exch pop dup		% val key key
+		{
+% REMIND: All of this will need to change for TNT 3.0
+		    (DragRightDistance) { % pixels
+			pop
+			/OpenLookMenu dup where {load} if type /dicttype eq {
+			    cvr OpenLookMenu /PullRightDelta 3 -1 roll put
+			} { 
+			    pop
+			} ifelse
+		    } 
+		    (MultiClickTimeout) { % 10ths of seconds
+			pop
+			cvr 100 mul
+			UserProfile /MultiClickThresh 3 -1 roll put
+		    }
+		    (SetInput) {
+			pop
+			dup (followmouse) eq { 
+			    pop
+			    /CursorFocus setfocusmode
+			} { 
+			    (select) eq {
+				/ClickFocus setfocusmode
+			    } if
+			} ifelse
+		    } 
+		    (WindowColor) { 	    %  val  key
+			pop 	    	    %  val
+
+			% We can't be too clever in our verification of
+			% ClassDrawable without running afoul of the
+			% autoload stuff...
+			/ClassDrawable where {
+			    pop
+			    ClassDrawable type /dicttype eq {
+				framebuffer /Visual get /BitsPerPixel get
+				1 gt {
+				    XColorDecode {
+					/colors ClassDrawable send
+					pop exch /setcolors ClassDrawable send
+				    } if
+				} {
+				    pop
+				} ifelse
+			    } {
+				pop
+			    } ifelse
+			} {
+			    pop
+			} ifelse
+		    }
+		    (WorkspaceColor) {	    % val key
+			pop 	    	    % val
+			/RootColor dup where {
+			    exch
+			    3 -1 roll XColorDecode {
+				put
+				PaintRoot
+			    } {
+				pop pop
+			    } ifelse
+			} {
+			    pop pop
+			} ifelse
+		    }
+		    (Palette) { 
+			pop pop
+		    }
+		    (IconLocation) {
+			pop
+			/OpenLookFrame dup where {load} if type /dicttype eq {
+			    % Hack to make upper case (left => Left).
+			    dup dup 0 get 32 sub 0 exch put cvn
+			    /seticongravity OpenLookFrame send
+			} {
+			    pop
+			} ifelse
+		    }
+		    /Default {
+			% It's OK if there are other resources, because
+			% other agents may be responsible for handling them.
+			pop pop
+		    }
+		} case
+	    } {
+		console (X11/NeWS: malformed property: ) 3 -1 roll append
+		fprintf
+	    } ifelse
+	} {
+	    pop
+	} ifelse
+    } forall
+} def
+
+% Start global property manager...
+/framebuffer Framebuffer store
+
+framebuffer null 1 dict dup begin
+    /PropertyNotify { % ev => -
+	/Action get dup 1 get /NewValue eq {		% Action
+	    Xcompat_private begin
+		0 get dup XGetAtomName			% atom propname
+		/RESOURCE_MANAGER eq {			% atom
+		    framebuffer exch 0 32000 string xgetproperty
+		    % property type fmt remaining bool
+		    {
+			pop pop pop UpdateResources	% -
+		    } if
+		} {					% atom
+		    pop					% -
+		} ifelse
+	    end
+	} {						% Action
+	    pop						% -
+	} ifelse
+    } def
+end							% canvas action name
+/new ClassInterest send					% interest
+/addclient /GlobalSystemEventMgr ClassUI send send	% -

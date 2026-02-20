@@ -1,0 +1,3525 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 13 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 10 /Palatino-Roman FMDEFINEFONT
+5 10 /Palatino-Italic FMDEFINEFONT
+6 15 /Palatino-Italic FMDEFINEFONT
+%%Page: "5" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (5) 553.42 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (2-0) 159.51 672.33 S
+-0.12 (2-0) 159.51 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (Getting Started) 199.01 509.03 B
+3 F
+7 X
+1 K
+-3.12 (2) 540.57 508.36 S
+4 F
+0 X
+0 K
+0.27 0.1 (This chapter helps you to get Devguide up and r) 198 459.68 B
+0.27 0.1 (unning and orients you to the ) 419.48 459.68 B
+0.52 0.1 (interface. It covers how to start Devguide, how to use on-line help, and ) 198 447.28 B
+0.52 0.1 (pr) 198 434.88 B
+0.52 0.1 (ovides an overview of the Devguide interface. When you ar) 207.98 434.88 B
+0.52 0.1 (e \336nished, you ) 481.5 434.88 B
+0.52 0.1 (will be r) 198 422.48 B
+0.52 0.1 (eady to move on to the following chapters to learn mor) 236.08 422.48 B
+0.52 0.1 (e about ) 489.78 422.48 B
+0.52 0.1 (Devguide\325s featur) 198 410.08 B
+0.52 0.1 (es.) 279.45 410.08 B
+0.42 0.1 (This book assumes you ar) 198 389.68 B
+0.42 0.1 (e familiar with OPEN LOOK terminology) 316.3 389.68 B
+0.42 0.1 (. If you ar) 505.25 389.68 B
+0.42 0.1 (e ) 550.1 389.68 B
+0.12 0.1 (not, or if you would like some r) 198 377.28 B
+0.12 0.1 (eview) 341.35 377.28 B
+0.12 0.1 (, we suggest you r) 367.39 377.28 B
+0.12 0.1 (efer to either the ) 449.78 377.28 B
+5 F
+0.12 0.1 (OPEN ) 527.11 377.28 B
+0.52 0.1 (LOOK Graphical User Interface Application Style Guidelines) 198 364.88 B
+4 F
+0.52 0.1 ( or the ) 455.13 364.88 B
+5 F
+0.52 0.1 (OpenW) 488.25 364.88 B
+0.52 0.1 (indows ) 520.2 364.88 B
+0.52 0.1 (User) 198 352.48 B
+0.52 0.1 (\325) 218.21 352.48 B
+0.52 0.1 (s Guide) 220.54 352.48 B
+4 F
+0.52 0.1 (. The User) 252.58 352.48 B
+0.52 0.1 (\325s Guide contains an excellent glossary of OPEN LOOK ) 300.33 352.48 B
+0.36 0.1 (terms with scr) 198 340.08 B
+0.36 0.1 (een snapshots to show you exactly what each element looks like.) 262.94 340.08 B
+6 F
+-0.94 (Installing Devguide and GNT) 54 306.35 P
+4 F
+0.52 0.1 (Befor) 198 284.68 B
+0.52 0.1 (e you can r) 221.95 284.68 B
+0.52 0.1 (un Devguide, it must be installed on your workstation or ) 273.05 284.68 B
+0.52 0.1 (server) 198 272.28 B
+0.52 0.1 (. If Devguide is not installed, see the instr) 225.21 272.28 B
+0.52 0.1 (uctions in the) 416.48 272.28 B
+5 F
+0.52 0.1 ( OpenW) 478.64 272.28 B
+0.52 0.1 (indows ) 513.72 272.28 B
+0.2 0.1 (Developer) 198 259.88 B
+0.2 0.1 (\325) 239.81 259.88 B
+0.2 0.1 (s Guide 1.1 Installation Manual) 242.14 259.88 B
+4 F
+0.2 0.1 ( that you r) 375.7 259.88 B
+0.2 0.1 (eceived when you pur) 423.05 259.88 B
+0.2 0.1 (chased ) 524.21 259.88 B
+0.52 0.1 (the XV) 198 247.48 B
+0.52 0.1 (iew version of Devguide. Devguide is not distributed with this r) 228.81 247.48 B
+0.52 0.1 (elease ) 523.68 247.48 B
+0.52 0.1 (of TNT) 198 235.08 B
+0.52 0.1 (. The TNT 2.0 r) 230.22 235.08 B
+0.52 0.1 (elease contains the GNT postpr) 299.84 235.08 B
+0.52 0.1 (ocessor to convert ) 443.01 235.08 B
+0.52 0.1 (Devguide GIL \336les into C and PostScript code.) 198 222.68 B
+0.52 0.1 (GNT is installed with TNT) 198 202.28 B
+0.52 0.1 (. See the instr) 319.84 202.28 B
+0.52 0.1 (uctions in ) 381.67 202.28 B
+5 F
+0.52 0.1 (The NeWS T) 429.67 202.28 B
+0.52 0.1 (oolkit 2.0 ) 483.35 202.28 B
+0.52 0.1 (Installation Guide and Release Notes) 198 189.88 B
+4 F
+0.52 0.1 ( for information on how to install TNT) 352.48 189.88 B
+0.52 0.1 (.) 529.32 189.88 B
+FMENDPAGE
+%%EndPage: "5" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+3 10 /Courier FMDEFINEFONT
+5 9 /Courier FMDEFINEFONT
+%%Page: "6" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (2) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (6) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch, 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+-0.94 (Starting Devguide) 54 638 P
+4 F
+0.52 0.1 (T) 198 616.33 B
+0.52 0.1 (o start Devguide, you must \336rst r) 203.31 616.33 B
+0.52 0.1 (un OpenW) 356.67 616.33 B
+0.52 0.1 (indows. Y) 406.24 616.33 B
+0.52 0.1 (ou can use the File ) 451.27 616.33 B
+0.25 0.1 (Manager to start Devguide by double-clicking on the Devguide glyph, but it is ) 198 603.93 B
+0.52 0.1 (pr) 198 591.53 B
+0.52 0.1 (obably easiest to start Devguide fr) 207.98 591.53 B
+0.52 0.1 (om a shell tool or shell script.) 364.82 591.53 B
+0.42 0.1 (If you ar) 198 571.13 B
+0.42 0.1 (e r) 237.24 571.13 B
+0.42 0.1 (unning the C shell, execute the following commands in the shell or ) 249.11 571.13 B
+0.52 0.1 (a shell script. Be sur) 198 558.73 B
+0.52 0.1 (e to substitute the corr) 290.15 558.73 B
+0.52 0.1 (ect Devguide installation dir) 393.12 558.73 B
+0.52 0.1 (ectory ) 523.37 558.73 B
+0.52 0.1 (for ) 198 546.33 B
+3 F
+1.22 0.1 (/usr/guide) 214.15 546.33 B
+4 F
+0.52 0.1 ( and the corr) 275.12 546.33 B
+0.52 0.1 (ect TNT installation dir) 333.86 546.33 B
+0.52 0.1 (ectory for) 440.62 546.33 B
+3 F
+1.22 0.1 ( ) 484.81 546.33 B
+1.22 0.1 ($OPENWINHOME/tnt/bin) 198 533.93 B
+4 F
+0.52 0.1 (. \050This can also be ) 319.93 533.93 B
+3 F
+1.22 0.1 ($OPENWINHOME/bin) 405.11 533.93 B
+4 F
+0.52 0.1 (.\051 See your ) 502.65 533.93 B
+0.52 0.1 (system administrator for the appr) 198 521.53 B
+0.52 0.1 (opriate path.) 352.32 521.53 B
+1 F
+0.47 0.09 (Figur) 198 432.05 B
+0.47 0.09 (e 2-1) 218.77 432.05 B
+0 F
+0.47 0.09 (C Shell Path Set Up) 248.4 432.05 B
+4 F
+0.38 0.1 (If you use a shell script to start OpenW) 198 407.39 B
+0.38 0.1 (indows, you can place the ) 376.6 407.39 B
+3 F
+0.89 0.1 (setenv) 498.24 407.39 B
+4 F
+0.38 0.1 ( and ) 534.82 407.39 B
+3 F
+-0.01 0.1 (set) 198 394.98 B
+4 F
+-0 0.1 ( commands in the shell script and then just execute the ) 216.29 394.98 B
+3 F
+-0.01 0.1 (guide) 465.64 394.98 B
+4 F
+-0 0.1 ( command in ) 496.12 394.98 B
+0.52 0.1 (a shell tool whenever you want to start Devguide. Note that the command to ) 198 382.58 B
+0.52 0.1 (start Devguide is ) 198 370.18 B
+3 F
+1.22 0.1 (guide) 279.26 370.18 B
+4 F
+0.52 0.1 ( and not ) 309.74 370.18 B
+3 F
+1.22 0.1 (devguide) 351.15 370.18 B
+4 F
+0.52 0.1 (.) 399.92 370.18 B
+0.52 0.1 (If you ar) 198 349.79 B
+0.52 0.1 (e r) 237.44 349.79 B
+0.52 0.1 (unning the Bourne shell, set these variables by entering the ) 249.41 349.79 B
+0.52 0.1 (following. Again, be sur) 198 337.39 B
+0.52 0.1 (e to substitute the corr) 308.53 337.39 B
+0.52 0.1 (ect Devguide installation ) 411.5 337.39 B
+0.52 0.1 (dir) 198 324.98 B
+0.52 0.1 (ectory for ) 211.08 324.98 B
+3 F
+1.22 0.1 (/usr/guide) 258.4 324.98 B
+4 F
+0.52 0.1 ( and the corr) 319.36 324.98 B
+0.52 0.1 (ect TNT installation dir) 378.11 324.98 B
+0.52 0.1 (ectory for ) 484.86 324.98 B
+3 F
+1.22 0.1 ($OPENWINHOME/tnt/bin) 198 312.58 B
+4 F
+0.52 0.1 (. \050This can also be ) 319.93 312.58 B
+3 F
+1.22 0.1 ($OPENWINHOME/bin) 405.11 312.58 B
+4 F
+0.52 0.1 (.\051 See your ) 502.65 312.58 B
+0.52 0.1 (system administrator for the appr) 198 300.18 B
+0.52 0.1 (opriate path.) 352.32 300.18 B
+1 F
+0.47 0.09 (Figur) 198 185.7 B
+0.47 0.09 (e 2-2) 218.77 185.7 B
+0 F
+0.47 0.09 (Bourne Shell Path Set Up) 248.4 185.7 B
+54 144 558 648 C
+54 448.05 558 500.8 C
+198 450.37 555.34 495.83 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+5 F
+(setenv GUIDEHOME /usr/guide) 204.7 482.49 T
+(set path=\050$path $GUIDEHOME/bin $OPENWINHOME/tnt/bin\051) 204.7 471.49 T
+(guide &) 204.7 460.49 T
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 201.7 558 279.45 C
+198 205.45 555.34 274.48 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+5 F
+(GUIDEHOME=/usr/guide) 204.7 261.14 T
+(export GUIDEHOME) 204.7 250.14 T
+(PATH=$PATH:$GUIDEHOME/bin:$OPENWINHOME/tnt/bin) 204.7 239.14 T
+(export PATH) 204.7 228.14 T
+(guide &) 204.7 217.14 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "6" 3
+3 9 /Helvetica-Bold FMDEFINEFONT
+%%Page: "7" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Getting Started) 198 108.7 B
+0 F
+0.09 (7) 553.42 108.7 S
+2 F
+7 X
+1 K
+-0.2 (2) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+-0.94 (Quitting Devguide) 54 638 P
+4 F
+0.52 0.1 (T) 198 616.33 B
+0.52 0.1 (o quit Devguide, choose Quit fr) 203.31 616.33 B
+0.52 0.1 (om the Devguide window menu. If you have ) 348.14 616.33 B
+0.52 0.1 (unsaved work, Devguide pr) 198 603.93 B
+0.52 0.1 (esents a notice, shown in Figur) 326.3 603.93 B
+0.52 0.1 (e 2-3, telling you ) 467.98 603.93 B
+0.34 0.1 (that you have unsaved edits. Choose Cancel to continue r) 198 591.53 B
+0.34 0.1 (unning Devguide, or ) 460.1 591.53 B
+0.52 0.1 (choose Discar) 198 579.13 B
+0.52 0.1 (d Changes to quit Devguide, discar) 260.6 579.13 B
+0.52 0.1 (ding your unsaved work. ) 422.51 579.13 B
+0.37 0.1 (When you quit, the Devguide window disappears along with any UI elements ) 198 566.73 B
+0.52 0.1 (Devguide has laid out on the workspace. ) 198 554.33 B
+1 F
+0.47 0.09 (Figur) 198 443.32 B
+0.47 0.09 (e 2-3) 218.77 443.32 B
+0.47 0.09 (Unsaved-edits notice) 248.4 443.32 B
+6 F
+-0.94 (The Devguide W) 54 411.32 P
+-0.94 (indow) 154.33 411.32 P
+4 F
+0.52 0.1 (When you start Devguide, the window shown in Figur) 198 389.65 B
+0.52 0.1 (e 2-4 appears on the ) 449.38 389.65 B
+0.1 (scr) 198 377.25 S
+0.1 (een.) 210.74 377.25 S
+1 F
+0.47 0.09 (Figur) 198 172.8 B
+0.47 0.09 (e 2-4) 218.77 172.8 B
+0 F
+0.47 0.09 (The Devguide W) 248.4 172.8 B
+0.47 0.09 (indow) 317.79 172.8 B
+198 457.32 557.86 538.6 C
+198 457.32 557.86 538.6 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1990     
+374 104 269.28 74.88 0 201.36 460.73 BEGINBITMAPBWc
+58"
+JDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DDF7DF85
+K77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF77DF775
+LFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFBFEFB5
+MBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBBEFBB"j"
+D0M0F"
+70"Z"
+E3MCF"
+B3"j
+D3M#Z"
+737FKFE"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+73"
+E3"="B"8#
+B3CFCFF9FB"8#9"B"8$;"
+D3FE23EFEFFDFBF711"8#J"<"
+73FF774FFBB":5:)
+E388739FFE8F8718F1FFE7323E0F0E31E3E2FFFC7C5E3E0F83FC39CFFFC5C391F9F"959)
+B39AF7BBDFFE777BBDEEFFF7B9DDEEF77BDDDCFFFBBB9FBF7F7BFD7BDDEFFFB9BDCEF"9#8&8+9":"8&
+D3AEFDEF7FBBDDF7BDDFFF77BBEBEFFF7D7DFF7EF7DFDDEFFF"9":%9&8"9#9":#
+73DE783DBC07E1F07B780B01F87FEFFC1D">%9&8"9#>#
+E377BDBDFFFEEF7B7BFB7FFFBFFBDD"9$908$9)
+B3DF7BB93E7EF7FF73BDDEEE7CFDEDCFFFBDB977BE7FBDDCFFFBDB9DEF9F"959)
+D390787C4FFC6389E7F0FFF8918C1F13CFE1E27FFC3C4E0F8F07E83C3E27FFC3C48C7"9Z8T
+73:"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+73"=j"8"b"
+E3103FE0F"<"Z"8"R"
+B3FC1FCF9F3"<"G%b"
+D3FBFF7FFFF71D"<"H$R"
+73F7BFFFECE6"<"H$=#
+E3EFDFFFDBFB7F"<"8":%=$=#
+B3DFBFFE7FFFF9EFFFB7FDBF"=#;%=&:$
+D3F03FFF7FFE2DE7FFAFFC5FC7FE9F"<%<#=&:$
+73BFFBDFFFFDCDF7FF6FFB9FF7FEDF">5
+E3=EE3F07C5C3CCF17FFBED1F0E47C4F1F07FF3FF5FF7DC391F8BC7F7FF4F">(8(;&
+B3EFBEF7B9BDEB6EFCEEF73BB9EEEFFBDCEF73BB"@&8):&
+D3FF7DFDE7DFFDEFF77B7DDF6FFFFFDDEEFB7D"?&;"8#;&
+73BF0F7FC1EF07C070FC1DEEFF01"@$;#8$:#8"
+E3F77FBDEEF7DFFF7FFBDD7F">19+
+B3DFBEF7BDB9EFEE7FFDEDEEE77BB9EF6F6FFBDB9DEF7BBDF7FECF"<5
+D3?DFF03E0E0FC3C4C3F13FFE18C71231C5F0E0FFE3FFAFFC3C48C787C3C1FE8F"=Y(R#
+73FDFFFFFFE7FFB7FD9F"<"D"9$=#
+E3EFFBC7FFDBFB1F"<"D"9$=#
+B3F7878FFFECE63F"<"D"9$b#
+D3FBFF1FFFF71C7F"<"G%R#
+73FCFC3FFFF9F0FF"<"j$b"
+E3FE27FFFFC01"<"G%="
+B3FF01FFFFFE07"=Z8T
+D32"
+73"
+E3"
+B3"
+D3"
+73"
+E3"
+B3"
+D3"
+F3"
+E3"
+B3"
+D3"
+F3"
+E3"
+F37j
+M7Z
+M
+"j"
+F0M0F
+Z
+O!
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 188.8 556.72 366.52 C
+54 188.8 556.72 366.52 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  5969     
+610 239 439.2 172.08 0 114.33 191.97 BEGINBITMAPBWc
+j"
+O>3F
+"Z
+3FO=
+
+7$
+FE000F7$
+FDFFF79"
+F3J%=":"9#
+=FE7FFF3FFC9FE7E78#J"9#<#?"<#
+C07340FCFCEF07FC39FF38"J#9$;#=&9$
+DF4FE67CCCFFFF33FDFFF99FFFFFE1FC38#I5
+EEF3AFCF393C3C9CCCE72783873F307F39C399C3CE1E4F0E4B83F3FCCE7070FFFFF9FF3J58$
+968999C4E49E71333333327FF39999999CCCE26664F3FFE666678"J$8"8$<%<#
+F569999CC7339263FE66663F1E03FJ%:(8&9$
+:81CCE01E270FF3981CB81C6067F87F3907FFFF8"J%9)8%:"
+FB79FCCF33E3807C7F399FCB9FC67E7FE3F7F8"J%:+9)8#
+FF4FE67999D32333CCFE7F339DE79DC67FF3F99C8E646779E73J%:5
+7FF0F83C3539387CCE0FF07C3E7C3CE1E0F0E7F07FC1E4E7270F7$J#Z"T8#
+FE00034FF9F0E7FFFF7$
+FF00078#J"F"
+FFFF5FFFF
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+
+
+8"`8"`"8"`"8"d"J"e"
+FEFC01FE3FC01F4FE018"P$P%P"8"T"J'
+F93FFFF3FE7FFFF9CF3FE7:03FFFFFFFFFD8";$;%;%?"J'
+F7DFFFEFFFBFFFF7F7FFFEFFFB57FFFFFFFFFF38$9&:'8$<"9"
+EFFFEEEFFFDFFFEFDFFFEFFFFEEFFBFFFDF7FD8#:%;'8&9":"
+DFF0F7FFBFDEEFFFDFE0FEEEFDFFFBFE1FFEFE9#9"9":"8$8"9":":"
+F7FEF3FFE7EFFEFEFCEFFF7F85J$
+EBFF7EEE3FE03FBFF7FDEEE3BFBFC07F7FFBFEFF0EC3F80FEFFF7FEED39E9E3A4371E3FC07F7FEEFEF;%9'9'8,J#:%
+DDFEFBF9EDDBBBFDF7F3EEEEFFBEFE7FECF6E6DD9EF6EDFFDF7F3F47E1FF80FFFEF9"8#9'9"9":&9#J#9#
+F0FF77EDEDDDB7FEEFE1DDEDEF6EDDBEEEFF6EFFFFF7F9$<$;">"8"8#J%8$
+F7EEC1EC1D57EF1DC10E7F8EEEEEF0F7C78C3;$:&=":"8"8$J#8$
+DFFFAFEDFD57FF5FEBFDDFFFBFF59EEEF7BB7EF;";%<">$8"J"
+DDF3EDDEEFECF6EEDDEF91E;$:#8"9&;)J";#
+E3FFDFEE3EBFE0F2EF3FF7F9E1E3BF371C7FFB7EE78398"P$Q$P(Q"J#
+DFF1FFBFE3FFDFFC7FFBFFFFFFEFFE<7BFE>">">"B"J$9"
+F3E7FF7F6CEEECFBE8";$<$;$9"<"J%8$
+EFE3FFDFC7FFEFF8FFFDFFFC61F2EEF2F7C71F38";$<$;$@#J&8$
+F7C7FFEF8FFFF7F1FFFEF8FF47FFFFFFFFFFFFFFF8";$;%;%?"
+F90FFFF3FE1FFFF9C3FFFF3FE18"`$a$`"8"d"
+FC1FFFF83FFFFC0780038";$<$;"8"?"
+FE7FFFFCFFFFFE1FC00F8Z8R8V
+/J`"
+O.03J`"
+O301JW
+O-
+
+
+
+
+
+
+
+
+
+
+"j"
+38O<07"Z"
+3BO<F7
+
+
+
+
+
+8"c#d"c"
+E007FE60078"S#T"S"
+EFF7FE6FF7
+
+J$
+O9F0001F9c8"b#cJ)
+F00F6FCFAAAAAAAAAB7FFDF9"<"8"R$Q"J'
+781EF7EF6F7FFECEFFFFFFFFFF79"Q"I"J"
+7BDEC6CFF9#;"9%;%J"
+623FC6F07C1F835C70F07FGEF9#;"9%;%9"J":$
+6EBFF6EFBBEF7D7FFFFFFFEECFFF0001F9#;"B$:"J":$
+0E3FF05C30F3FECEFFFFFFF9#;"9%;$:"J"
+3FFFFCF07C1F837FFFFFEECFF9"a"9%;$?`"J":$
+300CFFFFFFFF5C1033079EFF8003F9"Q"B$>"P"J":$
+3FFC7FFFFFFCF99FFF7FF9FJ%=";":#>%="
+75C10307FFBFEF807F807FFFDEFJ%9"9";#9#>%="
+77FFFFFFFC6F7FF7FF7FBFF3FFFF9FFE&9$:"9&8"8"=#8%<"
+3FFC003FDF5C30F1D6EFF0FFF7BFBF83F07F3E1CC04FEFD(8$:":#:"8"="9%<";"
+F000FDB9BF000F7FFFFFC6F77F9FBBF73CCCC9CFFFDFD(?"9)E$<";"
+FF3FFC003F8FFFD6DFF777610E7A7FDFCE59FFEFAFEP@"<&:';#=";"
+C677BDB9BFCFF800000000070F39FF57;"J":&<';#=":#
+C78EEF0F777BBDBFBFFFFFFFFFBFE99EFF6AB;"J#J$<":#
+DB=F7774ECC9CFFFF757<$J%<";"
+C78F1FO!3E1CCC4FEFFF<$J%<':%<"
+BB76EF;7677BDBBF80000000007FFFFFFFFFF;$<"8$;"?&<"PD"
+C3FB7EC77FFFF1C1F0F979CE7BFBEF;%;":";":"9"Q"8"="C"
+DDC38E0FBBFDF7FEEF8F83F0FF<$<';&@"8"=#<(
+BBF6FF8E9C1A78FDE3C74E5FFFEE9FFFFFFFF8000000001FEF=#;(;&9"<"9#CR:$
+76EFBF766F79B77DDDBB36AFFFFEF71FF807F0001F;%=&<"8"9";#9#I":$
+C3C38F1FEF7BF77DDF7EEEFBFE3FFFFFEFF7FF9F;%A";"9"9";#J"
+FFFFFFFFE383FEFCF87F8FFD";";"9"9"a"J"
+BBFDBFEEFEFF8EF9"<"?";"9"9";"J"
+0FF0DDBBFEFF039FF9"<"9(;"9":QJ"
+6FF6C78EEF9BF8FDE3C7C69EF9"<"9R:%J"
+63C6FFFFFFFFEFF9"<"I"J"
+7BDEFECEF9"a"J"
+781EO)FF9"<"8"b#cJ"
+0000F00F6FCEF9S8T"SJ"
+6FCFFJ"
+O4EFJ"
+O4FFJ"
+O4EF8"c#d"c"J"
+E007FE6007BFF8ZJ":$
+>BEFF0001FJ":$
+O4FFF7FF9F8"c#d"c"J"
+E007FE6007BEF8"S#T"S"J"
+EFF7FE6FF7BFFJ"
+O4EFJ"
+O4FFJ":#
+O4EFF6019c8"b#cJ"
+F00F6FCFF9"<"8"R$Q"J":#
+781EF7EF6F7FFECEFF7039"Q"?#>"J";"
+7BDEFC6FC6CFF879#;"C"I"c"8"b$;"
+63EBC66BF03FE00FFFEFCF9#;"=%8";"F(8"R$;"
+6F83F600FFFEEFFFEE0FFFFFBFFFFFBFDFF7FFFFFF9#;"=$9";"C%>"=$
+0EEBF0BEFFFF57FEF3FFFFCFBFFBFFEF9#;":'9";"J"=$
+3FFFFCFC7FFFDEFFFEFFEE970FDFFFF9"a":%J"?"
+300CFBBFFFEEE60EF9"Q";$;%;#<#J":$
+3FFCBC01F6C218499FF27FFC9F7FFF0001FF$;%<#J":$
+BDFDFAFFFFFFFF638F>EFF8003FE(8%8"8#<#8"8"8":"?":$
+FC7DFDFCFFFC6F22C10127C6F6E3FDBFFCE1E170FFFFFFFFE'9%8":(<"8":"=$;"
+FFFDFDFEFFFDFFFFFFFFD68E1E0E0E1E0E1DEEDEBFFBFFEFC7H$9%8"8+8#:":"=$
+FFFFFC08C8211FC6FFE94CCCFCFCCCCCCFFFFB7FBFDFF7FFFFF#8"9%8"<#G"b$
+FC01FDFFFFFFFFD67C7FE00FFFEFF#8"9";";'<"=V
+FFFFFC27C60E1E1E0CCC0FE1:"E#8";"9)9%G"
+F0FEEFFFEEECCCFF8F8CCC8CFFF03FCFEEEF:#J'9#?"<%
+F77F>EFCFCCCE4CEFF7BFE7EFCFFFFF;&J)?":"<%
+71D3FF769F8EFCE1C1C1E27CE1FDEDB8FB7FFEF;#8"JP$<"8":"<%
+6ECD6F8FCCFFFE1E1BDEF7BFFFF:';"?"8"@#:%8"D"
+F0EEDD8376EF8FE0DFFE1FFFFFCFFFFFEF:"8"=":":":">#J"
+F7FF77FFFBFEFFFF9FFF&;&J";"
+1D3BB8F1FEE3BB07FFEECEFFF<%;';&J"
+CDFF666F7EECDBB76EFFDDBBDFFFFECFF;&;'<"8"J"=$:$
+F1D3FF969F7FEDDBBF6FFED7EE9DBB7FFEFF0001F:'<&;#8"C%>"=$:$
+FFFFDFFFFEFF0DDD7871FFC1EFFEF000000FE7CFFFFFF7FFDFE';#8"Fa"8"<%
+76EDDD777EFEDFD7EE3FFFFFFFFFEF9"<"<%;#8"CUB"
+0FF0DEF76EFFDDBBFEFF9"8&:(:&J"
+6FFFFFFFFFF68F0DDEF871FC6FE3BBE7FFC6CEF9"<":P;%J":$
+63C6FFFFFFFFEFFF0001F9"<"?#>"J)
+7BDEFFEFFECE5555555555FFFFF9"a"JQ
+781EO)9"<"8"b#c
+0000F00F6F9S8T"S
+6F
+
+
+8"c#d"c"
+E007FE60078Z
+>
+
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+9"
+DF8";"
+C17F8"
+DF9'
+DC7A678F4E179'
+DBB99B7737778(
+C3DBBBBB77777F8&
+DFD83BBB079%
+DBFBBB7F:&
+BBBB7777778(
+C1DC7BBB8F77978R
+
+
+
+
+
+
+
+
+
+
+
+
+;#J"J"
+7FBF8FD7DF8"8";(B#:(@"8"9.
+E177F9F9F9FFF3F3F3FE1DF9F9F9FFF3F3F3E1FDFDEFFFF3F3F3FFFBEFFFE7E7E78"8#:(B#:(@$=$:$
+EEF7FFF6F6F6FFEDEDEDFDFFF6F6F6FFEDEDEDEEFFFFEDEDEDDBDBDB9'8(C$8(A4
+F3C761BCF4EFEF6F6F6EDEDEDEFD838EEF6F6F6EDEDEDEF3DD3863A5FFFEDDFFDEDEDEFFFDDBFFBDBDBD9'J%J)
+EDBF77BB736F5FCFDFB764EDDCDDDD9DFFFF5D9"8$;"E%;"D#8"8";#
+DEB7B77F75FE3DF77775DEDDBF3FFEBF8$?"E%;"C"9"8#;#
+E1DECF7BFF9DEF077BE1C1FEBFFF7F8$?"F$;"C"9"9"
+EFDEF775DDDF7F75EFDFDF9"8$8(D#8(A"8*8&
+EDBB776FF6F6F6EEEDEDEDBF76F6F6F6EEEDEDEDEDDDBDFFFDEDFFEDEDED7BFFDBDBDB9&9(B%8(A%;$:$
+F38F79BCF7F9F9F9EEF3F3F3FC3D838EF9F9F9EEF3F3F3F3DDDE63F3F3F3E7E7E78R8RB%8R@X8P
+FFFFFFFF
+
+
+
+
+
+
+
+8#@"
+9FCFFC8)9#<":"
+3FE7FCF878787FF0C71C7F9F:(9";"
+F0F333333FE67F1FFE7%:5
+FE7873FC4E7F3393FC71CE1930F067304187933C1FF9C9E1F8#;18#
+7333E3F3389FD29CCC92667E727E7338899F4CCF9%8$9+8#
+F3FCF838F0F339CF8E663E763E7339998FCCFF;#8#;'8"
+FF3FFC739E670F270E70C3?"9":(
+FED9C72FC673F999F17+:"8)8"
+FF33A7FCF3333333E672CEE78FE673B999F99FE98*8-8#
+3867FCF8787873F0F9DF9CE19F0E0F9E0F18799983CE198(U"P%
+9FCFFFFFFFFFFB3FDFFFFFFF8#:"F"
+FFFFF7BF>"@";"
+FFFFFF
+
+j
+O>
+
+ENDBITMAP
+%%EndBinary
+3 F
+(Controls) 66.25 328.85 T
+(Element) 66.25 285.37 T
+(Element) 66.25 222.23 T
+(Info) 72.48 212.63 T
+(Glyphs) 72.65 275.77 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "7" 4
+5 14 /Palatino-Italic FMDEFINEFONT
+7 14 /Times-Bold FMDEFINEFONT
+%%Page: "8" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (2) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (8) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch, 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (The Devguide window contains the contr) 198 641.33 B
+0.52 0.1 (ols and information you need to ) 387.67 641.33 B
+0.52 0.1 (operate Devguide and the element glyphs you use to add elements to a user ) 198 628.93 B
+0.07 0.1 (interface. The contr) 198 616.53 B
+0.07 0.1 (ols ar) 285.37 616.53 B
+0.07 0.1 (e located in the top of the window) 309.91 616.53 B
+0.07 0.1 (, the element glyphs ) 464.02 616.53 B
+0.52 0.1 (ar) 198 604.13 B
+0.52 0.1 (e in the middle of the window) 206.96 604.13 B
+0.52 0.1 (, and information about the elements is in the ) 345.68 604.13 B
+0.52 0.1 (bottom of the window) 198 591.73 B
+0.52 0.1 (.) 299.52 591.73 B
+5 F
+-0.88 (Devguide Contr) 126 558.67 P
+-0.88 (ols) 216.23 558.67 P
+4 F
+0.52 0.1 (The Devguide contr) 198 537.33 B
+0.52 0.1 (ols appear acr) 288.86 537.33 B
+0.52 0.1 (oss the top of the Devguide window) 352.85 537.33 B
+0.52 0.1 (, as ) 519.11 537.33 B
+0.52 0.1 (shown in Figur) 198 524.93 B
+0.52 0.1 (e 2-5.) 267.64 524.93 B
+1 F
+0.47 0.09 (Figur) 198 286.2 B
+0.47 0.09 (e 2-5) 218.77 286.2 B
+0.47 0.09 (The Devguide Contr) 248.4 286.2 B
+0.47 0.09 (ols) 325.2 286.2 B
+7 F
+(\245) 198 261.53 T
+4 F
+0.52 0.1 (The File menu button, which contains menu items used to load, close, and ) 210.6 261.53 B
+0.52 0.1 (save interfaces and selected parts of interfaces that you cr) 210.6 249.13 B
+0.52 0.1 (eate in Devguide.) 474.48 249.13 B
+7 F
+(\245) 198 230.73 T
+4 F
+0.52 0.1 (The V) 210.6 230.73 B
+0.52 0.1 (iew menu button, which opens pr) 237.51 230.73 B
+0.52 0.1 (eviously dismissed pop-up ) 392.43 230.73 B
+0.1 (windows.) 210.6 218.33 S
+7 F
+(\245) 198 199.93 T
+4 F
+0.37 0.1 (The Edit menu button, which contains menu items that cut, copy) 210.6 199.93 B
+0.37 0.1 (, and paste ) 505.49 199.93 B
+0.52 0.1 (elements within and between dif) 210.6 187.53 B
+0.52 0.1 (fer) 360.61 187.53 B
+0.52 0.1 (ent interfaces.) 372.79 187.53 B
+7 F
+(\245) 198 169.13 T
+4 F
+-0.07 0.1 (The Pr) 210.6 169.13 B
+-0.07 0.1 (operties menu button, which contains menu items that open windows ) 240.16 169.13 B
+0.52 0.1 (for editing the pr) 210.6 156.73 B
+0.52 0.1 (operties of individual elements within a user interface.) 289.17 156.73 B
+54 302.2 556.72 514.2 C
+54 302.2 556.72 514.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  5969     
+610 239 439.2 172.08 0 112.98 305.93 BEGINBITMAPBWc
+j"
+O>3F
+"Z
+3FO=
+
+7$
+FE000F7$
+FDFFF79"
+F3J%=":"9#
+=FE7FFF3FFC9FE7E78#J"9#<#?"<#
+C07340FCFCEF07FC39FF38"J#9$;#=&9$
+DF4FE67CCCFFFF33FDFFF99FFFFFE1FC38#I5
+EEF3AFCF393C3C9CCCE72783873F307F39C399C3CE1E4F0E4B83F3FCCE7070FFFFF9FF3J58$
+968999C4E49E71333333327FF39999999CCCE26664F3FFE666678"J$8"8$<%<#
+F569999CC7339263FE66663F1E03FJ%:(8&9$
+:81CCE01E270FF3981CB81C6067F87F3907FFFF8"J%9)8%:"
+FB79FCCF33E3807C7F399FCB9FC67E7FE3F7F8"J%:+9)8#
+FF4FE67999D32333CCFE7F339DE79DC67FF3F99C8E646779E73J%:5
+7FF0F83C3539387CCE0FF07C3E7C3CE1E0F0E7F07FC1E4E7270F7$J#Z"T8#
+FE00034FF9F0E7FFFF7$
+FF00078#J"F"
+FFFF5FFFF
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+
+
+8"`8"`"8"`"8"d"J"e"
+FEFC01FE3FC01F4FE018"P$P%P"8"T"J'
+F93FFFF3FE7FFFF9CF3FE7:03FFFFFFFFFD8";$;%;%?"J'
+F7DFFFEFFFBFFFF7F7FFFEFFFB57FFFFFFFFFF38$9&:'8$<"9"
+EFFFEEEFFFDFFFEFDFFFEFFFFEEFFBFFFDF7FD8#:%;'8&9":"
+DFF0F7FFBFDEEFFFDFE0FEEEFDFFFBFE1FFEFE9#9"9":"8$8"9":":"
+F7FEF3FFE7EFFEFEFCEFFF7F85J$
+EBFF7EEE3FE03FBFF7FDEEE3BFBFC07F7FFBFEFF0EC3F80FEFFF7FEED39E9E3A4371E3FC07F7FEEFEF;%9'9'8,J#:%
+DDFEFBF9EDDBBBFDF7F3EEEEFFBEFE7FECF6E6DD9EF6EDFFDF7F3F47E1FF80FFFEF9"8#9'9"9":&9#J#9#
+F0FF77EDEDDDB7FEEFE1DDEDEF6EDDBEEEFF6EFFFFF7F9$<$;">"8"8#J%8$
+F7EEC1EC1D57EF1DC10E7F8EEEEEF0F7C78C3;$:&=":"8"8$J#8$
+DFFFAFEDFD57FF5FEBFDDFFFBFF59EEEF7BB7EF;";%<">$8"J"
+DDF3EDDEEFECF6EEDDEF91E;$:#8"9&;)J";#
+E3FFDFEE3EBFE0F2EF3FF7F9E1E3BF371C7FFB7EE78398"P$Q$P(Q"J#
+DFF1FFBFE3FFDFFC7FFBFFFFFFEFFE<7BFE>">">"B"J$9"
+F3E7FF7F6CEEECFBE8";$<$;$9"<"J%8$
+EFE3FFDFC7FFEFF8FFFDFFFC61F2EEF2F7C71F38";$<$;$@#J&8$
+F7C7FFEF8FFFF7F1FFFEF8FF47FFFFFFFFFFFFFFF8";$;%;%?"
+F90FFFF3FE1FFFF9C3FFFF3FE18"`$a$`"8"d"
+FC1FFFF83FFFFC0780038";$<$;"8"?"
+FE7FFFFCFFFFFE1FC00F8Z8R8V
+/J`"
+O.03J`"
+O301JW
+O-
+
+
+
+
+
+
+
+
+
+
+"j"
+38O<07"Z"
+3BO<F7
+
+
+
+
+
+8"c#d"c"
+E007FE60078"S#T"S"
+EFF7FE6FF7
+
+J$
+O9F0001F9c8"b#cJ)
+F00F6FCFAAAAAAAAAB7FFDF9"<"8"R$Q"J'
+781EF7EF6F7FFECEFFFFFFFFFF79"Q"I"J"
+7BDEC6CFF9#;"9%;%J"
+623FC6F07C1F835C70F07FGEF9#;"9%;%9"J":$
+6EBFF6EFBBEF7D7FFFFFFFEECFFF0001F9#;"B$:"J":$
+0E3FF05C30F3FECEFFFFFFF9#;"9%;$:"J"
+3FFFFCF07C1F837FFFFFEECFF9"a"9%;$?`"J":$
+300CFFFFFFFF5C1033079EFF8003F9"Q"B$>"P"J":$
+3FFC7FFFFFFCF99FFF7FF9FJ%=";":#>%="
+75C10307FFBFEF807F807FFFDEFJ%9"9";#9#>%="
+77FFFFFFFC6F7FF7FF7FBFF3FFFF9FFE&9$:"9&8"8"=#8%<"
+3FFC003FDF5C30F1D6EFF0FFF7BFBF83F07F3E1CC04FEFD(8$:":#:"8"="9%<";"
+F000FDB9BF000F7FFFFFC6F77F9FBBF73CCCC9CFFFDFD(?"9)E$<";"
+FF3FFC003F8FFFD6DFF777610E7A7FDFCE59FFEFAFEP@"<&:';#=";"
+C677BDB9BFCFF800000000070F39FF57;"J":&<';#=":#
+C78EEF0F777BBDBFBFFFFFFFFFBFE99EFF6AB;"J#J$<":#
+DB=F7774ECC9CFFFF757<$J%<";"
+C78F1FO!3E1CCC4FEFFF<$J%<':%<"
+BB76EF;7677BDBBF80000000007FFFFFFFFFF;$<"8$;"?&<"PD"
+C3FB7EC77FFFF1C1F0F979CE7BFBEF;%;":";":"9"Q"8"="C"
+DDC38E0FBBFDF7FEEF8F83F0FF<$<';&@"8"=#<(
+BBF6FF8E9C1A78FDE3C74E5FFFEE9FFFFFFFF8000000001FEF=#;(;&9"<"9#CR:$
+76EFBF766F79B77DDDBB36AFFFFEF71FF807F0001F;%=&<"8"9";#9#I":$
+C3C38F1FEF7BF77DDF7EEEFBFE3FFFFFEFF7FF9F;%A";"9"9";#J"
+FFFFFFFFE383FEFCF87F8FFD";";"9"9"a"J"
+BBFDBFEEFEFF8EF9"<"?";"9"9";"J"
+0FF0DDBBFEFF039FF9"<"9(;"9":QJ"
+6FF6C78EEF9BF8FDE3C7C69EF9"<"9R:%J"
+63C6FFFFFFFFEFF9"<"I"J"
+7BDEFECEF9"a"J"
+781EO)FF9"<"8"b#cJ"
+0000F00F6FCEF9S8T"SJ"
+6FCFFJ"
+O4EFJ"
+O4FFJ"
+O4EF8"c#d"c"J"
+E007FE6007BFF8ZJ":$
+>BEFF0001FJ":$
+O4FFF7FF9F8"c#d"c"J"
+E007FE6007BEF8"S#T"S"J"
+EFF7FE6FF7BFFJ"
+O4EFJ"
+O4FFJ":#
+O4EFF6019c8"b#cJ"
+F00F6FCFF9"<"8"R$Q"J":#
+781EF7EF6F7FFECEFF7039"Q"?#>"J";"
+7BDEFC6FC6CFF879#;"C"I"c"8"b$;"
+63EBC66BF03FE00FFFEFCF9#;"=%8";"F(8"R$;"
+6F83F600FFFEEFFFEE0FFFFFBFFFFFBFDFF7FFFFFF9#;"=$9";"C%>"=$
+0EEBF0BEFFFF57FEF3FFFFCFBFFBFFEF9#;":'9";"J"=$
+3FFFFCFC7FFFDEFFFEFFEE970FDFFFF9"a":%J"?"
+300CFBBFFFEEE60EF9"Q";$;%;#<#J":$
+3FFCBC01F6C218499FF27FFC9F7FFF0001FF$;%<#J":$
+BDFDFAFFFFFFFF638F>EFF8003FE(8%8"8#<#8"8"8":"?":$
+FC7DFDFCFFFC6F22C10127C6F6E3FDBFFCE1E170FFFFFFFFE'9%8":(<"8":"=$;"
+FFFDFDFEFFFDFFFFFFFFD68E1E0E0E1E0E1DEEDEBFFBFFEFC7H$9%8"8+8#:":"=$
+FFFFFC08C8211FC6FFE94CCCFCFCCCCCCFFFFB7FBFDFF7FFFFF#8"9%8"<#G"b$
+FC01FDFFFFFFFFD67C7FE00FFFEFF#8"9";";'<"=V
+FFFFFC27C60E1E1E0CCC0FE1:"E#8";"9)9%G"
+F0FEEFFFEEECCCFF8F8CCC8CFFF03FCFEEEF:#J'9#?"<%
+F77F>EFCFCCCE4CEFF7BFE7EFCFFFFF;&J)?":"<%
+71D3FF769F8EFCE1C1C1E27CE1FDEDB8FB7FFEF;#8"JP$<"8":"<%
+6ECD6F8FCCFFFE1E1BDEF7BFFFF:';"?"8"@#:%8"D"
+F0EEDD8376EF8FE0DFFE1FFFFFCFFFFFEF:"8"=":":":">#J"
+F7FF77FFFBFEFFFF9FFF&;&J";"
+1D3BB8F1FEE3BB07FFEECEFFF<%;';&J"
+CDFF666F7EECDBB76EFFDDBBDFFFFECFF;&;'<"8"J"=$:$
+F1D3FF969F7FEDDBBF6FFED7EE9DBB7FFEFF0001F:'<&;#8"C%>"=$:$
+FFFFDFFFFEFF0DDD7871FFC1EFFEF000000FE7CFFFFFF7FFDFE';#8"Fa"8"<%
+76EDDD777EFEDFD7EE3FFFFFFFFFEF9"<"<%;#8"CUB"
+0FF0DEF76EFFDDBBFEFF9"8&:(:&J"
+6FFFFFFFFFF68F0DDEF871FC6FE3BBE7FFC6CEF9"<":P;%J":$
+63C6FFFFFFFFEFFF0001F9"<"?#>"J)
+7BDEFFEFFECE5555555555FFFFF9"a"JQ
+781EO)9"<"8"b#c
+0000F00F6F9S8T"S
+6F
+
+
+8"c#d"c"
+E007FE60078Z
+>
+
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+9"
+DF8";"
+C17F8"
+DF9'
+DC7A678F4E179'
+DBB99B7737778(
+C3DBBBBB77777F8&
+DFD83BBB079%
+DBFBBB7F:&
+BBBB7777778(
+C1DC7BBB8F77978R
+
+
+
+
+
+
+
+
+
+
+
+
+;#J"J"
+7FBF8FD7DF8"8";(B#:(@"8"9.
+E177F9F9F9FFF3F3F3FE1DF9F9F9FFF3F3F3E1FDFDEFFFF3F3F3FFFBEFFFE7E7E78"8#:(B#:(@$=$:$
+EEF7FFF6F6F6FFEDEDEDFDFFF6F6F6FFEDEDEDEEFFFFEDEDEDDBDBDB9'8(C$8(A4
+F3C761BCF4EFEF6F6F6EDEDEDEFD838EEF6F6F6EDEDEDEF3DD3863A5FFFEDDFFDEDEDEFFFDDBFFBDBDBD9'J%J)
+EDBF77BB736F5FCFDFB764EDDCDDDD9DFFFF5D9"8$;"E%;"D#8"8";#
+DEB7B77F75FE3DF77775DEDDBF3FFEBF8$?"E%;"C"9"8#;#
+E1DECF7BFF9DEF077BE1C1FEBFFF7F8$?"F$;"C"9"9"
+EFDEF775DDDF7F75EFDFDF9"8$8(D#8(A"8*8&
+EDBB776FF6F6F6EEEDEDEDBF76F6F6F6EEEDEDEDEDDDBDFFFDEDFFEDEDED7BFFDBDBDB9&9(B%8(A%;$:$
+F38F79BCF7F9F9F9EEF3F3F3FC3D838EF9F9F9EEF3F3F3F3DDDE63F3F3F3E7E7E78R8RB%8R@X8P
+FFFFFFFF
+
+
+
+
+
+
+
+8#@"
+9FCFFC8)9#<":"
+3FE7FCF878787FF0C71C7F9F:(9";"
+F0F333333FE67F1FFE7%:5
+FE7873FC4E7F3393FC71CE1930F067304187933C1FF9C9E1F8#;18#
+7333E3F3389FD29CCC92667E727E7338899F4CCF9%8$9+8#
+F3FCF838F0F339CF8E663E763E7339998FCCFF;#8#;'8"
+FF3FFC739E670F270E70C3?"9":(
+FED9C72FC673F999F17+:"8)8"
+FF33A7FCF3333333E672CEE78FE673B999F99FE98*8-8#
+3867FCF8787873F0F9DF9CE19F0E0F9E0F18799983CE198(U"P%
+9FCFFFFFFFFFFB3FDFFFFFFF8#:"F"
+FFFFF7BF>"@";"
+FFFFFF
+
+j
+O>
+
+ENDBITMAP
+%%EndBinary
+3 F
+(File Menu Button) 109.58 484.09 T
+(View Menu Button) 154.58 501.69 T
+(Edit Menu Button) 201.83 483.29 T
+(Properties Menu Button) 259.69 501.69 T
+(Interface Setting) 455.12 493.46 T
+139.29 481.43 138.75 453.3 2 L
+0.35 H
+2 Z
+N
+310.65 496.43 310.65 453.44 2 L
+N
+239.29 480 239.72 453.3 2 L
+N
+193.57 498.57 193.2 454.1 2 L
+N
+490 490 490 455.17 2 L
+N
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "8" 5
+%%Page: "9" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Getting Started) 198 108.7 B
+0 F
+0.09 (9) 553.42 108.7 S
+2 F
+7 X
+1 K
+-0.2 (2) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+(\245) 198 641.33 T
+4 F
+0.36 0.1 (The Interface setting with Build and T) 210.6 641.33 B
+0.36 0.1 (est options that set Devguide in build ) 383.32 641.33 B
+0.52 0.1 (or test mode. ) 210.6 628.93 B
+5 F
+-0.88 (Devguide Element Information ) 126 595.87 P
+4 F
+0.49 0.1 (The Devguide element information appears along the bottom of the Devguide ) 198 574.53 B
+0.52 0.1 (window) 198 562.13 B
+0.52 0.1 (, as shown in Figur) 234.64 562.13 B
+0.52 0.1 (e 2-6. The element information ar) 322.55 562.13 B
+0.52 0.1 (ea gives you ) 474.94 562.13 B
+0.52 0.1 (pr) 198 549.73 B
+0.52 0.1 (ecise information on the position, size, and shape of the curr) 207.98 549.73 B
+0.52 0.1 (ent element as ) 484.94 549.73 B
+0.52 0.1 (well as the pr) 198 537.33 B
+0.52 0.1 (ecise pointer location.) 260.27 537.33 B
+1 F
+0.47 0.09 (Figur) 198 310.03 B
+0.47 0.09 (e 2-6) 218.77 310.03 B
+0.47 0.09 (The Devguide Element Information) 248.4 310.03 B
+0 F
+0.47 0.09 ( ) 381.26 310.03 B
+7 F
+(\245) 198 285.36 T
+4 F
+0.52 0.1 (The Element text \336eld, which displays the name of the interface element ) 210.6 285.36 B
+0.52 0.1 (under the pointer) 210.6 272.96 B
+0.52 0.1 (.) 290.33 272.96 B
+7 F
+(\245) 198 254.56 T
+4 F
+0.52 0.1 (The Position text \336eld, which displays the position of the interface element ) 210.6 254.56 B
+0.52 0.1 (under the pointer) 210.6 242.16 B
+0.52 0.1 (.) 290.33 242.16 B
+7 F
+(\245) 198 223.76 T
+4 F
+-0.05 0.1 (The Size text \336eld, which displays the size of the interface element under the ) 210.6 223.76 B
+0.1 (pointer) 210.6 211.36 S
+0.1 (.) 242.74 211.36 S
+7 F
+(\245) 198 192.96 T
+4 F
+0.52 0.1 (The Pointer text \336eld, which displays the location of the pointer within an ) 210.6 192.96 B
+0.52 0.1 (interface window or pane. ) 210.6 180.56 B
+54 326.03 557.43 526.6 C
+54 326.03 557.43 526.6 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  5969     
+610 239 439.2 172.08 0 116.56 353.23 BEGINBITMAPBWc
+j"
+O>3F
+"Z
+3FO=
+
+7$
+FE000F7$
+FDFFF79"
+F3J%=":"9#
+=FE7FFF3FFC9FE7E78#J"9#<#?"<#
+C07340FCFCEF07FC39FF38"J#9$;#=&9$
+DF4FE67CCCFFFF33FDFFF99FFFFFE1FC38#I5
+EEF3AFCF393C3C9CCCE72783873F307F39C399C3CE1E4F0E4B83F3FCCE7070FFFFF9FF3J58$
+968999C4E49E71333333327FF39999999CCCE26664F3FFE666678"J$8"8$<%<#
+F569999CC7339263FE66663F1E03FJ%:(8&9$
+:81CCE01E270FF3981CB81C6067F87F3907FFFF8"J%9)8%:"
+FB79FCCF33E3807C7F399FCB9FC67E7FE3F7F8"J%:+9)8#
+FF4FE67999D32333CCFE7F339DE79DC67FF3F99C8E646779E73J%:5
+7FF0F83C3539387CCE0FF07C3E7C3CE1E0F0E7F07FC1E4E7270F7$J#Z"T8#
+FE00034FF9F0E7FFFF7$
+FF00078#J"F"
+FFFF5FFFF
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+
+
+8"`8"`"8"`"8"d"J"e"
+FEFC01FE3FC01F4FE018"P$P%P"8"T"J'
+F93FFFF3FE7FFFF9CF3FE7:03FFFFFFFFFD8";$;%;%?"J'
+F7DFFFEFFFBFFFF7F7FFFEFFFB57FFFFFFFFFF38$9&:'8$<"9"
+EFFFEEEFFFDFFFEFDFFFEFFFFEEFFBFFFDF7FD8#:%;'8&9":"
+DFF0F7FFBFDEEFFFDFE0FEEEFDFFFBFE1FFEFE9#9"9":"8$8"9":":"
+F7FEF3FFE7EFFEFEFCEFFF7F85J$
+EBFF7EEE3FE03FBFF7FDEEE3BFBFC07F7FFBFEFF0EC3F80FEFFF7FEED39E9E3A4371E3FC07F7FEEFEF;%9'9'8,J#:%
+DDFEFBF9EDDBBBFDF7F3EEEEFFBEFE7FECF6E6DD9EF6EDFFDF7F3F47E1FF80FFFEF9"8#9'9"9":&9#J#9#
+F0FF77EDEDDDB7FEEFE1DDEDEF6EDDBEEEFF6EFFFFF7F9$<$;">"8"8#J%8$
+F7EEC1EC1D57EF1DC10E7F8EEEEEF0F7C78C3;$:&=":"8"8$J#8$
+DFFFAFEDFD57FF5FEBFDDFFFBFF59EEEF7BB7EF;";%<">$8"J"
+DDF3EDDEEFECF6EEDDEF91E;$:#8"9&;)J";#
+E3FFDFEE3EBFE0F2EF3FF7F9E1E3BF371C7FFB7EE78398"P$Q$P(Q"J#
+DFF1FFBFE3FFDFFC7FFBFFFFFFEFFE<7BFE>">">"B"J$9"
+F3E7FF7F6CEEECFBE8";$<$;$9"<"J%8$
+EFE3FFDFC7FFEFF8FFFDFFFC61F2EEF2F7C71F38";$<$;$@#J&8$
+F7C7FFEF8FFFF7F1FFFEF8FF47FFFFFFFFFFFFFFF8";$;%;%?"
+F90FFFF3FE1FFFF9C3FFFF3FE18"`$a$`"8"d"
+FC1FFFF83FFFFC0780038";$<$;"8"?"
+FE7FFFFCFFFFFE1FC00F8Z8R8V
+/J`"
+O.03J`"
+O301JW
+O-
+
+
+
+
+
+
+
+
+
+
+"j"
+38O<07"Z"
+3BO<F7
+
+
+
+
+
+8"c#d"c"
+E007FE60078"S#T"S"
+EFF7FE6FF7
+
+J$
+O9F0001F9c8"b#cJ)
+F00F6FCFAAAAAAAAAB7FFDF9"<"8"R$Q"J'
+781EF7EF6F7FFECEFFFFFFFFFF79"Q"I"J"
+7BDEC6CFF9#;"9%;%J"
+623FC6F07C1F835C70F07FGEF9#;"9%;%9"J":$
+6EBFF6EFBBEF7D7FFFFFFFEECFFF0001F9#;"B$:"J":$
+0E3FF05C30F3FECEFFFFFFF9#;"9%;$:"J"
+3FFFFCF07C1F837FFFFFEECFF9"a"9%;$?`"J":$
+300CFFFFFFFF5C1033079EFF8003F9"Q"B$>"P"J":$
+3FFC7FFFFFFCF99FFF7FF9FJ%=";":#>%="
+75C10307FFBFEF807F807FFFDEFJ%9"9";#9#>%="
+77FFFFFFFC6F7FF7FF7FBFF3FFFF9FFE&9$:"9&8"8"=#8%<"
+3FFC003FDF5C30F1D6EFF0FFF7BFBF83F07F3E1CC04FEFD(8$:":#:"8"="9%<";"
+F000FDB9BF000F7FFFFFC6F77F9FBBF73CCCC9CFFFDFD(?"9)E$<";"
+FF3FFC003F8FFFD6DFF777610E7A7FDFCE59FFEFAFEP@"<&:';#=";"
+C677BDB9BFCFF800000000070F39FF57;"J":&<';#=":#
+C78EEF0F777BBDBFBFFFFFFFFFBFE99EFF6AB;"J#J$<":#
+DB=F7774ECC9CFFFF757<$J%<";"
+C78F1FO!3E1CCC4FEFFF<$J%<':%<"
+BB76EF;7677BDBBF80000000007FFFFFFFFFF;$<"8$;"?&<"PD"
+C3FB7EC77FFFF1C1F0F979CE7BFBEF;%;":";":"9"Q"8"="C"
+DDC38E0FBBFDF7FEEF8F83F0FF<$<';&@"8"=#<(
+BBF6FF8E9C1A78FDE3C74E5FFFEE9FFFFFFFF8000000001FEF=#;(;&9"<"9#CR:$
+76EFBF766F79B77DDDBB36AFFFFEF71FF807F0001F;%=&<"8"9";#9#I":$
+C3C38F1FEF7BF77DDF7EEEFBFE3FFFFFEFF7FF9F;%A";"9"9";#J"
+FFFFFFFFE383FEFCF87F8FFD";";"9"9"a"J"
+BBFDBFEEFEFF8EF9"<"?";"9"9";"J"
+0FF0DDBBFEFF039FF9"<"9(;"9":QJ"
+6FF6C78EEF9BF8FDE3C7C69EF9"<"9R:%J"
+63C6FFFFFFFFEFF9"<"I"J"
+7BDEFECEF9"a"J"
+781EO)FF9"<"8"b#cJ"
+0000F00F6FCEF9S8T"SJ"
+6FCFFJ"
+O4EFJ"
+O4FFJ"
+O4EF8"c#d"c"J"
+E007FE6007BFF8ZJ":$
+>BEFF0001FJ":$
+O4FFF7FF9F8"c#d"c"J"
+E007FE6007BEF8"S#T"S"J"
+EFF7FE6FF7BFFJ"
+O4EFJ"
+O4FFJ":#
+O4EFF6019c8"b#cJ"
+F00F6FCFF9"<"8"R$Q"J":#
+781EF7EF6F7FFECEFF7039"Q"?#>"J";"
+7BDEFC6FC6CFF879#;"C"I"c"8"b$;"
+63EBC66BF03FE00FFFEFCF9#;"=%8";"F(8"R$;"
+6F83F600FFFEEFFFEE0FFFFFBFFFFFBFDFF7FFFFFF9#;"=$9";"C%>"=$
+0EEBF0BEFFFF57FEF3FFFFCFBFFBFFEF9#;":'9";"J"=$
+3FFFFCFC7FFFDEFFFEFFEE970FDFFFF9"a":%J"?"
+300CFBBFFFEEE60EF9"Q";$;%;#<#J":$
+3FFCBC01F6C218499FF27FFC9F7FFF0001FF$;%<#J":$
+BDFDFAFFFFFFFF638F>EFF8003FE(8%8"8#<#8"8"8":"?":$
+FC7DFDFCFFFC6F22C10127C6F6E3FDBFFCE1E170FFFFFFFFE'9%8":(<"8":"=$;"
+FFFDFDFEFFFDFFFFFFFFD68E1E0E0E1E0E1DEEDEBFFBFFEFC7H$9%8"8+8#:":"=$
+FFFFFC08C8211FC6FFE94CCCFCFCCCCCCFFFFB7FBFDFF7FFFFF#8"9%8"<#G"b$
+FC01FDFFFFFFFFD67C7FE00FFFEFF#8"9";";'<"=V
+FFFFFC27C60E1E1E0CCC0FE1:"E#8";"9)9%G"
+F0FEEFFFEEECCCFF8F8CCC8CFFF03FCFEEEF:#J'9#?"<%
+F77F>EFCFCCCE4CEFF7BFE7EFCFFFFF;&J)?":"<%
+71D3FF769F8EFCE1C1C1E27CE1FDEDB8FB7FFEF;#8"JP$<"8":"<%
+6ECD6F8FCCFFFE1E1BDEF7BFFFF:';"?"8"@#:%8"D"
+F0EEDD8376EF8FE0DFFE1FFFFFCFFFFFEF:"8"=":":":">#J"
+F7FF77FFFBFEFFFF9FFF&;&J";"
+1D3BB8F1FEE3BB07FFEECEFFF<%;';&J"
+CDFF666F7EECDBB76EFFDDBBDFFFFECFF;&;'<"8"J"=$:$
+F1D3FF969F7FEDDBBF6FFED7EE9DBB7FFEFF0001F:'<&;#8"C%>"=$:$
+FFFFDFFFFEFF0DDD7871FFC1EFFEF000000FE7CFFFFFF7FFDFE';#8"Fa"8"<%
+76EDDD777EFEDFD7EE3FFFFFFFFFEF9"<"<%;#8"CUB"
+0FF0DEF76EFFDDBBFEFF9"8&:(:&J"
+6FFFFFFFFFF68F0DDEF871FC6FE3BBE7FFC6CEF9"<":P;%J":$
+63C6FFFFFFFFEFFF0001F9"<"?#>"J)
+7BDEFFEFFECE5555555555FFFFF9"a"JQ
+781EO)9"<"8"b#c
+0000F00F6F9S8T"S
+6F
+
+
+8"c#d"c"
+E007FE60078Z
+>
+
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+9"
+DF8";"
+C17F8"
+DF9'
+DC7A678F4E179'
+DBB99B7737778(
+C3DBBBBB77777F8&
+DFD83BBB079%
+DBFBBB7F:&
+BBBB7777778(
+C1DC7BBB8F77978R
+
+
+
+
+
+
+
+
+
+
+
+
+;#J"J"
+7FBF8FD7DF8"8";(B#:(@"8"9.
+E177F9F9F9FFF3F3F3FE1DF9F9F9FFF3F3F3E1FDFDEFFFF3F3F3FFFBEFFFE7E7E78"8#:(B#:(@$=$:$
+EEF7FFF6F6F6FFEDEDEDFDFFF6F6F6FFEDEDEDEEFFFFEDEDEDDBDBDB9'8(C$8(A4
+F3C761BCF4EFEF6F6F6EDEDEDEFD838EEF6F6F6EDEDEDEF3DD3863A5FFFEDDFFDEDEDEFFFDDBFFBDBDBD9'J%J)
+EDBF77BB736F5FCFDFB764EDDCDDDD9DFFFF5D9"8$;"E%;"D#8"8";#
+DEB7B77F75FE3DF77775DEDDBF3FFEBF8$?"E%;"C"9"8#;#
+E1DECF7BFF9DEF077BE1C1FEBFFF7F8$?"F$;"C"9"9"
+EFDEF775DDDF7F75EFDFDF9"8$8(D#8(A"8*8&
+EDBB776FF6F6F6EEEDEDEDBF76F6F6F6EEEDEDEDEDDDBDFFFDEDFFEDEDED7BFFDBDBDB9&9(B%8(A%;$:$
+F38F79BCF7F9F9F9EEF3F3F3FC3D838EF9F9F9EEF3F3F3F3DDDE63F3F3F3E7E7E78R8RB%8R@X8P
+FFFFFFFF
+
+
+
+
+
+
+
+8#@"
+9FCFFC8)9#<":"
+3FE7FCF878787FF0C71C7F9F:(9";"
+F0F333333FE67F1FFE7%:5
+FE7873FC4E7F3393FC71CE1930F067304187933C1FF9C9E1F8#;18#
+7333E3F3389FD29CCC92667E727E7338899F4CCF9%8$9+8#
+F3FCF838F0F339CF8E663E763E7339998FCCFF;#8#;'8"
+FF3FFC739E670F270E70C3?"9":(
+FED9C72FC673F999F17+:"8)8"
+FF33A7FCF3333333E672CEE78FE673B999F99FE98*8-8#
+3867FCF8787873F0F9DF9CE19F0E0F9E0F18799983CE198(U"P%
+9FCFFFFFFFFFFB3FDFFFFFFF8#:"F"
+FFFFF7BF>"@";"
+FFFFFF
+
+j
+O>
+
+ENDBITMAP
+%%EndBinary
+3 F
+(Element Field) 202.08 330.54 T
+(Position Field) 63.87 330.54 T
+(Size Field) 286.9 330.54 T
+(Pointer Field) 417.65 330.54 T
+308.68 342.86 308.68 371.11 2 L
+0.35 H
+2 Z
+N
+444.34 342.14 444.34 370.31 2 L
+N
+172.86 390.71 231.43 381.43 231.43 340.71 3 L
+N
+125.71 375 92.14 370 92.14 338.57 3 L
+N
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "9" 6
+%%Page: "10" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (2) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (10) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch, 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+-0.88 (Devguide Element Glyphs) 126 638.67 P
+4 F
+0.52 0.1 (The element glyphs appear in middle portion of the Devguide window) 198 617.33 B
+0.52 0.1 (, as ) 522.97 617.33 B
+0.52 0.1 (shown in Figur) 198 604.93 B
+0.52 0.1 (e 2-7.) 267.64 604.93 B
+1 F
+0.47 0.09 (Figur) 198 326.2 B
+0.47 0.09 (e 2-7) 218.77 326.2 B
+0.47 0.09 (The Devguide Element Glyphs) 248.4 326.2 B
+0 F
+0.47 0.09 ( ) 363.34 326.2 B
+7 F
+(\245) 198 301.53 T
+4 F
+0.52 0.1 (The Base glyph, which places a base window on the workspace when you ) 210.6 301.53 B
+0.52 0.1 (drag it ther) 210.6 289.13 B
+0.52 0.1 (e.) 262.24 289.13 B
+7 F
+(\245) 198 270.73 T
+4 F
+0.45 0.1 (The Pop-up glyph, which places a pop-up window on the workspace when ) 210.6 270.73 B
+0.52 0.1 (you drag it ther) 210.6 258.33 B
+0.52 0.1 (e.) 282.7 258.33 B
+7 F
+(\245) 198 239.93 T
+4 F
+0.52 0.1 (The Contr) 210.6 239.93 B
+0.52 0.1 (ols glyph, which places a contr) 256.64 239.93 B
+0.52 0.1 (ol ar) 398.2 239.93 B
+0.52 0.1 (ea in an interface when you ) 418.85 239.93 B
+0.52 0.1 (drag it onto a base or pop-up window) 210.6 227.53 B
+0.52 0.1 (.) 384.91 227.53 B
+7 F
+(\245) 198 209.13 T
+4 F
+0.52 0.1 (The Canvas glyph, which places a canvas pane in an interface when you ) 210.6 209.13 B
+0.52 0.1 (drag it onto a base or pop-up window) 210.6 196.73 B
+0.52 0.1 (.) 384.91 196.73 B
+7 F
+(\245) 198 178.33 T
+4 F
+0.41 0.1 (The T) 210.6 178.33 B
+0.41 0.1 (erm glyph, which places a term pane in an interface when you drag it ) 235.95 178.33 B
+0.52 0.1 (onto a base or pop-up window) 210.6 165.93 B
+0.52 0.1 (. Not supported in TNT V) 351.3 165.93 B
+0.52 0.1 (ersion 2.0.) 469.54 165.93 B
+54 342.2 557.43 594.2 C
+54 342.2 557.43 594.2 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  5965     
+610 239 439.2 172.08 0 115 383.4 BEGINBITMAPBWc
+j"
+O>3F
+"Z
+3FO=
+
+7$
+FE000F7$
+FDFFF79"
+F3J%=":"9#
+=FE7FFF3FFC9FE7E78#J"9#<#?"<#
+C07340FCFCEF07FC39FF38"J#9$;#=&9$
+DF4FE67CCCFFFF33FDFFF99FFFFFE1FC38#I5
+EEF3AFCF393C3C9CCCE72783873F307F39C399C3CE1E4F0E4B83F3FCCE7070FFFFF9FF3J58$
+968999C4E49E71333333327FF39999999CCCE26664F3FFE666678"J$8"8$<%<#
+F569999CC7339263FE66663F1E03FJ%:(8&9$
+:81CCE01E270FF3981CB81C6067F87F3907FFFF8"J%9)8%:"
+FB79FCCF33E3807C7F399FCB9FC67E7FE3F7F8"J%:+9)8#
+FF4FE67999D32333CCFE7F339DE79DC67FF3F99C8E646779E73J%:5
+7FF0F83C3539387CCE0FF07C3E7C3CE1E0F0E7F07FC1E4E7270F7$J#Z"T8#
+FE00034FF9F0E7FFFF7$
+FF00078#J"F"
+FFFF5FFFF
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+
+
+8"`8"`"8"`"8"d"J"e"
+FEFC01FE3FC01F4FE018"P$P%P"8"T"J'
+F93FFFF3FE7FFFF9CF3FE7:03FFFFFFFFFD8";$;%;%?"J'
+F7DFFFEFFFBFFFF7F7FFFEFFFB57FFFFFFFFFF38$9&:'8$<"9"
+EFFFEEEFFFDFFFEFDFFFEFFFFEEFFBFFFDF7FD8#:%;'8&9":"
+DFF0F7FFBFDEEFFFDFE0FEEEFDFFFBFE1FFEFE9#9"9":"8$8"9":":"
+F7FEF3FFE7EFFEFEFCEFFF7F85J$
+EBFF7EEE3FE03FBFF7FDEEE3BFBFC07F7FFBFEFF0EC3F80FEFFF7FEED39E9E3A4371E3FC07F7FEEFEF;%9'9'8,J#:%
+DDFEFBF9EDDBBBFDF7F3EEEEFFBEFE7FECF6E6DD9EF6EDFFDF7F3F47E1FF80FFFEF9"8#9'9"9":&9#J#9#
+F0FF77EDEDDDB7FEEFE1DDEDEF6EDDBEEEFF6EFFFFF7F9$<$;">"8"8#J%8$
+F7EEC1EC1D57EF1DC10E7F8EEEEEF0F7C78C3;$:&=":"8"8$J#8$
+DFFFAFEDFD57FF5FEBFDDFFFBFF59EEEF7BB7EF;";%<">$8"J"
+DDF3EDDEEFECF6EEDDEF91E;$:#8"9&;)J";#
+E3FFDFEE3EBFE0F2EF3FF7F9E1E3BF371C7FFB7EE78398"P$Q$P(Q"J#
+DFF1FFBFE3FFDFFC7FFBFFFFFFEFFE<7BFE>">">"B"J$9"
+F3E7FF7F6CEEECFBE8";$<$;$9"<"J%8$
+EFE3FFDFC7FFEFF8FFFDFFFC61F2EEF2F7C71F38";$<$;$@#J&8$
+F7C7FFEF8FFFF7F1FFFEF8FF47FFFFFFFFFFFFFFF8";$;%;%?"
+F90FFFF3FE1FFFF9C3FFFF3FE18"`$a$`"8"d"
+FC1FFFF83FFFFC0780038";$<$;"8"?"
+FE7FFFFCFFFFFE1FC00F8Z8R8V
+/J`"
+O.03J`"
+O301JW
+O-
+
+
+
+
+
+
+
+
+
+
+"j"
+38O<07"Z"
+3BO<F7
+
+
+
+
+
+8"c#d"c"
+E007FE60078"S#T"S"
+EFF7FE6FF7
+
+J$
+O9F0001F9c8"b#cJ)
+F00F6FCFAAAAAAAAAB7FFDF9"<"8"R$Q"J'
+781EF7EF6F7FFECEFFFFFFFFFF79"Q"I"J"
+7BDEC6CFF9#;"9%;%J"
+623FC6F07C1F835C70F07FGEF9#;"9%;%9"J":$
+6EBFF6EFBBEF7D7FFFFFFFEECFFF0001F9#;"B$:"J":$
+0E3FF05C30F3FECEFFFFFFF9#;"9%;$:"J"
+3FFFFCF07C1F837FFFFFEECFF9"a"9%;$?`"J":$
+300CFFFFFFFF5C1033079EFF8003F9"Q"B$>"P"J":$
+3FFC7FFFFFFCF99FFF7FF9FJ%=";":#>%="
+75C10307FFBFEF807F807FFFDEFJ%9"9";#9#>%="
+77FFFFFFFC6F7FF7FF7FBFF3FFFF9FFE&9$:"9&8"8"=#8%<"
+3FFC003FDF5C30F1D6EFF0FFF7BFBF83F07F3E1CC04FEFD(8$:":#:"8"="9%<";"
+F000FDB9BF000F7FFFFFC6F77F9FBBF73CCCC9CFFFDFD(?"9)E$<";"
+FF3FFC003F8FFFD6DFF777610E7A7FDFCE59FFEFAFEP@"<&:';#=";"
+C677BDB9BFCFF800000000070F39FF57;"J":&<';#=":#
+C78EEF0F777BBDBFBFFFFFFFFFBFE99EFF6AB;"J#J$<":#
+DB=F7774ECC9CFFFF757<$J%<";"
+C78F1FO!3E1CCC4FEFFF<$J%<':%<"
+BB76EF;7677BDBBF80000000007FFFFFFFFFF;$<"8$;"?&<"PD"
+C3FB7EC77FFFF1C1F0F979CE7BFBEF;%;":";":"9"Q"8"="C"
+DDC38E0FBBFDF7FEEF8F83F0FF<$<';&@"8"=#<(
+BBF6FF8E9C1A78FDE3C74E5FFFEE9FFFFFFFF8000000001FEF=#;(;&9"<"9#CR:$
+76EFBF766F79B77DDDBB36AFFFFEF71FF807F0001F;%=&<"8"9";#9#I":$
+C3C38F1FEF7BF77DDF7EEEFBFE3FFFFFEFF7FF9F;%A";"9"9";#J"
+FFFFFFFFE383FEFCF87F8FFD";";"9"9"a"J"
+BBFDBFEEFEFF8EF9"<"?";"9"9";"J"
+0FF0DDBBFEFF039FF9"<"9(;"9":QJ"
+6FF6C78EEF9BF8FDE3C7C69EF9"<"9R:%J"
+63C6FFFFFFFFEFF9"<"I"J"
+7BDEFECEF9"a"J"
+781EO)FF9"<"8"b#cJ"
+0000F00F6FCEF9S8T"SJ"
+6FCFFJ"
+O4EFJ"
+O4FFJ"
+O4EF8"c#d"c"J"
+E007FE6007BFF8ZJ":$
+>BEFF0001FJ":$
+O4FFF7FF9F8"c#d"c"J"
+E007FE6007BEF8"S#T"S"J"
+EFF7FE6FF7BFFJ"
+O4EFJ"
+O4FFJ":#
+O4EFF6019c8"b#cJ"
+F00F6FCFF9"<"8"R$Q"J":#
+781EF7EF6F7FFECEFF7039"Q"?#>"J";"
+7BDEFC6FC6CFF879#;"C"I"c"8"b$;"
+63EBC66BF03FE00FFFEFCF9#;"=%8";"F(8"R$;"
+6F83F600FFFEEFFFEE0FFFFFBFFFFFBFDFF7FFFFFF9#;"=$9";"C%>"=$
+0EEBF0BEFFFF57FEF3FFFFCFBFFBFFEF9#;":'9";"J"=$
+3FFFFCFC7FFFDEFFFEFFEE970FDFFFF9"a":%J"?"
+300CFBBFFFEEE60EF9"Q";$;%;#<#J":$
+3FFCBC01F6C218499FF27FFC9F7FFF0001FF$;%<#J":$
+BDFDFAFFFFFFFF638F>EFF8003FE(8%8"8#<#8"8"8":"?":$
+FC7DFDFCFFFC6F22C10127C6F6E3FDBFFCE1E170FFFFFFFFE'9%8":(<"8":"=$;"
+FFFDFDFEFFFDFFFFFFFFD68E1E0E0E1E0E1DEEDEBFFBFFEFC7H$9%8"8+8#:":"=$
+FFFFFC08C8211FC6FFE94CCCFCFCCCCCCFFFFB7FBFDFF7FFFFF#8"9%8"<#G"b$
+FC01FDFFFFFFFFD67C7FE00FFFEFF#8"9";";'<"=V
+FFFFFC27C60E1E1E0CCC0FE1:"E#8";"9)9%G"
+F0FEEFFFEEECCCFF8F8CCC8CFFF03FCFEEEF:#J'9#?"<%
+F77F>EFCFCCCE4CEFF7BFE7EFCFFFFF;&J)?":"<%
+71D3FF769F8EFCE1C1C1E27CE1FDEDB8FB7FFEF;#8"JP$<"8":"<%
+6ECD6F8FCCFFFE1E1BDEF7BFFFF:';"?"8"@#:%8"D"
+F0EEDD8376EF8FE0DFFE1FFFFFCFFFFFEF:"8"=":":":">#J"
+F7FF77FFFBFEFFFF9FFF&;&J";"
+1D3BB8F1FEE3BB07FFEECEFFF<%;';&J"
+CDFF666F7EECDBB76EFFDDBBDFFFFECFF;&;'<"8"J"=$:$
+F1D3FF969F7FEDDBBF6FFED7EE9DBB7FFEFF0001F:'<&;#8"C%>"=$:$
+FFFFDFFFFEFF0DDD7871FFC1EFFEF000000FE7CFFFFFF7FFDFE';#8"Fa"8"<%
+76EDDD777EFEDFD7EE3FFFFFFFFFEF9"<"<%;#8"CUB"
+0FF0DEF76EFFDDBBFEFF9"8&:(:&J"
+6FFFFFFFFFF68F0DDEF871FC6FE3BBE7FFC6CEF9"<":P;%J":$
+63C6FFFFFFFFEFFF0001F9"<"?#>"J)
+7BDEFFEFFECE5555555555FFFFF9"a"JQ
+781EO)9"<"8"b#c
+0000F00F6F9S8T"S
+6F
+
+
+8"c#d"c"
+E007FE60078Z
+>
+
+
+
+
+
+"j"
+38O<07"Z
+3FO=
+
+
+
+
+
+9"
+DF8";"
+C17F8"
+DF9'
+DC7A678F4E179'
+DBB99B7737778(
+C3DBBBBB77777F8&
+DFD83BBB079%
+DBFBBB7F:&
+BBBB7777778(
+C1DC7BBB8F77978R
+
+
+
+
+
+
+
+
+
+
+
+
+;#J"J"
+7FBF8FD7DF8"8";(B#:(@"8"9.
+E177F9F9F9FFF3F3F3FE1DF9F9F9FFF3F3F3E1FDFDEFFFF3F3F3FFFBEFFFE7E7E78"8#:(B#:(@$=$:$
+EEF7FFF6F6F6FFEDEDEDFDFFF6F6F6FFEDEDEDEEFFFFEDEDEDDBDBDB9'8(C$8(A4
+F3C761BCF4EFEF6F6F6EDEDEDEFD838EEF6F6F6EDEDEDEF3DD3863A5FFFEDDFFDEDEDEFFFDDBFFBDBDBD9'J%J)
+EDBF77BB736F5FCFDFB764EDDCDDDD9DFFFF5D9"8$;"E%;"D#8"8";#
+DEB7B77F75FE3DF77775DEDDBF3FFEBF8$?"E%;"C"9"8#;#
+E1DECF7BFF9DEF077BE1C1FEBFFF7F8$?"F$;"C"9"9"
+EFDEF775DDDF7F75EFDFDF9"8$8(D#8(A"8*8&
+EDBB776FF6F6F6EEEDEDEDBF76F6F6F6EEEDEDEDEDDDBDFFFDEDFFEDEDED7BFFDBDBDB9&9(B%8(A%;$:$
+F38F79BCF7F9F9F9EEF3F3F3FC3D838EF9F9F9EEF3F3F3F3DDDE63F3F3F3E7E7E78R8RB%8R@X8P
+FFFFFFFF
+
+
+
+
+
+
+
+8#@"
+9FCFFC8)9#<":"
+3FE7FCF878787FF0C71C7F9F:(9";"
+F0F333333FE67F1FFE7%:5
+FE7873FC4E7F3393FC71CE1930F067304187933C1FF9C9E1F8#;18#
+7333E3F3389FD29CCC92667E727E7338899F4CCF9%8$9+8#
+F3FCF838F0F339CF8E663E763E7339998FCCFF;#8#;'8"
+FF3FFC739E670F270E70C3?"9":(
+FED9C72FC673F999F17+:"8)8"
+FF33A7FCF3333333E672CEE78FE673B999F99FE98*8-8#
+3867FCF8787873F0F9DF9CE19F0E0F9E0F18799983CE198(U"P%
+9FCFFFFFFFFFFB3FDFFFFFFF8#:"F"
+FFFFF7BF>"@";"
+FFFFFF
+
+j
+O>
+
+ENDBITMAP
+%%EndBinary
+3 F
+(Base Glyph) 134 578.45 T
+(Button Glyph) 312.74 564.5 T
+(Message Glyph) 298.62 368.3 T
+(Setting Glyph) 367.71 350.13 T
+(Text-Field Glyph) 439.08 565.16 T
+(Slider Glyph) 372.94 579.5 T
+(Scrolling List Glyph) 467.54 350.36 T
+(Pop-up Glyph) 125.09 353.11 T
+(Canvas Glyph) 188.14 364.9 T
+(Text Glyph) 249.51 348.02 T
+(Controls Glyph) 185.77 562.36 T
+(Term Glyph) 243.05 577.02 T
+158.85 573.57 158.85 500.49 2 L
+0.35 H
+2 Z
+N
+219.51 558.57 219.51 497.86 2 L
+N
+268.14 573.57 268.14 499.29 2 L
+N
+342.43 561.43 342.43 493.57 2 L
+N
+399.57 575.71 399.57 490 2 L
+N
+474.57 559.29 474.57 484.77 2 L
+N
+516.57 360 516.57 441.05 2 L
+N
+397.2 359.28 397.2 441.43 2 L
+N
+331.71 377.86 331.71 447.63 2 L
+N
+272.97 356.43 272.97 436.3 2 L
+N
+217.78 373.57 217.78 437.25 2 L
+N
+154.92 360.71 154.92 437.25 2 L
+N
+462.14 449.28 462.14 377.14 2 L
+N
+(Gauge Glyph) 435 366.51 T
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "10" 7
+%%Page: "11" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+1 F
+-0.58 0.09 (Getting Started) 198 108.7 B
+0 F
+0.09 (1) 549.33 108.7 S
+0.09 (1) 553.42 108.7 S
+2 F
+7 X
+1 K
+-0.2 (2) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+(\245) 198 641.33 T
+4 F
+0.52 0.1 (The T) 210.6 641.33 B
+0.52 0.1 (ext glyph, which places a text pane in an interface when you drag it ) 236.06 641.33 B
+0.52 0.1 (onto a base or pop-up window) 210.6 628.93 B
+0.52 0.1 (.) 351.3 628.93 B
+7 F
+(\245) 198 610.53 T
+4 F
+0.52 0.1 (The Button glyph, which places a button in an interface when you drag it ) 210.6 610.53 B
+0.52 0.1 (onto a contr) 210.6 598.13 B
+0.52 0.1 (ol ar) 265.56 598.13 B
+0.52 0.1 (ea.) 286.21 598.13 B
+7 F
+(\245) 198 579.73 T
+4 F
+0.52 0.1 (The Message glyph, which places a message in an interface when you drag ) 210.6 579.73 B
+0.52 0.1 (it onto a contr) 210.6 567.33 B
+0.52 0.1 (ol ar) 275.05 567.33 B
+0.52 0.1 (ea.) 295.69 567.33 B
+7 F
+(\245) 198 548.93 T
+4 F
+0.01 0.1 (The Slider glyph, which places a slider in an interface when you drag it onto ) 210.6 548.93 B
+0.52 0.1 (a contr) 210.6 536.53 B
+0.52 0.1 (ol ar) 242.05 536.53 B
+0.52 0.1 (ea.) 262.7 536.53 B
+7 F
+(\245) 198 518.13 T
+4 F
+0.52 0.1 (The Setting glyph, which places a setting in an interface when you drag it ) 210.6 518.13 B
+0.52 0.1 (onto a contr) 210.6 505.73 B
+0.52 0.1 (ol ar) 265.56 505.73 B
+0.52 0.1 (ea.) 286.21 505.73 B
+7 F
+(\245) 198 487.33 T
+4 F
+0.52 0.1 (The T) 210.6 487.33 B
+0.52 0.1 (ext: glyph, which places a text \336eld in an interface when you drag it ) 236.06 487.33 B
+0.52 0.1 (onto a contr) 210.6 474.93 B
+0.52 0.1 (ol ar) 265.56 474.93 B
+0.52 0.1 (ea.) 286.21 474.93 B
+7 F
+(\245) 198 456.53 T
+4 F
+0.52 0.1 (The Gauge glyph, which places a gauge in an interface when you drag it ) 210.6 456.53 B
+0.52 0.1 (onto a contr) 210.6 444.13 B
+0.52 0.1 (ol ar) 265.56 444.13 B
+0.52 0.1 (ea.) 286.21 444.13 B
+7 F
+(\245) 198 425.73 T
+4 F
+0.52 0.1 (The Scr) 210.6 425.73 B
+0.52 0.1 (olling List glyph, which places a scr) 244.5 425.73 B
+0.52 0.1 (olling list in an interface when ) 408.85 425.73 B
+0.52 0.1 (you drag it onto a contr) 210.6 413.33 B
+0.52 0.1 (ol ar) 319.63 413.33 B
+0.52 0.1 (ea. ) 340.28 413.33 B
+6 F
+-0.94 (On-line Help) 54 379.6 P
+4 F
+0.17 0.1 (If you want information about any of the elements in the Devguide window or ) 198 357.93 B
+0.21 0.1 (in any of the Devguide pr) 198 345.54 B
+0.21 0.1 (operty windows, you can r) 315.12 345.54 B
+0.21 0.1 (ead the help text about an ) 437.23 345.54 B
+0.52 0.1 (element simply by moving the pointer over the element in question and ) 198 333.14 B
+0.52 0.1 (pr) 198 320.73 B
+0.52 0.1 (essing the Help key on the keyboar) 207.98 320.73 B
+0.52 0.1 (d. \050The Help key is the F1 key on Sun ) 369.6 320.73 B
+0.52 0.1 (keyboar) 198 308.33 B
+0.52 0.1 (ds that do not have a special Help key) 234.35 308.33 B
+0.52 0.1 (.\051 A Help window like that ) 409.4 308.33 B
+0.52 0.1 (shown in Figur) 198 295.93 B
+0.52 0.1 (e 2-8 appears. ) 267.64 295.93 B
+FMENDPAGE
+%%EndPage: "11" 8
+%%Page: "12" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (2) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (12) 54 108.7 S
+1 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch, 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 500.71 B
+0.47 0.09 (e 2-8) 218.77 500.71 B
+0.47 0.09 (The File menu-button help window) 248.4 500.71 B
+4 F
+0.52 0.1 (Once you ar) 198 476.05 B
+0.52 0.1 (e \336nished r) 253.84 476.05 B
+0.52 0.1 (eading the help text about an element in the help ) 305.25 476.05 B
+0.52 0.1 (window) 198 463.65 B
+0.52 0.1 (, you can view the help text about another element by moving the ) 234.64 463.65 B
+-0.04 0.1 (pointer over the new element and pr) 198 451.25 B
+-0.04 0.1 (essing the Help key once again. The text in ) 362.95 451.25 B
+0.22 0.1 (the Help window changes to describe the new element. When you ar) 198 438.85 B
+0.22 0.1 (e \336nished ) 510.95 438.85 B
+0.52 0.1 (r) 198 426.45 B
+0.52 0.1 (eading help text, dismiss the Help window by clicking SELECT on the ) 201.87 426.45 B
+0.52 0.1 (pushpin in the upper) 198 414.05 B
+0.52 0.1 (-left corner of the Help window) 295.06 414.05 B
+0.52 0.1 (. ) 439.96 414.05 B
+6 F
+(Onward) 54 380.32 T
+4 F
+0.52 0.1 (Now that you ar) 198 358.65 B
+0.52 0.1 (e up and r) 273.79 358.65 B
+0.52 0.1 (unning, and have some of the basic terminology ) 321.45 358.65 B
+0.52 0.1 (down, you ar) 198 346.25 B
+0.52 0.1 (e r) 259.26 346.25 B
+0.52 0.1 (eady to tackle developing a simple user interface. Chapter 3, ) 271.13 346.25 B
+0.52 0.1 (\322T) 198 333.85 B
+0.52 0.1 (utorial: Building Interfaces,\323 takes you thr) 208.42 333.85 B
+0.52 0.1 (ough an example of building a ) 401.44 333.85 B
+0.52 0.1 (user interface. After that, Chapter 4, \322T) 198 321.45 B
+0.52 0.1 (utorial: Generating UI Sour) 376.52 321.45 B
+0.52 0.1 (ce Code\323 ) 501.42 321.45 B
+0.52 0.1 (takes you the \336nal step towar) 198 309.05 B
+0.52 0.1 (ds building an application with Devguide.) 333.61 309.05 B
+54 516.71 556.72 648 C
+54 516.71 556.72 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  3798     
+601 175 432.72 126 0 120.26 519.98 BEGINBITMAPBWc
+
+J"
+O=BFJ"
+O=FB"j#
+E0O;07FFJ"
+O=B0"Z#
+E7O;E7BBJ"
+O=DFJ"
+O=FFJ"
+O=EFJ"
+O=FF
+
+
+
+8#J#
+F80FDFE7F8#J#
+F5E7BF9CF8#J"
+E9F3O9FC8#J(J"
+DBFB@FE0CF9CE1E727F@FFJ(J"
+DFCCCF9CCCE713F@E3J&J"
+ECFF80CCE73AFB8"J$J"
+D9CF9CC0EBDD8#J"8"J"
+DDE3A8FFEBED8#J#8"J"
+EE4B@FE4CEEBF78#J(J"
+E7F7@FFCCF9CE1E707F@FF8#J(J"
+C3EF@FCCFFFFFFFF3FF@DC8#J#J"
+D81F@FE1FEFF8#J#9"
+FFFF@FFFFFF
+J"
+O=EFJ"
+O=FF
+7"j"j:"
+8070FM9F7Z"Z":"
+97FKFEB7J"
+O=FDJ/J"
+;E183BE0FFBD06EDDFF0EE8001CEEBFFJ(8&
+;EFEFBEFFF997E676EF7EFB66J$J"
+GF7A6E7AFCJ$<"J"
+?FA57EAAABFFJ"8$9":"J"
+;E11FFA500EFFAE3@$D"8%8"9"J"
+C0007FEFFFFA57EC76ACBFF?%H#
+FC3FFF87FBD7?%J";$
+E3E000F84EEFB6EE7?&D.
+9C1FFF073F83860FFBD06EE3FF0F1F7EFCEE>'CZ
+FE63FFFFF8CF/>#8#
+F99FFF13>#9"
+E67FCC>#9#C"8#<"@"8";"?";"
+D9FFF37FBFFEF1F7DFFDFBFDFE>":#B"8$>#;";"9"8"C"
+B7F9BF80FE1EFDEFDFEFF7FEF7DF=#:#B"9"H"8"J"
+FE6FFECFF7FFFFFF5EF=#:#C5;"
+FD9FFF37JA78FFEF8FDF1FF5B8E9DDFF4EEC1838E9FFE38E9C1C71E9E1FF1E0E35B87FC1A78E0FFC38EEE3FF8E9E1FF=#;"C5
+FB7FDBJ9B77FEFEFDEEFF25766DDFF36EEFDF766FFDF766EFBBDE6DFFFDF7DD257FFEF9B777FFBF76EDDFF766DD=#;"C"8"9&:):"8#9"8#
+F6FFEDBB1E6D76EDDFF7EFFBF76EEFFBDEED6DFBBFF6FF6E="<"D&8"B%8$8"8&
+F5F507FEFEFDE006C3DEEE3FC16D8FB8C7875C1FF8="a"D"9"8"B%8$8"8&
+E8027FEF7EBBDEEFDFDF6DF7B7FB775DFFF7="Q#C"9"8&:"?"?#8"
+DBFB7F77EE76ED9FF76CFDDDBDDFD9="<#C"9"85
+B7FDBF8FF1B8EEE5FF0F2F1E38EEFFE38EEF1C5DEEC3FFDF8E36D0FFF1BB8B8FF878BBE3FF8AEE5="<"BZ;"
+AFFEKFC="="J"
+5F5FO-FFD"
+FF<#="J"9";"="?"9"
+FEBFAF4DFF8FDFE1FFEJ"8"@">"9$
+EFEF77FFBDFFFFD<#`$J"?"
+FD7C3FFFD74FFFF="P"C5
+73CFJE3A78E9FFBB871E9FF1E9C1C7A60E3E38F0FFFF1D6D3C7A60FFC74F0FFC7769E3D307FE1C7DF1F1838F0<#;$A5
+FAEFF7FFCBJDD9B766FFBB7EEE7FFDE6EFBB9F7DDDF76FFFFFDC94DBB9F7FFBB36EFFBB766DDCFBFFDFBBDEEEFDF76E=";$B$9"8':(9$;"
+DFFBFFABBB76EFEFEEFBBBF7FDBFDB5DBBBF7FFFB7AEEDDDEDC"E"8#:(=#8#:'
+F906B8E0F83BF7E1BF071FFC3783DEE383DE0DFDF0<#;$C"8#:(=#8#:(
+F5BFFDFF757EBF6FFBFBF7DDBF7FEFFBB7BFAEFDBFDEFDFDF7EEC"E"8#;"8%>%;$8"
+FC763F6EBBDF77EF3F6CFFBB76BBDEEE6C?"G(9)95<"
+DDE3878EEFFCB0F1EF1C7BF7E2E38E1F543C7BF8FFC5772FFC7761E3DFC7FC3C7DF1F1E38F2EF>"8#D#Z&S"V<"
+E1E00FFFBF/FE7FFFFFDFFEFF<(8"J#
+EDBFEFFDFFF7DF76<FFFF<"8#:"B"I">"
+EBDDC77AFFFFFF@$H":"9"="9"<":"@"
+BBFBBFFEC7FBFD7FFEC787>"J"8":"A"="8"@"
+E18F7BFEFFBF7BF9F>&H">"A"<"E"
+EFDD83FD7FFFFFFFFFFF@"F5
+BFIDDC38F4FF8F4E0E3D3071F1C7FE3C1C6B70FFFF8E9E1FF4F4C7A707FDDC38F4FF8F4E0E3D3071F1C7F@$E5="
+BBFEFFHBF773FFEF377DDCFBEEEFBBFFBEFBA4AFFFFF766DDFF373F79BBFFDDBF773FFEF377DDCFBEEEFBBFFC@#H$8$;"8#8$;$8$?"
+C7FF7FFEF7DFBFEDDAFF6E777F7B7FFEF7DFBFEDFF>$G#:"8$8&?#:"8$
+FFFFFFC707C10DF83F82DB1FFFF8C707C10DF83FJ#:'8&?#:'
+<FB7FDFDFBEEDFBFFBEDBEFFFF7FB7FDFDFBEEDFBFF=";$A$:"8$8"8"8"<$:"8$
+DFF8FFBAD9FB77DDEEFBBFBA3FD9D9FB77DDEEFBBFC"C$938&9(
+F9E5878F78E3DFBF171C7FFBF1C6DA1F3FF8AEE5FF0FBC7FE5878F78E3DFBF171C7F=";$AZ(Z
+EFF1FFDA1FE7FFFFFFFFF7F1=";$J#
+F3CBFFE2<FFFF<#`$J"
+EDF807FFF6BFF<#;$A"9"8"
+F5FE1FFFF5FDFEF7=RI"
+F7J"8"
+?FFFFJ,J"
+;E1C7878E98F4E0C7C74F0FEEF<">"A,J"
+FAEBDDBB7F7E7EF377F7BB36FFEFFJ%9"
+=7EFEFEF776J#<#
+<838E771F<#="B#="
+FD7FD7BFF6EFJ%<#
+;D9BBF77EEE7F<#="A,
+FEBFAFE5C70F8EFEF0F8F7C7761EJP"Q
+;F7<#="J"
+FF5F5FO-FCD"G"J"
+FEFFJFF="="
+AFBF="<"
+B7FD="<#
+DBFB7F="<#
+ABFAFF="<"
+54F5<#<"
+FEE6ED<$;"
+FF737FDB=#;"
+399F37<$:#
+FEDC6FFECF<$:#
+FDCAB7F9BF<$:#J"
+DB9659F37FO.EF<%9#J"
+A720267FCCFFO.FF<%9"
+7640799F33;&8#
+FEF886FE63F8CF;*
+FDFD0FFF9C1FFF073F;*
+FBFE1FFFE3E000F8FF;)J"
+C1FC3FFFFC3FFF87O0FC;)J"
+80F91FFFFFC0007FO0FF;#9$J"
+0072FFFFFFO0FC:%J"
+FE00243FO5FF:%
+FC18087F:%
+F83000FF:$
+F06001:$
+E0C007:#
+C180:#J"
+8300O780:$J"
+06000FO6FF9%
+FE0C001F9%
+FC18003F9%
+F830007F9%
+F06000FF9$
+E0C0019$
+C180039$
+8300079$J"
+06000FO7808%
+FE0C001F8%J"
+FC18003FO7FF8%
+F830007F8%
+F06000FF8$
+E0C0018$
+E180038$
+E300078$
+E6000F8$
+EC001F8$
+F8003F8$
+F0007F8$
+E000FF9"
+019"
+039"
+079"
+0F9"
+1F9"
+3F9"
+7F9"
+FF8"
+E18"
+E38"
+E78"
+EF8"
+FF
+
+
+
+Jj
+:MJZ
+:M
+
+
+
+
+
+
+"j"
+E0O;07
+Z
+O=
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "12" 9
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 8 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Courier
+%%+ Helvetica-Bold
+%%+ Times-Bold

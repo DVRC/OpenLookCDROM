@@ -1,0 +1,525 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) settings.ps 1.31 91/02/11
+%
+%
+
+/ClassSettings [ClassItemGroup ClassControl] []
+classbegin 
+    % Default values for setting parameters:
+    /Justification	/Left def
+    /ChoiceMode		/Exclusive def
+    /ItemHeight		null def
+    /ItemWidth		null def
+
+    % Setting item geometry:
+    /ItemHOrigin	7 def
+    /ItemVOrigin	5 def
+    /ItemHExtra		ItemHOrigin 2 mul def
+    /ItemVExtra		ItemVOrigin 2 mul def
+
+    % Default layouts:
+    /VerticalGap	{ChoiceMode /NonExclusive eq {8} {0} ifelse} def
+    /HorizontalGap	//VerticalGap def
+
+    % Temp Variables during Tracking
+    /TrackStartValue	null def
+    /TrackBackground?	true def
+
+    /NewItem { % displayitem => dict
+	dictbegin
+	    /DisplayItem exch def
+	    /Chosen? false def
+	dictend
+    } def
+    
+    /replaceitem { % item-index item => -
+	ItemList 2 index 2 copy	get	% i# ni il i# oi
+	/Chosen? get			% i# ni il i# c?
+	5 -2 roll			% il i# c? i# ni
+	/replaceitem super send		% il i# c? 
+	3 1 roll get			% c? i
+ 	/Chosen? 3 -1 roll put		% -
+    } def	
+
+    /value { % - => array; return an array of the "chosen" items
+	[
+	    0 ItemList {
+		/Chosen? get {dup} if
+		1 add
+	    } forall
+	    pop
+	]
+    } def
+    /setvalue { % array => -; "chose" the set of items in the array
+	/value self send		% newarray oldarray
+	% Turn off all old choices not in new set of choices
+	{				% newarray oldindex
+	    2 copy arraycontains? {pop} {
+		null /setchoice self send
+	    } ifelse
+	} forall			% newarray
+	% Turn on all new items that are not already turned on
+	{				% newindex
+	    true /setchoice self send
+	} forall			% -
+    } def
+    /setchoice { % index bool => -
+	gsave
+	    Parent setcanvas
+	    X Y translate
+	    SetButton
+	grestore
+    } def
+    /chosen? { % index => bool
+	ItemList exch get /Chosen? get
+    } def
+    
+    /setjustification { % /Left|/Centered => -
+	/Justification exch promote
+    } def
+    /justification { % - => /Left|/Centered
+	Justification
+    } def
+
+    /setchoicemode { % /Exclusive|/NonExclusive|/ExclusiveVariation => -
+	/ChoiceMode exch promote
+    } def
+    /choicemode { % - => /Exclusive|/NonExclusive|/ExclusiveVariation
+	ChoiceMode
+    } def
+    
+    /setvisualstate { % state => -
+	/setvisualstate super send
+
+	/valid? self send {
+	    VisualState /Active eq {
+		/paint self send
+	    }{
+		gsave Parent setcanvas
+		    BackgroundColor setcolor /bbox self send StippleRect
+		grestore
+	    } ifelse
+	} if
+    } def
+
+    /minsize {
+        /minsize super send
+	1 0 xyadd % XXX: Fudge
+    } def
+
+    /item { % itemindex => <item description>
+	ItemList exch get /DisplayItem get
+    } def
+
+    /ValidateItemList { % - => -
+	/placement self send dup /Grid eq exch /Spaced eq or {
+	    [ItemList {begin /DisplayItem load end} forall]
+	    DisplayItemMaximumSize SetSettingSize
+	} if
+	FixedItemSize? not {
+	    currentfont
+	    TextFont setfont
+	    ItemList {
+		begin
+		    /DisplayItem load DisplayItemSize SetSettingSize
+		end
+	    } forall
+	    setfont
+	} if
+	ChoiceMode /Exclusive eq ItemList length 0 ne and {
+	    /value self send length 0 eq {[0] /setvalue self send} if
+	} if
+	/ValidateItemList super send
+    } def
+    % Set the setting item size from the display item size.
+    % Making this overridable allows subclassers use of "min" &c.
+    /SetSettingSize { % w h => -; set item size given display item size
+	/ItemHeight exch ItemVExtra add def
+	/ItemWidth exch ItemHExtra add def
+    } def
+
+    /Paint { % - => -; paint all the settings
+	TextFont setfont
+	BackgroundColor setcolor 0 0 /size self send /path self send fill
+	ItemList {PaintItem} forall
+    } def
+
+    /RestoreItem { % index => -
+        currentfont TextFont setfont exch
+        ItemList exch get
+	dup /PaintChosen? undef
+	PaintItem
+	setfont
+    } def
+
+    /TrackStart { % event => -
+	ChoiceMode /NonExclusive ne {
+	   /TrackStartValue null store
+	    0 ItemList {
+	        begin Chosen? end {
+		    /TrackStartValue 1 index store exit
+		} if
+		1 add
+	    } forall
+	    pop
+	} if
+	/TrackBackground? true store
+	/TrackStart super send
+    } def
+
+    /TrackMotion { % event => -
+        CurrentItem exch
+        /TrackMotion super send
+
+	CurrentItem null eq
+	TrackBackground? not and {
+	    /TrackBackground? true store
+	    TrackStartValue null ne {
+		TrackStartValue dup RestoreItem
+		/Previewer ExecuteSettingNotify
+	    } {
+		dup null ne
+		ChoiceMode /ExclusiveVariation eq  and {
+		    dup /Previewer ExecuteSettingNotify
+		} if
+	    } ifelse
+	} if
+	pop
+
+    } def
+
+    /TrackStop { % event => -
+        /TrackStop super send
+	/TrackStartValue null store
+	/TrackBackground? true store
+    } def
+
+    /TrackCancel { % event => -
+        CurrentItem exch
+	/TrackCancel super send
+	TrackStartValue null ne {
+	    TrackStartValue dup RestoreItem
+	    exch null ne {
+	        dup /Previewer ExecuteSettingNotify
+	    } if
+	} {
+	    dup null ne
+	    ChoiceMode /ExclusiveVariation eq  and {
+		dup /Previewer ExecuteSettingNotify
+            } if
+	} ifelse
+	pop
+	/TrackStartValue null store
+	/TrackBackground? true store
+    } def
+
+    /ItemStart { % index => -
+	currentfont TextFont setfont exch
+	TrackBackground?  TrackStartValue null ne  and {
+	    ItemList TrackStartValue get
+	    dup /PaintChosen? false put
+	    PaintItem
+	} if
+	/TrackBackground? false store
+        ItemList 1 index get dup begin
+	    /PaintChosen?
+		ChoiceMode /Exclusive eq { true } { Chosen? not } ifelse
+	    def
+	end
+	PaintItem
+	/Previewer ExecuteSettingNotify
+	setfont
+    } def
+
+    /ItemCancel { % index => -
+	currentfont TextFont setfont exch
+        ItemList 1 index get
+	dup /PaintChosen?
+	3 index TrackStartValue eq { false put } { undef } ifelse
+	PaintItem
+
+	ChoiceMode /NonExclusive ne {pop} {
+	    /Previewer ExecuteSettingNotify
+	} ifelse
+
+	setfont
+    } def
+
+    /ItemStop { % index => -
+	currentfont TextFont setfont exch
+	ItemList 1 index get dup begin
+	    /Chosen? PaintChosen? def
+	    /PaintChosen? undef
+	end
+	ChoiceMode /NonExclusive ne
+	TrackStartValue null ne  and {
+	    ItemList TrackStartValue get
+	    1 index TrackStartValue ne {
+		dup begin
+		    /Chosen? PaintChosen? def
+		    dup /PaintChosen? undef
+		end
+	    } if
+	    PaintItem
+	} if
+	/Notifier ExecuteSettingNotify
+	/TrackStartValue null store
+	setfont
+    } def
+
+
+    /ExecuteSettingNotify { % i /name => -
+	load exch				% proc i
+	ItemList 1 index get begin
+	    PaintChosen?
+	end					% proc i bool
+	2 array astore exch			% [i bool] proc
+	ExecuteNotifier
+    } def
+
+    /ToggleButton { % index => -
+	null SetButton
+    } def
+
+    /SetButton { % index chosen? => -
+	exch ItemList exch get begin
+	    PaintChosen? eq not {
+		/Chosen? PaintChosen? not def
+		currentdict /ChosenPreview undef
+		Valid? {
+		    TextFont setfont
+		    currentdict PaintItem
+		} if
+	    } if
+	end
+    } def
+
+    /PaintChosen? { Chosen? } def
+
+    /PaintItem { % item => -
+	begin
+	    TextFont setfont
+	    ItemX ItemY .5 -.5 xyadd
+	    ItemWidth ItemHeight
+	    3D? {
+		1 1 xysub
+		PaintChosen? Paint3DBox
+	    } {
+		PaintChosen?
+		Paint2DBox
+	    } ifelse
+	    ItemX ItemY moveto
+	    /DisplayItem load
+	    Justification /Centered eq {
+		dup DisplayItemSize
+		    ItemHeight sub -.5 mul exch
+		    ItemWidth sub -.5 mul exch rmoveto
+	    } {
+		ItemHOrigin ItemVOrigin rmoveto
+	    } ifelse
+	    ForegroundColor setcolor
+	    DisplayItemPaint
+
+	    VisualState /Inactive eq {
+		BackgroundColor setcolor
+		ItemX ItemY ItemWidth ItemHeight StippleRect
+	    } if
+	end
+    } def
+
+    /minsize {
+        /minsize super send
+	1 1 xyadd
+    } def
+
+    /preferredsize {
+        /preferredsize super send
+	1 1 xyadd
+    } def
+
+IncludeDemos? {
+    /demo { % - => window [instances]
+    10 dict begin
+	% Build the panel for the controls to use:
+	/panel /Calculated framebuffer /new ClassPanel send def
+    
+	% Build the settings:
+	/Phone /Grid framebuffer /new ClassSettings send def
+	[(1)(2)(3)(4)(5)(6)(7)(8)(9)(*)(0)(#)] /setitemlist Phone send
+	[true 4 3] /setlayoutparameters Phone send
+	/Centered /setjustification Phone send
+	/Phone Phone [/SouthWest {0 0}] /addclient panel send
+    
+	/Colors /Spaced framebuffer /new ClassSettings send def
+	[   (Black)
+	    [(Red) 1 0 0 rgbcolor]
+	    [(Green) 0 1 0 rgbcolor]
+	    [(Blue) 0 0 1 rgbcolor]
+	] /setitemlist Colors send
+	/NonExclusive /setchoicemode Colors send
+	/Helvetica-Bold findfont 12 scalefont
+	/settextfont Colors send
+	[0 2] /setvalue Colors send
+	/Colors Colors [/SouthWest {/SouthEast PREVIOUS POSITION 10 0 xyadd}]
+	    /addclient panel send
+    
+	/Icons /Grid framebuffer /new ClassSettings send def
+	[   gsave
+		32 32 8 [] null buildimage dup setcanvas
+		($OPENWINHOME/demo/images/mandrill.im8) readcanvas imagecanvas
+	    grestore
+	    gsave
+		32 32 8 [] null buildimage dup setcanvas
+		($OPENWINHOME/demo/images/founders.im8) readcanvas imagecanvas
+	    grestore
+	] /setitemlist Icons send
+	/ExclusiveVariation /setchoicemode Icons send
+	/Icons Icons [/South {/North PREVIOUS POSITION 0 10 xyadd}]
+	    /addclient panel send
+    
+	% Build the window and install the panel:
+	/win panel framebuffer /new ClassBaseWindow send def
+	5 25 5 25 /setgaps win send
+	/place win send
+	(Settings Demo) /setlabel win send
+	/map win send
+	/new ClassEventMgr send /activate win send
+    
+	% Notification: set the target to be the window and have
+	% the notifier print in the footer.
+	[Phone Colors Icons] {
+	    win /settarget 2 index send
+	    {   /choicemode 1 index send (/%) sprintf
+		([% %]) 4 -1 roll sprintf /setfooter
+		/sendtarget 5 -1 roll send
+	    } /setnotifier 3 -1 roll send
+	} forall
+	win [Phone Colors Icons]
+    end
+    } def
+} if
+
+classend def
+
+/ClassCheckBoxes ClassSettings []
+classbegin 
+    % OpenLook uses the label font for check boxes: (send to ClassLabel?)
+    /TextFont		/LucidaSans-Bold findfont 12 scalefont 
+			false printermatchfont
+			/ISOLatin1Encoding encodefont def
+
+    % Default values for setting parameters:
+    /Justification	/Left def
+    /ChoiceMode		/NonExclusive def
+    /DisplayItem	null def
+    /VerticalGap	8 def
+    /HorizontalGap	8 def
+
+    % Checkbox item geometry:
+    /CheckX		2 def
+    /CheckY		15 def
+    /CheckBoxX		2 def
+    /CheckBoxY		2 def
+    /CheckBoxSize	12 def
+    /CheckTailX		CheckBoxX CheckBoxSize add 1 sub def
+    /CheckTailY		CheckBoxY CheckBoxSize add 1 sub def
+    /ItemHOrigin	CheckBoxX CheckBoxSize 4 add add def
+    /ItemVOrigin	0 def
+    /ItemHExtra		ItemHOrigin def
+    /ItemVExtra		CheckBoxY 2 mul def
+
+    /NewItem { % displayitem => dict
+	dictbegin
+	    dup null eq {pop} {/DisplayItem exch def} ifelse
+	    /Chosen? false def
+	dictend
+    } def
+
+    /Depressed? false def
+
+    /ItemStart { % index => -
+	ItemList 1 index get /Depressed? true put
+	/ItemStart super send
+    } def
+    /ItemCancel { % index => -
+	ItemList 1 index get /Depressed? undef
+	/ItemCancel super send
+    } def
+    /ItemStop { % index => -
+	dup /ItemStop super send
+	ItemList 1 index get /Depressed? undef
+	ItemList exch get PaintItem
+    } def
+
+    /PaintItem { % item => -
+	begin
+	    ItemX CheckTailX add ItemY CheckTailY add
+	    5 5 rectpath 
+	    3D? {
+	        BG setcolor fill
+	        ItemX CheckBoxX add ItemY CheckBoxY add
+		CheckBoxSize dup
+		Depressed?
+		Paint3DBox
+		FG setcolor
+		PaintChosen? {
+		    GraphicFont setfont
+		    ItemX CheckX add ItemY CheckY add moveto
+		    (\165) show
+		} if
+	    } {
+	        2DBG setcolor fill
+		GraphicFont setfont
+		ItemX CheckX add ItemY CheckY add
+		2DFG setcolor 2 copy moveto (\167) show % CHECKED_BOX_OUTLINE
+		PaintChosen? {
+		    2 copy moveto (\165) show % CHECK_MARK
+		    2DBG setcolor moveto (\166) show % CHECKED_BOX_FILL
+		} {
+		    2DBG setcolor moveto (\164) show % UNCHECKED_BOX_FILL
+		} ifelse
+		2DFG setcolor
+	    } ifelse
+
+	    TextFont setfont
+	    ItemX ItemHOrigin add ItemY ItemVOrigin add moveto
+	    /DisplayItem load DisplayItemPaint
+	end
+    } def
+
+IncludeDemos? {
+    /demo { % - => window [instances]
+    10 dict begin
+	% Build the panel for the controls to use:
+	/panel /Absolute framebuffer /new ClassPanel send def
+    
+	% Build the settings:
+	/Checks /Grid framebuffer /new ClassCheckBoxes send def
+	[0 1 15 {2 string cvs} for] /setitemlist Checks send
+	[true 4 4] /setlayoutparameters Checks send
+	/Checks Checks [0 0] /addclient panel send
+
+	% Build the window and install the panel:
+	/win panel framebuffer /new ClassBaseWindow send def
+	5 25 5 25 /setgaps win send
+	/place win send
+	(Checkbox Demo) /setlabel win send
+	/map win send
+	/new ClassEventMgr send /activate win send
+    
+	% Notification: set the target to be the window and have
+	% the notifier print in the footer.
+	win /settarget Checks send
+	{   (Checkbox:) ([% %]) 4 -1 roll sprintf /setfooter
+	    /sendtarget 5 -1 roll send
+	} /setnotifier Checks send
+	win Checks
+    end
+    } def
+} if
+classend def

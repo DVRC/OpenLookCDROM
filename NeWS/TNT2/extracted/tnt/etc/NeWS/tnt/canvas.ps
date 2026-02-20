@@ -1,0 +1,1084 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) canvas.ps 23.74 91/02/11
+%
+
+
+% ClassCanvas is a "smart" instance of a NeWS canvas object, having self
+% contained drawing and event management capabilities.  It forms a common
+% underpinning for windows, menus, and control items.  It also adds the
+% notion of event management common to objects built from NeWS canvases.
+% The model of a ClassCanvas instance is:
+%	-It owns its own /path procedure that can represent it's shape
+%	 dynamically.
+%	-It can draw itself and handle its own damage.
+%	-It handles its own cursor.
+%	-It manages itself in the NeWS canvas hierarchy.
+%	-It performs minor user interactions such as resizing from user actions.
+%	-It knows where its event manager is and interacts with it.
+%	-It knows what its defaults are and can initialize itself to them.
+%
+
+/ClassCanvas ClassDrawable
+dictbegin
+    /EventMgr		null	def	% The event manager for this canvas.
+dictend
+classbegin
+
+    % This is used rather than the util.ps nullnotify because
+    % of problems with the method compiler.
+    %
+    /NullNotifyProc {pop} def
+    /NullNotify {/NullNotifyProc cvx} def
+
+% Defaults & Class Variables:
+
+    % Size for the default border edge painted by Paint
+    %
+    /BorderStroke	2 def
+
+    % Flags indicating whether this canvas is a client of various services
+    %
+    /Freezable?		false	def
+    /Frontable?		false	def
+    /Helpable?		false	def
+    /Keyable?		false	def
+    /Menuable?		false	def
+    /Openable?		false	def
+    /Receptible?	false	def
+    /Selectable?	false	def
+    /Trackable?		false	def
+
+    % The level of previewing desired when a selection is dragged
+    % over this canvas.  Only meaningful when /Receptible? is true.
+    /DropPreviewLevel	 /None    def    
+
+
+% Canvas Initialization:
+
+    % The following class variables are used by /new to initialize the
+    % canvas object.  We do this (rather than having each super class
+    % over-riding it's parent's settings) to avoid multiple setting of
+    % these fields, which might have ugly side effects.
+    %
+    /SaveBehind		false def	% Default Canvas SaveBehind value
+
+    % Default Canvas Retained value based on the value of the
+    % current retained threshold (ie: use the default set
+    % up by 'newcanvas)'.
+    %
+    /Retained		null def
+
+    % Default Canvas Mapped value; uses default Transparent value.
+    %
+    /Mapped { % - => bool
+	Transparent
+    } def
+
+    /EventsConsumed	/MatchedEvents def
+
+    % Default cursor for this canvas.
+    %
+    /Cursor		null def
+    /CursorFont		/OLCursor findfont 12 scalefont def
+
+    % A dict containing cursor objects with the same name as those
+    % used in "cursordict".  This is to allow sharing of cursor
+    % objects among all canvases.
+    % REMIND: 1/90: cursors are expensive, ~.5K each; we might want to
+    % be more selective.
+    /Cursors dictbegin
+	cursordict {
+	% Note: this assumes the images are even and the corresponding
+	% mask the following odd integer.
+	    dup 2 mod 1 eq {pop pop} {
+		dup 1 add CursorFont newcursor def
+	    } ifelse
+	} forall
+    dictend def
+
+% Defaults:
+
+    /HandleDefaults { % name value
+	exch {
+	    /cursorfont {
+		/font /convert ClassDefaultsService send {
+		    /CursorFont exch store
+		} if
+	    }
+	    /Default {
+		pop
+	    }
+	} case
+    } def
+
+    [ /cursorfont ] {
+	self /addclient DefaultsService send
+    } forall
+
+% Methods:
+
+    % /new :	% parentcanvas => instance
+
+    % Override: Make a new instance of a class canvas.  Note that this
+    % instance will actually be the NeWS canvas "magic" dictionary
+    % rather than a simple dictionary. Supply the parent canvas as
+    % an argument.
+    %
+    /NewObject { % ParentCanvas => instance
+	newcanvas
+	% Note: the defaulting of the magic dict fields is done here
+	% (rather than in /NewInit) because the default class names
+	% match the field names.  Could do it in NewInit by sending the
+	% message:
+	%    {Retained SaveBehind Transparent..} /class self send send
+        Retained null ne {
+	    dup /Retained	Retained put
+        } if
+	dup /SaveBehind		SaveBehind put
+	dup /Transparent	Transparent put
+	dup /EventsConsumed	EventsConsumed put
+	dup /Mapped		Mapped put
+	dup /Cursor		Cursor put
+	/NewMagic self send
+    } def
+
+    % Override: Promote /Holder immediately if selectable.
+    %
+    /NewInit { % - => -
+    	Selectable? {Holder null eq {/Holder self soften promote} if} if
+    	/NewInit super send
+    } def
+
+    % Override: Destroy instance and any children it manages.
+    % This mainly means to perform garbage collection and 
+    % de-activation (process killing).
+    %
+    /destroy { % - => -
+	/deactivate self send
+	
+	/Holder unpromote
+
+	% Only needed if we want to immediately zap a painting canvas
+	ForkFix? {
+	    % It's OK to re-kill zombie processes
+	    % REMIND: check performance & load on killing dead processes
+	    FixProcess killprocess
+	} if
+
+        % Note that super is called at the end, not the
+        % beginning of the method.
+	/destroy super send
+    } def
+
+
+    % Change the parent, thus moving the instance in the canvas tree.
+    % It is assumed that the client is responsible for any layout or
+    % reshaping that may be required.
+    % The sense of the /Mapped boolean is maintained in the canvas.
+    % There are apparantly subtle reasons for this, so don't change w/o
+    % group concensus.
+    %
+    /reparent { % ParentCanvas => -
+	% REMIND -- this may have to be rethought.
+	% The caller should move or reshape the canvas
+	% as desired in the new parent.
+	Mapped exch		% m? pc
+	/Parent exch def	% m?
+	/Mapped exch def	% -
+    } def
+    
+    % Return the current size (width height) of the canvas in the CTM.
+    %
+    /size { % - => w h
+	self false getbbox 4 2 roll pop pop
+    } def
+
+    % Return the location of the canvas relative to CTM.
+    %
+    /location { % - => x y
+	self false getbbox pop pop
+    } def
+
+    % Return canvas bounding box, CTM relative.
+    %
+    /bbox { % - => x y w h
+	self false getbbox
+    } def
+
+    % Reshape the canvas to the given bounding box using the /path method.
+    %
+    /reshape { % x y w h => -
+        /invalidate self send
+	gsave
+%	    4 2 roll						% w h x y
+%	    dtransform round exch round exch idtransform	% w h x' y'
+%	    translate						% w h
+	    4 2 roll translate	% w h
+	    0 0 4 2 roll	% 0 0 w h
+	    /path self send	% -
+	    self reshapecanvas
+	grestore
+    } def
+
+    % Has the canvas been reshaped yet?
+    %
+    /reshaped? { % - => bool
+	% NOTE - we first establish the ident matrix to guarrantee
+	% unshaped canvases will have a size of 1x1.  You must do this
+	% because the client might have scaled the context.
+	gsave
+	    matrix identmatrix setmatrix
+	    /size self send
+	grestore
+	mul 1 ne
+    } def
+
+     % Move the canvas to x y using the CTM.
+    %
+    /move { % x y => -
+%	dtransform round exch round exch idtransform
+	self movecanvas
+    } def
+
+    % Set the canvas' cursor using a name in the shared Cursors dict.
+    % "null" will set cursor to be that of parent.  A cursor object
+    % can also be given.
+    %
+    /setcursor { % cursorobject|name|null => -
+	dup type /nametype eq {
+	    Cursors exch get
+	} if
+	/Cursor exch def
+    } def
+
+    % /PaintAll and /FixAll are used to draw the canvas (and its children,
+    % if any).  /PaintAll draws the entire canvas, while /FixAll is intended
+    % to only draw the area currently /Damaged.  They both call the private
+    % /Paint method.  /PaintAll is called by /paint; /FixAll is called by
+    % /HandleDamage (i.e., not called by clients).
+
+    % Paint the canvas.
+    %
+    /PaintAll { % - => -
+	% REMIND: we could check for Mapped & not Retained.  We currently
+	% paint things that really do not need it yet, especially during
+	% initialization.
+	/?validate self send
+	gsave
+	    self setcanvas
+	    /Paint self send
+	    /PaintChildren self send
+	grestore
+    } def
+
+    % Paint paints the interior of a canvas, assuming the
+    % caller has set the canvas, clipping etc.  This is generally
+    % subclass responsibility and defaults to simply filling the canvas
+    % with its background color.
+    %
+    /Paint { % - => -
+	% Canvas setcanvas done by /FixAll & /PaintAll
+	BackgroundColor /FillCanvas self send
+    } def
+
+    % Only paint the currently damaged portion of the canvas.
+    %
+    /FixAll { % - => -
+    	/?validate self send
+    	gsave
+    	    self setcanvas
+    	    clipcanvaspath emptypath not {		% quick optimisation
+    	    	/Fix self send
+    	    	/FixChildren self send
+    	    } if
+    	grestore
+    } def
+
+    % Fill the whole canvas with the supplied color.
+    %
+    /FillCanvas { % color => -
+	setcolor clippath fill
+    } def
+
+    % Draw a border around the canvas with color as the color and inset by
+    % inset. StrokeWidth is in canvas coordinates. This only works well with
+    % simple paths, and StrokeWidths of 1 don't scale well.
+    %
+    /StrokeCanvas { % color stroke-width => -
+	% REMIND: Should this use thick lines?
+	exch setcolor
+	dup 1 eq {
+	    pop .5 /bbox self send insetrect
+	    /path self send stroke
+	} {
+	    /bbox self send 4 copy
+	    /path self send
+	    insetrect /path self send
+	    eofill
+	} ifelse
+    } def
+
+    /CaptureAll { % - => -
+    	/?validate self send
+    	gsave
+    	    self setcanvas
+    	    /Capture self send
+    	    /CaptureChildren self send
+    	grestore
+    } def
+
+% Enumeration Procedures: These take advantage of the canvas
+% hierarchy maintianed by NeWS.
+
+    % Enumeration utility: put superior siblings starting at can on stack.
+    %
+    /Siblings { % can0|null => can0 can1 can2...|-
+	{   dup null eq {pop exit} if
+	    dup /CanvasAbove get
+	} loop
+    } def
+
+    % Build and return an array of all siblings of this canvas.
+    % The order is back to front.
+    %
+    /siblings { % - => array
+	[ BottomCanvas Siblings ]
+    } def
+
+    % Build and return an array of children.
+    % Order them back to front
+    %
+    /children { % - => array
+	[ TopChild dup null ne {/BottomCanvas get} if Siblings ]
+    } def
+
+    /Obscured? { % - => bool
+	gsave
+	    Parent setcanvas
+	    /bbox self send /path self send
+	    canvasesunderpath
+	    1 get length 2 ne
+	grestore
+    } def
+
+% Although potentially useful, these methods are on hold due to their
+% not being used in the alpha TNT release:
+%
+%    /children- { % - => array
+%	[ TopChild Siblings- ]
+%    } def
+%
+%    % Build and return an array of all the siblings of this canvas.
+%    % Order them front to back
+%    %
+%    /siblings- { % - => array
+%	[ TopCanvas Siblings- ]
+%    } def
+%
+%    % Build and return an array of the siblings above this canvas.
+%    % Order them from this canvas to front.
+%    %
+%    /siblingsabove { % - => array
+%	[ CanvasAbove Siblings ]
+%    } def
+%
+%    % Build and return an array of the siblings below this canvas.
+%    % Order them from this canvas to back
+%    %.
+%    /siblingsbelow { % - => array
+%	[ CanvasBelow Siblings- ]
+%    } def
+%    % Build and return an array of children for this canvas.
+%    % Order them front to back.
+%    %
+%
+%    % Enumeration utility: put inferior siblings starting at can on stack.
+%    %
+%    /Siblings- { % can0|null => can0 can1 can2...|-
+%	{   dup null eq {pop exit} if
+%	    dup /CanvasBelow get
+%	} loop
+%    } def
+
+    % Build and return an array of all parents for this canvas.
+    % Order from direct parent to the framebuffer:
+    %     [parent, grandparent, greatgrandparent, ..., framebuffer]
+    %
+    /parents { % - => array
+	[   Parent {
+		dup globalroot eq {pop exit} if
+		dup /Parent get
+	    } loop
+	]
+    } def
+
+    % Return the framebuffer for this canvas
+    /framebufferof { % - => framebuffer
+	Parent {
+	    dup /Parent get	% can parent
+	    dup globalroot eq {pop exit} if
+	    exch pop
+	} loop
+    } def
+
+    % Find the closest parent that is a descendant of the argument class.
+    % This message is ment to be sent to a class, not an instance:
+    %
+    %        myclientcanvas /parentdescendant ClassFrame send
+    %
+    % returns the window (ClassFrame) that incloses myclientcanvas
+    %
+    /parentdescendant { % canvas => canvas' true
+                        %        => false
+	false /parents 3 -1 roll send {		% false canvas'
+	    dup /descendantof? self send	% false canvas' bool
+		{exch pop true exit}		% can true
+		{pop} ifelse			% false
+	} forall
+    } def
+
+    % Build and return an array of descendants from this canvas.
+    % They are ordered top down.
+    %
+    /descendants { % - => array
+	[ self DescendantsRecurse ]
+    } def
+
+    % Utility to recursively find all the descendants of a canvas.
+    %
+    /DescendantsRecurse { % can => can can0 can1 can2 ...
+        dup /TopChild get dup null eq {pop} {
+	    [   exch {
+		    dup /CanvasBelow get
+		    dup null eq {pop exit} if
+		} loop
+	    ] {DescendantsRecurse} forall
+        } ifelse
+    } def
+
+    % Put this canvas to the top.
+    %
+    /totop { % - => -
+	self canvastotop
+    } def
+
+    % Send canvas to the bottom.
+    %
+    /tobottom { % - => -
+	self canvastobottom
+    } def
+
+% Event-management stuff
+
+%   No-op handlers for clients that don't care about events which
+%   are piggybacked on Keyable? (Again, Find, Undo), or Receptible?
+%   (DropPreview)
+
+    /HandleAgain { % event => -
+	pop
+    } def
+
+    /HandleFind { % event => -
+	pop
+    } def
+
+    /HandleUndo { % event => -
+	pop
+    } def
+
+    /DropPreview { % event selection  =>  -
+	pop pop
+    } def
+
+% Damage:
+
+    /setdamageable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse DamageService send
+	} if
+	/Transparent exch not def
+    } def
+
+    /damageable? { % - => bool
+        Transparent not
+    } def
+
+    % This is the damage handler for canvases.  It sets the canvas
+    % path to be the canvasclip path, then calls /FixAll.  It resets
+    % the canvasclip when /FixAll returns.
+    %
+    /HandleDamage { % event => -
+	pop
+	% Make sure all parents are valid to insure they do not immediately
+	% reshape me as part of the Fix recursion.  This avoids double repaints
+	% of opaque children of opaque canvases.
+	/parents self send arrayreverse {/?validate exch send} forall
+	gsave
+	    self setcanvas
+	    damagepath clipcanvas
+	    ForkFix? {
+		FixProcess /State get /zombie ne {
+		    newpath clipcanvas
+		    FixProcess killprocess
+		} if
+		/FixProcess {
+		    /FixAll self send
+		    newpath clipcanvas
+		    /FixProcess nullprocess def
+		} fork def
+	    } {
+		/FixAll self send
+		newpath clipcanvas
+	    } ifelse
+	grestore
+    } def
+
+    % Fork a process for damage repair?  Default to "no".
+    /ForkFix?	false def
+
+    % The forked damage repair process, if any.
+    /FixProcess	nullprocess def
+
+    /setforkfix { % bool => -; set whether damage repair forks
+	/ForkFix? exch def
+    } def
+
+    /forkfix? { % - => bool; return whether damage repair forks
+	ForkFix?
+    } def
+    
+    % Add this canvas to the opaque parent's damage path via "extenddamage".
+    % This is used where /paint would be used but you want to inherit
+    % the forked repair behaivor for canvases, or you want to have several
+    % canvases to repaint in one operation.
+    %
+    /damage { % - => -; add canvas path to opaque parent damage
+	gsave
+	    self setcanvas
+	    clippath extenddamage
+	grestore
+    } def
+
+    % Similar to /damage but using "extenddamageall". Used when wanting
+    % to damage not only opaque parent but also its opaque children.
+    %
+    /damageall { % - => -; add canvas path to opaque parent & children damage
+	gsave
+	    self setcanvas
+	    clippath extenddamageall
+	grestore
+    } def
+
+% Help:
+
+    /helpable? { % - => bool
+	Helpable?
+    } def
+
+    /sethelpable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse HelpService send
+	} if
+	/Helpable? exch def
+    } def
+
+
+% Front:
+
+    /frontable? { % - => bool
+	Frontable?
+    } def
+
+    /setfrontable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse FrontService send
+	} if
+	/Frontable? exch def
+    } def
+
+    /HandleFront NullNotify def % event => -
+
+% Open:
+
+    /openable? { % - => bool
+	Openable?
+    } def
+
+    /setopenable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse OpenService send
+	} if
+	/Openable? exch def
+    } def
+
+    /HandleOpen NullNotify def % event => -
+
+% Menu:
+
+    /menuable? { % - => bool
+	Menuable?
+    } def
+    /setmenuable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse MenuService send
+	} if
+	/Menuable? exch def 
+    } def
+
+% Keys (sometimes known as Focus):
+
+    /keyable? { % - => bool
+	Keyable?
+    } def
+
+    /setkeyable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse KeyService send
+	} if
+	/Keyable? exch def
+    } def
+    
+    /KeyStart { % event => false | [/label...] true | /name true
+	pop /Default true
+    } def
+    /KeyStop NullNotify def % event => -
+
+% These are the /Default
+    /StandardKey	NullNotify def % event => -
+    /NumPadKey		NullNotify def % event => -
+
+% Mouse Tracking:
+
+    /trackable? { % - => bool
+	Trackable?
+    } def
+
+    /settrackable { % bool => -
+	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse TrackService send
+	} if
+	/Trackable? exch def
+    } def
+
+    /TrackStart { % event => false | [/label...] true | /name true
+	pop /Default true
+    } def
+    % Default tracking includes Stop(Up), Crossing, Motion, and Cancel.
+    /TrackStop		NullNotify def % event => -
+    /TrackCrossing	NullNotify def % event => -
+    /TrackMotion	NullNotify def % event => -
+    /TrackCancel	NullNotify def % event => -
+
+    % Ask the track manager to start generating TrackTimer messages.
+    % (Not very useful, though still legal, if TrackStart did not include
+    % /TrackTimer as one of the event types this canvas is interested in.)
+    %
+    /starttracktimer { % initial repeat => -
+    	/starttimer TrackService send
+    } def
+    
+    % Stop generating TrackTimer messages for this canvas.  (Happens
+    % automatically as part of /TrackStop.  Call this method to stop
+    % timer events in the middle of a tracking operation.)
+    %
+    /stoptracktimer { % - => -
+    	/stoptimer TrackService send
+    } def
+
+% Selection:
+
+    /selectable? { % - => bool
+    	Selectable?
+    } def
+
+    /SelectableType	null	def
+    /Holder		null	def	% promoted if Selectable?==true
+
+    /setselectable { % bool => -
+    	EventMgr null ne {
+    	    self 1 index {/addclient} {/removeclient} ifelse ClassSelectUI send
+    	    dup not {Holder /reapholder ClassSelection send} if
+    	} if
+    	dup Holder null eq and {/Holder self soften promote} if
+    	/Selectable? exch def
+    } def
+
+    /SelectionCancel {	%   selection => -
+    	pop
+    } def
+
+
+    /selectionholder {	%   -  =>  any
+	Holder
+    } def
+
+
+    /setselectionholder {   %	any  =>  -
+	/Holder exch promote
+    } def
+	
+
+    % Other selection-related methods are SubClassResponsibility:
+    %	/SelectionStart	    	event selection => bool
+    %	/SelectionAdjust	event selection => -
+    %	/SelectionStop		event selection => -
+    %	/DragStart		event selection => -
+    %	/DragAdjust		event selection => -
+    %	/DragStop		event selection => -
+    %	/SelectionContext?	event selection => name  |  name proc
+    %	/NewSelection		event rank => selection
+    %
+    % REMIND Note API changes:
+    %	Capitalization has changed on all methods;
+    %	/NewSelection is no longer given a Holder; now it must put
+    %	its Holder on the stack before calling /new for its
+    %	subclass of ClassSelection.
+
+    /SelectionStart {	%   event  selection  =>  bool
+	SubClassResponsibility
+    } def
+
+
+    /SelectionAdjust {	%   event  selection  =>  -
+	SubClassResponsibility
+    } def
+
+
+    /SelectionStop {	%   event  selection  =>  -
+	SubClassResponsibility
+    } def
+
+
+    /DragStart {	%   event  selection  =>  -
+	SubClassResponsibility
+    } def
+
+
+    /DragAdjust {	%   event  selection  =>  -
+	SubClassResponsibility
+    } def
+
+
+    /DragStop {	%   event  selection  =>  -
+	SubClassResponsibility
+    } def
+
+
+    /SelectionContext? {	%   event  selection  =>  name  |  name proc
+	SubClassResponsibility
+    } def
+
+
+    /NewSelection {	%   event  selection  =>  selection
+	SubClassResponsibility
+    } def
+
+
+% Reception of selections (via drag'n'drop, cut'n'paste, mutt'n'jeff, etc.)
+
+    /receptible? { % - => bool
+    	Receptible?
+    } def
+    
+    /setreceptible { % bool => -
+    	EventMgr null ne {
+	    self 1 index {/addclient} {/removeclient} ifelse
+	    ReceptionService send
+	} if
+	/Receptible? exch def
+    } def
+
+    % Return true iff the event occurred over a valid drop target
+    % for the given type of selection.  Subclasses would override
+    % this to restrict dropsites to specified regions, or to
+    % validate selection type first.
+    %
+    %	event  selection  =>  bool
+    /DropTarget? {  %	event  selection  =>  bool
+	pop pop Receptible?
+    } def
+
+
+    % Return the requested level of drop site previewing.
+    % See the comments at /DropPreviewLevel above.
+    %
+    %	-  =>  /None
+    %	-  =>  /Crossings
+    %	-  =>  /All
+    /droppreviewlevel { %	-  =>  /None | /Crossings | /All
+	DropPreviewLevel
+    } def
+	
+    % Set the level of dropsite previewing requested.
+    %
+    %	/None  =>  -
+    %	/Crossings  =>  -
+    %	/All  =>  -
+    /setdroppreviewlevel {	%	/None | /Crossings | /All  =>  -
+	/DropPreviewLevel exch promote
+
+	% Tell the Reception Service to update the X11 database
+	Receptible? /setreceptible self send
+    } def
+
+    % Insert the given selection at the "focus" if the event's Canvas
+    % field matches this canvas; if the event's Canvas is null, insert
+    % the selection at the coords given in the event.  Some clients may
+    % choose to ignore this distinction if insertions are permitted only
+    % at a single location (e.g., current type-in point).  Return true if
+    % the transfer succeeded; false to cause the event to be redistributed
+    % further up the canvas tree.  (E.g., if an icon is dropped on a text
+    % control it might fall through to the parent canvas or even to the
+    % desktop.)
+    %
+    % The default method extracts the selection contents as an ASCII
+    % string (returning false if the selection cannot represent itself
+    % in that form) and calls /AsciiReception to process the string.
+    % Clients must override ONE of /HandleReception or /AsciiReception.
+    %
+    % Note that INCR selections will not be passed to /AsciiReception.
+    % (They return /Incremental from the /query.)
+    %
+    /HandleReception { % event selection => bool
+	/begintransfer 1 index send 	    	    	% event sel
+	exch	    	    	    	    	    	% sel event
+
+    	/ContentsAscii /query 3 index send {		% sel event text
+	    dup type /stringtype eq {
+		/AsciiReception self send true		% sel true
+	    } {
+		pop false
+	    } ifelse
+    	} {						% sel event; (no text)
+    	    pop false					% sel false
+    	} ifelse    	    	    	    	    	% sel bool
+
+	dup /endtransfer 4 -1 roll send    	    	% bool
+    } def
+
+    % /AsciiReception { % event string => -
+
+% Event management:
+
+    % Return the current event manager.
+    %
+    /eventmgr { % - => eventmgr
+        EventMgr
+    } def
+
+    % Activate the canvas to respond to user interaction.
+    %
+    /activate { % emgr => -
+        EventMgr null eq {			% REMIND: is this necessary?
+            /EventMgr exch def
+            self				% self
+	    Frontable? {dup /addclient FrontService send} if
+	    Helpable? {dup /addclient HelpService send} if
+	    Keyable? {dup /addclient KeyService send} if
+	    Menuable? {dup /addclient MenuService send} if
+	    Openable? {dup /addclient OpenService send} if
+	    Receptible? {dup /addclient ReceptionService send} if
+	    Selectable? {dup /addclient ClassSelectUI send} if
+	    Trackable? {dup /addclient TrackService send} if
+	    Transparent not {dup /addclient DamageService send} if
+	    pop	% the self
+	} {pop} ifelse
+    } def
+
+    /active? {
+	EventMgr null ne
+    } def
+
+    % Deactivate this canvas from responding to user interaction.
+    %
+    /deactivate { % -  => -
+        EventMgr null ne {
+            % Remove my interests! REMIND: faster to just call /removeclient
+            % without testing? [I doubt it: DRW]
+            self				% self
+	    Frontable? {dup /removeclient FrontService send} if
+	    Helpable? {dup /removeclient HelpService send} if
+	    Keyable? {dup /removeclient KeyService send} if
+	    Menuable? {dup /removeclient MenuService send} if
+	    Openable? {dup /removeclient OpenService send} if
+	    Receptible? {dup /removeclient ReceptionService send} if
+	    Selectable? {
+		Holder /reapholder ClassSelection send
+		dup /removeclient ClassSelectUI send
+	    } if
+	    Trackable? {dup /removeclient TrackService send} if
+	    Transparent not {dup /removeclient DamageService send} if
+	    pop	% the self
+            /EventMgr null def
+        } if
+    } def
+    
+%    /sendinmanager { % /method | proc => -; 
+%	% Nasty method compiler bug:
+%	%    "currentdict /send" needed; "self /send" => "cvx exec"!
+%    %	currentdict /send cvx 3 array astore cvx	% {/method can send}
+%    %	/callmanager EventMgr send
+%	self 2 array astore		% [/method can]
+%	/sendmanager EventMgr send
+%    } def
+
+    % Interaction methods for moving, stretching and shaping canvases.
+
+    % Place a canvas according to some default
+    % placement scheme.  This is to be used by
+    % window managers that have some notion of default placement.
+    %
+    /place { % - => -
+    % REMIND: what is good default?  Possibly SubClassResponsibility?
+    %    /reshapefromuser self send
+    } def
+ 
+
+ 
+classend def
+
+/ClassFramebuffer ClassCanvas []
+classbegin
+% Need our own /NewObject because of "invalidaccess" errors raised when
+% setting all the other standard canvas fields.
+    /NewObject { % canvas => instance
+        Retained null ne {
+	    dup /Retained	Retained put
+        } if
+	dup /EventsConsumed	EventsConsumed put
+	/NewMagic self send
+    } def
+    /framebufferof {self} def
+
+    /Paint //PaintRoot def
+classend def
+
+globalroot /new ClassFramebuffer send pop
+/children globalroot send {
+    /new ClassFramebuffer send pop
+} forall
+
+% REMIND: should we do this too? Actually, should we activate the framebuffers?
+% systemdict /PaintRoot {/paint framebuffer send} put
+
+
+% REMIND: Should ClassTextCanvas go in a separately loaded file?  It's not
+% clear if there's anything else it should be grouped with, now that
+% TransferInterest and the other selutils stuff is superseded by the
+% ReceptionService.  Possibly StaticSelection and StringSelection
+% should be moved out of selection.ps, but that's a NeWS level file and
+% this is a subclass of ClassCanvas, so mumble.
+%
+/ClassTextCanvas ClassCanvas []
+classbegin
+
+% Class Variables:
+
+    /DragCanvas null def	% overlay for use while dragging
+    /DragCursor null def    	% The cursor to use while dragging
+    /Margin 3 def		% gap between text and outline box
+    /MaxChars 15 def		% max length of drag-text before truncation
+
+    /Selectable? true def	% override
+    /SelectableType /Text def	% override
+
+    % Override: Fill in subclass responsibility method.
+    %
+    /DragStart { % event selection => -
+	pop pop
+	/DragCanvas /framebufferof self send createoverlay promote
+    } def
+
+    % Override: Fill in subclass responsibility method.
+    %
+    /DragAdjust { % event selection => -
+	gsave	    	%indent%
+	    DragCanvas setcanvas erasepage
+
+	    0 setgray
+	    TextFont setfont
+	    /DeleteSource? 1 index send exch   	    	% ev bool sel
+	    /CurrentText self send			% ev bool string
+	    /Truncate? self send			% ev bool string
+	    3 -1 roll begin XLocation YLocation end 	% bool string x y
+	    2 index stringwidth pop Margin 2 mul add	% bool string x y w
+	    TextFont fontheight Margin 2 mul add	% bool string x y w h
+	    4 2 roll 2 index sub    			% bool string w h x Y
+	    % REMIND: Should figure out actual size of pointer...
+	    16 -16 xyadd    	    	    	    	% bool string w h X Y
+
+	    6 -1 roll not {    	    	    	    	% string w h X Y
+		4 copy 2 -2 xyadd moveto		% string w h X Y w h
+		exch 0 rlineto 0 exch rlineto stroke	% string w h X Y
+	    } if
+	    
+	    2 copy  	    	    	    	    	% string w h X Y X Y
+	    6 -2 roll					% string X Y X Y w h
+
+	    rectpath stroke				% string X Y
+	    moveto Margin dup TextFont fontdescent add rmoveto
+	    show
+	grestore    	%exdent%
+    } def
+
+    % Override: Fill in subclass responsibility method.
+    %
+    /DragStop { % event selection => -
+	pop pop
+	/DragCanvas promoted? {
+	    gsave   	    	    %indent%
+		DragCanvas setcanvas erasepage
+		/DragCanvas unpromote
+	    grestore	    	    %exdent%
+	} if
+
+	% Release the cursor via sendmanager to ensure it happens
+	% after the last enter/exit event.
+	{ null grabcursor } /callmanager EventMgr send
+    } def
+
+    % Called when we are "starting over" whatever that means.  For
+    % us it just means clear up and free the overlay plane if we're
+    % in the middle of dragging text.
+    %
+    /SelectionCancel { % selection => -
+	/SelectionCancel super send
+	/DragCanvas promoted? {
+	    gsave
+		DragCanvas setcanvas erasepage
+		/DragCanvas unpromote
+	    grestore
+	} if
+    } def
+
+    % Obtain the text to display in the overlay.  Default is to send a
+    % /ContentsAscii request to the selection, but subclassers may override
+    % this with faster, specific access methods.
+    %
+    /CurrentText { % selection => string
+    	/ContentsAscii /query 3 -1 roll send		% str true -or- false
+    	not {(???)} if
+    } def
+    
+    % Truncate the string if it's too long.  Default behavior is to replace
+    % the middle section with an ellipsis if the total length is > MaxChars.
+    %
+    /Truncate? { % string => string'
+    	dup length MaxChars gt {			% str
+    	    % round up for length of front half, down for length of rear,
+    	    % by using (Max-2)/2 for former and (Max-3)/2 for latter
+    	    dup 0 MaxChars 2 sub 2 idiv getinterval	% str front
+    	    (...) 3 -1 roll				% front (...) str
+    	    dup length MaxChars 3 sub 2 idiv
+    	    exch 1 index sub exch getinterval		% front (...) rear
+    	    append append				% front...rear
+    	} if
+    } def
+
+classend def
+

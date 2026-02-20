@@ -1,0 +1,291 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) defaults.ps 1.2 91/02/11
+%
+
+% The Defaults service waits for PropertyNotify events to occur, and
+% when they do, updates UserProfile and notifies clients that have
+% expressed interest in a particular default changing value.
+
+/ClassDefaultsService ClassInterest
+dictbegin
+    /ClientData	growabledict def
+    /DefaultsDict growabledict def
+dictend
+classbegin
+    % Initialize the instance.
+    %
+
+    /NewInit { % - => -
+	framebuffer				% canvas
+	null					% canvas action
+	1 dict dup begin			% canvas action name
+	    /PropertyNotify { % event => -
+		Xcompat_private begin
+		    dup /Action get aload pop /NewValue eq exch
+		    /RESOURCE_MANAGER false XInternAtom eq and {
+			/ExecuteDefaults exch /Interest get send
+		    } {
+			pop
+		    } ifelse			
+		end
+	    } def
+	end /NewInit super send			% -
+	/ExecuteDefaults self send		% -
+    } def
+
+    % Add keyword/class pair.  Keyword is the name of an X default,
+    % e.g., focusmode, and client is the name of the class interested
+    % in the fact that the value has changed.  The value for each key
+    % is an array of interested clients.
+    %
+    % Once the keyword/class pair has been added to ClientData, a
+    % check is made to see if that keyword has already been set, and
+    % if so, calls HandleDefaults immediately for the new client.
+    %
+    /addclient { % keyword newclient => -
+	soften					    % kw ncl
+	ClientData 2 index 2 copy known {	    % kw ncl cd kw
+	    get dup type /arraytype eq {	    % kw ncl [cls]
+		dup 2 index arraycontains? not {    % kw ncl [cls]
+		    2 index arrayappend		    % kw ncl [ncls]
+		} if
+	    } {					    % kw ncl cl
+		2 copy ne {			    % kw ncl cl
+		    1 index 2 array astore	    % kw ncl [ncls]
+		} if
+	    } ifelse
+	} {					    % kw ncl cd kw
+	    pop pop dup				    % kw ncl ncl
+	} ifelse
+	ClientData 3 index 3 -1 roll put	    % kw ncl
+	dup self /addclient ObsoleteService send    % kw ncl
+	DefaultsDict 2 index 2 copy known {	    % kw ncl dd kw
+	    get /HandleDefaults 3 -1 roll send	    % -
+	} {
+	    pop pop pop pop			    % -
+	} ifelse
+    } def
+
+    /removeclient { % keyword oldclient => -
+	ClientData 2 index 2 copy known {	    % kw ocl cd kw
+	    get dup type /arraytype eq {	    % kw ocl [cls]
+		dup 3 1 roll arrayindex {	    % kw [cls] i
+		    arraydelete			    % kw [cls]
+		    dup length 0 eq {		    % kw []
+			pop ClientData exch undef   % -
+		    } {				    % kw [cls]
+			ClientData 3 1 roll put	    % -
+		    } ifelse			
+		} {				    % kw [cls]
+		    pop pop
+		} ifelse
+	    } {					    % kw ocl cl
+		eq {
+		    ClientData exch undef	    % -
+		} {
+		    pop				    % -
+		} ifelse
+	    } ifelse
+	} {					    % kw ocl cd kw
+	    pop pop pop pop
+	} ifelse
+    } def
+    
+    /HandleObsoleteTarget { % obsoleteclient => -
+	ClientData {				    % ocl kw cls
+	    dup type /arraytype eq {		    % ocl kw [cls]
+		dup 3 index arrayindex {	    % ocl kw [cls] i
+		    arraydelete			    % ocl kw [ncls]
+		    ClientData 3 1 roll put	    % ocl
+		} {
+		    pop pop			    % ocl
+		} ifelse
+	    } {					    % ocl kw cl
+		2 index eq {			    % ocl kw
+		    ClientData [] 3 -1 roll put	    % ocl
+		} {
+		    pop				    % ocl
+		} ifelse
+	    } ifelse
+	} forall
+	/HandleObsoleteTarget super send
+    } def
+
+    % RESOURCE_MANAGER has been updated with a /NewValue.  Parse the
+    % new string, breaking it up into name:value pairs, and then using
+    % name, lookup all the interested classes and call their HandleDefaults
+    % method with the name and new value.
+    %
+    /ExecuteDefaults { % - => -
+	GetPropertyString {
+	    LowerCaseString GetOpenwinProps {
+		ExtractNameValue {
+		    2 copy DefaultsDict 3 1 roll put
+		    HandleProperty
+		} if
+	    } forall
+	} if
+    } def
+
+    /ConversionMethodsDict 4 dict dup begin
+	/boolean { % word => bool bool
+	    cvn dup {
+		/true /on /yes /t 1 { pop true true }		% true true
+		/false /off /no /nil 0 { pop false true }	% false true
+		/Default {
+		    console (Unknown boolean specification: %\n)
+			[ 4 -1 roll ] fprintf
+		    false					% false
+		}
+	    } case
+	} def
+
+	%   (#ff0000) XColorDecode => color(1.00,0.00,0.00) true
+	%   (red) XColorDecode => color(1.00,0.00,0.00) true
+	%   (unknowncolorname) XColorDecode => false
+	%
+	/color { % (#rrbbgg) -or- (ColorName) => color true -or- false
+	    dup 0 get (#) 0 get eq {				% str
+		dup length 1 sub dup 6 ne {			% str len
+		    pop pop false				% false
+		} {						% str 6
+		    1 exch getinterval (<%>) sprintf cvx exec	% <RGB>
+		    dup 0 get 255 div exch			% red <RGB>
+		    dup 1 get 255 div exch			% red green <RGB>
+			2 get 255 div				% red green blue
+		    rgbcolor true				% color true
+		} ifelse
+	    } { 
+		ColorDict exch 1 index 1 index known {		% dict /name
+		    get true					% color true
+		} {						% dict /name
+		    pop pop false				% false
+		} ifelse
+	    } ifelse
+	} def
+
+	/font { % fontname => font true | false
+	    false
+	} def
+
+	/integer { % number => int
+	    { cvi } stopped {
+		pop false
+	    } {
+		true
+	    } ifelse
+	} def
+    end def
+
+    /convert { % value type => value true | false
+	ConversionMethodsDict exch 2 copy known {	% value CMD type
+	    get exec					% value true | false
+	} {						% value CMD type
+	    pop pop pop false				% false
+	} ifelse
+    } def
+
+    /HandleProperty { % name value => -
+	ClientData 2 index 2 copy known {		% name value CD name
+	    get dup type /arraytype eq {		% name value [cls]
+		{					% name value client
+		    3 copy /HandleDefaults exch send	% name value client
+		    pop					% name value
+		} forall
+		pop pop					% -
+	    } {						% name value client
+		/HandleDefaults exch send		% -
+	    } ifelse
+	} {
+	    pop pop pop pop
+	} ifelse
+    } def
+
+    /IsUpper? { % ch => bool
+	dup 65 ge exch 90 le and
+    } def
+
+    /LowerCaseString { % string => string
+	0 1 2 index length 1 sub {		% string index
+	    2 copy get dup IsUpper? {		% string index char
+		32 add 3 copy put pop pop	% string
+	    } {
+		pop pop
+	    } ifelse
+	} for
+    } def
+
+    /GetOpenwinProps { % string => [ string1 string2 ... ]
+	1 dict begin
+	    /defaults exch def
+	    [
+		{
+		    defaults (openwindows.) search {
+			pop pop /defaults exch def
+		    } {
+			pop exit
+		    } ifelse
+		    defaults (\n) search {
+			3 1 roll pop
+			/defaults exch def
+		    } {
+			exit
+		    } ifelse
+		} loop
+	    ]
+	end
+    } def
+
+    /ExtractNameValue { % (name:\tvalue) => name (value) true | false
+	(:) search {			% (\tvalue) (:) (name)
+	    cvn 3 1 roll pop		% name (\tvalue)
+	    dup token {			% name (\tvalue) (xx) value
+		exch pop exch cvs	% name (value)
+		true			% name (value) true
+	    } {				% name (\tvalue)
+		pop pop false		% false
+	    } ifelse
+	} {					% (name:\tvalue)
+	    console (Syntax error in defaults specification: %\n) [ 4 -1 roll ]
+		fprintf
+	    false
+	} ifelse
+    } def
+
+    /GetPropertyString { % - => properties true | false
+	/Xcompat_private where {
+	    pop
+	    Xcompat_private begin
+		framebuffer /RESOURCE_MANAGER false XInternAtom 0
+		3 copy 0 string xgetproperty {
+		    string 4 1 roll pop pop pop xgetproperty
+		    pop pop pop pop					% string
+		    true
+		} {
+		    pop pop pop
+		    false
+		} ifelse
+	    end
+	} {
+	    false
+	} ifelse	    
+    } def
+
+classend def
+
+% Create an instance of the defaults service.
+% If there is already one, remove it.
+
+currentdict /DefaultsService known {
+    currentdict /DefaultsService get isobject? {
+	/destroy DefaultsService send
+    } if
+} if
+
+/DefaultsService /new ClassDefaultsService send def
+DefaultsService /addclient GlobalEventMgr send

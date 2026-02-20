@@ -1,0 +1,599 @@
+%       @(#)jot.ps 1.44 91/02/11
+%
+%
+%	Copyright (c) 1989 Sun Microsystems, Inc.
+%
+
+% ClassJotSelection.  This is the selection class for jot canvases.
+% The basic idea is this.  If SelectionContents is null, the data
+% is still on the client side of the connection.  When a request
+% for the selection is made, if SelectionContents is nonnull it is
+% returned in the request dict, otherwise a request is sent up the
+% wire to the client side, and the result stored as SelectionContents.
+
+/ClassJotSelection [ClassSelection]
+dictbegin
+    /SelectionContents null def
+dictend
+classbegin
+
+    /CanRenderAs 3 dict dup begin
+	/ContentsAscii dup def
+	/SelectionObjsize dup def
+    end def
+
+    /destroy {  % - => -
+        /SelectionContents null store
+	/destroy super send
+    } def
+
+    /Deselect { % - => -
+	Rank /Deselect Holder send
+    } def
+
+    /invalidate { % - => -
+	/SelectionContents null store	
+    } def
+
+    /GetContents { % - => contents of selection
+	SelectionContents null eq { % req req key
+	    Rank /contents-ascii Holder send
+	    /SelectionContents exch store
+	} if
+	SelectionContents
+    } def
+
+    /SingleRequest { % oldvalue key  => newvalue
+	{
+	    /ContentsAscii {
+		pop /GetContents self send
+	    }
+	    /SelectionObjsize {
+		pop /GetContents self send length
+	    }
+	    /DeleteSelection /DeleteContents {
+		Rank /delete-selection Holder send	% leave old value
+	    }
+	    /Default {
+		pop /UnknownRequest
+	    }
+	} case
+    } def
+
+classend def
+
+/ClassJotText [ClassWireClient]
+dictbegin
+    /ContentsAsciiString    null def
+dictend
+classbegin
+
+    /NewInit { % token => -
+	/NewInit super send		    % token
+	/wire_initialize self send	    % token
+	true /wire_settoken self send	    % -
+	JotTags /wire_settagsdict self send
+	true /wire_setautoflush self send
+    } def
+
+    /Deselect { % rank => -
+	[ exch /RankToRankno ClassJotCanvas send ] /DESELECT
+	    /wire_sendclient self send
+    } def
+
+    % Sends a message up the wire requesting the contents of
+    % the selection with the specified rank.  This does a
+    % blocking call, and while the call is blocked the client
+    % side calls ReceiveContentsAscii (defined below) to stuff
+    % the value in an instance variable.
+    %
+    /contents-ascii { % rank => string
+	[ /wire_token self send
+	  3 -1 roll /RankToRankno ClassJotCanvas send	% [token rank]
+	] /CONTENTSASCII /wire_sendclientsynchronized self send
+	ContentsAsciiString				% contents
+	/ContentsAsciiString null store
+    } def
+
+    /ReceiveContentsAscii { % string => -
+	/ContentsAsciiString exch store
+    } def
+
+    /delete-selection { % rank => -
+	[ /wire_token self send
+	  3 -1 roll /RankToRankno ClassJotCanvas send
+	] /DELETESELECTION /wire_sendclient self send
+    } def
+
+    % Make sure that this instance owns the selection.
+    %
+    /OwnSelection { % rankno => -
+	/RanknoToRank ClassJotCanvas send		    % rank
+	dup getselection dup null ne {		    % rank <sel>
+	    dup /Holder get self ne {		    % rank <sel>
+		pop true			    % rank true
+	    } {
+		pop pop false			    % false
+	    } ifelse
+	} {
+	    pop true				    % rank true
+	} ifelse
+
+	{
+	    self /new ClassJotSelection send	    % selection
+	    /setselection exch send		    % -
+	} if
+    } def
+classend def
+
+/ClassJotCanvas [ClassWireClient ClassTextCanvas]
+dictbegin
+    /scrollbar		    null def
+    /QuerySelectionStart?   false def
+dictend
+
+classbegin
+
+% Canvas Initialization:
+
+    /BG			    1 dup dup rgbcolor def
+    /Againable?		    true def
+    /Findable?		    true def
+    /Keyable?		    true def
+    /Receptible?	    true def
+    /Undoable?		    true def
+
+    % These are necessary because of copyarea stupidity
+    /Transparent	    false def
+    /Mapped		    true def
+
+    /AsciiReception { /string-input self send pop } def
+
+    /Absolute		    0 def	% scrollbar motions
+    /Line		    1 def
+    /Page		    2 def
+    /Document		    3 def
+    /HereToTop		    4 def
+    /TopToHere		    5 def
+
+    /DownTransition	    1 def	% Jot_BUTTONDOWN
+    /UpTransition	    2 def	% Jot_BUTTONUP
+    /MouseDragged	    3 def	% Jot_MOUSEDRAGGED
+
+    /LeftMouseButton	    1 def	% Jot_SELECTBUTTON
+    /MiddleMouseButton	    2 def	% Jot_MOUSEDRAGGED
+
+    /RankMap 6 dict dup begin
+	/PrimarySelection	0 2 copy exch def def
+	/SecondarySelection	1 2 copy exch def def
+	/ShelfSelection		2 2 copy exch def def
+    end def
+
+    /StylesMap 5 dict dup begin
+	/Default	0 def
+	/UnderScore	1 def
+	/StrikeThru	2 def
+	/Underscore	1 def
+	/StrikeThrough	2 def
+    end def
+
+    /PointsDict 5 dict dup begin
+	/LowEnd	    0 def
+	/HighEnd    1 def
+	/NearEnd    2 def
+	/FarEnd	    3 def
+	/AtPoint    4 def
+    end def
+
+    /RightShift	        /RightShift /keyforsymbol ClassKeyboard send def
+    /LeftShift	        /LeftShift /keyforsymbol ClassKeyboard send def
+
+    /MouseButton    null def
+
+% Class utility methods:
+
+    /EventToXY { % event => x y
+	currentcanvas exch			% cv event
+	self setcanvas
+	begin
+	    XLocation YLocation			% cv x y
+	end
+	3 -1 roll setcanvas
+    } def
+
+% Class Initialization:
+% Methods:
+
+    /NewInit { % - => -
+        /NewInit super send		%
+	/wire_initialize self send	% -
+	JotTags /wire_settagsdict self send
+    } def
+
+    /initialize { % token tags => -
+	/wire_settagsdict self send
+	true /wire_settoken self send
+	/CalculateXorPixel self send
+	TextFont /set-font self send
+    } def
+
+    /destroy {
+	[ /wire_token self send ] /OBSOLETE /wire_sendclient self send
+	framebuffer setcanvas		% remove self from GC
+	/destroy super send
+    } def
+
+    /booltoint { % bool => 1|0
+	{ 1 } { 0 } ifelse
+    } def
+
+    %
+    % Keyboard input
+    %
+    /KeyStart { % ev => names true
+	pop
+	[ /MetaKey /StandardKey ] true
+    } def
+
+    /StandardKey { % event => -
+	begin
+	    Name type /integertype eq {
+		[ /wire_token self send Name ] /KBD_TAG
+		    /wire_sendclient self send
+	    } if
+	end
+    } def
+
+    /MetaKey { % event => -
+	begin
+	    Name type /integertype eq {
+		[ /wire_token self send Name 16#80 or ] /KBD_TAG
+		    /wire_sendclient self send
+	    } if
+	end
+    } def
+
+    % SELECTIONS and MOUSE EVENTS:
+    %
+    % The C side stores ranks as numbers.  They are called ranknos.  The
+    % postscript stores ranks as names, e.g., /PrimarySelection.  They are
+    % called ranks on the postscript side.  The RankMap variable maps
+    % ranks to ranknos and ranknos to ranks.
+    %
+
+    /SetMouseButton { % event => -
+    	/Name get /MouseButton exch store
+    } def
+
+    /RankToRankno { % rank => rank-no
+	RankMap exch get
+    } def
+
+    /RanknoToRank /RankToRankno load def % rankno => rank
+
+    /InitiateSelection { % event selection tag => -
+	[ /wire_token self send			% ev sel tag [ tk
+	  4 -1 roll begin			% ev tag [ tk
+	    MouseButton load			% ev tag [ tk mb
+	    Rank RankToRankno			% ev tag [ tk mb rank
+	    Level PendingDelete? booltoint	% ev tag [ tk mb rank L pd?
+	    Style StyleToStyleno		% ev tag [ tk mb rank L pd? S
+	  end
+	  9 -1 roll /EventToXY self send	% tag [ tk mb rank L pd? S X Y
+	]					% tag [args]
+	exch /wire_sendclient self send
+    } def
+
+    /AdjustSelection { % event tag => -
+	[ 3 -1 roll /EventToXY self send ] exch /wire_sendclient self send
+    } def
+
+    /posname-to-posnum { % name => num
+	PointsDict exch get
+    } def
+
+    /StyleToStyleno { % style => num
+	StylesMap exch get
+    } def
+
+    /SelectionStart { %  event selection  =>  bool
+	1 index /SetMouseButton self send
+	dup /Pin get /AtPoint eq { /SELECT_DOWN } { /ADJUST_DOWN } ifelse
+	    /InitiateSelection self send
+	true
+    } def
+
+    /SelectionAdjust { %  event selection  =>  --
+	pop /ADJUST_DRAG /AdjustSelection self send
+    } def
+
+    /SelectionStop { %  event selection  =>  --
+	% Only attach insertion points on primary selections.
+	%
+	dup /Rank get /PrimarySelection eq {
+	    dup /InsertionPoint get 	    	    % ev sel ip
+	    3 copy pop	    	    	    	    % ev sel ip ev sel
+	    [ /wire_token self send 4 2 roll	    % ev sel ip [ tk ev sel
+	      /Rank get RankToRankno exch	    % ev sel ip [ tk rank ev
+	      /EventToXY self send		    % ev sel ip [ tk rank X Y
+	      6 -1 roll posname-to-posnum	    % ev sel [ tk rank X Y pos
+	    ]
+	    /ATTACH-INSERTION-POINT /wire_sendclient self send	% ev sel
+	} if
+	pop /ADJUST_STOP /AdjustSelection self send
+    } def
+
+    /SelectionContext { %  event selection => /SelectedObject | /UnselectedObject
+	dup null ne {
+	    /Rank get RankToRankno exch			    % rank ev
+	    /EventToXY self send			    % rank X Y
+	    [ /wire_token self send 5 2 roll ]		    % [args]
+		/INSELECTION /wire_callbackclient
+			self send not {			    % bool true | false
+		    false
+		} if
+	    { /SelectedObject } { /UnselectedObject } ifelse
+	} {
+	    pop pop /UnselectedObject
+	} ifelse
+    } def
+
+    % Ask client whether or not it wishes to start a selection at
+    % this location.
+    %
+    /DecideSelectionStart { % event => bool
+	[ /wire_token self send
+	  3 -1 roll /EventToXY self send
+	] /SELECTION_QUERY_START /wire_callbackclient self send
+	not { false } if
+    } def
+
+    /NewSelection { %  event rank  =>  selection
+	QuerySelectionStart? Trackable? not and {
+	    1 index /DecideSelectionStart self send
+	} {
+	    true
+	} ifelse
+	{
+	    Holder /new ClassJotSelection send exch pop
+	} {
+	    pop pop null
+	} ifelse
+    } def
+
+    % Mouse events.  Since it's not possible to track and make a
+    % selection at the same time, how we notify the C application of
+    % mouse events depends on whether or not we are going to be making a
+    % selection.  The JotCanvas is not trackable unless the C client is
+    % interested in mouse events.  Since TrackStart is called before
+    % NewSelection is called, TrackStart has to decide whether or not a
+    % selection is going to be made.  In particular, if the C client has
+    % not specified that it wants to decide whether or not to start the
+    % selection, the instance variable /QuerySelectionStart? is false,
+    % and so /TrackStart knows that a selection will eventually be made,
+    % and it lets the client side handle the mouse events itself.  If
+    % /QuerySelectionStart? is true, then it's TrackStart which queries
+    % the client side about beginning the selection, and if it doesn't
+    % want to, /TrackStart returns true and tracks the mouse.
+
+    /SendMouseEvent { % event action => -
+	[ /wire_token self send			    % ev act [ tk
+	  MouseButton load			    % ev act [ tk but
+	  5 -2 roll load exch			    % [ tk but act ev
+	  /EventToXY self send			    % [ tk but act X Y
+	] /MOUSE_EVENT /wire_sendclient self send   % -
+    } def
+
+    /TrackMotion { % event => -
+	dup /Name get /SendMouseEvent self send
+    } def	    
+
+    /TrackStart { % event => -
+	dup /SetMouseButton self send
+	QuerySelectionStart? {
+	    dup /DecideSelectionStart self send	    % bool
+	} {
+	    true
+	} ifelse
+	not {
+	    dup /Action get /SendMouseEvent self send
+	    [ /TrackMotion /TrackStop ] true
+	} {
+	    false
+	} ifelse
+    } def
+
+    /TrackStop { % event => -
+	dup /Action get /SendMouseEvent self send
+	/MouseButton null store
+    } def
+	
+
+    % SCROLLING:
+    %
+    % This is called when we are placed in a pane, or removed from
+    % one.  Tell client side what the story is.
+    %
+    /ScrollbarInitialize { % sbar => -
+	dup /scrollbar exch soften store
+	[ /wire_token self send
+	  3 -1 roll null ne {1} {0} ifelse
+	] /SCROLLINIT_TAG /wire_sendclient self send
+
+	scrollbar null ne {
+	    /HandleMotion { % event => -
+		/motion self send {
+		    /TopAnchor { pop -1 /Document }
+		    /BottomAnchor { pop 1 /Document }
+		    /ElevatorUp { pop -1 /Line }
+		    /ElevatorDown { pop 1 /Line }
+		    /PageUp { pop -1 /Page }
+		    /PageDown { pop 1 /Page }
+		    /Previous { pop PreviousLow /Absolute }
+		    /HereToTop /TopToHere {
+			/motion self send
+		    }
+		    /ElevatorDrag {
+			/EventToValue self send
+			/Absolute
+			1 index /setvalue self send
+		    }
+		} case
+		[ 3 1 roll ]
+	    } /installmethod scrollbar send
+	} if
+    } def
+
+    % Called from JotPane when a scrolling request is made.
+    % When motion-name is /Absolute <arg> is a buffer position.
+    % Otherwise, motion-name is either /HereToTop or /TopToHere
+    % and <arg> is the event, which we can NOW interpret in our
+    % own coordinate space.
+    %
+    /Scroll { % [ <arg> motion-name] sbar => -
+	pop aload pop
+	dup /HereToTop eq 1 index /TopToHere eq or {
+	    exch gsave
+		self setcanvas
+		begin YLocation end
+	    grestore
+	    exch			% Y motion-name
+	} if
+	load				% value motion-num
+	[ wire_token self send
+	  4 -2 roll
+	] /SCROLLBAR_TAG /wire_sendclient self send
+    } def
+
+    % Send string up the connection to the client.  The length of
+    % the string is sent up the wire followed by the actual characters.
+    % When the canvas field of the event is NULL that means insert
+    % the characters at the event position.  Otherwise, use the caret
+    % position.
+    %
+    /string-input { % event string => event
+	[ /wire_token self send				% ev str [ tk
+	   3 index begin				% ev str [ tk
+	    Canvas null ne {
+		-1 -1
+	    } {
+		currentdict /EventToXY self send
+	    } ifelse
+	  end						% ev str [ tk X Y
+	  5 -1 roll dup length exch			% ev [ tk X Y len str
+	] /STRINGINPUT_TAG /wire_sendclient self send	% ev
+    } def
+
+    /set-font { % font => -
+	[ /wire_token self send			    % font [ tk
+	  3 -1 roll dup /FontName get
+	    256 string cvs exch			    % [ tk name font
+	  dup fontscale exch			    % [ tk name scale font
+	  /PrinterMatched get booltoint		    % [ tk name scale pm?
+	] /SET-FONT /wire_sendclient self send	    % -
+    } def
+
+% OVERRIDES:
+
+    /HandleDamage { % event => -
+	% Make sure all parents are valid to insure they do not immediately
+	% reshape me as part of the Fix recursion.  This avoids double repaints
+	% of opaque children of opaque canvases.
+	%
+	% This next line stolen from ClassCanvas.
+	%
+	/parents self send arrayreverse {/?validate exch send} forall
+	pop [ /wire_token self send ] /DAMAGE_TAG
+	    /wire_sendclient self send
+    } def
+
+    /EraseCanvas { % - => -
+	gsave
+	    self setcanvas
+	    BG FillCanvas
+	grestore
+    } def
+
+    /DamageStart { % - => -
+	gsave
+	    self setcanvas
+	    damagepath pathbbox				% x1 y1 x2 y2
+	    clipcanvas
+	    BG FillCanvas
+	    [ 5 1 roll exch pop				% [ x1 y1 y2
+	      3 -1 roll pop				% [ y1 y2
+	    ] /DAMAGESTART /wire_sendclient self send	% -
+    } def
+
+    /DamageEnd { % - => -
+	    /FixChildren self send
+	    newpath clipcanvas
+	grestore
+    } def
+
+    /reshape { % x y w h => -
+	4 copy /reshape super send
+	[ /wire_token self send
+	  4 2 roll
+	] /RESHAPE_TAG /wire_sendclient self send
+	pop pop
+    } def
+
+    /Paint { % - => -
+	clippath extenddamageall
+    } def
+
+    /settextfont { % font => -
+	/settextfont super send
+	TextFont /set-font self send
+    } def
+
+    /setcolors { % BG FG => -
+	/setcolors super send			    % -
+	/CalculateXorPixel self send
+    } def
+
+    /CalculateXorPixel {    % - => -
+	gsave
+	    [ /wire_token self send		    % [ tk
+	      [BG FG] {				    % [ tk <colors>
+		setcolor [ currenthsbcolor ]
+		{
+		    256 mul cvi
+		} forall
+	      } forall				    % [ tk <hsb> <hsb>
+	      BG setcolor currentpixel		    % [ tk <hsb> <hsb> bgp
+	      FG setcolor currentpixel		    % [ tk <hsb> <hsb> bgp fgp
+	      xor				    % [ tk <hsb> <hsb> xorp
+	    ] /COLORS /wire_sendclient self send    % -
+	grestore
+    } def
+
+    /HandleFind { % event => -
+	begin
+	    [
+		/wire_token self send			% [ tk
+		Action /Rank get dup 4 1 roll		% rank [ tk rank
+		RankToRankno				% rank [ tk rankno
+		1 KeyState length 0 gt {		% rank [ tk rankno 1
+		    KeyState 0 get dup RightShift eq
+		    exch LeftShift eq or {
+			pop 0				% rank [ tk rank 0
+		    } if
+		} if
+	    ] /FINDSELECTION /wire_sendclient self send	% rank
+	    /SecondarySelection eq {			% -
+		/destroy Action send
+	    } if
+	end
+    } def
+
+    /HandleUndo { % event => -
+	[ /wire_token self send ] /UNDO /wire_sendclient self send
+    } def
+
+    /HandleAgain { % event => -
+	[ /wire_token self send ] /REDO /wire_sendclient self send
+    } def
+
+classend def

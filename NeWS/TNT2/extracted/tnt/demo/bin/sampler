@@ -1,0 +1,72 @@
+#!/bin/sh
+psh << 'EOF'
+
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)sampler 1.8 91/02/11
+%
+
+% This program runs one copy of every TNT class demo.
+% Individual demos can be exited from their menu, or the program can
+% be interrupted, and all will go away.
+
+% First see whether there will be any joy in Mudville:
+IncludeDemos? not {
+    (/demo methods have been removed from your TNT classes to save space.\n) print
+    (\tTo get them back add the line "systemdict /IncludeDemos? true put"\n) print
+    (\tto your ~/.startup.ps file, and restart OpenWindows.\n) print
+    quit
+} if
+
+% List all the classes that have /demo methods
+/Classes [
+
+    % Infrastructure demos
+    ClassRegion
+    ClassBorderBag
+
+    % OPEN LOOK component demos -- roughly ordered most complex -> most simple
+    % This way the simple ones will obscure the complex ones, and be played
+    % with first. 
+
+    ClassCheckBoxes
+    ClassSettings
+    ClassScrollList
+    ClassNotice
+    ClassVScrollbar
+    ClassHScrollbar
+    ClassVGauge
+    ClassHGauge
+    ClassVSlider
+    ClassHSlider
+    ClassNumericField
+    ClassTextField
+    ClassMenu
+    ClassLabel
+    ClassMenuButtons
+    ClassButtons
+    ClassPopupWindow
+    ClassBaseWindow
+] def
+
+% Now show the demo methods.
+% Keep a reference to each window and each object in the userdict, to keep 
+% them from going obsolete.
+
+/QuitDemo { % control => -
+    pop userdict self undef
+} def
+
+Classes {						    % class
+    /demo exch send 					    % window instance
+    /QuitFromUser //QuitDemo /installmethod 4 index send    % window instance
+    userdict 3 1 roll put
+    pause
+} forall
+
+currentprocess /BindOverride true put /quit {} def
+EOF

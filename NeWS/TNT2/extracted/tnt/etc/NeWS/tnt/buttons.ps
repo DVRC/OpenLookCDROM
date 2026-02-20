@@ -1,0 +1,820 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#) buttons.ps 1.40 91/02/11
+%
+
+/ClassButtons [ClassItemGroup ClassControl]
+dictbegin
+    /tmpwidth		0 def
+    /MaxInteriorWidth   0 def
+    /MaxInteriorHeight  0 def
+    /ItemWidth		0 def
+    /ItemHeight		0 def
+dictend
+
+classbegin
+    /Abbreviated?   false def
+
+    % This is an offscreen canvas used to build the busy pattern of
+    % the button.  It must be at least as large as the area to be
+    % made busy.  Once again, if the area has a clippath then other
+    % methods can be used to fill the area with a pattern.
+    %
+    /BusyCanvas 512 256 1 matrix null buildimage def
+
+    %   These are the glyphs used for the middle part of the button.
+    %   Each key in the dictionary refers to how many pixels wide the
+    %   corresponding glyphs are.  For each width there are five
+    %   glyphs: for the top, middle, and bottom portions of the 3D button,
+    %   and the top and middle portions of the 2D button, in that order.
+    %
+    /ButtonGlyphs 7 dict dup begin
+	64 [ (\042\042\042\042) (\047\047\047\047) (\054\054\054\054)
+	     (\221\221\221\221) (\230\230\230\230)
+	   ] def
+	32 [ (\042\042) (\047\047) (\054\054)
+	     (\221\221) (\230\230)
+	   ] def
+	16 [ (\042) (\047) (\054)
+	     (\221) (\230)
+	   ] def
+	8  [ (\041) (\046) (\053)
+	     (\220) (\227)
+	   ] def
+	4  [ (\040) (\045) (\052)
+	     (\217) (\226)
+	   ] def
+	2  [ (\037) (\044) (\051)
+	     (\216) (\225)
+	   ] def
+	1  [ (\036) (\043) (\050)
+	     (\215) (\224)
+	   ] def
+    end def
+    /LeftCap [ (\030) (\031) (\032)
+	       (\213) (\222)
+	     ] def
+    /RightCap [ (\034) (\033) (\035)
+	        (\214) (\223)
+	      ] def
+
+    /Abbrev	[ (\302) (\164) (\303) ] def
+
+    /DefaultRingGlyphs 5 dict dup begin
+	1 108 cvis def
+	2 109 cvis def
+	4 110 cvis def
+	8 111 cvis def
+	16 112 cvis def
+    end def
+    /LeftDefaultRingCap 106 cvis def
+    /RightDefaultRingCap 107 cvis def
+
+    gsave
+	GraphicFont setfont
+	/EndCapWidth RightCap 2 get stringwidth pop def
+	/AbbrevWidth (\026) stringwidth pop def
+    grestore
+
+    /Justification  /Left def
+    /Default	    null def
+
+% Defaults:
+
+    /HandleDefaults { % name value => -
+	exch {
+	    /buttonfont {
+		/font /convert ClassDefaultsService send {
+		    /settextfont self send
+		} if
+	    }
+	    /Default {
+		pop
+	    }
+	} case
+    } def
+
+    /buttonfont self /addclient DefaultsService send
+
+    % Takes an array of strings and appends them to ButtonMiddle,
+    % ButtonBottom and ButtonTop respectively.  The three variables
+    % are def'd into currentdict.
+    %
+    /AppendStrings { % <button-strings-array> => -
+	aload pop
+	3D? {
+	    pop pop
+	    ButtonMiddle exch append /ButtonMiddle exch store
+	    ButtonBottom exch append /ButtonBottom exch store
+	    ButtonTop exch append /ButtonTop exch store
+	} {
+	    ButtonMiddle exch append /ButtonMiddle exch store
+	    ButtonTop exch append /ButtonTop exch store
+	    pop pop pop
+	} ifelse
+    } def
+
+    % This builds the three strings necessary for drawing a button
+    % of size WIDTH and defines them in currentdict.  When all the
+    % buttons are to be the same size, this routine is called once
+    % and the strings are stored as instance variables.  When each
+    % button is its own size, the three strings are stored in the
+    % item dict for that button.
+    %
+    /BuildButtonStrings { % width => -
+        3D? { 1 add } if % Compensate for 2D button shadow
+	/tmpwidth exch store
+	/ButtonTop    nullstring def
+	/ButtonMiddle nullstring def
+	/ButtonBottom nullstring def
+
+	LeftCap AppendStrings
+	[ 64 32 16 8 4 2 1 ] {  % size
+	    {			    % size
+		dup tmpwidth gt {
+		    pop exit	    % -
+		} {
+		    ButtonGlyphs 1 index get
+		    AppendStrings
+		    tmpwidth 1 index sub /tmpwidth exch store
+		} ifelse
+	    } loop
+	} forall
+	RightCap AppendStrings
+    } def
+
+    % This builds the default ring and stores it as /Default in
+    % currentdict.
+    %
+    /BuildDefaultRing { % width => -
+        3D? { 1 add } if % Compensate for 2D button shadow
+	/Default LeftDefaultRingCap def
+	/tmpwidth exch store
+	[ 16 8 4 2 1 ] {
+	    {
+		dup tmpwidth gt {
+		    pop exit
+		} {
+		    DefaultRingGlyphs 1 index get
+		    Default exch append /Default exch def
+		    tmpwidth 1 index sub /tmpwidth exch store
+		} ifelse
+	    } loop
+	} forall
+	/Default Default RightDefaultRingCap append def
+    } def
+
+    /ItemInteriorSize { % item => w h
+	dup /Abbreviated? get {
+	    pop 0 0
+	} {
+	    /DisplayItem get /DisplayItemSize self send
+	} ifelse
+    } def
+
+    /Paint {
+	/Paint super send
+	ItemList {
+	    /PaintItem self send
+	} forall
+    } def
+
+    % Set the pressed state of a button.
+    %
+    /SetPressedState { % item state => -
+	exch begin
+	    /PressedState exch def
+	end
+    } def
+
+    /SetItemWidthHeight { % - => -
+	Abbreviated? {
+	    /ItemWidth AbbrevWidth def
+	    /ItemHeight AbbrevWidth def
+	} {
+	    GraphicFont setfont
+	    ButtonTop stringbbox
+	    /ItemHeight exch def
+	    /ItemWidth exch def
+	    pop pop
+	} ifelse
+    } def
+
+    /minsize {
+	/?ValidateItemList self send
+	/minsize super send
+    } def
+
+    /ValidateItemList {
+	gsave
+	    /Abbreviated? true def
+	    /MaxInteriorWidth 0 def
+	    /MaxInteriorHeight 0 def
+	    ItemList {
+		begin
+		    Abbreviated? {
+			AbbrevWidth dup
+			SetItemWidthHeight
+		    } {
+			self /Abbreviated? false put
+			TextFont setfont
+			currentdict ItemInteriorSize exch
+			FixedItemSize? not {		    % ih iw
+			    dup BuildButtonStrings	    % ih iw
+			    SetItemWidthHeight		    % ih iw
+			    currentdict /Default known {    % ih iw
+				dup BuildDefaultRing	    % ih iw
+			    } if
+			} if
+		    } ifelse
+		    MaxInteriorWidth max /MaxInteriorWidth exch store
+		    MaxInteriorHeight max /MaxInteriorHeight exch store
+		end
+	    } forall
+
+	    % Build button strings and save width and height in instance
+	    % if buttons are all the same size.
+	    %
+	    Placement {
+		/Grid {
+		    MaxInteriorWidth BuildButtonStrings
+		    SetItemWidthHeight
+		    /CellSize [ ItemWidth ItemHeight ] cvx promote
+		    /default self send dup null ne {
+			/Item self send begin
+			    MaxInteriorWidth BuildDefaultRing
+			end
+		    } {
+			pop
+		    } ifelse
+		}
+		/Spaced {
+		    10 dict begin
+			MaxInteriorWidth BuildButtonStrings
+			SetItemWidthHeight
+			ItemWidth ItemHeight
+		    end				    % width height
+		    /CellSize [ 4 2 roll ] cvx promote
+		}
+	    } case
+	grestore
+    } def
+
+    % Paint the button part of the current item.  Currentdict
+    % is the item whose button we are painting.  This is factored
+    % this way so that we can use this for painting an item and
+    % previewing an item.
+    %
+    /PaintItemButton { % - => -
+	Abbreviated? {
+	    ItemX ItemY
+	    3D? {
+	        1 add ItemWidth 2 sub ItemHeight 2 sub
+	        PressedState /Pressed eq /Paint3DBox self send
+	    } {
+		% XXX: There doesn't seem to be an unadorned abbrev button
+		% in olglyph, so we use the abbrev menu button and wipe out
+		% the arrow.
+		2 copy ItemHeight add 1 sub
+	        GraphicFont setfont
+	        2DFG setcolor moveto (\026) show % XXX
+		2 2.1 xyadd % XXX fudge because of buttons w/ fractional H?
+		11 10 rectpath
+		PressedState /Pressed eq { 2DFG } { 2DBG } ifelse
+		setcolor fill
+	    } ifelse
+	} {
+	    ItemX ItemY ItemHeight add			% bx by
+	    GraphicFont setfont
+	    3D? {
+		PressedState /Pressed eq
+		{ BG2 BG0 BG3 } { BG BG3 BG0 } ifelse	% bx by c1 c2 c3
+		5 -2 roll				% c1 c2 c3 bx by 
+		[ ButtonTop ButtonBottom ButtonMiddle ] { % <colors> bx by str
+		    4 1 roll 3 -1 roll setcolor
+		    2 copy moveto 3 -1 roll show	% <n-1 colors> bx by
+		} forall				% <0 colors> bx by
+	    } {
+		2DFG setcolor 2 copy moveto ButtonTop show
+		PressedState /Pressed ne { 2DBG setcolor } if
+		2 copy moveto ButtonMiddle show
+	    } ifelse					% bx by
+
+	    currentdict /Default known {
+		moveto 2DFG setcolor Default show		% -
+	    } {
+		pop pop					% -
+	    } ifelse
+	    VisualState /Busy eq {
+		gsave
+		    BusyCanvas setcanvas
+		    erasepage
+		    .87 setgray
+		    0 0 moveto
+		    ButtonMiddle show
+		grestore
+		gsave
+		    ForegroundColor setcolor
+		    ItemX ItemY 1 add translate
+		    false BusyCanvas imagemaskcanvas
+		grestore
+	    } if
+	} ifelse
+    } def
+
+    % Paint a display item IN THE CURRENT ITEM, either left justified
+    % or centered.  Normally the display item will be taken from the
+    % button group item we're currently displaying, but when we're
+    % previewing the display item which is the menu default will be
+    % passed as an argument.
+    %
+    /PaintItemDisplayItem { % <displyitem> <justification> => -
+        3D? {
+	  FG
+	} {
+	  PressedState /Pressed eq { 2DBG } { 2DFG } ifelse
+	} ifelse
+	setcolor
+	TextFont setfont			    % D J
+	/Centered eq {				    % D
+	    ItemX ItemWidth currentdict ItemInteriorSize pop sub 2 div add
+	} {
+	    ItemX EndCapWidth add
+	} ifelse				    % D x
+	ItemHeight 2 index DisplayItemSize exch pop sub 2 div round
+	    ItemY add				    % D x y
+	moveto					    % D
+	DisplayItemPaint
+	VisualState /Inactive eq {
+	    BackgroundColor setcolor
+	    ItemX EndCapWidth add ItemY 1 add
+	    ItemWidth EndCapWidth 2 mul sub ItemHeight 3 sub
+	    StippleRect
+	} if
+    } def
+
+    % Paint an item.  First paint the button, and then paint the
+    % display item.
+    %
+    /PaintItem { % item => -
+	begin
+	    PaintItemButton
+	    DisplayItem Justification PaintItemDisplayItem
+	end
+    } def
+
+    /NewItem { % <item> => <item-dict>
+	dictbegin
+	    dup type /arraytype eq {
+		aload pop
+		/Notifier exch def
+	    } if
+	    /DisplayItem exch def
+	    /Abbreviated?   false def
+	    /VisualState    /Active def
+	    /PressedState   /Normal def
+	dictend
+    } def
+
+    /ItemStart { % index => -
+        ItemList exch get
+	dup /Pressed SetPressedState
+	/PaintItem self send
+    } def
+
+    /ItemCancel { % index => -
+	ItemList exch get
+	dup /Normal SetPressedState
+	/PaintItem self send
+    } def
+
+    /ItemStop { % index => -
+	dup ItemList exch get			    % index Item
+	dup /Normal SetPressedState		    % index Item
+	/PaintItem self send			    % index
+	dup /itemnotifier self send		    % index notifier
+	/ExecuteNotifier self send		    % -
+    } def
+
+    %   Public interfaces.
+    %
+
+    /item { % index => display-item
+	/Item self send begin
+	    DisplayItem
+	    currentdict /Notifier known {
+		/Notifier load 2 array astore
+	    } if
+	end	
+    } def
+
+    /setabbreviated { % index bool => -
+	exch /Item self send /Abbreviated? 3 -1 roll put
+	/invalidate self send
+    } def
+
+    /abbreviated? { % index => bool
+	/Item self send /Abbreviated get
+    } def
+
+    /setdefault { % index => -
+	/invalidate self send
+	/default self send dup null ne {
+	    /Item self send /Default undef
+	} {
+	    pop
+	} ifelse
+	dup /Item self send /Default dup put
+	/Default exch promote
+    } def
+
+    /default { % - => default
+	Default
+    } def
+
+    /setnotifier { % notifier => -
+	/Notifier exch def
+    } def
+
+    /notifier { % - => notifier
+	/Notifier load
+    } def
+
+    /setitemnotifier { % index notifier => -
+	exch /Item self send /Notifier 3 -1 roll put
+    } def
+
+    /itemnotifier { % index => notifier
+	/Item self send begin /Notifier load end
+    } def
+
+    /setvisualstate { % index state => -
+        1 index /Item self send begin
+	    /VisualState exch def
+	end
+	
+	/valid? self send {
+	    /paintitem self send
+	}{
+	    pop
+	} ifelse
+
+    } def
+
+    /visualstate { % index => state
+        /Item self send /VisualState get
+    } def
+
+
+    /setjustification { % /Left|/Centered => -
+	/invalidate self send
+	/Justification exch promote
+    } def
+
+    /justification { % - => /Left|/Centered
+	Justification
+    } def
+
+    IncludeDemos? {
+	/demo {
+	  5 dict begin
+	    /win null framebuffer /new ClassBaseWindow send def
+	    /buttons /Spaced win /new ClassButtons send def
+
+	    % The "NeWS" item forks a separate process so the canvas's
+	    % eventmgr isn't tied up too long doing all the beeps; else
+	    % any new events like new mouse-downs might get lost.
+	    [ (Weather) (Sport) (Gossip)
+		[(NeWS) {pop pop {5 {beep .0005 sleep} repeat} fork pop}]
+		(Entertainment) (Finance) (Happy Talk)
+	    ] /setitemlist buttons send
+	    3 /setdefault buttons send
+	    8 8 /setgaps buttons send
+	    /preferredsize {278 50} /installmethod buttons send
+	    /minsize { 194 76 } /installmethod buttons send
+
+	    win /settarget buttons send
+	    /sillyfooter /setnotifier buttons send
+	    /sillyfooter { % index buttons => -
+		/item exch send
+		(The % is extremely boring...) [3 -1 roll] sprintf ()
+		/setfooter self send
+	    } /installmethod win send
+	    
+	    % Add the buttons to the window and Go!
+	    /Center buttons /addclient win send
+	    (ClassButtons Demo) /setlabel win send
+	    () (This uses the /Spaced layout style -- reshape it!) /setfooter win send
+	    20 10 20 10 /setgaps win send
+	    /place win send
+	    /new ClassEventMgr send /activate win send
+	    /map win send
+	    win buttons
+	  end
+	} def
+    } if
+
+classend def
+
+/ClassMenuButtons ClassButtons []
+classbegin
+
+    /Menuable?		true def
+    /PullRight		[ (\060) (\061) (\062) ] def
+    /PullDown		[ (\055) (\056) (\057) ] def
+    /MenuArrowOffset	9 def
+    gsave
+	GraphicFont setfont
+	/MenuRightWidth	PullRight 2 get stringwidth pop def
+	/MenuDownWidth	PullDown 2 get stringwidth pop def
+    grestore
+
+    /ItemInteriorSize { % item => width height
+	/ItemInteriorSize super send				% w h
+	exch MenuArrowOffset add MenuRightWidth add exch	% w h
+    } def
+
+    /NewItem { % [ display-item menu ] => -
+	aload pop exch /NewItem super send	% menu dict
+	begin
+	    /Menu exch def
+	    /MenuDirection /Down def
+	currentdict end
+    } def
+
+    % Superclass paints the button, and the display item, and all
+    % we do is paint the menu arrow.
+    %
+    /PaintItem { % item => -
+	dup /PaintItem super send
+	begin
+	    Abbreviated? {
+	        ItemX ItemY
+		4 11 xyadd
+	    } {
+		ItemX ItemWidth add EndCapWidth sub
+		MenuDirection /Down eq {
+		    MenuDownWidth
+		} {
+		    MenuRightWidth
+		} ifelse
+		sub
+		ItemY ItemHeight 2 div add 3 add
+	    } ifelse
+	    moveto
+
+	    GraphicFont setfont
+	    3D? { BG2 BG0 BG3 } {
+	        2DBG 2DFG
+		PressedState /Pressed eq { exch } if
+		dup
+	    } ifelse
+	    MenuDirection /Down eq { PullDown } { PullRight } ifelse
+	    { exch setcolor show } forall
+	end
+    } def	
+
+    /EraseRect? false def
+
+    /PreviewItem { % item => -
+	begin
+	    Abbreviated? {
+		currentdict PaintItem
+	    } {
+	        currentdict GetMenu		% menu
+		{   /default self send
+		    /choicemode self send
+		} 1 index send			% menu index mode
+		dup /Command eq {
+		    pop				% menu index
+		    PaintItemButton
+
+		    dup null eq { pop pop } {
+			/item 3 -1 roll send dup isarray? {0 get} if
+			ItemX EndCapWidth add ItemY 1 add
+			ItemWidth EndCapWidth 2 mul sub ItemHeight 2 sub
+			gsave
+			    rectpath clip
+			    /Left PaintItemDisplayItem
+			grestore
+		    } ifelse
+		} {				% menu index mode
+		    /EraseRect? true def
+		    /Exclusive eq 1 index null eq or { true } {
+		        			% menu index
+			/value 2 index send	% menu index value
+			1 index arraycontains? not % menu index bool
+		    } ifelse			% menu index bool
+		    ItemX ItemY ItemWidth ItemHeight rectpath
+		    3D? {
+		        BG setcolor fill
+		        ItemX ItemY 2 add
+			ItemWidth 1 sub ItemHeight 2 sub
+			4 copy 9 -1 roll% menu index x y w h x y w h bool
+		        Paint3DBox	% menu index x y w h
+			FG setcolor
+		    } {
+			2DBG setcolor fill
+		        ItemX ItemY 1 add
+		        ItemWidth 1 sub ItemHeight 1 sub
+			4 copy 9 -1 roll% menu index x y w h x y w h bool
+		        Paint2DBox	% menu index x y w h
+		    } ifelse
+		    4 index null eq { 6 { pop } repeat } {
+			gsave
+			    3 3 xysub 4 2 roll
+			    2 1 xyadd 4 2 roll		% menu index x y w h
+			    rectpath clip		% menu index
+			    /item 3 -1 roll send	% item
+			    dup isarray? {0 get} if	% displayitem
+			    [ exch ForegroundColor ]
+			    /Left PaintItemDisplayItem
+			grestore
+		    } ifelse
+		} ifelse
+	    } ifelse
+	end
+    } def
+
+    /ItemStart { % index => -
+        ItemList exch get
+	dup /Pressed SetPressedState
+	/PreviewItem self send
+    } def
+
+    /ItemCancel {
+	ItemList exch get
+	dup /EraseRect? known {
+	    dup begin ItemX ItemY ItemWidth ItemHeight end rectpath
+	    BackgroundColor setcolor fill
+	    dup /EraseRect? undef
+	} if
+	dup /Normal SetPressedState
+	/PaintItem self send
+    } def
+
+    /ItemStop { % index => -
+	ItemList exch get
+	dup /EraseRect? known {
+	    dup begin ItemX ItemY ItemWidth ItemHeight end rectpath
+	    BackgroundColor setcolor fill
+	    dup /EraseRect? undef
+	} if
+	dup /Normal SetPressedState
+	dup /PaintItem self send
+	GetMenu
+	self /ExecuteDefault 3 -1 roll send
+    } def
+
+    /MenuStart { % posname event => posname event false | <menu true>
+	dup begin XLocation YLocation end		    % posname ev x y
+	/pointtoitem self send {			    % posname ev index
+	    /MenuedItem 1 index promote			    % posname ev index
+	    dup /Item self send begin			    % posname ev index
+		VisualState /Active eq {		    % posname ev index
+		    /ItemStart super send		    % posname ev
+		    currentdict GetMenu			    % posname ev menu
+		    MenuDirection /Right eq {
+			ItemX ItemWidth add		    % pname ev menu mx
+			Abbreviated? 3D? and { 1 sub } if
+			ItemY ItemHeight 2 div add	    % pname ev menu mx my
+			2 copy setcursorlocation
+		    } {
+			3 -1 roll pop /NorthWest 3 1 roll   % posname ev menu
+			ItemX ItemWidth 2 div add	    % pname ev menu cx
+			/?validate 2 index send
+			/size 2 index send pop
+			    2 div sub			    % pname ev menu mx
+			ItemY				    % pname ev menu mx my
+			3D? Abbreviated? not and {
+			    1 add % Compensate for 2D button shadow
+			} if
+		    } ifelse
+		    3 index begin
+			/YLocation exch def
+			/XLocation exch def
+		    end
+		} {
+		    pop null
+		} ifelse
+	    end
+	    true				% posname event menu|null true
+	} {					% posname ev
+	    false				% posname event false
+	} ifelse
+    } def
+
+    /MenuStop { % menu => -
+	pop
+	MenuedItem /ItemCancel self send
+	/MenuedItem unpromote
+    } def
+
+    /GetMenu { % item => menu
+	/Menu get dup xcheck {
+	    exec
+	} if
+    } def
+
+    /item { % index => item-spec
+	/Item self send begin
+	    DisplayItem
+	    currentdict /Menu known {
+		currentdict GetMenu
+		2 array astore
+	    } if
+	end
+    } def		
+	
+    /setmenudirection { % index direction => -
+	exch /Item self send /MenuDirection 3 -1 roll put
+    } def
+
+    /menudirection { % index => direction
+	/Item self send /MenuDirection get
+    } def
+
+    /setmenu { % index menu  => -
+	exch /Item self send /Menu 3 -1 roll put
+    } def
+
+    /menu { % index => menu
+	/Item self send /GetMenu self send
+    } def
+
+    IncludeDemos? {
+	/demo {
+	  5 dict begin
+	    /MyCallback {
+		dup 3 1 roll /item exch send ()
+		/setfooter /sendtarget 5 -1 roll send
+	    } def
+
+	    /buttons /Grid framebuffer /new ClassMenuButtons send def
+	    15 0 /setgaps buttons send
+
+	    [
+		[ (File)
+		  /Grid framebuffer /new ClassMenu send
+		  [ (Save Current File)
+		    (Store as New File)
+		    (Load File)
+		    (Insert File)
+		    (Set Directory)
+		    (Empty Document)
+		  ] /setitemlist 2 index send
+		  0 /setdefault 2 index send
+		  /MyCallback load /setnotifier 2 index send
+		] 
+
+		[ (View)
+		  /Grid framebuffer /new ClassMenu send
+		  [ (Select line at number)
+		    (Position)
+		    (Caret to top)
+		    (Move Caret to Top)
+		    (Move Caret to Bottom)
+		    (Line Wrap...)
+		  ] /setitemlist 2 index send
+		  1 /setdefault 2 index send
+		  /MyCallback load /setnotifier 2 index send
+		]
+
+		[ (Edit)
+		  /Grid framebuffer /new ClassMenu send
+		  [ (Undo) (Copy) (Cut) (Paste) ] /setitemlist 2 index send
+		  0 /setdefault 2 index send
+		  /MyCallback load /setnotifier 2 index send
+		]
+
+		[ (Find)
+		  /Grid framebuffer /new ClassMenu send
+		  [(Find Next) (Replace Next) (Find...)] /setitemlist 2 index send
+		  /MyCallback load /setnotifier 2 index send
+		]
+
+	    ] /setitemlist buttons send
+	    3 /Right /setmenudirection buttons send
+
+	    % instantiate a window and insert the bag
+	    /win buttons framebuffer /new ClassBaseWindow send def
+
+	    % And set the menubuttons's target to be the window.
+	    win /settarget buttons send
+
+	    (ClassMenuButtons Demo) /setlabel win send
+	    () (This uses the /Grid layout style) /setfooter win send
+	    10 10 10 10 /setgaps win send
+	    /place win send
+	    /new ClassEventMgr send /activate win send
+	    /map win send
+	    win buttons
+	  end
+	} def
+    } if
+
+classend def

@@ -1,0 +1,257 @@
+;GIL-2
+(
+(
+	:type                   :base-window
+	:name                   window1
+	:owner                  nil
+	:width                  448
+	:height                 400
+	:background-color       ""
+	:foreground-color       ""
+	:label                  "Base Window"
+	:label-type             :string
+	:mapped                 t
+	:show-footer            t
+	:resizable              t
+	:icon-file              ""
+	:icon-mask-file         ""
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :control-area
+	:name                   controls1
+	:owner                  window1
+	:help                   ""
+	:x                      0
+	:y                      0
+	:width                  448
+	:height                 400
+	:background-color       ""
+	:foreground-color       ""
+	:show-border            nil
+	:menu                   nil
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :slider
+	:name                   slider2
+	:owner                  controls1
+	:help                   ""
+	:x                      16
+	:y                      8
+	:width                  258
+	:height                 20
+	:value-x                78
+	:value-y                8
+	:slider-width           100
+	:foreground-color       ""
+	:label                  "Default:"
+	:label-type             :string
+	:layout-type            :horizontal
+	:orientation            :horizontal
+	:show-endboxes          nil
+	:show-range             t
+	:show-value             t
+	:min-value              0
+	:max-value              100
+	:ticks                  0
+	:notify-handler         nil
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :slider
+	:name                   slider3
+	:owner                  controls1
+	:help                   ""
+	:x                      36
+	:y                      40
+	:width                  191
+	:height                 32
+	:value-x                76
+	:value-y                40
+	:slider-width           100
+	:foreground-color       ""
+	:label                  "r.icon"
+	:label-type             :glyph
+	:layout-type            :horizontal
+	:orientation            :horizontal
+	:show-endboxes          nil
+	:show-range             t
+	:show-value             nil
+	:min-value              0
+	:max-value              100
+	:ticks                  0
+	:notify-handler         nil
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :slider
+	:name                   slider4
+	:owner                  controls1
+	:help                   ""
+	:x                      16
+	:y                      96
+	:width                  351
+	:height                 20
+	:value-x                188
+	:value-y                96
+	:slider-width           100
+	:foreground-color       ""
+	:label                  "hide-range-showboxes:"
+	:label-type             :string
+	:layout-type            :horizontal
+	:orientation            :horizontal
+	:show-endboxes          t
+	:show-range             nil
+	:show-value             t
+	:min-value              0
+	:max-value              100
+	:ticks                  0
+	:notify-handler         nil
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :slider
+	:name                   slider5
+	:owner                  controls1
+	:help                   ""
+	:x                      16
+	:y                      128
+	:width                  325
+	:height                 26
+	:value-x                96
+	:value-y                128
+	:slider-width           150
+	:foreground-color       ""
+	:label                  "five-ticks:"
+	:label-type             :string
+	:layout-type            :horizontal
+	:orientation            :horizontal
+	:show-endboxes          nil
+	:show-range             t
+	:show-value             t
+	:min-value              0
+	:max-value              150
+	:ticks                  5
+	:notify-handler         nil
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :slider
+	:name                   slider6
+	:owner                  controls1
+	:help                   ""
+	:x                      16
+	:y                      164
+	:width                  114
+	:height                 20
+	:value-x                67
+	:value-y                164
+	:slider-width           10
+	:foreground-color       ""
+	:label                  "Notify:"
+	:label-type             :string
+	:layout-type            :horizontal
+	:orientation            :horizontal
+	:show-endboxes          nil
+	:show-range             t
+	:show-value             nil
+	:min-value              0
+	:max-value              100
+	:ticks                  0
+	:notify-handler         hello-slider
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :gauge
+	:name                   gauge2
+	:owner                  controls1
+	:help                   ""
+	:x                      236
+	:y                      176
+	:width                  66
+	:height                 41
+	:value-x                236
+	:value-y                193
+	:slider-width           50
+	:foreground-color       ""
+	:label                  "above:"
+	:label-type             :string
+	:layout-type            :vertical
+	:orientation            :horizontal
+	:show-range             t
+	:min-value              0
+	:max-value              50
+	:ticks                  0
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :slider
+	:name                   slider1
+	:owner                  controls1
+	:help                   ""
+	:x                      16
+	:y                      224
+	:width                  123
+	:height                 154
+	:value-x                74
+	:value-y                224
+	:slider-width           100
+	:foreground-color       ""
+	:label                  "Vertial:"
+	:label-type             :string
+	:layout-type            :horizontal
+	:orientation            :vertical
+	:show-endboxes          nil
+	:show-range             t
+	:show-value             t
+	:min-value              0
+	:max-value              100
+	:ticks                  0
+	:notify-handler         nil
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+(
+	:type                   :gauge
+	:name                   gauge1
+	:owner                  controls1
+	:help                   ""
+	:x                      236
+	:y                      240
+	:width                  98
+	:height                 116
+	:value-x                320
+	:value-y                240
+	:slider-width           100
+	:foreground-color       ""
+	:label                  "Hide+ticks:"
+	:label-type             :string
+	:layout-type            :horizontal
+	:orientation            :vertical
+	:show-range             nil
+	:min-value              0
+	:max-value              100
+	:ticks                  5
+	:event-handler          nil
+	:events                 ()
+	:user-data              ()
+)
+)

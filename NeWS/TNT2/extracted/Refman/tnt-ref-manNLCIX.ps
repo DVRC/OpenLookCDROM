@@ -1,0 +1,2492 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 4 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 20 /Palatino-Italic FMDEFINEFONT
+2 13 /Palatino-Bold FMDEFINEFONT
+%%Page: "321" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+0 X
+N
+45 105 567 114 R
+7 X
+V
+0 F
+0 X
+0.09 (321) 535.25 108 S
+55.01 522.61 558.36 589.36 C
+0 72 612 720 C
+1 F
+0 X
+0 K
+-2.3 -0.4 (Class Index) 199.01 509.28 B
+201.02 144 370.22 468 R
+7 X
+V
+2 F
+0 X
+4 K
+0.13 (ClassBag) 201.02 459.33 S
+0 F
+0 K
+0.09 (/activate 18) 219.02 445 S
+0.09 (/addclient 18) 219.02 434 S
+0.09 (/client 19) 219.02 423 S
+0.09 (/clientcount 19) 219.02 412 S
+0.09 (/clientlist 19) 219.02 401 S
+0.09 (/deactivate 18) 219.02 390 S
+0.09 (/destr) 219.02 379 S
+0.09 (oy 19) 244.93 379 S
+0.09 (/FixChildr) 219.02 368 S
+0.09 (en 20) 263.33 368 S
+0.09 (/Layout 20) 219.02 357 S
+0.09 (/layout 20) 219.02 346 S
+0.09 (/MenuStart 21) 219.02 335 S
+0.09 (/MenuStop 21) 219.02 324 S
+0.09 (/new 17) 219.02 313 S
+0.09 (/PaintChildr) 219.02 302 S
+0.09 (en 20) 271.96 302 S
+0.09 (/r) 219.02 291 S
+0.09 (egionclientcount 19) 228.04 291 S
+0.09 (/r) 219.02 280 S
+0.09 (emoveclient 19) 228.04 280 S
+0.09 (/T) 219.02 269 S
+0.09 (rackCancel 21) 229.35 269 S
+0.09 (/T) 219.02 258 S
+0.09 (rackMotion 21) 229.35 258 S
+0.09 (/T) 219.02 247 S
+0.09 (rackStart 21) 229.35 247 S
+0.09 (/T) 219.02 236 S
+0.09 (rackStop 21) 229.35 236 S
+0.09 (/validate 20) 219.02 225 S
+2 F
+4 K
+0.13 (ClassBaseW) 201.02 197.33 S
+0.13 (indow) 273.96 197.33 S
+0 F
+0 K
+0.09 (/IconFont 225) 219.02 183 S
+0.09 (/iconimage 225) 219.02 172 S
+0.09 (/iconlabel 225) 219.02 161 S
+0.09 (/IconSize 225) 219.02 150 S
+385.78 144 558 468 R
+7 X
+V
+0 X
+0.09 (/minsize 226) 403.78 462 S
+0.09 (/new 224) 403.78 451 S
+0.09 (/opened? 225) 403.78 440 S
+0.09 (/Paint 226) 403.78 429 S
+0.09 (/pr) 403.78 418 S
+0.09 (eferr) 418.28 418 S
+0.09 (edsize 226) 437.27 418 S
+0.09 (/seticonimage 225) 403.78 407 S
+0.09 (/seticonlabel 225) 403.78 396 S
+2 F
+4 K
+0.13 (ClassBorderBag) 385.78 368.33 S
+0 F
+0 K
+0.09 (/addclient 26) 403.78 354 S
+0.09 (/gaps 26) 403.78 343 S
+0.09 (/insets 27) 403.78 332 S
+0.09 (/Layout 28) 403.78 321 S
+0.09 (/minsize 27) 403.78 310 S
+0.09 (/pr) 403.78 299 S
+0.09 (eferr) 418.28 299 S
+0.09 (edsize 27) 437.27 299 S
+0.09 (/setgaps 26) 403.78 288 S
+0.09 (/setinsets 27) 403.78 277 S
+2 F
+4 K
+0.13 (ClassButtons) 385.78 249.33 S
+0 F
+0 K
+0.09 (/abbr) 403.78 235 S
+0.09 (eviated 30) 427.49 235 S
+0.09 (/cleartar) 403.78 224 S
+0.09 (get 32) 439.8 224 S
+0.09 (/default 31) 403.78 213 S
+0.09 (/HandleObsoleteT) 403.78 202 S
+0.09 (ar) 479.86 202 S
+0.09 (get 32) 487.93 202 S
+0.09 (/itemnoti\336er 32) 403.78 191 S
+0.09 (/justi\336cation 31) 403.78 180 S
+0.09 (/new 30) 403.78 169 S
+0.09 (/noti\336er 31) 403.78 158 S
+0.09 (/sendtar) 403.78 147 S
+0.09 (get 32) 439.59 147 S
+FMENDPAGE
+%%EndPage: "321" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+%%Page: "322" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (322) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (/setabbr) 216 642 S
+0.09 (eviated 30) 251.03 642 S
+0.09 (/setdefault 31) 216 631 S
+0.09 (/setitemnoti\336er 31) 216 620 S
+0.09 (/setjusti\336cation 31) 216 609 S
+0.09 (/setnoti\336er 31) 216 598 S
+0.09 (/settar) 216 587 S
+0.09 (get 32) 243.93 587 S
+0.09 (/setvisualstate 30) 216 576 S
+0.09 (/tar) 216 565 S
+0.09 (get 32) 232.62 565 S
+0.09 (/visualstate 30) 216 554 S
+2 F
+4 K
+0.13 (ClassCanvas) 198 526.33 S
+0 F
+0 K
+0.09 (/activate 46) 216 512 S
+0.09 (/active? 47) 216 501 S
+0.09 (/Arr) 216 490 S
+0.09 (owKey 60) 235.74 490 S
+0.09 (/Arr) 216 479 S
+0.09 (owKeyUp 60) 235.74 479 S
+0.09 (/Arr) 216 468 S
+0.09 (owString 60) 235.74 468 S
+0.09 (/Arr) 216 457 S
+0.09 (owStringUp 60) 235.74 457 S
+0.09 (/AsciiReception 73) 216 446 S
+0.09 (/Backgr) 216 435 S
+0.09 (oundColor 37) 249.43 435 S
+0.09 (/bbox 43) 216 424 S
+0.09 (/BotRightPath 39) 216 413 S
+0.09 (/childr) 216 402 S
+0.09 (en 41) 245.41 402 S
+0.09 (/colors 36) 216 391 S
+0.09 (/Cursor 41) 216 380 S
+0.09 (/Cursors 41) 216 369 S
+0.09 (/damage 51) 216 358 S
+0.09 (/damageable? 51) 216 347 S
+0.09 (/damageall 52) 216 336 S
+0.09 (/deactivate 47) 216 325 S
+0.09 (/descendants 41) 216 314 S
+0.09 (/destr) 216 303 S
+0.09 (oy 74) 241.91 303 S
+0.09 (/DragAdjust 70) 216 292 S
+0.09 (/DragStart 70) 216 281 S
+0.09 (/DragStop 71) 216 270 S
+0.09 (/EventMgr 47) 216 259 S
+0.09 (/eventmgr 47) 216 248 S
+0.09 (/EventsConsumed 47) 216 237 S
+0.09 (/FillCanvas 39) 216 226 S
+0.09 (/Fix 52) 216 215 S
+0.09 (/FixAll 52) 216 204 S
+0.09 (/FixChildr) 216 193 S
+0.09 (en 52) 260.31 193 S
+0.09 (/For) 216 182 S
+0.09 (egr) 235.1 182 S
+0.09 (oundColor 37) 248.06 182 S
+0.09 (/framebuf) 216 171 S
+0.09 (fer) 258.75 171 S
+0.09 (of 41) 269.71 171 S
+0.09 (/Fr) 216 160 S
+0.09 (ontable? 64) 230.1 160 S
+0.09 (/fr) 216 149 S
+0.09 (ontable? 64) 228.1 149 S
+0.09 (/FunctionKey 60) 405 642 S
+0.09 (/FunctionKeyUp 60) 405 631 S
+0.09 (/FunctionString 60) 405 620 S
+0.09 (/FunctionStringUp 60) 405 609 S
+0.09 (/HandleAgain 61) 405 598 S
+0.09 (/HandleDamage 53) 405 587 S
+0.09 (/HandleFind 62) 405 576 S
+0.09 (/HandleFr) 405 565 S
+0.09 (ont 64) 449.26 565 S
+0.09 (/HandleHelp 63) 405 554 S
+0.09 (/HandleOpen 62) 405 543 S
+0.09 (/HandleUndo 62) 405 532 S
+0.09 (/Helpable? 63) 405 521 S
+0.09 (/helpable? 63) 405 510 S
+0.09 (/HelpKeywor) 405 499 S
+0.09 (d 63) 462.85 499 S
+0.09 (/helpkeywor) 405 488 S
+0.09 (d 64) 459.08 488 S
+0.09 (/Holder 66) 405 477 S
+0.09 (/IdentifySelectable 71) 405 466 S
+0.09 (/InSelection? 68) 405 455 S
+0.09 (/invalidate 45) 405 444 S
+0.09 (/Keyable? 57) 405 433 S
+0.09 (/keyable? 58) 405 422 S
+0.09 (/KeyStart 58) 405 411 S
+0.09 (/KeyStop 59) 405 400 S
+0.09 (/location 43) 405 389 S
+0.09 (/map 42) 405 378 S
+0.09 (/Mapped 42) 405 367 S
+0.09 (/mapped? 42) 405 356 S
+0.09 (/Menu 53) 405 345 S
+0.09 (/menu 53) 405 334 S
+0.09 (/Menuable? 53) 405 323 S
+0.09 (/menuable? 54) 405 312 S
+0.09 (/MenuStart 54) 405 301 S
+0.09 (/MenuStop 55) 405 290 S
+0.09 (/MetaKey 60) 405 279 S
+0.09 (/MetaKeyUp 60) 405 268 S
+0.09 (/minsize 43) 405 257 S
+0.09 (/ModifyFont 40) 405 246 S
+0.09 (/move 43) 405 235 S
+0.09 (/new 35) 405 224 S
+0.09 (/NewInit 36) 405 213 S
+0.09 (/NewSelection 67) 405 202 S
+0.09 (/NumPadKey 59) 405 191 S
+0.09 (/NumPadKeyUp 59) 405 180 S
+0.09 (/Openable? 62) 405 169 S
+0.09 (/openable? 62) 405 158 S
+0.09 (/Paint 39) 405 147 S
+FMENDPAGE
+%%EndPage: "322" 3
+%%Page: "323" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (323) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (/paint 38) 216 642 S
+0.09 (/PaintAll 38) 216 631 S
+0.09 (/Paint2DBox 39) 216 620 S
+0.09 (/Paint3DBox 39) 216 609 S
+0.09 (/Paint3DLine 39) 216 598 S
+0.09 (/par) 216 587 S
+0.09 (ents 42) 235.09 587 S
+0.09 (/path 44) 216 576 S
+0.09 (/pr) 216 565 S
+0.09 (eferr) 230.51 565 S
+0.09 (edsize 44) 249.5 565 S
+0.09 (/Receptible? 71) 216 554 S
+0.09 (/r) 216 543 S
+0.09 (eceptible? 72) 225.01 543 S
+0.09 (/r) 216 532 S
+0.09 (epar) 225.01 532 S
+0.09 (ent 42) 242.96 532 S
+0.09 (/r) 216 521 S
+0.09 (eshape 44) 225.01 521 S
+0.09 (/r) 216 510 S
+0.09 (eshaped? 44) 225.01 510 S
+0.09 (/Retained 53) 216 499 S
+0.09 (/SaveBehind 53) 216 488 S
+0.09 (/SelectableT) 216 477 S
+0.09 (ype 65) 266.47 477 S
+0.09 (/Selectable? 65) 216 466 S
+0.09 (/selectable? 65) 216 455 S
+0.09 (/SelectionAdjust 69) 216 444 S
+0.09 (/SelectionCancel 71) 216 433 S
+0.09 (/selectionholder 67) 216 422 S
+0.09 (/SelectionStart 69) 216 411 S
+0.09 (/SelectionStop 70) 216 400 S
+0.09 (/setcolors 36) 216 389 S
+0.09 (/setcursor 41) 216 378 S
+0.09 (/setdamageable 51) 216 367 S
+0.09 (/setfr) 216 356 S
+0.09 (ontable 64) 239.41 356 S
+0.09 (/sethelpable 63) 216 345 S
+0.09 (/sethelpkeywor) 216 334 S
+0.09 (d 64) 281.39 334 S
+0.09 (/setkeyable 57) 216 323 S
+0.09 (/setmenu 53) 216 312 S
+0.09 (/setmenuable 54) 216 301 S
+0.09 (/setopenable 62) 216 290 S
+0.09 (/setr) 216 279 S
+0.09 (eceptible 72) 236.33 279 S
+0.09 (/setselectable 65) 216 268 S
+0.09 (/setselectionholder 67) 216 257 S
+0.09 (/settextfont 40) 216 246 S
+0.09 (/settrackable 55) 216 235 S
+0.09 (/set3D 38) 216 224 S
+0.09 (/siblings 43) 216 213 S
+0.09 (/size 44) 216 202 S
+0.09 (/Standar) 216 191 S
+0.09 (dKey 59) 252.91 191 S
+0.09 (/Standar) 216 180 S
+0.09 (dKeyUp 59) 252.91 180 S
+0.09 (/starttracktimer 55) 216 169 S
+0.09 (/stoptracktimer 55) 216 158 S
+0.09 (/Str) 216 147 S
+0.09 (okeCanvas 40) 232.84 147 S
+0.09 (/T) 405 642 S
+0.09 (extFont 40) 415.31 642 S
+0.09 (/textfont 40) 405 631 S
+0.09 (/tobottom 43) 405 620 S
+0.09 (/T) 405 609 S
+0.09 (opLeftPath 40) 415.31 609 S
+0.09 (/totop 43) 405 598 S
+0.09 (/T) 405 587 S
+0.09 (rackable? 55) 415.33 587 S
+0.09 (/trackable? 55) 405 576 S
+0.09 (/T) 405 565 S
+0.09 (rackCancel 57) 415.33 565 S
+0.09 (/T) 405 554 S
+0.09 (rackCr) 415.33 554 S
+0.09 (ossing 57) 442.66 554 S
+0.09 (/T) 405 543 S
+0.09 (rackMotion 57) 415.33 543 S
+0.09 (/T) 405 532 S
+0.09 (rackStart 56) 415.33 532 S
+0.09 (/T) 405 521 S
+0.09 (rackStop 57) 415.33 521 S
+0.09 (/T) 405 510 S
+0.09 (rackT) 415.33 510 S
+0.09 (imer 57) 437.82 510 S
+0.09 (/T) 405 499 S
+0.09 (ranspar) 415.33 499 S
+0.09 (ent 51) 446.33 499 S
+0.09 (/unmap 43) 405 488 S
+0.09 (/validate 46) 405 477 S
+0.09 (/V) 405 466 S
+0.09 (alid? 45) 416.29 466 S
+0.09 (/valid? 45) 405 455 S
+0.09 (/2DBG 37, 139) 405 444 S
+0.09 (/2DFG 37, 139) 405 433 S
+0.09 (/3D? 38) 405 422 S
+0.09 (/?validate 45) 405 411 S
+2 F
+4 K
+0.13 (ClassCheckBoxes) 387 383.33 S
+0 F
+0 K
+0.09 (/new 192) 405 369 S
+2 F
+4 K
+0.13 (ClassControl) 387 341.33 S
+0 F
+0 K
+0.09 (/cleartar) 405 327 S
+0.09 (get 78) 441.02 327 S
+0.09 (/destr) 405 316 S
+0.09 (oy 78) 430.91 316 S
+0.09 (/ExecuteNoti\336er 77) 405 305 S
+0.09 (/HandleObsoleteT) 405 294 S
+0.09 (ar) 481.09 294 S
+0.09 (get 78) 489.15 294 S
+0.09 (/noti\336er 77) 405 283 S
+0.09 (/pr) 405 272 S
+0.09 (eviewer 77) 419.51 272 S
+0.09 (/sendtar) 405 261 S
+0.09 (get 78) 440.82 261 S
+0.09 (/setnoti\336er 77) 405 250 S
+0.09 (/setpr) 405 239 S
+0.09 (eviewer 77) 430.82 239 S
+0.09 (/settar) 405 228 S
+0.09 (get 78) 432.93 228 S
+0.09 (/setvalue 76, 84) 405 217 S
+0.09 (/setvisualstate 46) 405 206 S
+0.09 (/tar) 405 195 S
+0.09 (get 78) 421.62 195 S
+0.09 (/value 77) 405 184 S
+0.09 (/visualstate 46) 405 173 S
+FMENDPAGE
+%%EndPage: "323" 4
+%%Page: "324" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (324) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+4 K
+0.13 (DisplayItems) 198 639.33 S
+0 F
+0 K
+0.09 (/DisplayItemMaximumSize 81) 216 625 S
+0.09 (/DisplayItemPaint 81) 216 614 S
+0.09 (/DisplayItemRect 81) 216 603 S
+0.09 (/DisplayItemSize 81) 216 592 S
+2 F
+4 K
+0.13 (Gauges) 198 564.33 S
+0 F
+0 K
+0.09 (/minsize 85) 216 550 S
+0.09 (/new 83) 216 539 S
+0.09 (/normalizer 84) 216 528 S
+0.09 (/of) 216 517 S
+0.09 (fset 85) 229.45 517 S
+0.09 (/pr) 216 506 S
+0.09 (eferr) 230.51 506 S
+0.09 (edsize 85) 249.5 506 S
+0.09 (/range 84) 216 495 S
+0.09 (/setnormalizer 84) 216 484 S
+0.09 (/setrange 84) 216 473 S
+0.09 (/settickmarks 85) 216 462 S
+0.09 (/setvalue 84) 216 451 S
+0.09 (/setvisualstate 85) 216 440 S
+0.09 (/tickmarks 85) 216 429 S
+0.09 (/value 84) 216 418 S
+0.09 (/visualstate 85) 216 407 S
+2 F
+4 K
+0.13 (ClassItemGroup) 198 379.33 S
+0 F
+0 K
+0.09 (CURRENT 90) 216 365 S
+0.09 (HEIGHT 90) 216 354 S
+0.09 (P) 216 343 S
+0.09 (ARENT 91) 220.69 343 S
+0.09 (POSITION 91) 216 332 S
+0.09 (PREVIOUS 91) 216 321 S
+0.09 (WIDTH 91) 216 310 S
+0.09 (/appenditem 91) 216 299 S
+0.09 (/deleteitem 91) 216 288 S
+0.09 (/FixedItemSize? 93) 216 277 S
+0.09 (/\336xeditemsize? 94) 216 266 S
+0.09 (/gaps 96) 216 255 S
+0.09 (/helpkeywor) 216 244 S
+0.09 (d 97, 120) 270.08 244 S
+0.09 (/insertitem 91) 216 233 S
+0.09 (/Item 92) 216 222 S
+0.09 (/item 92) 216 211 S
+0.09 (/itembbox 92) 216 200 S
+0.09 (/ItemCancel 96) 216 189 S
+0.09 (/itemcount 92) 216 178 S
+0.09 (/itemhelpkeywor) 216 167 S
+0.09 (d 97, 120) 288.22 167 S
+0.09 (/itemlist 92) 216 156 S
+0.09 (/ItemListV) 405 642 S
+0.09 (alid? 94) 450.05 642 S
+0.09 (/itemlocation 92) 405 631 S
+0.09 (/ItemMotion 96) 405 620 S
+0.09 (/itemsize 92) 405 609 S
+0.09 (/ItemStart 95) 405 598 S
+0.09 (/ItemStop 96) 405 587 S
+0.09 (/Layout 96) 405 576 S
+0.09 (/layoutparameters 96) 405 565 S
+0.09 (/minsize 93) 405 554 S
+0.09 (/new 87) 405 543 S
+0.09 (/NewInit 88) 405 532 S
+0.09 (/NewItem 97) 405 521 S
+0.09 (/PaintItem 93) 405 510 S
+0.09 (/paintitem 93) 405 499 S
+0.09 (/pointinitem? 92) 405 488 S
+0.09 (/pointoitem 93) 405 477 S
+0.09 (/pr) 405 466 S
+0.09 (eferr) 419.51 466 S
+0.09 (edsize 93) 438.5 466 S
+0.09 (/r) 405 455 S
+0.09 (eplaceitem 91) 414.02 455 S
+0.09 (/set\336xeditemsize 93) 405 444 S
+0.09 (/setgaps 96) 405 433 S
+0.09 (/sethelpkeywor) 405 422 S
+0.09 (d 97, 120) 470.39 422 S
+0.09 (/setitemhelpkeywor) 405 411 S
+0.09 (d 97, 120) 488.54 411 S
+0.09 (/setitemlist \050absolute\051 89) 405 400 S
+0.09 (/setitemlist \050calculated\051 89) 405 389 S
+0.09 (/setitemlist \050spaced and grid\051 89) 405 378 S
+0.09 (/setlayoutparameters\050calculated\051 89) 405 367 S
+0.09 (/setlayoutparameters\050grid\051 89) 405 356 S
+0.09 (/T) 405 345 S
+0.09 (rackCancel 95) 415.33 345 S
+0.09 (/T) 405 334 S
+0.09 (rackMotion 95) 415.33 334 S
+0.09 (/T) 405 323 S
+0.09 (rackStart 95) 415.33 323 S
+0.09 (/T) 405 312 S
+0.09 (rackStop 95) 415.33 312 S
+0.09 (/validate 94) 405 301 S
+0.09 (/V) 405 290 S
+0.09 (alidateItemList 94) 416.29 290 S
+0.09 (/?V) 405 279 S
+0.09 (alidateItemList 94) 420.37 279 S
+2 F
+4 K
+0.13 (Jot) 387 251.34 S
+0 F
+0 K
+0.09 (JotFont_Fr) 405 237 S
+0.09 (ee 283) 447.67 237 S
+0.09 (JotFont_New 282) 405 226 S
+0.09 (JotSear) 405 215 S
+0.09 (ch_CompileExpr) 433.36 215 S
+0.09 (ession 281) 501.41 215 S
+0.09 (JotSear) 405 204 S
+0.09 (ch_Fr) 433.36 204 S
+0.09 (ee 280) 455.92 204 S
+0.09 (JotSear) 405 193 S
+0.09 (ch_MatchPattern 281) 433.36 193 S
+0.09 (JotSear) 405 182 S
+0.09 (ch_MatchString 281) 433.36 182 S
+0.09 (JotSear) 405 171 S
+0.09 (ch_New 280) 433.36 171 S
+0.09 (JotSear) 405 160 S
+0.09 (ch_Substring 282) 433.36 160 S
+0.09 (JotSelection_Clear 284) 405 149 S
+FMENDPAGE
+%%EndPage: "324" 5
+%%Page: "325" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (325) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (JotSelection_Set 283) 216 642 S
+0.09 (JotSelection_SetLevel 284) 216 631 S
+0.09 (JotSelection_Span 284) 216 620 S
+0.09 (JotSpan_ClearModi\336ed 269) 216 609 S
+0.09 (JotSpan_Contents 267) 216 598 S
+0.09 (JotSpan_DeleteContents 267) 216 587 S
+0.09 (JotSpan_Fr) 216 576 S
+0.09 (ee 266) 260.45 576 S
+0.09 (JotSpan_Length 268) 216 565 S
+0.09 (JotSpan_Modi\336ed 269) 216 554 S
+0.09 (JotSpan_New 266) 216 543 S
+0.09 (JotSpan_Position 267) 216 532 S
+0.09 (JotSpan_Replace 267) 216 521 S
+0.09 (JotSpan_Set 268) 216 510 S
+0.09 (JotSpan_SetLength 268) 216 499 S
+0.09 (JotSpan_SetPosition 268) 216 488 S
+0.09 (JotSpan_SetT) 216 477 S
+0.09 (ext 266) 268.88 477 S
+0.09 (JotSpan_T) 216 466 S
+0.09 (ext 266) 256.66 466 S
+0.09 (JotT) 216 455 S
+0.09 (ext_Car) 231.87 455 S
+0.09 (et 262) 263.12 455 S
+0.09 (JotT) 216 444 S
+0.09 (ext_CharacterAt 258) 231.87 444 S
+0.09 (JotT) 216 433 S
+0.09 (ext_Characters 261) 231.87 433 S
+0.09 (JotT) 216 422 S
+0.09 (ext_Clear 257) 231.87 422 S
+0.09 (JotT) 216 411 S
+0.09 (ext_DeleteCharacters 259) 231.87 411 S
+0.09 (JotT) 216 400 S
+0.09 (ext_FastCharacterAt 258) 231.87 400 S
+0.09 (JotT) 216 389 S
+0.09 (ext_FirstSpan 262) 231.87 389 S
+0.09 (JotT) 216 378 S
+0.09 (ext_FirstV) 231.87 378 S
+0.09 (iew 261) 273.04 378 S
+0.09 (JotT) 216 367 S
+0.09 (ext_Fr) 231.87 367 S
+0.09 (ee 257) 257.16 367 S
+0.09 (JotT) 216 356 S
+0.09 (ext_InsertCharacters 258) 231.87 356 S
+0.09 (JotT) 216 345 S
+0.09 (ext_InsertString 259) 231.87 345 S
+0.09 (JotT) 216 334 S
+0.09 (ext_Modi\336ed 261) 231.87 334 S
+0.09 (JotT) 216 323 S
+0.09 (ext_New 257) 231.87 323 S
+0.09 (JotT) 216 312 S
+0.09 (ext_Newlines 261) 231.87 312 S
+0.09 (JotT) 216 301 S
+0.09 (ext_NextSpan 262) 231.87 301 S
+0.09 (JotT) 216 290 S
+0.09 (ext_NextV) 231.87 290 S
+0.09 (iew 261) 274.38 290 S
+0.09 (JotT) 216 279 S
+0.09 (ext_Read 260) 231.87 279 S
+0.09 (JotT) 216 268 S
+0.09 (ext_Redo 264) 231.87 268 S
+0.09 (JotT) 216 257 S
+0.09 (ext_RedoCount 264) 231.87 257 S
+0.09 (JotT) 216 246 S
+0.09 (ext_ReplaceCharacters 259) 231.87 246 S
+0.09 (JotT) 216 235 S
+0.09 (ext_ScanCharacter 258) 231.87 235 S
+0.09 (JotT) 216 224 S
+0.09 (ext_SetCar) 231.87 224 S
+0.09 (et 262) 275.35 224 S
+0.09 (JotT) 216 213 S
+0.09 (ext_SetUndo 263) 231.87 213 S
+0.09 (JotT) 216 202 S
+0.09 (ext_Undo 263) 231.87 202 S
+0.09 (JotT) 216 191 S
+0.09 (ext_UndoBegin 264) 231.87 191 S
+0.09 (JotT) 216 180 S
+0.09 (ext_UndoBr) 231.87 180 S
+0.09 (eak 264) 280.64 180 S
+0.09 (JotT) 216 169 S
+0.09 (ext_UndoCount 264) 231.87 169 S
+0.09 (JotT) 216 158 S
+0.09 (ext_UndoEnd 264) 231.87 158 S
+0.09 (JotT) 216 147 S
+0.09 (ext_W) 231.87 147 S
+0.09 (rite 260) 257.01 147 S
+0.09 (JotV) 405 642 S
+0.09 (iew_BoundingBox 274) 422.18 642 S
+0.09 (JotV) 405 631 S
+0.09 (iew_Canvas 278) 422.18 631 S
+0.09 (JotV) 405 620 S
+0.09 (iew_Characters 270) 422.18 620 S
+0.09 (JotV) 405 609 S
+0.09 (iew_ConstrainT) 422.18 609 S
+0.09 (ext 271) 486.18 609 S
+0.09 (JotV) 405 598 S
+0.09 (iew_Contr) 422.18 598 S
+0.09 (ollers 278) 464.73 598 S
+0.09 (JotV) 405 587 S
+0.09 (iew_Ensur) 422.18 587 S
+0.09 (ePositionV) 465.24 587 S
+0.09 (isible 270) 508.89 587 S
+0.09 (JotV) 405 576 S
+0.09 (iew_Fr) 422.18 576 S
+0.09 (ee 270) 450.02 576 S
+0.09 (JotV) 405 565 S
+0.09 (iew_Height 274) 422.18 565 S
+0.09 (JotV) 405 554 S
+0.09 (iew_LineBoundingBox 274) 422.18 554 S
+0.09 (JotV) 405 543 S
+0.09 (iew_LineFr) 422.18 543 S
+0.09 (omPosition 275) 468.02 543 S
+0.09 (JotV) 405 532 S
+0.09 (iew_Lines 272) 422.18 532 S
+0.09 (JotV) 405 521 S
+0.09 (iew_New 269) 422.18 521 S
+0.09 (JotV) 405 510 S
+0.09 (iew_PositionFr) 422.18 510 S
+0.09 (omLine 273) 483.18 510 S
+0.09 (JotV) 405 499 S
+0.09 (iew_ReadOnly 277) 422.18 499 S
+0.09 (JotV) 405 488 S
+0.09 (iew_RelativeLineFr) 422.18 488 S
+0.09 (omPostion ) 501.09 488 S
+0.09 (275) 441 477 S
+0.09 (JotV) 405 466 S
+0.09 (iew_Scr) 422.18 466 S
+0.09 (ollAbsolute 276) 453.82 466 S
+0.09 (JotV) 405 455 S
+0.09 (iew_Scr) 422.18 455 S
+0.09 (ollAutomatic 275) 453.82 455 S
+0.09 (JotV) 405 444 S
+0.09 (iew_Scr) 422.18 444 S
+0.09 (ollRelative 276) 453.82 444 S
+0.09 (JotV) 405 433 S
+0.09 (iew_SetData 277) 422.18 433 S
+0.09 (JotV) 405 422 S
+0.09 (iew_SetFont 283) 422.18 422 S
+0.09 (JotV) 405 411 S
+0.09 (iew_SetMar) 422.18 411 S
+0.09 (gins 274) 470.33 411 S
+0.09 (JotV) 405 400 S
+0.09 (iew_SetReadOnly 277) 422.18 400 S
+0.09 (JotV) 405 389 S
+0.09 (iew_SetT) 422.18 389 S
+0.09 (ext 270) 458.45 389 S
+0.09 (JotV) 405 378 S
+0.09 (iew_T) 422.18 378 S
+0.09 (ext 270) 446.23 378 S
+0.09 (JotV) 405 367 S
+0.09 (iew_Update 271) 422.18 367 S
+0.09 (JotV) 405 356 S
+0.09 (iew_UpdateV) 422.18 356 S
+0.09 (iews 272) 477.69 356 S
+0.09 (JotV) 405 345 S
+0.09 (iew_V) 422.18 345 S
+0.09 (iew 278) 447.54 345 S
+0.09 (JotV) 405 334 S
+0.09 (iew_W) 422.18 334 S
+0.09 (idth 274) 450.04 334 S
+0.09 (JotV) 405 323 S
+0.09 (iew_W) 422.18 323 S
+0.09 (ir) 450.04 323 S
+0.09 (e 278) 456.22 323 S
+0.09 (keyboar) 405 312 S
+0.09 (d 279) 437.69 312 S
+0.09 (mouse 279) 405 301 S
+0.09 (SelectionAlter 280) 405 290 S
+0.09 (SelectionStart 279) 405 279 S
+2 F
+4 K
+0.13 (ClassLabel) 387 251.34 S
+0 F
+0 K
+0.09 (/new 99) 405 237 S
+0.09 (/setvalue 100) 405 226 S
+0.09 (/size 99) 405 215 S
+0.09 (/value 100) 405 204 S
+2 F
+4 K
+0.13 (ClassLayout) 387 176.34 S
+0 F
+0 K
+0.09 (CellSize 105) 405 162 S
+0.09 (CURRENT 103) 405 151 S
+FMENDPAGE
+%%EndPage: "325" 6
+%%Page: "326" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (326) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (HEIGHT 104) 216 642 S
+0.09 (List 105) 216 631 S
+0.09 (Location 105) 216 620 S
+0.09 (Move 105) 216 609 S
+0.09 (P) 216 598 S
+0.09 (ARENT 104) 220.69 598 S
+0.09 (POSITION 104) 216 587 S
+0.09 (PREVIOUS 104) 216 576 S
+0.09 (ResolveOf) 216 565 S
+0.09 (fset 105) 257.73 565 S
+0.09 (ResolveRefer) 216 554 S
+0.09 (ence 105) 269.1 554 S
+0.09 (Size 105) 216 543 S
+0.09 (WIDTH 104) 216 532 S
+0.09 (xyadd 106) 216 521 S
+0.09 (xymax 106) 216 510 S
+0.09 (xymin 106) 216 499 S
+0.09 (xysub 106) 216 488 S
+0.09 (/gaps 104) 216 477 S
+0.09 (/Layout 102) 216 466 S
+0.09 (/layoutparameters 104) 216 455 S
+0.09 (/minsize 102) 216 444 S
+0.09 (/setgaps 104) 216 433 S
+0.09 (/setlayoutparameters \050calculated\051 ) 216 422 S
+0.09 (103) 252 411 S
+0.09 (/setlayoutparameters\050grid\051 102) 216 400 S
+2 F
+4 K
+0.13 (ClassMenu) 198 372.33 S
+0 F
+0 K
+0.09 (CURRENT 1) 216 358 S
+0.09 (12) 266.9 358 S
+0.09 (HEIGHT 1) 216 347 S
+0.09 (12) 258.81 347 S
+0.09 (P) 216 336 S
+0.09 (ARENT 1) 220.69 336 S
+0.09 (1) 259.03 336 S
+0.09 (1) 263.12 336 S
+0.09 (POSITION 1) 216 325 S
+0.09 (12) 266.46 325 S
+0.09 (PREVIOUS 1) 216 314 S
+0.09 (12) 268.36 314 S
+0.09 (WIDTH 1) 216 303 S
+0.09 (12) 254.84 303 S
+0.09 (/appenditem 1) 216 292 S
+0.09 (12) 276.97 292 S
+0.09 (/cleartar) 216 281 S
+0.09 (get 1) 252.02 281 S
+0.09 (17) 270.95 281 S
+0.09 (/default 1) 216 270 S
+0.09 (13) 256.84 270 S
+0.09 (/deleteitem 1) 216 259 S
+0.09 (12) 270.6 259 S
+0.09 (/insertitem 1) 216 248 S
+0.09 (13) 269.09 248 S
+0.09 (/invoker 1) 216 237 S
+0.09 (17) 259.27 237 S
+0.09 (/item 1) 216 226 S
+0.09 (13) 246.11 226 S
+0.09 (/itemcount 1) 216 215 S
+0.09 (13) 269.04 215 S
+0.09 (/itemlist 1) 216 204 S
+0.09 (13) 258.44 204 S
+0.09 (/label 1) 216 193 S
+0.09 (14) 247.41 193 S
+0.09 (/layoutparameters 1) 216 182 S
+0.09 (12) 299.54 182 S
+0.09 (/Menu 1) 216 171 S
+0.09 (18) 251.78 171 S
+0.09 (/menu 1) 216 160 S
+0.09 (19) 251.21 160 S
+0.09 (/Menuable? 1) 216 149 S
+0.09 (19) 272.6 149 S
+0.09 (/menuable? 1) 405 642 S
+0.09 (19) 461.04 642 S
+0.09 (/MenuStart 1) 405 631 S
+0.09 (19) 459.85 631 S
+0.09 (/MenuStop 120) 405 620 S
+0.09 (/new 107) 405 609 S
+0.09 (/noti\336er 1) 405 598 S
+0.09 (16) 446.57 598 S
+0.09 (/Pinnable 1) 405 587 S
+0.09 (14) 452.57 587 S
+0.09 (/pinnable 1) 405 576 S
+0.09 (14) 452.54 576 S
+0.09 (/Pinnable? 1) 405 565 S
+0.09 (14) 456.65 565 S
+0.09 (/r) 405 554 S
+0.09 (eplaceitem 1) 414.02 554 S
+0.09 (13) 464.24 554 S
+0.09 (/sendtar) 405 543 S
+0.09 (get 1) 440.82 543 S
+0.09 (18) 459.74 543 S
+0.09 (/setchoicemode 108) 405 532 S
+0.09 (/setdefault 1) 405 521 S
+0.09 (13) 457.15 521 S
+0.09 (/setitemlist 1) 405 510 S
+0.09 (10) 458.76 510 S
+0.09 (/setitemlist \050absolute\051 1) 405 499 S
+0.09 (10) 501.43 499 S
+0.09 (/setitemlist \050calculated\051 1) 405 488 S
+0.09 (10) 508.5 488 S
+0.09 (/setitemlist \050spaced and grid\051 1) 405 477 S
+0.09 (10) 532.46 477 S
+0.09 (/setlabel 1) 405 466 S
+0.09 (14) 447.73 466 S
+-0.18 0.09 (/setlayoutparameters \050calculated\051 1) 405 455 B
+-0.18 0.09 (1) 549.24 455 B
+-0.18 0.09 (1) 553.33 455 B
+0.09 (/setlayoutparameters \050grid\051 1) 405 444 S
+0.09 (10) 525.37 444 S
+0.09 (/setmenu 1) 405 433 S
+0.09 (19) 451.53 433 S
+0.09 (/setmenuable 1) 405 422 S
+0.09 (19) 468.27 422 S
+0.09 (/setnoti\336er 1) 405 411 S
+0.09 (16) 457.88 411 S
+0.09 (/setpinnable 1) 405 400 S
+0.09 (14) 463.86 400 S
+0.09 (/settar) 405 389 S
+0.09 (get 1) 432.93 389 S
+0.09 (17) 451.86 389 S
+0.09 (/setvalue 1) 405 378 S
+0.09 (18) 450.64 378 S
+0.09 (/setvisualstate 1) 405 367 S
+0.09 (15) 471.77 367 S
+0.09 (/tar) 405 356 S
+0.09 (get 1) 421.62 356 S
+0.09 (17) 440.55 356 S
+0.09 (/value 1) 405 345 S
+0.09 (18) 439.32 345 S
+0.09 (/visualstate 1) 405 334 S
+0.09 (15) 460.45 334 S
+2 F
+4 K
+0.13 (ClassMenuButtons) 387 306.33 S
+0 F
+0 K
+0.09 (/menu 33) 405 292 S
+0.09 (/menudir) 405 281 S
+0.09 (ection 33) 445.55 281 S
+0.09 (/setmenu 33) 405 270 S
+0.09 (/setmenudir) 405 259 S
+0.09 (ection 33) 456.87 259 S
+2 F
+4 K
+0.13 (ClassNotice) 387 231.34 S
+0 F
+0 K
+0.09 (/basewindow 122) 405 217 S
+0.09 (/buttons 122) 405 206 S
+0.09 (/close 123) 405 195 S
+0.09 (/new 121) 405 184 S
+0.09 (/open 123) 405 173 S
+0.09 (/setbasewindow 121) 405 162 S
+0.09 (/setbuttons 122) 405 151 S
+FMENDPAGE
+%%EndPage: "326" 7
+%%Page: "327" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (327) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (/settext 122) 216 642 S
+0.09 (/text 122) 216 631 S
+2 F
+4 K
+0.13 (ClassNumericField) 198 603.33 S
+0 F
+0 K
+0.09 (/decr) 216 589 S
+0.09 (ement 126) 239.07 589 S
+0.09 (/delta 126) 216 578 S
+0.09 (/incr) 216 567 S
+0.09 (ement 126) 237.12 567 S
+0.09 (/Normalizer 127) 216 556 S
+0.09 (/normalizer 127) 216 545 S
+0.09 (/noti\336er 127) 216 534 S
+0.09 (/pr) 216 523 S
+0.09 (eviewer 128) 230.51 523 S
+0.09 (/range 126) 216 512 S
+0.09 (/setdelta 126) 216 501 S
+0.09 (/setnormalizer 127) 216 490 S
+0.09 (/setnoti\336er 127) 216 479 S
+0.09 (/setpr) 216 468 S
+0.09 (eviewer 127) 241.82 468 S
+0.09 (/setrange 125) 216 457 S
+0.09 (/setvalue 125) 216 446 S
+0.09 (/value 125) 216 435 S
+2 F
+4 K
+0.13 (ClassObject) 198 407.33 S
+0 F
+0 K
+0.09 (/Pr) 216 393 S
+0.09 (operties 129) 230.53 393 S
+0.09 (/pr) 216 382 S
+0.09 (operty 129) 230.51 382 S
+0.09 (/setpr) 216 371 S
+0.09 (operty 129) 241.82 371 S
+2 F
+4 K
+0.13 (ClassPanel) 198 343.33 S
+0 F
+0 K
+0.09 (CURRENT 135) 216 329 S
+0.09 (HEIGHT 135) 216 318 S
+0.09 (P) 216 307 S
+0.09 (ARENT 135) 220.69 307 S
+0.09 (POSITION 135) 216 296 S
+0.09 (PREVIOUS 135) 216 285 S
+0.09 (WIDTH 135) 216 274 S
+0.09 (/addclient\050absolute\051 133) 216 263 S
+0.09 (/addclient\050calculated\051 133) 216 252 S
+0.09 (/addclient\050spaced/grid\051 133) 216 241 S
+0.09 (/gaps 136) 216 230 S
+0.09 (/Layout 136) 216 219 S
+0.09 (/layoutparameters 136) 216 208 S
+0.09 (/new 131) 216 197 S
+0.09 (/r) 216 186 S
+0.09 (emoveclient 135) 225.01 186 S
+0.09 (/setgaps 136) 216 175 S
+0.09 (/setlayoutparameters\050calculated\051 134) 216 164 S
+0.09 (/setlayoutparameters\050grid\051 133) 216 153 S
+2 F
+4 K
+0.13 (ClassPopW) 387 639.33 S
+0.13 (indow) 455.48 639.33 S
+0 F
+0 K
+0.09 (/new 226) 405 625 S
+2 F
+4 K
+0.13 (ClassRegion) 387 597.33 S
+0 F
+0 K
+0.09 (/bbox 143) 405 583 S
+0.09 (/BotRightPath 141) 405 572 S
+0.09 (/colors 138) 405 561 S
+0.09 (/destr) 405 550 S
+0.09 (oy 149) 430.91 550 S
+0.09 (/eventmgr 149) 405 539 S
+0.09 (/Fix 146) 405 528 S
+0.09 (/FixAll 146) 405 517 S
+0.09 (/FixChildr) 405 506 S
+0.09 (en 146) 449.31 506 S
+0.09 (/framebuf) 405 495 S
+0.09 (fer) 447.75 495 S
+0.09 (of 143) 458.71 495 S
+0.09 (/invalidate 145) 405 484 S
+0.09 (/location 143) 405 473 S
+0.09 (/map 143) 405 462 S
+0.09 (/mapped? 143) 405 451 S
+0.09 (/menu 148) 405 440 S
+0.09 (/MenuStart 148) 405 429 S
+0.09 (/MenuStop 149) 405 418 S
+0.09 (/Menu\050Class V) 405 407 S
+0.09 (ariable\051 147) 467.08 407 S
+0.09 (/minsize 143) 405 396 S
+0.09 (/move 144) 405 385 S
+0.09 (/new 138) 405 374 S
+0.09 (/Paint 141) 405 363 S
+0.09 (/paint 140) 405 352 S
+0.09 (/PaintAll 140) 405 341 S
+0.09 (/PaintChildr) 405 330 S
+0.09 (en 141) 457.94 330 S
+0.09 (/Paint2DBox 141) 405 319 S
+0.09 (/Paint3DBox 141) 405 308 S
+0.09 (/Paint3DLine 141) 405 297 S
+0.09 (/Par) 405 286 S
+0.09 (ent 143) 424.12 286 S
+0.09 (/path 144) 405 275 S
+0.09 (/pointinr) 405 264 S
+0.09 (egion? 149) 443.58 264 S
+0.09 (/pr) 405 253 S
+0.09 (eferr) 419.51 253 S
+0.09 (edsize 144) 438.5 253 S
+0.09 (/r) 405 242 S
+0.09 (epar) 414.02 242 S
+0.09 (ent 143) 431.96 242 S
+0.09 (/r) 405 231 S
+0.09 (eshape 144) 414.02 231 S
+0.09 (/r) 405 220 S
+0.09 (eshaped? 144) 414.02 220 S
+0.09 (/setcolors 138) 405 209 S
+0.09 (/setmenu 148) 405 198 S
+0.09 (/settextfont 142) 405 187 S
+0.09 (/size 144) 405 176 S
+0.09 (/T) 405 165 S
+0.09 (extFont 142) 415.31 165 S
+0.09 (/textfont 142) 405 154 S
+FMENDPAGE
+%%EndPage: "327" 8
+%%Page: "328" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (328) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (/T) 216 642 S
+0.09 (opLeftPath 142) 226.31 642 S
+0.09 (/T) 216 631 S
+0.09 (rackCancel 147) 226.33 631 S
+0.09 (/T) 216 620 S
+0.09 (rackMotion 147) 226.33 620 S
+0.09 (/T) 216 609 S
+0.09 (rackStart 147) 226.33 609 S
+0.09 (/T) 216 598 S
+0.09 (rackStop 147) 226.33 598 S
+0.09 (/unmap 143) 216 587 S
+0.09 (/validate 146) 216 576 S
+0.09 (/V) 216 565 S
+0.09 (alid? 145) 227.29 565 S
+0.09 (/valid? 145) 216 554 S
+0.09 (/?validate 145) 216 543 S
+2 F
+4 K
+0.13 (Scrollbars) 198 515.33 S
+0 F
+0 K
+0.09 (/EventT) 216 501 S
+0.09 (oV) 249.79 501 S
+0.09 (alue 155) 260.54 501 S
+0.09 (/HandleMotion 157) 216 490 S
+0.09 (/minsize 154) 216 479 S
+0.09 (/motion 152) 216 468 S
+0.09 (/new 152) 216 457 S
+0.09 (/noti\336er 156) 216 446 S
+0.09 (/parameters 155) 216 435 S
+0.09 (/pr) 216 424 S
+0.09 (eferr) 230.51 424 S
+0.09 (edsize 154) 249.5 424 S
+0.09 (/pr) 216 413 S
+0.09 (eviewer 156) 230.51 413 S
+0.09 (/setnoti\336er 155) 216 402 S
+0.09 (/setparameters 154) 216 391 S
+0.09 (/setpr) 216 380 S
+0.09 (eviewer 156) 241.82 380 S
+0.09 (/setvalue 155) 216 369 S
+0.09 (/value 155) 216 358 S
+0.09 (/warpcursor 153) 216 347 S
+0.09 (selections) 198 334.5 S
+0.09 (getting the value of Pin) 216 323.5 S
+(see /ComputePin 186) 234 312.5 T
+2 F
+4 K
+0.13 (ClassScrollList) 198 284.83 S
+0 F
+0 K
+0.09 (/appenditem 164) 216 270.5 S
+0.09 (/choicemode 164) 216 259.5 S
+0.09 (/chosen? 165) 216 248.5 S
+0.09 (/clear) 216 237.5 S
+0.09 (choice 165) 240.78 237.5 S
+0.09 (/cleartar) 216 226.5 S
+0.09 (get 169) 252.02 226.5 S
+0.09 (/deleteitem 164) 216 215.5 S
+0.09 (/heightfr) 216 204.5 S
+0.09 (omr) 253.95 204.5 S
+0.09 (ows 167) 270.45 204.5 S
+0.09 (/insertitem 163) 216 193.5 S
+0.09 (/item 163) 216 182.5 S
+0.09 (/itemcount 163) 216 171.5 S
+0.09 (/itemlist 163) 216 160.5 S
+0.09 (/itemvisible? 164) 216 149.5 S
+0.09 (/locatechoice 165) 405 642 S
+0.09 (/noti\336er 168) 405 631 S
+0.09 (/pr) 405 620 S
+0.09 (eviewer 168) 419.51 620 S
+0.09 (/r) 405 609 S
+0.09 (eplaceitem 164) 414.02 609 S
+0.09 (/r) 405 598 S
+0.09 (owgap 167) 414.02 598 S
+0.09 (/r) 405 587 S
+0.09 (ows 166) 414.02 587 S
+0.09 (/scr) 405 576 S
+0.09 (oll 166) 422 576 S
+0.09 (/scr) 405 565 S
+0.09 (olltoher) 422 565 S
+0.09 (e 166) 453.61 565 S
+0.09 (/sendtar) 405 554 S
+0.09 (get 169) 440.82 554 S
+0.09 (/setchoicemode 164) 405 543 S
+0.09 (/setitemlist 163) 405 532 S
+0.09 (/setnoti\336er 168) 405 521 S
+0.09 (/setpr) 405 510 S
+0.09 (eviewer 168) 430.82 510 S
+0.09 (/setr) 405 499 S
+0.09 (owgap 167) 425.33 499 S
+0.09 (/setscr) 405 488 S
+0.09 (ollbar 166) 433.31 488 S
+0.09 (/settar) 405 477 S
+0.09 (get 169) 432.93 477 S
+0.09 (/settextfont 169) 405 466 S
+0.09 (/setvalue 165) 405 455 S
+0.09 (/setvisualstate 167) 405 444 S
+0.09 (/tar) 405 433 S
+0.09 (get 169) 421.62 433 S
+0.09 (/value 165) 405 422 S
+0.09 (/visualstate 167) 405 411 S
+2 F
+4 K
+0.13 (ClassSelection) 387 383.33 S
+0 F
+0 K
+0.09 (/CanRenderAs 186) 405 369 S
+0.09 (/clearselection 187) 405 358 S
+0.09 (/ComputeNamedPosition 185) 405 347 S
+0.09 (/computepin 186) 405 336 S
+0.09 (/computerange 186) 405 325 S
+0.09 (/getselection 174) 405 314 S
+0.09 (/new 179) 405 303 S
+0.09 (/query 174) 405 292 S
+0.09 (/r) 405 281 S
+0.09 (equest 175) 414.02 281 S
+0.09 (/sendtocanvas 186) 405 270 S
+0.09 (/SingleRequest 184) 405 259 S
+2 F
+4 K
+0.13 (ClassSettings) 387 231.34 S
+0 F
+0 K
+0.09 (/choicemode 190) 405 217 S
+0.09 (/chosen? 190) 405 206 S
+0.09 (/justi\336cation 190) 405 195 S
+0.09 (/new 190) 405 184 S
+0.09 (/noti\336er 192) 405 173 S
+0.09 (/setchoicemode 190) 405 162 S
+0.09 (/setjusti\336cation 190) 405 151 S
+FMENDPAGE
+%%EndPage: "328" 9
+%%Page: "329" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (329) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (/setnoti\336er 192) 216 642 S
+0.09 (/setvalue 191) 216 631 S
+0.09 (/value 191) 216 620 S
+2 F
+4 K
+0.13 (Sliders) 198 592.33 S
+0 F
+0 K
+0.09 (/cleartar) 216 578 S
+0.09 (get 196) 252.02 578 S
+0.09 (/delta 196) 216 567 S
+0.09 (/endboxes? 197) 216 556 S
+0.09 (/minsize 197) 216 545 S
+0.09 (/new 194) 216 534 S
+0.09 (/normalizer 196) 216 523 S
+0.09 (/noti\336er 195) 216 512 S
+0.09 (/of) 216 501 S
+0.09 (fset 197) 229.45 501 S
+0.09 (/pr) 216 490 S
+0.09 (eferr) 230.51 490 S
+0.09 (edsize 197) 249.5 490 S
+0.09 (/pr) 216 479 S
+0.09 (eviewer 195) 230.51 479 S
+0.09 (/range 195) 216 468 S
+0.09 (/sendtar) 216 457 S
+0.09 (get 196) 251.82 457 S
+0.09 (/setdelta 196) 216 446 S
+0.09 (/setendboxes 197) 216 435 S
+0.09 (/setnormalizer 196) 216 424 S
+0.09 (/setnoti\336er 195) 216 413 S
+0.09 (/setpr) 216 402 S
+0.09 (eviewer 195) 241.82 402 S
+0.09 (/setrange 194) 216 391 S
+0.09 (/settar) 216 380 S
+0.09 (get 195) 243.93 380 S
+0.09 (/settickmarks 197) 216 369 S
+0.09 (/setvalue 194) 216 358 S
+0.09 (/SliderDelay 194) 216 347 S
+0.09 (/SliderThr) 216 336 S
+0.09 (esh 194) 259.77 336 S
+0.09 (/tar) 216 325 S
+0.09 (get 196) 232.62 325 S
+0.09 (/tickmarks 197) 216 314 S
+0.09 (/value 194) 216 303 S
+2 F
+4 K
+0.13 (ClassT) 198 275.34 S
+0.13 (extCanvas) 237.72 275.34 S
+0 F
+0 K
+0.09 (/Curr) 216 261 S
+0.09 (entT) 240.63 261 S
+0.09 (ext 202) 258.13 261 S
+0.09 (/DragAdjust 201) 216 250 S
+0.09 (/DragStart 201) 216 239 S
+0.09 (/DragStop 201) 216 228 S
+2 F
+4 K
+0.13 (ClassT) 198 200.34 S
+0.13 (extField) 237.72 200.34 S
+0 F
+0 K
+0.09 (setnoti\336er 206) 216 186 S
+0.09 (/AlphaNumericT) 216 175 S
+0.09 (able 214) 287.41 175 S
+0.09 (/AlphaNumeric? 214) 216 164 S
+0.09 (/AutoScr) 216 153 S
+0.09 (ollPosition 213) 254.51 153 S
+0.09 (/car) 405 642 S
+0.09 (et 206) 422.68 642 S
+0.09 (/Car) 405 631 S
+0.09 (etDelay 213) 425.06 631 S
+0.09 (/characters 205) 405 620 S
+0.09 (/deletecharacters 207) 405 609 S
+0.09 (/DeleteSpan 207) 405 598 S
+0.09 (/deletespan 207) 405 587 S
+0.09 (/deletewor) 405 576 S
+0.09 (ds 207) 451.09 576 S
+0.09 (/FitCar) 405 565 S
+0.09 (et 212) 435.87 565 S
+0.09 (/\336tcar) 405 554 S
+0.09 (et 212) 431.23 554 S
+0.09 (/gotonext\336eld 210) 405 543 S
+0.09 (/gotonextfocus 210) 405 532 S
+0.09 (/gotopr) 405 521 S
+0.09 (evious\336eld 21) 437.61 521 S
+0.09 (1) 493.5 521 S
+0.09 (/insertcharacter 208) 405 510 S
+0.09 (/InsertString 209) 405 499 S
+0.09 (/insertstring 208) 405 488 S
+0.09 (/invalidate 216) 405 477 S
+0.09 (/InvisibleCar) 405 466 S
+0.09 (et 213) 460.14 466 S
+0.09 (/MinimumV) 405 455 S
+0.09 (isible 205) 457.51 455 S
+0.09 (/minimumvisible 205) 405 444 S
+0.09 (/minsize 205) 405 433 S
+0.09 (/movebaseline 215) 405 422 S
+0.09 (/new 203) 405 411 S
+0.09 (/nextfocus 210) 405 400 S
+0.09 (/noti\336er 206) 405 389 S
+0.09 (/PaintT) 405 378 S
+0.09 (ext 207) 436.46 378 S
+0.09 (/pr) 405 367 S
+0.09 (eviewer 206) 419.51 367 S
+0.09 (/ReadOnly? 204) 405 356 S
+0.09 (/r) 405 345 S
+0.09 (eadonly? 204) 414.02 345 S
+0.09 (/r) 405 334 S
+0.09 (eshape 216) 414.02 334 S
+0.09 (/ResolveT) 405 323 S
+0.09 (oChar 214) 446.96 323 S
+0.09 (/Scr) 405 312 S
+0.09 (oll 212) 422.9 312 S
+0.09 (/scr) 405 301 S
+0.09 (oll 212) 422 301 S
+0.09 (/selection 209) 405 290 S
+0.09 (/setcar) 405 279 S
+0.09 (et 206) 433.99 279 S
+0.09 (/setminimumvisible 205) 405 268 S
+0.09 (/setnextfocus 210) 405 257 S
+0.09 (/setpr) 405 246 S
+0.09 (eviewer 206) 430.82 246 S
+0.09 (/setr) 405 235 S
+0.09 (eadonly 204) 425.33 235 S
+0.09 (/setselection 209) 405 224 S
+0.09 (/settextfont 209) 405 213 S
+0.09 (/setvalue 204) 405 202 S
+0.09 (/setvisualstate 203) 405 191 S
+0.09 (/SpecialActions 215) 405 180 S
+0.09 (/value 205) 405 169 S
+0.09 (/V) 405 158 S
+0.09 (isibleCar) 416.62 158 S
+0.09 (et 213) 452.62 158 S
+0.09 (/visualstate 204) 405 147 S
+FMENDPAGE
+%%EndPage: "329" 10
+%%Page: "330" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (330) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassPanel 133) 216 642 S
+2 F
+4 K
+0.13 (ClassW) 198 614.33 S
+0.13 (indow) 243.01 614.33 S
+0 F
+0 K
+0.09 (/addsubwindow 222) 216 600 S
+0.09 (/attribute 219) 216 589 S
+0.09 (/close 223) 216 578 S
+0.09 (/closesubwindows 222) 216 567 S
+0.09 (/\337ashframe 220) 216 556 S
+0.09 (/footer 220) 216 545 S
+0.09 (/FooterFont 220) 216 534 S
+0.09 (/Fr) 216 523 S
+0.09 (eezable? 220) 230.1 523 S
+0.09 (/Fr) 216 512 S
+0.09 (eezeFilter 221) 230.1 512 S
+0.09 (/label 219) 216 501 S
+0.09 (/new 218) 216 490 S
+0.09 (/open 223) 216 479 S
+0.09 (/opened? 223) 216 468 S
+0.09 (/opensubwindows 222) 216 457 S
+0.09 (/paintwindow 220) 216 446 S
+0.09 (/pin 223) 216 435 S
+0.09 (/pinned? 223) 216 424 S
+0.09 (/place 221) 216 413 S
+0.09 (/QuitFr) 216 402 S
+0.09 (omUser 224) 248.49 402 S
+0.09 (/r) 216 391 S
+0.09 (emovesubwindow 222) 225.01 391 S
+0.09 (/RootW) 216 380 S
+0.09 (indow 222) 249.23 380 S
+0.09 (/setattribute 218) 216 369 S
+0.09 (/setfooter 219) 216 358 S
+0.09 (/setlabel 219) 216 347 S
+0.09 (/setvisualstate 220) 216 336 S
+0.09 (/SubW) 216 325 S
+0.09 (indows 222) 245.5 325 S
+0.09 (/SuperW) 216 314 S
+0.09 (indow 222) 253.96 314 S
+0.09 (/T) 216 303 S
+0.09 (extFont 220) 226.31 303 S
+0.09 (/toggleopened 223) 216 292 S
+0.09 (/togglepinned 223) 216 281 S
+0.09 (/togglezoomed 224) 216 270 S
+0.09 (/unpin 223) 216 259 S
+0.09 (/unzoom 224) 216 248 S
+0.09 (/zoom 224) 216 237 S
+0.09 (/zoomed? 224) 216 226 S
+2 F
+4 K
+0.13 (W) 198 198.34 S
+0.13 (ireService) 210.63 198.34 S
+0 F
+0 K
+0.09 (Help_HelpRequestHandler 244) 216 184 S
+0.09 (Help_UpdateV) 216 173 S
+0.09 (iew 244) 276.98 173 S
+0.09 (wir) 216 162 S
+0.09 (e_AddFileHandler 240) 229.77 162 S
+0.09 (wir) 216 151 S
+0.09 (e_AllocateNamedT) 229.77 151 S
+0.09 (ags 234) 307.23 151 S
+0.09 (wir) 405 642 S
+0.09 (e_AllocateNamedT) 418.77 642 S
+0.09 (okens 237) 496.23 642 S
+0.09 (wir) 405 631 S
+0.09 (e_AllocateT) 418.77 631 S
+0.09 (ags 234) 466.09 631 S
+0.09 (wir) 405 620 S
+0.09 (e_AllocateT) 418.77 620 S
+0.09 (okens 236) 466.09 620 S
+0.09 (wir) 405 609 S
+0.09 (e_Close 229) 418.77 609 S
+0.09 (wir) 405 598 S
+0.09 (e_Curr) 418.77 598 S
+0.09 (ent 230) 446.84 598 S
+0.09 (wir) 405 587 S
+0.09 (e_Data 230) 418.77 587 S
+0.09 (wir) 405 576 S
+0.09 (e_DeallocateT) 418.77 576 S
+0.09 (okens 237) 475.03 576 S
+0.09 (wir) 405 565 S
+0.09 (e_DeathDefault 232) 418.77 565 S
+0.09 (wir) 405 554 S
+0.09 (e_Disable 230) 418.77 554 S
+0.09 (wir) 405 543 S
+0.09 (e_DiseaseDefault 232) 418.77 543 S
+0.09 (wir) 405 532 S
+0.09 (e_DrainSync 243) 418.77 532 S
+0.09 (wir) 405 521 S
+0.09 (e_Enable 231) 418.77 521 S
+0.09 (wir) 405 510 S
+0.09 (e_Enabled 231) 418.77 510 S
+0.09 (wir) 405 499 S
+0.09 (e_EnterNoti\336er 240) 418.77 499 S
+0.09 (wir) 405 488 S
+0.09 (e_Errno 228) 418.77 488 S
+0.09 (wir) 405 477 S
+0.09 (e_Err) 418.77 477 S
+0.09 (orString 228) 440.45 477 S
+0.09 (wir) 405 466 S
+0.09 (e_ExitNoti\336er 240) 418.77 466 S
+0.09 (wir) 405 455 S
+0.09 (e_ExpectSync 243) 418.77 455 S
+0.09 (wir) 405 444 S
+0.09 (e_GobbleAny 241) 418.77 444 S
+0.09 (wir) 405 433 S
+0.09 (e_IntT) 418.77 433 S
+0.09 (oW) 443.98 433 S
+0.09 (ir) 457.56 433 S
+0.09 (e 233) 463.74 433 S
+0.09 (wir) 405 422 S
+0.09 (e_Notify 239) 418.77 422 S
+0.09 (wir) 405 411 S
+0.09 (e_Open 229) 418.77 411 S
+0.09 (wir) 405 400 S
+0.09 (e_Pr) 418.77 400 S
+0.09 (oblems 232) 436.74 400 S
+0.09 (wir) 405 389 S
+0.09 (e_PSinput 233) 418.77 389 S
+0.09 (wir) 405 378 S
+0.09 (e_PSoutput 234) 418.77 378 S
+0.09 (wir) 405 367 S
+0.09 (e_ReadFloat 241) 418.77 367 S
+0.09 (wir) 405 356 S
+0.09 (e_ReadInt 241) 418.77 356 S
+0.09 (wir) 405 345 S
+0.09 (e_ReadString 241) 418.77 345 S
+0.09 (wir) 405 334 S
+0.09 (e_RegisterT) 418.77 334 S
+0.09 (ag 235) 465.76 334 S
+0.09 (wir) 405 323 S
+0.09 (e_RegisterT) 418.77 323 S
+0.09 (oken 237) 465.76 323 S
+0.09 (wir) 405 312 S
+0.09 (e_RemoveFileHandler 240) 418.77 312 S
+0.09 (wir) 405 301 S
+0.09 (e_ReserveT) 418.77 301 S
+0.09 (ags 235) 464.51 301 S
+0.09 (wir) 405 290 S
+0.09 (e_ReserveT) 418.77 290 S
+0.09 (okens 237) 464.51 290 S
+0.09 (wir) 405 279 S
+0.09 (e_SetCurr) 418.77 279 S
+0.09 (ent 229) 459.06 279 S
+0.09 (wir) 405 268 S
+0.09 (e_SetData 230) 418.77 268 S
+0.09 (wir) 405 257 S
+0.09 (e_SkipEvent 233) 418.77 257 S
+0.09 (wir) 405 246 S
+0.09 (e_Sync 241) 418.77 246 S
+0.09 (wir) 405 235 S
+0.09 (e_T) 418.77 235 S
+0.09 (agData 235) 432.52 235 S
+0.09 (wir) 405 224 S
+0.09 (e_T) 418.77 224 S
+0.09 (agFunction 235) 432.52 224 S
+0.09 (wir) 405 213 S
+0.09 (e_T) 418.77 213 S
+0.09 (okenData 237) 432.52 213 S
+0.09 (wir) 405 202 S
+0.09 (e_UnknownT) 418.77 202 S
+0.09 (agDefault 232) 473.23 202 S
+0.09 (wir) 405 191 S
+0.09 (e_V) 418.77 191 S
+0.09 (alid 230) 433.5 191 S
+0.09 (wir) 405 180 S
+0.09 (e_W) 418.77 180 S
+0.09 (ir) 436.33 180 S
+0.09 (eT) 442.51 180 S
+0.09 (oInt 233) 451.68 180 S
+0.09 (wir) 405 169 S
+0.09 (e_W) 418.77 169 S
+0.09 (ouldNotify 239) 436 169 S
+FMENDPAGE
+%%EndPage: "330" 11
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 10 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Palatino-Bold

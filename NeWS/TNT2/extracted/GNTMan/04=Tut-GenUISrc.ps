@@ -1,0 +1,4787 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 14 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 10 /Palatino-Roman FMDEFINEFONT
+5 15 /Palatino-Italic FMDEFINEFONT
+6 14 /Palatino-Italic FMDEFINEFONT
+7 9 /Palatino-Italic FMDEFINEFONT
+8 9 /Courier FMDEFINEFONT
+%%Page: "37" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (37) 548.83 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (4-0) 159.51 672.33 S
+-0.12 (4-0) 159.51 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (T) 199.01 509.03 B
+-2.3 -0.4 (utorial: Generating UI Sour) 208.6 509.03 B
+-2.3 -0.4 (ce Code) 417.11 509.03 B
+3 F
+7 X
+1 K
+-3.12 (4) 540.57 508.36 S
+4 F
+0 X
+0 K
+0.52 0.1 (Once we have built an interface, we can generate C and PostScript UI sour) 198 459.68 B
+0.52 0.1 (ce ) 539.76 459.68 B
+0.32 0.1 (code using GNT) 198 447.28 B
+0.32 0.1 (, modify this sour) 271.7 447.28 B
+0.32 0.1 (ce code, compile, and link the UI code to the ) 352.35 447.28 B
+0.52 0.1 (Jot editor application code.) 198 434.88 B
+5 F
+-0.94 (Using Devguide: A Simple Application) 54 401.14 P
+4 F
+0.52 0.1 (This example continues the example started in Chapter 3. In this chapter) 198 379.48 B
+0.52 0.1 (, we ) 529.67 379.48 B
+0.52 0.1 (cover the use of GNT to complete the development of a TNT) 198 367.08 B
+0.52 0.1 (-based user ) 476.16 367.08 B
+0.1 (interface.) 198 354.68 S
+6 F
+-0.88 (Generating Code with GNT) 126 321.61 P
+4 F
+0.52 0.1 (T) 198 300.28 B
+0.52 0.1 (o generate sour) 203.31 300.28 B
+0.52 0.1 (ce code fr) 273.73 300.28 B
+0.52 0.1 (om the GIL \336le that Devguide generated fr) 317.87 300.28 B
+0.52 0.1 (om your ) 514.12 300.28 B
+0.52 0.1 (user) 198 287.88 B
+0.52 0.1 (-interface description, you execute the following command in a shell tool. ) 217.22 287.88 B
+0.52 0.1 (T) 198 275.48 B
+0.52 0.1 (ry this now) 203.33 275.48 B
+0.52 0.1 (. ) 254.88 275.48 B
+7 F
+0.47 0.09 (Figur) 198 202.21 B
+0.47 0.09 (e 4-1) 218.77 202.21 B
+0 F
+0.47 0.09 (Calling GNT on the jot_editor GIL File.) 248.4 202.21 B
+54 144 558 466.34 C
+54 216.61 558 251.74 C
+198 220.24 555.34 246.78 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+0.09 (gnt -v jot_editor) 203.98 233.43 S
+54 144 558 466.34 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "37" 2
+1 10 /Courier FMDEFINEFONT
+%%Page: "38" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (38) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (Note that you do not need the ) 198 641.33 B
+1 F
+1.22 0.1 (.G) 339.76 641.33 B
+4 F
+0.52 0.1 ( suf) 351.95 641.33 B
+0.52 0.1 (\336x on the \336le name; GNT pr) 368.79 641.33 B
+0.52 0.1 (ovides it for ) 498.33 641.33 B
+0.52 0.1 (you. Y) 198 628.93 B
+0.52 0.1 (ou can, however) 226.9 628.93 B
+0.52 0.1 (, explicitly specify the ) 301.71 628.93 B
+1 F
+1.22 0.1 (.G) 404.75 628.93 B
+4 F
+0.52 0.1 ( suf) 416.94 628.93 B
+0.52 0.1 (\336x if you want to. The ) 433.77 628.93 B
+1 F
+1.22 0.1 (-v) 539.01 628.93 B
+4 F
+0.52 0.1 ( ) 551.21 628.93 B
+0.52 0.1 (\050verbose\051 option causes GNT to print out pr) 198 616.53 B
+0.52 0.1 (ocessing information, which is ) 399.33 616.53 B
+0.18 0.1 (useful when you ar) 198 604.13 B
+0.18 0.1 (e just getting started using GNT) 285.71 604.13 B
+0.18 0.1 (. An example of this output ) 430.54 604.13 B
+0.52 0.1 (is shown in Figur) 198 591.73 B
+0.52 0.1 (e 4-2.) 278.11 591.73 B
+7 F
+0.47 0.09 (Figur) 198 232.26 B
+0.47 0.09 (e 4-2) 218.77 232.26 B
+0 F
+0.47 0.09 (Using GNT with the V) 248.4 232.26 B
+0.47 0.09 (erbose Flag Set) 340.77 232.26 B
+4 F
+0.52 0.1 (GNT \336rst prints out the options that ar) 198 207.59 B
+0.52 0.1 (e being used, ) 376.59 207.59 B
+1 F
+1.22 0.1 (-v) 440.09 207.59 B
+4 F
+0.52 0.1 ( is the verbose option ) 452.28 207.59 B
+0.52 0.1 (which pr) 198 195.19 B
+0.52 0.1 (oduces this output, and ) 238.91 195.19 B
+1 F
+1.22 0.1 (-c) 350.11 195.19 B
+4 F
+0.52 0.1 ( is a default option that tells GNT to ) 362.3 195.19 B
+0.52 0.1 (pr) 198 182.79 B
+0.52 0.1 (oduce C instead of C++ code. ) 207.98 182.79 B
+54 144 558 648 C
+54 246.66 558 568 C
+198 251.02 555.34 563.03 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(fort:jot_editor[22] gnt -v jot_editor) 204.7 549.69 T
+(Options: -vc) 204.7 538.69 T
+(Processing jot_editor) 204.7 527.69 T
+(Running genui) 204.7 516.69 T
+(Options: traditional, no subclassing) 204.7 505.69 T
+(Opening jot_editor.G) 204.7 494.69 T
+(Opening jot_editor.ps.new) 204.7 483.69 T
+(Running cside) 204.7 472.69 T
+(Options: traditional, no subclassing) 204.7 461.69 T
+(Opening jot_editor.G) 204.7 450.69 T
+(Opening jot_editor.h) 204.7 439.69 T
+(Opening jot_editor.c.new) 204.7 428.69 T
+(Opening jot_editor_cps.cps.new) 204.7 417.69 T
+(Opening jot_editor.make.new) 204.7 406.69 T
+(Constructing Makefile) 204.7 395.69 T
+(Making jot_editor using Makefile) 204.7 373.69 T
+(cc -g -DDEBUG -DPROTO -I. -) 204.7 351.69 T
+(I/net/cirrus/export/tnt/releases/nightly-sparc/include -) 204.7 340.69 T
+(I/usr/local/openwin/include -target sun4 -c jot_editor.c) 204.7 329.69 T
+(cc -g -DDEBUG -DPROTO -I. -) 204.7 318.69 T
+(I/net/cirrus/export/tnt/releases/nightly-sparc/include -) 204.7 307.69 T
+(I/usr/local/openwin/include -L. -) 204.7 296.69 T
+(L/net/cirrus/export/tnt/releases/nightly-sparc/lib -) 204.7 285.69 T
+(L/usr/local/openwin/lib -target sun4 -o jot_editor\134) 204.7 274.69 T
+(jot_editor.o jot_editor_cps.o -ljot -lwire -lalert -lcps) 204.7 263.69 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "38" 3
+3 14 /Times-Bold FMDEFINEFONT
+%%Page: "39" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (39) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.52 0.1 (GNT is a shell script that calls several other pr) 198 641.33 B
+0.52 0.1 (ograms. T) 410.89 641.33 B
+0.52 0.1 (wo of these pr) 455.56 641.33 B
+0.52 0.1 (ograms ) 521.25 641.33 B
+0.52 0.1 (ar) 198 628.93 B
+0.52 0.1 (e ) 206.96 628.93 B
+1 F
+1.22 0.1 (genui) 214.97 628.93 B
+4 F
+0.52 0.1 (, which generates the PostScript user) 245.45 628.93 B
+0.52 0.1 (-interface code, and ) 413.71 628.93 B
+1 F
+1.22 0.1 (cside) 506.67 628.93 B
+4 F
+0.52 0.1 (, ) 537.15 628.93 B
+0.52 0.1 (which generates the client-side C code. GNT then calls ) 198 616.53 B
+1 F
+1.22 0.1 (make) 451.1 616.53 B
+4 F
+0.52 0.1 (.) 475.49 616.53 B
+0.04 0.1 (GNT generates a number of \336les for you. The most important ones ar) 198 596.13 B
+0.04 0.1 (e the ones ) 510.25 596.13 B
+0.52 0.1 (we will edit to \336nish our application.) 198 583.73 B
+3 F
+(\245) 198 565.33 T
+1 F
+1.22 0.1 (jot_editor.c) 210.6 565.33 B
+4 F
+0.52 0.1 ( \321 for client-side code.) 283.76 565.33 B
+3 F
+(\245) 198 552.93 T
+1 F
+1.22 0.1 (jot_editor.ps) 210.6 552.93 B
+4 F
+0.52 0.1 ( \321 for server) 289.86 552.93 B
+0.52 0.1 (-side code.) 350.11 552.93 B
+3 F
+(\245) 198 540.53 T
+1 F
+1.22 0.1 (jot_editor_cps.cps) 210.6 540.53 B
+4 F
+0.52 0.1 ( \321 for communications code.) 320.34 540.53 B
+6 F
+-0.88 (T) 126 507.47 P
+-0.88 (esting the User Interface Code Early On) 133 507.47 P
+4 F
+0.52 0.1 (GNT generates a executable pr) 198 486.13 B
+0.52 0.1 (ototype version of the application, which you ) 338.65 486.13 B
+0.34 0.1 (can r) 198 473.73 B
+0.34 0.1 (un immediately) 220.46 473.73 B
+0.34 0.1 (. T) 291.3 473.73 B
+0.34 0.1 (ry this now by calling ) 302.16 473.73 B
+1 F
+0.8 0.1 (jot_editor) 404.61 473.73 B
+4 F
+0.34 0.1 ( as shown in Figur) 465.58 473.73 B
+0.34 0.1 (e ) 550.17 473.73 B
+0.1 (4-3.) 198 461.33 S
+7 F
+0.47 0.09 (Figur) 198 388.07 B
+0.47 0.09 (e 4-3) 218.77 388.07 B
+0 F
+0.47 0.09 (Starting the Pr) 248.4 388.07 B
+0.47 0.09 (ototype V) 307.92 388.07 B
+0.47 0.09 (ersion of jot_editor ) 347.32 388.07 B
+7 F
+0.47 0.09 (Figur) 198 282.09 B
+0.47 0.09 (e 4-4) 218.77 282.09 B
+0 F
+0.47 0.09 (GNT Pr) 248.4 282.09 B
+0.47 0.09 (ototype-Code Messages in Shell W) 280.31 282.09 B
+0.47 0.09 (indow) 422.35 282.09 B
+7 F
+0.47 0.09 (Figur) 198 176.12 B
+0.47 0.09 (e 4-5) 218.77 176.12 B
+0 F
+0.47 0.09 (GNT Pr) 248.4 176.12 B
+0.47 0.09 (ototype-Code Messages in Console W) 280.31 176.12 B
+0.47 0.09 (indow) 435.19 176.12 B
+54 144 558 648 C
+54 402.47 558 437.6 C
+198 406.1 555.34 432.63 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+0.09 (jot_editor) 203.98 419.29 S
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 296.49 558 360.07 C
+55.86 298.45 555.34 355.1 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+( Wire opened without error) 60.41 341.75 T
+(Client callback invoked: FileButtonMenu called with index 1 value Save Current File true) 60.41 330.75 T
+(Client callback invoked: LoadFileButton called) 60.41 319.75 T
+(Client callback invoked: JotWindow quit) 60.41 308.75 T
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 190.52 558 254.09 C
+55.86 193.9 555.34 249.12 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(Server callback invoked: LoadFileMenuItemHandler called) 60.41 235.78 T
+(Server callback invoked: SaveAsFileMenuItemHandler called) 60.41 224.78 T
+(Server callback invoked: LoadDirTextFieldNotifyHandler called) 60.41 213.78 T
+(Server callback invoked: LoadFileTextFieldNotifyHandler called) 60.41 202.78 T
+567 173.59 569 182.59 R
+V
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "39" 4
+9 13 /Palatino-Italic FMDEFINEFONT
+%%Page: "40" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (40) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.34 0.1 (If you compile the code with the default pr) 198 641.33 B
+0.34 0.1 (ototype option \050see \322Compiling the ) 394.13 641.33 B
+0.52 0.1 (Application Code\323 on page 53\051 each time you click on a button or select a ) 198 628.93 B
+0.52 0.1 (menu option, the pr) 198 616.53 B
+0.52 0.1 (ototype code prints out which callback was executed. The ) 289.45 616.53 B
+0.52 0.1 (PostScript calls appear in the console window \050Figur) 198 604.13 B
+0.52 0.1 (e 4-4\051, while the C calls ) 439.15 604.13 B
+0.52 0.1 (appear in the shell window \050Figur) 198 591.73 B
+0.52 0.1 (e 4-4\051 wher) 354.48 591.73 B
+0.52 0.1 (e you started the application.) 405.77 591.73 B
+0.52 0.1 (This means that you ar) 198 571.33 B
+0.52 0.1 (e starting fr) 303.16 571.33 B
+0.52 0.1 (om a working pr) 356.36 571.33 B
+0.52 0.1 (ototype. Y) 433.55 571.33 B
+0.52 0.1 (ou can make ) 479.6 571.33 B
+0.52 0.1 (incr) 198 558.93 B
+0.52 0.1 (emental changes to the code and verify that they work fr) 215.33 558.93 B
+0.52 0.1 (om the very ) 475.75 558.93 B
+0.1 (beginning.) 198 546.53 S
+6 F
+-0.88 (Changing the Interface and Regenerating Code) 126 513.47 P
+4 F
+0.52 0.1 (Normally) 198 492.13 B
+0.52 0.1 (, when you ar) 240.6 492.13 B
+0.52 0.1 (e developing an application, the user interface is a ) 304.01 492.13 B
+0.52 0.1 (moving tar) 198 479.73 B
+0.52 0.1 (get, and you will need to modify it, generate a new GIL \336le, and ) 248.25 479.73 B
+0.52 0.1 (generate a new set of executables. V) 198 467.33 B
+0.52 0.1 (ersion 2 of GNT) 362.17 467.33 B
+0.52 0.1 (, unfortunately) 434.98 467.33 B
+0.52 0.1 (, does not ) 502.07 467.33 B
+0.52 0.1 (copy your changes for you. Y) 198 454.93 B
+0.52 0.1 (ou must keep track of your own changes and ) 332.01 454.93 B
+0.52 0.1 (copy them to the generated code \336les.) 198 442.53 B
+0.52 0.1 (T) 198 422.13 B
+0.52 0.1 (o assist you, the second time you generate executable code fr) 203.31 422.13 B
+0.52 0.1 (om a GIL \336le, ) 482.48 422.13 B
+0.52 0.1 (GNT generates a new set of \336les with ) 198 409.73 B
+1 F
+1.22 0.1 (.new) 373.38 409.73 B
+4 F
+0.52 0.1 ( suf) 397.77 409.73 B
+0.52 0.1 (\336xes. Y) 414.6 409.73 B
+0.52 0.1 (ou can then copy your ) 446.79 409.73 B
+0.3 0.1 (changes fr) 198 397.33 B
+0.3 0.1 (om the old \336les to the ones with the ) 244.54 397.33 B
+1 F
+0.7 0.1 (.new) 411.07 397.33 B
+4 F
+0.3 0.1 ( suf) 435.46 397.33 B
+0.3 0.1 (\336x, delete the old \336les, ) 452.07 397.33 B
+0.52 0.1 (and r) 198 384.93 B
+0.52 0.1 (emove the ) 222.21 384.93 B
+1 F
+1.22 0.1 (.new) 272.61 384.93 B
+4 F
+0.52 0.1 ( suf) 296.99 384.93 B
+0.52 0.1 (\336x fr) 313.83 384.93 B
+0.52 0.1 (om the new \336les. ) 335.64 384.93 B
+0.52 0.1 (Another technique is to maintain a \336le of changes and delete or move old ) 198 364.54 B
+0.52 0.1 (copies of the \336les \050using ) 198 352.14 B
+1 F
+1.22 0.1 (make clobber) 312.03 352.14 B
+4 F
+0.52 0.1 (, which deletes all GNT generated ) 385.67 352.14 B
+0.52 0.1 (\336les\051 befor) 198 339.73 B
+0.52 0.1 (e you generate new interface code, then copy your modi\336ed code ) 246.29 339.73 B
+0.52 0.1 (fr) 198 327.33 B
+0.52 0.1 (om the changes \336le to the newly generated \336les.) 205.3 327.33 B
+6 F
+-0.88 (Modifying the User-Interface Code) 126 294.27 P
+4 F
+0.51 0.1 (The \336rst task we ar) 198 272.93 B
+0.51 0.1 (e faced with is getting the editor in our application to load ) 286.11 272.93 B
+0.52 0.1 (a \336le.) 198 260.53 B
+9 F
+-0.84 0.13 (Opening a Pop-up W) 198 228.14 B
+-0.84 0.13 (indow) 309.73 228.14 B
+4 F
+0.03 0.1 (The ) 198 211.14 B
+1 F
+0.08 0.1 (LoadFileMenuItemHandler) 217.66 211.14 B
+4 F
+0.03 0.1 ( is called by the Load File... menu option on ) 357.89 211.14 B
+0.52 0.1 (the File menu-button menu.) 198 198.73 B
+FMENDPAGE
+%%EndPage: "40" 5
+10 9 /Helvetica FMDEFINEFONT
+%%Page: "41" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (41) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+0.47 0.09 (Figur) 198 487.63 B
+0.47 0.09 (e 4-6) 218.77 487.63 B
+0 F
+0.47 0.09 (The File Menu-Button Menu) 248.4 487.63 B
+4 F
+0.52 0.1 (In this case, all we want to do is open a pop-up window) 198 462.97 B
+0.52 0.1 (, which is de\336ned on ) 455.79 462.97 B
+0.52 0.1 (the server side in PostScript, so we de\336ned the ) 198 450.57 B
+10 F
+0.52 0.09 (LoadFileMenuItemHandler) 415.57 450.57 B
+4 F
+0.52 0.1 ( as a ) 523.53 450.57 B
+0.52 0.1 (PostScript-only r) 198 438.17 B
+0.52 0.1 (outine. \050This was done by giving it a ) 274.35 438.17 B
+1 F
+1.22 0.1 (ps_) 445.84 438.17 B
+4 F
+0.52 0.1 ( pr) 464.13 438.17 B
+0.52 0.1 (e\336x in the ) 477.23 438.17 B
+0.52 0.1 (pr) 198 425.77 B
+0.52 0.1 (operty window) 207.98 425.77 B
+0.52 0.1 (.\051 See Figur) 277.35 425.77 B
+0.52 0.1 (e 3-16 on page 27.) 329.05 425.77 B
+0.52 0.1 (Because we declar) 198 405.37 B
+0.52 0.1 (ed this to be a PostScript r) 281.24 405.37 B
+0.52 0.1 (outine in the Menus pr) 401.86 405.37 B
+0.52 0.1 (operty ) 507.07 405.37 B
+0.19 0.1 (window) 198 392.97 B
+0.19 0.1 (, we look in the ) 234.64 392.97 B
+1 F
+0.45 0.1 (jot_editor.ps) 307.38 392.97 B
+4 F
+0.19 0.1 ( \336le for the skeleton for this function. ) 386.63 392.97 B
+0.52 0.1 (The skeleton is somewher) 198 380.57 B
+0.52 0.1 (e near the bottom of the \336le and is shown in ) 316.15 380.57 B
+0.52 0.1 (Figur) 198 368.17 B
+0.52 0.1 (e 4-7.) 222.32 368.17 B
+7 F
+0.47 0.09 (Figur) 198 178.01 B
+0.47 0.09 (e 4-7) 218.77 178.01 B
+0 F
+0.47 0.09 (The LoadFileMenuItemHandler Skeleton) 248.4 178.01 B
+198 501.63 558 648 C
+198 501.63 558 648 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  2008     
+398 195 286.56 140.4 0 198.07 506.16 BEGINBITMAPBWc
+
+
+8"j"
+F8O 078#J#
+FBFEL1FF7
+:Z"
+LDF9#j#
+8080K40779%J"
+BF900060I7F:$Z
+EFFFBFJ<"
+9FJ#
+<E73F:#H'
+EE03CFFEFF03E73B8%I&I"
+F83FEEFBFCFF3FE7F3079$H)G"
+FFEF77CE183F3F0720C393C7J(
+8CCCCFF3E673399;"J"9"
+AF5068FJ"9"
+;3E9F;"
+DF;"J"
+FF647J(
+8CE1E3F032738C3:$G"R
+F0001F1F:$G"
+F8003FFF:$
+FFFFFF
+
+9"j
+C0M
+9Z
+O 9"j
+C0M9"Z"
+DFLFE
+
+
+
+
+
+
+
+
+
+<'
+F00000000003<'
+CFFFFFFFFFFC<(
+BF77777777777F<(
+7FFF77FFFFFFBF;)
+FEDD8555DDDDDDDF<(
+FFBFF7FFFFFFCF;)
+FDF737771770076F<(
+FFBF76EFFBEFE7<'
+DD8554CDDDDD<'
+FFBF760FFDDF<(
+77377677763767<(
+FFBF76EFFEBFE7<'
+DD9D551DDD5D;"Q"
+FEC7<(
+F77777777777CF;#P"
+FF7F8F<(
+BDDDDDDDDDDF1F<(
+CFFFFFFFFFFC3F<"`"
+E07F<":#
+F001FF"a:b"
+E07F"Z
+EF1
+7"i"
+F80F7"Y"
+E7F37"D"
+DFFD7"9$>$
+BFDFFFBBFEFF077#9"?$j
+7FDFC3FF7F28><#@"Z
+DFFB07>*>#
+EEFFDF9E3E1FDFBB8FBF2F9$8"?"
+6DDDDF77078#8"A"j$
+DEF7C328;0600039'?"Z$
+F61DDFDFBB0707;F6FFFB9#9"?"
+F5DD7F2F8%8#>"
+DF6DDD9F76DB07'8">#
+EF7FC39E2E5F8E7F2F8S>"J#
+07<00037"D$J$
+BFFEFF2F;F7FFFF7"D$
+DFFDFF077"D$J#
+E7F3FF2F<00077"i$J$
+F80FFF07;F6FFF37Z"
+12FH"
+07H"
+2FH"J"
+07<FBH"J"
+2F<F5C#9"J"
+F77F07<EA8"9":$:"J#
+C3E1F7F8772F<D5738"9";#:"J#
+BFDEFBFF07<EAF39-9"J"
+8EEE3FBFEED298F4E1FBF7712F<FF8%8%8"9"
+9F76EDDFCE7773776E078#:':"
+C7F6DEF77777F8772F8%9"8$9"
+F3875C1FF0FBF760078%9#9"9"
+FB775DFFF7F76F2F:%8"9"9"J#
+BDDFDEEC776E07<00038+8"9"J#
+878BBE3FE1F2DEF8F779712F<FFF38X9"
+07H"
+2FH"
+07H"
+2FH"
+07H"
+2FH"
+07H"
+2FH"
+07H"
+2FC#9"
+F77F078#:#8#:"
+C3BFFDEFF8772F8";"9#:"
+BFFCFBFF079-9"J#
+0E74C7F8F1FCEE3BFBFBF7712F<00038+8"9"J#
+9FBDB3BBF76FFD6DDBBB6E07<FFF38&8&:"
+C7BBD7BBFF2DDDB7F8772F8"8+9"
+F383F873FDAC1D57FBF760078"8'9"9"
+FBBFF77DFDCDFD6F2F9$:#8&
+BDB7BBDEEF6EDB7FFF078*9"9"J#
+87CE77C7F8A3FDEE3E712F<C0338Z"
+007H"J#
+2F<E073H"J#
+07<F0F3H"J"
+2F<F9H"J"
+07<FFH"
+2FH"
+07H"
+2FH"J#
+07<0003"j"J$
+E012F;F70007#F"J#
+FF8007<FFFF7z"J"
+1AAAF<F87"j"
+800077z"
+1AAAF7$Z
+FFF8DF/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J"
+O!FF
+J$
+O F60003J#
+O!FFFB
+
+
+9"j$
+C0J0600039Z
+O 
+
+
+
+
+
+
+
+
+
+
+9"J"
+3FM078#J"
+FBBFM77
+
+
+
+9"J"
+80LC09"J#
+FELDFF7:j"
+L1F
+8#J#
+F800L00078Z
+O"
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+54 144 558 648 C
+54 192.41 558 344.43 C
+198 195.43 555.34 339.47 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+10 F
+(% ) 204.7 326.12 T
+(% LoadFileMenuItemHandler) 204.7 315.12 T
+(% ) 204.7 304.12 T
+(% ) 204.7 293.12 T
+(Automatically generated server only callback routine ) 234 293.12 T
+(% ) 204.7 282.12 T
+(for the following object\050s\051:) 234 282.12 T
+(% ) 204.7 271.12 T
+(%) 204.7 260.12 T
+(/LoadFileMenuItemHandler { % value instance => -) 204.7 238.12 T
+(console \050LoadFileMenuItemHandler called\134n\051 fprintf) 234 227.12 T
+(pop pop) 234 216.12 T
+( } ?def) 204.7 205.12 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "41" 6
+11 10 /Palatino-Italic FMDEFINEFONT
+%%Page: "42" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (42) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.47 0.1 (The modi\336ed code for ) 198 641.33 B
+1 F
+1.1 0.1 (LoadFileMenuItemHandler) 302.45 641.33 B
+4 F
+0.47 0.1 ( is shown Figur) 442.68 641.33 B
+0.47 0.1 (e 4-8. All ) 513.7 641.33 B
+0.52 0.1 (callbacks ar) 198 628.93 B
+0.52 0.1 (e called with a value and an instance. See ) 250.99 628.93 B
+11 F
+0.52 0.1 (The NeWS Toolkit ) 444.38 628.93 B
+-0.02 0.1 (Reference Manual) 198 616.53 B
+4 F
+-0.02 0.1 ( for a discussion of callbacks or handlers. In this case, we don\325t ) 272.79 616.53 B
+0.52 0.1 (need the value and the instance, so we pop them of) 198 604.13 B
+0.52 0.1 (f the stack. Then we send ) 434.03 604.13 B
+10 F
+0.4 0.09 (/open) 198 591.73 B
+4 F
+0.4 0.1 ( to ) 220.94 591.73 B
+10 F
+0.4 0.09 (LoadFilePopup) 235.84 591.73 B
+4 F
+0.4 0.1 (, the PostScript name of the pop-up window) 297.46 591.73 B
+0.4 0.1 (, and we ar) 499.02 591.73 B
+0.4 0.1 (e ) 550.12 591.73 B
+0.52 0.1 (done with this callback.) 198 579.33 B
+7 F
+0.47 0.09 (Figur) 198 473.45 B
+0.47 0.09 (e 4-8) 218.77 473.45 B
+0 F
+0.47 0.09 (The LoadFileMenuItemHandler Code) 248.4 473.45 B
+4 F
+0.52 0.1 (De\336ning your functions with a ) 198 448.78 B
+10 F
+0.52 0.09 (?def) 342.35 448.78 B
+4 F
+0.52 0.1 ( guarantees that if you choose the same ) 360.2 448.78 B
+0.52 0.1 (name as an alr) 198 436.38 B
+0.52 0.1 (eady existing method, you won\325t r) 264.6 436.38 B
+0.52 0.1 (ede\336ne that method.) 422.28 436.38 B
+9 F
+-0.84 0.13 (Moving to the Next T) 198 403.98 B
+-0.84 0.13 (ext Field) 310.47 403.98 B
+4 F
+0.06 0.1 (In OPEN LOOK, when you have completed \336lling in one text \336eld and want to ) 198 386.98 B
+0.3 0.1 (move to the next input location, a carriage r) 198 374.58 B
+0.3 0.1 (eturn should move you to the next ) 397.28 374.58 B
+0.4 0.1 (location. This is all handled for us by TNT) 198 362.18 B
+0.4 0.1 (. All we have to do is make one text ) 390.73 362.18 B
+0.52 0.1 (\336eld awar) 198 349.78 B
+0.52 0.1 (e of the next text \336eld in the focus passing sequence.) 243.87 349.78 B
+7 F
+0.47 0.09 (Figur) 198 214.48 B
+0.47 0.09 (e 4-9) 218.77 214.48 B
+0 F
+0.47 0.09 (The Load-File Pop-up W) 248.4 214.48 B
+0.47 0.09 (indow) 349.52 214.48 B
+4 F
+0.52 0.1 (Ther) 198 189.81 B
+0.52 0.1 (e is no callback skeleton associated with this operation, we simply place ) 218.9 189.81 B
+0.52 0.1 (the lines shown in Figur) 198 177.41 B
+0.52 0.1 (e 4-10, at the bottom of the jot_editor) 309.2 177.41 B
+0.52 0.1 (.ps \336le.) 478.15 177.41 B
+54 144 558 648 C
+54 487.85 558 555.6 C
+198 491.6 555.34 550.63 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+10 F
+(/LoadFileMenuItemHandler { % value instance => -) 204.7 537.29 T
+(pop pop) 234 526.29 T
+(/open LoadFilePopup send) 234 515.29 T
+(} ?def) 204.7 504.29 T
+54 144 558 648 C
+0 72 612 720 C
+198 228.48 557.14 334.05 C
+198 228.48 557.14 334.05 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  1080     
+490 139 352.8 100.08 0 200.77 231.58 BEGINBITMAPBWc
+j"
+O/3F#J#
+7FC0O,FFBF
+7"Z"
+DFO+FE#J"
+701FO,03#J#
+77FFO+FFFB8"
+F88#
+C73F8#J"
+2FBF@CF7$J&
+FEDFDF9FCFFEFFE7F"J"J#
+07>CF<F83F#J(J"
+1FFD<E1827E7E1E1E0F7FE8#J(
+CFBF:CCCE7E7CCCCCCF8#J%
+E73F;CFFE7CCF7#J#
+FCE0?CE0C7$J#
+FEF87F>CCCC8"J#9"
+3C<CE7E8F7$J(
+FC00FF:E1E27E061E264F8"J"R
+C3:F17#J"
+FFFF:FF
+
+
+
+
+
+"j"
+18O-06"Z"
+1BO-F6
+
+
+
+
+
+
+9"
+9F7#9"
+FE0FEF8#8"
+67FFCF8)
+739930F0830E49C9:%
+26664E669(
+98E667CE6639DF9#9#
+99E07C9F:#9"
+E7E7BF8"8(
+67674E667E39FF7F8+
+0F99F0F0E30E7E79FEBF7R%
+FCFFFD5F@#
+FAAF>%
+FFFFFD5F@"j
+FEO"@#Z
+FF7FO!A"
+FF
+
+
+
+
+
+
+
+=#
+CE7F<#
+E04E<#
+E7FE=$
+CE70E7>#
+6667<"8"
+E07F<$
+E7CE60>#
+67FF?"
+67>#
+70E7<%
+FFFFFFFF
+
+@"j"
+FCO!03@Z
+O#
+
+
+
+
+
+
+
+
+
+
+
+J"a"
+>E003J"Q"
+>9FFCJ"<#
+>7FFF7FJ#9&
+=FEFF7FFEEFFFBFJ$9"8"
+=FDFF7F0EDFJ"8"
+C7FCFJ+
+=FBFF7E78F87F7EEE3FEFJ$8$
+?7DB777EDDFE7J#8"
+?7BDF0EJ"8$
+@D87EEC1FJ"9#
+@D7EDFFJ$9"
+?7DB776DFJ$8#
+?0E78B9EE3FJ"S"
+=FDC7J"
+FCFJ">"
+=FE8FJ#="
+=FF7F1FJ"<#
+>9FFC3FJ"b"
+>C07FJ"<#
+>E001FFJS
+>
+
+
+
+
+
+
+
+"j"
+18O-06"Z"
+1FO-FE
+
+
+
+
+
+
+
+
+
+
+"J"
+07O-F8"J#
+77O-FBBF
+
+
+
+#J#
+701FO+FE03#J"
+7FDFO,FF7"j
+C0O,
+#J#
+0000O,003F
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "42" 7
+%%Page: "43" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (43) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+0.47 0.09 (Figur) 198 580.13 B
+0.47 0.09 (e 4-10) 218.77 580.13 B
+0 F
+0.47 0.09 (Setting the Next Focus) 248.4 580.13 B
+4 F
+0.52 0.1 (The \336rst line tells LoadDirT) 198 555.47 B
+0.52 0.1 (extField that the next focus is LoadFileT) 324.08 555.47 B
+0.52 0.1 (extField, ) 506.64 555.47 B
+0.52 0.1 (and the second line tells SaveAsDirT) 198 543.07 B
+0.52 0.1 (extField that the next focus is ) 365.33 543.07 B
+0.1 (SaveAsFileT) 198 530.67 S
+0.1 (extField.) 253.16 530.67 S
+9 F
+-0.84 0.13 (Activating the Button Callback fr) 198 498.27 B
+-0.84 0.13 (om the T) 373.95 498.27 B
+-0.84 0.13 (ext Field) 418.02 498.27 B
+4 F
+0.52 0.1 (When we click on the Load File button or type the Return key) 198 481.27 B
+0.52 0.1 (, we want the ) 481.49 481.27 B
+0.52 0.1 (callback associated with the Load File button to be called. W) 198 468.87 B
+0.52 0.1 (e do this by ) 474.58 468.87 B
+0.52 0.1 (de\336ning the callback for the Load File button \050) 198 456.47 B
+1 F
+1.22 0.1 (LoadFileButtonHandler) 411.61 456.47 B
+4 F
+0.52 0.1 (\051 ) 539.64 456.47 B
+0.52 0.1 (and then using that callback as the callback for the LoadFileT) 198 444.07 B
+0.52 0.1 (extField. W) 478.12 444.07 B
+0.52 0.1 (e did ) 529.29 444.07 B
+0.52 0.1 (this in the section \322LoadFileT) 198 431.67 B
+0.52 0.1 (extField\323 on page 32 when we speci\336ed ) 331.82 431.67 B
+1 F
+1.22 0.1 (LoadFileButtonHandler) 198 419.27 B
+4 F
+0.52 0.1 ( as the ) 326.03 419.27 B
+1 F
+1.22 0.1 (LoadFileTextField) 358.98 419.27 B
+4 F
+0.52 0.1 ( notify handler) 462.62 419.27 B
+0.52 0.1 (.) 530.13 419.27 B
+0.52 0.1 (W) 198 398.87 B
+0.52 0.1 (e did the same thing for the Save As File button in the section ) 207.18 398.87 B
+0.52 0.1 (\322SaveAsFileT) 198 386.47 B
+0.52 0.1 (extField\323 on page 32 when we speci\336ed ) 258.26 386.47 B
+1 F
+1.22 0.1 (SaveAsFileButtonHandler) 198 374.07 B
+4 F
+0.52 0.1 ( as the ) 338.22 374.07 B
+1 F
+1.22 0.1 (SaveAsFileTextField) 371.17 374.07 B
+4 F
+0.52 0.1 ( notify handler) 487.01 374.07 B
+0.52 0.1 (.) 554.51 374.07 B
+9 F
+-0.84 0.13 (Loading the T) 198 341.67 B
+-0.84 0.13 (ext File) 269.42 341.67 B
+4 F
+0.52 0.1 (The ) 198 324.67 B
+1 F
+1.22 0.1 (LoadFileButtonHandler) 218.15 324.67 B
+4 F
+0.52 0.1 ( callback is de\336ned on the client side in the ) 346.18 324.67 B
+1 F
+1.22 0.1 (jot_editor.c) 198 312.27 B
+4 F
+0.52 0.1 ( \336le. The skeleton is shown in Figur) 271.16 312.27 B
+0.52 0.1 (e 4-1) 435.02 312.27 B
+0.52 0.1 (1. Like all callback ) 456.1 312.27 B
+0.52 0.1 (skeletons, it appears towar) 198 299.87 B
+0.52 0.1 (ds the bottom of the \336le.) 320.26 299.87 B
+0.52 0.1 (Since this callback is being used by two server) 198 279.47 B
+0.52 0.1 (-side objects, the system ) 410.24 279.47 B
+0.52 0.1 (generates a switch statement to allow you to easily write branching code that ) 198 267.07 B
+0.52 0.1 (depends on which object invoked the callback.) 198 254.67 B
+54 144 558 648 C
+54 594.53 558 638 C
+198 597.57 555.34 633.03 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+10 F
+(LoadFileTextField /setnextfocus LoadDirTextField send) 204.7 619.69 T
+(SaveAsFileTextField /setnextfocus SaveAsDirTextField send) 204.7 608.69 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "43" 8
+%%Page: "44" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (44) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 148.68 B
+0.47 0.09 (e 4-1) 218.77 148.68 B
+0.47 0.09 (1) 236.92 148.68 B
+0 F
+0.47 0.09 (The LoadFileButtonHandler Skeleton) 248.4 148.68 B
+54 144 558 648 C
+54 163.08 558 638 C
+55.14 165.43 555.34 636.6 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(/*) 60.41 619.69 T
+(* LoadFileButtonHandler) 60.41 608.69 T
+(*) 60.41 597.69 T
+(*) 60.41 586.69 T
+(Automatically generated callback routine ) 90.6 586.69 T
+(*) 60.41 575.69 T
+(for the following object\050s\051:) 90.6 575.69 T
+(*) 60.41 564.69 T
+(*) 60.41 553.69 T
+( LoadFileButton \050Notifier\051) 90.6 553.69 T
+(*) 60.41 542.69 T
+(* Revision History:) 60.41 531.69 T
+(*) 60.41 520.69 T
+(Date Vers Who What) 90.6 520.69 T
+(*=========================================================================) 60.41 509.69 T
+(*) 60.41 498.69 T
+(910128 1.0 -Auto- Stubs Generated by GNT from jot_editor.G) 90.6 498.69 T
+(*/) 60.41 487.69 T
+(void) 90.6 476.69 T
+(LoadFileButtonHandler \050tag, data\051) 60.41 465.69 T
+(int tag;) 90.6 454.69 T
+(caddr_t data;) 90.6 443.69 T
+({) 60.41 432.69 T
+(int relativetag;) 90.6 421.69 T
+(char buf[256];) 90.6 410.69 T
+(/* Buffer for string */) 166.09 410.69 T
+(relativetag = tag - t_FileButtonMenu_itm1;) 90.6 388.69 T
+(switch \050relativetag\051) 90.6 377.69 T
+({) 117.86 366.69 T
+(case LOADFILETEXTFIELD:) 117.86 355.69 T
+(wire_ReadString\050buf\051;) 143.57 344.69 T
+(#ifdef PROTO) 60.41 333.69 T
+(printf\050"Client callback invoked: LoadFileTextField called with string %s\134n",buf\051;) 90.6 322.69 T
+(#else) 60.41 311.69 T
+( /* Custom code goes here */) 90.6 300.69 T
+(#endif) 60.41 289.69 T
+( break;) 90.6 278.69 T
+(case LOADFILEBUTTON:) 117.86 267.69 T
+(#ifdef PROTO) 60.41 256.69 T
+( printf\050"Client callback invoked: LoadFileButton called \134n"\051;) 90.6 245.69 T
+(#else) 60.41 234.69 T
+( /* Custom code goes here */) 90.6 223.69 T
+(#endif) 60.41 212.69 T
+( break;) 90.6 201.69 T
+(}) 90.6 190.69 T
+(}) 60.41 179.69 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "44" 9
+%%Page: "45" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (45) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+7 F
+0.47 0.09 (Figur) 198 162.25 B
+0.47 0.09 (e 4-12) 218.77 162.25 B
+0 F
+0.47 0.09 (The LoadFileButtonHandler Code) 248.4 162.25 B
+54 144 558 648 C
+54 176.65 558 638 C
+55.86 179 555.34 633.03 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(void) 92.74 619.69 T
+(LoadFileButtonHandler \050tag, data\051) 62.55 608.69 T
+(int tag; ) 92.74 597.69 T
+(caddr_t data;) 92.74 586.69 T
+({) 62.55 575.69 T
+(int) 92.74 564.69 T
+(relativetag;) 120 564.69 T
+(char) 92.74 553.69 T
+(buf[256];) 120 553.69 T
+(/* Buffer for string */) 199.86 553.69 T
+(char) 92.74 531.69 T
+(dirBuffer [256], fileBuffer [256], message [512];) 120 531.69 T
+(int) 92.74 520.69 T
+(name = TRUE;) 120 520.69 T
+(FILE) 92.74 509.69 T
+(*fp;) 120 509.69 T
+(relativetag = tag - t_FileButtonMenu_itm1;) 92.74 487.69 T
+(switch \050relativetag\051) 92.74 476.69 T
+({) 120 465.69 T
+(case LOADFILETEXTFIELD:) 120 454.69 T
+(wire_ReadString\050buf\051;) 145.71 443.69 T
+(/* Custom code goes here */) 145.71 432.69 T
+(break;) 145.71 421.69 T
+(case LOADFILEBUTTON:) 120 410.69 T
+(/* Custom code goes here */) 145.71 399.69 T
+(break;) 145.71 388.69 T
+(}) 120 377.69 T
+(cps_get_text \050"LoadDirTextField", dirBuffer, t_scratch\051;) 92.74 366.69 T
+(cps_get_text \050"LoadFileTextField", fileBuffer, t_scratch\051;) 92.74 355.69 T
+(if \050dirBuffer [0] == \325\1340\325\051 strcpy \050dirBuffer, "."\051;) 92.74 344.69 T
+(if \050fileBuffer [0] == \325\1340\325\051 name = FALSE;) 92.74 333.69 T
+(sprintf \050filename, "%s/%s", dirBuffer, fileBuffer\051;) 92.74 322.69 T
+(if \050name && \050NULL != \050fp = fopen \050filename, "r"\051\051\051\051 ) 92.74 311.69 T
+({) 120 300.69 T
+(JotText_Read \050textpane1_text, 0, fileno \050fp\051\051;) 120 289.69 T
+(fclose \050fp\051;) 120 278.69 T
+(cps_close_window \050tk_LoadFilePopup\051;) 120 267.69 T
+(}) 120 256.69 T
+(else ) 92.74 245.69 T
+({) 120 234.69 T
+-1.06 (sprintf \050message,"[\050Unable to load file:\051\050%s\051\050File does not exist.\051]", filename\051;) 120 223.69 P
+(confirmnotice \050message, "[0 LoadFileButton]", tk_JotWindow\051;) 120 212.69 T
+(}) 120 201.69 T
+(}) 62.55 190.69 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "45" 10
+%%Page: "46" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (46) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (The modi\336ed ) 198 641.33 B
+1 F
+1.22 0.1 (LoadFileButtonHandler) 262.2 641.33 B
+4 F
+0.52 0.1 ( callback in Figur) 390.23 641.33 B
+0.52 0.1 (e 4-12 starts by ) 469.4 641.33 B
+0.52 0.1 (de\336ning a series of string buf) 198 628.93 B
+0.52 0.1 (fers to hold the pieces of the full \336le name. The ) 332.25 628.93 B
+0.52 0.1 (full \336le name we de\336ne as a global variable \050Figur) 198 616.53 B
+0.52 0.1 (e 4-13\051 at the top of the ) 428.62 616.53 B
+1 F
+1.19 0.1 (jot_editor.c) 198 604.13 B
+4 F
+0.51 0.1 ( \336le, so that it is always available and visible to other r) 271.16 604.13 B
+0.51 0.1 (outines.) 522.01 604.13 B
+7 F
+0.47 0.09 (Figur) 198 521.79 B
+0.47 0.09 (e 4-13) 218.77 521.79 B
+0 F
+0.47 0.09 (Global V) 248.4 521.79 B
+0.47 0.09 (ariable De\336nitions for the T) 283.95 521.79 B
+0.47 0.09 (ext File) 397.01 521.79 B
+4 F
+0.52 0.1 (After the string buf) 198 497.12 B
+0.52 0.1 (fers we de\336ne \336le pointer) 286.44 497.12 B
+0.52 0.1 (, ) 403.17 497.12 B
+1 F
+1.22 0.1 (fp) 408.88 497.12 B
+4 F
+0.52 0.1 (, and a boolean, ) 421.08 497.12 B
+1 F
+1.22 0.1 (name) 496.71 497.12 B
+4 F
+0.52 0.1 (, that ) 521.1 497.12 B
+0.52 0.1 (r) 198 484.72 B
+0.52 0.1 (ecor) 201.87 484.72 B
+0.52 0.1 (ds whether ) 220.72 484.72 B
+1 F
+1.22 0.1 (\336leBuffer) 274.95 484.72 B
+4 F
+0.52 0.1 ( contains a \336le name or is empty) 329.82 484.72 B
+0.52 0.1 (.) 478.11 484.72 B
+0.52 0.1 (The ) 198 464.32 B
+1 F
+1.22 0.1 (#ifdef) 218.15 464.32 B
+4 F
+0.52 0.1 ( macr) 254.73 464.32 B
+0.52 0.1 (os have been r) 280.27 464.32 B
+0.52 0.1 (emoved to allow the code to \336t on one page ) 346.36 464.32 B
+0.52 0.1 (and make the code easier to r) 198 451.92 B
+0.52 0.1 (ead. In this case, nothing is de\336ned inside the) 332.89 451.92 B
+1 F
+1.22 0.1 ( ) 542.55 451.92 B
+1.22 0.1 (#else) 198 439.52 B
+4 F
+0.52 0.1 ( portion of the ) 228.48 439.52 B
+1 F
+1.22 0.1 (#ifdef) 297.65 439.52 B
+4 F
+0.52 0.1 ( macr) 334.23 439.52 B
+0.52 0.1 (o under the phrase ) 359.78 439.52 B
+1 F
+1.22 0.1 (/* Custom code ) 449.55 439.52 B
+1.22 0.1 (goes here */) 198 427.12 B
+4 F
+0.52 0.1 (.) 273.6 427.12 B
+0.52 0.1 (Because we want the main piece of code in the callback to be executed no ) 198 406.72 B
+0.52 0.1 (matter which server object invoked the callback, we place it after the switch ) 198 394.32 B
+0.5 0.1 (statement. Note that we cannot r) 198 381.92 B
+0.5 0.1 (emove the switch statement because we need ) 347.72 381.92 B
+0.52 0.1 (to call wir) 198 369.52 B
+0.52 0.1 (e_ReadString when the text \336eld invokes this callback.) 244.12 369.52 B
+0.52 0.1 (W) 198 349.12 B
+0.52 0.1 (e start by r) 207.18 349.12 B
+0.52 0.1 (etrieving the dir) 256.77 349.12 B
+0.52 0.1 (ectory and \336le name into ) 330.77 349.12 B
+1 F
+1.22 0.1 (dirBuffer) 448.33 349.12 B
+4 F
+0.52 0.1 ( and ) 503.2 349.12 B
+1 F
+1.22 0.1 (\336leBuffer) 198 336.72 B
+4 F
+0.52 0.1 (. T) 252.13 336.72 B
+0.52 0.1 (o do this we call ) 263.15 336.72 B
+1 F
+1.22 0.1 (cps_get_text) 341.66 336.72 B
+4 F
+0.52 0.1 (, which we will de\336ne shortly) 414.82 336.72 B
+0.52 0.1 (. ) 550.43 336.72 B
+0.52 0.1 (If ) 198 324.32 B
+1 F
+1.22 0.1 (dirBuffer) 208.01 324.32 B
+4 F
+0.52 0.1 ( is empty we insert a period to indicate the curr) 262.88 324.32 B
+0.52 0.1 (ent dir) 481.81 324.32 B
+0.52 0.1 (ectory) 512.18 324.32 B
+0.52 0.1 (. If ) 539.11 324.32 B
+1 F
+1.22 0.1 (\336leBuffer) 198 311.92 B
+4 F
+0.52 0.1 ( is empty we set name to ) 252.87 311.92 B
+1 F
+1.22 0.1 (FALSE) 370.62 311.92 B
+4 F
+0.52 0.1 (, so that we do not open a ) 401.11 311.92 B
+0.52 0.1 (dir) 198 299.52 B
+0.52 0.1 (ectory \336le. Next, we use ) 211.08 299.52 B
+1 F
+1.22 0.1 (sprintf) 324.54 299.52 B
+4 F
+0.52 0.1 ( to concatenate the path and \336le name, ) 367.22 299.52 B
+0.52 0.1 (then, if ther) 198 287.12 B
+0.52 0.1 (e is a \336le name, we open the \336le, and use ) 251.38 287.12 B
+1 F
+1.22 0.1 (JotText_Read) 443.64 287.12 B
+4 F
+0.52 0.1 ( to r) 516.8 287.12 B
+0.52 0.1 (ead ) 535.82 287.12 B
+0.52 0.1 (it. See ) 198 274.72 B
+11 F
+0.52 0.1 (The NeWS Toolkit Reference Manual) 228.32 274.72 B
+4 F
+0.52 0.1 ( for mor) 384.36 274.72 B
+0.52 0.1 (e information on Jot. Finally) 421.98 274.72 B
+0.52 0.1 (, ) 549.82 274.72 B
+0.52 0.1 (we close the \336le and the pop-up window) 198 262.33 B
+0.52 0.1 (. Note that we use a token to r) 385.14 262.33 B
+0.52 0.1 (efer to ) 524.55 262.33 B
+0.52 0.1 (the pop-up on the server) 198 249.92 B
+0.52 0.1 (.) 310.92 249.92 B
+0.24 0.1 (If we cannot open the \336le, we cr) 198 229.53 B
+0.24 0.1 (eate a message string with ) 343.45 229.53 B
+1 F
+0.56 0.1 (sprintf) 466.12 229.53 B
+4 F
+0.24 0.1 (, pass it to ) 508.8 229.53 B
+1 F
+0.59 0.1 (con\336rmnotice) 198 217.12 B
+4 F
+0.25 0.1 (, which we will de\336ne shortly) 271.16 217.12 B
+0.25 0.1 (, and pop up a notice saying that ) 405.42 217.12 B
+0.52 0.1 (we could not open the \336le. Note that the message is composed of a C string ) 198 204.72 B
+0.52 0.1 (\050delimited by double quotes\051 that contains a PostScript array \050delimited by ) 198 192.33 B
+0.05 0.1 (squar) 198 179.92 B
+0.05 0.1 (e brackets\051 containing thr) 223.13 179.92 B
+0.05 0.1 (ee PostScript strings \050delimited by par) 338.05 179.92 B
+0.05 0.1 (entheses\051. ) 510.8 179.92 B
+0.52 0.1 (Each PostScript string appears on a separate line in the notice window) 198 167.53 B
+0.52 0.1 (.) 520.06 167.53 B
+54 144 558 648 C
+54 536.19 558 580.4 C
+198 539.97 555.34 575.43 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(/*) 204.7 562.09 T
+(Global Variables:) 234.88 562.09 T
+(*/) 326.55 562.09 T
+(char) 204.7 551.09 T
+(filename [256]= "";) 234.88 551.09 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "46" 11
+%%Page: "47" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (47) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+9 F
+-0.84 0.13 (Accessing the T) 198 639.33 B
+-0.84 0.13 (ext Fields) 279.54 639.33 B
+4 F
+0.36 0.1 (Let\325s \336rst go back and see how we access the text \336elds, and then we will deal ) 198 622.33 B
+0.52 0.1 (with how to de\336ne and pop up a con\336rm notice.) 198 609.93 B
+0.52 0.1 (W) 198 589.53 B
+0.52 0.1 (e need to access the text \336elds on the server fr) 207.18 589.53 B
+0.52 0.1 (om the client, so we need to ) 418.29 589.53 B
+0.52 0.1 (write a CPS wir) 198 577.13 B
+0.52 0.1 (e-service r) 270.17 577.13 B
+0.52 0.1 (outine. All CPS r) 316.92 577.13 B
+0.52 0.1 (outines we write ar) 394.16 577.13 B
+0.52 0.1 (e added to the ) 482.73 577.13 B
+0.52 0.1 (bottom of the ) 198 564.73 B
+1 F
+1.22 0.1 (jot_editor_cps.cps) 262.88 564.73 B
+4 F
+0.52 0.1 ( \336le.) 372.62 564.73 B
+7 F
+0.47 0.09 (Figur) 198 448.84 B
+0.47 0.09 (e 4-14) 218.77 448.84 B
+0 F
+0.47 0.09 (De\336ning cps_get_text) 248.4 448.84 B
+4 F
+0.52 0.1 (It is a convention that all CPS r) 198 424.17 B
+0.52 0.1 (outines begin with the pr) 340.88 424.17 B
+0.52 0.1 (e\336x ) 456.5 424.17 B
+1 F
+1.22 0.1 (cps_) 475.91 424.17 B
+4 F
+0.52 0.1 (. The ) 500.29 424.17 B
+0.52 0.1 (ar) 198 411.77 B
+0.52 0.1 (guments for the ) 206.96 411.77 B
+1 F
+1.22 0.1 (cps_get_text) 282.72 411.77 B
+4 F
+0.52 0.1 ( function in Figur) 355.88 411.77 B
+0.52 0.1 (e 4-14 include a C string ) 436.33 411.77 B
+0.52 0.1 (that is tr) 198 399.37 B
+0.52 0.1 (eated as a piece of PostScript code, containing the name of the text ) 236.54 399.37 B
+0.52 0.1 (\336eld we want to access. W) 198 386.97 B
+0.52 0.1 (e use the PostScript name her) 318.39 386.97 B
+0.52 0.1 (e because ther) 453.68 386.97 B
+0.52 0.1 (e is no ) 518.33 386.97 B
+0.52 0.1 (token de\336ned by GNT for us that we can use to access the text \336eld. The ) 198 374.57 B
+0.38 0.1 (function also takes a string buf) 198 362.17 B
+0.38 0.1 (fer to r) 338.49 362.17 B
+0.38 0.1 (eturn the contents of the text \336eld, and a ) 369.58 362.17 B
+0.22 0.1 (tag that is used by the wir) 198 349.77 B
+0.22 0.1 (e service to identify this function when it r) 316.41 349.77 B
+0.22 0.1 (eturns the ) 509.53 349.77 B
+0.52 0.1 (contents of the buf) 198 337.37 B
+0.52 0.1 (fer) 283.37 337.37 B
+0.52 0.1 (. The tag used will always be ) 295 337.37 B
+1 F
+1.22 0.1 (t_scratch) 431.73 337.37 B
+4 F
+0.52 0.1 (. This is a tag ) 486.6 337.37 B
+0.52 0.1 (which GNT de\336nes speci\336cally for the use of functions such as ) 198 324.97 B
+1 F
+1.22 0.1 (cps_get_text) 198 312.58 B
+4 F
+0.52 0.1 (. Ther) 271.16 312.58 B
+0.52 0.1 (e can never be any confusion about which function in ) 297.77 312.58 B
+0.52 0.1 (your application the ) 198 300.17 B
+1 F
+1.22 0.1 (t_scratch) 293.71 300.17 B
+4 F
+0.52 0.1 ( tag r) 348.58 300.17 B
+0.52 0.1 (efers to, because execution on the client ) 372.79 300.17 B
+0.52 0.1 (is blocked until the function r) 198 287.77 B
+0.52 0.1 (eturns.) 333.71 287.77 B
+0.52 0.1 (The executable portion of the function queries the value of the text \336eld, and ) 198 267.38 B
+0.08 0.1 (checks to see if it is ) 198 254.97 B
+10 F
+0.07 (null) 287.1 254.97 P
+4 F
+0.08 0.1 (. If it is ) 301.08 254.97 B
+10 F
+0.07 (null) 334.98 254.97 P
+4 F
+0.08 0.1 (, the ) 348.97 254.97 B
+10 F
+0.07 (null) 371.08 254.97 P
+4 F
+0.08 0.1 ( is popped of) 385.06 254.97 B
+0.08 0.1 (f the stack and an empty ) 444.21 254.97 B
+0.33 0.1 (string is substituted in its place. The r) 198 242.58 B
+0.33 0.1 (outine does a ) 369.65 242.58 B
+10 F
+0.31 (tagprint) 433.36 242.58 P
+4 F
+0.33 0.1 ( to alert the client to ) 463.34 242.58 B
+0.52 0.1 (which cps function is r) 198 230.17 B
+0.52 0.1 (eturning, and then does a ) 302.33 230.17 B
+10 F
+0.5 (typedprint) 422.83 230.17 P
+4 F
+0.52 0.1 ( to send the datum ) 462.29 230.17 B
+0.52 0.1 (up the wir) 198 217.78 B
+0.52 0.1 (e.) 245.94 217.78 B
+0.52 0.1 (Note that the ) 198 197.38 B
+10 F
+0.5 (tagprint) 261.45 197.38 P
+4 F
+0.52 0.1 ( and ) 291.43 197.38 B
+10 F
+0.5 (typedprint) 314.89 197.38 P
+4 F
+0.52 0.1 ( execute one immediately after the other) 354.35 197.38 B
+0.52 0.1 (. ) 538.34 197.38 B
+0.52 0.1 (This is done so that ther) 198 184.97 B
+0.52 0.1 (e isn\325t any pause between when the tag and data ar) 308.65 184.97 B
+0.52 0.1 (e ) 544.82 184.97 B
+0.52 0.1 (sent up the wir) 198 172.58 B
+0.52 0.1 (e. If ther) 267.56 172.58 B
+0.52 0.1 (e wer) 306.21 172.58 B
+0.52 0.1 (e a long pause, the user might have the time to ) 331.41 172.58 B
+0.52 0.1 (activate a callback and the wir) 198 160.17 B
+0.52 0.1 (e service could r) 337.04 160.17 B
+0.52 0.1 (eceive two tags in sequence ) 412.04 160.17 B
+0.52 0.1 (followed by intermixed data. This could cause your pr) 198 147.78 B
+0.52 0.1 (ogram to fail.) 447.45 147.78 B
+54 144 558 648 C
+54 463.24 558 541 C
+56.57 466.88 555.34 536.03 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+0.09 (cdef cps_get_text \050postscript name, string buffer, int tag\051 => tag \050buffer\051) 60.41 522.69 S
+10 F
+(/value name send) 89.71 511.69 T
+(dup null eq { pop \050\051 } if ) 89.71 500.69 T
+(tag tagprint) 89.71 489.69 T
+(typedprint) 89.71 478.69 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "47" 12
+%%Page: "48" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (48) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+9 F
+-0.84 0.13 (Closing the Pop-Up W) 198 639.33 B
+-0.84 0.13 (indow) 317.19 639.33 B
+4 F
+0.52 0.1 (Closing the pop-up window involves sending a short piece of PostScript code ) 198 622.33 B
+0.52 0.1 (to the window) 198 609.93 B
+0.52 0.1 (. The CPS r) 263.95 609.93 B
+0.52 0.1 (outine in Figur) 315.48 609.93 B
+0.52 0.1 (e 4-15 closes any window fr) 383.81 609.93 B
+0.52 0.1 (om the ) 511.2 609.93 B
+0.1 (client.) 198 597.53 S
+7 F
+0.47 0.09 (Figur) 198 515.91 B
+0.47 0.09 (e 4-15) 218.77 515.91 B
+0 F
+0.47 0.09 (De\336ning cps_close_window) 248.4 515.91 B
+4 F
+0.52 0.1 (Place this r) 198 491.25 B
+0.52 0.1 (outine at the bottom of the ) 248.39 491.25 B
+1 F
+1.22 0.1 (jot_editor_cps.cps) 374.1 491.25 B
+4 F
+0.52 0.1 ( \336le.) 483.84 491.25 B
+9 F
+-0.84 0.13 (The Con\336rm Notice) 198 458.85 B
+4 F
+0.05 0.1 (Since the ) 198 441.85 B
+1 F
+0.12 0.1 (con\336rmnotice) 241.16 441.85 B
+4 F
+0.05 0.1 ( function will be called on the client side, we de\336ne it ) 314.32 441.85 B
+0.52 0.1 (in the ) 198 429.45 B
+1 F
+1.22 0.1 (jot_editor.c) 227.32 429.45 B
+4 F
+0.52 0.1 ( \336le. Because ) 300.48 429.45 B
+1 F
+1.22 0.1 (con\336rmnotice) 362.56 429.45 B
+4 F
+0.52 0.1 ( is not a callback, ther) 435.72 429.45 B
+0.52 0.1 (e is ) 535.78 429.45 B
+0.52 0.1 (no skeleton de\336ned for it. Y) 198 417.05 B
+0.52 0.1 (ou can place it immediately after the ) 324.77 417.05 B
+1 F
+1.22 0.1 (LoadFileTextFieldNotifyHandler) 198 404.65 B
+4 F
+0.52 0.1 ( callback in the ) 380.9 404.65 B
+1 F
+1.22 0.1 (jot_editor.c) 453.03 404.65 B
+4 F
+0.52 0.1 ( \336le.) 526.19 404.65 B
+0.52 0.1 (It is possible to write a completely general purpose notice window; however) 198 384.25 B
+0.52 0.1 (, ) 547.86 384.25 B
+0.52 0.1 (we will de\336ne one that only puts up con\336rmation messages.) 198 371.85 B
+7 F
+0.47 0.09 (Figur) 198 160.34 B
+0.47 0.09 (e 4-16) 218.77 160.34 B
+0 F
+0.47 0.09 (The LoadFileT) 248.4 160.34 B
+0.47 0.09 (extFieldNotifyHandler Code) 306.93 160.34 B
+54 144 558 648 C
+54 530.31 558 573.8 C
+198 533.97 555.34 568.83 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+0.09 (cdef cps_close_window \050token window\051) 204.7 555.49 S
+10 F
+(/close window send) 234 544.49 T
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 174.74 558 348.11 C
+198 177.4 555.34 343.14 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(void) 234.88 329.8 T
+(confirmnotice \050text, apex, basewindow\051) 204.7 318.8 T
+(char) 234.88 307.8 T
+(*text, *apex;) 262.14 307.8 T
+(int) 234.88 296.8 T
+(basewindow;) 262.14 296.8 T
+({) 204.7 285.8 T
+(static int noticenotloaded = TRUE;) 234.88 274.8 T
+(if \050noticenotloaded\051 ) 234.88 252.8 T
+({) 262.14 241.8 T
+(cps_create_generic_notice \050\051;) 262.14 230.8 T
+(noticenotloaded = FALSE;) 262.14 219.8 T
+(}) 262.14 208.8 T
+(cps_call_confirm_notice \050text, apex, basewindow\051;) 234.88 197.8 T
+(}) 204.7 186.8 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "48" 13
+%%Page: "49" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (49) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.52 0.1 (The con\336rm-notice ar) 198 641.33 B
+0.52 0.1 (guments ar) 296.06 641.33 B
+0.52 0.1 (e a message and an apex descriptor) 347.35 641.33 B
+0.52 0.1 (, both in ) 509.11 641.33 B
+0.52 0.1 (the form of a C text string as well as a token pointing to a base window) 198 628.93 B
+0.52 0.1 (. W) 526.28 628.93 B
+0.52 0.1 (e ) 541.17 628.93 B
+-0.02 0.1 (cr) 198 616.53 B
+-0.02 0.1 (eate the notice in two halves. Since the notice code has to be downloaded and ) 206.4 616.53 B
+0.52 0.1 (we want to send as little as possible down the wir) 198 604.13 B
+0.52 0.1 (e each time the notice is ) 427.53 604.13 B
+0.06 0.1 (called, we cr) 198 591.73 B
+0.06 0.1 (eate a generic con\336rm notice and then just modify it depending on ) 254.38 591.73 B
+0.52 0.1 (the situation. T) 198 579.33 B
+0.52 0.1 (o know when the generic notice has alr) 266.07 579.33 B
+0.52 0.1 (eady been downloaded ) 445.87 579.33 B
+0.43 0.1 (we cr) 198 566.93 B
+0.43 0.1 (eate a static variable, ) 222.75 566.93 B
+1 F
+1 0.1 (noticenotloaded) 320.99 566.93 B
+4 F
+0.43 0.1 (, wher) 412.44 566.93 B
+0.43 0.1 (e we stor) 441.17 566.93 B
+0.43 0.1 (e a boolean that ) 482.54 566.93 B
+0.52 0.1 (tells us whether or not the generic notice has been loaded. ) 198 554.53 B
+0.52 0.1 (The CPS pr) 198 534.13 B
+0.52 0.1 (ocedur) 249.91 534.13 B
+0.52 0.1 (e ) 281.09 534.13 B
+1 F
+1.22 0.1 (cps_create_generic_notice) 289.1 534.13 B
+4 F
+0.52 0.1 (, which we de\336ne next, ) 441.52 534.13 B
+0.52 0.1 (does the downloading for us. The CPS pr) 198 521.73 B
+0.52 0.1 (ocedur) 387.32 521.73 B
+0.52 0.1 (e ) 418.5 521.73 B
+1 F
+1.22 0.1 (cps_call_con\336rm_notice) 198 509.33 B
+4 F
+0.52 0.1 (, which we de\336ne shortly) 332.13 509.33 B
+0.52 0.1 (, pops our notice up in ) 447.15 509.33 B
+0.52 0.1 (an appr) 198 496.93 B
+0.52 0.1 (opriate place.) 233.31 496.93 B
+9 F
+-0.84 0.13 (Cr) 198 464.53 B
+-0.84 0.13 (eating a Generic Notice) 211.74 464.53 B
+4 F
+0.41 0.1 (T) 198 447.53 B
+0.41 0.1 (o cr) 203.31 447.53 B
+0.41 0.1 (eate the notice, we need to download fr) 220.28 447.53 B
+0.41 0.1 (om the client to the server a piece ) 401.01 447.53 B
+0.47 0.1 (of PostScript code: ther) 198 435.13 B
+0.47 0.1 (efor) 303.81 435.13 B
+0.47 0.1 (e, this r) 321.55 435.13 B
+0.47 0.1 (outine will be a CPS r) 355.67 435.13 B
+0.47 0.1 (outine. All of the CPS ) 455.48 435.13 B
+0.52 0.1 (r) 198 422.73 B
+0.52 0.1 (outines we write ar) 201.87 422.73 B
+0.52 0.1 (e added to the bottom of the ) 290.44 422.73 B
+1 F
+1.22 0.1 (jot_editor_cps.cps) 424.36 422.73 B
+4 F
+0.52 0.1 ( \336le.) 534.1 422.73 B
+7 F
+0.47 0.09 (Figur) 198 261.84 B
+0.47 0.09 (e 4-17) 218.77 261.84 B
+0 F
+0.47 0.09 (De\336ning cps_cr) 248.4 261.84 B
+0.47 0.09 (eate_generic_notice) 312.22 261.84 B
+4 F
+0.31 0.1 (The cps_cr) 198 237.17 B
+0.31 0.1 (eate_generic_notice r) 246.42 237.17 B
+0.31 0.1 (outine shown in Figur) 341.83 237.17 B
+0.31 0.1 (e 4-17 does not have any ) 442.81 237.17 B
+0.19 0.1 (ar) 198 224.78 B
+0.19 0.1 (guments or r) 206.96 224.78 B
+0.19 0.1 (eturn values. It simply sends a block of code down to the server ) 265.23 224.78 B
+0.52 0.1 (to be executed.) 198 212.38 B
+-0.04 0.1 (The code starts by sending ) 198 191.97 B
+10 F
+-0.04 (ClassButtons) 320.76 191.97 P
+4 F
+-0.04 0.1 ( the message ) 373.7 191.97 B
+10 F
+-0.04 (/new) 433.66 191.97 P
+4 F
+-0.04 0.1 (, which tells it to cr) 451.73 191.97 B
+-0.04 0.1 (eate ) 537.21 191.97 B
+0.52 0.1 (a new instance of ) 198 179.58 B
+10 F
+0.5 (ClassButtons) 280.85 179.58 P
+4 F
+0.52 0.1 ( with spaced buttons and to par) 333.8 179.58 B
+0.52 0.1 (ent the new ) 479.89 179.58 B
+0.52 0.1 (button instance to ) 198 167.17 B
+10 F
+0.5 (framebuffer) 283.27 167.17 P
+4 F
+0.52 0.1 (. W) 328.49 167.17 B
+0.52 0.1 (e then bind this instance to the name ) 343.38 167.17 B
+10 F
+-0.02 (GenericNoticeButtons) 198 154.78 P
+4 F
+-0.03 0.1 (. In the second and thir) 285.41 154.78 B
+-0.03 0.1 (d lines of code, we set the item list in ) 389.24 154.78 B
+54 144 558 648 C
+54 276.24 558 399 C
+198 279.17 555.34 394.03 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+0.09 (cdef cps_create_generic_notice \050\051) 204.7 380.69 S
+10 F
+(/GenericNoticeButtons /Spaced framebuffer /new ClassButtons send def) 234 369.69 T
+([\050Confirm\051] /setitemlist GenericNoticeButtons send) 234 358.69 T
+(0 /setdefault GenericNoticeButtons send) 234 347.69 T
+({pop pop /close GenericNotice send} /setnotifier GenericNoticeButtons send) 234 336.69 T
+(/GenericNotice null framebuffer /new ClassNotice send def) 234 314.69 T
+(GenericNoticeButtons /setbuttons GenericNotice send) 234 303.69 T
+(emgr /activate GenericNotice send) 234 292.69 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "49" 14
+%%Page: "50" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (50) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+0.5 (GenericNoticeButtons) 198 641.33 P
+4 F
+0.52 0.1 ( to an array containing the text string ) 285.41 641.33 B
+10 F
+0.5 (Confirm) 459.55 641.33 P
+4 F
+0.52 0.1 (, and the ) 491.01 641.33 B
+0.52 0.1 (default button to be to the zer) 198 628.93 B
+0.52 0.1 (oth and only button. Next, we set the button ) 335.12 628.93 B
+0.14 0.1 (noti\336er) 198 616.53 B
+0.14 0.1 (. Since we ar) 230.18 616.53 B
+0.14 0.1 (e not r) 286.97 616.53 B
+0.14 0.1 (eturning a value fr) 316.03 616.53 B
+0.14 0.1 (om the notice, all we need to do is ) 400.41 616.53 B
+0.19 0.1 (close the notice and pop its ar) 198 604.13 B
+0.19 0.1 (guments of) 333.12 604.13 B
+0.19 0.1 (f the stack. At this point, the button is ) 383.92 604.13 B
+0.52 0.1 (done, and we need to de\336ne the window it will appear in.) 198 591.73 B
+0.52 0.1 (The second piece of code de\336nes the notice itself. W) 198 571.33 B
+0.52 0.1 (e start by sending ) 435.75 571.33 B
+10 F
+0.5 (ClassNotice) 198 558.93 P
+4 F
+0.52 0.1 ( the message ) 245.94 558.93 B
+10 F
+0.5 (/new) 307.58 558.93 P
+4 F
+0.52 0.1 ( which tells it to cr) 326.57 558.93 B
+0.52 0.1 (eate a new instance of ) 412.26 558.93 B
+10 F
+0.5 (ClassNotice) 198 546.53 P
+4 F
+0.52 0.1 ( and, to par) 245.94 546.53 B
+0.52 0.1 (ent it to the ) 299.1 546.53 B
+10 F
+0.5 (framebuffer) 355.18 546.53 P
+4 F
+0.52 0.1 (. This done, we bind the instance ) 400.39 546.53 B
+0.52 0.1 (to the name ) 198 534.13 B
+10 F
+0.5 (GenericNotice) 255.26 534.13 P
+4 F
+0.52 0.1 (. In the next line, we associate the notice buttons we ) 312.19 534.13 B
+0.52 0.1 (just de\336ned with the notice. Finally) 198 521.73 B
+0.52 0.1 (, in the last line, we activate ) 359.09 521.73 B
+10 F
+0.5 (GenericNotice) 490.24 521.73 P
+4 F
+0.52 0.1 (. ) 547.17 521.73 B
+0.06 0.1 (Note that ) 198 509.33 B
+10 F
+0.06 (emgr) 243.26 509.33 P
+4 F
+0.06 0.1 (, the event manager) 263 509.33 B
+0.06 0.1 (, is cr) 351.43 509.33 B
+0.06 0.1 (eated for you by GNT) 375.11 509.33 B
+0.06 0.1 (. If you ar) 473.47 509.33 B
+0.06 0.1 (e testing ) 517.26 509.33 B
+0.52 0.1 (this code in a PostScript shell, you will have to cr) 198 496.93 B
+0.52 0.1 (eate an event manager ) 424.33 496.93 B
+0.52 0.1 (yourself by executing the code in Figur) 198 484.53 B
+0.52 0.1 (e 4-18. See ) 377.27 484.53 B
+11 F
+0.52 0.1 (The NeWS Toolkit Reference ) 427.95 484.53 B
+0.52 0.1 (Manual) 198 472.13 B
+4 F
+0.52 0.1 ( for a discussion of event managers.) 230.8 472.13 B
+7 F
+0.47 0.09 (Figur) 198 401.95 B
+0.47 0.09 (e 4-18) 218.77 401.95 B
+0 F
+0.47 0.09 (Cr) 248.4 401.95 B
+0.47 0.09 (eating and De\336ning a New Event Manager) 258.34 401.95 B
+9 F
+-0.84 0.13 (Popping Up the Generic Notice) 198 371.28 B
+4 F
+0.52 0.1 (The CPS function ) 198 354.28 B
+1 F
+1.22 0.1 (cps_call_con\336rm_notice) 280.9 354.28 B
+4 F
+0.52 0.1 ( shown in Figur) 415.03 354.28 B
+0.52 0.1 (e 4-19 ) 487.79 354.28 B
+0.52 0.1 (customizes the generic notice and then pops it up.) 198 341.88 B
+7 F
+0.47 0.09 (Figur) 198 236.7 B
+0.47 0.09 (e 4-19) 218.77 236.7 B
+0 F
+0.47 0.09 (De\336ning cps_call_con\336rm_notice) 248.4 236.7 B
+4 F
+0.52 0.1 (This function takes thr) 198 212.03 B
+0.52 0.1 (ee ar) 301.17 212.03 B
+0.52 0.1 (guments: a C text string that contains an array of ) 323.03 212.03 B
+0.52 0.1 (PostScript text strings, e.g. ) 198 199.63 B
+1 F
+1.22 0.1 ("[\050Unable to save current \336le.\051 \050You ) 322.13 199.63 B
+0.02 0.1 (are not currently editing a \336le.\051 \050Use "Store as New File" ) 198 187.23 B
+1.22 0.1 (to save your work.\051]) 198 174.83 B
+4 F
+0.52 0.1 (", a C text string that contain an apex descriptor) 323.59 174.83 B
+0.52 0.1 (, ) 542.37 174.83 B
+0.52 0.1 (and a token pointing to the application base window) 198 162.43 B
+0.52 0.1 (. The C text string is ) 439.64 162.43 B
+0.42 0.1 (evaluated as PostScript when the function is called. The base window token is ) 198 150.03 B
+54 144 558 648 C
+54 416.35 558 448.4 C
+198 419.28 555.34 443.43 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+10 F
+(/emgr /new ClassEventMgr send def) 204.7 430.09 T
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 251.1 558 318.15 C
+55.86 254.75 555.34 313.18 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+0.09 (cdef cps_call_con\336rm_notice \050postscript querystring, postscript apex, token basewindow\051) 59.69 299.84 S
+10 F
+(querystring /settext GenericNotice send) 89 288.84 T
+(basewindow /setbasewindow GenericNotice send) 89 277.84 T
+(apex /open GenericNotice send) 89 266.84 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "50" 15
+%%Page: "51" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (51) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0 0.1 (necessary for the notice to be able to fr) 198 641.33 B
+0 0.1 (eeze the application. In the code, we \336rst ) 371.23 641.33 B
+-0.01 0.1 (set the text of the notice, and then the base window) 198 628.93 B
+-0.01 0.1 (. In the last line we open the ) 428.56 628.93 B
+0.52 0.1 (GenericNotice and specify wher) 198 616.53 B
+0.52 0.1 (e the apex or tail of the notice will emanate ) 344.41 616.53 B
+0.52 0.1 (fr) 198 604.13 B
+0.52 0.1 (om. Figur) 205.3 604.13 B
+0.52 0.1 (e 4-20 shows a notice with the tail emanating fr) 249.81 604.13 B
+0.52 0.1 (om the File button.) 466.94 604.13 B
+7 F
+0.47 0.09 (Figur) 198 393.39 B
+0.47 0.09 (e 4-20) 218.77 393.39 B
+0 F
+0.47 0.09 (A Notice) 248.4 393.39 B
+9 F
+-0.84 0.13 (Saving the T) 198 362.73 B
+-0.84 0.13 (ext File) 263.52 362.73 B
+4 F
+0.52 0.1 (W) 198 345.73 B
+0.52 0.1 (e declar) 207.18 345.73 B
+0.52 0.1 (ed ) 242.79 345.73 B
+1 F
+1.22 0.1 (SaveFileMenuItemHandler) 257 345.73 B
+4 F
+0.52 0.1 ( to be a C function when we built ) 397.22 345.73 B
+0.52 0.1 (the interface, so its skeleton is in the ) 198 333.33 B
+1 F
+1.22 0.1 (jot_editor.c) 367.52 333.33 B
+4 F
+0.52 0.1 ( \336le. ) 440.68 333.33 B
+-0 0.1 (Because this callback is being invoked fr) 198 312.93 B
+-0 0.1 (om a menu, we get a lot of information ) 379.56 312.93 B
+0.18 0.1 (about the menu \050the index, the state, and the menu string\051 that we do not need ) 198 300.53 B
+0.52 0.1 (in this case.) 198 288.13 B
+0.08 0.1 (Saving the \336le is a very simple pr) 198 267.73 B
+0.08 0.1 (ocedur) 348.77 267.73 B
+0.08 0.1 (e: we call ) 379.95 267.73 B
+1 F
+0.19 0.1 (JotText_Write) 424.45 267.73 B
+4 F
+0.08 0.1 ( and pass it ) 503.71 267.73 B
+0.47 0.1 (the text pane, the start point of the \336le, the end point of the \336le \050which we get ) 198 255.33 B
+0.52 0.1 (by calling ) 198 242.93 B
+1 F
+1.22 0.1 (JotText_Characters) 245.75 242.93 B
+4 F
+0.52 0.1 (\051, and the \336le descriptor) 355.49 242.93 B
+0.52 0.1 (. Because this is a ) 464.77 242.93 B
+0.52 0.1 (demo pr) 198 230.53 B
+0.52 0.1 (ogram, we do not do things that you might want to do if you wer) 236.67 230.53 B
+0.52 0.1 (e ) 538.47 230.53 B
+0.52 0.1 (writing a r) 198 218.13 B
+0.52 0.1 (eal application, such as saving the old version of the \336le.) 246.63 218.13 B
+198 407.39 558 588.4 C
+198 407.39 558 588.4 R
+7 X
+0 K
+V
+0 X
+%%BeginBinary:  4234     
+462 242 332.64 174.24 0 200.96 411.13 BEGINBITMAPBWc
+
+
+
+"j
+E0O #Z#
+EFFBKFBFE
+7"j"
+FAK0B#J#
+EE02K080E7Z"
+MEE
+7%z
+FBB0003BIBB7%Z
+FFEFFFBFI7"8"z#z
+EE8E3EEE62E4EE#8"Z'Z"
+E0FF9F/CFFEFF03E73B4E0&z'z"
+EFFBAE039B/BB8BB8BB3BA3B34BBFE7%Z)Z
+FFEEFB9F/CE183F3F0720C39327%z)z
+EEEF778E/EECCCCEE2E662288822EE7"8"Z8'Z
+FF9F/FF066733998F27%z&8"z
+FBAFAF9B/BB8888BB3A239B2BB7%Z&8"Z
+FFEFAF9F/CCCCFF3E679F27%z8'z
+EEEFDF8E/EEEE2E4622888E2EE7%Z)Z
+FFEFFF9F/CE1E3F032738C39F27%z"z
+FBAFFF9B/BB1B9BB7%Z
+FFF0001FI7"j"
+80L3E
+7Z"
+MFE
+
+
+
+
+
+
+9'
+E000000000019(
+9FFFFFFFFFFE7F9":#
+7FFFBF8#;"
+FEFFDF8%9"
+FDFFFEEFEF:":"
+0EE78$:"
+FBFF7FF7:'
+7EEE3FFC07F3;%
+EDDFFDF7:"8#
+0EFEEF:$
+7EEC1F;%
+EDFFFF5F<$
+DDDDDF8"8&
+FDEE3FFFFFFF:)
+FFFFD7777777777F8"9Q
+FE8#8)
+FF7FF5DDDDDDDDDDDDDF9"8S
+9F9%t
+C0000015779"8"T
+E01F9&u"
+FFFFFFF55DDDDF<X
+<#x
+F55777<Z
+/<#z
+FD55/DD<Z
+1<#z
+FD55277<Z
+4<$z
+FD555D3DD<ZF$
+6E0003E<$zC$
+FD5557677EFFFBE<Z
+9<$z
+FD55558DD<Z
+;=#z">$
+5555:777FE0003E=Z>$
+=FFFFFE=$z
+55555D<DD=Z<$
+?F0007E=$z"9$
+555557>777FEFFF3E=Z
+B=$z"
+555555@DDDF=Z
+D8":$z"
+FB555555C775F8":Z"
+F1GFE=%z"
+D555555DDDDDF8":Z
+E0I8#9%z"
+C07FD5555557G777F=Z
+L8#9%z"
+803FD5555555IDDDF8#9Z
+FFFFO =%z
+D5555555L77=Z
+O"=&j"
+F555555540M1F=&
+FFFFFFFFE0=&Z"
+F555555547M9F=&
+FFFFFFFFE7=&j"
+F555555546L01=&Z"
+FFFFFFFFE6LFD=&
+F555555546=&
+FFFFFFFFE6=&
+F555555546=&
+FFFFFFFFE6=&
+FD55555546=&
+FFFFFFFFE6=&
+FD55555546=&
+FFFFFFFFE6=&
+FD55555546=&
+FFFFFFFFE6=&
+FD55555546=&
+FFFFFFFFE6=&
+FD55555546=&
+FFFFFFFFE6>%
+55555546>%
+FFFFFFE6>%
+55555546>%
+FFFFFFE6>%
+55555546>%
+FFFFFFE6>%
+55555546>%
+FFFFFFE6>%
+D5555546>%
+FFFFFFE6>%
+D5555546>%
+FFFFFFE6>%
+D5555546>%
+FFFFFFE6>%
+D5555546>%
+FFFFFFE6>%
+D5555546>%
+FFFFFFE6>%C#G#
+F5555546CFF3F099>%?#;"D#
+FFFFFFE6F3CFFC3FE7>%J"
+F5555546AF9>%@5
+FFFFFFE69CE43C1C8F3C3F83C3FE0E0E73C3FE1CF39393C390E0F8099E1>%A/9(
+F555554631FCC67399FCF99FCFFE67399FCC3998C73FE799CC>%A)9*9"
+FFFFFFE679FCCF3339FCF3CF339F9FCF38F8F399E79C>%B"8"9&8%:"
+F5555546C001C3E067301F39F9F01980>%B"8"9&:#:"
+FFFFFFE69C3FF0CE7373FFF3F99F>%I%
+F5555546FCCE72F3>%?28#:#
+FFFFFFE6F99E7998CE739DFCF99FFCCC78F9DFCEC6F9D9CECF>%?28%8"
+FD555546FC3E79C440F3C3FE3C3FC1E238FC3FE1E1FC39E78FE1>%?Z
+FFFFFFE6;>%
+FD555546>%
+FFFFFFE6>%
+FD555546>%J"9$:#
+FFFFFFE693F33FE7FC267>%;#?"=";";"
+FD555546F3CF9FCF9E9E>%J$:#
+FFFFFFE6=3F9FFF9FE7?$;5
+555546BF9DF0F3CFE0F2787F21F0F07F873CE4E4F0E4383339FE1F03306643E07F07E026787?$<.8%8-
+FFFFE69E673CFFE72733F18E679FF3334E6631CFCCE7339E631CE7FF3F9E6733?$;$9.9#8#:#
+555546FCBCF31E73F3CCF39FE7F3CE3E3CE6799CCF67996673?$;#8%=$:"<"9"
+FFFFE6FE7CFE073E037E7C0680F003?$?%?"8$<"9"
+555546FCE73E7FFE393F9FE77F?$J";#
+FFFFE6:7F9CC7?$<28%9$8$
+5555467E6718FCC73F3BF3CE679FF3B18E7E7E763C7FCEE69E27E6673B3F?$<58"
+FFFFE6>7F0F84FE233F87F3CF0FC7F8784E7E7F0E79E33CFFE1F133C6679FE7F11F87?$;Z"Q#Q
+5555464F9F9CF?$J"<#
+FFFFE69F1FC1F?$J"<#
+D555469FFFFFF?$
+FFFFE6?$<"D%F"
+D5554693E67FF27FE7?$8#9#<#9#9"
+FFFFE69E7F83CFF8F7E0663F?$<#B&
+D55546B739E7FE7FF6FF?$95
+FFFFE6H783C3FB73F83C3E4F0FF0783FA77C39FCFE7E67876FE0F0FF83839CF0FE73C3CF393F3F9E1F2673F?$9-8#9.9&
+D5554673F99FFF1FCF99E4E67FF33F999D733FFF3E67F3FF99CE67E7399CB9CCF2667F?$:"8&9$8$8#9(8%
+FFFFE6F387CF3CE3CEFB3739E0E6673CF3CCE7E733CCF38F9E71E4FF?$9&8&8':&:'
+D5554670F01FFFC3E7C07F030F01C89FE7E660F0F819CC079FF9139E73E1?$9&9)9#9(:"8"
+FFFFE67C33FFFFF1CFFE73C3FB973FCA67FFFC339CDCFFF27353E4?$9"9"<"9#="8"8"9#8#
+F555467FF9F3C23FFFBCF3F847E67F?$8-8$9&8/
+FFFFE6CCFF39DFFF39CF99E7E77E63C79DE773BFFF3E671E3E77F8F99C639FFCE7CCF3E733?$8.8":/9"8"
+F55546E1F07C3FFF83E3C3E7F0FF1107C3787FFF8F0FF0788E3F0FF9FC3E13E113?$8Z"U
+FFFFE6>F3?$J"
+F55546@E3?$J"
+FFFFE6@FF?$
+F55546?$
+FFFFE6?$
+FD5546?$
+FFFFE6?$
+FD5546?$
+FFFFE6?$
+FD5546">$
+E0FFFFE6">$
+EEFD5546?$
+FFFFE6?$
+FD5546?$
+FFFFE6@#
+55467">#
+03FFE6#>#
+EFFB5546@#
+FFE6@#
+5546"d#
+E0FFE6U#
+5546@#
+FFE6@#
+D546@#
+FFE6@#
+D546@#
+FFE6@#
+D546@#
+FFE6@#
+D546@#
+FFE6@#
+D546@#
+FFE6@#
+F546@#
+FFE6@#
+F546@#
+FFE6@#
+F546@#
+FFE6@#H"a"
+F546FE01@#H"Q#
+FFE6F9FE7F@#H"a#
+F546F703BF@#H"Q#
+FFE6ECFCDF@#H"9&
+FD46DBF9BFFFFF6F@#H&9"
+FFE6D7F87FFFF7A7@#H$8"8"
+FD46B7F7BFFFB7@#H*
+FFE6AFEFFCF4E1B4D33FD3@#J'
+FD464FB7377B3CCDF@#J&
+FFE64F7B777B7DD@#
+FD46@#
+FFE6A"H%:"
+46B7F7BB77B3A"H%:"
+E6D7F87CF7A3A"H"R"
+46DB67A"H"<#
+E6ECFCC7A"H"a#
+46F7038FA"H"Q#
+E6F9FE1FA"H"b"
+46FC3FA"H"="
+E6FEFFA"HS
+46A"
+E6A"
+C6A"
+E6A"
+C6A"
+E6A"
+C6A"
+E6A"
+C6A"
+E6A"j"
+C6L01A"Z
+E7M
+A"j"
+E0M1F
+AZ
+O!
+
+
+ENDBITMAP
+%%EndBinary
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "51" 16
+%%Page: "52" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (52) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 235.94 B
+0.47 0.09 (e 4-21) 218.77 235.94 B
+0 F
+0.47 0.09 (The SaveFileMenuItemHandler Code) 248.4 235.94 B
+54 144 558 648 C
+54 250.34 558 638 C
+55.86 254.95 555.34 633.03 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(void) 92.74 619.69 T
+(SaveFileMenuItemHandler \050tag, data\051) 62.55 608.69 T
+(int tag;) 92.74 597.69 T
+(caddr_t data;) 92.74 586.69 T
+({) 62.55 575.69 T
+(int ) 92.74 564.69 T
+(index;) 120 564.69 T
+(/* Index of selected item */) 172.86 564.69 T
+(int ) 92.74 553.69 T
+(state;) 120 553.69 T
+(/* Boolean of selected */) 172.86 553.69 T
+(char) 92.74 542.69 T
+(buf[256];) 120 542.69 T
+(/* Buffer for string */) 172.86 542.69 T
+(FILE) 92.74 531.69 T
+(*fp;) 120 531.69 T
+(index = wire_ReadInt \050\051;) 92.74 509.69 T
+(state = wire_ReadInt \050\051;) 92.74 498.69 T
+(wire_ReadString \050buf\051;) 92.74 487.69 T
+(#ifdef PROTO) 62.55 465.69 T
+(if \050state\051) 92.74 454.69 T
+(printf\050"FileButtonMenu called with index %d value %s true\134n", index, buf\051;) 120 443.69 T
+(else) 92.74 432.69 T
+(printf\050"FileButtonMenu called with index %d value %s false\134n", index, buf\051;) 120 421.69 T
+(#else) 62.55 410.69 T
+(/* Custom code goes here */) 92.74 399.69 T
+(if \050\050filename [0] != NULL\051 && \050NULL != \050fp = fopen \050filename, "w"\051\051\051\051 ) 92.74 388.69 T
+({) 120 377.69 T
+(JotText_Write\050textpane1_text,0,JotText_Characters\050textpane1_text\051, fileno\050fp\051\051;) 120 366.69 T
+(fclose \050fp\051;) 120 355.69 T
+(}) 120 344.69 T
+(else ) 92.74 333.69 T
+({) 120 322.69 T
+-0.71 (confirmnotice \050"[\050Unable to save current file.\051 \050You are not currently editing a ) 120 311.69 P
+(file.\051 \050Use \134"Store as New File\134" to save your work.\051]", "[0 FileButton]", tk_JotWindow\051;) 62.55 300.69 T
+(}) 120 289.69 T
+(#endif) 62.55 278.69 T
+(}) 62.55 267.69 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "52" 17
+%%Page: "53" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+7 F
+-0.58 0.09 (T) 198 108.7 B
+-0.58 0.09 (utorial: Generating UI Sour) 202.58 108.7 B
+-0.58 0.09 (ce Code) 304.96 108.7 B
+0 F
+0.09 (53) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (4) 543.81 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+9 F
+-0.84 0.13 (Loose Ends) 198 639.33 B
+4 F
+0.52 0.1 (Ther) 198 622.33 B
+0.52 0.1 (e ar) 218.9 622.33 B
+0.52 0.1 (e a couple of functions we have declar) 235.87 622.33 B
+0.52 0.1 (ed that we have yet to de\336ne.) 411.65 622.33 B
+3 F
+(\245) 198 603.93 T
+1 F
+0.1 (SaveAsFileMenuItemHandler) 210.6 603.93 S
+3 F
+(\245) 198 591.53 T
+1 F
+0.1 (SaveAsFileButtonHandler) 210.6 591.53 S
+4 F
+0.11 0.1 (However) 198 571.13 B
+0.11 0.1 (, since these ar) 239.24 571.13 B
+0.11 0.1 (e very similar to the following list of functions we have ) 305.01 571.13 B
+0.52 0.1 (alr) 198 558.73 B
+0.52 0.1 (eady de\336ned, we leave it to you to complete the pr) 209.97 558.73 B
+0.52 0.1 (ogram.) 443.74 558.73 B
+3 F
+(\245) 198 540.33 T
+1 F
+0.1 (LoadFileMenuItemHandler) 210.6 540.33 S
+3 F
+(\245) 198 527.93 T
+1 F
+1.22 0.1 (LoadFileButtonHandler & SaveFileMenuItemHandler) 210.6 527.93 B
+6 F
+-0.88 (Compiling the Application Code) 126 494.87 P
+4 F
+0.24 0.1 (Now that we have de\336ned our interface and the code to support it, we need to ) 198 473.53 B
+0.09 0.1 (compile our code. Befor) 198 461.13 B
+0.09 0.1 (e we compile we need to tell ) 305.56 461.13 B
+1 F
+0.21 0.1 (make) 437.02 461.13 B
+4 F
+0.09 0.1 ( that we do not want ) 461.41 461.13 B
+0.52 0.1 (to use the pr) 198 448.73 B
+0.52 0.1 (ototype code. T) 255.76 448.73 B
+0.52 0.1 (o do this, open ) 325.57 448.73 B
+1 F
+1.22 0.1 (jot_editor.make) 397.05 448.73 B
+4 F
+0.52 0.1 ( and r) 488.5 448.73 B
+0.52 0.1 (emove ) 515.83 448.73 B
+0.52 0.1 (-DPROT) 198 436.33 B
+0.52 0.1 (O fr) 236.18 436.33 B
+0.52 0.1 (om the following line, or comment out the entir) 254.55 436.33 B
+0.52 0.1 (e line if you ar) 473.09 436.33 B
+0.52 0.1 (e ) 540.01 436.33 B
+0.52 0.1 (\336nished with debug also.) 198 423.93 B
+7 F
+0.47 0.09 (Figur) 198 353.75 B
+0.47 0.09 (e 4-22) 218.77 353.75 B
+0 F
+0.47 0.09 (Editing the jot_editor) 248.4 353.75 B
+0.47 0.09 (.make File) 335.21 353.75 B
+4 F
+0.52 0.1 (Y) 198 329.08 B
+0.52 0.1 (ou compile using the following commands.) 203.85 329.08 B
+7 F
+0.47 0.09 (Figur) 198 258.9 B
+0.47 0.09 (e 4-23) 218.77 258.9 B
+0 F
+0.47 0.09 (Compiling the Application Files) 248.4 258.9 B
+4 F
+0.11 0.1 (The \336rst time you start ) 198 234.23 B
+1 F
+0.26 0.1 (jot_editor) 304.18 234.23 B
+4 F
+0.11 0.1 ( it has to load TNT) 365.14 234.23 B
+0.11 0.1 (. This takes a minute or ) 449.3 234.23 B
+0.1 (so.) 198 221.83 S
+54 144 558 648 C
+54 368.15 558 400.2 C
+198 370.96 555.34 395.23 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(CFLAGS) 204.7 381.89 T
+(= -g -DDEBUG -DPROTO) 262.14 381.89 T
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+54 273.3 558 305.35 C
+198 276.11 555.34 300.38 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(make clean; make) 204.7 287.04 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "53" 18
+%%Page: "54" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (4) 59.3 680.03 S
+0 F
+0 X
+0 K
+0.09 (54) 54 108.7 S
+7 F
+-0.58 0.09 (GNT for Devguide \321  Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 297.1 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+-0.94 (Debugging User-Interface Code) 54 638 P
+4 F
+0.52 0.1 (User) 198 616.33 B
+0.52 0.1 (-interfaces, except for Jot, can be checked using ) 218.97 616.33 B
+1 F
+1.22 0.1 (psh) 438.2 616.33 B
+4 F
+0.52 0.1 ( as shown in ) 456.49 616.33 B
+0.52 0.1 (Figur) 198 603.93 B
+0.52 0.1 (e 4-24.) 222.32 603.93 B
+7 F
+0.47 0.09 (Figur) 198 446.25 B
+0.47 0.09 (e 4-24) 218.77 446.25 B
+0 F
+0.47 0.09 (T) 248.4 446.25 B
+0.47 0.09 (esting PostScript Code Outside a Application) 253.17 446.25 B
+4 F
+0.52 0.1 (Y) 198 421.58 B
+0.52 0.1 (ou can also place ) 203.85 421.58 B
+1 F
+1.22 0.1 (dbgbreak) 285.19 421.58 B
+4 F
+0.52 0.1 ( statements in your PostScript code wher) 333.96 421.58 B
+0.52 0.1 (ever ) 521.54 421.58 B
+0.52 0.1 (ther) 198 409.18 B
+0.52 0.1 (e is a pr) 216.03 409.18 B
+0.52 0.1 (oblem and use the NeWS debugger) 252.69 409.18 B
+0.52 0.1 (. See the) 414.11 409.18 B
+11 F
+0.52 0.1 ( NeWS Pr) 452.23 409.18 B
+0.52 0.1 (ogrammer) 495.54 409.18 B
+0.52 0.1 (\325) 537.79 409.18 B
+0.52 0.1 (s ) 540.12 409.18 B
+0.52 0.1 (Guide) 198 396.78 B
+4 F
+0.52 0.1 ( for information on how to use the debugger) 222.94 396.78 B
+0.52 0.1 (.) 426.9 396.78 B
+5 F
+(Summary) 54 363.05 T
+4 F
+0.17 0.1 (At this point, you should have a good idea of how to work with Devguide and ) 198 341.38 B
+0.16 0.1 (GNT to pr) 198 328.98 B
+0.16 0.1 (oduce a simple interface. Y) 244.77 328.98 B
+0.16 0.1 (ou should also have a working text editor ) 366.12 328.98 B
+0.52 0.1 (based on jot that you can extend and use in your own text-based applications.) 198 316.58 B
+0.52 0.1 (Good luck. W) 198 296.18 B
+0.52 0.1 (e hope you enjoy using these user) 260.39 296.18 B
+0.52 0.1 (-interface development tools.) 415.9 296.18 B
+54 144 558 648 C
+54 460.65 558 580.2 C
+198 463.46 555.34 575.23 5.98 RR
+0.3 H
+0 Z
+0 X
+0 K
+N
+8 F
+(fort:jot_editor[58] psh) 204.7 561.89 T
+10 F
+(executive) 204.7 550.89 T
+(Welcome to X11/NeWS Version TNT 2.0) 204.7 539.89 T
+(\050fullpath/filename.ps\051 run) 204.7 528.89 T
+(/new ClassEventMgr send) 204.7 517.89 T
+(/activate mywindow send) 204.7 506.89 T
+(/open mywindow send) 204.7 495.89 T
+(/open mypopup send) 204.7 484.89 T
+8 F
+(etc...) 204.7 473.89 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "54" 19
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 18 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Courier
+%%+ Times-Bold
+%%+ Helvetica

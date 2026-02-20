@@ -1,0 +1,2452 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 5 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 20 /Helvetica-Oblique FMDEFINEFONT
+1 11.5 /Palatino-Roman FMDEFINEFONT
+2 11 /Palatino-Roman FMDEFINEFONT
+%%Page: "iii" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+63 144 567 540 R
+V
+45 104.98 567 113.98 R
+V
+207.65 545.98 567.65 545.98 2 L
+V
+0.3 H
+2 Z
+0 X
+N
+210.02 549 516.02 576 R
+7 X
+V
+0 F
+0 X
+(Contents) 210.02 562.67 T
+540 558 567 576 R
+7 X
+V
+1 F
+0 X
+0.12 (1.) 197.22 532.33 S
+0.12 (Pr) 212.98 532.33 S
+0.12 (eface) 224.48 532.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 250.94 532.33 S
+0.12 (xxiii) 535.54 532.33 S
+2 F
+0.11 (Intended purpose of this manual) 234 511.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . .) 399.91 511.17 S
+0.11 (xxiii) 536.52 511.17 S
+0.11 (What you need to know) 234 490.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 354.21 490.17 S
+0.11 (xxiii) 536.52 490.17 S
+0.11 (How the Refer) 234 469.17 S
+0.11 (ence Manual is or) 306.13 469.17 S
+0.11 (ganized) 393.62 469.17 S
+0.11 (. . . . . . . . . . . . . . . . .) 434.19 469.17 S
+0.11 (xxiv) 536.82 469.17 S
+0.11 (TNT\325s class tr) 252 448.17 S
+0.11 (ee) 319.95 448.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 448.17 S
+0.11 (xxiv) 536.82 448.17 S
+0.11 (Mixin class de\336ned) 252 427.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 427.17 S
+0.11 (xxiv) 536.82 427.17 S
+0.11 (Rules followed for documenting super) 252 406.17 S
+0.11 (class methods) 443.35 406.17 S
+0.11 (. . .) 514.17 406.17 S
+0.11 (xxiv) 536.82 406.17 S
+0.11 (How the API is r) 252 385.17 S
+0.11 (epr) 335.17 385.17 S
+0.11 (esented) 351.51 385.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . .) 391.34 385.17 S
+0.11 (xxv) 540.12 385.17 S
+0.11 (What\325s in the chapters) 252 364.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 365.64 364.17 S
+0.11 (xxv) 540.12 364.17 S
+0.11 (Use of fonts) 234 343.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 343.17 S
+0.11 (xxvii) 533.51 343.17 S
+0.11 (Subclassing issues) 234 322.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 322.17 S
+0.11 (xxvii) 533.51 322.17 S
+0.11 (Strict subclass r) 252 301.17 S
+0.11 (esponsibility) 329.09 301.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . ) 394.2 301.17 S
+0.11 (xxviii) 530.2 301.17 S
+0.11 (Subclass r) 252 280.17 S
+0.11 (esponsibility) 301.34 280.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . ) 365.64 280.17 S
+0.11 (xxviii) 530.2 280.17 S
+0.11 (Subclasser methods) 252 259.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 351.35 259.17 S
+0.11 (xxviii) 530.2 259.17 S
+0.11 (Utility methods) 252 238.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 238.17 S
+0.11 (xxix) 537.36 238.17 S
+0.11 (V) 252 217.17 S
+0.11 (ariables) 259.03 217.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 217.17 S
+0.11 (xxix) 537.36 217.17 S
+0.11 (Demo methods) 234 196.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 311.36 196.17 S
+0.11 (xxix) 537.36 196.17 S
+0.11 (Pr) 234 175.17 S
+0.11 (ogramming notes) 245 175.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 175.17 S
+0.11 (xxx) 540.66 175.17 S
+0.11 (Modifying r) 252 154.17 S
+0.11 (eturned arrays) 311.86 154.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . .) 385.63 154.17 S
+0.11 (xxx) 540.66 154.17 S
+FMENDPAGE
+%%EndPage: "iii" 2
+0 9 /Palatino-Roman FMDEFINEFONT
+3 9 /Palatino-Italic FMDEFINEFONT
+%%Page: "iv" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (iv) 54 108.7 S
+3 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Using super in overrides) 252 640.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 640.67 S
+0.11 (xxx) 540.66 640.67 S
+0.11 (Getting the location of events) 252 619.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . .) 399.91 619.67 S
+0.11 (xxx) 540.66 619.67 S
+0.11 (Bibliography) 234 598.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 598.67 S
+0.11 (xxxi) 537.36 598.67 S
+0.11 (NeWS) 252 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 577.67 S
+0.11 (xxxi) 537.36 577.67 S
+0.11 (PostScript) 252 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 556.67 S
+0.11 (xxxi) 537.36 556.67 S
+0.11 (Object-Oriented Pr) 252 535.67 S
+0.11 (ogramming and SmallT) 345.55 535.67 S
+0.11 (alk:) 461.96 535.67 S
+0.11 ( . . . . . . . .) 482.75 535.67 S
+0.11 (xxxi) 537.36 535.67 S
+1 F
+0.12 (2.) 197.22 514.33 S
+0.12 (TNT Class Hierar) 212.98 514.33 S
+0.12 (chy) 304.2 514.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ) 325.63 514.33 S
+0.12 (xxxiii) 529.49 514.33 S
+0.12 (3.) 197.22 492.83 S
+0.12 ( Intr) 212.98 492.83 S
+0.12 (oduction) 235.06 492.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 283.8 492.83 S
+0.12 (1) 552.14 492.83 S
+2 F
+0.11 (Pr) 234 471.67 S
+0.11 (ogramming \337exibility) 245 471.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 354.21 471.67 S
+0.11 (1) 552.4 471.67 S
+0.11 (Thin wir) 234 450.67 S
+0.11 (e) 276.85 450.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 282.8 450.67 S
+0.11 (2) 552.4 450.67 S
+0.11 (Imaging PostScript) 234 429.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 429.67 S
+0.11 (2) 552.4 429.67 S
+0.11 (The Classing system) 234 408.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 337.07 408.67 S
+0.11 (2) 552.4 408.67 S
+0.11 (Wher) 252 387.67 S
+0.11 (e the classes live) 279.22 387.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 387.67 S
+0.11 (3) 552.4 387.67 S
+0.11 (What TNT isn\325t) 234 366.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 311.36 366.67 S
+0.11 (3) 552.4 366.67 S
+0.11 (The ar) 234 345.67 S
+0.11 (chitectur) 265.43 345.67 S
+0.11 (e of a TNT application) 308.96 345.67 S
+0.11 (. . . . . . . . . . . . . . . . . . .) 422.77 345.67 S
+0.11 (4) 552.4 345.67 S
+0.11 (Server) 252 324.67 S
+0.11 (-side Ar) 283.64 324.67 S
+0.11 (chitectur) 323.45 324.67 S
+0.11 (e) 366.97 324.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . .) 374.2 324.67 S
+0.11 (4) 552.4 324.67 S
+0.11 (Client-side ar) 252 303.67 S
+0.11 (chitectur) 318.83 303.67 S
+0.11 (e) 362.36 303.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 368.49 303.67 S
+0.11 (8) 552.4 303.67 S
+0.11 ( The client-server split) 234 282.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 345.64 282.67 S
+0.11 (9) 552.4 282.67 S
+0.11 (Memory management in TNT) 234 261.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 261.67 S
+0.11 (10) 546.79 261.67 S
+0.11 (Cr) 252 240.67 S
+0.11 (eation and destr) 264.15 240.67 S
+0.11 (uction of r) 344.4 240.67 S
+0.11 (efer) 395.57 240.67 S
+0.11 (ences) 414.34 240.67 S
+0.11 ( . . . . . . . . . . . . . . .) 442.76 240.67 S
+0.11 (10) 546.79 240.67 S
+0.11 ( Automatic cleanup of r) 252 219.67 S
+0.11 (efer) 369.37 219.67 S
+0.11 (ences) 388.13 219.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . .) 417.05 219.67 S
+0.11 (1) 547.4 219.67 S
+0.11 (1) 552.4 219.67 S
+0.11 (Refer) 252 198.67 S
+0.11 (ences maintained by the T) 278.21 198.67 S
+0.11 (oolkit) 406.98 198.67 S
+0.11 ( . . . . . . . . . . . . . . . .) 437.05 198.67 S
+0.11 (1) 547.4 198.67 S
+0.11 (1) 552.4 198.67 S
+0.11 (Cr) 252 177.67 S
+0.11 (oss-Object r) 264.15 177.67 S
+0.11 (efer) 322.34 177.67 S
+0.11 (ences within your application) 341.1 177.67 S
+0.11 (. . . . . . .) 491.32 177.67 S
+0.11 (12) 546.79 177.67 S
+0.11 (Pr) 234 156.67 S
+0.11 (ocess management in TNT) 245 156.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 156.67 S
+0.11 (13) 546.79 156.67 S
+FMENDPAGE
+%%EndPage: "iv" 3
+%%Page: "v" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (v) 552.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (The connection r) 252 640.67 S
+0.11 (eader) 334.76 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 640.67 S
+0.11 (13) 546.79 640.67 S
+0.11 (The local event manager) 252 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . .) 374.2 619.67 S
+0.11 (14) 546.79 619.67 S
+0.11 (The global event manager) 252 598.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 598.67 S
+0.11 (14) 546.79 598.67 S
+0.11 ( Starting and quitting applications) 234 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . .) 405.63 577.67 S
+0.11 (15) 546.79 577.67 S
+0.11 (Painting in TNT) 234 556.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 317.07 556.67 S
+0.11 (16) 546.79 556.67 S
+0.11 ( The Canvas/Region hierar) 234 535.67 S
+0.11 (chy) 369.2 535.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . .) 388.49 535.67 S
+0.11 (16) 546.79 535.67 S
+1 F
+0.12 (4.) 197.22 514.33 S
+0.12 (ClassBag) 212.98 514.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 262.89 514.33 S
+0.12 (17) 546.28 514.33 S
+2 F
+0.11 (Cr) 234 493.17 S
+0.11 (eation) 246.15 493.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 493.17 S
+0.11 (17) 546.79 493.17 S
+0.11 (Activation and deactivation) 234 472.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . .) 374.2 472.17 S
+0.11 (18) 546.79 472.17 S
+0.11 (Bag clients) 234 451.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 451.17 S
+0.11 (18) 546.79 451.17 S
+0.11 (Destr) 234 430.17 S
+0.11 (uction) 260.81 430.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 430.17 S
+0.11 (19) 546.79 430.17 S
+0.11 (Miscellaneous) 234 409.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 409.17 S
+0.11 (20) 546.79 409.17 S
+0.11 (Subclasser methods) 234 388.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 388.17 S
+0.11 (20) 546.79 388.17 S
+0.11 (Mouse tracking for r) 234 367.17 S
+0.11 (egions in bags) 335.61 367.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . .) 408.48 367.17 S
+0.11 (20) 546.79 367.17 S
+0.11 (Menus) 234 346.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 268.51 346.17 S
+0.11 (21) 546.79 346.17 S
+1 F
+0.12 (5.) 197.22 324.83 S
+0.12 (ClassBor) 212.98 324.83 S
+0.12 (derBag) 258.5 324.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 295.75 324.83 S
+0.12 (23) 546.28 324.83 S
+2 F
+0.11 (Bor) 234 303.67 S
+0.11 (der bag\325s clients) 251.18 303.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 303.67 S
+0.11 (23) 546.79 303.67 S
+0.11 (Adding clients) 234 282.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 308.5 282.67 S
+0.11 (26) 546.79 282.67 S
+0.11 (Positioning clients) 234 261.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 261.67 S
+0.11 (26) 546.79 261.67 S
+0.11 (Geometry) 234 240.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 240.67 S
+0.11 (27) 546.79 240.67 S
+0.11 (Layout) 234 219.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.37 219.67 S
+0.11 (28) 546.79 219.67 S
+0.11 (Menus and tracking) 234 198.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 198.67 S
+0.11 (28) 546.79 198.67 S
+1 F
+0.12 (6.) 197.22 177.34 S
+0.12 (Buttons) 212.98 177.34 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 253.93 177.34 S
+0.12 (29) 546.28 177.34 S
+2 F
+0.11 (ClassButtons) 234 156.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 156.17 S
+0.11 (30) 546.79 156.17 S
+FMENDPAGE
+%%EndPage: "v" 4
+%%Page: "vi" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (vi) 54 108.7 S
+3 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Cr) 252 640.67 S
+0.11 (eation) 264.15 640.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 640.67 S
+0.11 (30) 546.79 640.67 S
+0.11 (Abbr) 252 619.67 S
+0.11 (eviated buttons) 277.28 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 357.07 619.67 S
+0.11 (30) 546.79 619.67 S
+0.11 (Ability to interact with buttons) 252 598.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . .) 408.48 598.67 S
+0.11 (30) 546.79 598.67 S
+0.11 (Default) 252 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 291.36 577.67 S
+0.11 (31) 546.79 577.67 S
+0.11 (Justi\336cation) 252 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 556.67 S
+0.11 (31) 546.79 556.67 S
+0.11 (Noti\336cation) 252 535.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 535.67 S
+0.11 (31) 546.79 535.67 S
+0.11 (Managing r) 252 514.67 S
+0.11 (efer) 309.57 514.67 S
+0.11 (ences between contr) 328.33 514.67 S
+0.11 (ols and other objects) 428.37 514.67 S
+0.11 (32) 546.79 514.67 S
+0.11 (ClassMenuButtons) 234 493.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 493.67 S
+0.11 (32) 546.79 493.67 S
+1 F
+0.12 (7.) 197.22 472.33 S
+0.12 (ClassCanvas) 212.98 472.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 280.82 472.33 S
+0.12 (35) 546.28 472.33 S
+2 F
+0.11 (Cr) 234 451.17 S
+0.11 (eation) 246.15 451.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 451.17 S
+0.11 (35) 546.79 451.17 S
+0.11 (Canvas appearance) 234 430.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 430.17 S
+0.11 (36) 546.79 430.17 S
+0.11 (Colors) 252 409.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 409.17 S
+0.11 (36) 546.79 409.17 S
+0.11 (Painting) 252 388.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 388.17 S
+0.11 (38) 546.79 388.17 S
+0.11 (Fonts) 252 367.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 279.94 367.17 S
+0.11 (40) 546.79 367.17 S
+0.11 (Cursors) 252 346.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 346.17 S
+0.11 (41) 546.79 346.17 S
+0.11 (The canvas tr) 234 325.17 S
+0.11 (ee) 300.16 325.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 311.36 325.17 S
+0.11 (41) 546.79 325.17 S
+0.11 (Geometry) 234 304.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 304.17 S
+0.11 (43) 546.79 304.17 S
+0.11 (V) 234 283.17 S
+0.11 (alidation) 241.03 283.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 283.17 S
+0.11 (44) 546.79 283.17 S
+0.11 (Ability to accept user input) 234 262.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . .) 371.35 262.17 S
+0.11 (46) 546.79 262.17 S
+0.11 (Activation and deactivation) 234 241.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . .) 374.2 241.17 S
+0.11 (46) 546.79 241.17 S
+0.11 (ClassEventMgr) 234 220.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 311.36 220.17 S
+0.11 (48) 546.79 220.17 S
+0.11 (Global event manager) 252 199.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 199.17 S
+0.11 (48) 546.79 199.17 S
+0.11 (Local event manager) 252 178.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 357.07 178.17 S
+0.11 (49) 546.79 178.17 S
+0.11 (Cr) 252 157.17 S
+0.11 (eation) 264.15 157.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 157.17 S
+0.11 (49) 546.79 157.17 S
+FMENDPAGE
+%%EndPage: "vi" 5
+%%Page: "vii" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (vii) 547.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Err) 252 640.67 S
+0.11 (or handling in event managers) 267.52 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . .) 419.91 640.67 S
+0.11 (49) 546.79 640.67 S
+0.11 (Changing event managers for execution and sends) 252 619.67 S
+0.11 ( . . . .) 505.6 619.67 S
+0.11 (50) 546.79 619.67 S
+0.11 (Canvas damage handling) 234 598.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 598.67 S
+0.11 (51) 546.79 598.67 S
+0.11 (Canvas menus) 234 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 308.5 577.67 S
+0.11 (53) 546.79 577.67 S
+0.11 (Mouse tracking) 234 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 556.67 S
+0.11 (55) 546.79 556.67 S
+0.11 (T) 252 535.67 S
+0.11 (racking subclass r) 257.86 535.67 S
+0.11 (esponsibility methods) 346.23 535.67 S
+0.11 (. . . . . . . . . . . . .) 457.04 535.67 S
+0.11 (56) 546.79 535.67 S
+0.11 (Getting focus and keystr) 234 514.67 S
+0.11 (okes) 355.66 514.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . .) 379.92 514.67 S
+0.11 (57) 546.79 514.67 S
+0.11 (Methods that can be speci\336ed in /KeyStart) 252 493.67 S
+0.11 ( . . . . . . . . . . .) 465.61 493.67 S
+0.11 (59) 546.79 493.67 S
+0.11 (T) 234 472.67 S
+0.11 (ar) 239.83 472.67 S
+0.11 (gets of global function keys) 249.69 472.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . .) 388.49 472.67 S
+0.11 (60) 546.79 472.67 S
+0.11 (Again, Find, and Undo keys) 252 451.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . .) 394.2 451.67 S
+0.11 (61) 546.79 451.67 S
+0.11 (Opening and closing canvases) 234 430.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . .) 385.63 430.67 S
+0.11 (62) 546.79 430.67 S
+0.11 (Help facilities) 234 409.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 409.67 S
+0.11 (63) 546.79 409.67 S
+0.11 (Moving canvases along the z-axis \050Fr) 234 388.67 S
+0.11 (ont key\051) 417.54 388.67 S
+0.11 ( . . . . . . . . . . . .) 459.9 388.67 S
+0.11 (64) 546.79 388.67 S
+0.11 (Selectables) 234 367.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 367.67 S
+0.11 (65) 546.79 367.67 S
+0.11 (Selectable subclass r) 234 346.67 S
+0.11 (esponsibility methods) 334.16 346.67 S
+0.11 (. . . . . . . . . . . . . . .) 445.62 346.67 S
+0.11 (67) 546.79 346.67 S
+0.11 (Adjusting the selection) 252 325.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 368.49 325.67 S
+0.11 (69) 546.79 325.67 S
+0.11 (Dragging the selection) 252 304.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 365.64 304.67 S
+0.11 (70) 546.79 304.67 S
+0.11 (Drag and Dr) 234 283.67 S
+0.11 (op\321r) 296.39 283.67 S
+0.11 (eceptible canvases) 324.56 283.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . .) 417.05 283.67 S
+0.11 (71) 546.79 283.67 S
+0.11 (Handling the dr) 252 262.67 S
+0.11 (op\321subclass r) 331.87 262.67 S
+0.11 (esponsibility methods) 404.02 262.67 S
+0.11 (. . .) 514.17 262.67 S
+0.11 (72) 546.79 262.67 S
+0.11 (Obsolescence and destr) 234 241.67 S
+0.11 (uction) 350.14 241.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 241.67 S
+0.11 (73) 546.79 241.67 S
+1 F
+0.12 (8.) 197.22 220.34 S
+0.12 (ClassContr) 212.98 220.34 S
+0.12 (ol) 270.29 220.34 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 280.82 220.34 S
+0.12 (75) 546.28 220.34 S
+2 F
+0.11 (Contr) 234 199.17 S
+0.11 (ol values) 262.45 199.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 308.5 199.17 S
+0.11 (76) 546.79 199.17 S
+0.11 (Noti\336cation and pr) 234 178.17 S
+0.11 (eviewing) 328.91 178.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 178.17 S
+0.11 (77) 546.79 178.17 S
+0.11 (Managing r) 234 157.17 S
+0.11 (efer) 291.57 157.17 S
+0.11 (ences between contr) 310.33 157.17 S
+0.11 (ols and other objects) 410.37 157.17 S
+0.11 (. . .) 514.17 157.17 S
+0.11 (78) 546.79 157.17 S
+FMENDPAGE
+%%EndPage: "vii" 6
+%%Page: "viii" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (viii) 54 108.7 S
+3 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Destr) 234 640.67 S
+0.11 (uction) 260.81 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 640.67 S
+0.11 (78) 546.79 640.67 S
+1 F
+0.12 (9.) 197.22 619.33 S
+0.12 (Display Items) 212.98 619.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 286.79 619.33 S
+0.12 (79) 546.28 619.33 S
+2 F
+0.11 (Utility pr) 234 598.17 S
+0.11 (ocedur) 280 598.17 S
+0.11 (es) 314.28 598.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 598.17 S
+0.11 (81) 546.79 598.17 S
+1 F
+0.12 (10.) 191.36 576.83 S
+0.12 (Gauges) 212.98 576.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 253.93 576.83 S
+0.12 (83) 546.28 576.83 S
+2 F
+0.11 (Cr) 234 555.67 S
+0.11 (eation) 246.15 555.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 555.67 S
+0.11 (83) 546.79 555.67 S
+0.11 (Gauge values) 234 534.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 534.67 S
+0.11 (84) 546.79 534.67 S
+0.11 (Gauge granularity) 234 513.67 S
+0.11 (.) 324.14 513.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 513.67 S
+0.11 (84) 546.79 513.67 S
+0.11 (V) 234 492.67 S
+0.11 (isual pr) 241.44 492.67 S
+0.11 (esentation of gauges) 278.98 492.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 492.67 S
+0.11 (85) 546.79 492.67 S
+0.11 (Geometry) 234 471.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 471.67 S
+0.11 (85) 546.79 471.67 S
+1 F
+0.12 (1) 191.99 450.33 S
+0.12 (1.) 197.22 450.33 S
+0.12 (ClassItemGr) 212.98 450.33 S
+0.12 (oup) 277.58 450.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 298.74 450.33 S
+0.12 (87) 546.28 450.33 S
+2 F
+0.11 (Cr) 234 429.17 S
+0.11 (eation) 246.15 429.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 429.17 S
+0.11 (87) 546.79 429.17 S
+0.11 (Items) 234 408.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 262.8 408.17 S
+0.11 (88) 546.79 408.17 S
+0.11 (Setting the item list) 252 387.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 348.5 387.17 S
+0.11 (88) 546.79 387.17 S
+0.11 (Altering the item gr) 252 366.17 S
+0.11 (oup) 350.3 366.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . .) 371.35 366.17 S
+0.11 (91) 546.79 366.17 S
+0.11 (Querying the item gr) 252 345.17 S
+0.11 (oup) 356.34 345.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 345.17 S
+0.11 (92) 546.79 345.17 S
+0.11 (Geometry and location of the items) 252 324.17 S
+0.11 (. . . . . . . . . . . . . . . . . .) 428.48 324.17 S
+0.11 (92) 546.79 324.17 S
+0.11 (Geometry of the item gr) 252 303.17 S
+0.11 (oup) 371.04 303.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . .) 391.34 303.17 S
+0.11 (93) 546.79 303.17 S
+0.11 (Painting items) 252 282.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 282.17 S
+0.11 (93) 546.79 282.17 S
+0.11 (V) 234 261.17 S
+0.11 (alidation) 241.03 261.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 261.17 S
+0.11 (94) 546.79 261.17 S
+0.11 (T) 234 240.17 S
+0.11 (racking and items) 239.86 240.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 240.17 S
+0.11 (95) 546.79 240.17 S
+0.11 ( Mouse tracking in items\321subclass r) 252 219.17 S
+0.11 (esponsibility methods) 433.98 219.17 S
+0.11 (95) 546.79 219.17 S
+0.11 (Layout) 234 198.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.37 198.17 S
+0.11 (96) 546.79 198.17 S
+0.11 (Positioning items) 252 177.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 339.93 177.17 S
+0.11 (96) 546.79 177.17 S
+0.11 (Other layout methods) 252 156.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 156.17 S
+0.11 (96) 546.79 156.17 S
+FMENDPAGE
+%%EndPage: "viii" 7
+%%Page: "ix" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (ix) 550.57 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (ClassLayout methods de\336ned for ClassItemGr) 252 640.67 S
+0.11 (oup) 481.78 640.67 S
+0.11 (. . . . .) 502.75 640.67 S
+0.11 (97) 546.79 640.67 S
+0.11 (Help facilites for item gr) 234 619.67 S
+0.11 (oups) 355.16 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . .) 379.92 619.67 S
+0.11 (97) 546.79 619.67 S
+0.11 (Item cr) 234 598.67 S
+0.11 (eation\321strict subclass r) 268.78 598.67 S
+0.11 (esponsibility methods) 386.45 598.67 S
+0.11 (. . . . . .) 497.04 598.67 S
+0.11 (97) 546.79 598.67 S
+1 F
+0.12 (12.) 191.36 577.33 S
+0.12 (ClassLabel) 212.98 577.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.85 577.33 S
+0.12 (99) 546.28 577.33 S
+2 F
+0.11 (Cr) 234 556.17 S
+0.11 (eation) 246.15 556.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 556.17 S
+0.11 (99) 546.79 556.17 S
+0.11 (Geometry) 234 535.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 535.17 S
+0.11 (99) 546.79 535.17 S
+0.11 (Label values) 234 514.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 514.17 S
+0.11 (100) 541.19 514.17 S
+1 F
+0.12 (13.) 191.36 492.83 S
+0.12 (ClassLayout) 212.98 492.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.83 492.83 S
+0.12 (101) 540.42 492.83 S
+2 F
+0.11 (Placement) 234 471.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 471.67 S
+0.11 (101) 541.19 471.67 S
+0.11 (Geometry) 234 450.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 450.67 S
+0.11 (102) 541.19 450.67 S
+0.11 (Layout) 234 429.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.37 429.67 S
+0.11 (102) 541.19 429.67 S
+0.11 (Spaced placement) 252 408.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 342.78 408.67 S
+0.11 (102) 541.19 408.67 S
+0.11 (Grid placement) 252 387.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 387.67 S
+0.11 (102) 541.19 387.67 S
+0.11 (Absolute placement) 252 366.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 366.67 S
+0.11 (103) 541.19 366.67 S
+0.11 (Calculated placement) 252 345.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 345.67 S
+0.11 (103) 541.19 345.67 S
+0.11 (Miscellaneous) 252 324.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 324.67 S
+0.11 (104) 541.19 324.67 S
+0.11 (Subclass r) 234 303.67 S
+0.11 (esponsibility pr) 283.34 303.67 S
+0.11 (ocedur) 360.72 303.67 S
+0.11 (es) 395 303.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . .) 405.63 303.67 S
+0.11 (104) 541.19 303.67 S
+0.11 (Useful systemdict utilities) 234 282.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 365.64 282.67 S
+0.11 (105) 541.19 282.67 S
+1 F
+0.12 (14.) 191.36 261.34 S
+0.12 (ClassMenu) 212.98 261.34 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.85 261.34 S
+0.12 (107) 540.42 261.34 S
+2 F
+0.11 (Cr) 234 240.17 S
+0.11 (eation) 246.15 240.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 240.17 S
+0.11 (107) 541.19 240.17 S
+0.11 (Choice Modes) 234 219.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 219.17 S
+0.11 (108) 541.19 219.17 S
+0.11 (Menu items) 234 198.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 198.17 S
+0.11 (108) 541.19 198.17 S
+0.11 (Setting the menu\325s item list) 252 177.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . .) 388.49 177.17 S
+0.11 (109) 541.19 177.17 S
+0.11 (Layout) 234 156.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.37 156.17 S
+0.11 (1) 541.79 156.17 S
+0.11 (12) 546.79 156.17 S
+FMENDPAGE
+%%EndPage: "ix" 8
+%%Page: "x" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (x) 54 108.7 S
+3 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Other item methods) 234 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 640.67 S
+0.11 (1) 541.79 640.67 S
+0.11 (12) 546.79 640.67 S
+0.11 (Default item) 252 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 317.07 619.67 S
+0.11 (1) 541.79 619.67 S
+0.11 (13) 546.79 619.67 S
+0.11 (Labels) 234 598.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 268.51 598.67 S
+0.11 (1) 541.79 598.67 S
+0.11 (14) 546.79 598.67 S
+0.11 (Pinned menus) 234 577.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 577.67 S
+0.11 (1) 541.79 577.67 S
+0.11 (14) 546.79 577.67 S
+0.11 (Pr) 252 556.67 S
+0.11 (ogrammatically pinning menus) 263 556.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . .) 419.91 556.67 S
+0.11 (1) 541.79 556.67 S
+0.11 (15) 546.79 556.67 S
+0.11 (Ability to interact with menu items) 234 535.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . .) 411.34 535.67 S
+0.11 (1) 541.79 535.67 S
+0.11 (15) 546.79 535.67 S
+0.11 (Noti\336cation and pr) 234 514.67 S
+0.11 (eviewing) 328.91 514.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 514.67 S
+0.11 (1) 541.79 514.67 S
+0.11 (15) 546.79 514.67 S
+0.11 (Menu tar) 234 493.67 S
+0.11 (gets) 279.52 493.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 493.67 S
+0.11 (1) 541.79 493.67 S
+0.11 (16) 546.79 493.67 S
+0.11 (The invoker mechanism) 252 472.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . .) 374.2 472.67 S
+0.11 (1) 541.79 472.67 S
+0.11 (17) 546.79 472.67 S
+0.11 (T) 252 451.67 S
+0.11 (ar) 257.83 451.67 S
+0.11 (get interface inherited fr) 267.69 451.67 S
+0.11 (om ClassContr) 387.95 451.67 S
+0.11 (ol) 461.52 451.67 S
+0.11 ( . . . . . . . . . .) 471.33 451.67 S
+0.11 (1) 541.79 451.67 S
+0.11 (17) 546.79 451.67 S
+0.11 (Menu V) 234 430.67 S
+0.11 (alues) 273 430.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 430.67 S
+0.11 (1) 541.79 430.67 S
+0.11 (18) 546.79 430.67 S
+0.11 (ClassCanvas and ClassRegion interfaces) 234 409.67 S
+0.11 (. . . . . . . . . . . . . . . . .) 434.19 409.67 S
+0.11 (1) 541.79 409.67 S
+0.11 (18) 546.79 409.67 S
+0.11 (Canvas menu methods) 252 388.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 368.49 388.67 S
+0.11 (1) 541.79 388.67 S
+0.11 (18) 546.79 388.67 S
+0.11 (Help facilites for menus) 234 367.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 354.21 367.67 S
+0.11 (120) 541.19 367.67 S
+1 F
+0.12 (15.) 191.36 346.33 S
+0.12 (ClassNotice) 212.98 346.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.83 346.33 S
+0.12 (121) 540.42 346.33 S
+2 F
+0.11 (Cr) 234 325.17 S
+0.11 (eation) 246.15 325.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 325.17 S
+0.11 (121) 541.19 325.17 S
+0.11 (Setting the fr) 234 304.17 S
+0.11 (ozen application) 297.96 304.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 304.17 S
+0.11 (121) 541.19 304.17 S
+0.11 (T) 234 283.17 S
+0.11 (ext in notices) 239.83 283.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 283.17 S
+0.11 (122) 541.19 283.17 S
+0.11 (Buttons in notices) 234 262.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 262.17 S
+0.11 (122) 541.19 262.17 S
+0.11 (Invoking a notice) 234 241.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 241.17 S
+0.11 (123) 541.19 241.17 S
+1 F
+0.12 (16.) 191.36 219.84 S
+0.12 (ClassNumericField) 212.98 219.84 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 313.68 219.84 S
+0.12 (125) 540.42 219.84 S
+2 F
+0.11 (NumericField values) 234 198.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 339.93 198.67 S
+0.11 (125) 541.19 198.67 S
+0.11 (NumericField granularity) 234 177.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 362.78 177.67 S
+0.11 (126) 541.19 177.67 S
+0.11 (Noti\336cation and pr) 234 156.67 S
+0.11 (eviewing) 328.91 156.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 156.67 S
+0.11 (127) 541.19 156.67 S
+FMENDPAGE
+%%EndPage: "x" 9
+%%Page: "xi" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xi) 550.57 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Inherited Methods) 234 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 640.67 S
+0.11 (128) 541.19 640.67 S
+1 F
+0.12 (17.) 191.36 619.33 S
+0.12 (ClassObject) 212.98 619.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 274.84 619.33 S
+0.12 (129) 540.42 619.33 S
+0.12 (18.) 191.36 597.83 S
+0.12 (ClassPanel) 212.98 597.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.85 597.83 S
+0.12 (131) 540.42 597.83 S
+2 F
+0.11 (Cr) 234 576.67 S
+0.11 (eation) 246.15 576.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 576.67 S
+0.11 (131) 541.19 576.67 S
+0.11 (Panel clients) 234 555.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 555.67 S
+0.11 (132) 541.19 555.67 S
+0.11 (Adding panel clients) 252 534.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 357.07 534.67 S
+0.11 (132) 541.19 534.67 S
+0.11 (Removing clients) 252 513.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 339.93 513.67 S
+0.11 (135) 541.19 513.67 S
+0.11 (Positioning clients) 252 492.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 345.64 492.67 S
+0.11 (136) 541.19 492.67 S
+0.11 (Layout) 234 471.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 271.37 471.67 S
+0.11 (136) 541.19 471.67 S
+0.11 (ClassLayout methods de\336ned for ClassPanel) 252 450.67 S
+0.11 ( . . . . . . . . .) 477.04 450.67 S
+0.11 (136) 541.19 450.67 S
+0.11 (Menus and tracking) 234 429.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 429.67 S
+0.11 (136) 541.19 429.67 S
+1 F
+0.12 (19.) 191.36 408.33 S
+0.12 (ClassRegion) 212.98 408.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.83 408.33 S
+0.12 (137) 540.42 408.33 S
+2 F
+0.11 (Cr) 234 387.17 S
+0.11 (eation) 246.15 387.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 387.17 S
+0.11 (138) 541.19 387.17 S
+0.11 (Region appearance) 234 366.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 366.17 S
+0.11 (138) 541.19 366.17 S
+0.11 (Colors) 252 345.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 345.17 S
+0.11 (138) 541.19 345.17 S
+0.11 (Painting) 252 324.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 324.17 S
+0.11 (140) 541.19 324.17 S
+0.11 (Fonts) 252 303.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 279.94 303.17 S
+0.11 (142) 541.19 303.17 S
+0.11 (The r) 234 282.17 S
+0.11 (egion tr) 259.83 282.17 S
+0.11 (ee) 298.14 282.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 311.36 282.17 S
+0.11 (143) 541.19 282.17 S
+0.11 (Geometry) 234 261.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 261.17 S
+0.11 (143) 541.19 261.17 S
+0.11 (V) 234 240.17 S
+0.11 (alidation) 241.03 240.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 240.17 S
+0.11 (144) 541.19 240.17 S
+0.11 (Region damage handling) 234 219.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 219.17 S
+0.11 (146) 541.19 219.17 S
+0.11 (Mouse tracking) 234 198.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 198.17 S
+0.11 (147) 541.19 198.17 S
+0.11 (Region menus) 234 177.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 177.17 S
+0.11 (147) 541.19 177.17 S
+0.11 (Obsolescence and destr) 234 156.17 S
+0.11 (uction) 350.14 156.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 156.17 S
+0.11 (149) 541.19 156.17 S
+FMENDPAGE
+%%EndPage: "xi" 10
+%%Page: "xii" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xii) 54 108.7 S
+3 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Miscellaneous) 234 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 640.67 S
+0.11 (149) 541.19 640.67 S
+1 F
+0.12 (20.) 191.36 619.33 S
+0.12 (Scr) 212.98 619.33 S
+0.12 (ollbars) 228.79 619.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 265.88 619.33 S
+0.12 (151) 540.42 619.33 S
+2 F
+0.11 (Cr) 234 598.17 S
+0.11 (eation) 246.15 598.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 598.17 S
+0.11 (152) 541.19 598.17 S
+0.11 (Scr) 234 577.17 S
+0.11 (ollbar auto r) 249.12 577.17 S
+0.11 (epeat) 310.18 577.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 339.93 577.17 S
+0.11 (152) 541.19 577.17 S
+0.11 (Geometry) 234 556.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 556.17 S
+0.11 (154) 541.19 556.17 S
+0.11 (V) 234 535.17 S
+0.11 (alues and parameters) 241.03 535.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 348.5 535.17 S
+0.11 (154) 541.19 535.17 S
+0.11 (Noti\336cation and pr) 234 514.17 S
+0.11 (eviewing) 328.91 514.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 514.17 S
+0.11 (155) 541.19 514.17 S
+0.11 (Scr) 234 493.17 S
+0.11 (ollbar motion) 249.12 493.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 317.07 493.17 S
+0.11 (157) 541.19 493.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 254.23 472.17 S
+0.11 (159) 541.19 472.17 S
+1 F
+0.12 (21.) 191.36 450.83 S
+0.12 (ClassScr) 212.98 450.83 S
+0.12 (ollList) 256.34 450.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 289.78 450.83 S
+0.12 (161) 540.42 450.83 S
+2 F
+0.11 (Intr) 234 429.67 S
+0.11 (oduction) 252.26 429.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 429.67 S
+0.11 (161) 541.19 429.67 S
+0.11 (Items) 234 408.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 262.8 408.67 S
+0.11 (163) 541.19 408.67 S
+0.11 (Choices) 234 387.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 274.23 387.67 S
+0.11 (164) 541.19 387.67 S
+0.11 (Scr) 234 366.67 S
+0.11 (olling and scr) 249.12 366.67 S
+0.11 (ollbars) 316.52 366.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 366.67 S
+0.11 (165) 541.19 366.67 S
+0.11 (List geometry) 234 345.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 345.67 S
+0.11 (166) 541.19 345.67 S
+0.11 (Ability to interact with scr) 252 324.67 S
+0.11 (oll list items) 382.29 324.67 S
+0.11 (. . . . . . . . . . . . . . .) 445.62 324.67 S
+0.11 (167) 541.19 324.67 S
+0.11 (Noti\336cation) 252 303.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 303.67 S
+0.11 (168) 541.19 303.67 S
+0.11 (Miscellaneous) 234 282.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 282.67 S
+0.11 (169) 541.19 282.67 S
+1 F
+0.12 (22.) 191.36 261.34 S
+0.12 (ClassSelection) 212.98 261.34 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 289.78 261.34 S
+0.12 (171) 540.42 261.34 S
+2 F
+0.11 ( Intr) 234 240.17 S
+0.11 (oduction) 255.12 240.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 240.17 S
+0.11 (171) 541.19 240.17 S
+0.11 (How this chapter is or) 252 219.17 S
+0.11 (ganized) 362.08 219.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . .) 402.77 219.17 S
+0.11 (172) 541.19 219.17 S
+0.11 (How applications get information about selections) 252 198.17 S
+0.11 (. . . . .) 502.75 198.17 S
+0.11 (172) 541.19 198.17 S
+0.11 (The context of selection pr) 252 177.17 S
+0.11 (ocessing) 382.54 177.17 S
+0.11 ( . . . . . . . . . . . . . . . . . .) 425.62 177.17 S
+0.11 (173) 541.19 177.17 S
+0.11 ( Retrieving selection values) 234 156.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . .) 371.35 156.17 S
+0.11 (174) 541.19 156.17 S
+FMENDPAGE
+%%EndPage: "xii" 11
+%%Page: "xiii" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xiii) 545.16 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 ( When and how to transfer a selection value) 252 640.67 S
+0.11 ( . . . . . . . . . .) 471.33 640.67 S
+0.11 (179) 541.19 640.67 S
+0.11 ( Making selections) 234 619.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 619.67 S
+0.11 (179) 541.19 619.67 S
+0.11 (Cr) 252 598.67 S
+0.11 (eation) 264.15 598.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 598.67 S
+0.11 (179) 541.19 598.67 S
+0.11 (Registering a new selection; unr) 252 577.67 S
+0.11 (egistering an old one) 410.6 577.67 S
+0.11 ( . .) 517.03 577.67 S
+0.11 (183) 541.19 577.67 S
+0.11 (Responding to selection r) 234 556.67 S
+0.11 (equests) 359.81 556.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . .) 397.06 556.67 S
+0.11 (183) 541.19 556.67 S
+0.11 ( Utilities) 234 535.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 535.67 S
+0.11 (185) 541.19 535.67 S
+0.11 (Utility selection class) 252 514.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 357.07 514.67 S
+0.11 (185) 541.19 514.67 S
+0.11 (Utility methods) 252 493.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 493.67 S
+0.11 (185) 541.19 493.67 S
+1 F
+0.12 (23.) 191.36 472.33 S
+0.12 (ClassSettings and ClassCheckBoxes) 212.98 472.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . .) 400.31 472.33 S
+0.12 (189) 540.42 472.33 S
+2 F
+0.11 (ClassSettings) 234 451.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 451.17 S
+0.11 (189) 541.19 451.17 S
+0.11 (Cr) 252 430.17 S
+0.11 (eation) 264.15 430.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 430.17 S
+0.11 (190) 541.19 430.17 S
+0.11 (Justi\336cation) 252 409.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 409.17 S
+0.11 (190) 541.19 409.17 S
+0.11 (Choices) 252 388.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 291.36 388.17 S
+0.11 (190) 541.19 388.17 S
+0.11 (V) 252 367.17 S
+0.11 (alue of settings) 259.03 367.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 367.17 S
+0.11 (191) 541.19 367.17 S
+0.11 (Noti\336cation) 252 346.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 346.17 S
+0.11 (191) 541.19 346.17 S
+0.11 (ClassCheckBoxes) 234 325.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 325.17 S
+0.11 (192) 541.19 325.17 S
+0.11 (Cr) 252 304.17 S
+0.11 (eation) 264.15 304.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 304.17 S
+0.11 (192) 541.19 304.17 S
+1 F
+0.12 (24.) 191.36 282.83 S
+0.12 (Sliders) 212.98 282.83 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 250.94 282.83 S
+0.12 (193) 540.42 282.83 S
+2 F
+0.11 (Cr) 234 261.67 S
+0.11 (eation) 246.15 261.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 261.67 S
+0.11 (194) 541.19 261.67 S
+0.11 (Slider auto r) 234 240.67 S
+0.11 (epeat) 295.24 240.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 322.79 240.67 S
+0.11 (194) 541.19 240.67 S
+0.11 (V) 234 219.67 S
+0.11 (alues) 241.03 219.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 268.51 219.67 S
+0.11 (194) 541.19 219.67 S
+0.11 (Noti\336cation and pr) 234 198.67 S
+0.11 (eviewing) 328.91 198.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . .) 377.06 198.67 S
+0.11 (195) 541.19 198.67 S
+0.11 (T) 252 177.67 S
+0.11 (ar) 257.83 177.67 S
+0.11 (get Interface) 267.69 177.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 177.67 S
+0.11 (195) 541.19 177.67 S
+0.11 (Granularity) 234 156.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 156.67 S
+0.11 (196) 541.19 156.67 S
+FMENDPAGE
+%%EndPage: "xiii" 12
+%%Page: "xiv" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xiv) 54 108.7 S
+3 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (V) 234 640.67 S
+0.11 (isual pr) 241.44 640.67 S
+0.11 (esentation) 278.98 640.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 640.67 S
+0.11 (197) 541.19 640.67 S
+0.11 (Geometry) 234 619.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 619.67 S
+0.11 (197) 541.19 619.67 S
+0.11 (Slider label positioning) 234 598.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 598.67 S
+0.11 (197) 541.19 598.67 S
+1 F
+0.12 (25.) 191.36 577.33 S
+0.12 (ClassT) 212.98 577.33 S
+0.12 (extCanvas) 246.63 577.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 301.73 577.33 S
+0.12 (201) 540.42 577.33 S
+0.12 (26.) 191.36 555.83 S
+0.12 (ClassT) 212.98 555.83 S
+0.12 (extField) 246.63 555.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 289.78 555.83 S
+0.12 (203) 540.42 555.83 S
+2 F
+0.11 (Cr) 234 534.67 S
+0.11 (eation) 246.15 534.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 534.67 S
+0.11 (203) 541.19 534.67 S
+0.11 (State of T) 234 513.67 S
+0.11 (ext Fields) 279.66 513.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 513.67 S
+0.11 (203) 541.19 513.67 S
+0.11 (V) 234 492.67 S
+0.11 (alue of T) 241.03 492.67 S
+0.11 (ext Fields) 283.47 492.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 331.36 492.67 S
+0.11 (204) 541.19 492.67 S
+0.11 (Characters) 252 471.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 471.67 S
+0.11 (205) 541.19 471.67 S
+0.11 (Noti\336cation) 234 450.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 450.67 S
+0.11 (205) 541.19 450.67 S
+0.11 (The text insertion point \050the car) 234 429.67 S
+0.11 (et\051) 390.05 429.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . .) 405.63 429.67 S
+0.11 (206) 541.19 429.67 S
+0.11 (Painting) 234 408.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 277.08 408.67 S
+0.11 (207) 541.19 408.67 S
+0.11 (Manipulating the text) 234 387.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 342.78 387.67 S
+0.11 (207) 541.19 387.67 S
+0.11 (Selections) 234 366.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 285.65 366.67 S
+0.11 (209) 541.19 366.67 S
+0.11 (Moving between text\336elds and other text\336elds or canvases) 234 345.67 S
+0.11 (209) 541.19 345.67 S
+0.11 (Scr) 234 324.67 S
+0.11 (olling) 249.12 324.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 279.94 324.67 S
+0.11 (212) 541.19 324.67 S
+0.11 (Miscellaneous) 234 303.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 303.67 S
+0.11 (215) 541.19 303.67 S
+1 F
+0.12 (27.) 191.36 282.33 S
+0.12 (W) 212.98 282.33 S
+0.12 (indows) 223.95 282.33 S
+0.12 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 262.89 282.33 S
+0.12 (217) 540.42 282.33 S
+2 F
+0.11 (ClassW) 234 261.17 S
+0.11 (indow) 270.84 261.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 261.17 S
+0.11 (217) 541.19 261.17 S
+0.11 (Cr) 252 240.17 S
+0.11 (eation and initialization) 264.15 240.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . .) 382.77 240.17 S
+0.11 (218) 541.19 240.17 S
+0.11 (Labels and footers) 252 219.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 345.64 219.17 S
+0.11 (219) 541.19 219.17 S
+0.11 (Painting) 252 198.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 198.17 S
+0.11 (220) 541.19 198.17 S
+0.11 (Fr) 252 177.17 S
+0.11 (eezing windows) 262.47 177.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 345.64 177.17 S
+0.11 (220) 541.19 177.17 S
+0.11 (W) 252 156.17 S
+0.11 (indow placement) 262.49 156.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 351.35 156.17 S
+0.11 (221) 541.19 156.17 S
+FMENDPAGE
+%%EndPage: "xiv" 13
+%%Page: "xv" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xv) 548.1 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Subwindows) 252 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 317.07 640.67 S
+0.11 (221) 541.19 640.67 S
+0.11 (V) 252 619.67 S
+0.11 (iewing states) 259.44 619.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 619.67 S
+0.11 (223) 541.19 619.67 S
+0.11 (Miscellaneous) 252 598.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 598.67 S
+0.11 (224) 541.19 598.67 S
+0.11 (ClassBaseW) 234 577.67 S
+0.11 (indow) 293.4 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 325.64 577.67 S
+0.11 (224) 541.19 577.67 S
+0.11 (Cr) 252 556.67 S
+0.11 (eation) 264.15 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 556.67 S
+0.11 (224) 541.19 556.67 S
+0.11 (Opening and closing base windows) 252 535.67 S
+0.11 ( . . . . . . . . . . . . . . . . .) 431.33 535.67 S
+0.11 (225) 541.19 535.67 S
+0.11 (Base window icons) 252 514.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 348.5 514.67 S
+0.11 (225) 541.19 514.67 S
+0.11 (Geometry) 252 493.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 493.67 S
+0.11 (226) 541.19 493.67 S
+0.11 (Painting) 252 472.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 294.22 472.67 S
+0.11 (226) 541.19 472.67 S
+0.11 (Menus) 252 451.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 451.67 S
+0.11 (226) 541.19 451.67 S
+0.11 (ClassPopupW) 234 430.67 S
+0.11 (indow) 303.85 430.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 337.07 430.67 S
+0.11 (226) 541.19 430.67 S
+0.11 (Cr) 252 409.67 S
+0.11 (eation) 264.15 409.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 297.08 409.67 S
+0.11 (226) 541.19 409.67 S
+1 F
+0.12 (28.) 191.36 388.33 S
+0.12 (The W) 212.98 388.33 S
+0.12 (ir) 246.51 388.33 S
+0.12 (e Service) 254.42 388.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 301.73 388.33 S
+0.12 (227) 540.42 388.33 S
+2 F
+0.11 (Err) 234 367.17 S
+0.11 (or handling) 249.52 367.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 308.5 367.17 S
+0.11 (227) 541.19 367.17 S
+0.11 (Components) 234 346.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 299.93 346.17 S
+0.11 (228) 541.19 346.17 S
+0.11 (Connection management) 234 325.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 325.17 S
+0.11 (228) 541.19 325.17 S
+0.11 (Handle allocation and r) 252 304.17 S
+0.11 (egistration) 369.14 304.17 S
+0.11 (. . . . . . . . . . . . . . . . . . .) 422.77 304.17 S
+0.11 (234) 541.19 304.17 S
+0.11 (The Noti\336er) 252 283.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 283.17 S
+0.11 (238) 541.19 283.17 S
+0.11 (Ease-of-use functions) 252 262.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 262.17 S
+0.11 (241) 541.19 262.17 S
+0.11 (Synchr) 252 241.17 S
+0.11 (onization) 286.34 241.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 334.21 241.17 S
+0.11 (241) 541.19 241.17 S
+0.11 (Help facilities) 234 220.17 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 305.65 220.17 S
+0.11 (243) 541.19 220.17 S
+0.11 (The help message \336le) 252 199.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 199.17 S
+0.11 (245) 541.19 199.17 S
+0.11 (Constants) 252 178.17 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 302.79 178.17 S
+0.11 (245) 541.19 178.17 S
+1 F
+0.12 (29.) 191.36 156.84 S
+0.12 (Jot) 212.98 156.84 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 230.03 156.84 S
+0.12 (255) 540.42 156.84 S
+FMENDPAGE
+%%EndPage: "xv" 14
+%%Page: "xvi" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (xvi) 54 108.7 S
+3 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+0.11 (Intr) 234 640.67 S
+0.11 (oduction to Jot) 252.26 640.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 640.67 S
+0.11 (255) 541.19 640.67 S
+0.11 (How Jot functionality is or) 234 619.67 S
+0.11 (ganized) 365.79 619.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . .) 405.63 619.67 S
+0.11 (255) 541.19 619.67 S
+0.11 (Position de\336nition) 234 598.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 328.5 598.67 S
+0.11 (256) 541.19 598.67 S
+0.11 (Global err) 234 577.67 S
+0.11 (or descriptions) 283.93 577.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 359.92 577.67 S
+0.11 (256) 541.19 577.67 S
+0.11 (Jot initialization) 234 556.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 314.22 556.67 S
+0.11 (256) 541.19 556.67 S
+0.11 (JotT) 234 535.67 S
+0.11 (ext pr) 253.4 535.67 S
+0.11 (ocedur) 282.07 535.67 S
+0.11 (es\321the text model) 316.34 535.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . .) 411.34 535.67 S
+0.11 (257) 541.19 535.67 S
+0.11 (Undoing and r) 252 514.67 S
+0.11 (edoing JotT) 325.02 514.67 S
+0.11 (ext operations) 381.61 514.67 S
+0.11 ( . . . . . . . . . . . . .) 454.19 514.67 S
+0.11 (262) 541.19 514.67 S
+0.11 (T) 234 493.67 S
+0.11 (ext spans) 239.83 493.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 288.51 493.67 S
+0.11 (265) 541.19 493.67 S
+0.11 (JotV) 234 472.67 S
+0.11 (iew pr) 255.01 472.67 S
+0.11 (ocedur) 286.78 472.67 S
+0.11 (es\321the view and contr) 321.06 472.67 S
+0.11 (oller) 435.17 472.67 S
+0.11 ( . . . . . . . . . . . .) 459.9 472.67 S
+0.11 (269) 541.19 472.67 S
+0.11 (The JotBoundingBox data type) 252 451.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . .) 405.63 451.67 S
+0.11 (273) 541.19 451.67 S
+0.11 (The W) 252 430.67 S
+0.11 (ir) 284.07 430.67 S
+0.11 (e Service and JotV) 291.63 430.67 S
+0.11 (iews) 381.19 430.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . .) 405.63 430.67 S
+0.11 (277) 541.19 430.67 S
+0.11 (V) 252 409.67 S
+0.11 (iew Contr) 259.44 409.67 S
+0.11 (ollers) 308.7 409.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 337.07 409.67 S
+0.11 (278) 541.19 409.67 S
+0.11 (JotSear) 234 388.67 S
+0.11 (ch pr) 268.67 388.67 S
+0.11 (ocedur) 293.99 388.67 S
+0.11 (es) 328.26 388.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 339.93 388.67 S
+0.11 (280) 541.19 388.67 S
+0.11 (JotFont pr) 252 367.67 S
+0.11 (ocedur) 301.91 367.67 S
+0.11 (es) 336.19 367.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 348.5 367.67 S
+0.11 (282) 541.19 367.67 S
+0.11 (JotSelection pr) 252 346.67 S
+0.11 (ocedur) 323.92 346.67 S
+0.11 (es) 358.2 346.67 S
+0.11 (. . . . . . . . . . . . . . . . . . . . . . . . . . . .) 371.35 346.67 S
+0.11 (283) 541.19 346.67 S
+0.11 (A JOT Example) 234 325.67 S
+0.11 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 311.36 325.67 S
+0.11 (285) 541.19 325.67 S
+1 F
+0.12 (Index) 187.99 304.33 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 218.08 304.33 S
+0.12 (295) 540.42 304.33 S
+0.12 (ClassIndex) 187.99 282.83 S
+0.12 ( . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .) 247.95 282.83 S
+0.12 (321) 540.42 282.83 S
+FMENDPAGE
+%%EndPage: "xvi" 15
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 14 1
+%%DocumentFonts: Helvetica-Oblique
+%%+ Palatino-Roman
+%%+ Palatino-Italic

@@ -1,0 +1,214 @@
+;;;	(c) Copyright 1989, 1990, 1991 Sun Microsystems, Inc. 
+;;;	Sun design patents pending in the U.S. and foreign countries. 
+;;;	See LEGAL_NOTICE file for terms of the license.
+
+Information on building a LispView module and on building a LispView
+image (a Lisp image that contains LispView):
+-----------------------------------------------------------------------
+
+To build a LispView image from the material in this LispView 1.1 source
+release (and an existing Lisp image) you can first build a LispView module
+and then disksave an image containing that module.  We recommend that these
+two stages be done in separate Lisp sessions; some details are given below.
+The remarks below indicate how builds have been done in the environment
+at Sun.  You may need to customize the build process and release files
+to meet your own requirements.
+
+PRELIMINARIES
+
+The directory in which this source release is installed will be
+called the top-level directory (of the LispView source release), or 
+<lv-top-level-dir>.  The suggested build process and the build files
+included with the release assume that <lv-top-level-dir> contains:
+src   --  subdirectory with LispView-specific source
+xview --  subdirectory with source for a generic foreign interface to
+	  XView, and OpenWindows Version 2.0 XView libraries
+lispview -- symbolic link to "." (i.e., to <lv-top-level-dir>)
+build.lisp --  top-level build file for creating a LispView module
+
+["src" and "xview" contain other build.lisp files used by the top-level
+build.lisp].  There are other components in the release, but the four
+listed here are the ones needed for builds.
+[Relative pathnames in the text below are relative to <lv-top-level-dir>
+unless otherwise indicated.]
+
+The instructions and files assume you are using Sun Common Lisp 4.0
+(patch level 4.0.2) or Lucid Common Lisp for Sun, with CLOS, on a
+SPARCsystem (or Sun-4) computer.  The build uses the OpenWindows 2.0
+libraries supplied with the release.  The resulting LispView images
+have been run successfully with the OpenWindows 3.0 server as well as
+the OpenWindows 2.0 server.
+ 
+[This release of LispView has not been tested with Lisp 4.0.1, although it
+may work with Lisp 4.0.1.]
+
+[If you will be recompiling foreign code, see the remarks on OPENWINHOME
+in the file xview/NOTE.Makefile]
+
+
+CREATING A NEW LISPVIEW MODULE
+
+Loading the top-level  build.lisp  file recompiles and loads LispView and
+creates one binary file  lispview.sbin  (the LispView module) that contains
+all of the compiled LispView files.  The top-level build.lisp file assumes
+that the current directory is <lv-top-level-dir>.
+
+The procedure in more detail:
+
+Make sure you have write permission in <lv-top-level-dir> and in its
+"src" and "xview" subdirectories (adjust permissions temporarily if
+necessary).  If there is already a lispview.sbin in <lv-top-level-dir>,
+you may want to save it under another name to keep it from being deleted
+by the build (at least until you have tested the new module).
+[In fact a lispview.sbin built with this source release is included with
+the release, in <lv-top-level-dir>.]
+The size of the module is about 2 MB; and another 2 MB of disk space will
+be needed temporarily for files produced during the module build and 
+automatically deleted at the end of the build.
+
+Start up a Lisp 4.0.2 image that includes CLOS and the compiler.
+[For our builds at Sun, this image has been created from the Lisp 4.0 FCS
+lisp-4-0-base image, with CLOS module and Lisp patches from the Lisp 4.0.2
+Patch Set, and nothing else.
+We usually start it up with the "-n" option to avoid loading any lisp-init
+file, even though there is no disksave in this stage of the build.]
+
+Work in the top-level directory:
+(cd "<lv-top-level-dir>")
+
+Use the production compiler; for example, set up your compilation
+environment with:
+(proclaim '(optimize (speed 3) (safety 1) (compilation-speed 0)))
+
+Load the top-level build file:
+(load "build.lisp")
+
+This will compile and load all the appropriate files (from "xview"
+and "src") and create lispview.sbin in <lv-top-level-dir>.
+[Actually the extension of the LispView module binary is obtained from
+LCL:*load-binary-pathname-types*; the default is "sbin".  The 
+intermediate files produced are removed by build.lisp; the build process
+may take approximately 45 minutes.]
+[The version of the LispView module produced by the source release as
+shipped is 1.1.20, as indicated by the variable lv:*lispview-version*]
+
+Quit Lisp.  (Restore the original directory permissions as needed.)
+
+
+[Note: If you set up SCCS directories for the LispView sources, note
+that the build.lisp files in "xview" and "src" include code that
+checks for "SCCS" in those subdirectories; if "SCCS" is present and it
+contains the appropriate history files, then the build uses it to get
+the most recent versions before compiling.  See those build.lisp files
+for details.]
+
+
+BUILDING A LISPVIEW IMAGE WITH A NEW LISPVIEW MODULE
+
+This stage should be done in a fresh Lisp session [to be free of
+garbage from the compilation step above].
+
+Basically, a LispView image is obtained by loading lispview.sbin
+into a Lisp image that has CLOS, and then disksaving.  The two alternative
+procedures suggested below include some CLOS precompilation and memory
+management.
+
+Procedure 1:
+
+Check that you have write permission and at least 14.3 MB of available
+space in the directory where you want to put the image.
+[An image built on the Lisp 4.0 Application Environment would be smaller,
+about 12.3 MB.]
+
+Start up a Lisp 4.0.2 image that includes CLOS.
+[This image normally would have been created from the Lisp 4.0 FCS
+lisp-4-0-base or lisp-4-0-app image, with CLOS module and Lisp patches
+from the Lisp 4.0.2 Patch Set, and nothing else.  The image should not
+already contain a window system.
+Since a disksave will be done, probably you want to start up the image
+with the "-n" option to avoid loading a lisp-init file.]
+
+In images with the compiler do some memory management:
+#+:COMPILER (LCL:change-memory-management :growth-limit 1500)
+
+Load the LispView module created above:
+(load "<lv-top-level-dir>/lispview.sbin")
+
+[The module should be left in <lv-top-level-dir> since it will look for
+foreign code in "lispview/xview".  Otherwise you would need to set up
+appropriate links.]
+[Loading lispview.sbin will generate various warnings about redefined
+functions and undefined foreign symbols; these can be ignored.]
+
+Do CLOS precompilation if the compiler is present:
+#+:COMPILER (locally (declare (optimize (speed 3) (safety 1) (compilation-speed 0)))
+	(CLOS:precompile-generic-functions))
+
+We usually discard source code recording info:
+(LCL:discard-source-file-info)
+
+Disksave:
+(LCL:disksave "<pathname-for-your-new-image>" :full-gc t :verbose t)
+
+Quit Lisp.  [End of Procedure 1]
+
+
+[Note: The steps above assume that a Lisp+CLOS image has been created
+earlier.  If, instead, CLOS and the patches are loaded in the same
+session as lispview.sbin, then a "GC relocation" error might occur
+during the disksave (this has been seen intermittently).  You should
+be able to avoid this problem by doing a reserved memory expansion
+beforehand; specifically, in place of the above memory management
+command, use:
+#+:COMPILER (LCL:change-memory-management :growth-limit 1500 :expand-reserved 25)
+]
+
+
+Procedure 2:
+
+Alternatively you can "plug" the new LispView module into the standard
+user build for a Lisp 4.0.2 image.  The build-lisp2 script that comes
+with the Lisp 4.0.2 Patch Set does essentially the same steps as
+Procedure 1.  [Distinguish that build-lisp2 shell script from the
+LispView source release build.lisp file.]
+
+To do this, use a symbolic link to the new module, rather than moving
+files around.  Using the link insures that the module will pick up foreign
+code from your source release "lispview/xview" subdirectory, rather than
+from your earlier release directory.  [The only difference between the
+foreign code in the current source release and the foreign code in the
+Lisp 4.0.2 Patch Set is that the current source release has two new
+patches.  One of these, ol_pixmap_label.o, is automatically loaded by the
+LispView module; the other, p_list.o, is a patch you may choose to load
+manually (see the release-notes file in the "doc" subdirectory).]
+
+For example, if the Lisp+CLOS image used to create lispview.sbin above
+was built with the Lisp 4.0.2 Patch Set, you could do the following
+[this assumes the image does not already contain a window system]:
+
+% cd <your-Lisp-4.0.2-Patch-Set-directory>
+
+Save the lispview.sbin that came with that patch set:
+% mv lispview.sbin lispview.sbin.ORIG
+
+Make a link to the new module:
+% ln -s <lv-top-level-dir>/lispview.sbin lispview.sbin
+
+Invoke build-lisp2 and specify the Lisp+CLOS image used above as your
+starting image.  Follow the prompts.
+
+Note: build-lisp2 will say it wants to load CLOS when you select LispView;
+let it go ahead, it will not actually do that load when it finds CLOS
+already present.
+
+Note: build-lisp2 does not have the production compiler wrapper around
+(CLOS:precompile-generic-functions) [see Procedure 1], so Procedure 1
+might generate more efficient code.
+
+End of Procedure 2
+
+[Note: If you try Procedure 2 with the Lisp 4.0 FCS build-lisp script
+(instead of build-lisp2) AND load CLOS and patches in the same session
+as lispview.sbin, then a "GC relocation" error might occur during the
+disksave.  In that case, use Procedure 1 and see the Note at the end of
+Procedure 1.]

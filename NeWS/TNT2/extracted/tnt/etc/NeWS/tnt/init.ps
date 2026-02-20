@@ -1,0 +1,115 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)init.ps 23.57 91/02/11
+%
+
+% tnt initialization: load the TNT/OpenLook components
+%
+% Make the standard auto loads:
+%
+[
+%
+% New world classes - this whole file needs a complete work-over
+%
+    /ClassTrackInterest			(NeWS/track.ps)
+    /TrackService			(NeWS/track.ps)
+    /ObsoleteService			(NeWS/obsolete.ps)
+    /KeyService				(NeWS/keysint.ps)
+    /DamageService			(NeWS/tnt/UI.ps)
+    /FrontService			(NeWS/tnt/UI.ps)
+    /HelpService			(NeWS/tnt/UI.ps)
+    /OpenService			(NeWS/tnt/UI.ps)
+    /ClassFunctionKey			(NeWS/tnt/UI.ps)
+    /ClassUI				(NeWS/tnt/UI.ps)
+    /ISOLatinKeys			(NeWS/ISOkeys.ps)
+    /ClassFullScreenInterest		(NeWS/fullscreen.ps)
+    /MenuService			(NeWS/tnt/menu.ps)
+    /ClassSelectUI			(NeWS/tnt/selectUI.ps)
+    /ClassTextCanvas			(NeWS/tnt/canvas.ps)
+
+    /ClassCanvas			(NeWS/tnt/canvas.ps)
+    /ClassControl			(NeWS/tnt/control.ps)
+    /ClassItemGroup			(NeWS/tnt/group.ps)
+    /ClassDrawable			(NeWS/tnt/drawable.ps)
+    /ClassFramebuffer			(NeWS/tnt/canvas.ps)
+    /ClassMenu				(NeWS/tnt/menu.ps)
+    /ClassScrollList			(NeWS/tnt/list.ps)
+    /ClassBag				(NeWS/tnt/bag.ps)
+    /ClassBorderBag			(NeWS/tnt/borderbag.ps)
+    /ClassWindow			(NeWS/tnt/window.ps)
+    /ClassBaseWindow			(NeWS/tnt/window.ps)
+    /ClassPopupWindow			(NeWS/tnt/window.ps)
+    /ClassVScrollbar			(NeWS/tnt/scrollbar.ps)
+    /ClassHScrollbar			(NeWS/tnt/scrollbar.ps)
+    /ClassHSlider			(NeWS/tnt/slider.ps)
+    /ClassVSlider			(NeWS/tnt/slider.ps)
+    /ClassHGauge			(NeWS/tnt/gauge.ps)
+    /ClassVGauge			(NeWS/tnt/gauge.ps)
+    /ClassLabel				(NeWS/tnt/label.ps)
+    /ClassRegion			(NeWS/tnt/region.ps)
+    /ClassButtons			(NeWS/tnt/buttons.ps)
+    /ClassMenuButtons			(NeWS/tnt/buttons.ps)
+    /ClassNumericField			(NeWS/tnt/numfield.ps)
+    /ClassLayout			(NeWS/tnt/layout.ps)
+    /ClassNotice			(NeWS/tnt/notice.ps)
+    /ClassPanel				(NeWS/tnt/panel.ps)
+    /ClassSettings			(NeWS/tnt/settings.ps)
+    /ClassCheckBoxes			(NeWS/tnt/settings.ps)
+    /ClassTextField			(NeWS/tnt/textfield.ps)
+    /ClassCaret				(NeWS/tnt/caret.ps)
+
+% Wire Service:
+    /wire_Sync				(NeWS/tnt/wire.ps)
+    /ClassWireClient			(NeWS/tnt/wire.ps)
+
+% JOT
+    /ClassJotText			(NeWS/tnt/jot.ps)
+    /ClassJotCanvas			(NeWS/tnt/jot.ps)
+
+% PostScript Capture:
+    /PSCapture                          (NeWS/tnt/capture.ps)
+
+% Help
+    /ClassTNTHelpWindow	    	    	(NeWS/tnt/help.ps)
+    /ClassNoHelpNotice			(NeWS/tnt/help.ps)
+] DefineAutoLoads
+
+% We can't load all of UI.ps here, because this file is read BEFORE class.ps,
+% but we must at least define UserProfile default values since those are hard
+% to set up as autoloads.
+
+    UserProfile
+    dup /StopKey	/FunctionL1		?put
+    dup /AgainKey	/FunctionL2		?put
+    dup /PropsKey	/FunctionL3		?put
+    dup /UndoKey	/FunctionL4		?put
+    dup /FrontKey	/FunctionL5		?put
+    dup /CopyKey	/FunctionL6		?put
+    dup /OpenKey	/FunctionL7		?put
+    dup /PasteKey	/FunctionL8		?put
+    dup /FindKey	/FunctionL9		?put
+    dup /CutKey		/FunctionL10		?put
+
+    dup /PointButton	/LeftMouseButton	?put
+    dup /FocusButton	/LeftMouseButton	?put
+    dup /AdjustButton	/MiddleMouseButton	?put
+    dup /RestoreButton	/MiddleMouseButton	?put
+    dup /MenuButton	/RightMouseButton	?put
+
+    % Note: Use array rather than the pseudo-name /Control, because these
+    % values may be used in places other than ClassKeyboard's /modifierdown?.
+    dup /DuplicateModifier  	[/LeftControl /RightControl]   	?put
+    dup /panModifier	    	[/LeftControl /RightControl]   	?put
+    dup /ConstrainModifier  	[/LeftControl /RightControl]   	?put
+    dup /SetMenuDefaultModifier	[/LeftControl /RightControl]   	?put
+
+    dup /DragThresh		  5		?put	%  this is pixels
+    dup /ScrollDelay		200 		?put	%  these 3 are ms.
+    dup /ScrollThresh		400		?put
+	/MultiClickThresh	390		?put
+
+

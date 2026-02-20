@@ -1,0 +1,266 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)litetext.ps 23.4 91/02/11
+%
+%  TEMP: New stuff.
+%  Trivial text & caret implementation.
+%
+
+/ASCII 300 dict dup begin
+%    32 1 126 { dup def } for
+    0 1 255 { dup def } for
+    1 /BEGINNING def	% ^A	MoveBackLine
+    2 /BKWDCHAR def	% ^B	MoveBackChar
+    4 /ROFWD def	% ^D	EditFwdChar
+    5 /END def		% ^E	MoveFwdLine
+    6 /FWDCHAR def	% ^F	MoveFwdChar
+    8 /RO def		% ^H	EditBackChar
+    10 /EOL def		% ^J	xx (Ascii char [10])
+    13 /EOL def		% ^M	xx ""
+    21 /LINEKILL def	% ^U	EditBackLine ** James kills whole line!
+    127 /RO def		% Del	EditBackChar
+end def
+
+/LiteText Object
+dictbegin
+    /TextX		null def
+    /TextY		null def
+    /TextCanvas		null def
+    /TextStr		nullstring def
+    /TextBuf		100 string def
+    /TextCaret		null def
+    
+    /Right		null def	% # of chars to the left of cursor
+    /Left		null def	% # of chars to the right of cursor
+    /xpos		null def	% # of pixels to the left of cursor
+dictend
+classbegin
+    /TextColor		0 0 0 rgbcolor def
+    /TextFill		1 1 1 rgbcolor def
+
+    /new { % canvas x0 y0 str =>  text
+        /new super send begin
+%	    gsave
+	    /TextStr exch def	/TextY exch def
+	    /TextX exch def	/TextCanvas exch def
+	    
+	    /TextBuf 255 string def TextStr TextBuf copy /TextStr exch def
+	    /TextCaret
+	        caretpackage begin /defaultcaret TextCanvas createcaret end def
+
+	    /Left TextStr length def /Right 0 def
+
+%	    grestore
+	    currentdict
+	end
+    } def
+    
+    /starttext { % - => -
+    gsave TextCanvas setcanvas TextX TextY translate % TextFont setfont
+%	TextCaret TextX xpos add TextY movecaret
+        EndTextEvent
+    grestore
+    } def
+
+    /stoptext { % - => -
+    gsave TextCanvas setcanvas TextX TextY translate % TextFont setfont
+        caretpackage begin TextCaret destroycaret end
+    grestore
+    } def
+
+    /inserttext { % char => -
+    gsave TextCanvas setcanvas TextX TextY translate % TextFont setfont
+        % check for textbuf overflow: [10 is a fudge!]
+        Left Right add TextBuf length 10 sub ge {
+            /TextBuf TextBuf 100 string append store
+        } if
+	BeginTextEvent
+	ASCII exch get
+	dup type /nametype eq {
+	    cvx exec
+	} {
+	    Right 0 ne {
+		TextBuf Left 1 add
+		xpos 0 moveto TextBuf Left Right getinterval
+		dup false getbbox
+		4 2 roll rmoveto rect
+		TextFill setcolor fill TextColor setcolor
+		putinterval
+	    } if
+	    TextBuf exch Left exch put
+	    TextBuf Left 1 Right add getinterval xpos 0 moveto show
+	    /Left Left 1 add def
+	} ifelse
+	EndTextEvent
+    grestore
+    } def
+
+    /settextxy { % x y => -
+    gsave TextCanvas setcanvas TextX TextY translate % TextFont setfont
+	BeginTextEvent
+	10 dict begin
+	    pop /x exch TextX sub neg def % neg for ge exit below.
+	    /newLeft 0 def
+	    TextStr {
+		cvis stringwidth pop x add /x exch def
+		x 0 ge {exit} if
+		/newLeft newLeft 1 add def
+	    } forall
+	    /Right Left Right add newLeft sub store
+	    /Left newLeft store
+	end
+	EndTextEvent
+    grestore
+    } def
+    
+    /EOL {stoptext} def
+    /BEGINNING {/Right Left Right add def /Left 0 def} def
+    /END {/Left Left Right add def /Right 0 def} def
+    /FWDCHAR {Right 0 gt {/Left Left 1 add def /Right Right 1 sub def}if} def
+    /BKWDCHAR {Left 0 gt {/Left Left 1 sub def /Right Right 1 add def}if} def
+    /ROFWD {Right 0 gt {FWDCHAR BeginTextEvent EndTextEvent RO} if} def
+
+    /LINEKILL {
+	0 0 moveto
+	TextStr false getbbox
+	4 2 roll moveto rect
+	TextFill setcolor fill TextColor setcolor
+	/Left 0 def /Right 0 def
+    } def
+    /RO {
+        Left 0 gt {
+            /Left Left 1 sub def
+	    TextBuf Left 1 getinterval
+	    stringwidth pop /xpos exch xpos exch sub def
+	    xpos 0 moveto
+	    TextBuf Left 1 Right add getinterval false getbbox
+	    4 2 roll rmoveto rect
+	    TextFill setcolor fill TextColor setcolor TextBuf Left
+	    TextBuf Left 1 add Right getinterval dup xpos 0 moveto show
+	    putinterval
+	} if
+    } def
+
+    /BeginTextEvent {TextCaret caretpackage begin stopcaret end} def
+    /EndTextEvent {
+	/xpos TextBuf 0 Left getinterval stringwidth pop def
+	/TextStr TextBuf 0 Left Right add getinterval def
+	TextCaret TextX xpos add TextY caretpackage begin movecaret end
+    } def
+classend def
+
+%
+%  Simple blinking caret package.
+%
+
+/caretpackage 50 dict dup begin
+% ---------- Constants & Defaults ----------
+/CaretTemplate 20 dict dup begin
+% caret parameters:
+    /CaretX		null def
+    /CaretY		null def
+    /CaretCanvas	null def
+    /CaretBlinkRate	1 120 div def % 1/2 second; 1 second "blink".
+    /CaretEventMgr	null def
+
+% Caret Procs
+    /CreateCaret	nullproc def
+    /StartCaret		nullproc def
+    /BlinkCaret		nullproc def
+    /StopCaret		nullproc def
+end def % CaretTemplate ... begin
+
+/DefaultCaret CaretTemplate maxlength dict dup begin
+    /CreateCaret {
+	/CaretOverlay CaretCanvas createoverlay def
+    } def
+    /BlinkCaret { % event  =>  -
+        CaretOn not PaintCaret
+        SendCaretEvent
+    } def
+    /SendCaretEvent { % event => -
+	dup begin
+	    /Name	/CaretTimeOut def
+	    /Canvas	CaretCanvas def
+	    /TimeStamp	currenttime CaretBlinkRate add def
+	    /Process	CaretEventMgr def
+	end sendevent
+    } def
+    /StartCaret {CaretOn not {true PaintCaret} if} def
+    /StopCaret {CaretOn {false PaintCaret} if} def
+
+% additional stuff for DefaultCaret:
+    /PaintCaret { % bool  =>  -
+        /CaretOn exch def
+        CaretOverlay setcanvas
+        CaretOn {
+            CaretX CaretY currentfont fontdescent sub moveto
+            0 currentfont fontheight rlineto stroke
+        }{
+            erasepage
+        } ifelse
+    } def
+    /CaretOn		false def
+    /CaretOverlay	null def
+end def % DefaultCaret ... begin
+% ---------- Class Procs ----------
+
+/createcaret { %  createproc canvas =>  caret (Create a caret for canvas)
+    gsave
+    CaretTemplate dup maxlength dict copy begin
+	/CaretCanvas exch def
+	cvx exec
+	CreateCaret
+	currentdict
+    end
+    grestore
+} def
+
+/movecaret { %  caret x y  =>  -  (Starts caret blinking at x y in canvas)
+    gsave
+    3 -1 roll begin
+	StopCaret
+	
+	/CaretY exch def
+	/CaretX exch def
+	CaretEventMgr null eq {
+	    /CaretEventMgr [
+	        /CaretTimeOut /BlinkCaret
+	        null CaretCanvas eventmgrinterest
+	    ] forkeventmgr def
+	    createevent SendCaretEvent
+	} if
+	
+	StartCaret
+    end
+    grestore
+} def
+
+/stopcaret { %  caret  =>  -  (Takes caret down)
+    gsave
+    begin
+	StopCaret %StartCaret
+    end
+    grestore
+} def
+
+/destroycaret {	%  caret  =>  -
+    gsave
+    begin
+        CaretEventMgr null ne {
+	    StopCaret
+	    CaretEventMgr /CaretEventMgr null store killprocess
+	} if
+    end
+    grestore
+} def
+
+/defaultcaret {	%  -  =>  -  (Installs caret defaults.)
+    DefaultCaret {def} forall
+} def
+
+end def % caretpackage begin

@@ -1,0 +1,1274 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%   @(#) selectUI.ps 1.51 91/02/11
+%	selectUI.ps:   mouse & keyboard user interface underpinnings
+
+%   ClassSelectInterest instances watch for mouse activity on canvases
+%   in which a selection can be made.
+%   They have dependents to handle motion (tracking a wipe or crossings),
+%   timer events (for auto-scroll), and termination (button-up).
+%
+/ClassSelectInterest [ClassTrackInterest ClassUI] []
+classbegin
+
+% Class Variables
+
+    %	NotifyName is an array of event-names which can trigger the
+    %	selection Notify interest.
+    %
+    /NotifyName		[AdjustButton PointButton]	def
+
+% Methods
+
+    %	/NewInit
+    %
+    /NewInit { %  name-dict priority-name canvas-dict  => Nint
+	/Default NotifyName /NewInit super send
+	/Priority exch load def
+	/ClientData exch def
+    } def
+
+    %	/destroy needs to break the reference to UI
+    %	in the callbacks of the dependents.
+    %
+    /destroy { %  - => -
+	Dependents {
+	    /destroy exch send pop
+	} forall
+	/destroy super send
+    } def
+
+    %	/trigger needs to make sure that a selection can be made here
+    %	(adjustment is always in order); the UI's method also handles
+    %	most of the interaction.  This depends on TrackInterest not
+    %	having any /trigger method of its own; if it ever does, we'll
+    %	have to incorporate NotifyInterest's processing here & skip
+    %	the super send.
+    %
+    /trigger { %  event  =>  -
+	dup /TrackStart ClassSelectUI send {		%  ev
+	    /trigger super send				%
+	    /CurrentClient ClassSelectUI store
+	} {     % Client declined the selection;	%  ev
+	    redistributeevent				%  ev
+	    unblockinputqueue
+	} ifelse
+    } def
+
+
+    %	-  =>  -
+    /CancelNotify { %	-  =>  -
+	/deactivatefullscreen self send
+	/CancelNotify super send
+    } def
+
+    % private
+    %	Only send /CancelNotify if currently triggered.
+    %
+    %	-  =>  -
+    /?CancelNotify {	%   -  =>  -
+	/Triggered? self send {
+	    /CancelNotify self send
+	} if
+    } def
+
+    %	/OVERRIDE: CreateDependents know exactly which dependents are wanted,
+    %	and wants a non-standard target notified; so we create them here,
+    %	rather than taking ClassTrack's list.
+    %
+    /CreateDependents { % - => -
+	Priority CanvasSelectPriority eq {
+	    /TrackCrossing
+		null SubTreeAction
+		2 dict dup begin
+		    /EnterEvent
+		    /ExitEvent {
+		        /TrackCrossing ClassSelectUI send
+		    } /methodcompile self send
+		    dup 3 1 roll def		def
+		end
+	    DepCreate pop
+	} {
+	    /TrackMotion
+		null null 1 dict dup begin
+		    /MouseDragged {
+			/TrackMotion ClassSelectUI send
+		    } /methodcompile self send	def
+		end
+	    DepCreate pop
+	} ifelse
+%	/TrackShift				%  REMIND:  not yet
+%	     nulldict nulldict nulldict
+%	     DepCreate dup /Exclusivity true put
+%	     /Synchronous true put
+	/TrackStop
+	    null 1 dict dup begin
+		/UpTransition [
+		    /untrigger self /send cvx
+		] cvx /methodcompile self send	def
+	    end null DepCreate
+	    dup /Synchronous true put
+	    /Exclusivity true put
+	/TrackTimer
+	    null null 1 dict dup begin
+		/TrackTimer {
+		    /TrackTimer ClassSelectUI send
+		} /methodcompile self send	def
+	    end DepCreate pop
+    } def
+
+    %	/ActivateDependents activates all the tracking interests without
+    %	asking (since they don't change).
+    %
+    /ActivateDependents { %  event  =>  -
+	/activatefullscreen self send
+	dup Dependents {			%  ev ev label Dint
+	    exch /TrackStop eq {		%  ev ev Dint
+		dup /Name
+		/TrackStopName ClassSelectUI send
+		put
+	    } if				%  ev ev Dint
+	    expressinterest 	    	    	%  ev ev
+	} forall pop pop			%
+    } def
+
+classend def	% ClassSelectInterest
+
+%   ClassSelectUI creates instances of ClassSelectInterest, and
+%   provides the client management, state data and utility procedures 
+%   used by a particular selection UI.
+%
+/ClassSelectUI ClassUI []
+classbegin
+
+% Class variables
+
+    %	AdjustClickNumber is used for multi-clicking Adjust;
+    %	Level gets reset if this is 2
+    %
+    /AdjustClickNumber	0	def
+
+    %	AutoScrollBBox is the bounding-box of the currentselectable,
+    %	used to determine when an auto-scroll should start.  (Enter
+    %	and Exit events give the wrong semantics in the case of an
+    %	overlapping window -- then, the selection should get adjusted,
+    %	but no auto-scroll should happen.)
+    %
+    /AutoScrollBBox	[ -1 -1 0 0 ]	def	%  equilibrium value
+
+    %	AutoScrollShuttle is the timer event which keeps auto-scroll
+    %	going.
+    %
+    /AutoScrollShuttle createevent dup
+	/Name /TrackTimer put
+    def
+
+    %	AutoScrollThresh is the delay before initiating auto-scrolling
+    %	after the user wipes outside the window's bounding box.
+    %
+    /AutoScrollThresh
+	UserProfile /ScrollThresh get	def
+
+    %	AutoScrollDelay is the delay from one auto-scroll to the next.
+    %
+    /AutoScrollDelay
+	UserProfile /ScrollDelay get	def
+
+
+    %	These ints define bit-positions in the Changed vector of a selection.
+    /ChangedDeleteSource?	  1	def
+    /ChangedToggled?		  2	def
+    /ChangedLevel		  4	def
+    /ChangedLocation		  8	def
+    /ChangedPendingDelete?	 16	def
+    /ChangedPin			 32	def
+    /ChangedStyle		 64	def
+
+    /ChangedTogLev
+	ChangedToggled? ChangedLevel or	def
+    /ChangedDelTogLev
+	ChangedDeleteSource? ChangedTogLev or		def
+    /ChangedLevLoc
+	ChangedLevel ChangedLocation or			def
+    /ChangedLevLocPin
+    	ChangedLevel ChangedLocation or ChangedPin or	def
+    /ChangedLocPin
+	ChangedLocation ChangedPin or	    	    	def
+    /ChangedLevLocPenPinSty
+	ChangedLevLocPin ChangedPendingDelete? or ChangedStyle or def
+
+    %	/SelectionContext may optionally return a boolean that will
+    %	answer true if an event is still in the context returned last time.
+    %	That result is stored here.  The default assumes true.
+    %
+    /ChangedContext	true	def
+
+    %	These two dicts translate the Name from Tracker notify events
+    %	1) for windows whose contents can be selected (Text, etc);
+    %	2) for windows that are themseleves selected (frames).
+    %
+    /ContentsNameDict 2 dict dup begin
+	PointButton	/ContentsPoint	def
+	AdjustButton	/ContentsAdjust	def
+    end def
+
+    /WindowNameDict 2 dict dup begin
+	PointButton	/SelfPoint	def
+	AdjustButton	/SelfAdjust	def
+    end def
+
+    %	Each XxxClients is a dict of current Selectable clients;
+    %	all defined to themselves.  We need two because window-selectables
+    %	should have a different priority interest than others.
+    %	These dicts are used in the Notify interests.
+    %
+    /ContentsClients	growabledict	def
+    /WindowClients	growabledict	def
+
+    %	These are the two NotifyInterests that watch for user actions
+    %	on all selectables; they are set by makeinterests.
+    %
+    /ContentsInterest	null		def
+    /WindowInterest	null		def
+
+    %	The selectable identifies what kind of area an event occurs over.
+    %	For Text, it is either selected or not.  For Canvas or Graphic
+    %	selectables, it may be over a selected object, an unselected
+    %	object, or background where there is no selection to be made.
+    %	This context is returned by SelectionContext, and stored here;
+    %	balid values are /SelectedObject | /UnselectedObject | /Background.
+    %
+    /CurrentContext 	/Background 	def
+     
+    %	This is at most one selection instance that is currently
+    %	being manipulated.  Usually this is empty -- there is a
+    %	CurrentDescriptor only for the duration of a selection-
+    %	making or -dragging transaction.
+    %
+    /CurrentDescriptor	null		def	% the equilibrium value
+
+    %	Like CurrentDescriptor, only one selectable can be active at a time;
+    %	it is stored here so outside agencies can deactivate it.
+    %
+    /CurrentSelectable	null		def     % the equilibrium value
+
+    %	This holds the SelectableType of the current selectable (or
+    %	whatever it is resolved to by IdentifySelectable, if
+    %	SelectableType is /Dynamic).
+    %
+    /CurrentType    	null	    	def
+
+    %	Recognizing a multi-click or the start of a drag depends
+    %	on the coordinates of the last such event; these are kept
+    %	as an array of X, Y, (both in framebuffer coords), timestamp,
+    %	and event-Name; the equilibrium value precludes a multi-click
+    %	on the first click.
+    %
+    /NullLastCoords	[-1000 -1000 -1 null]	def
+    /LastCoords		NullLastCoords		def
+
+    %	The values of the Name field of the TrackStop dependent interest
+    %	varies with the event that started the interaction; here is where
+    %	it gets communicated from the UI to the SelectInterest.
+    %
+    /TrackStopName	null	def	% PointButton | AdjustButton
+
+    %	The following are the procedure variables which implement the
+    %	selection state-machine.  They get updated to other procs in
+    %	the various SetState routines.
+    %
+    /?AutoScroll	{false}		def
+    /TrackCrossing	nullnotify	def
+    /TrackMotion	nullnotify	def
+    /TrackStop		nullnotify	def
+    /TrackTimer		nullnotify	def
+    /TrackNoOp		nullnotify	def
+
+    %	DuplicateModifier is a shift key which converts PointButton
+    %	dragging from Move to Copy.
+    %
+    /DuplicateModifier	UserProfile 1 index get	    	def
+
+
+% Methods
+%   Note: ClassSelectUI is never instantiated,
+%   so all methods are class methods.
+
+    % override
+    %	clean out interests
+    %
+    /cleanoutclass { % --  =>  --
+	[
+	    WindowInterest  	null ne { WindowInterest } if
+	    ContentsInterest	null ne { ContentsInterest } if
+	] /removeclients GlobalEventMgr send
+	/WindowInterest null def
+	/ContentsInterest null def
+	/cleanoutclass super send
+    } def
+
+    %	Canvas is declared to be interested in making selections.
+    %
+    /addclient { % selectable  =>  -
+	soften
+	/SelectableType 1 index send {
+	    /Canvas {
+		WindowClients
+	    }
+	    /Graphic
+	    /Text
+	    /Default {
+		ContentsClients
+	    }
+	} case				%  selcv dictofclients
+	exch dup put
+    } def
+
+    %	Canvas is no longer interested in making selections.
+    %
+    /removeclient { % selectable  =>  -
+	activeselectable? { 	    	    	    	% sbl sbl'
+	    1 index eq {    	    	    	    	% sbl
+		CurrentDescriptor
+		dup null ne {	    		    	% sbl sel
+		    /SelectionCancel 2 index send   	% sbl
+		} { 	    	    	    		% sbl sel
+		    pop	    	    	    	    	% sbl
+		} ifelse    	    	    	    	% sbl
+
+		% We can't depend upon the /removeclient to cancel the
+		% tracking because it the CurrentClient of our two interests
+		% will always be ClassSelectUI, not the individual canvas.
+		%
+		/?CancelNotify ContentsInterest send
+		/?CancelNotify WindowInterest send
+		ClearState
+	    } if    	    	    	    	    	% sbl
+	} if	    	    	    	    	    	% sbl
+
+	% It is safe to undef a key which isn't in the dict, so we
+	% just undef from all client lists.  This is faster than
+	% checking /SelectableType, and immune from changes to it
+	% after the client was added...
+	%
+	WindowClients 1 index undef
+	ContentsClients exch undef
+    } def
+
+    /activeselectable?  { %  -  =>  false | selectable true 
+	CurrentSelectable null eq {
+	    false
+	} {
+	    CurrentSelectable true
+	} ifelse
+    } def
+
+    %	TrackStart gets called by either select interest; it initializes
+    %	CurrentSelectable, and calls the appropriate mouse handler,
+    %	returning true or false to indicate whether a selection is to be
+    %	made/continued.
+    %
+    /TrackStart { %  event => bool
+	/activeselectable? self send {				%  ev selcv
+	    CurrentDescriptor /SelectionCancel 3 -1 roll send	%  ev
+	} if
+	dup begin Name Interest Canvas end  			% ev but int cv
+	/CurrentSelectable exch store		% ev but int
+	/TrackStopName 2 index store		% ev but int
+	/ClientData get exch get self send	% bool
+    } def
+
+
+    %	Cancel tracking sequence.
+    /TrackCancel {  %	event  => -
+	pop
+	/cancel self send
+    } def
+
+
+    %	Cancel cleans up a selection-making transaction
+    %	that is interrupted by the start of another (e.g.,
+    %	because the mouse changed state in a SV window
+    %	where that can't be detected.
+    %
+    /cancel { % - => -
+	/activeselectable? self send {	    	    	%  selectable
+	    CurrentDescriptor /SelectionCancel 3 -1 roll send	%  -
+	} if
+	ClearState
+    } def
+
+    %	Make sure a selection that was in the process of being made
+    %	is not left in limbo.
+    /terminateselection { %  event => -
+	/activeselectable? self send {		%  ev cv
+	    pop /TrackStop self send
+	} {
+	    pop
+	} ifelse
+    } def
+
+%  Internal utilities
+
+    % REMIND:	This may no longer be necessary.  
+    %	    	The caller may already be in the right LEM now.
+    %
+    %	Send method to local event manager associated with current selectable
+    %
+    %	[ <args> /method obj ]  =>  -
+    /SendCurrentSelectable {	%	[ <args> /method obj ]  =>  -
+	/sendmanager /eventmgr CurrentSelectable send send
+    } def
+
+
+    % private
+    %	Check keystates to determine whether CurrentRank should be Secondary
+    %
+    /CheckForSecondary {    %	event  =>  -
+	/SecondaryKeys ClassFunctionKey send		%  ev [keycodes]
+	/modifierdown? ClassKeyboard send {
+	    /SecondarySelection /setcurrentrank self send
+	} if						%  ev
+	pop
+    } def
+
+
+    %	2 routines to inquire UserProfile values
+
+    /DragThresh { %  --  =>  int
+	UserProfile /DragThresh  get
+    } def
+
+    /MultiClickThresh { %  --  =>  int
+	UserProfile /MultiClickThresh get
+    } def
+
+    %	Extract a point from an event in framebuffer coordinates.
+    %
+    /FBEventCoords { %  event  =>  x y
+	gsave framebuffer setcanvas
+	    begin XLocation YLocation end
+	grestore
+    } def
+
+    %	store (framebuffer-relative) coordinates into an event
+    %
+    /FBStoreCoords { % newX newY event  =>  --
+	gsave framebuffer setcanvas
+	begin
+	    /YLocation exch def
+	    /XLocation exch def
+	end grestore
+    } def
+
+
+    %	Routines that deal with LastCoords, the cache of coordinates
+    %	from the last interesting event, which is used for deciding
+    %	whether to multi-click & drag.
+ 
+    /LastXYCoords { % - => X Y
+	LastCoords dup 0 get exch 1 get
+    } def
+
+    %	Cache the X, Y, Time, and Name of this event
+    /NoteCoords { %  event name  =>  -- 
+	exch dup FBEventCoords			% name ev x y
+	4 2 roll /TimeStampMS get exch		% x y time name
+	4 array astore /LastCoords exch store
+    } def
+
+    %	Decide whether this click arrived on the same button,
+    %	and soon enough, to be a multi-click
+    %
+    /MultiClick? { %  event name  =>  bool 
+	LastCoords 3 get eq {			%  ev
+	    /TimeStampMS get LastCoords 2 get	%  evtime lastime
+	    sub MultiClickThresh le		%  bool
+	} {					%  ev
+	    pop false				%  bool
+	} ifelse
+    } def
+
+    %	Store a -1 into the timestamp field of LastCoords to
+    %	prevent a subsequent down from being taken as a multi-click
+    %	(e.g. after a drag)
+    %
+    /PreventMultiClick { %   --  =>  --
+	LastCoords 2 -1 put
+    } def
+
+
+    %	Determine whether there is already a selection of CurrentRank
+    %	held by this holder
+    %
+    /MyHolder? {%  selectable  =>  bool
+	CurrentRank getselection dup null ne {
+	    /Holder get exch
+	    /Holder exch send eq
+	} {
+	    pop pop false
+	} ifelse
+    } def
+
+    %	Get the currently-registered selection of CurrentRank
+    %	and use it as CurrentDescriptor
+    %
+    /CurrentSelection { %  --  => selection; CAUTION: assumes it's known!
+	CurrentRank getselection
+	dup SetCurrentDescriptor
+    } def
+
+    %	Ask a subclass to make a new selection object,
+    %	and cache it as CurrentDescriptor
+    %
+    /NewSelection { % triggering-event  =>  selection
+	CutKey /modifierdown? ClassKeyboard send exch  	    %  bool ev
+	CurrentRank /NewSelection CurrentSelectable send    %  bool sel
+	dup SetCurrentDescriptor
+	dup null ne {	    	    	    	    	    %  bool sel
+	    dup /Changed 0 put
+	    CurrentRank /SecondarySelection eq {    	    %  bool sel
+		/SecondaryMade? true store
+		dup /Transient? true put
+		dup /DeleteSource? 3 index put
+	    } if
+	} if
+
+	exch pop    	    	    	    	    	    %  sel
+    } def
+
+    %	Make a selection-descriptor be the current working version
+    %
+    /SetCurrentDescriptor { %  selection  =>  --
+	/CurrentDescriptor exch store
+    } def
+
+
+    %	Get & cache the selectable's context for this event
+    %
+    %	event  =>  name
+    /GetContext {   %	event => name
+	CurrentDescriptor   	    	    	    	% event selection
+	/SelectionContext CurrentSelectable send    	% cntxt [bool]
+	dup type /booleantype eq not { false } if    	% cntxt bool
+	/ChangedContext exch not store 	    	    	% cntxt
+	/CurrentContext 1 index store	    	    	% cntxt
+    } def
+
+
+    %	Get & cache the selectable's current SelectableType
+    %
+    %	event  =>  bool
+    /GetType {	%	event  =>  bool
+	/SelectableType CurrentSelectable send	    	% ev type
+	dup /Dynamic eq {   	    	    	    	% ev /Dynamic
+	    pop 	    	    	    	    	% ev
+	    /IdentifySelectable CurrentSelectable send	% <type trgt> bool
+	    dup {   	    	    	    	    	% type trgt true
+		3 1 roll  	    	    	    	% true type trgt
+		/CurrentSelectable exch store	    	% true type
+		/CurrentType exch store	    	    	% true
+	    } if    	    	    	    	    	% bool
+	} { 	    	    	    	    	    	% ev type
+	    /CurrentType exch store 	    	    	% ev
+	    pop true	    	    	    	    	% true
+	} ifelse
+    } def
+    
+
+    %	Control-flow is a little tricky here; generally /resetinput gets
+    %	sent to ClassUI, which passes /ResetInput to ClassSelectUI; the
+    %	super send goes back to ClassUI.
+    %
+    /ResetInput { % --  =>  --
+	CurrentRank /SecondarySelection eq {
+	    /SecondarySelection clearselection
+	    /PrimarySelection /setcurrentrank self send
+	} if
+	cancel
+	/ResetInput super send
+    } def
+
+    %	Utility function to set the state machine for making a new
+    %	contents selection.  It allows for the client to declare
+    %	it can't make a selection there (by returning null from
+    %	NewSelection), in which case the world simply resets.
+    %
+    %	Note:	In the case of /Graphic selections, the pin value
+    %	    	passed in is the value to be used if starting over
+    %	    	the background.  It must be changed if starting over
+    %	    	an object.
+    %
+    %	event  pin  =>  bool
+    /StartSelection {   % event pin => bool
+	exch	    	    	    	    	    	%  pin ev
+	dup /ValidateState ClassFunctionKey send
+	CurrentRank clearselection
+	dup NewSelection dup null ne {			%  pin ev sel
+	    /Default					%  pin ev sel style
+	    CurrentType /Text eq { 
+		CurrentRank /SecondarySelection eq {
+		    pop /active? CutKey send {		%  pin ev sel
+		        /StrikeThrough true
+		    } {
+		        /Underscore false		%  pin ev sel style pd?
+		    } ifelse				%  pin ev sel style pd?
+		} {
+		    true
+		} ifelse				%  pin ev sel style pd?
+	    } {			%  not Text
+		false
+	    } ifelse					%  pin ev sel style pd?
+	    
+	    2 index begin
+		% Use /Level from NewSelection
+		/Pin 6 -1 roll def  	    	    	%  ev sel style pd?
+		/PendingDelete? exch def		%  ev sel style
+		/Style exch def				%  ev sel
+		/Changed ChangedLevLocPenPinSty def
+	    end
+	    CurrentType /Graphic eq {
+		1 index GetContext /Background ne {
+		    dup /ToggleSelected? true put
+		    dup /Pin /NoPin put
+		} {
+		    dup /ToggleSelected? false put
+		} ifelse
+	    } if
+
+	    dup /Pin get /NoPin eq
+	    TrackStopName /PointButton eq and {		%  ev sel
+		1 index SetPendingDrag
+	    } {
+		SetAdjustState 	    	    	    	%  ev sel
+	    } ifelse
+	    
+	    /SelectionStart CurrentSelectable send  	%  bool
+	} {						%  pin ev null
+	    pop pop pop ClearState
+	    false
+	} ifelse					%  bool
+    } def   	%%  /StartSelection
+
+    %	Following procedures implement the selection state machine.
+    %	That is, they manipulate the procedure variables defined at
+    %	the head of this class.
+
+    %	ClearState sets all the event-handlers to nullnotify, to
+    %	bullet-proof against reception of unwanted events (which
+    %	might happen as a side-effect of X grabs).
+    %
+    /ClearState { % - => -
+	SetNullState
+	ClearScrollState
+	false /inhibitfocus ClassFocus send
+	/ChangedContext true store
+	/CurrentContext null store
+	/CurrentDescriptor null store
+	/CurrentSelectable null store
+	/CurrentType null store
+    } def
+
+    %	Set 3 routines as handlers for Crossing, Motion, and Button-up events.
+    %
+    /SetState { % /crossing /motion /deactivate  =>  --
+	load /TrackStop exch store
+	load /TrackMotion exch store
+	load /TrackCrossing exch store
+    } def
+
+    %	Set those 3 routines for tracking an Adjust in a selection
+    %
+    /SetAdjustState {
+	/TrackNoOp /TrackWipe /CommitAdjust SetState
+	PrepareAutoScroll
+    } def
+
+    %	Set those 3 routines to no-ops.
+    %
+    /SetNullState { % - => -
+	/TrackCrossing	nullnotify	store
+	/TrackMotion	nullnotify	store
+	/TrackStop	{pop ClearState} store
+    } def
+
+
+    %	Set those three routines to wait and see whether to drag
+    %
+    %	event  =>  -
+    /SetPendingDrag {	%	event  =>  -
+	PointButton NoteCoords	    	    	% -
+	/TrackNoOp /DecideDrag /CommitDecision SetState
+    } def
+    
+
+%   Mouse handlers: selection-making interface
+
+    %	Handle Point & Adjust events on a canvas which selects
+    %	its contents, rather than itself (e.g. a text split)
+
+    %	Point button: Down within the multi-click timeout changes the
+    %	selection level, and makes a new selection of that level at
+    %	the current point; thereafter, dragging adjusts the selection
+    %	at that level.  After the multi-click timeout, a *click*
+    %	always starts a new selection.  Down-and-drag outside a
+    %	selection starts a new selection at level 0; then increases
+    %	the level to 1 on the adjustments, to include objects wiped over.
+    %	Down-and-drag inside a selection (more than DragThreshold)
+    %	leaves it selected and initiates a drag-transfer.  The return
+    %	value is true unless the client declines to make a selection.
+    %
+    %	event  =>  bool
+    /ContentsPoint { %  event => bool
+	true /inhibitfocus ClassFocus send  	    	%  ev
+	dup GetType {	    	    	    	    	%  ev
+	    dup /Canvas get MyHolder? {
+		/PointMyHolder self send    	    	%  bool
+	    } {	    	    	    	    	    	%  ev
+		/PointOutside self send	    	    	%  bool
+	    } ifelse
+	} { 	    	    	    	    	    	%  ev
+	    % Selection refused
+	    pop false	    	    	    	    	%  bool
+	} ifelse
+    } def   	    	% /ContentsPoint
+
+
+    /PointMyHolder {	%   event  =>  bool
+	CurrentSelection    	    	    	% ev sel
+	1 index PointButton MultiClick? {
+	    DoMultiClick
+	} { 	% Late: New select or drag  	% ev sel
+	    1 index GetContext	    	    	% ev sel context
+	    /SelectedObject eq {    	    	% ev sel
+		pop 	    	    	    	% ev
+		CurrentRank /PrimarySelection eq {
+		    CurrentDescriptor /Pin /AtPoint put
+
+		    dup PointButton NoteCoords
+		    /TrackNoOp /DecideDrag /CommitNewSelection SetState
+		} {
+		    SetAdjustState  	    	% ev
+		} ifelse    	    	    	% ev
+		pop true    	    	    	% true
+	    } {					% ev sel
+		% Outside current selection
+		pop PointOutside		% bool
+	    } ifelse
+	} ifelse
+    } def
+
+
+    /DoMultiClick { %  event selection  =>  bool
+	dup begin
+	    /Level  Level 1 add	    def
+	    /Pin  	    	    	%indent%
+		CurrentContext /Background eq {
+		    /AtPoint
+		} {
+		    /FarEnd
+		} ifelse
+	    def 	    	    	%exdent%
+	    /Changed	ChangedLevLocPin    def
+	end
+
+	SetAdjustState
+	/SelectionStart CurrentSelectable send	    	% bool
+    } def
+
+
+    /PointOutside {    %  event  =>  bool
+	dup /AtPoint StartSelection exch 1 index {	    	% bool ev
+	    CurrentType /Graphic eq
+	    CurrentContext /UnselectedObject eq and {   	% bool ev
+%		CurrentDescriptor /ToggleSelected? true put
+		SetPendingDrag  	    	    	    	% bool
+	    } { 	    	    	    	    	    	% bool ev
+		pop	    	    	    	    	    	% bool
+	    } ifelse
+	} {				    			% bool ev
+	   pop		%  client refused a selection		% bool
+       } ifelse
+    } def
+    
+
+    %	Adjust button:  Clicking or wiping Adjust when no current
+    %	selection can be extended to the cursor location starts a
+    %	new selection, just like the same action on the Point button.
+    %	When there is a selection which can be adjusted to the cursor
+    %	location, Adjust outside the selection pulls the nearest
+    %	boundary out to the cursor location; inside the selection,
+    %	the tail is supposed to be pulled in.
+    %	Clicking adjust once, or pressing & wiping, adjust at the
+    %	current level.  If the current level is greater than 1,
+    %	a 2nd click on Adjust (within the MultiClick timeout) resets
+    %	the level to 1; subsequent multiclicks grow the level by 1.
+    %	(Multi-clicking on Adjust is not defined in OL.)  Again,
+    %	false return indicates client refused selection.
+    %
+    /ContentsAdjust { % event => bool
+	true /inhibitfocus ClassFocus send
+	dup GetType {					%  ev
+	    dup GetContext  	    	    	    	%  ev ctxt
+	    1 index /Canvas get MyHolder? {
+		AdjustMyHolder	    	    	    	%  bool
+	    } {     % no selection, or other holder	%  ev
+		AdjustNew		    		%  bool
+	    } ifelse
+	} { 	%% Rejected selection
+	    pop false
+	} ifelse 
+    } def
+
+
+    /AdjustMyHolder { %  event context  =>  bool
+	CurrentSelection exch				%  ev sel ctxt
+	/Background ne {				%  ev sel
+	    1 index AdjustButton MultiClick? {
+		DoMultiClick				%  true
+	    } {			%  not multi-click;	%  ev sel
+		CurrentType /Text eq {	    	    	%  ev sel
+		    dup /Pin /FarEnd put	    	%  ev sel
+		} { 	    	    	    	    	%  ev sel
+		    dup begin	    	    	    	%  ev sel
+			/ToggleSelected? true def	%  ev sel
+			/Pin /NoPin def
+		    end
+		} ifelse    	    	    	    	%  ev sel
+		SetAdjustState
+		/SelectionStart CurrentSelectable send	%  bool
+	    } ifelse
+	} {		% Background			%  ev sel
+	    dup begin
+	        /ToggleSelected?    true	def
+	        /Pin		    /AtPoint	def
+	    end
+	    SetAdjustState
+	    /SelectionStart CurrentSelectable send  	%  bool
+	} ifelse					%  bool
+	dup not {ClearState} if
+    } def
+
+    /AdjustNew { %  event context  =>  bool
+	CurrentType /Text eq {
+	    pop /FarEnd
+	} {
+	    /Background eq {
+		/AtPoint
+	    } {
+		/NoPin
+	    } ifelse
+	} ifelse
+	StartSelection
+    } def
+
+    %	 Handle Point & Adjust events on a canvas which selects itself,
+    %	 rather than its contents (e.g. a frame).
+
+    %	Point, clicked on an icon or a window, normally selects it and
+    %	brings it to the front.  If it lands on a stretch-handle and no drag
+    %	ensues, its a no-op.
+    %	Down-and-drag on an unselected window (farther than DragThreshold)
+    %	should not affect its selection, focus status or front-back level;
+    %	instead the whole window, or the stretch-handle if that's what was
+    %	grabbed, is dragged to the new cursor location.
+    %	Down-and-drag on a selected window drags that and all other selected
+    %	windows as a group.
+    %	Thus (to avoid stretching a group of selected windows) when point
+    %	goes down on a stretch-handle, the client should always return
+    %	/UnselectedObject from /SelectionContext; then it should create
+    %   a new selection when asked.  This will be used for dragging the
+    %	corner, and then discarded.
+    %
+    %	Double-clicking on an icon opens it, and on an open window, zooms
+    %	it to full-screen height.  Further clicks should be ignored, or
+    %	allowed to land where they will.
+    %
+    %	The return value indicates whether client made or declined selection.
+    %
+    /SelfPoint { % event => bool
+	% /TrackStopName PointButton store		%  ev
+	true /inhibitfocus ClassFocus send
+	dup /Canvas get MyHolder? {
+	    CurrentSelection				%  ev sel
+	    1 index GetContext	    	    	    	%  ev sel name
+	    /SelectedObject eq {	    	    	%  ev sel
+		1 index PointButton MultiClick? {	%  open/zoom/restore
+		    dup begin
+		        /ToggleSelected?    true		def
+		        /Level	    	    Level 1 add	    	def
+		        /Changed    	    ChangedTogLev	def
+			/InsertionPoint	    /NearEnd	    	def
+		    end					%  ev sel
+		    SetNullState
+		    /SelectionStop CurrentSelectable send	%
+		    true false				%  t f
+		} {	% in selection; not multi-click
+		    true				%  ev sel t
+		} ifelse				%  t f | ev sel t
+	    } {			%  not in selection
+		pop dup NewSelection true		%  ev sel t
+	    } ifelse					%  t f | ev sel t
+	} {			%  not my holder	%  ev
+	    dup NewSelection true			%  f | ev sel t
+	} ifelse {		%  multiclick doesn't come in here
+	    %  client refused selection
+	    dup null eq {   	    	    	    	%  ev null
+		pop pop ClearState false		%  f
+	    } { % new or existing selection; maybe drag	%  ev sel
+		%
+		% Drop targets return a different rank than requested
+		% by the NewSelection.  Make that rank current.
+		% This may be useful for other cases where we want
+		% to drag something without munging the primary selection.
+		%
+		/Rank 1 index send setcurrentrank
+		
+		begin					%  ev
+		    /DeleteSource?  	true			def
+		    /SelectResult?  	true			def
+		    /ToggleSelected?	true			def
+		    /Changed	    	ChangedDelTogLev	def
+		end
+		PointButton NoteCoords			%
+		/TrackNoOp /DecideDrag /CommitSelectRaise SetState
+		true					%  t
+	    } ifelse
+	} if
+    } def
+
+    %	Adjust, clicked on an icon or window, toggles its selected state.
+    %	Down-and-drag toggles on the down, toggles back if the drag exits
+    %	the window, and continues toggling on each crossing into or out
+    %	of the window.
+    %	If down falls in a stretch corner, client should ???
+    %	and decline /NewSelection -- we'll just ignore it.
+    %	Return value indicates whether client made or declined selection.
+    %
+    /SelfAdjust { % event => bool
+	% /TrackStopName AdjustButton store		%  ev
+	true /inhibitfocus ClassFocus send
+	/FlipSelected /TrackNoOp /CommitAdjust SetState
+	dup /Canvas get MyHolder? {
+	    CurrentSelection	    	    	    	%  ev sel
+	    1 index GetContext	    	    	    	%  ev sel name
+	    /SelectedObject ne	    	    	    	%  ev sel bool
+	    1 index begin
+		/ToggleSelected?    exch    	    def	%  ev sel
+		/Changed    	    ChangedTogLev   def
+	    end
+	    
+	    % REMIND: SendCurrentSelectable may no longer be necessary
+	    %	      If already in correct LEM, send would be better.
+	    /SelectionAdjust CurrentSelectable	    	%  ev sel /SA sbl
+	    4 array astore SendCurrentSelectable    	%  -
+	    true    	    	    	    	    	% bool
+	}{
+	    dup NewSelection dup null ne {
+		dup begin				%  ev sel
+		    % Use /Level from NewSelection
+		    /ToggleSelected? true def
+		    /Changed ChangedTogLev def
+		end					%  ev sel
+		/SelectionStart CurrentSelectable send	%  bool
+	    } { % client refused selection
+		pop pop
+		SetNullState
+		false
+	    } ifelse
+	} ifelse					% bool
+    } def
+
+    %	Motion handlers in the state machine.
+    
+    %	Check whether cursor has moved more than drag-threshold from start;
+    %	if so, it's a Drag
+    %	(Executed in LEM as /TrackMotion)
+    %
+    /DecideDrag { % motion-event => -
+	dup FBEventCoords LastXYCoords			%  ev eX eY lX lY
+	3 -1 roll sub abs DragThresh ge			%  ev eX lX Y?
+	3 1 roll sub abs DragThresh ge or {		%  ev; it's a drag
+	    LastXYCoords 2 index FBStoreCoords		%  ev
+	    
+	    CurrentType /Graphic eq 	    	    	%  ev bool
+	    CurrentContext /UnselectedObject eq and {	%  ev
+		dup /SelectionStop CommitAny
+		/setselection CurrentDescriptor send
+	    } if
+	    
+	    DuplicateModifier /modifierdown? ClassKeyboard send not  %  ev bool
+	    CurrentDescriptor dup begin exch		%  ev sel bool
+		/DeleteSource? exch def	    	    	%  ev sel
+	    end /DragStart CurrentSelectable send	%
+
+	    /TrackNoOp /TrackDrag /CommitDrag SetState
+	    CurrentDescriptor /armpreview ReceptionService send
+	} { 	    	    	    	    	    	%  ev; no drag
+	    pop
+	} ifelse
+    } def
+
+    %	Reverse a window/icon's current selected status,
+    %	because the Adjust button crossed in/out of its canvas
+    %	(Executed in LEM as /TrackCrossing)
+    %
+    /FlipSelected { % event  =>  --
+	CurrentDescriptor			%  ev sel
+	dup /ToggleSelected? known {
+	    dup /ToggleSelected? 2 copy get not put	%  ev sel
+	    dup /Changed ChangedToggled? put 
+	    /SelectionAdjust CurrentSelectable
+	    % REMIND: SendCurrentSelectable may no longer be necessary
+	    %	      If already in correct LEM, send would be better.
+	    4 array astore SendCurrentSelectable
+	} {
+	    pop pop
+	} ifelse 
+    } def
+
+    %	Tell client to drag some more
+    %
+    /TrackDrag { % event  =>  --
+	CurrentDescriptor /DragAdjust CurrentSelectable send
+    } def
+
+    %	Tell client to adjust some more
+    %	(Executed in LEM as /TrackMotion)
+    %
+    /TrackWipe { % event  =>  --
+	CurrentDescriptor				%  ev sel
+	1 index ?AutoScroll {	    	    	    	%  ev sel ev
+	    pop     	   	    	    	    	%  ev sel
+	    dup /Changed ChangedLocation put
+	} if	    	    	    	    	    	%  ev sel
+	
+	CurrentType /Graphic eq {
+	    1 index GetContext pop
+	    dup /Pin get /NoPin eq {
+		dup /ToggleSelected? ChangedContext put
+	    } if	    	    	    	    	%  ev sel
+	} if
+	
+	/SelectionAdjust CurrentSelectable send
+    } def
+
+%	Next few procs are all concerned with auto-scrolling.
+
+    %	When a contents-selection is being adjusted, and the user
+    %	moves the cursor outside that window, OL says this should
+    %	initiate an auto-scroll: if data extends betond the edge
+    %	of the window in that direction, the client should extend
+    %	the selection to data that would be under the cursor if the
+    %	window did extend that far, and then it should scroll that
+    %	data into the existing window.  This process should repeat
+    %	as long as the user holds the button down and there is data
+    %	beyond that window edge.
+
+    /SaveBBox {
+	gsave framebuffer setcanvas
+	    /bbox CurrentSelectable send
+	    AutoScrollBBox astore pop
+	grestore
+    } def
+
+    /ClearBBox {
+	-1 -1 0 0 AutoScrollBBox astore pop
+    } def
+
+    /InBBox? { % event => bool
+	gsave framebuffer setcanvas begin
+	    XLocation YLocation
+	end grestore
+	AutoScrollBBox aload pop        %  ex ey x y w h
+	pointinrect?
+    } def
+
+    %	ScrollState refers to the contents of the TrackTimer and
+    %	?AutoScroll procedure variables; those procs get called
+    %	for TrackTimer events and MouseDragged events (from TrackWipe),
+    %	respectively.
+
+    /ClearScrollState { %  - => -
+	StopAutoScroll
+	/NoAutoScroll /TrackNoOp SetScrollState
+    } def
+    
+    /SetScrollState { %  /wipe-handler /timer-handler => -
+	/TrackTimer exch load store
+	/?AutoScroll exch load store
+    } def
+    
+    %	PrepareAutoScroll gets the window's bounding box, so a wipe    
+    %	outside it can be noticed, and initializes the scroll state.
+    %
+    /PrepareAutoScroll { % - => -
+	/AutoScrollDelay
+	    UserProfile /ScrollDelay get
+		store
+	/AutoScrollThresh
+	    UserProfile /ScrollThresh get
+		store
+	SaveBBox
+	/?StartAutoScroll /TrackNoOp SetScrollState
+    } def
+    
+    /?StartAutoScroll { % event => false | event true
+	dup InBBox? dup not {				%  ev false
+	    /?StopAutoScroll /DoAutoScroll SetScrollState
+	    exch TrackStopName NoteCoords		%  false
+	    AutoScrollShuttle dup begin
+		/Canvas CurrentSelectable def
+		/TimeStampMS currenttimems AutoScrollThresh add def
+	    end sendevent
+	} if
+    } def
+    
+    /?StopAutoScroll { % event => false | event true
+	dup InBBox? dup {			%  ev true
+	    StopAutoScroll
+	} {					%  ev false
+	    exch TrackStopName NoteCoords	%  false
+	} ifelse
+    } def
+    
+    /StopAutoScroll { % - => -
+	/?StartAutoScroll /TrackNoOp SetScrollState
+	AutoScrollShuttle /IsQueued get {
+	    AutoScrollShuttle recallevent
+	} if
+	AutoScrollShuttle /Canvas null put
+    } def
+
+    %  (Executed in LEM)
+    /DoAutoScroll { % event => -
+	LastXYCoords 2 index FBStoreCoords
+	CurrentDescriptor /SelectionAdjust CurrentSelectable send
+	AutoScrollShuttle dup begin
+	    IsQueued {dup recallevent} if
+	    /TimeStampMS currenttimems AutoScrollDelay add def
+	end sendevent
+    } def    
+
+    /NoAutoScroll { % ev => event true
+	true
+    } def
+
+    %	Following procedures are all concerned with terminating a
+    %	selection sequence (typically, because a mouse button just
+    %	went up).  Order is important here:
+    %	1) send the /SelectionStart or /SelectionStop
+    %	2) /setselection;
+    %	3) ClearState.
+    %	It's safe to do a TransferSelection after the ClearState,
+    %	because RemoveCurrentDescriptor doesn't clobber any fields --
+    %	it just undefs the selection from selectUI's CurrentDescriptor.
+
+    %	CommitAny is the common terminus of all commit actions except
+    %	CommitNothing.
+    %
+    /CommitAny { % triggering-event method-name => -
+	1 index dup /Name get NoteCoords	%  ev meth
+	CurrentDescriptor			%  ev meth sel
+	exch CurrentSelectable send		%
+    } def
+
+    %	Finish a Drag sequence.
+    %	(Executed in GEM as /TrackStop)
+    %
+    /CommitDrag { % triggering-event => -
+	CurrentDescriptor 1 index		%  ev sel ev
+	/DragStop CommitAny			%  ev sel
+	/disarmpreview ReceptionService send
+	/TransferSelection SendToCursor
+	PreventMultiClick
+	ClearState
+    } def
+
+%	Common code for finishing a Select or Adjust sequence.
+    %
+    /CommitNonDrag { % triggering-event method-name => -
+	CurrentDescriptor /InsertionPoint /NearEnd put
+	CommitAny				%  -
+	CurrentDescriptor   	    	    	%  selection
+	dup /Changed 0 put
+	/setselection exch send	    	    	%  -
+	ClearState
+    } def
+
+    %	Finish an Adjust sequence.
+    %	(Executed in GEM as /TrackStop)
+    %
+    /CommitAdjust { % triggering-event => -
+	ClearScrollState
+	/SelectionStop CommitNonDrag
+    } def
+
+
+    %	Select, and also raise to front -- only used from SelfPoint.
+    %	(Executed in GEM as /TrackStop)
+    %
+    /CommitSelectRaise { % triggering-event => -
+	CurrentRank clearselection
+	CurrentDescriptor   	    	    	%  ev sel
+	1 index {/SelectionStart pop}	    	%  ev sel ev {proc}
+	CommitNonDrag		    	    	%  ev sel
+	mark /ToTop null SendToSelection	%  ev  REMIND: new interface
+
+	/Canvas get dup isfocusclient?	%  cv
+	/currentmode ClassFocus send
+	/ClickFocus eq and {
+	    setinputfocus
+	}  {
+	    pop
+	} ifelse
+
+	ClearState
+    } def
+
+    %	Button-up (not over current selection) without moving far
+    %	enough to indicate an auto-Drag implies new level-1 selection,
+    %	committed now.
+    %
+    %	Note that the selection has already been started, we are
+    %	just deciding whether to auto-drag it or not...
+    %
+    %	(Executed in GEM as /TrackStop)
+    %
+    /CommitDecision { % triggering-event => -
+	CurrentDescriptor /Level 1 put
+	/SelectionStop CommitNonDrag
+    } def
+
+
+    %	Button-up (over existing selection) without moving far enough to
+    %	indicate a drag implies new level-1 selection, committed now.
+    %
+    %	triggering-event  =>  -
+    /CommitNewSelection {   %	triggering-event  =>  -
+	dup /AtPoint StartSelection {
+	    /SelectionStop CommitNonDrag
+	} if
+    } def
+
+
+    %	What follows is class initialization code:
+    %	first create the selection notify interests;
+    %	then define the function keys; cache the keycodes of keys
+    %	that affect selection rank.
+
+    /ContentsInterest
+	ContentsNameDict /ContentsSelectPriority ContentsClients
+    /new ClassSelectInterest send def
+
+    /WindowInterest
+	WindowNameDict /CanvasSelectPriority WindowClients
+    /new ClassSelectInterest send def
+
+    [WindowInterest ContentsInterest] /addclients GlobalEventMgr send
+
+classend def	% ClassSelectUI
+

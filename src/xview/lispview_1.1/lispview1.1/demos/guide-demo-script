@@ -1,0 +1,274 @@
+This document covers three demos that can be performed with Devguide and
+LispView.  Simple step by step instructions are provided.  Power users
+should skip the many fine details.
+Devguide is a user interface builder available from Sun.
+------------------------------------------------------------------------------
+
+	1) TREES takes about 20 minutes to demo and is visually
+	   stimulating, showing how you can create a user interface to
+	   control the drawing of a tree fractal.
+	2) DRAW LINE takes less than 10 minutes and shows how to draw a
+	   line.	
+	3) DRAW SQUARE is the quickest demo, showing how one can use a mouse
+	   button press to draw a square.
+
+EXECUTION INSTRUCTIONS
+
+	1) Launch Devguide 1.1
+	2) Open a Text Editor on this file
+	3) Launch Lisp with LispView in a Command Tool/Shell
+	4) Drag and drop lines of code from the Text Editor into the
+	   Command Tool running Lisp (or type them in at the Lisp top level)
+
+
+DEMO INSTRUCTIONS:
+
+	1) Launch Devguide
+
+At a prompt in Command Tool type the following expression followed by a
+carriage return:
+
+			guide&
+
+	2) Open a Text Editor on this file.
+
+To save you the effort of typing, you will triple click on the desired line
+of code in the Text Editor, and drag and drop it into the command tool
+running LispView.  It is important that you use Ctrl-drag, as this copies
+the selected text, rather than cutting the selected text.
+
+The demo become rather simple: triple-click, drag the code to the Command
+Tool, drop it in, see what happens.  Of course you'll be doing some things
+with Devguide along the way.
+
+	3) Finally, Launch LispView, e.g.
+
+	% lisp-view
+
+For the remainder of this document, the term "Command Tool" will
+be used to refer to the Command Tool window running Lisp.
+
+It is important to note that all text between double quotes must be entered
+in Devguide exactly as it appears.
+
+
+TREES <<< The 20 Minute Demo
+
+This demo contrasts a command line interface with one that has GUI objects.
+And while doing so, it demonstrates the ease by which one can use LispView to
+interactively experiment with GUI objects.  The example, in particular, is a
+program that draws a tree fractal into a desired window.  It also demonstrates
+the consistent API that is LispView, and the ability to make changes to
+LispView objects and bring them back into Devguide for further modification.
+
+The 'tree' function, that comes from the tree-fractals file and which must
+be loaded for this demo, i.e. type: (load "tree-fractals"), will draw a tree
+fractal with some default parameters on a given window.  The user can
+provide various parameters on the command line.  Drag the following lines
+into the Command Tool, pausing to explain each.
+
+	(setq bw (make-instance 'base-window :width 200 :height 200))
+	(tree bw)
+	(tree bw :direction-left 55 :leaf-color "red") 
+
+This creates a new base window of the specified width and height, and saves
+this object in a global variable called 'bw.'  This quickly reveals the
+personality of LispView as an object-oriented interface to the XView
+libraries.
+
+Still, a better interface would be a visual one, so let us design one using
+Devguide.
+
+	1) Drop a base window, resize to square.
+
+	2) Drop a Popup window.  Double click SELECT (left) mouse button in
+	the window's boundaries to edit its properties.  Click on the
+	right hand box for all 4 settings starting at Initial state.
+	Apply these property changes and Dismiss the window.
+
+	3) Drop a Controls Panel on the Popup, resizing the panel to fit the
+	entire window.
+
+	4) Drop a Slider, for Label type: "Direction Left"
+
+	5) Drop a Setting (|A|B|C|), for Label type: "Leaf Color", 
+	for Choices type: "red" and then another choice "plum".
+
+	6) Drop a Button, for Label type: "Draw", 
+	for Notify Handler type: "draw-frac"
+
+	7) Save this interface under the name of "frac".
+
+	8) Close Devguide.
+
+Now that the interface has been designed and saved as a .G file, it's time to
+translate it into code that can be executed by LispView.
+
+	1) Open GLV, type "frac" and Press: Convert, Load, Eval.
+
+	Note, pressing button Draw of the newly created interface, 
+	only prints a message, so drag and drop	the following function:
+
+(defun draw-frac ()
+  (tree (window1 frac) 
+	:direction-left (value (slider1 frac))
+	:leaf-color (value (setting1 frac))))
+
+Now, set the slider to a value and press "Draw" again.  Wow. Trees in a
+quick and easy fashion.  You can contrast the draw-frac function with the
+manual drawing of the tree you first did.  Note how designating the desired
+window to draw on, is derived from the name of that object in Devguide.
+Similarly the values used for the tree function are derived from the named
+objects.  The implementation detail is that a "container" class is generated
+(in our case called "frac") by the translator with slots (and accessors
+bearing the same name) for each graphical object.
+
+An alternative method for executing the tree drawing is to type the code
+on the Notify Handler slot directly in Devguide using double quotes.  
+For example:  
+"(tree window1 :direction-left (value slider1) :leaf-color (value setting1))"
+Don't forget the double quotes.  Since this code appears within the context
+of the container class, you don't need to use accessors to get at the objects.
+This should be familiar to Lisp programmers (or non-programmers) once the
+generated code is examined.  You could load the file "frac.ui.lisp" to
+see the results.  If you prefer a more compact format for the generated
+code (a good idea) then select "glv-pp" in the GLV prop sheet before
+pressing the convert button.
+
+
+Examples showing the simple and consistent API for LispView.
+============================================================
+The LispView API consists of generic functions like: choices, value, state,
+label, mapped, update-value and so on.  This consistency means the programmer
+has less to remember to program the interface (or when reading someone elses
+code).  To set attributes, one simply uses "setf" to make the changes.
+
+	(setq s (setting1 frac))
+This sets the global variable to 's' to simplify the expressions we will use to
+modify this control.
+
+	(choices s)
+This returns (prints in the Command Tool) the current choices for the setting.
+
+	(setf (choices s) '("cyan" "magenta"))
+This sets the choices to be other colors.  Notice how our application is
+automatically updated.  This happens because we are directly modifying the
+objects that make up our demo application.
+
+Set the value of the modified control using the mouse.
+
+	(value s)
+This returns it's value.  Change the control again, and again get its value.
+
+	(value s)
+
+	(setf (value s) "cyan")
+This expression sets the value.
+
+	(setf (update-value s) #'(lambda(v)(format t "New value is ~A~%" v)))
+This expression invokes a piece of Lisp code when the value is pressed.
+
+Here are some optional things you make try.
+
+	(setf (label s) "New Label")
+	(setf (state s) :inactive)
+	(setf (state s) :active)
+	(setf (mapped s) nil)
+	(setf (mapped s) t)
+
+
+Now you can go Back to Devguide (by loading a .G file produced by LVG)
+======================================================================
+Using LVG,
+
+	1) Press View (update)
+
+	2) In the list, Select Base Window and Popup Window (at top of list).
+	These are the labels of the respective windows.
+
+	3) Type a filename called "back".
+
+	4) Press convert.
+
+	5) Now open Devguide and Load the file "back".
+
+
+>>> DRAW LINE <<<
+The 9 minute Demo
+
+This demo shows how one can "connect" or "link" various objects in Devguide by
+passing the names of objects as parameters in the Lisp code.  Use Devguide to
+do the following.
+
+	1) Drop a base window
+
+	2) Drop a short Controls Panel at top of this window, leaving space
+	below the panel for drawing.
+
+	3) Drop a button and slider.
+
+	4) Name the Slider "Width:"
+
+	5) Name the button "Draw", and for Notify Handler type in the following
+	expression with the double quotes: 
+
+	"(line window1 slider1)" 
+
+	The quotes are VERY IMPORTANT, otherwise Devguide will incorrectly
+	interpret this expression. Press Apply to invoke these property
+	changes.
+
+	6) In Devguide, save as "line". 
+
+	7) In GLV, type "line" as the file name and convert, load, and eval.
+
+	8) Back to the Command Tool, define the following function:
+
+(defun line (window slider)
+  (let ((br (bounding-region window)))
+     (draw-line window 0 90 (region-width br) 90
+	       :line-width (value slider))))
+
+	9) Now set the slider and press Draw.  Now set the slider less than
+	previous value and show that nothing happens because the window does
+	not clear. OOPS.  Better modify the interface to include a Clear
+	button.
+
+	10) Back in Devguide, add a button named "Clear" with the following
+	Notify Handler (Again, don't forget the double quotes!)
+
+	"(clear window1)"
+
+	Save, then redo conversion and demo Draw and Clear button. Fabulous.
+
+
+>>> DRAW SQUARE <<<
+The 4 minute demo
+
+This demo application demonstrates how easy it is to use LispView to access
+mouse events (remember, we're using X so this is impressive).
+
+	1) In Devguide, drop a base window double click inside the window's
+	boundaries to edit its properties.
+
+	2) Set its Button events to ON in the Mouse Events setting, and type
+	the following for Event Handler (again, retain the double quotes): 
+
+	"(square window event)"
+
+	3) Apply these changes to the properties.
+
+	4) In Devguide, Save as "square".
+
+	5) Drag the following definition into the Command Tool:
+
+(defun square (window event)
+ (draw-rectangle window (- (mouse-event-x event) 5) 
+                        (- (mouse-event-y event) 5)
+                        10 10))
+
+	6) With GLV, type "square" as the filename, press convert, load, eval.
+
+	7) Now click (left or middle) in the window to draw a square.
+
+

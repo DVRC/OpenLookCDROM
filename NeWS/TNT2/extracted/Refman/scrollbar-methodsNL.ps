@@ -1,0 +1,2877 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 20 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 9 /Palatino-Italic FMDEFINEFONT
+5 10 /Palatino-Roman FMDEFINEFONT
+6 14 /Times-Bold FMDEFINEFONT
+7 9 /Helvetica-Bold FMDEFINEFONT
+8 7 /Helvetica-Oblique FMDEFINEFONT
+%%Page: "151" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (151) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (18-0) 158.58 672.33 S
+-0.12 (18-0) 158.58 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (Scr) 199.01 509.03 S
+-0.4 (ollbars) 224.47 509.03 S
+3 F
+7 X
+1 K
+-3.12 (18) 536.13 508.36 S
+4 F
+0 X
+0 K
+0.47 0.09 (Figur) 198 360.94 B
+0.47 0.09 (e 18-1) 218.77 360.94 B
+0 F
+0.47 0.09 (The scr) 248.4 360.94 B
+0.47 0.09 (ollbar subtr) 277.98 360.94 B
+0.47 0.09 (ee) 325.44 360.94 B
+5 F
+0.52 0.1 (TNT Scr) 198 336.28 B
+0.52 0.1 (ollbars ar) 235.73 336.28 B
+0.52 0.1 (e a subclass of ClassCanvas and implement OPEN LOOK ) 278.5 336.28 B
+0.52 0.1 (scr) 198 323.88 B
+0.52 0.1 (ollbars. ClassVScr) 210.74 323.88 B
+0.52 0.1 (ollbar pr) 292.18 323.88 B
+0.52 0.1 (ovides vertical scr) 331.62 323.88 B
+0.52 0.1 (ollbars and ClassHScr) 414.03 323.88 B
+0.52 0.1 (ollbar ) 514.31 323.88 B
+0.52 0.1 (pr) 198 311.48 B
+0.52 0.1 (ovides horizontal ones.) 207.98 311.48 B
+0.35 0.1 (TNT scr) 198 291.08 B
+0.35 0.1 (ollbars act like contr) 234.55 291.08 B
+0.35 0.1 (ols in that they have a value and a tar) 326.86 291.08 B
+0.35 0.1 (get at which ) 498.99 291.08 B
+0.17 0.1 (they dir) 198 278.68 B
+0.17 0.1 (ect certain actions. As with other contr) 233.67 278.68 B
+0.17 0.1 (ols, scr) 408.24 278.68 B
+0.17 0.1 (ollbars also have noti\336ers ) 439.25 278.68 B
+0.52 0.1 (that ar) 198 266.28 B
+0.52 0.1 (e sent to scr) 227.81 266.28 B
+0.52 0.1 (ollbar tar) 282.21 266.28 B
+0.52 0.1 (gets.) 324 266.28 B
+0.52 0.1 (The scr) 198 245.88 B
+0.52 0.1 (ollbar classes ar) 230.89 245.88 B
+0.52 0.1 (e very complete and by default do most of the ) 302.98 245.88 B
+0.52 0.1 (calculations and visual updating themselves. When a user interacts with the ) 198 233.48 B
+0.09 0.1 (scr) 198 221.08 B
+0.09 0.1 (ollbar) 210.74 221.08 B
+0.09 0.1 (, it moves itself to a new value, and noti\336es its tar) 236.35 221.08 B
+0.09 0.1 (get of the new value. ) 460.58 221.08 B
+0.01 0.1 (The value of a scrollbar is de\336ned as the \336rst position curr) 198 200.68 B
+0.01 0.1 (ently displayed in its ) 460.41 200.68 B
+0.52 0.1 (tar) 198 188.28 B
+0.52 0.1 (get. At any given time the visual pr) 210.32 188.28 B
+0.52 0.1 (esentation of a scr) 373.41 188.28 B
+0.52 0.1 (ollbar is de\336ned by ) 455.92 188.28 B
+0.52 0.1 (thr) 198 175.88 B
+0.52 0.1 (ee parameters: ) 211.14 175.88 B
+6 F
+(\245) 198 157.48 T
+5 F
+0.52 0.1 (the total number of objects in the view) 210.6 157.48 B
+54 144 558 466.34 C
+153 375.34 558 456.34 C
+153 375.34 558 456.34 R
+7 X
+0 K
+V
+7 F
+0 X
+(ClassVScrollbar) 394.57 384.27 T
+(ClassHScrollbar) 486.08 384.42 T
+(ClassObject) 157.33 440.36 T
+(ClassDrawable) 232.28 439.93 T
+210.1 442.38 230.12 442.38 2 L
+7 X
+V
+0.5 H
+2 Z
+0 X
+N
+296.51 442.23 316.45 442.23 2 L
+7 X
+V
+0 X
+N
+375.42 441.8 394.5 390.68 2 L
+7 X
+V
+0 X
+N
+467.06 386.72 487.08 386.72 2 L
+7 X
+V
+0 X
+N
+(ClassCanvas) 319.18 440 T
+8 F
+(\050ClassControl\051) 402.63 397.02 T
+54 144 558 466.34 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "151" 2
+1 10 /Palatino-Bold FMDEFINEFONT
+3 15 /Palatino-Italic FMDEFINEFONT
+8 9 /Helvetica FMDEFINEFONT
+%%Page: "152" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (18) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (152) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(\245) 198 641.33 T
+5 F
+0.52 0.1 (the position of the \336rst visible object) 210.6 641.33 B
+6 F
+(\245) 198 622.93 T
+5 F
+0.52 0.1 (the position of the last visible object) 210.6 622.93 B
+1 F
+0.52 0.1 (De\336nition of \322Object.\323) 198 602.53 B
+5 F
+0.52 0.1 ( The de\336nition of object depends on what is being ) 305.88 602.53 B
+0.52 0.1 (scr) 198 590.13 B
+0.52 0.1 (olled. In a scr) 210.74 590.13 B
+0.52 0.1 (olling list an object is anything that comprises a legal item in ) 272.59 590.13 B
+0.44 0.1 (the scr) 198 577.73 B
+0.44 0.1 (olling list; in a text pane objects might be a lines of text, a characters, or ) 227.95 577.73 B
+0.1 (pages.) 198 565.33 S
+3 F
+(Cr) 54 531.6 T
+(eation) 69.57 531.6 T
+8 F
+(/new) 54 510.6 T
+(parentcanvas ) 198 510.6 T
+7 F
+(/new) 254.45 510.6 T
+8 F
+( instance) 274.43 510.6 T
+5 F
+0.52 0.1 (Cr) 198 490.93 B
+0.52 0.1 (eates a new scr) 209.05 490.93 B
+0.52 0.1 (ollbar instance. Sent to ClassVScr) 278.06 490.93 B
+0.52 0.1 (ollbar to cr) 429.99 490.93 B
+0.52 0.1 (eate a vertical ) 479.89 490.93 B
+0.52 0.1 (scr) 198 478.53 B
+0.52 0.1 (oll bar and ClassHScr) 210.74 478.53 B
+0.52 0.1 (ollbar to cr) 309.8 478.53 B
+0.52 0.1 (eate a horizontal scr) 359.7 478.53 B
+0.52 0.1 (ollbar) 451.69 478.53 B
+0.52 0.1 (.) 477.3 478.53 B
+3 F
+-0.94 (Scr) 54 444.8 P
+-0.94 (ollbar auto r) 74.01 444.8 P
+-0.94 (epeat) 146.29 444.8 P
+5 F
+0.19 0.1 (T) 198 423.13 B
+0.19 0.1 (o contr) 203.31 423.13 B
+0.19 0.1 (ol scr) 234.89 423.13 B
+0.19 0.1 (ollbar r) 258.98 423.13 B
+0.19 0.1 (epeating yourself, you need to have two variables de\336ned ) 291.98 423.13 B
+0.52 0.1 (in your UserPr) 198 410.73 B
+0.52 0.1 (o\336le. However) 265.7 410.73 B
+0.52 0.1 (, if you don\325t de\336ne these variables, default ) 332.26 410.73 B
+0.52 0.1 (values ar) 198 398.33 B
+0.52 0.1 (e stor) 239.29 398.33 B
+0.52 0.1 (ed in UserPr) 264.41 398.33 B
+0.52 0.1 (o\336le for you.) 321.82 398.33 B
+7 F
+0.45 -0.27 (/ScrollThresh) 198 377.93 B
+5 F
+0.52 0.1 (\321determines how long after the ) 251.93 377.93 B
+8 F
+0.45 -0.27 (/MouseDown) 403.11 377.93 B
+5 F
+0.52 0.1 ( that the scr) 452.85 377.93 B
+0.52 0.1 (ollbar ) 506.84 377.93 B
+0.52 0.1 (begins r) 198 365.53 B
+0.52 0.1 (epeating. The default is 200 milliseconds.) 234.42 365.53 B
+7 F
+0.18 -0.27 (/ScrollDelay) 198 345.13 B
+5 F
+0.21 0.1 (\321determines the time that elapses between each r) 246.21 345.13 B
+0.21 0.1 (epeat. The default ) 473.49 345.13 B
+0.52 0.1 (is 100 milliseconds.) 198 332.73 B
+8 F
+( /motion) 54 313 T
+(- ) 198 313 T
+7 F
+(/motion) 203.49 313 T
+8 F
+( motion-name) 235.95 313 T
+5 F
+0.52 0.1 (Returns the type of elevator motion. The r) 198 293.33 B
+0.52 0.1 (eturn value is determined by wher) 390.84 293.33 B
+0.52 0.1 (e ) 549.71 293.33 B
+0.2 0.1 (the cursor is on the scr) 198 280.93 B
+0.2 0.1 (ollbar when the user pr) 300.54 280.93 B
+0.2 0.1 (esses SELECT) 406.77 280.93 B
+0.2 0.1 (. The OPEN LOOK ) 469 280.93 B
+0.52 0.1 (GUI Speci\336cation determines, in general, what kind of motion is caused by ) 198 268.53 B
+0.52 0.1 (user interaction with each part of the scr) 198 256.14 B
+0.52 0.1 (ollbar) 383.58 256.14 B
+0.52 0.1 (. See Figur) 409.18 256.14 B
+0.52 0.1 (e 18-2.) 457.46 256.14 B
+FMENDPAGE
+%%EndPage: "152" 3
+6 10 /Times-Roman FMDEFINEFONT
+9 12 /Times-Bold FMDEFINEFONT
+10 36 /Times-Roman FMDEFINEFONT
+11 8 /Times-Roman FMDEFINEFONT
+%%Page: "153" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (Scr) 198 108.7 S
+0.09 (ollbars) 210.26 108.7 S
+0 F
+0.09 (153) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (18) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.47 0.09 (Figur) 198 410.8 B
+0.47 0.09 (e 18-2) 218.77 410.8 B
+0 F
+0.47 0.09 (Map fr) 248.4 410.8 B
+0.47 0.09 (om scr) 276.43 410.8 B
+0.47 0.09 (ollbar components to motion names) 303.72 410.8 B
+8 F
+(/warpcursor) 54 386.8 T
+(- ) 198 386.8 T
+7 F
+(/warpcursor) 203.49 386.8 T
+8 F
+( -) 254.93 386.8 T
+5 F
+0.52 0.1 (W) 198 367.13 B
+0.52 0.1 (arps the cursor when r) 207.18 367.13 B
+0.52 0.1 (equir) 311.08 367.13 B
+0.52 0.1 (ed. For example if you pr) 334.67 367.13 B
+0.52 0.1 (ess and hold the left ) 451.13 367.13 B
+0.52 0.1 (mouse button over the ) 198 354.73 B
+8 F
+0.45 -0.27 (/ElevatorDown) 304.65 354.73 B
+5 F
+0.52 0.1 (, the elevator moves downwar) 359.58 354.73 B
+0.52 0.1 (d as long as ) 498.37 354.73 B
+0.52 0.1 (the button is depr) 198 342.33 B
+0.52 0.1 (essed; the cursor is warped so the pointer stays over the ) 279.88 342.33 B
+8 F
+0.45 -0.27 (/ElevatorDown) 198 329.93 B
+5 F
+0.52 0.1 (. ) 252.93 329.93 B
+0.52 0.1 (But, the cursor can\325t be warped until the scr) 198 309.53 B
+0.52 0.1 (ollbar is updated because the ) 399.46 309.53 B
+0.45 0.1 (position of the elevator isn\325t known until the update occurs. Thus, if you have ) 198 297.13 B
+0.35 0.1 (taken contr) 198 284.73 B
+0.35 0.1 (ol of the noti\336cation and updating of the scr) 249.1 284.73 B
+0.35 0.1 (ollbar via ) 450.45 284.73 B
+7 F
+0.3 -0.27 (/HandleMotion) 496.55 284.73 B
+5 F
+0.35 0.1 ( ) 554.95 284.73 B
+0.52 0.1 (you should call) 198 272.33 B
+7 F
+0.45 -0.27 ( /warpcursor) 268.38 272.33 B
+5 F
+0.52 0.1 ( after you have caused the scr) 319.53 272.33 B
+0.52 0.1 (ollbar to be updated ) 456.14 272.33 B
+0.52 0.1 (\050via a call to either ) 198 259.93 B
+7 F
+0.45 -0.27 (/setparameters) 286.64 259.93 B
+5 F
+0.52 0.1 ( or ) 346.8 259.93 B
+7 F
+0.45 -0.27 (/setvalue) 362.64 259.93 B
+5 F
+0.52 0.1 (\051.) 398.67 259.93 B
+54 144 558 648 C
+198 425.2 558 638 C
+198 425.2 558 638 R
+7 X
+0 K
+V
+6 F
+0 X
+(Beginning of file) 407.88 579.39 T
+(One Screenful Up) 408.82 554.84 T
+(One Screenful Down) 408.17 467.65 T
+(End of file) 406.87 437.98 T
+(One Unit Up) 409.82 516.54 T
+(One Unit Down) 408.82 486.94 T
+9 F
+(T) 402.19 605.46 T
+(ype of Motion) 409.3 605.46 T
+(Scr) 248.04 603.66 T
+(ollbar) 265.14 603.66 T
+(motion names) 312.05 603.66 T
+243 592.86 495 592.86 2 L
+7 X
+V
+0.5 H
+2 Z
+0 X
+N
+267.98 491.05 263.74 495.73 272.23 495.73 3 Y
+V
+1 H
+0 Z
+N
+267.98 522.01 272.23 517.33 263.74 517.33 3 Y
+V
+N
+262.51 488.96 273.74 524.96 R
+N
+262.51 512.22 273.74 512.22 2 L
+2 Z
+N
+262.51 500.98 273.74 500.98 2 L
+N
+261 440.29 273.74 444.75 R
+0.5 H
+0 Z
+N
+298.24 576.61 285.26 580.33 298.24 584.05 298.24 580.33 4 Y
+V
+298 580.33 319.03 580.33 2 L
+2 Z
+N
+297.45 437.07 284.47 440.79 297.45 444.51 297.45 440.79 4 Y
+V
+297.21 440.79 318.24 440.79 2 L
+N
+296.73 515.84 283.75 519.56 296.73 523.28 296.73 519.56 4 Y
+V
+296.49 519.56 317.52 519.56 2 L
+N
+296.73 488.84 283.75 492.56 296.73 496.28 296.73 492.56 4 Y
+V
+296.49 492.56 317.52 492.56 2 L
+N
+6 F
+(/TopAnchor) 323.35 579.75 T
+(/PageUp) 326.88 556.57 T
+(/ElevatorUp) 325.87 516.39 T
+(/ElevatorDown) 324.86 490.4 T
+(/PageDown) 324.86 471.1 T
+(/BottomAnchor) 327.89 438.06 T
+10 F
+(}) 273.89 459.87 T
+(}) 276.77 546.2 T
+11 F
+(\050anywhere on cable) 322.85 546.56 T
+( above elevator\051) 326.88 537.56 T
+(\050anywhere on cable\051) 324.86 457.71 T
+266.76 529.21 268.99 576.44 R
+4 X
+V
+0 Z
+0 X
+N
+266.76 529.21 268.99 541.02 R
+V
+N
+266.83 447.56 269.06 486.58 R
+4 X
+V
+0 X
+N
+266.83 474.2 269.06 486.58 R
+V
+N
+261.5 579.03 274.25 583.5 R
+N
+296.37 502.88 283.39 506.6 296.37 510.32 296.37 506.6 4 Y
+V
+296.13 506.6 317.16 506.6 2 L
+2 Z
+N
+6 F
+(/ElevatorDrag) 326.38 504.22 T
+(Follow the mouse) 410.47 502.14 T
+243 431 495 629 R
+1 H
+0 Z
+N
+396 629 396 431 2 L
+0.5 H
+2 Z
+N
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "153" 4
+9 10 /Palatino-Italic FMDEFINEFONT
+%%Page: "154" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (18) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (154) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(Geometry) 54 638 T
+8 F
+(/minsize) 54 617 T
+(- ) 198 617 T
+7 F
+(/minsize) 203.49 617 T
+8 F
+( width height) 238.96 617 T
+5 F
+0.52 0.1 (Returns the minimum acceptable size for the scr) 198 597.33 B
+0.52 0.1 (ollbar) 418.69 597.33 B
+0.52 0.1 (. The ) 444.29 597.33 B
+9 F
+0.52 0.1 (OPEN LOOK ) 470.16 597.33 B
+0.52 0.1 (Graphical User Interface Speci\336cation) 198 584.93 B
+5 F
+0.52 0.1 ( speci\336es what the smallest scr) 356.12 584.93 B
+0.52 0.1 (ollbar looks ) 496.64 584.93 B
+0.1 (like.) 198 572.53 S
+4 F
+0.47 0.09 (Figur) 198 507.57 B
+0.47 0.09 (e 18-3) 218.77 507.57 B
+0 F
+0.47 0.09 (The minimum acceptable size for a scr) 248.4 507.57 B
+0.47 0.09 (ollbar) 406.6 507.57 B
+0.47 0.09 (.) 429.63 507.57 B
+8 F
+(/preferredsize) 54 483.57 T
+(- ) 198 483.57 T
+7 F
+(/preferredsize) 203.49 483.57 T
+8 F
+( width height) 262.43 483.57 T
+5 F
+0.35 0.1 (Returns the size you think is ideal for your scr) 198 463.9 B
+0.35 0.1 (ollbar) 409.36 463.9 B
+0.35 0.1 (. The default pr) 434.96 463.9 B
+0.35 0.1 (eferr) 505.51 463.9 B
+0.35 0.1 (edsize ) 526.63 463.9 B
+0.52 0.1 (describes a scr) 198 451.5 B
+0.52 0.1 (ollbar with a full elevator and anchors but no cable.) 263.95 451.5 B
+4 F
+0.47 0.09 (Figur) 198 370.77 B
+0.47 0.09 (e 18-4) 218.77 370.77 B
+0 F
+0.47 0.09 (The default pr) 248.4 370.77 B
+0.47 0.09 (eferr) 307.17 370.77 B
+0.47 0.09 (edsize scr) 326.16 370.77 B
+0.47 0.09 (ollbar) 365.98 370.77 B
+3 F
+-0.94 (V) 54 338.77 P
+-0.94 (alues and parameters) 63.72 338.77 P
+8 F
+(/setparameters) 54 317.77 T
+(value viewsize max ) 198 317.77 T
+7 F
+(/setparameters -) 277.91 317.77 T
+5 F
+0.52 0.1 (Sets the parameters of the scr) 198 298.1 B
+0.52 0.1 (ollbar and updates the visual pr) 332.37 298.1 B
+0.52 0.1 (esentation of the ) 479.11 298.1 B
+0.52 0.1 (scr) 198 285.7 B
+0.52 0.1 (ollbar to r) 210.74 285.7 B
+0.52 0.1 (e\337ect the new parameters.) 256.11 285.7 B
+8 F
+0.45 -0.27 (value) 198 265.3 B
+5 F
+0.52 0.1 ( is the index of the \336rst object visible; it ranges in size fr) 218.13 265.3 B
+0.52 0.1 (om 0 to ) 474.98 265.3 B
+8 F
+0.5 (max) 512.83 265.3 P
+5 F
+0.52 0.1 (-1. ) 529.8 265.3 B
+8 F
+0.5 (viewsize) 198 244.9 P
+5 F
+0.52 0.1 ( is the number of objects curr) 231.95 244.9 B
+0.52 0.1 (ently visible. ) 366.01 244.9 B
+8 F
+0.5 (max) 198 224.5 P
+5 F
+0.52 0.1 ( is the total number of objects being scr) 214.98 224.5 B
+0.52 0.1 (olled. ) 394.91 224.5 B
+0.52 0.1 (Thus in a text window that wanted to scr) 198 204.1 B
+0.52 0.1 (oll by lines, ) 387.29 204.1 B
+8 F
+0.5 (value) 443.26 204.1 P
+5 F
+0.52 0.1 ( is the index of the ) 464.73 204.1 B
+0.52 0.1 (\336rst visible line; ) 198 191.7 B
+8 F
+0.5 (viewsize) 274.28 191.7 P
+5 F
+0.52 0.1 ( is the total number of lines curr) 308.24 191.7 B
+0.52 0.1 (ently visible; and ) 456.19 191.7 B
+8 F
+0.5 (max) 537.81 191.7 P
+5 F
+0.52 0.1 ( ) 554.78 191.7 B
+0.52 0.1 (is the total number of lines in the \336le that the text pr) 198 179.3 B
+0.52 0.1 (ogram is managing.) 438.84 179.3 B
+54 144 558 648 C
+283.72 521.97 328.28 569.2 C
+283.72 521.97 328.28 569.2 R
+7 X
+0 K
+V
+304.88 530.32 300.56 534.93 309.13 534.93 3 Y
+0 X
+V
+1 H
+0 Z
+N
+304.88 561.21 309.13 556.53 300.56 556.53 3 Y
+V
+N
+299.41 528.23 310.64 564.23 R
+N
+299.41 546.88 310.64 546.88 2 L
+2 Z
+N
+54 144 558 648 C
+283.72 521.97 328.28 569.2 R
+0.5 H
+0 Z
+0 X
+0 K
+N
+0 72 612 720 C
+54 144 558 648 C
+287.42 385.17 324.58 448.17 C
+287.42 385.17 324.58 448.17 R
+7 X
+0 K
+V
+305.28 400.14 301.03 404.83 309.53 404.83 3 Y
+0 X
+V
+1 H
+0 Z
+N
+305.28 431.03 309.53 426.42 301.03 426.42 3 Y
+V
+N
+299.81 398.06 311.04 434.06 R
+N
+299.81 421.31 311.04 421.31 2 L
+2 Z
+N
+299.81 410.01 311.04 410.01 2 L
+N
+299.81 437.44 311.04 441.9 R
+0.5 H
+0 Z
+N
+299.81 389.49 311.04 393.95 R
+N
+54 144 558 648 C
+287.42 385.17 324.58 448.17 R
+1 H
+0 Z
+0 X
+0 K
+N
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "154" 5
+%%Page: "155" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (Scr) 198 108.7 S
+0.09 (ollbars) 210.26 108.7 S
+0 F
+0.09 (155) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (18) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+8 F
+(/parameters) 54 642 T
+7 F
+(- /parameters) 198 642 T
+8 F
+( value viewsize max) 254.44 642 T
+5 F
+0.52 0.1 (Returns the scr) 198 622.33 B
+0.52 0.1 (ollbar) 266.59 622.33 B
+0.52 0.1 (\325s curr) 293.68 622.33 B
+0.52 0.1 (ent parameters.) 322.59 622.33 B
+8 F
+(/setvalue) 54 602.6 T
+(value ) 198 602.6 T
+7 F
+(/setvalue) 221.98 602.6 T
+8 F
+( -) 260.45 602.6 T
+5 F
+0.52 0.1 (Sets the value of the scr) 198 582.93 B
+0.52 0.1 (ollbar and updates the visual pr) 306.44 582.93 B
+0.52 0.1 (esentation of the ) 453.18 582.93 B
+0.52 0.1 (scr) 198 570.53 B
+0.52 0.1 (ollbar to r) 210.74 570.53 B
+0.52 0.1 (e\337ect the new value. ) 256.11 570.53 B
+8 F
+0.5 (value) 353.29 570.53 P
+5 F
+0.52 0.1 ( ranges fr) 374.77 570.53 B
+0.52 0.1 (om 0 to max\3201 \050see ) 418.25 570.53 B
+7 F
+0.45 -0.27 (/setparameters) 198 558.13 B
+5 F
+0.52 0.1 ( and Figur) 258.16 558.13 B
+0.52 0.1 (e 18-5\051. ) 305.93 558.13 B
+8 F
+(/value) 54 538.4 T
+7 F
+(/value) 198 538.4 T
+8 F
+( value) 223.48 538.4 T
+5 F
+0.52 0.1 (Returns the curr) 198 518.73 B
+0.52 0.1 (ent value of the scr) 272.43 518.73 B
+0.52 0.1 (ollbar; the value is fr) 359.82 518.73 B
+0.52 0.1 (om 0 to max\3201 \050see ) 454.91 518.73 B
+7 F
+0.45 -0.27 (/setparameters) 198 506.33 B
+5 F
+0.52 0.1 ( and Figur) 258.16 506.33 B
+0.52 0.1 (e 18-5\051.) 305.93 506.33 B
+8 F
+(/EventToValue) 54 486.6 T
+(event ) 198 486.6 T
+7 F
+(/EventToValue) 222.48 486.6 T
+8 F
+( value) 284.41 486.6 T
+5 F
+0.52 0.1 (Resolves an event into the curr) 198 466.93 B
+0.52 0.1 (ent value of the scr) 339.52 466.93 B
+0.52 0.1 (ollbar) 426.91 466.93 B
+0.52 0.1 (. Used by subclassers, ) 452.52 466.93 B
+0.52 0.1 (i.e., if you\325r) 198 454.53 B
+0.52 0.1 (e going to do an ) 250.45 454.53 B
+7 F
+0.45 -0.27 (/installmethod) 328.42 454.53 B
+5 F
+0.52 0.1 ( on ) 385.56 454.53 B
+7 F
+0.45 -0.27 (/HandleMotion) 403.27 454.53 B
+5 F
+0.52 0.1 (.) 461.68 454.53 B
+3 F
+-0.94 (Noti\336cation and pr) 54 420.8 P
+-0.94 (eviewing) 167.53 420.8 P
+5 F
+0.08 0.1 (The scr) 198 399.13 B
+0.08 0.1 (ollbar) 230.46 399.13 B
+0.08 0.1 (\325s noti\336er is called when the user interacts with the scr) 257.54 399.13 B
+0.08 0.1 (ollbar in all ) 503.47 399.13 B
+-0.03 0.1 (ways except dragging the elevator) 198 386.73 B
+-0.03 0.1 (. When the elevator is dragged the pr) 352.11 386.73 B
+-0.03 0.1 (eviewer ) 519.53 386.73 B
+0.52 0.1 (is called. If you want no scr) 198 374.33 B
+0.52 0.1 (olling to occur when the user drags the elevator ) 324.66 374.33 B
+0.41 0.1 (de\336ne a noti\336er as usual but don\325t de\336ne a pr) 198 361.93 B
+0.41 0.1 (eviewer) 407.41 361.93 B
+0.41 0.1 (. If you want continuous ) 442.57 361.93 B
+0.35 0.1 (scr) 198 349.53 B
+0.35 0.1 (olling when the user drags the elevator de\336ne the pr) 210.74 349.53 B
+0.35 0.1 (eviewer to be the same ) 450.42 349.53 B
+0.52 0.1 (as the noti\336er) 198 337.14 B
+0.52 0.1 (.) 260.02 337.14 B
+8 F
+(/setnotifier) 54 317.4 T
+(notifier-name | proc ) 198 317.4 T
+7 F
+(/setnotifier) 277.75 317.4 T
+8 F
+( -) 323.7 317.4 T
+5 F
+0.52 0.1 (Stor) 198 297.73 B
+0.52 0.1 (es the name of a noti\336er or the noti\336er pr) 216.13 297.73 B
+0.52 0.1 (ocedur) 406.08 297.73 B
+0.52 0.1 (e itself in a scr) 437.26 297.73 B
+0.52 0.1 (ollbar class ) 503.41 297.73 B
+0.44 0.1 (or instance. If you use a name, the noti\336er is sent to the scr) 198 285.33 B
+0.44 0.1 (ollbar) 467.55 285.33 B
+0.44 0.1 (\325s tar) 494.64 285.33 B
+0.44 0.1 (get with ) 517.21 285.33 B
+0.52 0.1 (two ar) 198 272.93 B
+0.52 0.1 (guments, the value of the scr) 227.43 272.93 B
+0.52 0.1 (ollbar and the scr) 359.75 272.93 B
+0.52 0.1 (ollbar instance itself:) 439.58 272.93 B
+8 F
+(value <scrollbar-instance> /yournotifier) 216 259.2 T
+5 F
+0.52 0.1 (The noti\336er should consume its ar) 198 239.53 B
+0.52 0.1 (guments.) 354.65 239.53 B
+FMENDPAGE
+%%EndPage: "155" 6
+9 12 /Palatino-Roman FMDEFINEFONT
+12 12 /Times-Roman FMDEFINEFONT
+13 8 /Palatino-Roman FMDEFINEFONT
+%%Page: "156" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (18) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (156) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (If you\325ve stor) 198 641.33 B
+0.52 0.1 (ed a pr) 259.11 641.33 B
+0.52 0.1 (ocedur) 291.51 641.33 B
+0.52 0.1 (e in the scr) 322.69 641.33 B
+0.52 0.1 (ollbar) 372.76 641.33 B
+0.52 0.1 (, the scr) 398.37 641.33 B
+0.52 0.1 (ollbar) 434.11 641.33 B
+0.52 0.1 (\325s value and the ) 461.2 641.33 B
+0.52 0.1 (scr) 198 628.93 B
+0.52 0.1 (ollbar itself ar) 210.74 628.93 B
+0.52 0.1 (e pushed on the stack and then your pr) 274.32 628.93 B
+0.52 0.1 (ocedur) 455.02 628.93 B
+0.52 0.1 (e is executed.) 486.2 628.93 B
+1 F
+0.52 0.1 ( ) 547.42 628.93 B
+5 F
+0.52 0.1 (The new value of the scr) 198 616.53 B
+0.52 0.1 (ollbar depends on wher) 310.62 616.53 B
+0.52 0.1 (e SELECT went down on the ) 419.45 616.53 B
+0.52 0.1 (scr) 198 604.13 B
+0.52 0.1 (ollbar) 210.74 604.13 B
+0.52 0.1 (. ) 236.35 604.13 B
+4 F
+0.47 0.09 (Figur) 198 382.42 B
+0.47 0.09 (e 18-5) 218.77 382.42 B
+0 F
+0.47 0.09 (How a scr) 248.4 382.42 B
+0.47 0.09 (ollbar) 290.2 382.42 B
+0.47 0.09 (\325s value changes) 314.56 382.42 B
+8 F
+(/notifier) 54 358.42 T
+(- ) 198 358.42 T
+7 F
+(/notifier) 203.49 358.42 T
+8 F
+( notifier-name | proc) 236.45 358.42 T
+5 F
+0.52 0.1 (Returns the name of the noti\336er or the executable pr) 198 338.76 B
+0.52 0.1 (ocedur) 437.99 338.76 B
+0.52 0.1 (e.) 469.17 338.76 B
+8 F
+(/setpreviewer) 54 319.02 T
+(previewer-name | proc ) 198 319.02 T
+7 F
+(/setpreviewer) 289.73 319.02 T
+8 F
+( -) 347.18 319.02 T
+5 F
+0.52 0.1 (Sets the scr) 198 299.36 B
+0.52 0.1 (ollbar) 249.07 299.36 B
+0.52 0.1 (\325s pr) 276.16 299.36 B
+0.52 0.1 (eviewing pr) 296.47 299.36 B
+0.52 0.1 (ocedur) 351.11 299.36 B
+0.52 0.1 (e. The pr) 382.29 299.36 B
+0.52 0.1 (eviewer is called when the ) 423.02 299.36 B
+0.52 0.1 (elevator is dragged. If you want no scr) 198 286.96 B
+0.52 0.1 (olling to occur until the user lets up on ) 375.38 286.96 B
+0.52 0.1 (the mouse de\336ne a noti\336er but leave the pr) 198 274.56 B
+0.52 0.1 (eviewer unde\336ned. If you want ) 395.88 274.56 B
+0.52 0.1 (continuous scr) 198 262.16 B
+0.52 0.1 (olling when the user drags the elevator de\336ne the pr) 264.3 262.16 B
+0.52 0.1 (eviewer to ) 505.52 262.16 B
+0.52 0.1 (be the same as the noti\336er) 198 249.76 B
+0.52 0.1 (.) 317.29 249.76 B
+8 F
+(/previewer) 54 230.03 T
+(- ) 198 230.03 T
+7 F
+(/previewer) 203.49 230.03 T
+8 F
+( previewer-name | proc) 247.95 230.03 T
+5 F
+0.52 0.1 (Returns the scr) 198 210.36 B
+0.52 0.1 (ollbar) 266.59 210.36 B
+0.52 0.1 (\325s pr) 293.68 210.36 B
+0.52 0.1 (eviewer) 313.99 210.36 B
+0.52 0.1 (.) 349.15 210.36 B
+54 144 558 648 C
+216 396.82 396 600.8 C
+216 396.82 396 600.8 R
+7 X
+0 K
+V
+243.58 463.86 239.33 468.46 247.9 468.46 3 Y
+0 X
+V
+1 H
+0 Z
+N
+243.58 494.74 247.9 490.06 239.33 490.06 3 Y
+V
+N
+238.1 461.77 249.34 497.77 R
+N
+238.1 485.02 249.41 485.02 2 L
+2 Z
+N
+238.1 473.72 249.41 473.72 2 L
+N
+236.59 413.02 249.34 417.49 R
+0.5 H
+0 Z
+N
+238.1 552.56 249.34 557.02 R
+N
+6 F
+(-1) 311.83 489.92 T
+(+1) 313.99 463.28 T
+(+ last viewsize) 289.66 442.98 T
+(- last viewsize) 288 526.64 T
+(To 0) 311.98 554.79 T
+(To max\3201) 298.73 415.62 T
+275.09 550.28 262.11 554 275.09 557.72 275.09 554 4 Y
+V
+296.6 554 274.85 554 2 L
+2 Z
+N
+274.3 488 261.32 491.72 274.3 495.44 274.3 491.72 4 Y
+V
+295.81 491.72 274.06 491.72 2 L
+N
+274.3 461 261.32 464.72 274.3 468.44 274.3 464.72 4 Y
+V
+295.81 464.72 274.06 464.72 2 L
+N
+272.79 412.25 259.81 415.98 272.79 419.7 272.79 415.98 4 Y
+V
+294.37 415.98 272.55 415.98 2 L
+N
+10 F
+(}) 257.98 432.9 T
+(}) 255.96 517.42 T
+9 F
+(Scr) 288 584.31 T
+(ollbar V) 304.14 584.31 T
+(alue) 345.59 584.31 T
+12 F
+( ) 307.01 572.29 T
+9 F
+(Change) 310.01 572.29 T
+(Scr) 220.97 581.79 T
+(ollbar) 237.11 581.79 T
+13 F
+(\050fr) 308.67 405.54 T
+(om /setparameters) 317.01 405.54 T
+11 F
+(\051) 384.94 405.54 T
+13 F
+(\050fr) 299.95 516.7 T
+(om /setparameters\051) 308.29 516.7 T
+(\050fr) 310.61 433.04 T
+(om /setparameters\051) 318.95 433.04 T
+242.14 502.09 244.37 549.32 R
+4 X
+V
+0 Z
+0 X
+N
+241.85 502.09 244.08 522.32 R
+V
+N
+242.35 421.09 244.58 460.11 R
+4 X
+V
+0 X
+N
+242.64 443.41 244.87 460.11 R
+V
+N
+54 144 558 648 C
+216 396.82 396 600.8 R
+1 H
+0 Z
+0 X
+0 K
+N
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "156" 7
+%%Page: "157" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (Scr) 198 108.7 S
+0.09 (ollbars) 210.26 108.7 S
+0 F
+0.09 (157) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (18) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+3 F
+-0.94 (Scr) 54 638 P
+-0.94 (ollbar motion) 74.01 638 P
+8 F
+(/HandleMotion) 54 617 T
+(event ) 198 617 T
+7 F
+(/HandleMotion) 222.48 617 T
+8 F
+( notifier-arguments) 284.4 617 T
+7 F
+0.18 -0.27 (/HandleMotion) 198 597.33 B
+5 F
+0.21 0.1 ( is called internally whenever the user interacts with the scr) 256.4 597.33 B
+0.21 0.1 (ollbar) 526.98 597.33 B
+0.21 0.1 (. ) 552.59 597.33 B
+0.26 0.1 (In particular) 198 584.93 B
+0.26 0.1 (, it is called immediately befor) 253.94 584.93 B
+0.26 0.1 (e the scr) 391.63 584.93 B
+0.26 0.1 (ollbar) 429.14 584.93 B
+0.26 0.1 (\325s noti\336er is executed. ) 456.23 584.93 B
+0.52 0.1 (Ther) 198 572.53 B
+0.52 0.1 (efor) 218.9 572.53 B
+0.52 0.1 (e, ) 236.64 572.53 B
+7 F
+0.45 -0.27 (/HandleMotion) 247.24 572.53 B
+5 F
+0.52 0.1 ( is r) 305.65 572.53 B
+0.52 0.1 (esponsible for calculating the ar) 323.1 572.53 B
+0.52 0.1 (guments that the ) 468.76 572.53 B
+0.52 0.1 (noti\336er expects, and pushing them onto the operand stack.) 198 560.13 B
+0.01 0.1 (Figur) 198 539.73 B
+0.01 0.1 (e 18-6 shows the default ) 222.32 539.73 B
+7 F
+0.01 -0.27 (/HandleMotion) 333.83 539.73 B
+5 F
+0.01 0.1 (. The API for scr) 392.23 539.73 B
+0.01 0.1 (ollbars says that the ) 465.56 539.73 B
+0.52 0.1 (noti\336er is called with the scr) 198 527.33 B
+0.52 0.1 (ollbar and the new value on the stack. Ther) 328.23 527.33 B
+0.52 0.1 (efor) 527.13 527.33 B
+0.52 0.1 (e, ) 544.87 527.33 B
+0.52 0.1 (the default ) 198 514.93 B
+7 F
+0.45 -0.27 (/HandleMotion) 250.51 514.93 B
+5 F
+0.52 0.1 ( simply calculates a new value and leaves it on the ) 308.92 514.93 B
+0.1 (stack.) 198 502.53 S
+0.52 0.1 (A new ) 198 482.13 B
+7 F
+0.45 -0.27 (/HandleMotion) 231.35 482.13 B
+5 F
+0.52 0.1 ( can be methodinstalled into scr) 289.76 482.13 B
+0.52 0.1 (ollbar instances for ) 435.68 482.13 B
+0.52 0.1 (applications that need more contr) 198 469.73 B
+0.52 0.1 (ol over the scr) 351.89 469.73 B
+0.52 0.1 (ollbar) 416.96 469.73 B
+0.52 0.1 (. Figur) 442.57 469.73 B
+0.52 0.1 (e 18-7 shows a ) 472.6 469.73 B
+7 F
+0.45 -0.27 (/HandleMotion) 198 457.33 B
+5 F
+0.52 0.1 ( that is automatically installed into all scr) 256.4 457.33 B
+0.52 0.1 (ollbars that ar) 445.67 457.33 B
+0.52 0.1 (e used by ) 509.29 457.33 B
+0.48 0.1 (the Jot text package. This ) 198 444.93 B
+7 F
+0.41 -0.27 (/HandleMotion) 315.9 444.93 B
+5 F
+0.48 0.1 ( just describes the motion that occurr) 374.31 444.93 B
+0.48 0.1 (ed ) 543.82 444.93 B
+0.52 0.1 (and passes that information to Jot, and lets Jot calculate a new set of ) 198 432.53 B
+0.52 0.1 (parameters for the scr) 198 420.13 B
+0.52 0.1 (ollbar) 298.08 420.13 B
+0.52 0.1 (.) 323.69 420.13 B
+0.52 0.1 (This ) 198 399.73 B
+7 F
+0.45 -0.27 (/HandleMotion) 220.61 399.73 B
+5 F
+0.52 0.1 ( pr) 279.01 399.73 B
+0.52 0.1 (oduces two ar) 292.11 399.73 B
+0.52 0.1 (guments for the noti\336er) 356.31 399.73 B
+0.52 0.1 (, which is allowed, ) 464.25 399.73 B
+0.1 0.1 (because it was Jot that supplied both the ) 198 387.33 B
+7 F
+0.08 -0.27 (/HandleMotion) 383.78 387.33 B
+5 F
+0.1 0.1 ( and the noti\336er) 442.18 387.33 B
+0.1 0.1 (. Because ) 513.83 387.33 B
+0.52 0.1 (this ) 198 374.93 B
+7 F
+0.45 -0.27 (/HandleMotion) 217.74 374.93 B
+5 F
+0.52 0.1 ( doesn\325t actually change the value of the scr) 276.14 374.93 B
+0.52 0.1 (ollbar) 477.05 374.93 B
+0.52 0.1 (, Jot issues ) 502.66 374.93 B
+0.52 0.1 (either a ) 198 362.54 B
+7 F
+0.45 -0.27 (/setvalue) 235.44 362.54 B
+5 F
+0.52 0.1 ( or ) 271.48 362.54 B
+7 F
+0.45 -0.27 (/setparameters) 287.32 362.54 B
+5 F
+0.52 0.1 ( once the new values ar) 347.47 362.54 B
+0.52 0.1 (e calculated. And at ) 455.53 362.54 B
+0.52 0.1 (that time Jot will also warp the cursor with the ) 198 350.14 B
+7 F
+0.45 -0.27 (/warpcursor) 416.28 350.14 B
+5 F
+0.52 0.1 ( scr) 464.75 350.14 B
+0.52 0.1 (ollbar method.) 480.61 350.14 B
+FMENDPAGE
+%%EndPage: "157" 8
+%%Page: "158" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (18) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (158) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+0.47 0.09 (Figur) 198 282.6 B
+0.47 0.09 (e 18-6) 218.77 282.6 B
+0 F
+0.47 0.09 (The default /HandleMotion de\336nition for scr) 248.4 282.6 B
+0.47 0.09 (ollbars) 434.69 282.6 B
+54 144 558 648 C
+90 297 558 638 C
+90 297 558 638 R
+7 X
+0 K
+V
+94.97 314 544.97 632.53 18 RR
+0.5 H
+0 Z
+0 X
+N
+8 F
+(/) 99 617.53 T
+-0.27 (HandleMotion { event => <notify-args>) 101.5 617.53 S
+(% Calculate a new current value for the scrollbar base on the kind of) 118.35 608.53 T
+(% motion that just occurred.) 118.35 599.53 T
+(%) 118.35 590.53 T
+(/motion self send {) 118.35 581.53 T
+(% event motion) 373.46 581.53 T
+(/TopAnchor { pop 0 }) 146.69 572.53 T
+(% 0) 373.46 572.53 T
+(/BottomAnchor {) 146.69 563.53 T
+(pop /parameters self send) 175.04 554.53 T
+(% value viewsize max) 373.46 554.53 T
+(3 1 roll pop pop) 175.04 545.53 T
+(% newvalue) 373.46 545.53 T
+(}) 146.69 536.53 T
+(/ElevatorUp { pop /value self send 1 sub }) 146.69 527.53 T
+(% newvalue) 373.46 527.53 T
+(/ElevatorDown { pop /value self send 1 add }) 146.69 518.53 T
+(% newvalue) 373.46 518.53 T
+(/PageUp {) 146.69 509.53 T
+(pop /parameters self send pop) 175.04 500.53 T
+(% value viewsize) 373.46 500.53 T
+(sub) 175.04 491.53 T
+(% newvalue) 373.46 491.53 T
+(}) 146.69 482.53 T
+(/PageDown {) 146.69 473.53 T
+(pop /parameters self send pop) 175.04 464.53 T
+(% value viewsize) 373.46 464.53 T
+(add) 175.04 455.53 T
+(% newvalue) 373.46 455.53 T
+(}) 146.69 446.53 T
+(/ElevatorDrag {) 146.69 437.53 T
+(% event) 373.46 437.53 T
+(/EventToValue self send) 175.04 428.53 T
+(% newvalue) 373.46 428.53 T
+(}) 146.69 419.53 T
+(} case) 118.35 410.53 T
+(% newvalue) 373.46 410.53 T
+(% Now set the scrollbars value to the newvalue. This moves the elevator automatically.) 118.35 392.53 T
+(% Then warp the cursor to the new elevator position. Finally, leave the new value on the) 118.35 383.53 T
+(% stack for the notifier.) 118.35 374.53 T
+(%) 118.35 365.53 T
+(/setvalue self send) 118.35 356.53 T
+(% -) 373.46 356.53 T
+(/warpcursor self send) 118.35 347.53 T
+(/value self send) 118.35 338.53 T
+(% value) 373.46 338.53 T
+(} def) 99 329.53 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "158" 9
+%%Page: "159" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (Scr) 198 108.7 S
+0.09 (ollbars) 210.26 108.7 S
+0 F
+0.09 (159) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (18) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+4 F
+0.47 0.09 (Figur) 198 462.6 B
+0.47 0.09 (e 18-7) 218.77 462.6 B
+0 F
+0.47 0.09 (Example of how /HandleMotion can be modi\336ed.) 248.4 462.6 B
+54 144 558 648 C
+90 477 558 638 C
+90 477 558 638 R
+7 X
+0 K
+V
+94.97 485 544.97 632.53 18 RR
+0.5 H
+0 Z
+0 X
+N
+8 F
+(/) 99 617.53 T
+-0.27 (HandleMotion { event => <notify-args>) 101.5 617.53 S
+(/motion self send {) 118.35 608.53 T
+(% event motion) 373.46 608.53 T
+(/ElevatorDrag {) 146.69 599.53 T
+(% event) 373.46 599.53 T
+(/EventToValue self send) 175.04 590.53 T
+(% newvalue) 373.46 590.53 T
+(/Absolute) 175.04 581.53 T
+(% newvalue /Absolute) 373.46 581.53 T
+(}) 146.69 572.53 T
+(/TopAnchor { pop -1 /Document }) 146.69 563.53 T
+(/BottomAnchor { pop 1 /Document }) 146.69 554.53 T
+(/ElevatorUp { pop -1 /Line }) 146.69 545.53 T
+(/ElevatorDown { pop 1 /Line }) 146.69 536.53 T
+(/PageUp { pop -1 /Page }) 146.69 527.53 T
+(/PageDown { pop 1 /Page }) 146.69 518.53 T
+(} case) 118.35 509.53 T
+(} /installmethod jotscrollbar send) 99 500.53 T
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "159" 10
+%%Page: "160" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (18) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (160) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+FMENDPAGE
+%%EndPage: "160" 11
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 10 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Times-Bold
+%%+ Helvetica-Bold
+%%+ Helvetica-Oblique
+%%+ Palatino-Bold
+%%+ Helvetica
+%%+ Times-Roman

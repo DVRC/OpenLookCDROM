@@ -1,0 +1,86 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+% @(#) eventlog.ps 23.3 91/02/11
+
+%   eventlog.ps:	see all events going by
+%	Copyright (C) 1987 Sun Microsystems, Inc.
+
+/UnloggedEvents 20 dict dup begin
+     /Damaged dup def
+     /CaretTimeOut dup def
+%    /EnterEvent dup def
+%    /ExitEvent dup def
+%    /ContinueBounce dup def
+    /MouseDragged dup def
+end def
+
+/eventlog_dict dictbegin
+
+/buf 200 string def
+/elfile null def
+/iflag (\(Interest\) ) def
+/qflag (\(Queued\) ) def
+/sp ( ) def
+/pcr	{ (\n) pr } def
+/pspace { sp pr } def
+/pfield { buf cvs pr } def
+/pfldsp { buf cvs pr sp pr } def
+/pr	/print load def
+
+/p_event {	% event  =>  -
+    begin
+	(#) pr Serial 65536 mul pfldsp TimeStamp pfldsp
+	([) pr XLocation pfldsp YLocation pfield (] ) pr
+	/Name load pfldsp
+	/Action load pfldsp
+	/Canvas load pfldsp
+	Process pfldsp
+	([) pr KeyState {pfldsp} forall (] ) pr
+	IsInterest { iflag pr } if
+	IsQueued { qflag pr } if
+	/ClientData load pfield pcr
+	currentprocess /Stdout get flushfile
+    end
+} def
+
+/_probe null def
+
+dictend def	%  eventlog_dict
+
+/eventlog {	%  bool  =>  --
+    eventlog_dict begin
+	{   newprocessgroup
+	    _probe null ne { _probe killprocess } if
+	    /_probe {
+		createevent dup /Name /Logger put expressinterest
+		{   awaitevent UnloggedEvents 1 index /Name get known not {
+			p_event
+		    } { pop } ifelse
+		    
+		} loop
+	    } fork dup seteventlogger dup /Priority SystemPriority put def
+	} {
+	    _probe null ne { _probe killprocess } if
+	    /_probe null store
+	} ifelse
+    end
+} def
+
+/eventlogfile {		%  file|null  =>  --
+    eventlog_dict begin
+	elfile null ne { elfile flushfile } if
+	/elfile exch store
+	elfile null eq {
+	    /pr	/pr load store
+	} {
+	    /pr	{ elfile exch writestring } store
+	} ifelse
+    end
+} def
+
+/currenteventlogfile {	%  --  =>  file|null
+    eventlog_dict /elfile get
+} def

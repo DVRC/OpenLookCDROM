@@ -1,0 +1,28 @@
+;;;	(c) Copyright 1989, 1990, 1991 Sun Microsystems, Inc. 
+;;;	Sun design patents pending in the U.S. and foreign countries. 
+;;;	See LEGAL_NOTICE file for terms of the license.
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+;;;; Patch so that LispView (with OpenWindows V2 XView-related libraries)
+;;;; can run under OpenWindows V3 and still correctly show pixmap labels for
+;;;; buttons and settings.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+;;;; NOTE: This patch loads ol_pixmap_label.o, which fixes an olgx problem
+;;;; in XView Version 2.0; the bug is fixed in XView Version 3.0 and the
+;;;; patch should be removed when LispView is ported to Version 3.0.
+;;;;
+;;;; NOTE: The compiled version of this patch is automatically included
+;;;; in the lispview.sbin module produced by the build.lisp file in the
+;;;; top-level directory of the LispView source release.
+;;;; ***The pathname used here for the .o file assumes that lispview.sbin
+;;;; will subsequently be loaded from that top-level directory.
+;;;; If some other procedure is used to load this patch, then the pathname
+;;;; may need to be revised AND the file recompiled.  (The LispView build
+;;;; does not recompile this patch.)		/oct-91
+
+(in-package :user)
+
+(let ((*load-verbose* nil)
+      (*redefinition-action* nil))
+  (load-foreign-files
+    (merge-pathnames "lispview/xview/ol_pixmap_label.o" *load-pathname*)))

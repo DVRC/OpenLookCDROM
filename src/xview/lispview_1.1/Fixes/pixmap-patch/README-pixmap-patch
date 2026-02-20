@@ -1,0 +1,54 @@
+pixmap-patch
+  [07-jan-92, LispView Development Group]
+  New version of xview/ol_pixmap_label.o (part of the LispView
+  color-label-patch), and related source files.  Fixes a problem in which a
+  click on a button may cause a segmentation violation on monochrome systems.
+
+Details:
+  The original ol_pixmap_label code in the xview subdirectory of the LispView
+  source release is incompatible with another fix included in the library
+  xview/libolgx.sun4.a.
+  The resulting problem, which appears only on monochrome displays, can be
+  seen, for example, as follows: in a LispView image containing the
+  color-label-patch, if the XView display is initially created by running
+  the "spirals" demo, then mouse clicks on command or menu buttons (in
+  spirals or other LispView windows) which would normally give responses
+  will cause segmentation violations (once this happens it may not be
+  possible to usefully continue the LispView session).  The problem
+  may not appear if the XView display is initially created with another
+  demo that includes a button.
+  The problem is fixed by this new version of the pixmap patch.
+
+Instructions for using the new version of the pixmap patch:
+
+(1) To fix the release directory
+
+(a) In the xview subdirectory of the LispView 1.1 source release, REPLACE
+the following three files by the new versions from the present directory:
+  ol_pixmap_label.c
+  ol_pixmap_label.o
+  olgx_impl.h
+
+(b) Copy into the xview subdirectory the file  olgx.h  from the present
+directory (the original LispView release did not have this file).
+
+No other release files need to be changed.  Once the new  ol_pixmap_label.o
+is in place, it will automatically be loaded when a new LispView image is
+built with the original lispview.sbin module from the source release.
+
+[NOTE: As mentioned in the top-level LispView build.lisp file, once LispView
+is ported to OpenWindows Version 3, the color-label-patch (including these
+pixmap patch files) should no longer be used.]
+
+(2) To fix an existing LispView image (without rebuilding)
+
+To correct a LispView image built with the original pixmap patch,
+you can just load the new  ol_pixmap_label.o  into that image, as follows:
+at the beginning of each LispView session (before doing anything that creates
+an XView display for LispView) do:
+(load-foreign-files "<appropriate-path>/ol_pixmap_label.o")
+
+[This can be done, for example, via a Lisp initialization file.  The load will
+issue some warnings about redefined and undefined foreign symbols; these can
+be ignored.]
+

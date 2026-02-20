@@ -1,0 +1,175 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#) sun3_keys.ps 23.3 91/02/11
+%
+%  sun3_keys.ps:   character positions on the Sun-2 keyboard
+%
+%       Copyright (C) 1986, 1988 Sun Microsystems, Inc.
+
+%  code classes:
+%	shift_key	key changes keyboard state on up & down
+%	letter		lc for no shifts, UC for Caps or Shift; or Controlled
+%	controlled	non-letter for which a Control-shift is meaningful
+%	shifted		non-letter which is emitted only when Shift is down
+%	unshifted	non-letter which is emitted only when Shift is up
+%	anydown		constant char is emitted regardless of shifts
+%	cursor		cursor-key; emits escape-string
+%	function	not an ASCII char; up and down may be significant
+%	number		constant char emitted from number-pad when it's so used
+
+    /FunctionL1          [   1 keyStation /function ]	def
+    /FunctionL11         [   2 keyStation /function ]	def
+    /FunctionL2          [   3 keyStation /function ]	def
+
+    /FunctionF1          [   5 keyStation /function ]	def
+    /FunctionF2          [   6 keyStation /function ]	def
+    /FunctionF10         [   7 keyStation /function ]	def
+    /FunctionF3          [   8 keyStation /function ]	def
+    /FunctionF11         [   9 keyStation /function ]	def
+    /FunctionF4          [  10 keyStation /function ]	def
+    /FunctionF12         [  11 keyStation /function ]	def
+    /FunctionF5          [  12 keyStation /function ]	def
+    /FunctionF14         [  13 keyStation /function ]	def
+    /FunctionF6          [  14 keyStation /function ]	def
+    /FunctionF13         [  15 keyStation /function ]	def
+    /FunctionF7          [  16 keyStation /function ]	def
+    /FunctionF8          [  17 keyStation /function ]	def
+    /FunctionF9          [  18 keyStation /function ]	def
+
+    /FunctionR1          [  21 keyStation /function ]	def
+    /FunctionR2          [  22 keyStation /function ]	def
+    /FunctionR3          [  23 keyStation /function ]	def
+
+    /FunctionL3          [  25 keyStation /function ]	def
+    /FunctionL4          [  26 keyStation /function ]	def
+    /FunctionL12         [  27 keyStation /function ]	def
+
+    /ESCkey              [  29 keyStation /anydown ]	def
+    (!) toChar           [  30 keyStation /shifted ]	def
+    (1) toChar           [  30 keyStation /unshifted ]	def
+    (2) toChar           [  31 keyStation /unshifted ]	def
+    (@) toChar           [  31 keyStation /shifted ]	def
+    (@) toControlChar    [  31 keyStation /controlled ]	def
+    (#) toChar           [  32 keyStation /shifted ]	def
+    (3) toChar           [  32 keyStation /unshifted ]	def
+    ($) toChar           [  33 keyStation /shifted ]	def
+    (4) toChar           [  33 keyStation /unshifted ]	def
+    (%) toChar           [  34 keyStation /shifted ]	def
+    (5) toChar           [  34 keyStation /unshifted ]	def
+    (6) toChar           [  35 keyStation /unshifted ]	def
+    (^) toChar           [  35 keyStation /shifted ]	def
+    (^) toControlChar    [  35 keyStation /controlled ]	def
+    (&) toChar           [  36 keyStation /shifted ]	def
+    (7) toChar           [  36 keyStation /unshifted ]	def
+    (*) toChar           [  37 keyStation /shifted ]	def
+    (8) toChar           [  37 keyStation /unshifted ]	def
+    (9) toChar           [  38 keyStation /unshifted ]	def
+    (\() toChar          [  38 keyStation /shifted ]	def
+    (0) toChar           [  39 keyStation /unshifted ]	def
+    (\)) toChar          [  39 keyStation /shifted ]	def
+    (-) toChar           [  40 keyStation /unshifted ]	def
+    (_) toChar           [  40 keyStation /shifted ]	def
+    (_) toControlChar    [  40 keyStation /controlled ]	def
+    (+) toChar           [  41 keyStation /shifted ]	def
+    (=) toChar           [  41 keyStation /unshifted ]	def
+    (`) toChar           [  42 keyStation /unshifted ]	def
+    (~) toChar           [  42 keyStation /shifted ]	def
+    /BSkey               [  43 keyStation /anydown ]	def
+
+    /FunctionR4          [  45 keyStation /function ]	def
+    /FunctionR5          [  46 keyStation /function ]	def
+    /FunctionR6          [  47 keyStation /function ]	def
+
+    /FunctionL5          [  49 keyStation /function ]	def
+    /FunctionL13         [  50 keyStation /function ]	def
+    /FunctionL6          [  51 keyStation /function ]	def
+
+    /HTkey               [  53 keyStation /anydown ]	def
+    (Q) toChar           [  54 keyStation /letter ]	def
+    (W) toChar           [  55 keyStation /letter ]	def
+    (E) toChar           [  56 keyStation /letter ]	def
+    (R) toChar           [  57 keyStation /letter ]	def
+    (T) toChar           [  58 keyStation /letter ]	def
+    (Y) toChar           [  59 keyStation /letter ]	def
+    (U) toChar           [  60 keyStation /letter ]	def
+    (I) toChar           [  61 keyStation /letter ]	def
+    (O) toChar           [  62 keyStation /letter ]	def
+    (P) toChar           [  63 keyStation /letter ]	def
+    ([) toChar           [  64 keyStation /unshifted ]	def
+    ([) toControlChar    [  64 keyStation /controlled ]	def
+    ({) toChar           [  64 keyStation /shifted ]	def
+    (]) toChar           [  65 keyStation /unshifted ]	def
+    (]) toControlChar    [  65 keyStation /controlled ]	def
+    (}) toChar           [  65 keyStation /shifted ]	def
+    /DELkey              [  66 keyStation /anydown ]	def
+
+    /FunctionR7          [  68 keyStation /function ]	def
+    /FunctionR8          [  69 keyStation /function ]	def
+    /UpArrowkey          [  69 keyStation /cursor ]	def
+    /FunctionR9          [  70 keyStation /function ]	def
+
+    /FunctionL7          [  72 keyStation /function ]	def
+    /FunctionL8          [  73 keyStation /function ]	def
+    /FunctionL14         [  74 keyStation /function ]	def
+
+    /LeftControl         [  76 keyStation /shift_key ]	def
+    (A) toChar           [  77 keyStation /letter ]	def
+    (S) toChar           [  78 keyStation /letter ]	def
+    (D) toChar           [  79 keyStation /letter ]	def
+    (F) toChar           [  80 keyStation /letter ]	def
+    (G) toChar           [  81 keyStation /letter ]	def
+    (H) toChar           [  82 keyStation /letter ]	def
+    (J) toChar           [  83 keyStation /letter ]	def
+    (K) toChar           [  84 keyStation /letter ]	def
+    (L) toChar           [  85 keyStation /letter ]	def
+    (:) toChar           [  86 keyStation /shifted ]	def
+    (;) toChar           [  86 keyStation /unshifted ]	def
+    (") toChar           [  87 keyStation /shifted ]	def
+    (') toChar           [  87 keyStation /unshifted ]	def
+    (\\) toChar          [  88 keyStation /unshifted ]	def
+    (\\) toControlChar   [  88 keyStation /controlled ]	def
+    (|) toChar           [  88 keyStation /shifted ]	def
+    /CRkey               [  89 keyStation /anydown ]	def
+
+    /FunctionR10         [  91 keyStation /function ]	def
+    /LeftArrowkey        [  91 keyStation /cursor ]	def
+    /FunctionR11         [  92 keyStation /function ]	def
+    /FunctionR12         [  93 keyStation /function ]	def
+    /RightArrowkey       [  93 keyStation /cursor ]	def
+
+    /FunctionL9          [  95 keyStation /function ]	def
+    /FunctionL15         [  96 keyStation /function ]	def
+    /FunctionL10         [  97 keyStation /function ]	def
+
+    /LeftShift           [  99 keyStation /shift_key ]	def
+    (Z) toChar           [ 100 keyStation /letter ]	def
+    (X) toChar           [ 101 keyStation /letter ]	def
+    (C) toChar           [ 102 keyStation /letter ]	def
+    (V) toChar           [ 103 keyStation /letter ]	def
+    (B) toChar           [ 104 keyStation /letter ]	def
+    (N) toChar           [ 105 keyStation /letter ]	def
+    (M) toChar           [ 106 keyStation /letter ]	def
+    (,) toChar           [ 107 keyStation /unshifted ]	def
+    (<) toChar           [ 107 keyStation /shifted ]	def
+    (.) toChar           [ 108 keyStation /unshifted ]	def
+    (>) toChar           [ 108 keyStation /shifted ]	def
+    (/) toChar           [ 109 keyStation /unshifted ]	def
+    (?) toChar           [ 109 keyStation /shifted ]	def
+    /RightShift          [ 110 keyStation /shift_key ]	def
+    /LFkey               [ 111 keyStation /anydown ]	def
+
+    /FunctionR13         [ 112 keyStation /function ]	def
+    /FunctionR14         [ 113 keyStation /function ]	def
+    /DownArrowkey        [ 113 keyStation /cursor ]	def
+    /FunctionR15         [ 114 keyStation /function ]	def
+
+    /Caps                [ 119 keyStation /lock_key ]	def
+    /FunctionLeft        [ 120 keyStation /function ]	def
+    /LeftMeta            [ 120 keyStation /shift_key ]	def
+    /SPkey		 [ 121 keyStation /anydown ]	def
+%	NUL from ^SP has to be inserted in kbdinit.ps 
+    /FunctionRight       [ 122 keyStation /function ]	def
+    /RightMeta		 [ 122 keyStation /shift_key ]	def

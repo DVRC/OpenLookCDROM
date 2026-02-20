@@ -1,0 +1,1157 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) slider.ps 1.35 91/02/11
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ClassHSlider
+%
+
+/ClassHSlider [ ClassControl ClassCanvas ]
+dictbegin
+    /Value 0 def
+    /Min 0 def
+    /Max 100 def
+    /SliderX 0 def
+    /SliderY 0 def
+    /LastSliderX -1 def
+    /DragX 0 def
+    /DragY 0 def
+    /DragWidth 0 def
+    /DragScale 1 def
+    /HitType null def
+dictend
+classbegin
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Class Variables
+%
+
+% Measurements (undef'ed at end of class definition)
+    /SliderWidth 10 def	 	% b+c -1
+    /SliderHeight 16 def	% a+c +1
+    /SlotHeight 5 def		% f
+    /SlotRaise 5 def		% i
+    /EndBoxWidth 6 def		% e
+    /EndBoxHeight 11 def	% d
+    /EndBoxGap 3 def		% g
+    /EndBoxRaise 3 def		% h
+    /TickMarkHeight 7 def
+
+% Encodings for olglyph font
+    /HORIZ_SLIDER_CONTROL_UL 60 cvis def
+    /HORIZ_SLIDER_CONTROL_LR 61 cvis def
+    /HORIZ_SLIDER_CONTROL_FILL 62 cvis def
+    /HORIZ_SLIDER_UL 63 cvis def
+    /HORIZ_SLIDER_LL 64 cvis def 
+    /HORIZ_SLIDER_UR 65 cvis def
+    /HORIZ_SLIDER_LR 66 cvis def
+    /VERT_SLIDER_CONTROL_UL 85 cvis def
+    /VERT_SLIDER_CONTROL_LR 86 cvis def
+    /VERT_SLIDER_CONTROL_FILL 87 cvis def
+    /VERT_SLIDER_UL 79 cvis def
+    /VERT_SLIDER_UR 80 cvis def 
+    /VERT_SLIDER_LL 82 cvis def
+    /VERT_SLIDER_LR 83 cvis def
+    /DIMPLE_UL 196 cvis def
+    /DIMPLE_LR 197 cvis def
+    /DIMPLE_FILL 198 cvis def
+    /HORIZ_SLIDER_CONTROL_OUTLINE 172 cvis def
+    /HORIZ_SLIDER_LEFT_ENDCAP_OUTLINE 173 cvis def
+    /HORIZ_SLIDER_RIGHT_ENDCAP_OUTLINE 174 cvis def
+    /VERT_SLIDER_TOP_ENDCAP_OUTLINE 180 cvis def
+    /VERT_SLIDER_BOTTOM_ENDCAP_OUTLINE 181 cvis def
+    /VERT_SLIDER_CONTROL_OUTLINE 182 cvis def
+
+% Shared class temporary variables
+    /XHit 0 def
+    /YHit 0 def
+
+% Promoted when needed
+    /EndBoxHilited? false def
+    /SliderHilited? false def
+    /EndBoxes? false def
+    /TickMarks 0 def
+    /Delta 1 def
+    /MinEndBoxX 0 def
+    /MaxEndBoxX 0 def
+    /EndBoxY 0 def
+    /MinTickX 0 def
+    /MaxTickY 0 def
+    /TickMarkY 0 def
+    /TickStep 1 def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Utilities
+
+    % Autorepeat delays
+    %
+    UserProfile begin
+	/SliderDelay	20 		?def
+	/SliderThresh	500		?def
+    end
+    %
+    /SliderDelay { UserProfile /SliderDelay get } def
+    /SliderThresh { UserProfile /SliderThresh get } def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Application Programmer Interface
+%
+
+    % Set the value of the slider.
+    %
+    /setvalue { % val => -
+	/Normalize self send
+	/CheckRange self send
+	/Value 1 index def
+	/SetSlider self send
+	/valid? self send {
+	    gsave
+		self setcanvas
+		/Update self send
+	    grestore
+        } if
+    } def
+
+    % Get the value of the slider.
+    %
+    /value { % - => value
+	Value
+    } def
+
+    % Set the minimum and maximum values of the slider.
+    %
+    /setrange { % min max => -
+	/Max exch def /Min exch def
+	/LastSliderX -1 def
+	/invalidate self send
+    } def
+
+    % Get the minimum and maximum values of the slider.
+    %
+    /range { % - => min max
+	Min Max
+    } def
+
+    % Force the value to be in range.
+    %
+    /CheckRange { % value => new-value
+	Min Max					% value Min Max
+	2 copy gt { exch } if			% value min max
+	3 copy pop				% value min max value min
+	lt {					% value min max
+	    3 -1 roll pop			% value' max
+	} {					% value min max
+	    exch pop				% value' max
+	} ifelse
+	2 copy gt { exch } if			% value' max
+	pop					% value'
+    } def
+
+    % Normalize the value.
+    %
+    /Normalize nullproc def % value => value'
+
+    /setnormalizer { % proc => -
+	dup null eq {
+	    pop
+	    /Normalize unpromote
+	}{
+	    /Normalize exch promote
+	} ifelse
+	/invalidate self send
+    } def
+
+    /normalizer { % - => proc
+	/Normalize load
+    } def
+
+    % Set the slider step delta. This is the ammount by which the slider 
+    % steps when the user clicks to the left or the right of the puck. If
+    % delta is zero, then the slider moves by 1.
+    %
+    /setdelta { % step => -
+	/Delta exch def
+    } def
+
+    /delta { % - => step
+	Delta
+    } def
+
+    % Set the distance between tick marks in user space (0 for no tick marks).
+    %
+    /settickmarks { % distance => -
+	/TickMarks exch promote
+	/invalidate self send
+    } def
+
+    /tickmarks { % - => distance
+	TickMarks
+    } def
+
+    % If true, draw end boxes that move the slider to the min or max value.
+    %
+    /setendboxes { % bool => -
+	/EndBoxes? exch promote
+	/invalidate self send
+    } def
+
+    /endboxes? { % - => bool
+	EndBoxes?
+    } def
+
+    /setvisualstate { % state => -
+	/setvisualstate super send
+	/valid? self send {
+	    VisualState /Active eq {
+		/paint self send
+	    } {
+		gsave self setcanvas
+		    BackgroundColor setcolor
+		    0 0 /size self send StippleRect
+		grestore
+	    } ifelse
+	} if
+    } def
+
+    /offset { % name => x y
+        /?validate self send
+	dup {
+	    /MinEnd {
+		pop 0 DragY //SliderHeight 2 div add
+	    }
+	    /MaxEnd {
+		pop /size self send pop
+		DragY //SliderHeight 2 div add
+	    }
+	    /MinTick {
+		pop MinTickX 0
+	    }
+	    /MaxTick {
+		pop MaxTickX 0
+	    }
+	    /Default {
+		/offset super send
+	    }
+	} case
+    } def
+
+    % sizing and shaping
+
+    /minsize { % - => w h
+	/?validate self send
+	//SliderWidth 3 mul
+	EndBoxes? {
+	    //EndBoxWidth //EndBoxGap add dup add add
+	} if
+	//SliderHeight
+	TickMarks 0 ne {
+	    //TickMarkHeight add
+	} if
+    } def
+
+    /preferredsize { % - => w h
+	/?validate self send
+	Max Min sub //SliderWidth add
+	//SliderWidth 3 mul max
+	EndBoxes? {
+	    //EndBoxWidth //EndBoxGap add dup add add
+	} if
+	//SliderHeight
+	TickMarks 0 ne {
+	    //TickMarkHeight add
+	} if
+    } def
+
+    /validate { % - => -
+        /validate super send
+	gsave
+	    self setcanvas
+	    TextFont setfont
+
+	    /reshaped? self send {
+		/DragWidth /size self send pop 1 sub def
+	    } {
+		/DragWidth
+		    Max Min sub //SliderWidth add
+		    EndBoxes? {
+			//EndBoxWidth //EndBoxGap add dup add add
+		    } if
+		def
+	    } ifelse
+
+	    /DragX 0 def
+	    /DragY 0 def
+
+	    TickMarks 0 ne {
+		/TickMarkY DragY promote
+		/DragY DragY //TickMarkHeight add def
+	    } if
+
+	    EndBoxes? {
+		/MinEndBoxX DragX promote
+		/EndBoxY DragY //EndBoxRaise add promote
+		/DragX DragX //EndBoxWidth //EndBoxGap add add def
+		/DragWidth
+		    DragWidth //EndBoxWidth //EndBoxGap add dup add sub
+		def
+		/MaxEndBoxX DragX DragWidth add //EndBoxGap add 1 add promote
+	    } if
+
+	    /DragScale Max Min sub DragWidth //SliderWidth 1 sub sub div def
+	    /SliderY //SliderHeight 1 sub DragY add def
+
+	    /MinTickX DragX //SliderWidth 2 div 1 sub add promote
+	    /MaxTickX MinTickX DragWidth add //SliderWidth 3 sub sub promote
+	    /TickStep
+	    	TickMarks DragWidth //SliderWidth 1 sub sub
+		Max Min sub   div  mul
+	    promote
+
+	    /Value Value
+		/Normalize self send
+		/CheckRange self send
+	    def
+	    Value /SetSlider self send
+	grestore
+    } def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Internal methods
+%
+
+    % Track Service
+    %
+    /Trackable? true def
+
+    /TrackStartDict 10 dict def
+    TrackStartDict begin
+
+	/MotionStop [ /TrackMotion /TrackStop ] def
+	/TimerStop [ /TrackTimer /TrackStop ] def
+
+	/Ignore { % event => false
+	    pop nullarray true % eat
+	} def
+
+	/SliderDrag { % event => [TM TS] true
+	    //MotionStop true
+	    /SliderDragMotion /SetMotionProc self send
+	    /SliderDragStop /SetStopProc self send
+	    /SliderHilited? true promote
+	     3 -1 roll /SliderDragMotion self send
+	} def
+
+	/SliderLeft { % event => [TT TS] true
+	    pop
+	    //TimerStop true
+	    /NullNotify /SetStopProc self send
+	    SliderThresh SliderDelay /starttracktimer self send
+	    -1 /HandleSliderStep self send
+	} def
+
+	/SliderRight { % event => [TT TS] true
+	    pop
+	    //TimerStop true
+	    /NullNotify /SetStopProc self send
+	    SliderThresh SliderDelay /starttracktimer self send
+	    1 /HandleSliderStep self send
+	} def
+
+	/MinEndBox { % event => [TS] true
+	    pop
+	    //MotionStop true
+	    /EndBoxMotion /SetMotionProc self send
+	    /MinEndBoxStop /SetStopProc self send
+	    currentcanvas self setcanvas
+		/EndBoxX self send /HiliteEndBox self send
+	    setcanvas
+	} def
+
+	/MaxEndBox { % event => [TS] true
+	    pop
+	    //MotionStop true
+	    /EndBoxMotion /SetMotionProc self send
+	    /MaxEndBoxStop /SetStopProc self send
+	    currentcanvas self setcanvas
+		/EndBoxX self send /HiliteEndBox self send
+	    setcanvas
+	} def
+
+	currentdict /MotionStop undef
+	currentdict /TimerStop undef
+
+    end % TrackStartDict
+
+    /TrackStart { % event => dependents bool
+	VisualState /Active eq {
+	  dup /LocateHit self send
+	  //TrackStartDict HitType get exec
+	} {
+	  pop false
+	} ifelse
+    } def
+
+    /SetMotionProc { % /proc => -
+	load /TrackMotion exch promote
+    } def
+
+    /SetStopProc { % /proc => -
+	load /TrackStop exch promote
+    } def
+
+    /TrackCancel { % event => -
+	pop
+	/paint self send % ???
+	% XXX
+    } def
+
+    % Hit detection
+    %
+    /LocateHit { % event => - ; sets /HitType
+	/?validate self send
+	begin currentcanvas
+	    self setcanvas
+	    /XHit XLocation store
+	    /YHit YLocation store
+	    Name
+	end exch setcanvas
+	AdjustButton eq { /Ignore } {
+	    YHit DragY
+	    dup //SliderHeight add InRange? {
+		XHit DragX
+		dup DragWidth add InRange? {
+		    XHit SliderX
+		    dup //SliderWidth add InRange? {
+		        /SliderDrag
+		    } {
+			XHit SliderX lt {
+			    /SliderLeft
+			} {
+			    /SliderRight
+			} ifelse
+		    } ifelse
+		} {
+		    EndBoxes? {
+			YHit EndBoxY
+			dup //EndBoxHeight add InRange? {
+			    XHit MinEndBoxX
+			    dup //EndBoxWidth add InRange? {
+			        /MinEndBox
+			    } {
+				XHit MaxEndBoxX
+				dup //EndBoxWidth add InRange? {
+				    /MaxEndBox
+				} { /Ignore } ifelse
+			    } ifelse
+			} { /Ignore } ifelse
+		    } { /Ignore } ifelse
+		} ifelse
+	    } { /Ignore } ifelse
+	} ifelse
+	/HitType exch def
+    } def
+
+    /XToValue { % x => value
+	DragX //SliderWidth 2 div add sub
+	DragScale mul
+	Min add
+    } def
+
+    /InRange? { % num low high => bool
+	2 index		    % num low high num
+	gt		    % num low high>num
+	3 1 roll	    % high>num num low
+	ge		    % high>num num>=low
+	and		    % low<=num<high
+    } def
+
+    /EndBoxX { % - => x
+	HitType /MinEndBox eq { MinEndBoxX } { MaxEndBoxX } ifelse
+    } def
+
+    % Drag
+    %
+    /SliderDragMotion { % event => -
+	currentcanvas self setcanvas			% event can
+	exch /XLocation get				% can x
+	/XToValue self send				% can val
+	/CheckRange self send
+	dup /SetSlider self send
+	/Update self send
+	exch setcanvas					% val
+	/previewer self send /ExecuteNotifier self send	%
+    } def
+
+    /SliderDragStop { % event => -
+	/SliderHilited? unpromote
+	currentcanvas self setcanvas			% event can
+	exch /XLocation get				% can x
+	/XToValue self send				% can val
+	exch setcanvas					% val
+	% "setvalue value" will range check and normalize the value
+	/setvalue self send				%
+	/value self send				% val
+	/notifier self send
+	/ExecuteNotifier self send			%
+    } def
+
+    % Step
+    %
+    /TrackTimer { % event => -
+	HitType /SliderLeft eq { -1 } { 1 } ifelse
+	/HandleSliderStep self send
+	pop
+    } def
+
+    /HandleSliderStep { % step => -
+	Delta mul					% step*delta
+	dup /value self send				% step step value
+	add /setvalue self send				% step
+	currentcanvas exch				% can step
+	self setcanvas
+	pause
+	currentcursorlocation				% c step x y
+	2 copy DragX DragY DragWidth //SliderHeight	% c s x y x y X Y W H
+	pointinrect? {					% c s x y
+	    3 -1 roll		 			% c x y s
+	    0 lt { % LEFT				% c x y
+		SliderX 1 sub				% c x y x'
+		2 index lt {				% c x y
+		    exch pop SliderX 2 sub exch		% c x'' y
+		    setcursorlocation			% c
+		} { pop pop } ifelse			% c
+	    } { % RIGHT					% c x y
+		SliderX //SliderWidth add 1 add		% c x y x'
+		2 index ge {				% c x y
+		    exch pop				% c y
+		    SliderX //SliderWidth add 1 add exch% c x'' y
+		    setcursorlocation			% c
+		} { pop pop } ifelse			% c
+	    } ifelse					% c
+	} {						% c step x y
+	    pop pop pop					% c
+	} ifelse					% c
+	/value self send dup Min eq exch Max eq or {
+	    /stoptimer TrackService send
+	} if
+	setcanvas					%
+	/value self send				% val
+	/notifier self send /ExecuteNotifier self send
+    } def
+
+    % EndBox
+    %
+    /EndBoxMotion { % event => -
+	currentcanvas exch     				% can event
+	self setcanvas
+	begin XLocation YLocation end			% can x y
+	dup EndBoxY ge					% can x y bool
+	exch EndBoxY //EndBoxHeight add lt and		% can x bool
+	exch dup EndBoxX ge				% can bool x bool
+	exch EndBoxX //EndBoxWidth add lt and		% can bool bool
+	and {						% can
+	    EndBoxHilited? not {
+		/EndBoxX self send /HiliteEndBox self send
+	    } if
+	} {
+	    EndBoxHilited? {
+		/EndBoxX self send /LoliteEndBox self send
+	    } if
+	} ifelse
+	setcanvas					% can
+    } def
+
+    /MinEndBoxStop { % event => -
+	Min EndBoxStop
+    } def
+
+    /MaxEndBoxStop { % event => -
+	Max EndBoxStop
+    } def
+
+    /EndBoxStop { % event value => -
+	EndBoxHilited? {
+	    currentcanvas self setcanvas
+	    /EndBoxX self send /LoliteEndBox self send
+	    setcanvas
+	    /setvalue self send
+	    /value self send
+	    /notifier self send
+	    /ExecuteNotifier self send
+	} { pop } ifelse
+	pop
+    } def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Painting
+
+    /Paint {
+        /?validate self send
+	/LastSliderX -1 def
+	/Update self send
+	EndBoxes? { /PaintEndBoxes self send } if
+	TickMarks 0 ne { /PaintTickMarks self send } if
+	VisualState /Active ne {
+	    BackgroundColor setcolor 0 0 /size self send StippleRect
+	} if
+    } def
+
+    /SetSlider { % value => -
+	Min sub DragScale div DragX add round cvi
+	/SliderX exch def
+    } def
+
+    /Update { % - => -
+	GraphicFont setfont
+	BackgroundColor dup setcolor		% color
+	LastSliderX -1 eq {
+	    clippath fill
+	    SliderX
+	    dup /PaintRightSlide self send
+	    //SliderWidth 2 div add % XXX???
+	    /PaintLeftSlide self send
+	    /PaintSlider self send
+	} {
+	    SliderX dup LastSliderX gt { % move to RIGHT
+		LastSliderX DragY
+		SliderX LastSliderX sub 1 add //SliderHeight rectpath clip
+		fill
+		//SliderWidth 2 div add % XXX???
+		/PaintLeftSlide self send
+	    } { % move to LEFT
+		SliderX //SliderWidth add DragY
+		LastSliderX SliderX sub //SliderHeight rectpath clip
+		fill
+		/PaintRightSlide self send
+	    } ifelse
+	    initclip
+	    /PaintSlider self send
+	} ifelse
+	/LastSliderX SliderX def
+	VisualState /Active ne {
+	    dup setcolor 0 0 /size self send StippleRect
+	} if
+	pop					%
+    } def
+
+    /PaintLeftSlide { % x => -
+	ForegroundColor setcolor
+	  DragX 1 add DragY //SlotRaise add moveto
+	  0 //SlotHeight rlineto
+	  dup //SliderWidth 4 sub sub 0 rlineto
+	  0 -1 rlineto
+	  dup //SliderWidth 4 add sub neg 0 rlineto
+	  0 -1 rlineto
+	  dup //SliderWidth 4 add sub 0 rlineto
+	  0 -3 rlineto
+	  fill
+	  DragX DragY //SlotRaise add 5 add moveto
+	  //HORIZ_SLIDER_LEFT_ENDCAP_OUTLINE show
+
+	3D? { BG3 } { 2DBG } ifelse setcolor
+	  DragX 3 add //SlotHeight 1 sub DragY add //SlotRaise add
+	  moveto
+	  //SliderWidth 2 sub sub 0 rlineto
+	  stroke
+    } def
+
+    /PaintRightSlide { % x => -
+	3D? { BG2 } { 2DBG } ifelse setcolor
+	  //SliderWidth add 1 sub
+	  dup DragY //SlotRaise add 1 add DragX DragWidth add
+	  2 index sub //SlotHeight 2 sub
+	  rectpath  fill
+
+	3D? {
+	    BG0 setcolor
+	      dup DragY //SlotRaise add 1 add moveto
+	      DragX DragWidth add 2 sub 1 index sub 0 rlineto
+	      stroke
+	      DragX DragWidth add 2 sub DragY //SlotRaise add 5 add moveto
+	      //HORIZ_SLIDER_LR show
+
+	    BG3 setcolor
+	      dup //SlotHeight DragY add //SlotRaise add moveto
+	      DragX DragWidth add 2 sub 1 index sub 1 sub 0 rlineto
+	      stroke
+	      DragX DragWidth add 2 sub DragY //SlotRaise add 5 add moveto
+	      //HORIZ_SLIDER_UR show
+	} {
+	    2DFG setcolor
+	      dup DragY //SlotRaise add 1 add moveto
+	      DragX DragWidth add 2 sub 1 index sub 0 rlineto
+	      stroke
+
+	      dup //SlotHeight DragY add //SlotRaise add moveto
+	      DragX DragWidth add 2 sub 1 index sub 1 sub 0 rlineto
+	      stroke
+
+	      DragX DragWidth add 2 sub DragY //SlotRaise add 5 add moveto
+	      //HORIZ_SLIDER_RIGHT_ENDCAP_OUTLINE show
+	} ifelse
+        pop
+    } def
+
+    /PaintSlider { % - => -
+	GraphicFont setfont
+	3D? {
+	    BG setcolor
+	      SliderX SliderY
+	      2 copy moveto
+	      //HORIZ_SLIDER_CONTROL_FILL show
+	    BG3 setcolor
+	      2 copy moveto
+	      //HORIZ_SLIDER_CONTROL_LR show
+	    BG0 setcolor
+	      moveto
+	      //HORIZ_SLIDER_CONTROL_UL show
+	    SliderHilited? {
+		BG3 setcolor
+		  SliderX 2 sub SliderY 1 add
+		  2 copy moveto
+		  //DIMPLE_UL show
+		BG0 setcolor
+		  moveto
+		  //DIMPLE_LR show
+	    } if
+	} {
+	    2DBG setcolor
+	      SliderX SliderY
+	      2 copy moveto
+	      //HORIZ_SLIDER_CONTROL_FILL show
+	    2DFG setcolor
+	      moveto
+	      //HORIZ_SLIDER_CONTROL_OUTLINE show
+	} ifelse
+    } def
+
+    /PaintEndBoxes { % - => -
+	MaxEndBoxX
+	EndBoxY  //EndBoxWidth 1 sub  //EndBoxHeight
+	EndBoxHilited?  HitType
+	MinEndBoxX 6 copy pop /MinEndBox eq and
+	3D? {
+	    /Paint3DBox self send
+	    /MaxEndBox eq and /Paint3DBox self send
+	} {
+	    /PaintEndBox self send
+	    /MaxEndBox eq and /PaintEndBox self send
+	} ifelse
+    } def
+
+    /PaintEndBox { % x y w h bool => -
+      2DFG setcolor
+      5 1 roll rectpath
+      gsave not { 2DBG setcolor } if fill grestore
+      stroke
+    } def
+
+    /PaintTickMarks { % - => -
+	MinTickX TickStep MaxTickX
+	3D? {
+	    % REMIND: Redo as 2 loops & 2 strokes
+	    {   BG0 setcolor 
+		  dup 1 TickMarkY add moveto
+		  0 //TickMarkHeight 1 sub rlineto  1 0 rlineto
+		  stroke
+		BG3 setcolor
+		  1 TickMarkY add moveto
+		  1 0 rlineto  0 //TickMarkHeight 2 sub rlineto
+		  stroke
+	    } for
+	} {
+	    2DFG setcolor
+	    {   0 2 TickMarkY add //TickMarkHeight rectpath
+		fill
+	    } for
+	} ifelse
+    } def
+
+    /HiliteEndBox { % x => -
+	EndBoxY //EndBoxWidth 1 sub //EndBoxHeight
+	true 3D? { Paint3DBox } { PaintEndBox } ifelse
+	/EndBoxHilited? true promote
+    } def
+
+    /LoliteEndBox { % x => -
+	EndBoxY //EndBoxWidth 1 sub //EndBoxHeight
+	false 3D? { Paint3DBox } { PaintEndBox } ifelse
+	/EndBoxHilited? unpromote
+    } def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Demo
+%
+
+    IncludeDemos? {
+	/demo { % - => window hslider
+	    10 dict begin gsave
+
+		% Make a window with a calculated pane.
+		/pan /Calculated framebuffer /new ClassPanel send def
+		/win pan framebuffer /new ClassBaseWindow send def
+		ClassName (% Demo) sprintf /setlabel win send
+		(But I just) (met 'er!) /setfooter win send
+
+		% Make a slider.
+		/slider framebuffer /new ClassHSlider send def
+
+		% The range is 0 to 100 by default.
+		% Endboxes are off by default.
+		% There are no tick marks, by default.
+		% The default slider increment and decrement delta is 1.
+		% By default, the normalizer function doesn't change the value.
+
+		% Give the slider a value
+		37 /setvalue slider send
+
+		% Set up slider target, notifier, and previewer.
+		win /settarget slider send
+
+		{ % Notifier:				% value slider
+		    % Tell target (our window) to set its footer.
+		    exch (%) sprintf			% s (v)
+		    (Slider Notify) exch		% s (SN) (v)
+		    /setfooter /sendtarget 5 -1 roll	% (SN) (v) /sf /st s
+		    send				%
+		} /setnotifier slider send
+
+		{ % Previewer:				% value slider
+		    % Tell target (our window) to set its footer.
+		    exch (%) sprintf			% s (v)
+		    (Slider Preview) exch		% s (SN) (v)
+		    /setfooter /sendtarget 5 -1 roll	% (SN) (v) /sf /st s
+		    send				%
+		} /setpreviewer slider send
+
+		% Put the slider in the center of the panel.
+		/slider slider [/Center {/Center PARENT POSITION}]
+		/addclient pan send
+
+		% Reshape and activate the window.
+		20 40 20 40 /setgaps win send
+		/place win send
+		/new ClassEventMgr send /activate win send
+		/map win send
+
+		win slider
+	    grestore end
+	} def
+    } if
+
+classend def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ClassVSlider
+%
+
+/ClassVSlider ClassHSlider []
+classbegin
+
+    /reshape {	% x y w h => -
+	gsave
+	    4 2 roll				% w h x y
+	    translate				% w h
+	    1 index 0 translate
+	    90 rotate
+	    exch				% h w
+	    0 0 4 2 roll /reshape super send
+	grestore
+    } def
+
+    /move { % x y => -
+	/size self send
+	pop 3 -1 roll add exch
+	/move super send
+    } def
+
+    /minsize { % - => w h
+	/minsize super send
+	exch
+    } def
+
+    /preferredsize {
+	/preferredsize super send
+	exch
+    } def
+
+    /offset { % name => x y
+        /?validate self send
+	dup {
+	    /MinEnd {
+		pop //SliderHeight 2 div 0
+	    }
+	    /MaxEnd {
+		pop //SliderHeight 2 div
+		/size self send exch pop
+	    }
+	    /MinTick {
+		pop /size self send pop MinTickX
+	    }
+	    /MaxTick {
+		pop /size self send pop MaxTickX 
+	    }
+	    /Default {
+		/offset super send
+	    }
+	} case
+    } def
+
+    /PaintLeftSlide { % x => -
+	ForegroundColor setcolor
+	  DragX 1 add DragY //SlotRaise add  moveto
+	  0 //SlotHeight  rlineto
+	  dup //SliderWidth 4 sub sub 0  rlineto
+	  0 -1  rlineto
+	  dup //SliderWidth 4 add sub neg 0  rlineto
+	  0 -1  rlineto
+	  dup //SliderWidth 4 add sub 0  rlineto
+	  0 -3  rlineto
+	  fill
+	  DragX 3 add DragY //SlotRaise 5 add add  moveto
+	  //VERT_SLIDER_LL show
+	  DragX 3 add DragY //SlotRaise 5 add add  moveto
+	  //VERT_SLIDER_LR show
+
+	3D? { BG3 } { 2DBG } ifelse setcolor
+	  DragX 4 add //SlotHeight 1 sub //SlotRaise add DragY add
+	  moveto
+	  //SliderWidth 2 sub sub 0 rlineto
+	  stroke
+    } def
+
+    /PaintRightSlide { % x => -
+	3D? { BG2 } { 2DBG } ifelse setcolor
+	  //SliderWidth 1 sub add
+	  dup DragY //SlotRaise 1 add add DragX DragWidth add
+	  2 index sub //SlotHeight 2 sub
+	  rectpath  fill
+
+	3D? {
+	    BG0 setcolor
+	      dup DragY //SlotRaise 1 add add  moveto
+	      DragX DragWidth add 2 sub 1 index sub 0  rlineto
+	      stroke
+	      DragX 3 add DragWidth add 2 sub
+	      DragY //SlotRaise 5 add add  moveto
+	      //VERT_SLIDER_UR show
+
+	    BG3 setcolor
+	      dup
+	      //SlotHeight DragY add //SlotRaise add  moveto
+	      DragX DragWidth add 2 sub 1 index sub 0  rlineto
+	      stroke
+	      DragX 3 add DragWidth add 2 sub
+	      DragY //SlotRaise 5 add add  moveto
+	      //VERT_SLIDER_UL show
+	      pop
+	} {
+	    2DFG setcolor
+	      dup DragY //SlotRaise add 1 add  moveto
+	      DragX DragWidth add 2 sub 1 index sub 0  rlineto
+	      stroke
+
+	      dup //SlotHeight DragY add //SlotRaise add  moveto
+	      DragX DragWidth add 2 sub 1 index sub 0  rlineto
+	      stroke
+
+	      DragX 3 add DragWidth add 2 sub
+	      DragY //SlotRaise 5 add add  moveto
+	      //VERT_SLIDER_TOP_ENDCAP_OUTLINE show
+	      pop
+	} ifelse
+    } def
+
+    /PaintSlider { % - => -
+	GraphicFont setfont
+	SliderX 10 add SliderY
+	2 copy moveto
+	3D? {
+	    BG setcolor //VERT_SLIDER_CONTROL_FILL show
+	    2 copy moveto
+	    BG0 setcolor //VERT_SLIDER_CONTROL_UL show
+	    moveto
+	    BG3 setcolor //VERT_SLIDER_CONTROL_LR show
+	    SliderHilited? {
+		SliderX 13 add SliderY
+		2 copy moveto
+		BG3 setcolor //DIMPLE_UL show
+		moveto
+		BG0 setcolor //DIMPLE_LR show
+	    } if
+	} {
+	    2DBG setcolor
+	      //VERT_SLIDER_CONTROL_FILL show
+	    2DFG setcolor
+	      moveto
+	      //VERT_SLIDER_CONTROL_OUTLINE show
+	} ifelse
+    } def
+
+    /PaintEndBoxes { % - => -
+	MaxEndBoxX //EndBoxWidth add
+	EndBoxY  1 //EndBoxWidth sub  //EndBoxHeight
+	EndBoxHilited?  HitType
+	MinEndBoxX //EndBoxWidth add 6 copy pop
+	/MinEndBox eq and
+  	3D? {
+	    Paint3DBox
+	    /MaxEndBox eq and Paint3DBox
+	} {
+	    PaintEndBox
+	    /MaxEndBox eq and PaintEndBox
+	} ifelse
+    } def
+
+    /HiliteEndBox { % x => -
+	//EndBoxWidth add
+	EndBoxY 1 //EndBoxWidth sub //EndBoxHeight
+	true 3D? { Paint3DBox } { PaintEndBox } ifelse
+	/EndBoxHilited? true promote
+    } def
+
+    /LoliteEndBox { % x => -
+	//EndBoxWidth add
+	EndBoxY 1 //EndBoxWidth sub //EndBoxHeight
+	false 3D? { Paint3DBox } { PaintEndBox } ifelse
+	/EndBoxHilited? unpromote
+    } def
+
+    /PaintTickMarks { % - => -
+	3D? {
+	    % REMIND: Redo as 2 loops & 2 strokes
+            MinTickX 1 add TickStep MaxTickX 1 add {
+	        BG0 setcolor
+		  dup //TickMarkHeight moveto
+		  1 0 rlineto  0 1 //TickMarkHeight sub rlineto
+		  stroke
+		BG3 setcolor
+		  //TickMarkHeight 1 sub moveto
+		  0 2 //TickMarkHeight sub rlineto  1 0 rlineto
+		  stroke
+	    } for
+        } {
+	    2DFG setcolor
+            MinTickX TickStep MaxTickX {
+	        0 2 TickMarkY add //TickMarkHeight rectpath
+		fill
+	    } for
+	} ifelse
+    } def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Demo
+%
+
+    IncludeDemos? {
+	/demo { % - => window vslider 
+	    10 dict begin gsave
+		% Make a window with a calculated pane.
+		/pan /Calculated framebuffer /new ClassPanel send def
+		/win pan framebuffer /new ClassBaseWindow send def
+		ClassName (% Demo) sprintf /setlabel win send
+		(But I just) (met 'er!) /setfooter win send
+
+		% Make a slider.
+		/slider framebuffer /new ClassVSlider send def
+
+		% Use the default slider range of 0 to 100.
+		% Yes we want endboxes (default false for no endboxes).
+		true /setendboxes slider send
+		% Tick marks every 10 units (default 0 for no tick marks).
+		10 /settickmarks slider send
+		% Increment and decrement the slider by delta of 5 (default 1).
+		5 /setdelta slider send
+		% Constrain the slider value to multiples of 5.
+		{5 div round 5 mul} /setnormalizer slider send
+
+		% Set up slider target, notifier, and previewer.
+		win /settarget slider send
+
+		{ % Notifier:				% value slider
+		    % Update the numeric field.
+		    /setvalue				% v s /sv
+		      /num /client 4 -1 roll		% v /sv /n /c s
+		      /Parent get			% v /sv /n /c p
+		      send pop				% v /sv numfield
+		    send				% 
+		} dup /setnotifier slider send
+		/setpreviewer slider send
+
+		% Put the slider in the center of the panel.
+		/slider slider [/Center {/Center PARENT POSITION}]
+		/addclient pan send
+
+		% Make a numeric field.
+		/num framebuffer /new ClassNumericField send def
+		0 100 /setrange num send
+		{5 div round 5 mul} /setnormalizer num send
+		5 /setdelta num send
+
+		% Set up the numeric field target and notifier.
+		slider /settarget num send
+		{ /setvalue /sendtarget 3 -1 roll send
+		} /setnotifier num send
+
+		% Reset the slider and numeric values.
+		0 /setvalue slider send
+		0 /setvalue num send
+
+		% Stick the numeric field below the slider's minimum end.
+		/num num [
+		    /North { /MinEnd /slider POSITION 0 -3 xyadd }
+		] /addclient pan send
+
+		% Make a minimum value label.
+		/minlabel (0) framebuffer /new ClassLabel send def
+		% Stick it to the right of the slider's minimum tick mark.
+		/minlabel minlabel [
+		    /West { /MinTick /slider POSITION 6 0 xyadd }
+		] /addclient pan send
+
+		% Make a maximum value label.
+		/maxlabel (100) framebuffer /new ClassLabel send def
+		% Stick it to the right of the slider's maximum tick mark.
+		/maxlabel maxlabel [
+		    /West { /MaxTick /slider POSITION 6 0 xyadd }
+		] /addclient pan send
+
+		/minsize {
+		    /minsize super send
+		    80 20 xyadd
+		} /installmethod pan send
+
+		% Reshape and activate the window.
+		/place win send
+		/mgr /new ClassEventMgr send def
+		mgr /activate win send
+		/map win send
+
+		win slider
+	    grestore end
+	} def
+    } if
+
+classend def
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Clean up
+%
+
+[   /SliderWidth /SliderHeight /SlotHeight /SlotRaise
+    /EndBoxWidth /EndBoxHeight /EndBoxGap /EndBoxRaise 
+    /TickMarkHeight
+    /HORIZ_SLIDER_CONTROL_UL /HORIZ_SLIDER_CONTROL_LR
+    /HORIZ_SLIDER_CONTROL_FILL
+    /HORIZ_SLIDER_UL /HORIZ_SLIDER_LL /HORIZ_SLIDER_UR /HORIZ_SLIDER_LR
+    /VERT_SLIDER_CONTROL_UL /VERT_SLIDER_CONTROL_UL
+    /VERT_SLIDER_CONTROL_FILL
+    /DIMPLE_UL /DIMPLE_LR /DIMPLE_FILL
+] { ClassHSlider exch undef } forall
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

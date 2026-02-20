@@ -1,0 +1,376 @@
+(echo '/;exit /pop cvx def' | exec psh - $0) ;exit
+%
+% This file is a product of Sun Microsystems, Inc. and is provided for
+% unrestricted use provided that this legend is included on all tape
+% media and as a part of the software program in whole or part.  Users
+% may copy or modify this file without charge, but are not authorized to
+% license or distribute it to anyone else except as part of a product
+% or program developed by the user.
+%
+% THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
+% WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+% PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
+%
+% This file is provided with no support and without any obligation on the
+% part of Sun Microsystems, Inc. to assist in its use, correction,
+% modification or enhancement.
+%
+% SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
+% INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY THIS FILE
+% OR ANY PART THEREOF.
+%
+% In no event will Sun Microsystems, Inc. be liable for any lost revenue
+% or profits or other special, indirect and consequential damages, even
+% if Sun has been advised of the possibility of such damages.
+%
+% Sun Microsystems, Inc.
+% 2550 Garcia Avenue
+% Mountain View, California  94043
+%
+%
+% @(#)magnify 1.7 91/02/11
+%
+% Copyright (c) 1989,1990 by Sun Microsystems, Inc.
+%
+
+% This NeWS program implements a window containing a single canvas which
+% provides a magnified (or reduced) view of any area on the screen.  The
+% magnification (or reduction) is accomplished by obtaining a bitmap image
+% of the desired area of the screen, then performing pixel replication
+% (or merge) via the PostScript `scale' operator.
+
+% The degree of magnification (reduction) may be changed through the use
+% of a pop-up menu.  The source location is chosen by pressing the SELECT
+% mouse button over the magnification canvas, then movine the mouse cursor
+% over the area to be displayed before releasing SELECT.  The magnification
+% canvas will dynamically to show the area under the cursor while the mouse
+% is being dragged.
+
+/MagnifyCanvas ClassCanvas dictbegin
+    /Factor		1	def
+    /ScaleFactor    	1   	def
+    /animator		null	def
+    /ClientWidth	0	def
+    /ClientHeight	0	def
+    /XPosition		0	def
+    /YPosition		0	def
+    /SourceMaxX		0	def
+    /SourceMaxY		0	def
+dictend
+classbegin
+    %-%	    Calculated Variables:
+
+    %	Return the width of the source region
+    %
+    %	-  =>  w
+    /SourceWidth {	%  -  =>  w
+	/size self send pop
+	ScaleFactor div
+	/SourceWidth 1 index promote
+    } def
+
+
+    %	Return the height of the source region
+    %
+    %	-  =>  h
+    /SourceHeight {	%  -  =>  h
+	/size self send exch pop
+	ScaleFactor div
+	/SourceHeight 1 index promote
+    } def
+
+
+    %	Return a window to use to extract the current bitmap from a section
+    %	of the screen.
+    %
+    %	-  =>  window
+    /SourceWindow {
+	% Create a canvas to use, and promote it.
+	/SourceWindow framebuffer /new ClassCanvas send promote
+
+	% Make it transparent so we can pick up whatever bits are under it.
+	% We could do this with `false /setdamageable SourceWindow send',
+	% but that seems a little obscure...
+	SourceWindow /Transparent true put
+
+	% Turn off the cursor in the source window so that we don't get
+	% it in the image.
+	/nouse /setcursor SourceWindow send
+
+	% And leave the newly created SourceWindow on the stack.
+	SourceWindow
+    } def
+
+
+    %-%	    Methods:
+
+    /NewInit {  % - => -
+	/NewInit super send
+
+	/Grid framebuffer /new ClassMenu send
+	/setmenu self send
+	true /setmenuable self send
+
+	{
+	    [
+		[ (Zoom in) 	/ZoomIn	    ]
+		[ (Zoom out)	/ZoomOut    ]
+		[ (Reset)
+		    {
+			exch pop  	    	    	    	%  menu
+			1 /setzoom /sendtarget 3 index send
+		    }
+		]
+	    ] setitemlist
+
+	    (Magnify) setlabel
+	    true setpinnable
+	} Menu send
+
+	true /settrackable self send
+    } def
+
+
+    % override
+    %	Make sure that the SourceCanvas is destroyed.  Since it is a
+    %	child of framebuffer, not the application window, it might not
+    %	happen automatically under all circumstances.
+    %
+    %	-  =>  -
+    /destroy {	    %  -  =>  -
+	/SourceCanvas promoted? {
+	    SourceCanvas
+	    /SourceCanvas unpromote
+	    /destroy exch send
+	} if
+
+	/destroy super send
+    } def
+
+    
+    % override
+    %	Any smaller than 32x32 just isn't worth it, but make sure that
+    %	our superclass doesn't have even more grandiose requirements...
+    %
+    %	-  =>  w h
+    /minsize { % - => w h
+	/minsize super send
+	32 max exch
+	32 max exch
+    } def
+
+
+    % override
+    %	We prefer to be at least 128x128.
+    %
+    %	-  =>  w h
+    /preferredsize { % - => w h
+	/preferredsize super send
+	128 max exch
+	128 max exch
+    } def
+
+
+    %	Set the size and maximum location of the source window according
+    %	to the current magnify canvas size and scale factor.
+    %
+    %	-  =>  -
+    /SizeSourceWindow {   %  -  =>  -
+	currentcanvas
+	    Parent setcanvas
+	    /size self send
+	    ScaleFactor div /SourceHeight exch def
+	    ScaleFactor div /SourceWidth exch def
+
+	    SourceWindow /Parent get setcanvas
+	    clippath pathbbox
+	    SourceHeight sub /SourceMaxY exch def
+	    SourceWidth  sub /SourceMaxX exch def
+	    pop pop
+
+	    0 0 SourceWidth 1 add  SourceHeight 1 add rectpath
+	    SourceWindow reshapecanvas
+	setcanvas
+    } def
+
+
+    %	Position the source window to be as nearly centered over the cursor
+    %	as possible without extending beyond the edge of the screen.
+    %
+    %	x  y  =>  -
+    /PositionSourceWindow { 	%  x  y  =>  -
+	/XPosition 2 index promote
+	/YPosition 1 index promote
+	framebuffer setcanvas
+	exch SourceWidth  2 div sub
+	exch SourceHeight 2 div sub
+	0 max SourceMaxY min exch
+	0 max SourceMaxX min exch
+	SourceWindow movecanvas
+    } def
+
+
+    %	Grab the bits under the SourceWIndow and display them vie
+    %	imagecanvas.
+    %
+    %	-  =>  -
+    /PaintMagnified {
+	/map SourceWindow send
+	SourceWindow canvastotop
+	self setcanvas
+	ScaleFactor ScaleFactor scale
+	SourceWindow imagecanvas
+	/unmap SourceWindow send
+    } def
+
+
+    % override
+    %
+    %	-  =>  -
+    /Paint {	%  -  =>  -
+	clippath emptypath not {
+	    /PaintMagnified self send
+	} {
+	    /Paint super send
+	} ifelse
+    } def
+
+
+    % override
+    %	We don't have any layout info to worry about, but we do want to
+    %	clear cached values.
+    %
+    %	-  =>  -
+    /invalidate {   %  -  =>  -
+	/SourceWidth unpromote
+	/SourceHeight unpromote
+	
+	/invalidate super send
+    } def
+
+
+    % override
+    %	Ensure that the source window is the right size and location.
+    %
+    %	-  =>  -
+    /validate {	        %	-  =>  -
+	/SizeSourceWindow self send
+	XPosition YPosition /PositionSourceWindow self send
+    } def
+    
+
+
+    %	Set zoom to absolute level
+    %
+    %	level  =>  -
+    /setzoom {	%  level  =>  -
+	/Factor exch store
+	Factor 0 ge {
+	    /ScaleFactor Factor 1 add promote
+
+	    (MagLevel) ScaleFactor 3 string cvs (:1) append
+	    /setfooter /Parent self send send
+	} {
+	    /ScaleFactor 1 Factor abs 1 add div promote
+
+	    (MagLevel) (1:) Factor abs 1 add 3 string cvs append
+	    /setfooter /Parent self send send
+	} ifelse
+	
+	/size self send
+	ScaleFactor div /SourceHeight exch promote
+	ScaleFactor div /SourceWidth  exch promote
+	
+	/SizeSourceWindow self send
+	XPosition YPosition /PositionSourceWindow self send
+	/paint self send
+    } def
+
+    
+    %	Menu callback
+    %	Zoom in (magnify) one level
+    %
+    %	menu  index  =>  -
+    /ZoomIn   {	    %	menu  index  =>  -
+	Factor 1 add /setzoom self send
+    } def
+
+    
+    %	Menu callback
+    %	Zoom out (reduce) one level
+    %
+    %	menu  index  =>  -
+    /ZoomOut  {	    %	menu  index  =>  -
+	Factor 1 sub /setzoom self send
+    } def
+
+    
+    %-% The Track callbacks
+
+    %	Tell track service which events we are interested in
+    %
+    %	event  =>  false
+    %	event  =>  /name  true
+    %	event  =>  [ /label ... ] true
+    /TrackStart {   %  event  =>  false  |  </name true>  |  [/label...] true
+	pop
+	[ /TrackMotion ] true
+    } def
+
+    %	Handle /TrackMotion tracking events
+    %
+    %	event  =>  -
+    /TrackMotion {  %	event  =>  -
+	framebuffer setcanvas
+	/Coordinates exch send
+	aload pop
+	/PositionSourceWindow self send
+	/PaintMagnified self send
+    } def
+    
+classend def	    %-%	    MagnifyCanvas
+
+
+%   Create an event manager for this application
+/emgr /new ClassEventMgr send def
+
+%   Create and activate a MagnifyCanvas
+/can framebuffer /new MagnifyCanvas send def
+emgr /activate can send
+
+%   Create a base window and make the MagnifyCanvas it's only client.
+/win can framebuffer /new ClassBaseWindow send def
+
+%   Override the default /PaintIcon for the window by installing a method
+%   into the instance.
+%
+%   When closed, paint a representation of the entire framebuffer...
+/PaintIcon {
+	/size framebuffer send
+	/size self send
+	3 -1 roll div exch 3 -1 roll div exch scale
+	framebuffer imagecanvas
+} /installmethod win send
+
+% No text on the icon
+null /seticonlabel win send
+
+% Set the window header label
+(Magnifying Glass) /setlabel win send
+
+% Initialize the zoom level
+1 /setzoom can send
+
+% Ok, let's get this show on the road...
+/place win send
+/map win send
+emgr /activate win send
+
+% And finally, detach from the psh that invoked us.
+newprocessgroup
+currentfile closefile
+
+% Tell GNU emacs that to use PostScript mode on this file.
+%Local Variables:
+%mode: PostScript
+%End:

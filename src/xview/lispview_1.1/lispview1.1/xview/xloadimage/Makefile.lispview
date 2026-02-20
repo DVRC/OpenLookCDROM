@@ -1,0 +1,11 @@
+# This Makfile creates libxloadimage.a.  See README.lispview for how these
+# sources differ from the standard xloadimage distribution.
+
+OBJS= imagetypes.o new.o path.o pbm.o lv-send.o sunicon.o sunraster.o value.o \
+      hash.o xbitmap.o xpixmap.o xwd.o zio.o
+
+CFLAGS= -O -I$(OPENWINHOME)/include -DLISPVIEW
+
+libxloadimage.a: $(OBJS)
+	ar vcr libxloadimage.a $(OBJS) 
+	ranlib libxloadimage.a

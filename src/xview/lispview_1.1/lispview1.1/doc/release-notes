@@ -1,0 +1,43 @@
+Release Notes for LispView 1.1
+October 1991
+
+This supplements any release notes presented in the LispView Programming
+Manual. 
+
+* Debugging in LispView
+During the normal course of programming LispView, applications will
+inevitably break inside the LispView receive-event or deliver-event methods.
+These methods run in their own processes; consequently, debugging them when
+they break can be difficult.  In an effort to simplify debugging, LispView
+uses debugger advice which stops scheduling when an error is signalled.
+This has the beneficial effect of preventing other processes from
+interfering with the read-eval-print loop of the broken process; however,
+sometimes this prevents some other essential process from running and so
+locks up the Lisp session.
+To disable the debugger advice, type:
+
+(lcl:remove-advice 'lucid:enter-debugger 'lv::nosched)
+
+* OW 2.0 server problem
+If you start a program that creates images (e.g., the spirals demo)
+on a "fresh" OpenWindows 2.0 server (one that has not been "warmed up"),
+your program may cause the server to exit.  You can avoid this by running
+the Open Windows 3.0 server, where the problem is fixed.  (Alternatively,
+a patched version of the OpenWindows 2.0 server that fixes this problem
+and others, is available from the Sun Patch Database.  Request the latest
+revision of Sun Patch ID 100176.)
+
+* Patch for XView 2.0 scrolling list problem
+Deleting items from an exclusive scrolling-list which does not require
+a selection, and then selecting an item in the shortened list, can
+sometimes cause a segmentation fault.  This is a problem in XView 2.0;
+it is fixed in XView 3.0.
+One way to avoid the problem in LispView is to set :selection-required t
+for the scrolling list.  Alternatively, you can fix the problem with a
+patch that is included in the "xview" subdirectory of this source release.
+To apply the patch, cd to that subdirectory and load the patch into your
+LispView image with:
+
+(load-foreign-files "p_list.o")
+
+

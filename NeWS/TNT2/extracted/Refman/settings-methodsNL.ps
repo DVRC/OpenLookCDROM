@@ -1,0 +1,1705 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 12 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 9 /Palatino-Italic FMDEFINEFONT
+5 15 /Palatino-Italic FMDEFINEFONT
+6 10 /Palatino-Roman FMDEFINEFONT
+7 9 /Helvetica FMDEFINEFONT
+8 9 /Helvetica-Bold FMDEFINEFONT
+9 7 /Helvetica-Oblique FMDEFINEFONT
+%%Page: "189" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (189) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (21-0) 158.58 672.33 S
+-0.12 (21-0) 158.58 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (ClassSettings and ClassCheckBoxes) 199.01 509.03 B
+3 F
+7 X
+1 K
+-3.12 (21) 536.13 508.36 S
+4 F
+0 X
+0 K
+0.47 0.09 (Figur) 198 354.6 B
+0.47 0.09 (e 21-1) 218.77 354.6 B
+0 F
+0.47 0.09 (The ClassSettings and ClassCheckBoxes subtr) 248.4 354.6 B
+0.47 0.09 (ee) 435.69 354.6 B
+5 F
+(ClassSettings) 54 322.6 T
+6 F
+0.52 0.1 (ClassSettings is a single class implementing both exclusive and non-exclusive ) 198 300.93 B
+0.41 0.1 (settings, including the special variation of exclusive settings which toggles the ) 198 288.53 B
+0.52 0.1 (curr) 198 276.13 B
+0.52 0.1 (ently selected item on clicking on it a second time, thus allowing for no ) 216.58 276.13 B
+0.52 0.1 (item being curr) 198 263.73 B
+0.52 0.1 (ently chosen. Settings can be: ) 268.09 263.73 B
+7 F
+0.45 -0.27 (/Exclusive) 404.8 263.73 B
+6 F
+0.52 0.1 (, ) 442.55 263.73 B
+7 F
+0.45 -0.27 (/NonExclusive) 448.27 263.73 B
+6 F
+0.52 0.1 (, or ) 501.69 263.73 B
+7 F
+0.45 -0.27 (/ExclusiveV) 198 251.33 B
+0.45 -0.27 (ariation) 240.81 251.33 B
+6 F
+0.52 0.1 (. The settings in a gr) 268.12 251.33 B
+0.52 0.1 (oup ar) 361.75 251.33 B
+0.52 0.1 (e items and ar) 391.62 251.33 B
+0.52 0.1 (e added, deleted and ) 456.57 251.33 B
+0.36 0.1 (accessed using the methods found in ClassItemGr) 198 238.93 B
+0.36 0.1 (oup \050see ClassItemGr) 425.36 238.93 B
+0.36 0.1 (oup on ) 522.81 238.93 B
+0.52 0.1 (page 87\051. Some of the ClassItemGr) 198 226.53 B
+0.52 0.1 (oup methods inherited by ClassButtons ar) 355.62 226.53 B
+0.52 0.1 (e:) 548.51 226.53 B
+0.1 (/setitemlist) 198 210.13 S
+0.1 (/itemlist) 279 210.13 S
+0.1 (/itemcount) 360 210.13 S
+0.1 (/insertitem) 198 193.73 S
+0.1 (/r) 279 193.73 S
+0.1 (eplaceitem) 289.02 193.73 S
+0.1 (/deleteitem) 360 193.73 S
+0.1 (/appenditem) 198 177.33 S
+0.1 (/itemsize) 279 177.33 S
+0.1 (/itemlocation) 360 177.33 S
+0.1 (/itembbox) 198 160.93 S
+0.1 (/pointinitem?) 279 160.93 S
+0.1 (/pointtoitem) 360 160.93 S
+54 144 558 466.34 C
+90 369 558 456.34 C
+90 369 558 456.34 R
+7 X
+0 K
+V
+8 F
+0 X
+(ClassObject) 93 446.21 T
+(ClassDrawable) 168.01 445.72 T
+(ClassRegion) 236.5 400.39 T
+(ClassItemGroup) 307.79 400.89 T
+(ClassSettings) 396.5 378.61 T
+(ClassCheckBoxes) 478.36 377.79 T
+145.78 448.19 165.78 448.19 2 L
+0.5 H
+2 Z
+N
+289.09 403.5 307.09 403.5 2 L
+N
+476.79 380.56 456.79 380.56 2 L
+N
+9 F
+(\050ClassControl\051) 402.64 388.6 T
+(\050ClassLayout\051) 318.13 409.59 T
+231.69 447.9 237 408.69 2 L
+N
+395.29 384.34 377.29 402.34 2 L
+N
+54 144 558 466.34 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "189" 2
+1 14 /Palatino-Italic FMDEFINEFONT
+%%Page: "190" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (21) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (190) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+0.52 0.1 (In addition, ClassContr) 198 641.33 B
+0.52 0.1 (ol is mixed-in to ClassSettings. The contr) 304.43 641.33 B
+0.52 0.1 (ol interfaces ) 491.31 641.33 B
+0.52 0.1 (documented in ClassSettings ar) 198 628.93 B
+0.52 0.1 (e: /setnoti\336er) 341.69 628.93 B
+0.52 0.1 (, /noti\336er) 403.22 628.93 B
+0.52 0.1 (, /setvisualstate) 447.27 628.93 B
+0.52 0.1 (/visualstate and the tar) 198 616.53 B
+0.52 0.1 (get interface.) 305.58 616.53 B
+1 F
+(Cr) 126 583.47 T
+(eation) 140.52 583.47 T
+6 F
+0.52 0.1 (Instances and items follow the item gr) 198 562.13 B
+0.52 0.1 (oup interface exactly) 373.16 562.13 B
+0.52 0.1 (, overriding only ) 467.05 562.13 B
+8 F
+0.16 -0.27 (/NewItem) 198 549.73 B
+6 F
+0.19 0.1 ( to stor) 235.29 549.73 B
+0.19 0.1 (e the display item and to initialize the \322chosen\323 state to be false.) 266.91 549.73 B
+7 F
+(/new) 54 530 T
+(placement parent ) 198 530 T
+8 F
+(/new) 269.93 530 T
+7 F
+( instance) 289.91 530 T
+6 F
+0.52 0.1 (Cr) 198 510.33 B
+0.52 0.1 (eates a new instance of ClassSettings. Placement is one of ) 209.05 510.33 B
+7 F
+0.45 -0.27 (/Spaced) 475.07 510.33 B
+6 F
+0.52 0.1 (, ) 506.15 510.33 B
+7 F
+0.45 -0.27 (/Absolute) 511.87 510.33 B
+6 F
+0.52 0.1 (, ) 546.91 510.33 B
+7 F
+0.45 -0.27 (/Calculated) 198 497.93 B
+6 F
+0.52 0.1 ( or ) 239.99 497.93 B
+7 F
+0.45 -0.27 (/Grid) 255.83 497.93 B
+6 F
+0.52 0.1 (.) 273.95 497.93 B
+1 F
+(Justi\336cation) 126 464.87 T
+7 F
+(/setjustification) 54 444.2 T
+(/Left | /Centered ) 198 444.2 T
+8 F
+(/setjustification) 264.79 444.2 T
+7 F
+( -) 330.71 444.2 T
+6 F
+0.52 0.1 (Sets the justi\336cation of the settings.) 198 424.53 B
+7 F
+(/justification) 54 404.8 T
+(- ) 198 404.8 T
+8 F
+(/justification) 203.49 404.8 T
+7 F
+( /Left | /Centered) 256.43 404.8 T
+6 F
+0.52 0.1 (Returns the settings justi\336cation.) 198 385.13 B
+1 F
+(Choices) 126 352.07 T
+7 F
+(/setchoicemode) 54 331.4 T
+(/Exclusive | /NonExclusive | /ExclusiveVariation ) 198 331.4 T
+8 F
+(/setchoicemode) 388.47 331.4 T
+7 F
+( -) 456.4 331.4 T
+6 F
+0.52 0.1 (Sets the style of the setting. Y) 198 311.73 B
+0.52 0.1 (ou should call ) 332.17 311.73 B
+8 F
+0.45 -0.27 (/setchoicemode) 400.01 311.73 B
+6 F
+0.52 0.1 ( immediately after ) 464.16 311.73 B
+8 F
+0.45 -0.27 (/new) 198 299.33 B
+6 F
+0.52 0.1 (, and befor) 215.98 299.33 B
+0.52 0.1 (e adding any items to the setting.) 265.4 299.33 B
+7 F
+(/choicemode) 54 279.6 T
+8 F
+(- /choicemode) 198 279.6 T
+7 F
+( /Exclusive | /NonExclusive | /ExclusiveVariation) 258.43 279.6 T
+6 F
+0.52 0.1 (Returns the style of the setting.) 198 259.93 B
+0.52 0.1 (The default is ) 198 239.53 B
+7 F
+0.45 -0.27 (/NonExclusive) 263.84 239.53 B
+6 F
+0.52 0.1 (.) 317.27 239.53 B
+7 F
+(/chosen?) 54 219.8 T
+(item-index ) 198 219.8 T
+8 F
+(/chosen?) 241.95 219.8 T
+7 F
+( boolean) 281.4 219.8 T
+6 F
+0.52 0.1 (Indicates whether the item at ) 198 200.14 B
+7 F
+0.45 -0.27 (item-index) 334.65 200.14 B
+6 F
+0.52 0.1 ( is chosen.) 373.4 200.14 B
+FMENDPAGE
+%%EndPage: "190" 3
+3 10 /Palatino-Italic FMDEFINEFONT
+%%Page: "191" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+-0.58 0.09 (ClassSettings and ClassCheckBoxes) 198 108.7 B
+0 F
+0.09 (191) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (21) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+-0.88 (V) 126 638.67 P
+-0.88 (alue of settings) 135.07 638.67 P
+6 F
+-0.04 0.1 (The \322value\323 of a setting is an array of the chosen items\325 indices. No special case ) 198 617.33 B
+0.52 0.1 (is made for exclusive choices.) 198 604.93 B
+7 F
+(/setvalue) 54 585.2 T
+([ item-index item-index . . . ]) 198 585.2 T
+8 F
+( /setvalue) 308.38 585.2 T
+7 F
+( -) 349.35 585.2 T
+6 F
+0.52 0.1 (Sets the items whose indices appear in the array as the curr) 198 565.53 B
+0.52 0.1 (ent set of chosen ) 470.5 565.53 B
+0.52 0.1 (items. ) 198 553.13 B
+0.52 0.1 (For settings of mode ) 198 532.73 B
+7 F
+0.45 -0.27 (/Exclusive) 295.16 532.73 B
+6 F
+0.52 0.1 ( this array must have one and only one entry) 332.91 532.73 B
+0.52 0.1 (. ) 538.78 532.73 B
+0.21 0.1 (For settings of mode ) 198 512.33 B
+7 F
+0.18 -0.27 (/ExclusiveV) 293.91 512.33 B
+0.18 -0.27 (ariation) 336.73 512.33 B
+6 F
+0.21 0.1 ( the array may have either one entry or be ) 364.04 512.33 B
+0.52 0.1 (an empty array) 198 499.93 B
+0.52 0.1 (.) 267.02 499.93 B
+7 F
+(/value) 54 480.2 T
+(- ) 198 480.2 T
+8 F
+(/value) 203.49 480.2 T
+7 F
+( [ item-index item-index ]) 228.97 480.2 T
+6 F
+0.52 0.1 (Returns an array of indices of the chosen items.) 198 460.53 B
+1 F
+(Noti\336cation) 126 427.47 T
+6 F
+0.52 0.1 (The noti\336cation value for settings and checkboxes is an array that contains:) 198 406.13 B
+7 F
+0.45 -0.27 ([ item-index boolean ]) 198 386.4 B
+0.45 -0.27 (boolean) 198 366.33 B
+6 F
+0.52 0.1 ( indicates whether the item has been ) 228.09 366.33 B
+0.5 (chosen) 398.73 366.33 P
+0.52 0.1 ( or \322unchosen.\323) 429.29 366.33 B
+0.52 0.1 (Dif) 198 345.93 B
+0.52 0.1 (fer) 212.09 345.93 B
+0.52 0.1 (ent types of settings notify at dif) 224.28 345.93 B
+0.52 0.1 (fer) 373.18 345.93 B
+0.52 0.1 (ent user actions:) 385.37 345.93 B
+7 F
+-0.27 (/Exclusive) 214.2 329.53 S
+6 F
+0.52 0.1 (noti\336es ) 318.02 329.53 B
+3 F
+0.52 0.1 (only) 354.35 329.53 B
+6 F
+0.52 0.1 ( when an item is turned on. This means ) 372.52 329.53 B
+0.49 0.1 (you ar) 318.02 317.13 B
+0.49 0.1 (e not noti\336ed about the item being unchosen, ) 347.42 317.13 B
+0.52 0.1 (and the boolean in the array is always tr) 318.02 304.73 B
+0.52 0.1 (ue.) 503.34 304.73 B
+7 F
+-0.27 (/ExclusiveV) 214.2 288.33 S
+-0.27 (ariation) 257.01 288.33 S
+6 F
+0.52 0.1 (noti\336es when an item is turned on) 318.02 288.33 B
+7 F
+0.45 -0.27 ( as /Exclusive) 475.66 288.33 B
+6 F
+0.52 0.1 ( ) 527.71 288.33 B
+0.52 0.1 (settings do and noti\336es when the item curr) 318.02 275.93 B
+0.52 0.1 (ently ) 514.99 275.93 B
+-0.06 0.1 (turned on is turned of) 318.02 263.53 B
+-0.06 0.1 (f and the setting has no chosen ) 416.9 263.53 B
+0.52 0.1 (item. ) 318.02 251.14 B
+7 F
+-0.27 (/NonExclusive) 214.2 234.73 S
+6 F
+0.52 0.1 ( noti\336es when any item is turned on or of) 318.02 234.73 B
+0.52 0.1 (f.) 509.08 234.73 B
+FMENDPAGE
+%%EndPage: "191" 4
+%%Page: "192" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (21) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (192) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+7 F
+(/setnotifier) 54 642 T
+(notifier | null ) 198 642 T
+8 F
+(/setnotifier) 248.79 642 T
+7 F
+( -) 294.73 642 T
+6 F
+0.52 0.1 (Sets the ) 198 622.33 B
+7 F
+0.5 (notifier) 236.33 622.33 P
+6 F
+0.52 0.1 ( for the settings. When ) 263.3 622.33 B
+7 F
+0.5 (notifier) 370.36 622.33 P
+6 F
+0.52 0.1 ( is speci\336ed as a PostScript name ) 397.33 622.33 B
+0.22 0.1 (type, it is used in conjunction with the tar) 198 609.93 B
+0.22 0.1 (get interfaces to dispatch noti\336cation ) 387.44 609.93 B
+0.15 0.1 (to the appr) 198 597.53 B
+0.15 0.1 (opriate tar) 247.75 597.53 B
+0.15 0.1 (get. During noti\336cation, the noti\336cation value, the setting ) 294.89 597.53 B
+0.52 0.1 (instance, and the noti\336er name ar) 198 585.13 B
+0.52 0.1 (e pushed on the stack, prior to invoking ) 351.35 585.13 B
+8 F
+0.5 (/sendtarget) 198 572.73 P
+6 F
+0.52 0.1 (. \050see below\051.) 246.44 572.73 B
+0.52 0.1 (Although not r) 198 552.33 B
+0.52 0.1 (ecommended, ) 266.35 552.33 B
+7 F
+0.5 (notifier) 333.01 552.33 P
+6 F
+0.52 0.1 ( can also be speci\336ed as a PostScript code ) 359.98 552.33 B
+0.16 0.1 (fragment. The curr) 198 539.93 B
+0.16 0.1 (ent value, the contr) 283.04 539.93 B
+0.16 0.1 (ol instance, and the fragment ar) 370.34 539.93 B
+0.16 0.1 (e pushed ) 514.02 539.93 B
+0.52 0.1 (on the stack, then the fragment is executed.) 198 527.53 B
+7 F
+(/notifier) 54 507.8 T
+(- ) 198 507.8 T
+8 F
+(/notifier) 203.49 507.8 T
+7 F
+( notifier | null) 236.45 507.8 T
+6 F
+0.52 0.1 (Returns the noti\336er for the settings.) 198 488.13 B
+7 F
+(/setpreviewer) 54 468.4 T
+(previewer | null ) 198 468.4 T
+8 F
+(/setpreviewer) 260.77 468.4 T
+7 F
+( -) 318.22 468.4 T
+6 F
+0.52 0.1 (Sets the pr) 198 448.73 B
+0.52 0.1 (eviewer for settings. If null is speci\336ed the pr) 246.3 448.73 B
+0.52 0.1 (eviewer is set to null, ) 454.2 448.73 B
+0.52 0.1 (i.e., pr) 198 436.33 B
+0.52 0.1 (eviewing is turned of) 226.78 436.33 B
+0.52 0.1 (f.) 324.38 436.33 B
+7 F
+(/previewer) 54 416.6 T
+(- ) 198 416.6 T
+8 F
+(/previewer) 203.49 416.6 T
+7 F
+( previewer | null) 247.95 416.6 T
+6 F
+0.52 0.1 (Returns the settings pr) 198 396.93 B
+0.52 0.1 (eviewer) 301.8 396.93 B
+0.52 0.1 (.) 336.96 396.93 B
+5 F
+(ClassCheckBoxes) 54 342.8 T
+6 F
+0.52 0.1 (ClassCheckBoxes, implements the special check box selection list by ) 198 321.14 B
+0.52 0.1 (subclassing ClassSettings. Although it typically uses ) 198 308.73 B
+7 F
+0.45 -0.27 (/Grid) 440.05 308.73 B
+6 F
+0.52 0.1 ( layout, it is not ) 458.17 308.73 B
+0.52 0.1 (limited to that and may use ) 198 296.33 B
+7 F
+0.45 -0.27 (/Calculated) 328.01 296.33 B
+6 F
+0.52 0.1 (, ) 369.99 296.33 B
+7 F
+0.45 -0.27 (/Absolute) 375.71 296.33 B
+6 F
+0.52 0.1 (, or ) 410.75 296.33 B
+7 F
+0.45 -0.27 (/Spaced) 429.19 296.33 B
+6 F
+0.52 0.1 ( layouts. Only ) 460.27 296.33 B
+0.52 0.1 (/NonExclusive check boxes ar) 198 283.93 B
+0.52 0.1 (e supported.) 336.67 283.93 B
+1 F
+(Cr) 126 250.87 T
+(eation) 140.52 250.87 T
+7 F
+(/new) 54 230.2 T
+(placement parent ) 198 230.2 T
+8 F
+(/new) 269.93 230.2 T
+7 F
+( instance) 289.91 230.2 T
+6 F
+0.06 0.1 (Cr) 198 210.53 B
+0.06 0.1 (eates a new instance of ClassCheckBoxes. ) 209.05 210.53 B
+7 F
+0.05 -0.27 (placement) 398.98 210.53 B
+6 F
+0.06 0.1 ( is one of ) 438.01 210.53 B
+7 F
+0.05 -0.27 (/Spaced) 481.35 210.53 B
+6 F
+0.06 0.1 (, ) 512.44 210.53 B
+7 F
+0.05 -0.27 (/Absolute) 517.7 210.53 B
+6 F
+0.06 0.1 (, ) 552.74 210.53 B
+7 F
+0.45 -0.27 (/Calculated) 198 198.14 B
+6 F
+0.52 0.1 ( or ) 239.99 198.14 B
+7 F
+0.45 -0.27 (/Grid) 255.83 198.14 B
+FMENDPAGE
+%%EndPage: "192" 5
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 4 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Helvetica
+%%+ Helvetica-Bold
+%%+ Helvetica-Oblique

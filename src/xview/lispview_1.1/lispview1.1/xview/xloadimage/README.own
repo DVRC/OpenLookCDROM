@@ -1,0 +1,17 @@
+
+I made some minor changes to the Makefile to build under Openwindows
+X11 header files instead of the /usr/include/X11 paths.  To make Xloadimage
+under Openwindows, just type "make own".  I've included the original
+MIT-oriented makefile included with the Xloadimage 2.0 distribution
+( Makefile.orig ) in case you have problems.
+
+Perhaps someone with gcc loaded can test builiding this with the gcc
+flags as well.  Look in the Makefile for the right incantation.
+
+I also added ".im1, .im8, and .im24" to default image file extensions
+since this seems to becoming a standard representing Sun raster files
+in OWN and other places around Sun.
+
+Enjoy,
+
+Mike

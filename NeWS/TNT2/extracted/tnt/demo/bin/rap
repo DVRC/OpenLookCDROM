@@ -1,0 +1,813 @@
+#!/bin/sh
+psh << '%EOF'
+
+% This file is a product of Sun Microsystems, Inc. and is provided for
+% unrestricted use provided that this legend is included on all tape
+% media and as a part of the software program in whole or part.	 Users
+% may copy or modify this file without charge, but are not authorized to
+% license or distribute it to anyone else except as part of a product
+% or program developed by the user.
+%
+% THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
+% WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+% PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
+%
+% This file is provided with no support and without any obligation on the
+% part of Sun Microsystems, Inc. to assist in its use, correction,
+% modification or enhancement.
+%
+% SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
+% INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY THIS FILE
+% OR ANY PART THEREOF.
+%
+% In no event will Sun Microsystems, Inc. be liable for any lost revenue
+% or profits or other special, indirect and consequential damages, even
+% if Sun has been advised of the possibility of such damages.
+%
+% Sun Microsystems, Inc.
+% 2550 Garcia Avenue
+% Mountain View, California  94043
+%
+%
+% @(#)rap 1.9 91/02/11
+%
+% Copyright (c) 1990 by Sun Microsystems, Inc.
+
+
+% ---------------------------  RASTER RAP! ---------------------------
+%
+% This program shows some of the image manipulations that can be done
+% with NeWS, including scaling, rotation, skewing and clipping.  The
+% program shows use of double buffering techniques to make display
+% updating as smooth as possible.
+%
+% The application uses exclusive settings to control the drawing mode
+% and the current picture.  Drag the mouse in the drawing area of the
+% window to see the animation.
+%
+% To see what is going on behind the scenes with the double buffering,
+% click on the "Show Buffers" button.  Windows will open to show the
+% canvases used for buffering.
+%
+% --------------------------------------------------------------------
+
+
+% The images are stored in an array, Images.  Another array, ChoiceImages,
+% contains scaled-down versions of the images for use in the exclusive
+% setting control.
+
+% Read an image canvas from the Open Windows demo directory.
+%
+/readnewscanvas { % name => canvas
+    (OPENWINHOME) getenv (/demo/images/) append exch append
+    (.im8) append readcanvas
+} def
+
+% Read a more interesting image from the Sun images library.
+%
+/readdemocanvas { % name => canvas
+    (/net/calder/home/images/im8/) exch append
+    (.im8) append readcanvas
+} def
+
+% The image array.
+%
+%
+/RapImages where {pop} {
+/RapImages [
+    true {					% true to use OW demo images
+	(bf) readnewscanvas
+	(mandrill) readnewscanvas
+	(taj) readnewscanvas
+	(pagosa) readnewscanvas
+	(saturn) readnewscanvas
+	(joshua) readnewscanvas
+	(stormy) readnewscanvas
+    }{
+	(snoopy) readdemocanvas
+	(tahiti) readdemocanvas
+	(munster) readdemocanvas
+	(mickey3) readdemocanvas
+	(roger) readdemocanvas
+	(rap) readdemocanvas
+    } ifelse
+] def
+} ifelse
+
+% Make a small image canvas suitable for use as a DisplayItem for a control.
+%
+/makechoicecanvas { % image => canvas
+    40 32 8 [] null buildimage dup
+    gsave
+	setcanvas
+	exch imagecanvas
+    grestore
+} def
+
+% Array of scaled down images.
+%
+/ChoiceImages [RapImages {makechoicecanvas} forall] def
+
+
+/Black 0 0 0 rgbcolor def
+/Green 0 1 0 rgbcolor def
+/Magenta 1 0 1 rgbcolor def
+/Red 1 0 0 rgbcolor def
+/White 1 1 1 rgbcolor def
+
+/BufferWindows nullarray def
+
+% Application Drawing Area
+%
+/ClassDrawingCanvas ClassCanvas
+[
+    /BackCanvas					% shadow copy of visible canvas
+    /DrawCanvas					% composition canvas
+    /PictCanvas					% selected raster image, scaled
+    /Picture					% selected raster image, unscaled
+    /IconImage					% icon canvas
+]
+classbegin
+    /IconSize 64 def
+    /BG Black def				% background color of draw area
+    /BorderStroke 0 def
+
+    /minsize { % - => width height
+	Picture false getbbox 4 2 roll pop pop
+    } def
+
+    /preferredsize {300 300} def
+	
+
+    % Variables used by the drawing modes:
+
+    /MotionProc {pop} def			% Current drawing mode proc
+
+    /StartX 0 def				% Location at start of tracking
+    /StartY 0 def				% (sometimes updated during drags)
+    /Rotation 0 def
+    /Radius 100 def
+    /NewRadius 0 def
+
+
+    % Overridden Methods:
+
+    /NewInit { % - => -
+	/NewInit super send
+
+	/PictCanvas ClassPictCanvas   CreateBuffer def
+	/BackCanvas ClassBufferCanvas CreateBuffer def
+	/DrawCanvas ClassBufferCanvas CreateBuffer def
+
+	/IconImage IconSize dup 8 [] null buildimage def
+    } def
+
+    /destroy { % - => -
+	/BaseWindow unpromote
+	/destroy super send
+    } def
+
+    /Paint { % - => -
+	BackCanvas imagecanvas
+    } def
+
+    % Override to reshape the buffer canvases as well.
+    % Note:  Also do a check to see if the canvas is being reshaped to its
+    % current size.  If so, just move the canvas.  This is because windows
+    % currently are reshaped when they are closed and opened.  Since we
+    % erase the drawing when the window is reshaped, we don't want these
+    % spurious reshapes.  ClassWindow will be changed in the future and
+    % this check can be removed here.
+    %
+    /reshape { % x y w h => -
+	10 dict begin
+	    /h exch def
+	    /w exch def
+	    /y exch def
+	    /x exch def
+
+	    /size self send
+	    h sub exch w sub 0 eq exch 0 eq and {
+		x y /move self send
+	    }{
+		x y w h /reshape super send
+
+		% Reshape the buffers.  Also reshape and validate
+		% their parent windows.  The validation is necessary
+		% so the buffers will not be reshaped again later
+		% when the window is painted.  The validation makes
+		% sure the buffer canvases have their correct shapes
+		% when /cleardrawing is called.
+		%
+		[PictCanvas BackCanvas DrawCanvas] {
+		    /location 1 index send	% canvas x y
+		    w h /reshape 5 index send	% -
+		    /Parent get
+		    {
+			/location self send
+			/preferredsize self send
+			/reshape self send
+			/validate self send
+		    }
+		    exch send
+		} forall
+
+		null null /cleardrawing self send
+	    } ifelse
+	end
+    } def
+
+
+    % Public methods:
+
+    % Erase the drawing.  Dummy parameters allow this method to be called
+    % as a control callback.
+    %
+    /cleardrawing { % any any => -
+	gsave
+	    BackCanvas setcanvas
+	    BG /FillCanvas self send
+	    DrawCanvas setcanvas
+	    BG /FillCanvas self send
+	    UpdateIcon
+
+	    % Damage the drawing canvas.  Note:  we don't just fill the canvas
+	    % because this method may be called after the canvas has been mapped
+	    % but before damage on its frame has been handled.  Instead, we just
+	    % let the damage handling repaint the canvas later.  Note2:  we must
+	    % damage the base frame because it is the only opaque parent, i.e.
+	    % the drawing canvas does not receive /Damaged events.
+	    
+	    BaseWindow {
+		setcanvas
+		/bbox self send
+		rectpath
+		extenddamage
+	    } if
+	grestore
+    } def
+
+    /setpicture { % image => -
+	BaseWindow {(Loading Image...) () /setfooter 4 -1 roll send} if
+
+	/Picture exch def
+	Picture /setpicture PictCanvas send
+
+	BaseWindow {() () /setfooter 4 -1 roll send} if
+    } def
+
+    % Open the buffer subwindows.  Dummy parameters allow this to be called
+    % as a control callback.
+    %
+    /showbuffers { % any any => -
+	pop pop
+	BaseWindow {
+	    /subwindows exch send {
+		/pin 1 index send
+		/open exch send
+	    } forall
+	} if
+    } def
+
+    
+    % Notify handlers for controls:
+
+    /HandleModeChoice { % [index true] setting => -
+	exch 0 get /item 3 -1 roll send
+	/setmode self send
+    } def
+    
+    /HandlePictChoice { % [index true] setting => -
+	pop
+	0 get
+	RapImages exch get
+	/setpicture self send
+    } def
+
+
+    % Track service methods:
+
+    /Trackable? true def
+
+    /TrackStart { % event => false | [/label...] true | /name true
+	gsave
+	    self setcanvas
+	    dup /Coordinates get aload pop
+	grestore
+	/StartY exch def
+	/StartX exch def
+
+	/TrackMotion self send
+	/Default true
+    } def
+
+    % End of tracking.  Copy DrawCanvas to BackCanvas and update the icon.
+    % Note:  the updating of the icon could be optimized to happen only when
+    % the window closes.  However, doing it here is simpler and the time
+    % taken isn't noticable since the user has just finished an
+    % interaction and is now admiring his picture.
+    %
+    /TrackStop { % event => -
+        /TrackMotion self send
+	gsave
+	    BackCanvas setcanvas
+	    DrawCanvas imagecanvas
+	    UpdateIcon
+	grestore
+	/Radius unpromote
+	/NewRadius unpromote
+	/Rotation unpromote
+    } def
+
+    /TrackMotion { % event => -
+	gsave
+	    self setcanvas
+	    dup /Coordinates get aload pop
+	    /YLocation exch def
+	    /XLocation exch def
+
+	    DrawCanvas setcanvas
+	    gsave MotionProc grestore
+	    pop
+
+	    self setcanvas
+	    DrawCanvas imagecanvas
+	grestore
+    } def
+
+    % Set the drawing mode.
+    %
+    /setmode { % name => -
+	{
+	    /Scratch	{/ScratchProc}
+	    /Spotlight	{/SpotlightProc}
+	    /Rotate	{/RotateProc}
+	    /Dizzy	{/DizzyProc}
+	    /Iris	{/IrisProc}
+	    /Spray	{/SprayProc}
+	    /Scale	{/ScaleProc}
+	    /Strobe	{/StrobeProc}
+	    /Drag	{/DragProc}
+	    /Transform	{/TransformProc}
+	    /Spin	{/SpinProc}
+	    /Darken	{/DarkenProc}
+	    /Brighten	{/BrightenProc}
+	    /Warp	{/WarpProc}
+	    /Default	{/ScratchProc}
+	} case
+	load
+	/MotionProc exch def
+    } def
+
+    % Motion procs for the various modes.
+    %
+    % Each is called from the /TrackMotion routine.  The event is on the
+    % stack for examination, but it must be left on the stack at exit.
+    % Each is called in a gsave/grestore context.  See /TrackMotion for
+    % other entry conditions.
+    %
+    % In general, composition is done on DrawCanvas, which is the current
+    % canvas upon entry.  After exit, DrawCanvas is copied to the canvas
+    % on the screen.  The buffer BackCanvas contains the image as it was
+    % when tracking started.  Many of these routines will want to start
+    % with the original picture, so they will start by doing an imagecanvas
+    % of BackCanvas.  Note: composition is done in DrawCanvas then copied
+    % to the screen even when it would be possible to compose directly on
+    % the visible canvas.  This allows drawing to be done under obscurred parts
+    % of the visible canvas.
+
+    /ScratchProc { % event => event
+	StartX StartY moveto
+	XLocation YLocation lineto
+
+	10 setlinewidth
+	1 setlinecap
+	strokepath clip
+
+	PictCanvas imagecanvas
+
+	/StartX XLocation def
+	/StartY YLocation def
+    } def
+
+    /SpotlightProc { % event => event
+	BackCanvas imagecanvas
+
+	XLocation YLocation Radius 0 360 arc clip
+	PictCanvas imagecanvas
+    } def
+
+    /RotateProc { % event => event
+	BackCanvas imagecanvas
+
+	StartX StartY translate
+
+	YLocation StartY sub
+	XLocation StartX sub
+	2 copy 0 eq exch 0 eq and { pop pop } {
+	    2 copy atan
+	    rotate			% height width
+
+	    % size = sqrt(width**2 + height**2)
+	    dup mul exch dup mul add sqrt
+	    dup scale
+
+	    Picture imagecanvas
+        } ifelse
+    } def
+ 
+    /DizzyProc { % event => event
+	BackCanvas imagecanvas
+
+	/Rotation Rotation 30 add def
+
+	XLocation YLocation Radius 0 360 arc clip
+	XLocation YLocation translate
+	Rotation rotate
+	XLocation neg YLocation neg translate
+	PictCanvas imagecanvas
+    } def
+
+    /IrisProc { % event => event
+	/XLocation XLocation StartX sub def
+	/YLocation YLocation StartY sub def
+
+	/Radius NewRadius def
+	/NewRadius
+	    XLocation dup mul
+	    YLocation dup mul add sqrt
+	def
+
+	StartX StartY Radius 0 360 arc
+	StartX StartY NewRadius 0 360 arc 
+
+	Radius NewRadius lt {
+	    eoclip 
+	    PictCanvas imagecanvas
+	}{
+	    eoclip 
+	    BackCanvas imagecanvas
+	} ifelse
+    } def
+
+    /SprayProc { % event => event
+	XLocation YLocation moveto
+	-7 7 rmoveto	1 0 rlineto
+	5 0 rmoveto	1 0 rlineto
+	7 0 rmoveto	1 0 rlineto
+	-18 -7 rmoveto	1 0 rlineto
+	7 0 rmoveto	1 0 rlineto
+	5 0 rmoveto	1 0 rlineto
+	7 0 rmoveto	1 0 rlineto
+	-21 -6 rmoveto	1 0 rlineto
+	7 0 rmoveto	1 0 rlineto
+	5 0 rmoveto	1 0 rlineto
+	
+	2.7 setlinewidth
+	1 setlinecap
+	strokepath clip
+	
+	PictCanvas imagecanvas
+	
+	/StartX XLocation def
+	/StartY YLocation def
+    } def
+
+    /ScaleProc { % event => event
+	BackCanvas imagecanvas
+
+	StartX StartY XLocation YLocation points2rect rectpath
+	clip
+
+	StartX StartY translate
+	XLocation StartX sub			% width
+	YLocation StartY sub			% width height
+	scale					% -
+
+	Picture imagecanvas
+    } def
+
+    /StrobeProc { % event => event
+	/Radius 30 def
+
+	XLocation YLocation Radius 0 360 arc
+	clip
+
+	XLocation Radius sub
+	YLocation Radius sub translate
+
+	Radius dup add				% width
+	dup	   				% width height
+	scale					% -
+
+	Picture imagecanvas
+    } def
+
+    /DragProc { % event => event
+	BackCanvas imagecanvas
+	StrobeProc
+    } def
+
+    /TransformProc { % event => event
+	BackCanvas imagecanvas
+
+	StartX StartY translate
+	[
+	    XLocation StartX sub 60 60		% width 60 60
+	    YLocation StartY sub 0 0		% ... height 0 0
+	] concat
+
+	Picture imagecanvas
+    } def
+
+    /SpinProc { % event => event
+	20 dict begin
+	    /size self send /h exch def /w exch def
+	    /cx w 2 div def  /cy h 2 div def
+	    /dx0 StartX cx sub def
+	    /dy0 StartY cy sub def
+	    /ang0
+	      dx0 0 eq dy0 0 eq and { 0 } { dy0 dx0 atan } ifelse
+	    def
+	    /dx1 XLocation cx sub def
+	    /dy1 YLocation cy sub def
+	    /ang1
+	      dx1 0 eq dy1 0 eq and { 0 } { dy1 dx1 atan } ifelse
+	    def
+	    /dang ang1 ang0 sub def
+	    gsave
+		cx cy translate
+		0 0 w h min 2 div 0 360 arc closepath clip
+		dang rotate
+		cx neg cy neg translate
+		BackCanvas imagecanvas
+	    grestore
+	end
+    } def
+
+    /DarkenProc { % event => event
+	BackCanvas imagecanvas
+
+	/Radius 30 def
+
+	gsave
+	    XLocation YLocation Radius 0 360 arc
+	    clip
+	    {dup mul} settransfer
+	    BackCanvas imagecanvas
+	grestore
+    } def
+
+    /BrightenProc { % event => event
+	BackCanvas imagecanvas
+
+	/Radius 30 def
+
+	gsave
+	    XLocation YLocation Radius 0 360 arc
+	    clip
+	    {sqrt} settransfer
+	    BackCanvas imagecanvas
+	grestore
+    } def
+
+    /WarpProc { % event => event
+        20 dict begin
+	    /size self send /h exch def /w exch def
+	    /sl StartX def  /sr w sl sub def
+	    /sb StartY def  /st h sb sub def
+	    /dl XLocation def  /dr w dl sub def
+	    /db YLocation def  /dt h db sub def
+
+	    gsave
+		0 0 dl db  rectpath  clip
+		dl sl div  db sb div  scale
+		BackCanvas imagecanvas
+	    grestore
+	    gsave
+		dl 0 dr db  rectpath  clip
+		dl 0 translate
+		dr sr div  db sb div  scale
+		sl neg 0 translate
+		BackCanvas imagecanvas
+	    grestore
+	    gsave
+		0 db dl dt  rectpath  clip
+		0 db translate
+		dl sl div  dt st div  scale
+		0 sb neg translate
+		BackCanvas imagecanvas
+	    grestore
+	    gsave
+		dl db dr dt  rectpath  clip
+		dl db translate
+		dr sr div  dt st div  scale
+		sl neg sb neg translate
+		BackCanvas imagecanvas
+	    grestore
+        end
+    } def
+
+
+    % Utilities
+
+    % Note: The order of mapping is important to avoid flashing.  Create the
+    % buffer canvas unmapped, then don't map it until after unmapping its
+    % parent frame.
+    %
+    % The buffer canvases are not reshaped here, so their shapes must be
+    % set after this function is called.
+    %
+    /CreateBuffer { % name canvasclass - => name canvas
+	10 dict begin
+	    /Class exch def
+	    /Title 1 index def
+
+	    /can framebuffer /new Class send def
+
+	    /popup can framebuffer /new ClassPopupWindow send def
+	    Title 50 string cvs /setlabel popup send
+	    Title /setname popup send
+
+	    /Reshape? false /setattribute popup send
+
+	    /BufferWindows BufferWindows popup arrayappend store
+
+	    /unmap popup send
+	    /map can send
+	    can
+	end
+    } def
+
+    % Return the application's base window.  Note that this method promotes
+    % the base window to an instance variable for quicker access.  This
+    % means the variable must be unpromoted in the /destroy method.
+    %
+    /BaseWindow { % - => basewindow true
+	          %   => false
+	self /parentdescendant ClassBaseWindow send dup {
+	    /BaseWindow [3 index soften true] cvx promote
+	} if
+    } def
+
+    % Copy the drawing to the icon, scaled to fit.
+    %
+    /UpdateIcon { % - => -
+	IconImage setcanvas
+	/size DrawCanvas send
+	exch 1 exch div exch 1 exch div scale
+	1 IconSize div dup scale
+	DrawCanvas imagecanvas
+    } def
+
+
+classend def
+
+/ClassBufferCanvas ClassCanvas []
+classbegin
+
+    /Transparent false def
+    /Retained true def
+    /Mapped false def
+
+%    /Damageable? true def
+
+    /Paint {} def
+
+    /minsize {/size self send} def
+
+    % REMIND - Kludge to prevent reshaping when opening from an icon.
+    % Use /move, not /reshape when the new size is the same as current.
+    %
+    /reshape { % x y w h => -
+	2 copy
+	/size self send				% x y w h w h cw ch
+	3 -1 roll sub				% x y w h w cw dh
+	3 1 roll sub				% x y w h dh dw
+	0 eq exch 0 eq and {			% x y w h bool
+	    pop pop /move self send
+	}{
+	    /reshape super send
+	} ifelse
+    } def
+
+classend def
+
+
+/ClassPictCanvas ClassBufferCanvas [/Picture]
+classbegin
+
+    /setpicture { % image => -
+	/Picture exch store
+	gsave
+	    self setcanvas
+	    ScaleToCanvas
+	    Picture imagecanvas
+	grestore
+    } def
+
+    % Since the canvas is retained, this only gets called when there
+    % is damage, e.g. when the canvas is reshaped.  Reset the picture,
+    % causing it to rescale to the current canvas size.
+    %
+    /Paint {
+	Picture /setpicture self send
+    } def
+
+    /ScaleToCanvas { % - => -
+	clippath pathbbox scale pop pop
+    } def
+
+classend def
+
+
+
+
+
+/window null framebuffer /new ClassBaseWindow send def
+
+/DrawCanvas framebuffer /new ClassDrawingCanvas send def
+RapImages 0 get /setpicture DrawCanvas send
+
+/Center DrawCanvas /addclient window send
+
+
+% Drawing mode chooser
+
+/ModeChoice /Grid framebuffer /new ClassSettings send def
+[   (Scratch) 
+    (Spotlight)
+    (Rotate)
+    (Dizzy)
+    (Iris)
+    (Spray)
+    (Scale)
+    (Strobe)
+    (Drag)
+    (Transform)
+    (Spin)
+    (Darken)
+    (Brighten)
+    (Warp)
+] /setitemlist ModeChoice send
+[true 14 1] /setlayoutparameters ModeChoice send
+[0] /setvalue ModeChoice send
+{/HandleModeChoice /sendtarget 2 index send} /setnotifier ModeChoice send
+DrawCanvas /settarget ModeChoice send
+
+/West ModeChoice /addclient window send
+
+
+% Picture chooser
+
+/PictChoice /Grid framebuffer /new ClassSettings send def
+ChoiceImages /setitemlist PictChoice send
+[true ChoiceImages length 1] /setlayoutparameters PictChoice send
+[0] /setvalue PictChoice send
+{/HandlePictChoice /sendtarget 2 index send} /setnotifier PictChoice send
+DrawCanvas /settarget PictChoice send
+
+/East PictChoice /addclient window send
+
+
+% Buttons
+
+/buttons /Grid framebuffer /new ClassButtons send def
+[
+    [(Clear)		/cleardrawing]
+    [(Show Buffers)	/showbuffers]
+] /setitemlist buttons send
+DrawCanvas /settarget buttons send
+
+[true 1 2] /setlayoutparameters buttons send
+10 0 /setgaps buttons send
+/South buttons /addclient window send
+
+
+% Base Window
+
+(RasterRap) /setlabel window send
+/IconImage DrawCanvas send /seticonimage window send
+
+
+% Initialization
+
+(Scratch) /setmode DrawCanvas send
+0 5 5 5 /setgaps window send
+/place window send
+
+BufferWindows {
+    /place 1 index send
+    /addsubwindow window send
+} forall
+/BufferWindows null def
+
+/map window send
+/new ClassEventMgr send
+/activate window send
+
+
+newprocessgroup
+currentfile closefile
+
+%EOF

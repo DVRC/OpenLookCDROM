@@ -1,0 +1,97 @@
+LispView Grapher by Philip McBride
+----------------------------------
+
+This directory contains the code and documentation for a CLOS based
+grapher library and a couple of grapher applications.  The external
+interface (display of graphs as well as input of mouse and keyboard
+events) of the grapher is made through LispView.
+
+To use, simply load the file lispview-grapher.sbin from within a
+lispview image.  This will define the grapher library as well as the
+two grapher applications: a CLOS class grapher and a LispView window
+grapher.  To bring up the class grapher, call (cg:make-class-graph
+(find-class 'gr:abstract-graph)).  To bring up the window grapher, call
+(wg:make-window-graph).
+
+The grapher library is fully featured:
+
+The grapher library provides the capability of laying out two
+dimensional graphs an any of six ways: left-to-right, right-to-left,
+top-to-bottom, bottom-to-top, centered vertical, and centered
+horizontal.  A graph's layout orientation can be changed via
+change-class.
+
+The layout machinery is designed carefully with extension in mind.
+This means there is an internal protocal within the layout algorithm
+that makes it easy to modify the layout algorithm without too much
+work.  For example, the layout of a bar chart is made possible by
+changing only one of the layout submethods (about six lines of code).
+
+The display of graphs is also designed with extension in mind; so
+there is a protocol for how graphs, arcs, and nodes are displayed.
+For example, in the bar chart mentioned above, the changes for arc
+display (don't do it) and node display (change the size of the node)
+where straight forward simple extensions.  Even printing a list of
+strings inside a node rectangle was a straight forward extension.
+
+In addition, there are frameworks for: graph buffers, depth control,
+expanding and collapsing parts of a graph, graph editing (moving,
+adding, and deleting nodes, etc.), amoung others.
+
+The document can be found in doc/grapherbook.{doc,ps}.
+
+The code can be found in the following files:
+
+lispview-grapher.sbin   --  The binary file containing the whole
+			    grapher library as well as the two
+			    grapher applications.  Load this in
+			    a LispView image.
+
+load-grapher.lisp   --  The file that will load the grapher if the
+			binary file above is not available.
+
+grapher-pkg.lisp  --  Containes the package definitions for the grapher.
+
+grapher-base.lisp  --  Containes special variable and initialization code
+		       for the grapher library.
+
+grapher-classes.lisp  --  Containes class definitions for the grapher.
+
+grapher-classes-2.lisp  --  Contains more class definitions for the grapher
+			    (Split up into two files because at one time
+			     had some difficulting with validate-superclass...).
+
+grapher-util.lisp  --  Contains general grapher utilities.
+
+grapher-construct.lisp  -- Contains the code for constructing graphs and
+			   the associated nodes and arcs.  (This contains
+			   all the code for doing lazy graph construction.)
+
+grapher-interface.lisp  --  Contains the code for all grapher interface.
+			    This includes node and arc display as well as
+			    all the window construction and display.  It also
+			    contains all code related to event handling.
+
+grapher-layout.lisp  --  Contains all of the graph layout code.
+
+grapher.sicon  --  This is the default icon used by the grapher.
+
+class-grapher.lisp  --  A CLOS class grapher application.  This application
+			will graph classes and allow the user to browse,
+			inspect, and even edit classes.
+
+window-grapher.lisp  --  A LispView window grapher application.  This application
+			 will graph lispview windows and their parent/child
+			 relationships and allow the user to browse and inspect
+			 lispview windows.
+
+
+Other files in this directory:
+
+README  --  This file.
+
+LEGAL_NOTICE  --  The legal information associated with all of the code.
+
+doc/grapherbook.doc  --  The Frame source of the LispView Grapher documentation.
+
+doc/grapherbook.ps  --  The postscript form of the LispView Grapher documentation.

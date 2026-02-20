@@ -1,0 +1,761 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)notice.ps 1.32 91/02/11
+%
+
+/ClassNotice ClassPanel
+dictbegin
+    /Tail	    null def
+    /PreviousFocus  null def
+    /WarpX	    null def
+    /WarpY	    null def
+    /IgnoreDamage?  false def
+    /BaseWindow	    null def
+dictend
+classbegin
+
+% Spec Dimensions - I might give this real names later
+    /a	    390 def			    % width of notice
+    /b	    36 def			    % top/bottom text margin
+    /c	    20 def			    % left/right margin
+    /d	    42 def			    % apex x/y offset
+    /e	    36 def			    % size of button area
+
+    /Text	    () def		    % unformatted text string
+    /TextStrings    null def		    % array of formatted strings
+    /Apex	    null def
+
+    /TextFont		/LucidaSans-Bold findfont 14 scalefont
+			false printermatchfont
+			/ISOLatin1Encoding encodefont def
+
+    /ApexName	    null def
+    /Beep?	    true def
+
+    /Keyable?		true def
+    /Mapped		false def
+    /SaveBehind		true def
+    /Trackable?		true def
+    /Transparent	false def
+    /Retained		false def	% Necessary for monochrome bug
+
+% Defaults:
+    /HandleDefaults { % name value => -
+	exch {
+	    /beep {
+		cvn /never eq not
+		/Beep? exch store
+	    }
+	    /textfont {
+		/font /convert ClassDefaultsService send {
+		    /settextfont self send
+		} if
+	    }
+	} case
+    } def
+
+    [ /beep /textfont ] { self /addclient DefaultsService send } forall
+
+    /NewInit { % basewindow => -
+	/Calculated /NewInit super send
+	/setbasewindow self send
+	/Tail framebuffer /new ClassNoticeTail send def
+    } def
+
+    /destroy { % - => -
+%	Tail null ne {/destroy Tail send} if
+	/Tail null def
+	/destroy super send
+    } def
+
+    % Take the string of text /Text and format it into an array
+    % of lines that will be centered with cshow'n in the notice.
+    % This is the bluebook algorithm.
+    %
+    /FormatText { % string => [string string string ...]
+	TextFont setfont
+	dictbegin
+	    /linelength a c 2 mul sub def
+	    /wordbreak ( ) def
+	    /Text exch wordbreak append def
+
+	    /breakwidth wordbreak stringwidth pop def
+	    /curwidth 0 def
+	    /lastwordbreak 0 def
+	    /startchar 0 def
+	    /restoftext Text def
+
+	    [
+		{
+		    restoftext wordbreak search {
+			/nextword exch def pop
+			/restoftext exch def
+			/wordwidth nextword stringwidth pop def
+
+			curwidth wordwidth add linelength gt {
+			    Text startchar
+			    lastwordbreak startchar sub
+			    getinterval
+			    /startchar lastwordbreak def
+			    /curwidth wordwidth breakwidth add def
+			} {
+			    /curwidth curwidth wordwidth add
+			    breakwidth add def
+			} ifelse
+
+			/lastwordbreak lastwordbreak
+			  nextword length add 1 add def
+		    } {
+			pop exit
+		    } ifelse
+		} loop
+		/lastchar Text length def
+		Text startchar lastchar startchar sub getinterval
+	    ]
+	end
+    } def
+
+
+    /validate {
+	/validatetext self send
+	/validate super send
+    } def
+
+    /invalidate {
+	/invalidate super send
+	/preferredsize unpromote
+	/TextStrings unpromote
+    } def
+
+    % Validate the text.  If TextStrings is not defined, define it
+    % as the formatted Text as specified with /settext.  If an array
+    % was specified with /settext then just copy that array to
+    % TextStrings.
+    %
+    /validatetext { % - => -
+	TextStrings null eq {
+	    Text isarray? {
+		/TextStrings Text promote
+	    } {
+		/TextStrings Text /FormatText self send promote
+	    } ifelse
+	} if
+    } def
+
+    /minsize {
+	/preferredsize self send
+    } def
+
+    % See the spec for the dimensions of a notice.  This is more
+    % flexible than what's in the spec.  If the string is not
+    % passed in formatted, they are formatted according to the
+    % size specified in the spec.  If they ARE formatted, the size
+    % of the notice is based on the size of the maximum length
+    % string.
+    %
+    /preferredsize { % - => pw ph
+	/?validate self send
+	currentfont
+	    TextFont setfont
+	    0 0
+	    TextStrings {		    % maxw cum-h
+		DisplayItemSize		    % maxw cum-h dw dh
+		3 -1 roll add		    % maxw dw cum-h
+		3 1 roll max exch	    % maxw cum-h
+	    } forall
+	    b 2 mul add e add		    % maxw ph
+	    exch c 2 mul add		    % ph pw
+	    /buttons self send dup null ne {
+		/preferredsize exch send pop
+	    } {
+		pop 0
+	    } ifelse
+	    c 2 mul add max exch	    % pw ph
+	3 -1 roll setfont
+	2 copy 2 array astore cvx /preferredsize exch promote
+    } def
+
+    % Ignore the initial damage event because we painted the notice
+    % by hand in order to get the thing to appear faster.
+    %
+    /FixAll { % - => -
+	IgnoreDamage? {
+	    /IgnoreDamage? false def
+	} {
+	    /FixAll super send
+	} ifelse
+    } def
+
+    % This paints the border and the text.  We're a panel so the /paint
+    % takes care of painting the children, which in this case is the
+    % text.  REMIND: The text should be its own region subclass, at
+    % which point /Paint will just paint the border and the bag will
+    % handle the rest.
+    %
+    /Paint {
+	/Paint super send
+	ForegroundColor 2 /StrokeCanvas self send
+	/bbox self send 4 2 roll 5 add exch 4 add exch 4 2 roll
+	    9 sub exch 9 sub exch rectpath stroke
+
+	TextFont setfont
+	/size self send b sub exch 2 div exch	% cx y
+	2 copy moveto
+	TextStrings {				% cx y DI
+	    dup DisplayItemSize exch		% cx y DI h w
+	    2 div neg 1 index neg rmoveto	% cx y DI h
+	    exch DisplayItemPaint		% cx cy h
+	    sub 2 copy moveto			% cx y
+	} forall				% cx y
+	pop pop
+    } def
+
+    % Warp the cursor to the default button in the notice.  If
+    % there isn't one then it warps to the center of the notice.
+    % This saves the current cursor location in WarpX and WarpY
+    % so that it can warp the cursor back to where it was.
+    %
+    % This must not be called until the notice is painted or at
+    % least validated.
+    /WarpCursor { % - => -
+	/Buttons /client self send {			% bs
+	    /default 1 index send dup null ne {		% bs index
+		/location 2 index send			% bs index rx ry
+		4 2 roll				% rx ry bs index
+		/itembbox 3 -1 roll send		% rx ry x y w h
+		6 2 roll xyadd				% w h bx by
+		/location self send xyadd		% w h rbx rby
+		4 2 roll				% rbx rby w h
+	    } {
+		pop /bbox self send			% x y w h
+	    } ifelse
+	} {
+	    /bbox self send
+	} ifelse					% x y w h
+	/RectCenter self send				% cx cy
+	currentcursorlocation
+	/WarpY exch def
+	/WarpX exch def
+	setcursorlocation				% -
+    } def		
+
+    % Unconditionally warp the cursor back to where it was before
+    % we warped it into the notice.  REMIND: Later this will have
+    % to check to make sure the mouse hasn't left the notice window
+    % by watching for Exit events.
+    %
+    /UnwarpCursor { % - => -
+	WarpX null ne {
+	    gsave
+		framebuffer setcanvas
+		WarpX WarpY setcursorlocation
+	    grestore
+	} if
+    } def
+
+    % Keyboard input.
+    %
+    /KeyStart { % ev => names true
+	pop
+	/Default true
+    } def
+
+    % Called when a key is pressed inside us.  Right now only
+    % (\n) is handled.  It executes the default.
+    %
+    /StandardKey { % event => -
+	begin
+	    Name type /integertype eq {
+		Name 13 eq {
+		    /buttons self send
+			/default 1 index send		    % BG I
+		    dup /itemnotifier 3 index send	    % BG I N
+		    /ExecuteNotifier 4 -1 roll send
+		} {
+		    Beep? { beep } if
+		} ifelse
+	    } if
+	end
+    } def
+
+    % Given a rect definition, return the center of it.
+    %
+    /RectCenter { % x y w h => cx cy
+    	2 div exch 2 div exch xyadd			
+    } def
+
+    % Calculate and save in ApexName the name of the Apex
+    % based on X and Y.  The name is one of /NorthWest, /NorthEast,
+    % /SouthWest, /SouthEast.
+    %
+    /SetApexName { % x y => -
+	/bbox framebuffer send				% x y fx fy fw fh
+	/RectCenter self send				% x y midx midy
+	3 -1 roll lt { (North) } { (South) } ifelse	% x midx str
+	3 1 roll lt { (West) } { (East) } ifelse	% str str
+	append cvn /ApexName exch promote
+    } def
+
+    % Return the X/Y pair for the apex.  Apex is specified as either
+    % [X Y] in framebuffer space, [index itemgroup], <drawable>, or
+    % an event.  This code figures out which and returns the X and Y.
+    %
+    % As a side-effect this calculates the apex name, with SetApexName.
+    %
+    /isnumber? { % obj => bool
+	type dup /integertype eq exch /realtype eq or
+    } def
+    /ApexToXY { % <apex> => -
+	gsave
+	    dup type {
+		/arraytype {
+		    aload pop dup isnumber? not {	    % index group
+			framebuffer setcanvas
+			/location 1 index send		    % index group x y
+			/location /Parent 4 index send send
+			    xyadd			    % index group x y
+			4 2 roll /itembbox exch send	    % x y ix iy iw ih
+			6 2 roll xyadd 4 2 roll
+			/RectCenter self send		    % ax ay
+		    } {					    % x y
+			createevent begin
+			    /YLocation exch def
+			    /XLocation exch def
+			    currentdict
+			end
+			framebuffer setcanvas
+			begin XLocation YLocation end
+		    } ifelse
+		}
+		/canvastype {
+		    framebuffer setcanvas
+		    /bbox exch send /RectCenter self send
+		}
+		/eventtype {
+		    framebuffer setcanvas
+		    begin XLocation YLocation end
+		}
+		/Default {
+		    framebuffer setcanvas
+		    /location /Parent 2 index send send % drawable px py
+		    /bbox 4 -1 roll send		% px py x y w h
+		    6 2 roll xyadd 4 2 roll		% dx dy dw dh
+		    /RectCenter self send		% ax ay
+		}
+	    } case
+	    2 copy /SetApexName self send		% ax ay
+	    2 array astore /Apex exch promote
+	grestore
+    } def
+
+    % Position the notice, given the X and Y of the apex and the name
+    % of the apex.  All coords are in framebuffer space.  This method
+    % is called when currentcanvas is framebuffer.
+    %
+    /PositionNotice { % - => -
+	/ApexName promoted? {
+	    Apex ApexName /SetApex Tail send
+	    Apex aload pop ApexName
+	} {
+	    /Default
+	} ifelse			    % x y ApexName | /Default
+	{				    % x y
+	    /NorthEast {
+		/size self send d d xyadd   % x y offx offy
+		xysub			    % nx ny
+	    }
+	    /SouthEast {		    % x y
+		/size self send pop
+		    d add d neg		    % x y nw offy
+		xysub
+	    }
+	    /NorthWest {		    % x y
+		d /size self send exch pop  % x y d nh
+		d add neg xyadd		    % nx ny
+	    }
+	    /SouthWest {		    % x y
+		d d xyadd		    % nx ny
+	    }
+	    /Default {
+		BaseWindow dup null eq {
+		    pop framebuffer
+		} if
+		/bbox exch send			% x y w h
+		/RectCenter self send		% cx cy
+		/size self send			% cx cy w h
+		3 -1 roll exch 2 div sub	% cx w y
+		3 1 roll 2 div sub exch		% x y
+	    }
+	} case
+	/move self send
+    } def
+
+    /HandleObsoleteTarget { % basewindow => -
+	dup BaseWindow eq {
+	    /BaseWindow null def
+	} if
+	/HandleObsoleteTarget super send
+    } def
+
+% API methods
+
+    % Activate the notice and its tail.
+    %
+    /activate {
+	dup /activate super send
+	/activate Tail send
+    } def
+
+    % Deactivate the notice and its tail.
+    %
+    /deactivate {
+	/deactivate super send
+	Tail null ne {
+	    /deactivate Tail send
+	} def
+    } def
+
+    % Invoke the notice.
+    %
+    % This also freezes the base window, sets the input focus to the
+    % notice, reshapes and moves the notice to the right place,
+    % reshapes and maps the tail, paints both the notice and the
+    % tail, and then warps the cursor to the default button in the
+    % notice.
+    %
+    /open { % apex|null => -
+	dup null ne {
+	    /ApexToXY self send
+	} {
+	    pop
+	} ifelse
+
+	gsave
+	    framebuffer setcanvas
+	    BaseWindow null ne {
+%		/freezeall BaseWindow send
+		/Busy /setvisualstate BaseWindow send
+	    } if
+	    /PreviousFocus currentinputfocus def
+	    /size self send /preferredsize self send	% cx cy px py
+	    3 -1 roll eq 3 1 roll eq and not {
+		0 0 /preferredsize self send /reshape self send
+	    } if
+	    /IgnoreDamage? true def
+	    Beep? { beep } if
+	    /PositionNotice self send
+	    /ApexName promoted? {
+		/bbox self send /reshape Tail send
+		/map Tail send
+		/paint Tail send
+	    } if
+	    /totop self send
+	    /map self send
+	    /paint self send
+	    /WarpCursor self send
+	    self setinputfocus
+	    { .001 sleep self setinputfocus } fork pop  %%%% REMIND!
+	grestore
+    } def
+
+    % Unmaps the notice and its tail.
+    %
+    % This also unwarps the cursor, restores the input focus and
+    % unfreezes the base window.
+    %
+    /close { % - => -
+	/unmap self send
+	/ApexName promoted? {
+	    /unmap Tail send
+	    /ApexName unpromote
+	} if
+	/UnwarpCursor self send
+	PreviousFocus
+	{ .001 sleep setinputfocus } fork pop  %%%% REMIND!
+	setinputfocus
+	/PreviousFocus null def
+	BaseWindow null ne {
+%	    /unfreezeall BaseWindow send
+	    /Active /setvisualstate BaseWindow send
+	} if
+    } def
+
+    /settext { % text | [ string1 string2 ... ] => -
+	/invalidate self send
+	/Text 1 index promote
+	isarray? not {
+	    /TextStrings unpromote
+	} if
+    } def
+
+    /text { % - => text | [string1 string2 ...]
+	Text
+    } def
+
+    /setbuttons { % buttons|null => -
+	/invalidate self send
+	/Buttons /removeclient self send {
+	    pop
+	} if
+	dup null ne {
+	    /Buttons exch [ /South {/South self POSITION 15 add } ]
+		/addclient self send
+	} {
+	    pop
+	} ifelse
+	
+    } def
+
+    /buttons { % - => buttons|null
+	/Buttons /client self send not {
+	    null
+	} if
+    } def
+
+    /setbasewindow { % basewindow|null => -
+	BaseWindow null ne {
+	    BaseWindow self /removeclient ObsoleteService send
+	    /BaseWindow null def
+	} if
+	dup null ne {
+	    /BaseWindow 1 index soften def
+	    self /addclient ObsoleteService send
+	} {
+	    pop
+	} ifelse
+    } def
+
+    /basewindow { % - => basewindow|null
+	BaseWindow
+    } def    
+
+    IncludeDemos? {
+	/demo {
+	    10 dict begin
+		% Create a window and the notice
+		/win null framebuffer /new ClassBaseWindow send def
+		/notice null framebuffer /new ClassNotice send def
+
+		% Readers should ignore the next line. It is only here
+		% to make the demo clean up in the unnatural situation in which
+		% demo methods are usually run -- viz. everything must clean up
+		% without being able to assume that userdict will go away. You
+		% would normally just leave your reference to your notice in
+		% userdict.
+		win /TheDemoNotice notice soften put
+		/destroy {
+		    /TheDemoNotice null def
+		    /destroy super send
+		} /installmethod win send
+
+		% Give the notice some text.
+		(This is a test of the emergency broadcasting system. \
+		 If this had been an actual emergency you would have been\
+		 informed where to tune in.) /settext notice send
+
+		% Create the buttongroup that will appear in the notice
+		/noticebuttons /Spaced framebuffer /new ClassButtons send def
+		[(Save And Then Quit) (Quit) (Cancel)]
+		    /setitemlist noticebuttons send
+		2 /setdefault noticebuttons send
+		/RespondToNotice /setnotifier noticebuttons send
+		win /settarget noticebuttons send
+		10 0 /setgaps noticebuttons send
+
+		% Make these buttons appear in  the notice, and make the notice
+		% freeze the appropriate window when it is up.
+		noticebuttons /setbuttons notice send
+		win /setbasewindow notice send
+
+		% Create a button and have it invoke the notice.
+		/winbutton /Calculated framebuffer /new ClassButtons send def
+		[(Show Notice) [ /Center { /Center PARENT POSITION }]]
+		    /setitemlist winbutton send
+		/ShowNotice /setnotifier winbutton send
+		win /settarget winbutton send
+
+		% Add a couple of callback methods to hook all this together
+		% In your application these would probably not be methods of the
+		% window but some other more appropriate object.
+		/ShowNotice { % index buttongroup => -
+		    (I'm frozen!) () /setfooter self send
+		    2 array astore /open TheDemoNotice send
+		} /installmethod win send
+
+		/RespondToNotice {% index buttongroup => -
+		    pop pop /close TheDemoNotice send
+		    pause % to let the savebehind repair
+		    (Phew! I'm thawed again.) () /setfooter self send
+                } /installmethod win send 
+
+		% Stitch the window together and go!
+		/Center winbutton /addclient win send
+		(Notice Demo) /setlabel win send
+		/preferredsize { 200 200 } /promote win send
+		/place win send
+		/new ClassEventMgr send dup
+		/activate win send /activate notice send
+		/map win send
+		win notice
+	    end
+	} def
+    } if
+classend def
+
+/ClassNoticeTail ClassCanvas
+dictbegin
+    /Apex	[0 0] def
+    /ApexName	null def
+    /IgnoreDamage? false def
+    /nx		0 def
+    /ny		0 def
+    /nw		0 def
+    /nh		0 def
+dictend
+
+classbegin
+
+    /Mapped	    false def
+    /Transparent    false def
+    /SaveBehind	    true def
+    /Retained	    false def	% Necessary for monochrome bug
+
+    /12color	    .88 dup dup rgbcolor def
+    /25color	    .75 dup dup	rgbcolor def
+    /50color	    .50 dup dup rgbcolor def
+
+    /SetApex { % coords name => -
+	/ApexName exch def
+	/Apex exch def
+    } def
+
+    % x y w h are that of the notice we're being the tail for.
+    % Save those now and then call path1 and path2.  They represent
+    % the two triangles of differing color, which when combined make
+    % the full notice path.
+    %
+    /path { % x y w h => -
+	/nh exch def
+	/nw exch def
+	/ny exch def
+	/nx exch def
+	/path1 self send
+	/path2 self send
+    } def
+
+    % Given one of four compass points, calculate that point in the
+    % notice.  E.g., return X/Y of the notice's NorthWest corner.
+    %
+    /NoticeCompassCoordsDict 4 dict dup begin
+	/NorthWest {
+	    nx ny nh add
+	} def
+
+	/SouthWest {
+	    nx ny
+	} def
+
+	/SouthEast {
+	    nx nw add ny
+	} def
+
+	/NorthEast {
+	    nx ny nw nh xyadd
+	} def
+    end def
+
+    /GetNoticeCoords { % name => x y
+	NoticeCompassCoordsDict exch get exec
+    } def
+
+    % Override reshape to not translate, since all the notices coordinates
+    % are framebuffer relative.
+    %
+    /reshape { % x y w h => -
+	gsave
+	    /path self send
+	    self reshapecanvas
+	grestore
+    } def
+
+    % For each apex there are two triangles to be drawn.  I have
+    % labeled each triangle of each apex arbitrarily with a 1 or
+    % a 2.  If I could draw a picture I would.  Each triangle is
+    % defined by the apex and two compass points of the notice.
+    % Note that if the apex is SouthWest, for example, then SouthWest
+    % is one of the two interesting compass points of the notice.
+    % The case below use used to select the other interesting point.
+    %
+    % Same for the path2 procedure.
+    %
+    /path1 {
+	ApexName {
+	    /SouthWest { /NorthWest } 
+	    /SouthEast { /SouthWest }
+	    /NorthWest { /SouthWest }
+	    /NorthEast { /NorthWest }
+	} case
+	Apex aload pop 2 copy moveto	    % othercorner ax xy
+	ApexName GetNoticeCoords lineto	    % othercorner ax ay
+	3 -1 roll GetNoticeCoords lineto    % ax xy
+	lineto				    % -
+    } def
+
+    /path2 {
+	ApexName {
+	    /SouthWest { /SouthEast } 
+	    /SouthEast { /NorthEast }
+	    /NorthWest { /NorthEast }
+	    /NorthEast { /SouthEast }
+	} case
+	Apex aload pop 2 copy moveto	    % othercorner ax xy
+	ApexName GetNoticeCoords lineto	    % othercorner ax ay
+	3 -1 roll GetNoticeCoords lineto    % ax xy
+	lineto				    % -
+    } def
+
+    % Given an apex return the colors for path1 and path2 in turn.
+    % This table should make it easy to see which is path1 and which
+    % is path2 for each apex, if you care.  I don't because it already
+    % works :-)
+    %
+    /ApexColorsDict 4 dict dup begin
+	/NorthWest [ 25color 12color ] def
+	/NorthEast [ 12color 25color ] def
+	/SouthWest [ 25color 50color ] def
+	/SouthEast [ 50color 25color ] def
+    end def
+
+    /GetColor { % path-number Compass => color
+	ApexColorsDict exch get exch 1 sub get
+    } def
+
+    % Paint path1 and fill with the right color.  Then paint with
+    % path2 and fill with the right color.  Pretty simple.
+    %
+    /Paint { %
+	/path1 self send
+	1 ApexName GetColor setcolor fill
+	/path2 self send
+	2 ApexName GetColor setcolor fill
+    } def
+
+    /map {
+	/totop self send
+	/map super send
+	/IgnoreDamage? true def
+    } def
+
+    /FixAll { % - => -
+	IgnoreDamage? {
+	    /IgnoreDamage? false def
+	} {
+	    /FixAll super send
+	} ifelse
+    } def
+
+classend def

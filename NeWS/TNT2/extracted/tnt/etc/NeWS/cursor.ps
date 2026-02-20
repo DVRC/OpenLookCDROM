@@ -1,0 +1,44 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) cursor.ps 1.4 91/02/11
+
+/cursordict 35 dict def
+cursordict begin
+/basic 0 def
+/basic_m 1 def
+/move 2 def
+/move_m 3 def
+/copy 4 def
+/copy_m 5 def
+/busy 6 def
+/busy_m 7 def
+/stop 8 def
+/stop_m 9 def
+/panning 10 def
+/panning_m 11 def
+/target 12 def
+/target_m 13 def
+/nouse 14 def
+/nouse_m 15 def
+/ptr 16 def
+/ptr_m 17 def
+/beye 18 def
+/beye_m 19 def
+/rtarr 20 def
+/rtarr_m 21 def
+/xhair 22 def
+/xhair_m 23 def
+/xcurs 24 def
+/xcurs_m 25 def
+/hourg 26 def
+/hourg_m 27 def
+end
+% Usage: x y moveto /cursorname showicon
+/showcursor {
+	currentfont ( ) dup 0 cursordict 5 index get put
+	cursorfont setfont show setfont pop } def
+/cursorfont (OLCursor) findfont 12 scalefont def

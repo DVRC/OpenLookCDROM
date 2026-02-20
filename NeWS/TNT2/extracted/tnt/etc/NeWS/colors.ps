@@ -1,0 +1,157 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)colors.ps 23.6 91/02/11
+%
+%  Color name database compatibility.
+%
+%  This file used to define all the color name mappings available to X11/NeWS.
+%  Now the primary mapping is defined in $OPENWINHOME/lib/X11/rgb.txt.
+%  On server startup, this database is read and loaded into the Postscript
+%  dictionary ColorDict.  This file is just a compatibility package to
+%  add the names which used to be defined but which are no longer included
+%  in the X11 database.
+%
+%  NEWS PROGRAMMERS ARE DISCOURAGED FROM EDITTING THIS FILE TO ADD OR
+%  CHANGE COLOR NAME DEFINITIONS.  The preferred way to do this is to
+%  modify the rgb.txt file.
+
+/RGBcolor { % R G B => color (Takes traditional 0..255 arguments for R G B)
+    3 {255 div 3 1 roll} repeat rgbcolor
+} def
+
+systemdict /ColorDict known {
+ColorDict begin
+
+	% Single word names which are lowercase in X11R4
+	/Aquamarine		aquamarine def
+	/Black			black def
+	/Blue			blue def
+	/Brown			brown def
+	/Coral			coral def
+	/Cyan			cyan def
+	/Firebrick		firebrick def
+	/Gold			gold def
+	/Goldenrod		goldenrod def
+	/Gray			gray def
+	/Green			green def
+	/Grey			grey def
+	/Khaki			khaki def
+	/Magenta		magenta def
+	/Maroon			maroon def
+	/Navy			navy def
+	/Orange			orange def
+	/Orchid			orchid def
+	/Pink			pink def
+	/Plum			plum def
+	/Red			red def
+	/Salmon			salmon def
+	/Sienna			sienna def
+	/Tan			tan def
+	/Thistle		thistle	def
+	/Turquoise		turquoise def
+	/Wheat			wheat def
+	/White			white def
+	/Violet			violet def
+	/Yellow			yellow def
+	
+	% Multi-word names - these are stored as lowercase in the X11R4 
+	% database
+	/BlueViolet		 blueviolet def
+	/CadetBlue		 cadetblue def
+	/CornflowerBlue		 cornflowerblue def
+	/DarkGreen		 darkgreen def
+	/DarkOliveGreen		 darkolivegreen def
+	/DarkOrchid		 darkorchid def
+	/DarkSlateBlue		 darkslateblue def
+	/DarkSlateGray		 darkslategray def
+	/DarkSlateGrey		 darkslategrey def
+	/DarkTurquoise		 darkturquoise def
+	/DimGray		 dimgray def
+	/DimGrey		 dimgrey def
+	/ForestGreen	 forestgreen def
+	/GreenYellow		 greenyellow def
+	/IndianRed		 indianred def
+	/LightBlue		 lightblue def
+	/LightGray		 lightgray def
+	/LightGrey		 lightgrey def
+	/LightSteelBlue		 lightsteelblue def
+	/LimeGreen		 limegreen def
+	/MediumAquamarine	 mediumaquamarine def
+	/MediumBlue		 mediumblue def
+	/MediumOrchid		 mediumorchid def
+	/MediumSeaGreen		 mediumseagreen def
+	/MediumSlateBlue	 mediumslateblue def
+	/MediumSpringGreen	 mediumspringgreen def
+	/MediumTurquoise	 mediumturquoise def
+	/MediumVioletRed	 mediumvioletred def
+	/MidnightBlue		 midnightblue def
+	/NavyBlue		 navyblue def
+	/OrangeRed		 orangered def
+	/PaleGreen		 palegreen def
+	/SeaGreen		 seagreen def
+	/SkyBlue		 skyblue def
+	/SlateBlue		 slateblue def
+	/SpringGreen		 springgreen def
+	/SteelBlue		 steelblue def
+	/VioletRed		 violetred def
+	/YellowGreen	 yellowgreen def
+
+	% Multi-word names which are renamed in X11R4
+	/MediumForestGreen	 olivedrab def
+	/mediumforestgreen	 olivedrab def
+	(medium forest green) cvn olivedrab def
+
+	% Multi-word names which are deleted from X11R4
+	/MediumGoldenrod	234 234 173 RGBcolor def
+	/mediumgoldenrod	234 234 173 RGBcolor def
+	(medium goldenrod) cvn	234 234 173 RGBcolor def
+
+	% Multi-word names which are lowercase and separated with spaces
+	(blue violet) cvn	blueviolet def
+	(cadet blue) cvn	cadetblue def
+	(cornflower blue) cvn	cornflowerblue def
+	(dark green) cvn	darkgreen def
+	(dark olive green) cvn	darkolivegreen def
+	(dark orchid) cvn	darkorchid def
+	(dark slate blue) cvn	darkslateblue def
+	(dark slate gray) cvn	darkslategray def
+	(dark slate grey) cvn	darkslategrey def
+	(dark turquoise) cvn	darkturquoise def
+	(dim gray) cvn		dimgray def
+	(dim grey) cvn		dimgrey def
+	(forest green) cvn	forestgreen def
+	(green yellow) cvn	greenyellow def
+	(indian red) cvn	indianred def
+	(light blue) cvn	lightblue def
+	(light gray) cvn	lightgray def
+	(light grey) cvn	lightgrey def
+	(light steel blue) cvn	lightsteelblue def
+	(lime green) cvn	limegreen def
+	(medium aquamarine) cvn	mediumaquamarine def
+	(medium blue) cvn	mediumblue def
+	(medium orchid) cvn	mediumorchid def
+	(medium sea green) cvn	mediumseagreen def
+	(medium slate blue) cvn	mediumslateblue def
+	(medium slate blue) cvn	mediumslateblue def
+	(medium spring green) cvn	mediumspringgreen def
+	(medium turquoise) cvn	mediumturquoise def
+	(medium violet red) cvn	mediumvioletred def
+	(midnight blue) cvn	midnightblue def
+	(navy blue) cvn		navyblue def
+	(orange red) cvn	orangered def
+	(pale green) cvn	palegreen def
+	(sea green) cvn		seagreen def
+	(sky blue) cvn		skyblue def
+	(slate blue) cvn	slateblue def
+	(spring green) cvn	springgreen def
+	(steel blue) cvn	steelblue def
+	(violet red) cvn	violetred def
+	(yellow green) cvn	yellowgreen def
+
+end
+
+} if

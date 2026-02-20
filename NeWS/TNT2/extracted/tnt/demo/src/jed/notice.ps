@@ -1,0 +1,34 @@
+/ChedNoticeFrame [ /defaultclass OpenLookNoticeFrame send WireClient] []
+classbegin
+    /SaveBehind true def
+classend def
+
+currentprocess /ErrorDetailLevel 2 put
+
+% REMIND: This is stuck in the button callbacks for now.  Server bug
+% with user defined fonts.
+%
+/STACKFIX {
+    100 { 1 } repeat
+    100 { pop } repeat
+} def
+
+/MKNOTICE {	% frame_id text
+    10 dict begin
+	/text exch def
+	/frame_id exch def
+	/bag framebuffer /new FlexBag send def
+
+	0 0 350 100 /reshape text send
+	/Text [/n {/n self POSITION 0 -10 XYADD} text ]
+	    /addclient bag send
+	bag [/Footer false /Reshape false] framebuffer
+	    /newdefault ChedNoticeFrame send
+	frame_id /set-client-id 2 index send
+	/wire-init 1 index send
+	/activate 1 index send
+	10 10 /setpadding bag send
+    end
+    dup def
+} def
+

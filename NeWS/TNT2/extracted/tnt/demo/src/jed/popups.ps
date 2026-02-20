@@ -1,0 +1,272 @@
+%   @(#)popups.ps 1.4 91/02/21 Copyright 1990-91 Sun Microsystems
+%
+% This file is a product of Sun Microsystems, Inc. and is provided for
+% unrestricted use provided that this legend is included on all tape
+% media and as a part of the software program in whole or part.  Users
+% may copy or modify this file without charge, but are not authorized to
+% license or distribute it to anyone else except as part of a product
+% or program developed by the user.
+% 
+% THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
+% WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+% PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
+% 
+% This file is provided with no support and without any obligation on the
+% part of Sun Microsystems, Inc. to assist in its use, correction,
+% modification or enhancement.
+% 
+% SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
+% INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY THIS FILE
+% OR ANY PART THEREOF.
+% 
+% In no event will Sun Microsystems, Inc. be liable for any lost revenue
+% or profits or other special, indirect and consequential damages, even
+% if Sun has been advised of the possibility of such damages.
+% 
+% Sun Microsystems, Inc.
+% 2550 Garcia Avenue
+% Mountain View, California  94043
+
+%
+%       Creation of load_popup
+%
+
+/load_popup
+    null framebuffer /new ClassPopupWindow send
+def
+
+0 0 582 183 /reshape load_popup send
+/Reshape? false /setattribute load_popup send
+/Footer? false /setattribute load_popup send
+(Jed:Load) /setlabel load_popup send
+
+%
+%       Creation of controls1
+%
+
+/controls1
+    /Absolute framebuffer /new ClassPanel send
+def
+
+/colors load_popup send
+/setcolors controls1 send
+
+0 0 572 123 /reshape controls1 send
+
+/Center controls1 /addclient load_popup send
+
+%
+%       Creation of load_directory
+%
+%
+
+/load_directory-label
+    (Directory:)  framebuffer /new ClassLabel send
+def
+
+/load_directory-label load_directory-label [8 100] /addclient controls1 send
+
+
+/load_directory
+    framebuffer /new ClassTextField send
+def
+
+    60 .75 mul cvi
+/setminimumvisible load_directory send
+/load_directory load_directory [ 83 100] /addclient controls1 send 
+
+%
+%       Creation of load_file
+%
+%
+
+/load_file-label
+    (File:)  framebuffer /new ClassLabel send
+def
+
+/load_file-label load_file-label [46 72] /addclient controls1 send
+
+/load_file
+    framebuffer /new ClassTextField send
+def
+
+    60 .75 mul cvi
+/setminimumvisible load_file send
+/load_file load_file [ 83 72] /addclient controls1 send 
+
+load_file /setnextfocus load_directory send
+
+%
+%   Creation of load_button
+%
+%
+
+/load_button
+    /Absolute framebuffer /new ClassButtons send
+def
+
+[ (Load File) [ 0 0 ] ] /setitemlist load_button send
+/load_button load_button [ 256 28] /addclient controls1 send 
+
+
+%
+%       Creation of save_popup
+%
+
+/save_popup
+    null framebuffer /new ClassPopupWindow send
+def
+
+0 0 582 183 /reshape save_popup send
+/Reshape? false /setattribute save_popup send
+/Footer? false /setattribute save_popup send
+(Jed:Save) /setlabel save_popup send
+
+%
+%       Creation of controls2
+%
+
+/controls2
+    /Absolute framebuffer /new ClassPanel send
+def
+
+/colors save_popup send
+/setcolors controls2 send
+
+0 0 572 123 /reshape controls2 send
+
+/Center controls2 /addclient save_popup send
+
+%
+%       Creation of save_directory
+%
+%
+
+/save_directory-label
+    (Directory:)  framebuffer /new ClassLabel send
+def
+
+/save_directory-label save_directory-label [8 100] /addclient controls2 send
+
+
+/save_directory
+    framebuffer /new ClassTextField send
+def
+
+    60 .75 mul cvi
+/setminimumvisible save_directory send
+/save_directory save_directory [ 83 100] /addclient controls2 send 
+
+%
+%       Creation of save_file
+%
+%
+
+/save_file-label
+    (File:)  framebuffer /new ClassLabel send
+def
+
+/save_file-label save_file-label [46 72] /addclient controls2 send
+
+
+/save_file
+    framebuffer /new ClassTextField send
+def
+
+    60 .75 mul cvi
+/setminimumvisible save_file send
+/save_file save_file [ 83 72] /addclient controls2 send 
+
+save_file /setnextfocus save_directory send
+
+%
+%   Creation of save_button
+%
+
+/save_button
+    /Absolute framebuffer /new ClassButtons send
+def
+
+[ (Save File) [ 0 0 ] ] /setitemlist save_button send
+/save_button save_button [ 256 28] /addclient controls2 send
+
+
+%
+%       Creation of include_popup
+%
+
+/include_popup
+    null framebuffer /new ClassPopupWindow send
+def
+
+0 0 582 183 /reshape include_popup send
+/Reshape? false /setattribute include_popup send
+/Footer? false /setattribute include_popup send
+(Jed:Include) /setlabel include_popup send
+
+%
+%       Creation of controls1
+%
+
+/controls1
+    /Absolute framebuffer /new ClassPanel send
+def
+
+/colors include_popup send
+/setcolors controls1 send
+
+0 0 572 123 /reshape controls1 send
+
+/Center controls1 /addclient include_popup send
+
+%
+%       Creation of include_directory
+%
+%
+
+/include_directory-label
+    (Directory:)  framebuffer /new ClassLabel send
+def
+
+/include_directory-label include_directory-label [8 100] /addclient controls1 send
+
+
+/include_directory
+    framebuffer /new ClassTextField send
+def
+
+    60 .75 mul cvi
+/setminimumvisible include_directory send
+/include_directory include_directory [ 83 100] /addclient controls1 send 
+
+%
+%       Creation of include_file
+%
+%
+
+/include_file-label
+    (File:)  framebuffer /new ClassLabel send
+def
+
+/include_file-label include_file-label [46 72] /addclient controls1 send
+
+/include_file
+    framebuffer /new ClassTextField send
+def
+
+    60 .75 mul cvi
+/setminimumvisible include_file send
+/include_file include_file [ 83 72] /addclient controls1 send 
+
+include_file /setnextfocus include_directory send
+
+%
+%   Creation of include_button
+%
+
+/include_button
+    /Absolute framebuffer /new ClassButtons send
+def
+
+[ (Include File) [ 0 0 ] ] /setitemlist include_button send
+/include_button include_button [ 256 28] /addclient controls1 send

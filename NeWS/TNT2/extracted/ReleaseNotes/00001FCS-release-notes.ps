@@ -1,0 +1,6432 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 15 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Italic FMDEFINEFONT
+1 9 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 15 /Palatino-Italic FMDEFINEFONT
+4 10 /Palatino-Roman FMDEFINEFONT
+5 24 /Helvetica-Bold FMDEFINEFONT
+6 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "1" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (1) 553.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+54 522 558 648 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-2.3 -0.4 (TNT 2.0 Installation Guide and ) 198 508.67 B
+-2.3 -0.4 (Release Notes) 198 486.67 B
+3 F
+-0.94 (Intr) 54 450 P
+-0.94 (oduction ) 77.89 450 P
+4 F
+0.38 0.1 (These r) 198 428.33 B
+0.38 0.1 (elease notes ar) 231.11 428.33 B
+0.38 0.1 (e included with the NeWS T) 297.2 428.33 B
+0.38 0.1 (oolkit \050TNT\051 2.0 r) 425.83 428.33 B
+0.38 0.1 (elease. The ) 505.3 428.33 B
+0.52 0.1 (notes contain sections on the following topics r) 198 415.93 B
+0.52 0.1 (elated to the r) 413.2 415.93 B
+0.52 0.1 (elease:) 476.95 415.93 B
+0.52 0.1 (Pr) 198 395.53 B
+0.52 0.1 (oduct Description) 208 395.53 B
+0.52 0.1 (The details of this r) 297 395.53 B
+0.52 0.1 (elease ar) 385.88 395.53 B
+0.52 0.1 (e pr) 425.07 395.53 B
+0.52 0.1 (esented. Dif) 443.05 395.53 B
+0.52 0.1 (fer) 497.34 395.53 B
+0.52 0.1 (ences ) 509.52 395.53 B
+0.52 0.1 (between this r) 297 383.13 B
+0.52 0.1 (elease and earlier r) 361.72 383.13 B
+0.52 0.1 (eleases ar) 448.26 383.13 B
+0.52 0.1 (e noted.) 491.78 383.13 B
+0.1 (Installation) 198 362.73 S
+0.52 0.1 (Installation and execution instr) 297 362.73 B
+0.52 0.1 (uctions ar) 438.83 362.73 B
+0.52 0.1 (e outlined in ) 483.76 362.73 B
+0.52 0.1 (this section.) 297 350.33 B
+0.1 (Documentation) 198 329.93 S
+0.52 0.1 (This section describes available documentation for TNT ) 297 329.93 B
+0.52 0.1 (and its support envir) 297 317.53 B
+0.52 0.1 (onment.) 393.35 317.53 B
+0.1 (Demos) 198 297.13 S
+0.52 0.1 (Demos ar) 297 297.13 B
+0.52 0.1 (e discussed in this section, which includes ) 340.63 297.13 B
+0.52 0.1 (descriptions of demo methods and applications.) 297 284.73 B
+0.52 0.1 (Compatibility Issues) 198 264.33 B
+0.52 0.1 (Experimental interfaces or classes ar) 297 264.33 B
+0.52 0.1 (e discussed in this ) 462.8 264.33 B
+0.1 (section.) 297 251.93 S
+0.1 (Bugs) 198 231.53 S
+0.52 0.1 (A list of known bugs is pr) 297 231.53 B
+0.52 0.1 (ovided.) 416.83 231.53 B
+54 176.16 558 220.8 C
+558 216.34 198 216.34 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+169.7 181.34 153.29 214.18 2 L
+0.5 H
+4 K
+N
+136.94 181.34 153.29 214.18 2 L
+N
+136.94 181.34 169.7 181.34 2 L
+N
+5 F
+0 K
+(!) 149.69 185.38 T
+6 F
+(Caution \320 ) 198 204.46 T
+0 72 612 720 C
+54 193.17 558 201.16 C
+558 198.14 198 198.14 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (Loading TNT 2.0 br) 245.52 204.49 B
+0.52 0.1 (eaks the Lite T) 335.67 204.49 B
+0.52 0.1 (oolkit.) 401.93 204.49 B
+FMENDPAGE
+%%EndPage: "1" 2
+2 14 /Times-Bold FMDEFINEFONT
+5 10 /Palatino-Italic FMDEFINEFONT
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (2) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+-0.94 (Pr) 54 638 P
+-0.94 (oduct description ) 68.73 638 P
+4 F
+0.52 0.1 (TNT2.0 is an OPEN LOOK user interface toolkit for NeWS. All OPEN LOOK ) 198 616.33 B
+0.52 0.1 (UI components except the \322T) 198 603.93 B
+0.52 0.1 (ext Pane\323 ar) 330.52 603.93 B
+0.52 0.1 (e implemented in and accessed ) 386.36 603.93 B
+0.3 0.1 (thr) 198 591.53 B
+0.3 0.1 (ough the NeWS Object Oriented PostScript \050OOP\051 system. C-based libraries ) 211.14 591.53 B
+0.52 0.1 (ar) 198 579.13 B
+0.52 0.1 (e also pr) 206.96 579.13 B
+0.52 0.1 (ovided so that applications can use the W) 246.06 579.13 B
+0.52 0.1 (ir) 436.88 579.13 B
+0.52 0.1 (e Service \050a lightweight ) 443.75 579.13 B
+0.52 0.1 (noti\336er and connection manager for NeWS\051 and Jot \050the package that ) 198 566.73 B
+0.52 0.1 (implements T) 198 554.33 B
+0.52 0.1 (ext Panes\051.) 259.79 554.33 B
+0.52 0.1 (A TNT backend to Devguide, pr) 198 533.93 B
+0.52 0.1 (oducing both C and C++ code, is also ) 346.1 533.93 B
+0.52 0.1 (pr) 198 521.53 B
+0.52 0.1 (ovided in this r) 207.98 521.53 B
+0.52 0.1 (elease.) 278.36 521.53 B
+3 F
+-0.94 (Featur) 54 487.8 P
+-0.94 (es added since Beta) 93.73 487.8 P
+4 F
+0.52 0.1 (The featur) 198 466.13 B
+0.52 0.1 (es added since the Beta Release of TNT2.0 ar) 244.91 466.13 B
+0.52 0.1 (e as follows. See the ) 449.57 466.13 B
+0.52 0.1 (BUGS section for a list of r) 198 453.73 B
+0.52 0.1 (ecently \336xed bugs.) 320.16 453.73 B
+2 F
+(\245) 198 435.33 T
+4 F
+0.52 0.1 (Help Service) 210.6 435.33 B
+2 F
+(\245) 198 416.93 T
+4 F
+0.52 0.1 (Defaults Service) 210.6 416.93 B
+2 F
+(\245) 198 398.53 T
+4 F
+0.52 0.1 (Input Focus) 210.6 398.53 B
+2 F
+(\245) 198 380.13 T
+4 F
+0.52 0.1 (Default \050staticcolor\051 colormap installation) 210.6 380.13 B
+2 F
+(\245) 198 361.73 T
+4 F
+0.52 0.1 (Key Service and T) 210.6 361.73 B
+0.52 0.1 (rack Service callbacks occur in the Local Event Manager) 292.86 361.73 B
+2 F
+(\245) 198 343.33 T
+4 F
+0.52 0.1 (Open, Fr) 210.6 343.33 B
+0.52 0.1 (ont, and Help keys enabled) 250.71 343.33 B
+2 F
+(\245) 198 324.93 T
+4 F
+0.52 0.1 (Menus support the standar) 210.6 324.93 B
+0.52 0.1 (d layout styles: /Spaced, /Grid, /Calculated, ) 334.46 324.93 B
+0.52 0.1 (and /Absolute.) 210.6 312.54 B
+3 F
+-0.94 ( Installation ) 54 278.8 P
+4 F
+0.02 0.1 (T) 198 257.14 B
+0.02 0.1 (o r) 203.31 257.14 B
+0.02 0.1 (un TNT2.0 on your workstation, you must be r) 215.45 257.14 B
+0.02 0.1 (unning version 4.1 of SunOS ) 426.41 257.14 B
+0.52 0.1 (and OpenW) 198 244.73 B
+0.52 0.1 (indows V) 252.75 244.73 B
+0.52 0.1 (ersion2. Follow these instr) 295.54 244.73 B
+0.52 0.1 (uctions to ensur) 415.54 244.73 B
+0.52 0.1 (e that ) 488.67 244.73 B
+0.52 0.1 (OpenW) 198 232.34 B
+0.52 0.1 (indows uses the 2.0 TNT \336les, rather than the experimental TNT 1.0 ) 232.41 232.34 B
+0.52 0.1 (\336les distributed with OpenW) 198 219.93 B
+0.52 0.1 (indows. If you don\325t have OpenW) 331.04 219.93 B
+0.52 0.1 (indows ) 486.9 219.93 B
+0.52 0.1 (V) 198 207.53 B
+0.52 0.1 (ersion2 r) 204.21 207.53 B
+0.52 0.1 (unning, please consult the ) 244.15 207.53 B
+5 F
+0.52 0.1 (OpenW) 367.09 207.53 B
+0.52 0.1 (indows V) 399.04 207.53 B
+0.52 0.1 (ersion 2 Installation and ) 438.03 207.53 B
+0.52 0.1 (Start-Up Guide) 198 195.14 B
+4 F
+0.52 0.1 (.) 263.49 195.14 B
+FMENDPAGE
+%%EndPage: "2" 3
+7 9 /Courier FMDEFINEFONT
+8 14 /Palatino-Italic FMDEFINEFONT
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (3) 553.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+54 631.66 558 648 C
+558 644.98 198 644.98 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+6 F
+(Note \320 ) 198 634.82 T
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (In the following examples <top-level dir) 231.84 634.99 B
+0.52 0.1 (ectory> is the dir) 416.29 634.99 B
+0.52 0.1 (ectory wher) 494.44 634.99 B
+0.52 0.1 (e ) 548.71 634.99 B
+0.52 0.1 (you install the TNT \336les. For these installation instr) 198 622.59 B
+0.52 0.1 (uctions, ) 433.93 622.59 B
+7 F
+1.08 (<top-level ) 472.49 622.59 P
+54 598.86 558 606.86 C
+558 603.83 198 603.83 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+7 F
+0 X
+0 K
+1.08 (directory>) 198 610.19 P
+4 F
+0.52 0.1 ( is: ) 251.93 610.19 B
+7 F
+1.08 (/usr/tnt/) 268.11 610.19 P
+8 F
+-0.88 (The NeWS T) 126 569.13 P
+-0.88 (oolkit CD-ROM) 196.55 569.13 P
+4 F
+0.52 0.1 (The NeWS T) 198 547.8 B
+0.52 0.1 (oolkit \050TNT\051 is distributed on CD-ROM. Refer to the ) 255.31 547.8 B
+5 F
+0.52 0.1 (CDmanager ) 498.66 547.8 B
+0.52 0.1 (and CDM User Instructions) 198 535.4 B
+4 F
+0.52 0.1 ( \050part number 800-5560-10\051 for instr) 317.46 535.4 B
+0.52 0.1 (uctions on ) 480.4 535.4 B
+0.52 0.1 (mounting the TNT2.0 CD-ROM and starting CDmanager fr) 198 523 B
+0.52 0.1 (om OpenW) 468.79 523 B
+0.52 0.1 (indows ) 520.8 523 B
+0.52 0.1 (or starting CDM fr) 198 510.6 B
+0.52 0.1 (om a terminal. The CDmanager and CDM softwar) 283.61 510.6 B
+0.52 0.1 (e ar) 513.43 510.6 B
+0.52 0.1 (e ) 530.4 510.6 B
+0.52 0.1 (included on the TNT CD-ROM and the documentation is included with the ) 198 498.2 B
+0.52 0.1 (TNT documentation set. Y) 198 485.8 B
+0.52 0.1 (ou must be r) 317.69 485.8 B
+0.52 0.1 (oot to install TNT using either ) 375.86 485.8 B
+0.52 0.1 (CDmanager or CDM.) 198 473.4 B
+0.52 0.1 (After you start CDManager:) 198 453 B
+0.1 (1.) 197.5 432.6 S
+0.52 0.1 (Select the TNT application by clicking the SELECT button over the TNT ) 210.6 432.6 B
+0.1 (icon.) 210.6 420.2 S
+0.1 (2.) 197.5 399.8 S
+0.52 0.1 (Select \322Install\323 fr) 210.6 399.8 B
+0.52 0.1 (om the \322Options\323 menu.) 288.55 399.8 B
+0.52 0.1 (These two steps activate an interactive installation script. The script will ) 198 379.4 B
+0.22 0.1 (pr) 198 367 B
+0.22 0.1 (ompt you for the information r) 207.98 367 B
+0.22 0.1 (equir) 348.23 367 B
+0.22 0.1 (ed to install TNT) 371.82 367 B
+0.22 0.1 (. Y) 448.13 367 B
+0.22 0.1 (ou will need to make ) 459.39 367 B
+0.52 0.1 (the following decisions:) 198 354.6 B
+0.52 0.1 (After r) 198 334.2 B
+0.52 0.1 (eading copyright information you ar) 228.58 334.2 B
+0.52 0.1 (e asked the \336rst question:) 395.8 334.2 B
+2 F
+(\245) 198 315.8 T
+7 F
+1.08 (Do you want to continue?) 210.6 315.8 P
+4 F
+0.52 0.1 ( ) 344.33 315.8 B
+0.52 0.1 (By answering yes, you agr) 224.64 303.4 B
+0.52 0.1 (ee to the terms of the copyright agr) 345.72 303.4 B
+0.52 0.1 (eement.) 507.57 303.4 B
+0.52 0.1 ( Answering no terminates the installation script.) 224.64 283 B
+2 F
+(\245) 198 262.6 T
+7 F
+1.08 (Do you want to see a description of the installation script?) 210.6 262.6 P
+4 F
+0.52 0.1 ( ) 544.93 262.6 B
+0.52 0.1 (Answering yes or no gives you a description of the har) 224.64 250.2 B
+0.52 0.1 (dwar) 476.94 250.2 B
+0.52 0.1 (e, softwar) 500.55 250.2 B
+0.52 0.1 (e, ) 545.23 250.2 B
+0.52 0.1 (and size r) 224.64 237.8 B
+0.52 0.1 (equir) 269.3 237.8 B
+0.52 0.1 (ements for TNT2.0.) 292.88 237.8 B
+2 F
+(\245) 198 218.07 T
+7 F
+1.08 (Do you want to install on a standalone system or a server?) 210.6 218.07 P
+4 F
+0.52 0.1 (Answer standalone and you pr) 224.64 206 B
+0.52 0.1 (oceed to the next step.) 366.53 206 B
+0.52 0.1 (If you answer server) 224.64 185.6 B
+0.52 0.1 (, you ar) 318.17 185.6 B
+0.52 0.1 (e asked if the server is \322homo\323 or \322heter) 353.31 185.6 B
+0.52 0.1 (.\323 ) 538.44 185.6 B
+0.4 0.1 (Because of the way the \336les ar) 224.64 173.2 B
+0.4 0.1 (e or) 362.58 173.2 B
+0.4 0.1 (ganized on the CD you should specify ) 379.9 173.2 B
+0.1 (homo.) 224.64 160.8 S
+FMENDPAGE
+%%EndPage: "3" 4
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (4) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+2 F
+(\245) 198 642 T
+7 F
+1.08 (Do you want to change the destination directory?) 210.6 642 P
+4 F
+0.52 0.1 (Answer no if you want TNT installed into /usr) 224.64 629.93 B
+0.52 0.1 (. After installation the ) 440.6 629.93 B
+0.52 0.1 (TNT hierar) 224.64 617.53 B
+0.52 0.1 (chy will look like:) 275.44 617.53 B
+0.17 0.1 (Answer yes if you want TNT installed into another dir) 224.64 513.93 B
+0.17 0.1 (ectory) 471.89 513.93 B
+0.17 0.1 (. Y) 498.83 513.93 B
+0.17 0.1 (ou will be ) 510.04 513.93 B
+0.52 0.1 (asked to enter a partition, then a destination dir) 224.64 501.53 B
+0.52 0.1 (ectory) 443.85 501.53 B
+0.52 0.1 (. If that dir) 470.78 501.53 B
+0.52 0.1 (ectory ) 520.45 501.53 B
+0.52 0.1 (doesn\325t exist you will be asked if it\325s ok to cr) 224.64 489.13 B
+0.52 0.1 (eate one.) 429.87 489.13 B
+0.52 0.1 (The last question in the installation script asks:) 198 468.73 B
+7 F
+1.08 (Done analyzing installation results?) 198 449 P
+4 F
+0.52 0.1 (Answer yes to end the installation script.) 198 428.93 B
+0.52 0.1 (After installation is complete you should make a symbolic link fr) 198 408.53 B
+0.52 0.1 (om your ) 495.77 408.53 B
+0.52 0.1 (home dir) 198 396.13 B
+0.52 0.1 (ectory to the NeWS dir) 239.49 396.13 B
+0.52 0.1 (ectory:) 344.9 396.13 B
+0.52 0.1 (After you cr) 198 331.27 B
+0.52 0.1 (eate the symbolic link you must r) 253.58 331.27 B
+0.52 0.1 (estart your server) 406.89 331.27 B
+0.52 0.1 (. Because of ) 486.81 331.27 B
+0.52 0.1 (certain incompatibilities between X1) 198 318.87 B
+0.52 0.1 (1 colors and NeWS colors you should use ) 363.28 318.87 B
+0.52 0.1 (the favorstatic option when you start OpenW) 198 306.47 B
+0.52 0.1 (indows.) 405.06 306.47 B
+0.04 0.1 (The colors used for NeWS and X1) 198 286.07 B
+0.04 0.1 (1 applications do not interact well. When you ) 349.76 286.07 B
+0.52 0.1 (use TNT ther) 198 273.67 B
+0.52 0.1 (e ar) 258.48 273.67 B
+0.52 0.1 (e thr) 275.45 273.67 B
+0.52 0.1 (ee ways to start your server depending on which color ) 296.6 273.67 B
+0.52 0.1 (map, NeWS or Xll, you want to pr) 198 261.27 B
+0.52 0.1 (edominate.) 355.31 261.27 B
+0.1 (1.) 197.5 240.87 S
+0.52 0.1 (If you exclusively use NeWS applications you will want to start the server ) 210.6 240.87 B
+0.52 0.1 (with the following options:) 210.6 228.47 B
+7 F
+(openwin -cubesize large -dev /dev/<framebuffer device> <other ) 210.6 208.74 T
+(options>) 216 197.74 T
+4 F
+0.52 0.1 (This option makes a NeWS-friendly colormap as the server) 210.6 182.07 B
+0.52 0.1 (\325s default ) 481.99 182.07 B
+0.52 0.1 (colormap. This colormap will pr) 210.6 169.67 B
+0.52 0.1 (ovide a lar) 358.27 169.67 B
+0.52 0.1 (ge selection of colors but might ) 406.98 169.67 B
+0.52 0.1 (cause \337ashing with X1) 210.6 157.27 B
+0.52 0.1 (1 applications. ) 313.08 157.27 B
+54 144 558 648 C
+188.64 531 558 614.2 C
+188.64 531 558 614.2 R
+7 X
+0 K
+V
+194.62 533.2 551.95 611.56 5.98 RR
+0.3 H
+0 Z
+0 X
+N
+7 F
+0.09 (/usr/tnt/bin) 200.59 599.85 S
+0.09 (/demo) 240.19 589.85 S
+0.09 (/etc) 240.19 579.85 S
+0.09 (/include) 240.19 569.85 S
+0.09 (/lib) 240.19 559.85 S
+0.09 (/share) 240.19 549.85 S
+0.09 (/client) 240.19 539.85 S
+54 144 558 648 C
+0 72 612 720 C
+54 144 558 648 C
+188.64 348.34 558 392.8 C
+188.64 348.34 558 392.8 R
+7 X
+0 K
+V
+194.64 356.8 551.98 386.8 5.98 RR
+0.3 H
+0 Z
+0 X
+N
+7 F
+0.09 (example% cd) 200.62 373.46 S
+0.09 (example% ln -s <top-level directory>/etc/NeWS) 200.62 363.46 S
+54 144 558 648 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "4" 5
+9 13 /Palatino-Italic FMDEFINEFONT
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (5) 553.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.1 (2.) 197.5 641.33 S
+0.52 0.1 (If you use a mix of X1) 210.6 641.33 B
+0.52 0.1 (1 and NeWS applications, but ar) 311.48 641.33 B
+0.52 0.1 (e still heavily ) 459.94 641.33 B
+0.52 0.1 (weighted towar) 210.6 628.93 B
+0.52 0.1 (d NeWS you don\325t need to specify a cubesize because ) 282.39 628.93 B
+0.52 0.1 (OpenW) 210.6 616.53 B
+0.52 0.1 (indows defaults to the corr) 245.01 616.53 B
+0.52 0.1 (ect size \050small\051.) 368.48 616.53 B
+0.32 0.1 (Only about half the colormap is used for NeWS applications. The other half ) 210.6 596.13 B
+0.09 0.1 (of the colormap can be devoted to X1) 210.6 583.73 B
+0.09 0.1 (1 applications. The NeWS color quality ) 378.58 583.73 B
+0.52 0.1 (won\325t be as good, but ther) 210.6 571.33 B
+0.52 0.1 (e will be less colormap \337ashing with X1) 331 571.33 B
+0.52 0.1 (1 clients. ) 513.24 571.33 B
+0.1 (3.) 197.5 550.93 S
+0.52 0.1 (If you ar) 210.6 550.93 B
+0.52 0.1 (e a de\336nite X1) 250.04 550.93 B
+0.52 0.1 (1 user) 315.1 550.93 B
+0.52 0.1 (, but occasionally use NeWS applications, you ) 341.98 550.93 B
+0.52 0.1 (may want to start the server with:) 210.6 538.53 B
+7 F
+(openwin -favorstatic -dev /dev/<framebuffer device> <other ) 210.6 518.8 T
+(options>) 216 507.8 T
+4 F
+0.52 0.1 (This option causes the default server colormap to be an X1) 210.6 492.13 B
+0.52 0.1 (1-friendly ) 478.92 492.13 B
+0.52 0.1 (colormap. T) 210.6 479.73 B
+0.52 0.1 (o make this less of a hassle, as a convenience, the favorstatic ) 264.46 479.73 B
+0.52 0.1 (option installs the contents of the NeWS-friendly cube into the har) 210.6 467.33 B
+0.52 0.1 (dwar) 514.92 467.33 B
+0.52 0.1 (e if ) 538.53 467.33 B
+0.52 0.1 (ther) 210.6 454.93 B
+0.52 0.1 (e is nothing con\337icting in the X1) 228.63 454.93 B
+0.52 0.1 (1-friendly default colormap.) 376.98 454.93 B
+0.52 0.1 (If all goes well you should see an OpenW) 198 434.53 B
+0.52 0.1 (indows start-up \322lozenge\323 that says ) 388.77 434.53 B
+0.52 0.1 (\322TNT 2.0\323. If the installation succeeded then any TNT pr) 198 422.13 B
+0.52 0.1 (ogram that you r) 458.44 422.13 B
+0.52 0.1 (un ) 536.11 422.13 B
+0.52 0.1 (will automatically use the 2.0 PostScript \336les.) 198 409.73 B
+9 F
+-0.84 0.13 (Making TNT available fr) 198 377.33 B
+-0.84 0.13 (om the OpenW) 329.39 377.33 B
+-0.84 0.13 (indows dir) 408.35 377.33 B
+-0.84 0.13 (ectory) 464.49 377.33 B
+4 F
+0.51 0.1 (T) 198 360.33 B
+0.51 0.1 (o install TNT2.0 ) 203.31 360.33 B
+5 F
+0.51 0.1 (into) 279.58 360.33 B
+4 F
+0.51 0.1 ( OpenW) 296.08 360.33 B
+0.51 0.1 (indows so that everybody who uses this copy of ) 333.6 360.33 B
+0.52 0.1 (OpenW) 198 347.93 B
+0.52 0.1 (indows will automatically use TNT2.0, do the following.) 232.41 347.93 B
+54 321.86 558 338.2 C
+558 335.18 198 335.18 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+6 F
+(Note \320 ) 198 325.02 T
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.29 0.1 (This pr) 231.84 325.19 B
+0.29 0.1 (ocedur) 264.2 325.19 B
+0.29 0.1 (e will disable access to TNT1.0 to all users of this copy of ) 295.38 325.19 B
+54 301.47 558 309.46 C
+558 306.43 198 306.43 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.1 (OpenW) 198 312.79 S
+0.1 (indows.\051) 232.41 312.79 S
+7 F
+(% cd $OPENWINHOME/etc ) 198 289.07 T
+(% mv NeWS NeWS-TNT1.0 ) 198 274.07 T
+(% cp -rp <top-level directory>/etc/NeWS . ) 198 259.07 T
+4 F
+0.52 0.1 (Any one using this copy of OpenW) 198 239.4 B
+0.52 0.1 (indows must r) 359.44 239.4 B
+0.52 0.1 (estart their server after this ) 425.75 239.4 B
+0.52 0.1 (pr) 198 227 B
+0.52 0.1 (ocedur) 207.98 227 B
+0.52 0.1 (e is complete.) 239.16 227 B
+9 F
+-0.84 0.13 (Using TNT client-side libraries) 198 194.6 B
+4 F
+0.42 0.1 (T) 198 177.6 B
+0.42 0.1 (o use the client-side libraries, your C \050or C++\051 pr) 203.31 177.6 B
+0.42 0.1 (ograms should include lines ) 426.3 177.6 B
+0.52 0.1 (like the following:) 198 165.2 B
+7 F
+(#include <wire/wire.h> ) 198 149.47 T
+FMENDPAGE
+%%EndPage: "5" 6
+10 9 /Helvetica FMDEFINEFONT
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (6) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+7 F
+(#include <jot/jot.h>) 198 642 T
+4 F
+0.52 0.1 (and be compiled using a -I \337ag:) 198 622.33 B
+7 F
+(-I<top-level directory>/include/NeWS) 198 606.6 T
+4 F
+0.52 0.1 (and be linked to libcps.a in your $\050OPENWINHOME\051/lib dir) 198 586.93 B
+0.52 0.1 (ectory) 478.56 586.93 B
+0.52 0.1 (, and ) 505.49 586.93 B
+0.52 0.1 (libwir) 198 574.53 B
+0.52 0.1 (e.a, and if necessary libjot.a in the dir) 224.96 574.53 B
+0.52 0.1 (ectory) 396.19 574.53 B
+7 F
+(<top-level directory>/lib ) 198 558.8 T
+4 F
+0.45 0.1 (See the sour) 198 539.13 B
+0.45 0.1 (ce of the demo pr) 253.26 539.13 B
+0.45 0.1 (ograms \050discussed below\051, and their Make\336les if ) 333.56 539.13 B
+0.52 0.1 (this is unclear) 198 526.73 B
+0.52 0.1 (.) 261.08 526.73 B
+3 F
+-0.94 ( Documentation ) 54 493 P
+4 F
+0.52 0.1 (Along with these r) 198 471.33 B
+0.52 0.1 (elease notes, two documents ar) 283.34 471.33 B
+0.52 0.1 (e pr) 425.74 471.33 B
+0.52 0.1 (ovided with this r) 443.72 471.33 B
+0.52 0.1 (elease ) 525.9 471.33 B
+0.05 0.1 (of TNT2.0. Sun employees can or) 198 458.93 B
+0.05 0.1 (der them fr) 347.11 458.93 B
+0.05 0.1 (om the Copy Center) 397.93 458.93 B
+0.05 0.1 (. Both versions ) 488.57 458.93 B
+0.52 0.1 (of this document have been impr) 198 446.53 B
+0.52 0.1 (oved since the Beta Release.) 349.59 446.53 B
+5 F
+0.52 0.1 (The NeWS T) 198 426.13 B
+0.52 0.1 (oolkit Refer) 251.68 426.13 B
+0.52 0.1 (ence Manual) 299.02 426.13 B
+4 F
+0.52 0.1 (#800-5543-10 ) 486 426.13 B
+5 F
+0.52 0.1 (GNT) 198 405.73 B
+0.52 0.1 (:) 218.66 405.73 B
+4 F
+0.52 0.1 ( ) 221.26 405.73 B
+5 F
+0.52 0.1 (A NeWS-T) 224.38 405.73 B
+0.52 0.1 (oolkit Code Generator for OpenW) 270.39 405.73 B
+0.52 0.1 (indows ) 410.83 405.73 B
+0.52 0.1 (Developer) 198 393.33 B
+0.52 0.1 (\325) 239.81 393.33 B
+0.52 0.1 (s Guide ) 242.14 393.33 B
+4 F
+0.52 0.1 (#800-5542-10 ) 486 393.33 B
+0.52 0.1 (W) 198 372.93 B
+0.52 0.1 (e ar) 207.18 372.93 B
+0.52 0.1 (e committed to support and enhance only those interfaces described in ) 224.15 372.93 B
+0.52 0.1 (the r) 198 360.53 B
+0.52 0.1 (efer) 219.15 360.53 B
+0.52 0.1 (ence manual.) 236.22 360.53 B
+3 F
+-0.94 (Demos ) 54 326.8 P
+4 F
+0.52 0.1 (Ther) 198 305.14 B
+0.52 0.1 (e ar) 218.9 305.14 B
+0.52 0.1 (e two kinds of TNT demos available with this r) 235.87 305.14 B
+0.52 0.1 (elease. The \336rst is a ) 452.84 305.14 B
+0.52 0.1 (\322demo method\323 written into every class that implements an OPEN LOOK ) 198 292.73 B
+0.52 0.1 (object. These ar) 198 280.33 B
+0.52 0.1 (e executed fr) 268.46 280.33 B
+0.52 0.1 (om an interactive postscript shell, and show you ) 327.03 280.33 B
+0.52 0.1 (what each component looks like, how it behaves, and how to use it in an ) 198 267.93 B
+0.1 (application.) 198 255.53 S
+0.52 0.1 (T) 198 235.14 B
+0.52 0.1 (o r) 203.31 235.14 B
+0.52 0.1 (un the demo methods: follow the installation pr) 215.95 235.14 B
+0.52 0.1 (ocedur) 435.15 235.14 B
+0.52 0.1 (e above, and then ) 466.33 235.14 B
+0.52 0.1 (execute the command \322psh\323 \050found in $\050OPENWINHOME\051/bin\051. Then type:) 198 222.73 B
+10 F
+-0.27 (% This puts the psh in a more user friendly state) 198 207 S
+-0.27 (executive) 198 192 S
+-0.27 (% This puts the psh in a more user friendly state) 360 192 S
+-0.27 (/demo ClassBaseWindow send) 198 177 S
+-0.27 (% Y) 360 177 S
+-0.27 (ou should see a window appear) 374.85 177 S
+-0.27 (.) 492.91 177 S
+-0.27 (/demo ClassScrollList send) 198 162 S
+-0.27 (% Y) 360 162 S
+-0.27 (ou should see a scrolling list appear) 374.85 162 S
+-0.27 (.) 507.23 162 S
+FMENDPAGE
+%%EndPage: "6" 7
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (7) 553.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (These /demo methods leave a r) 198 641.33 B
+0.52 0.1 (efer) 343.36 641.33 B
+0.52 0.1 (ence to the object they cr) 360.43 641.33 B
+0.52 0.1 (eated and the ) 473.96 641.33 B
+0.52 0.1 (window holding it on the stack so that you can further manipulate it if you ) 198 628.93 B
+0.52 0.1 (wish. When you\325r) 198 616.53 B
+0.52 0.1 (e done, type \322clear\323, and all your demo objects should ) 279.43 616.53 B
+0.1 (disappear) 198 604.13 S
+0.1 (.) 242.16 604.13 S
+0.27 0.1 (If you\325d like to see the code that implements each of these demo methods \050this ) 198 583.73 B
+0.52 0.1 (is typical code that you might use to include one of these objects in your ) 198 571.33 B
+0.52 0.1 (application\051, then look in the TNT sour) 198 558.93 B
+0.52 0.1 (ce dir) 377.23 558.93 B
+0.52 0.1 (ectory:) 402.86 558.93 B
+7 F
+1.08 (<top-level directory>/etc/NeWS/tnt  ) 198 539.2 P
+4 F
+0.52 0.1 (Gr) 198 519.13 B
+0.52 0.1 (ep for the class you ar) 209.59 519.13 B
+0.52 0.1 (e inter) 311 519.13 B
+0.52 0.1 (ested in, and look in that \336le for the /demo ) 340.04 519.13 B
+0.1 (method.) 198 506.73 S
+0.52 0.1 (The second type of demos ar) 198 486.33 B
+0.52 0.1 (e full-blown pr) 329.94 486.33 B
+0.52 0.1 (ograms \050both with and without C-) 398.58 486.33 B
+0.52 0.1 (side components\051. These can be executed dir) 198 473.93 B
+0.52 0.1 (ectly fr) 401.83 473.93 B
+0.52 0.1 (om a UNIX shell, and can ) 433.69 473.93 B
+0.52 0.1 (be found in the dir) 198 461.53 B
+0.52 0.1 (ectory:) 284.39 461.53 B
+7 F
+1.08 (<top-level directory>/demo/bin  ) 198 441.8 P
+4 F
+0.52 0.1 (Sour) 198 421.73 B
+0.52 0.1 (ces for these demos that have client-side pr) 218.9 421.73 B
+0.52 0.1 (ocesses can be found in:) 416.76 421.73 B
+7 F
+1.08 (<top-level directory>/demo/src) 198 402 P
+4 F
+0.38 0.1 (Included in the TNT demo dir) 198 381.93 B
+0.38 0.1 (ectory ar) 335.87 381.93 B
+0.38 0.1 (e \336les that demonstrate various aspects ) 375.86 381.93 B
+0.52 0.1 (of The NeWS T) 198 369.53 B
+0.52 0.1 (oolkit.) 267.41 369.53 B
+8 F
+(Cir) 126 336.47 T
+(cles) 144.41 336.47 T
+4 F
+0.52 0.1 (The cir) 198 315.14 B
+0.52 0.1 (cles demo illustrates how to use TNT to make selections. The cir) 229.56 315.14 B
+0.52 0.1 (cles ) 524.18 315.14 B
+0.52 0.1 (demo is included in the r) 198 302.73 B
+0.52 0.1 (elease primarily to serve as documentation for TNT ) 313.37 302.73 B
+0.52 0.1 (coding techniques and is intended to be used in conjunction with the ) 198 290.33 B
+0.52 0.1 (documentation in the ClassCanvas and ClassSelection chapters in ) 198 277.93 B
+5 F
+0.52 0.1 (The NeWS ) 500.74 277.93 B
+0.52 0.1 (T) 198 265.53 B
+0.52 0.1 (oolkit Refer) 203.1 265.53 B
+0.52 0.1 (ence Manual) 250.44 265.53 B
+4 F
+0.52 0.1 (.) 304.16 265.53 B
+8 F
+(Gaintool) 126 232.47 T
+4 F
+0.52 0.1 (Gaintool implements an audio contr) 198 211.14 B
+0.52 0.1 (ol panel that allows you to interactively ) 363.31 211.14 B
+0.52 0.1 (alter the audio signal pr) 198 198.73 B
+0.52 0.1 (oduced by a Spar) 308.03 198.73 B
+0.52 0.1 (cStation. It demonstrates:) 387.7 198.73 B
+2 F
+(\245) 198 180.34 T
+4 F
+0.52 0.1 (a simple window with a single contr) 210.6 180.34 B
+0.52 0.1 (ol ar) 378.11 180.34 B
+0.52 0.1 (ea) 398.76 180.34 B
+2 F
+(\245) 198 167.93 T
+4 F
+0.52 0.1 (the use of sliders \050with pr) 210.6 167.93 B
+0.52 0.1 (eviewing\051) 328.64 167.93 B
+2 F
+(\245) 198 155.53 T
+4 F
+0.52 0.1 (a shar) 210.6 155.53 B
+0.52 0.1 (ed callback) 238.04 155.53 B
+FMENDPAGE
+%%EndPage: "7" 8
+%%Page: "8" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (8) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+2 F
+(\245) 198 641.33 T
+4 F
+0.52 0.1 (synchr) 210.6 641.33 B
+0.52 0.1 (onization of the slider position with a value that may change ) 240.83 641.33 B
+0.1 (externally) 210.6 628.93 S
+0.1 (.) 254.62 628.93 S
+8 F
+(Jed) 126 595.87 T
+4 F
+0.52 0.1 (Jed is designed to demonstrate the use of the T) 198 574.53 B
+0.52 0.1 (oolkit\325s text package called Jot. ) 412.5 574.53 B
+0.52 0.1 (Jed is a textedit substitute that uses TNT OPENLOOK UI components in ) 198 562.13 B
+0.52 0.1 (combination with Jot.) 198 549.73 B
+8 F
+(Magnify) 126 516.67 T
+4 F
+0.52 0.1 (Magnify implements a window containing a single canvas that pr) 198 495.33 B
+0.52 0.1 (ovides a ) 498.72 495.33 B
+0.52 0.1 (magni\336ed \050or r) 198 482.93 B
+0.52 0.1 (educed\051 view of any ar) 266.98 482.93 B
+0.52 0.1 (ea on the scr) 372.43 482.93 B
+0.52 0.1 (een. The magni\336cation \050or ) 430.15 482.93 B
+0.47 0.1 (r) 198 470.53 B
+0.47 0.1 (eduction\051 is accomplished by obtaining a bitmap image of the desir) 201.87 470.53 B
+0.47 0.1 (ed ar) 509.76 470.53 B
+0.47 0.1 (ea of ) 532.89 470.53 B
+0.52 0.1 (the scr) 198 458.13 B
+0.52 0.1 (een, then performing pixel r) 228.02 458.13 B
+0.52 0.1 (eplication \050or mer) 356.58 458.13 B
+0.52 0.1 (ge\051 via the PostScript ) 438.02 458.13 B
+0.52 0.1 (\324scale\325 operator) 198 445.73 B
+0.52 0.1 (.) 266.66 445.73 B
+0.52 0.1 (The degr) 198 425.33 B
+0.52 0.1 (ee of magni\336cation \050r) 238.77 425.33 B
+0.52 0.1 (eduction\051 may be changed thr) 336.4 425.33 B
+0.52 0.1 (ough the use of a ) 473.46 425.33 B
+0.52 0.1 (pop-up menu. The sour) 198 412.93 B
+0.52 0.1 (ce location is chosen by pr) 306.16 412.93 B
+0.52 0.1 (essing the SELECT mouse ) 426.97 412.93 B
+0.52 0.1 (button over the magni\336cation canvas, then moving the mouse cursor over the ) 198 400.53 B
+0.52 0.1 (ar) 198 388.13 B
+0.52 0.1 (ea to be displayed befor) 206.96 388.13 B
+0.52 0.1 (e r) 316.73 388.13 B
+0.52 0.1 (eleasing SELECT) 328.61 388.13 B
+0.52 0.1 (. The magni\336cation canvas will ) 405.17 388.13 B
+0.52 0.1 (dynamically to show the ar) 198 375.73 B
+0.52 0.1 (ea under the cursor while the mouse is being ) 322.88 375.73 B
+0.1 (dragged.) 198 363.33 S
+8 F
+(Manual.colors) 126 330.27 T
+4 F
+0.52 0.1 (Manual.colors demonstrates a \322tiny\323 application that changes the color of a ) 198 309.6 B
+0.52 0.1 (character in a window) 198 298.2 B
+0.52 0.1 (. It is explained and the code pr) 299.54 298.2 B
+0.52 0.1 (esented in Chapter 1, ) 445.06 298.2 B
+0.52 0.1 (Intr) 198 286.8 B
+0.52 0.1 (oduction, in ) 214.61 286.8 B
+5 F
+0.52 0.1 (The NeWS T) 272.64 286.8 B
+0.52 0.1 (oolkit Refer) 326.32 286.8 B
+0.52 0.1 (ence Manual) 373.66 286.8 B
+4 F
+0.52 0.1 (.) 427.38 286.8 B
+8 F
+(Rap) 126 254.07 T
+4 F
+0.52 0.1 (Rap demonstrates techniques for manipulating images and cr) 198 232.73 B
+0.52 0.1 (eating \322special ) 479.2 232.73 B
+0.52 0.1 (ef) 198 220.34 B
+0.52 0.1 (fects\323 with NeWS. Manipulations include r) 206.14 220.34 B
+0.52 0.1 (otating, str) 403.08 220.34 B
+0.52 0.1 (etching and skewing ) 452.31 220.34 B
+0.52 0.1 (images. Special ef) 198 207.93 B
+0.52 0.1 (fects include viewing images thr) 278.88 207.93 B
+0.52 0.1 (ough \322portals\323 of various ) 427.3 207.93 B
+-0.03 0.1 (shapes and a \322spray paint\323 mode. Rap also shows how double buf) 198 195.53 B
+-0.03 0.1 (fering can be ) 497.27 195.53 B
+0.52 0.1 (used to do smooth animation. It pr) 198 183.14 B
+0.52 0.1 (ovides an option to display the normally ) 357.88 183.14 B
+0.52 0.1 (invisible of) 198 170.73 B
+0.52 0.1 (f-scr) 248.47 170.73 B
+0.52 0.1 (een canvases so the user can see how the double buf) 268.07 170.73 B
+0.52 0.1 (fering ) 508.51 170.73 B
+0.1 (works.) 198 158.34 S
+FMENDPAGE
+%%EndPage: "8" 9
+%%Page: "9" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (9) 553.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+(Sampler) 126 638.67 T
+4 F
+0.52 0.1 (Sampler r) 198 617.33 B
+0.52 0.1 (uns one copy of every TNT class demo. Individual demos can be ) 242.51 617.33 B
+0.38 0.1 (exited using their menu, or the pr) 198 604.93 B
+0.38 0.1 (ogram can be interr) 351.94 604.93 B
+0.38 0.1 (upted, and all the demos ) 441.41 604.93 B
+0.52 0.1 (will exit.) 198 592.53 B
+8 F
+(W) 126 559.47 T
+(ir) 138.93 559.47 T
+(e_demo) 148.01 559.47 T
+4 F
+0.52 0.1 (W) 198 538.13 B
+0.52 0.1 (ir) 207.54 538.13 B
+0.52 0.1 (e_demo is designed to demonstrate the use of the T) 214.42 538.13 B
+0.52 0.1 (oolkit\325s wir) 449.96 538.13 B
+0.52 0.1 (e service. ) 501.75 538.13 B
+0.52 0.1 (The demo puts a TNT slider in a window and prints the slider) 198 525.73 B
+0.52 0.1 (\325s value to ) 485.38 525.73 B
+0.52 0.1 (stdout when the drag box is moved. Whenever the slider) 198 513.33 B
+0.52 0.1 (\325s value becomes 10, ) 459.83 513.33 B
+0.52 0.1 (the slider will be lengthened. ) 198 500.93 B
+0.52 0.1 (Y) 198 480.53 B
+0.52 0.1 (ou can \336nd the code for the demo at the end of the W) 203.85 480.53 B
+0.52 0.1 (ir) 450.33 480.53 B
+0.52 0.1 (e Service chapter in ) 457.21 480.53 B
+5 F
+0.52 0.1 (The NeWS T) 198 468.13 B
+0.52 0.1 (oolkit Refer) 251.68 468.13 B
+0.52 0.1 (ence Manual) 299.02 468.13 B
+4 F
+0.52 0.1 (.) 352.74 468.13 B
+3 F
+-0.94 (Compatibility issues ) 54 434.4 P
+4 F
+0.17 0.1 (A major goal of the TNT r) 198 412.73 B
+0.17 0.1 (elease is to be forwar) 315.73 412.73 B
+0.17 0.1 (d compatible. That is, pr) 411.11 412.73 B
+0.17 0.1 (ograms ) 521.61 412.73 B
+0.52 0.1 (written to TNT2.0 should r) 198 400.33 B
+0.52 0.1 (un successfully on futur) 321.17 400.33 B
+0.52 0.1 (e r) 431.28 400.33 B
+0.52 0.1 (eleases of the pr) 443.15 400.33 B
+0.52 0.1 (oduct.) 517.07 400.33 B
+0.52 0.1 (The de\336nition of \322written to TNT2.0\323 is that only interfaces found in the ) 198 379.93 B
+0.52 0.1 (curr) 198 367.53 B
+0.52 0.1 (ent TNT Refer) 216.58 367.53 B
+0.52 0.1 (ence Manual should be r) 281.68 367.53 B
+0.52 0.1 (elied on. ) 394.72 367.53 B
+0.31 0.1 (W) 198 347.14 B
+0.31 0.1 (e will only br) 207.18 347.14 B
+0.31 0.1 (eak this r) 267.87 347.14 B
+0.31 0.1 (ule and change a supported interface in futur) 309.91 347.14 B
+0.31 0.1 (e r) 516.33 347.14 B
+0.31 0.1 (elease ) 527.99 347.14 B
+0.52 0.1 (if customers str) 198 334.73 B
+0.52 0.1 (ongly endorse this. Y) 268.35 334.73 B
+0.52 0.1 (ou will be consulted! W) 364.41 334.73 B
+0.52 0.1 (e anticipate few if ) 472.53 334.73 B
+0.52 0.1 (any such occurr) 198 322.33 B
+0.52 0.1 (ences.) 270.5 322.33 B
+0.52 0.1 (Ther) 198 301.93 B
+0.52 0.1 (e is no backwar) 218.9 301.93 B
+0.52 0.1 (ds compatibility to the experimental TNT1.0 or Lite. ) 290.28 301.93 B
+0.52 0.1 (Pr) 198 289.54 B
+0.52 0.1 (ograms written in these toolkits simply will not r) 208 289.54 B
+0.52 0.1 (un in the modi\336ed ) 433.04 289.54 B
+0.52 0.1 (OpenW) 198 277.14 B
+0.52 0.1 (indows envir) 232.41 277.14 B
+0.52 0.1 (onment described in the Installation section. \050If you need ) 292.42 277.14 B
+0.43 0.1 (to get back to pur) 198 264.73 B
+0.43 0.1 (e OpenW) 278.86 264.73 B
+0.43 0.1 (indows2.0, just delete the \322NeWS\323 symbolic link in ) 321.18 264.73 B
+0.52 0.1 (your home dir) 198 252.34 B
+0.52 0.1 (ectory) 263.99 252.34 B
+0.52 0.1 (, and r) 290.93 252.34 B
+0.52 0.1 (estart your server) 320.85 252.34 B
+0.52 0.1 (.\051 Y) 400.78 252.34 B
+0.52 0.1 (ou will ) 415.77 252.34 B
+5 F
+0.52 0.1 (not) 451.15 252.34 B
+4 F
+0.52 0.1 ( be able to r) 464.77 252.34 B
+0.52 0.1 (un ) 519.26 252.34 B
+0.52 0.1 (TNT1.0 or Lite pr) 198 239.93 B
+0.52 0.1 (ograms with OpenW) 278.05 239.93 B
+0.52 0.1 (indows 3.0Beta.) 373.03 239.93 B
+0.52 0.1 (The following methods have been r) 198 219.53 B
+0.52 0.1 (enamed in ClassItemGr) 360.22 219.53 B
+0.52 0.1 (oup and its ) 467.5 219.53 B
+0.52 0.1 (subclasses to be mor) 198 207.14 B
+0.52 0.1 (e consistent with the T) 291.77 207.14 B
+0.52 0.1 (rack Service:) 394.55 207.14 B
+0.52 0.1 (Pr) 198 186.73 B
+0.52 0.1 (evious Name) 208 186.73 B
+0.52 0.1 (Curr) 342 186.73 B
+0.52 0.1 (ent Name) 363.23 186.73 B
+0.1 (/ItemEnter) 198 166.34 S
+0.1 (/ItemStart) 342 166.34 S
+FMENDPAGE
+%%EndPage: "9" 10
+11 9 /Helvetica-Bold FMDEFINEFONT
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (10) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.1 (/ItemChosen) 198 641.33 S
+0.1 (/ItemStop) 342 641.33 S
+0.1 (/ItemExit) 198 620.93 S
+0.1 (/ItemCancel) 342 620.93 S
+0.52 0.1 (In addition, a new method, /ItemMotion, has been added.) 198 600.53 B
+0.52 0.1 (In the pr) 198 580.13 B
+0.52 0.1 (evious r) 237.76 580.13 B
+0.52 0.1 (eleases, windows initiated their busy state using the /fr) 274.41 580.13 B
+0.52 0.1 (eeze ) 529.81 580.13 B
+0.52 0.1 (interface. The /fr) 198 567.73 B
+0.52 0.1 (eeze and /unfr) 276.49 567.73 B
+0.52 0.1 (eeze interfaces have been r) 345.2 567.73 B
+0.52 0.1 (emoved. Instead, ) 467.77 567.73 B
+0.52 0.1 (the application will execute) 198 555.33 B
+5 F
+0.52 0.1 (:) 323.72 555.33 B
+10 F
+-0.27 (/Busy /setvisualstate myWindow send) 210.6 539.6 S
+-0.27 (% equivalent to /freeze) 378 539.6 S
+-0.27 (/Active /setvisualstate myWindow send) 210.6 524.6 S
+-0.27 (% equivalent to /unfreeze) 378 524.6 S
+4 F
+0.52 0.1 (This change is mor) 198 504.93 B
+0.52 0.1 (e consistent with existing interfaces and the description of ) 284.55 504.93 B
+0.52 0.1 (window display states in the OpenLook speci\336cation.) 198 492.53 B
+0.52 0.1 (The addition of 2-D painting has invalidated some of the earlier color ) 198 472.13 B
+0.52 0.1 (interfaces. The ) 198 459.73 B
+11 F
+0.45 -0.27 (/setallcolors) 267.37 459.73 B
+4 F
+0.52 0.1 ( and ) 316.31 459.73 B
+11 F
+0.45 -0.27 (/allcolors) 339.77 459.73 B
+4 F
+0.52 0.1 ( interfaces have been r) 376.53 459.73 B
+0.52 0.1 (emoved. In ) 479.35 459.73 B
+0.52 0.1 (addition, the ) 198 447.33 B
+11 F
+0.45 -0.27 (/setcolors) 259.36 447.33 B
+4 F
+0.52 0.1 ( and ) 299.11 447.33 B
+11 F
+0.45 -0.27 (/colors) 322.57 447.33 B
+4 F
+0.52 0.1 ( interfaces will examine the ) 350.15 447.33 B
+11 F
+0.45 -0.27 (/3D?) 478.85 447.33 B
+4 F
+0.52 0.1 ( variable to ) 497.24 447.33 B
+0.52 0.1 (determine whether to set or r) 198 434.93 B
+0.52 0.1 (eturn the for) 332.14 434.93 B
+0.52 0.1 (egr) 389.72 434.93 B
+0.52 0.1 (ound and backgr) 404.14 434.93 B
+0.52 0.1 (ound colors ) 481.84 434.93 B
+0.29 0.1 (associated with 3-D or 2-D. Furthermor) 198 422.53 B
+0.29 0.1 (e, the implementation of /setcolors has ) 376.92 422.53 B
+0.05 0.1 (changed. When ) 198 410.13 B
+11 F
+0.05 -0.27 (/setcolors) 270.94 410.13 B
+4 F
+0.05 0.1 ( is sent to a valid instance, the instance is immediately ) 310.7 410.13 B
+0.52 0.1 (r) 198 397.73 B
+0.52 0.1 (epainted with the new colors.) 201.87 397.73 B
+0.52 0.1 (A new interface, ) 198 377.33 B
+11 F
+0.45 -0.27 (/ModifyFont) 276.24 377.33 B
+4 F
+0.52 0.1 (, has been added to the toolkit. Whenever ) 324.19 377.33 B
+0.52 0.1 (/settextfont is performed, ) 198 364.93 B
+11 F
+0.45 -0.27 (/ModifyFont) 319.25 364.93 B
+4 F
+0.52 0.1 ( is executed. The default implementation ) 367.21 364.93 B
+0.52 0.1 (performs a ) 198 352.54 B
+10 F
+0.45 -0.27 (false printermatchfont) 250.67 352.54 B
+4 F
+0.52 0.1 ( and a ) 331.59 352.54 B
+10 F
+0.45 -0.27 (/ISOLatin1Encoding encodefont) 363.26 352.54 B
+4 F
+0.52 0.1 ( when the font ) 482.78 352.54 B
+0.52 0.1 (uses the /Standar) 198 340.14 B
+0.52 0.1 (dEncoding.) 279.14 340.14 B
+3 F
+-0.94 (Pending API Changes) 54 306.4 P
+4 F
+0.52 0.1 (The following class is pr) 198 284.73 B
+0.52 0.1 (oposed for inclusion in The NeWS T) 309.72 284.73 B
+0.52 0.1 (oolkit.) 475.53 284.73 B
+8 F
+-0.88 (ClassW) 126 251.67 P
+-0.88 (ir) 169.25 251.67 P
+-0.88 (eClient\321A pr) 178.33 251.67 P
+-0.88 (oposed new class) 257.67 251.67 P
+4 F
+0.52 0.1 (In or) 198 230.34 B
+0.52 0.1 (der to understand ClassW) 219.93 230.34 B
+0.52 0.1 (ir) 338.95 230.34 B
+0.52 0.1 (eClient you should be familiar with the W) 345.83 230.34 B
+0.52 0.1 (ir) 538.96 230.34 B
+0.52 0.1 (e ) 545.84 230.34 B
+0.52 0.1 (Service \050Chapter 26, The W) 198 217.93 B
+0.52 0.1 (ir) 322.33 217.93 B
+0.52 0.1 (e Service in ) 329.21 217.93 B
+5 F
+0.52 0.1 (The NeWS T) 384.84 217.93 B
+0.52 0.1 (oolkit Refer) 438.52 217.93 B
+0.52 0.1 (ence Manual) 485.86 217.93 B
+4 F
+0.52 0.1 (\051) 539.58 217.93 B
+0.52 0.1 (.) 543.01 217.93 B
+0.52 0.1 (ClassW) 198 197.53 B
+0.52 0.1 (ir) 231.51 197.53 B
+0.52 0.1 (eClient, a mix-in class, pr) 238.39 197.53 B
+0.52 0.1 (ovides applications an easy way to keep ) 354.24 197.53 B
+0.52 0.1 (r) 198 185.14 B
+0.52 0.1 (efer) 201.87 185.14 B
+0.52 0.1 (ences to server) 218.94 185.14 B
+0.52 0.1 (-side objects they cr) 286.43 185.14 B
+0.52 0.1 (eate without worrying about cleaning ) 376.62 185.14 B
+0.52 0.1 (up those r) 198 172.73 B
+0.52 0.1 (efer) 244.39 172.73 B
+0.52 0.1 (ences themselves. Y) 261.46 172.73 B
+0.52 0.1 (ou need to keep r) 351.01 172.73 B
+0.52 0.1 (efer) 431.38 172.73 B
+0.52 0.1 (ences to server side ) 448.45 172.73 B
+0.52 0.1 (objects \050e.g., the connection \336le\051 to ensur) 198 160.34 B
+0.52 0.1 (e that execution occurs in the right ) 384.1 160.34 B
+0 0.1 (context. The easiest way to keep a r) 198 147.93 B
+0 0.1 (efer) 357.24 147.93 B
+0 0.1 (ence to an object is to stor) 374.31 147.93 B
+0 0.1 (e the r) 489.87 147.93 B
+0 0.1 (efer) 518 147.93 B
+0 0.1 (ence ) 535.07 147.93 B
+FMENDPAGE
+%%EndPage: "10" 11
+%%Page: "11" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (1) 549.33 108.7 S
+0.09 (1) 553.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (in an instance. However) 198 641.33 B
+0.52 0.1 (, if you stor) 308.19 641.33 B
+0.52 0.1 (e a r) 361.04 641.33 B
+0.52 0.1 (efer) 381.13 641.33 B
+0.52 0.1 (ence to the connection \336le in an ) 398.2 641.33 B
+0.27 0.1 (instance you\325ve cr) 198 628.93 B
+0.27 0.1 (eated a cir) 280.06 628.93 B
+0.27 0.1 (cular r) 326.76 628.93 B
+0.27 0.1 (efer) 356.31 628.93 B
+0.27 0.1 (ence \050e.g., instance=>\336le=>instance\051. As ) 373.38 628.93 B
+0.19 0.1 (long as the cir) 198 616.53 B
+0.19 0.1 (cular r) 261.53 616.53 B
+0.19 0.1 (efer) 291.01 616.53 B
+0.19 0.1 (ence exists, the instance will never go obsolete and the ) 308.08 616.53 B
+0.52 0.1 (connection \336le will never go away which causes your application to hang. ) 198 604.13 B
+0.52 0.1 (ClassW) 198 591.73 B
+0.52 0.1 (ir) 231.51 591.73 B
+0.52 0.1 (eClient allows you to keep a r) 238.39 591.73 B
+0.52 0.1 (efer) 375.55 591.73 B
+0.52 0.1 (ence to the connection \336le and ) 392.62 591.73 B
+0.22 0.1 (ensur) 198 579.33 B
+0.22 0.1 (es that the r) 223.14 579.33 B
+0.22 0.1 (efer) 276.58 579.33 B
+0.22 0.1 (ence is soft so your instance will get the obsolete message.) 293.65 579.33 B
+0.29 0.1 (In addition, ClassW) 198 558.93 B
+0.29 0.1 (ir) 287.64 558.93 B
+0.29 0.1 (eClient pr) 294.51 558.93 B
+0.29 0.1 (ovides several methods for invoking client-side ) 339.63 558.93 B
+0.13 0.1 (code with ar) 198 546.53 B
+0.13 0.1 (guments, and for tracing those calls. ClassW) 254.32 546.53 B
+0.13 0.1 (ir) 454.5 546.53 B
+0.13 0.1 (eClient is mixed into ) 461.38 546.53 B
+0.52 0.1 (classes that will need to communicate acr) 198 534.13 B
+0.52 0.1 (oss the wir) 387.64 534.13 B
+0.52 0.1 (e. ) 437.58 534.13 B
+-0.06 0.1 (If the client wishes to access the ClassW) 198 513.73 B
+-0.06 0.1 (ir) 376.76 513.73 B
+-0.06 0.1 (eClient subclass\325s instance) 383.64 513.73 B
+6 F
+-0.06 0.1 ( ) 502.65 513.73 B
+4 F
+-0.06 0.1 (with a user ) 505.18 513.73 B
+0.52 0.1 (token, it should issue a ) 198 501.33 B
+11 F
+0.45 -0.27 (/wire_settoken) 306.88 501.33 B
+4 F
+0.52 0.1 ( call. The instance will now r) 365.54 501.33 B
+0.52 0.1 (egister itself ) 497.82 501.33 B
+0.52 0.1 (as a user token, and possibly expr) 198 488.93 B
+0.52 0.1 (ess inter) 353.59 488.93 B
+0.52 0.1 (est in the obsolescence of itself in ) 391.31 488.93 B
+0.52 0.1 (or) 198 476.53 B
+0.52 0.1 (der clean up automatically \050see ) 207.43 476.53 B
+11 F
+0.45 -0.27 (/wire_settoken) 353.21 476.53 B
+4 F
+0.52 0.1 (\051. The client-side code will ) 411.87 476.53 B
+0.26 0.1 (r) 198 464.13 B
+0.26 0.1 (egister tags with this instance using ) 201.87 464.13 B
+11 F
+0.23 -0.27 (/wire_de\336netag) 367.12 464.13 B
+4 F
+0.26 0.1 (, and will perform callbacks ) 428.77 464.13 B
+0.52 0.1 (to the client side with) 198 451.73 B
+11 F
+0.45 -0.27 ( /wire_sendclient, /wire_sendclientsynchronized) 297.42 451.73 B
+4 F
+0.52 0.1 (, and ) 490.92 451.73 B
+11 F
+-0.27 (/wire_callbackclient) 198 439.33 S
+4 F
+0.1 (.) 277.03 439.33 S
+9 F
+0.13 (Initialization) 198 406.93 S
+10 F
+(/wire_initialize ) 54 390.6 T
+(- ) 198 390.6 T
+11 F
+(/wire_initialize) 203.49 390.6 T
+10 F
+( -) 264.43 390.6 T
+4 F
+0.33 0.1 (Called when the application is r) 198 370.93 B
+0.33 0.1 (unning in the desir) 343.45 370.93 B
+0.33 0.1 (ed context, i.e., it should be ) 430.16 370.93 B
+0.52 0.1 (executing in a context in which the curr) 198 358.54 B
+0.52 0.1 (ent\336le is the connection to the client-) 379.84 358.54 B
+0.52 0.1 (side. One way to ensur) 198 346.14 B
+0.52 0.1 (e the corr) 303.51 346.14 B
+0.52 0.1 (ect context is by executing ) 346.81 346.14 B
+11 F
+0.45 -0.27 (/wire_initialize) 470.32 346.14 B
+4 F
+0.52 0.1 ( as a ) 526.94 346.14 B
+0.52 0.1 (dir) 198 333.73 B
+0.52 0.1 (ect or indir) 211.08 333.73 B
+0.52 0.1 (ect r) 261.71 333.73 B
+0.52 0.1 (esult of a r) 281.48 333.73 B
+0.52 0.1 (equest fr) 330.51 333.73 B
+0.52 0.1 (om the client side.) 370.21 333.73 B
+0.52 0.1 (If the ClassW) 198 313.33 B
+0.52 0.1 (ir) 258.81 313.33 B
+0.52 0.1 (eClient subclass \050i.e., the class that ClassW) 265.68 313.33 B
+0.52 0.1 (ir) 459.9 313.33 B
+0.52 0.1 (eClient is mixed in ) 466.77 313.33 B
+0.52 0.1 (to\051 is executing in the right context when it is instantiated, then ) 198 300.93 B
+11 F
+0.45 -0.27 (/wire_initialize) 491.79 300.93 B
+4 F
+0.52 0.1 ( ) 548.41 300.93 B
+0.52 0.1 (does not need to be executed. ) 198 288.54 B
+10 F
+(/wire_setfile ) 54 268.8 T
+(file ) 198 268.8 T
+11 F
+(/wire_setfile) 211.98 268.8 T
+10 F
+( -) 263.44 268.8 T
+4 F
+0.52 0.1 (Sets the connection \336le of the application. ) 198 249.14 B
+11 F
+0.45 -0.27 (/wire_set\336le) 391.7 249.14 B
+4 F
+0.52 0.1 ( can also be used to ) 439.92 249.14 B
+0.52 0.1 (dispatch messages to many clients with each one on separate wir) 198 236.73 B
+0.52 0.1 (es. Since ) 495.91 236.73 B
+0.52 0.1 (inter) 198 224.34 B
+0.52 0.1 (est is expr) 219.04 224.34 B
+0.52 0.1 (essed in the obsolescence of the \336le \050to aid in r) 265.32 224.34 B
+0.52 0.1 (emoving cyclic ) 478.96 224.34 B
+0.08 0.1 (r) 198 211.93 B
+0.08 0.1 (efer) 201.87 211.93 B
+0.08 0.1 (ences\051 this operation can be expensive. Applications will usually just issue ) 218.94 211.93 B
+0.52 0.1 (this once in the lifetime of the instance.) 198 199.53 B
+FMENDPAGE
+%%EndPage: "11" 12
+%%Page: "12" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (12) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+(/wire_settoken ) 54 642 T
+(token | token soft? ) 198 642 T
+11 F
+(/wire_settoken) 273.78 642 T
+10 F
+( -) 336.22 642 T
+4 F
+0.41 0.1 (If ) 198 622.33 B
+10 F
+0.35 -0.27 (token) 207.91 622.33 B
+4 F
+0.41 0.1 ( is an integer >= 0, the instance is assigned to the speci\336ed token value. ) 228.54 622.33 B
+0.52 0.1 (If ) 198 609.93 B
+10 F
+0.45 -0.27 (token) 208.01 609.93 B
+4 F
+0.52 0.1 ( is null, or -1, the instance is r) 228.65 609.93 B
+0.52 0.1 (emoved fr) 364.76 609.93 B
+0.52 0.1 (om the user token array) 411.39 609.93 B
+0.52 0.1 (. The ) 520.12 609.93 B
+0.31 0.1 (optional boolean ) 198 597.53 B
+10 F
+0.27 -0.27 (soft?) 277.08 597.53 B
+4 F
+0.31 0.1 ( determines whether a soft r) 295.22 597.53 B
+0.31 0.1 (efer) 423.34 597.53 B
+0.31 0.1 (ence to itself is put in the ) 440.41 597.53 B
+0.04 0.1 (user token array) 198 585.13 B
+0.04 0.1 (. When ) 270.9 585.13 B
+10 F
+0.04 -0.27 (true) 305.6 585.13 B
+4 F
+0.04 0.1 (, a soft r) 320 585.13 B
+0.04 0.1 (efer) 356.17 585.13 B
+0.04 0.1 (ence is used, and inter) 373.24 585.13 B
+0.04 0.1 (est is expr) 473.8 585.13 B
+0.04 0.1 (essed in ) 519.13 585.13 B
+0.52 0.1 (the obsolescence of itself. This ensur) 198 572.73 B
+0.52 0.1 (es that the instance is automatically ) 364.07 572.73 B
+0.52 0.1 (r) 198 560.33 B
+0.52 0.1 (emoved fr) 201.87 560.33 B
+0.52 0.1 (om the user token array when it is in the pr) 248.49 560.33 B
+0.52 0.1 (ocess of being ) 448.97 560.33 B
+0.1 (destr) 198 547.93 S
+0.1 (oyed.) 220.66 547.93 S
+0.52 0.1 (When a har) 198 527.53 B
+0.52 0.1 (d r) 251.03 527.53 B
+0.52 0.1 (efer) 264.22 527.53 B
+0.52 0.1 (ence is speci\336ed, it is up to the application to r) 281.29 527.53 B
+0.52 0.1 (emove the ) 495.38 527.53 B
+0.52 0.1 (r) 198 515.13 B
+0.52 0.1 (efer) 201.87 515.13 B
+0.52 0.1 (ence to the instance in the user token array; use ) 218.94 515.13 B
+11 F
+0.45 -0.27 (/wire_settoken) 440.25 515.13 B
+4 F
+0.52 0.1 ( with an ) 498.9 515.13 B
+0.52 0.1 (ar) 198 502.73 B
+0.52 0.1 (gument of null.) 206.96 502.73 B
+54 476.66 558 493 C
+558 489.98 198 489.98 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+6 F
+(Note \320 ) 198 479.83 T
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.15 0.1 (If ) 231.84 479.99 B
+10 F
+0.13 -0.27 (soft?) 241.48 479.99 B
+4 F
+0.15 0.1 ( is speci\336ed as tr) 259.62 479.99 B
+0.15 0.1 (ue, this call could conceivably cause the instance ) 334.82 479.99 B
+0.5 0.1 (to go away) 198 467.59 B
+0.5 0.1 (, if the last r) 247.49 467.59 B
+0.5 0.1 (efer) 302.73 467.59 B
+0.5 0.1 (ence to the instance was the one used to invoke the ) 319.8 467.59 B
+11 F
+0.45 -0.27 (/wire_settoken) 198 455.19 B
+4 F
+0.52 0.1 ( method. If soft r) 256.66 455.19 B
+0.52 0.1 (efer) 334.02 455.19 B
+0.52 0.1 (ences ar) 351.09 455.19 B
+0.52 0.1 (e used, the application should take ) 387.74 455.19 B
+54 431.46 558 439.46 C
+558 436.43 198 436.43 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (car) 198 442.79 B
+0.52 0.1 (e to have har) 211.5 442.79 B
+0.52 0.1 (d r) 271.19 442.79 B
+0.52 0.1 (efer) 284.38 442.79 B
+0.52 0.1 (ences to that instance befor) 301.45 442.79 B
+0.52 0.1 (e the call to ) 425.56 442.79 B
+11 F
+0.45 -0.27 (/wire_settoken) 481.65 442.79 B
+4 F
+0.52 0.1 (.) 540.31 442.79 B
+10 F
+(/wire_definetag) 54 415.07 T
+(tagname value ) 198 415.07 T
+11 F
+(/wire_definetag) 259.45 415.07 T
+10 F
+( -) 324.88 415.07 T
+4 F
+0.52 0.1 (De\336nes a tag with name ) 198 395.4 B
+10 F
+0.5 (tagname) 312.36 395.4 P
+4 F
+0.52 0.1 ( to ) 347.33 395.4 B
+10 F
+0.5 (value) 362.48 395.4 P
+4 F
+0.52 0.1 (. A client pr) 383.96 395.4 B
+0.52 0.1 (ogram using the W) 438.48 395.4 B
+0.52 0.1 (ir) 525.87 395.4 B
+0.52 0.1 (e ) 532.75 395.4 B
+0.28 0.1 (Service will have allocated a tag \050value\051 and r) 198 383 B
+0.28 0.1 (egister) 405.39 383 B
+0.28 0.1 (ed that tag with a callback ) 435.39 383 B
+0.52 0.1 (on the client side. It should then issue a ) 198 370.6 B
+11 F
+0.45 -0.27 (/wire_de\336netag) 383.31 370.6 B
+4 F
+0.52 0.1 ( to an instance that ) 444.96 370.6 B
+0.52 0.1 (wishes to invoke that callback on the client side.) 198 358.2 B
+10 F
+(/wire_DefineTagInDict) 54 338.46 T
+(tagname value dict ) 198 338.46 T
+11 F
+(/wire_DefineTagInDict) 275.93 338.46 T
+10 F
+( - ) 369.82 338.46 T
+4 F
+0.07 0.1 (Associates ) 198 318.8 B
+10 F
+0.06 -0.27 (tagname) 248.01 318.8 B
+4 F
+0.07 0.1 ( with ) 281.09 318.8 B
+10 F
+0.06 -0.27 (value) 307.15 318.8 B
+4 F
+0.07 0.1 ( in ) 327.28 318.8 B
+10 F
+0.06 -0.27 (dict) 341.55 318.8 B
+4 F
+0.07 0.1 (. T) 354.45 318.8 B
+0.07 0.1 (ags ar) 365.03 318.8 B
+0.07 0.1 (e implemented as name/value pairs ) 391.76 318.8 B
+0.52 0.1 (in a postscript dictionary) 198 306.4 B
+0.52 0.1 (. ) 311.42 306.4 B
+10 F
+(/wire_settagsdict) 54 286.67 T
+(dict ) 198 286.67 T
+11 F
+(/wire_settagsdict) 214.48 286.67 T
+10 F
+( -) 287.41 286.67 T
+4 F
+0.21 0.1 (Allows several instances to shar) 198 267 B
+0.21 0.1 (e a common set of tags. For instance, Jot uses a ) 343.01 267 B
+0.52 0.1 (single set of tags for all instances of JotCanvas on a given connection. ) 198 254.6 B
+0.52 0.1 (Applications wishing to shar) 198 234.2 B
+0.52 0.1 (e a common set of tags among several instances ) 329.69 234.2 B
+0.52 0.1 (should call ) 198 221.8 B
+11 F
+0.45 -0.27 (/wire_settagsdict) 251.04 221.8 B
+4 F
+0.52 0.1 ( befor) 319.38 221.8 B
+0.52 0.1 (e the \336rst time one of the following thr) 345.86 221.8 B
+0.52 0.1 (ee ) 524.15 221.8 B
+0.52 0.1 (methods is called: ) 198 209.4 B
+11 F
+0.5 (/wire_sendclient) 283.23 209.4 P
+4 F
+0.52 0.1 (, ) 353.16 209.4 B
+11 F
+0.5 (/wire_sendclientsynchronized) 358.88 209.4 P
+4 F
+0.52 0.1 (, or ) 486.74 209.4 B
+11 F
+(/wire_callbackclient) 198 197 T
+4 F
+0.1 (.) 282.43 197 S
+FMENDPAGE
+%%EndPage: "12" 13
+%%Page: "13" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (13) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+9 F
+-0.84 0.13 (Invoking client callbacks\321communication methods) 198 639.33 B
+4 F
+0.52 0.1 (The methods in this section ar) 198 622.33 B
+0.52 0.1 (e used to invoke callbacks on the client side, ) 335.92 622.33 B
+0.52 0.1 (their ar) 198 609.93 B
+0.52 0.1 (guments ar) 231.3 609.93 B
+0.52 0.1 (e interpr) 282.59 609.93 B
+0.52 0.1 (eted as follows:) 321.79 609.93 B
+10 F
+0.5 ([ arg1 ... ]) 198 589.53 P
+4 F
+0.52 0.1 (The ar) 264 589.53 B
+0.52 0.1 (guments ar) 293.11 589.53 B
+0.52 0.1 (e sent up the wir) 344.41 589.53 B
+0.52 0.1 (e in the or) 421.97 589.53 B
+0.52 0.1 (der they appear in ) 468.73 589.53 B
+0.52 0.1 (the array) 264 577.13 B
+10 F
+(tagname) 198 556.73 T
+4 F
+0.52 0.1 (Should have been pr) 264 556.73 B
+0.52 0.1 (eviously de\336ned with ) 358.46 556.73 B
+11 F
+0.45 -0.27 (/wire_de\336netag ) 461.11 556.73 B
+4 F
+0.52 0.1 (and ) 525.43 556.73 B
+0.52 0.1 (also allocated and r) 264 544.33 B
+0.52 0.1 (egister) 353.2 544.33 B
+0.52 0.1 (ed on the client side.) 383.2 544.33 B
+10 F
+(/wire_sendclient ) 54 524.6 T
+([ arg1 ... ] tagname ) 198 524.6 T
+11 F
+(/wire_sendclient) 275.94 524.6 T
+10 F
+( - ) 345.87 524.6 T
+4 F
+0.52 0.1 (Asynchr) 198 504.93 B
+0.52 0.1 (onously invokes callbacks on the client side.) 236.11 504.93 B
+10 F
+(/wire_sendclientsynchronized) 54 485.2 T
+([ arg1 ... ] tagname ) 198 485.2 T
+11 F
+(/wire_sendclientsynchronized) 275.94 485.2 T
+10 F
+( - ) 403.8 485.2 T
+4 F
+0.52 0.1 (W) 198 465.53 B
+0.52 0.1 (aits until the client has \336nished befor) 207.18 465.53 B
+0.52 0.1 (e it continues execution on the server ) 377.12 465.53 B
+0.1 (side.) 198 453.13 S
+10 F
+(/wire_callbackclient) 54 433.4 T
+([ arg1 ... ] tagname ) 198 433.4 T
+11 F
+(/wire_callbackclient) 275.94 433.4 T
+10 F
+( value true | false) 360.37 433.4 T
+4 F
+0.52 0.1 (A synchr) 198 413.73 B
+0.52 0.1 (onous callback to the client side which waits for a r) 239.23 413.73 B
+0.52 0.1 (eturn value fr) 474.76 413.73 B
+0.52 0.1 (om ) 537.49 413.73 B
+0.12 0.1 (the client. This r) 198 401.33 B
+0.12 0.1 (equir) 270.99 401.33 B
+0.12 0.1 (es cooperation with the client side; the client should issue ) 294.58 401.33 B
+0.52 0.1 (a call to ) 198 388.93 B
+11 F
+0.45 -0.27 (/wire_setreturnvalue) 237.02 388.93 B
+4 F
+0.52 0.1 ( befor) 319.03 388.93 B
+0.52 0.1 (e it r) 345.52 388.93 B
+0.52 0.1 (eturns fr) 366.87 388.93 B
+0.52 0.1 (om the callback that ) 405.96 388.93 B
+11 F
+0.45 -0.27 (/wire_callbackclient) 198 376.53 B
+4 F
+0.52 0.1 ( invoked. ) 277.03 376.53 B
+54 350.46 558 366.8 C
+558 363.78 198 363.78 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+6 F
+(Note \320 ) 198 353.62 T
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.19 0.1 (It is not a fatal err) 231.84 353.79 B
+0.19 0.1 (or if an unknown tag is pr) 312.68 353.79 B
+0.19 0.1 (esented to one of the above ) 431.44 353.79 B
+0.43 0.1 (communication methods. When that occurs the ar) 198 341.39 B
+0.43 0.1 (guments and tag ar) 425.27 341.39 B
+0.43 0.1 (e silently ) 513.87 341.39 B
+54 317.67 558 325.66 C
+558 322.63 198 322.63 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+4 F
+0 X
+0 K
+0.52 0.1 (popped of) 198 328.99 B
+0.52 0.1 (f the stack. An err) 244.89 328.99 B
+0.52 0.1 (or message is printed if tracing is turned on.) 327.14 328.99 B
+10 F
+(/wire_setreturnvalue ) 54 301.27 T
+(value ) 198 301.27 T
+11 F
+(/wire_setreturnvalue) 221.98 301.27 T
+10 F
+( -) 309.39 301.27 T
+4 F
+0.52 0.1 (Sets the r) 198 281.6 B
+0.52 0.1 (eturn value for a client callback.) 240.2 281.6 B
+10 F
+(/wire_Exec) 54 261.86 T
+(proc ) 198 261.86 T
+11 F
+(/wire_Exec) 217.98 261.86 T
+10 F
+( boolean) 264.44 261.86 T
+4 F
+0.52 0.1 (Allows for an arbitrary piece of code to be executed in the context of the ) 198 242.2 B
+0.52 0.1 (connection. This r) 198 229.8 B
+0.52 0.1 (eturns false if it was unable to execute ) 279.39 229.8 B
+10 F
+0.45 -0.27 (proc) 457.96 229.8 B
+4 F
+0.52 0.1 ( \050usually means ) 474.36 229.8 B
+0.52 0.1 (the connection is dead, in which case the application should take car) 198 217.4 B
+0.52 0.1 (e to pop ) 512.22 217.4 B
+0.42 0.1 (of) 198 205 B
+0.42 0.1 (f any ar) 206.8 205 B
+0.42 0.1 (guments it expected ) 241.91 205 B
+10 F
+0.41 (proc) 336.68 205 P
+4 F
+0.42 0.1 ( to consume. ) 354.16 205 B
+11 F
+0.36 -0.27 (/wire_Exec) 415.03 205 B
+4 F
+0.42 0.1 ( is used internally by ) 458.8 205 B
+0.52 0.1 (the thr) 198 192.6 B
+0.52 0.1 (ee communication methods described above. ) 228.42 192.6 B
+FMENDPAGE
+%%EndPage: "13" 14
+%%Page: "14" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (14) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+(/wire_status) 54 642 T
+(- ) 198 642 T
+11 F
+(/wire_status) 203.49 642 T
+10 F
+( boolean) 255.44 642 T
+4 F
+0.52 0.1 (Used to check the status of the wir) 198 622.33 B
+0.52 0.1 (e. ) 356.82 622.33 B
+11 F
+0.45 -0.27 (/wire_status) 367.43 622.33 B
+4 F
+0.52 0.1 ( r) 416.13 622.33 B
+0.52 0.1 (eturns false if the connection ) 423.12 622.33 B
+0.52 0.1 (\336le doesn\325t exist or it has r) 198 609.93 B
+0.52 0.1 (eceived an EOF) 319.93 609.93 B
+0.52 0.1 (.) 390.24 609.93 B
+10 F
+(/wire_setautoflush) 54 590.2 T
+(boolean ) 198 590.2 T
+11 F
+(/wire_setautoflush) 232.48 590.2 T
+10 F
+( -) 311.39 590.2 T
+4 F
+0.52 0.1 (Speci\336es whether the connection should be \337ushed automatically after one of ) 198 570.53 B
+0.52 0.1 (the communication r) 198 558.13 B
+0.52 0.1 (outines is called. Flushing the connection is useful when ) 292.74 558.13 B
+0.52 0.1 (it\325s not clear whether a certain operation will cause the connection to be ) 198 545.73 B
+0.52 0.1 (\337ushed. The connection is \337ushed when the call is a synchr) 198 533.33 B
+0.52 0.1 (onous callback in ) 470.3 533.33 B
+0.52 0.1 (or) 198 520.93 B
+0.52 0.1 (der to guarantee smooth operation.) 207.43 520.93 B
+10 F
+(/wire_autoflush) 54 501.2 T
+(- ) 198 501.2 T
+11 F
+(/wire_autoflush) 203.49 501.2 T
+10 F
+( boolean) 269.41 501.2 T
+4 F
+0.52 0.1 (Returns whether the connections is \337ushed automatically after one of the ) 198 481.53 B
+0.52 0.1 (communication methods ar) 198 469.13 B
+0.52 0.1 (e called.) 322.86 469.13 B
+9 F
+0.13 (T) 198 436.73 S
+0.13 (racing) 204.62 436.73 S
+10 F
+(/wire_settracefile) 54 420.4 T
+(file ) 198 420.4 T
+11 F
+(/wire_settracefile) 211.98 420.4 T
+10 F
+( - ) 284.92 420.4 T
+4 F
+0.52 0.1 (Dir) 198 400.73 B
+0.52 0.1 (ects the trace output to ) 212.71 400.73 B
+10 F
+0.45 -0.27 (\336le) 321.06 400.73 B
+4 F
+0.52 0.1 (. By default, trace output goes to the console.) 331.74 400.73 B
+10 F
+(/wire_settrace) 54 381 T
+(boolean ) 198 381 T
+11 F
+(/wire_settrace) 232.48 381 T
+10 F
+( - ) 292.42 381 T
+4 F
+0.06 0.1 (Determines whether tracing is turned on or of) 198 361.33 B
+0.06 0.1 (f. When tracing is on, it pr) 405.53 361.33 B
+0.06 0.1 (oduces ) 523.69 361.33 B
+0.52 0.1 (messages whenever a tag is sent acr) 198 348.93 B
+0.52 0.1 (oss the wir) 362.46 348.93 B
+0.52 0.1 (e. E.g.,) 412.4 348.93 B
+7 F
+1.08 (Wire: send tag = /DAMAGE_START, args = 18 0 600) 198 329.2 P
+4 F
+0.52 0.1 (When ) 198 309.14 B
+11 F
+0.45 -0.27 (/wire_callbackclient) 227.93 309.14 B
+4 F
+0.52 0.1 ( is called, an additional message is printed when the ) 306.96 309.14 B
+0.52 0.1 (r) 198 296.73 B
+0.52 0.1 (eturn value is r) 201.87 296.73 B
+0.52 0.1 (eceived fr) 271.64 296.73 B
+0.52 0.1 (om the client side:) 316.21 296.73 B
+0.52 0.1 (W) 198 276.34 B
+0.52 0.1 (ir) 207.54 276.34 B
+0.52 0.1 (e: r) 214.42 276.34 B
+0.52 0.1 (eturns false) 228.89 276.34 B
+0.22 0.1 (An err) 198 255.93 B
+0.22 0.1 (or message is printed when tracing is on if an unknown tag is pr) 227.42 255.93 B
+0.22 0.1 (esented ) 520.7 255.93 B
+0.52 0.1 (to one of the communication r) 198 243.53 B
+0.52 0.1 (outines.) 336.35 243.53 B
+10 F
+(/wire_trace?) 54 223.8 T
+(- ) 198 223.8 T
+11 F
+(/wire_trace?) 203.49 223.8 T
+10 F
+( boolean) 255.94 223.8 T
+4 F
+0.52 0.1 (Returns whether tracing is turned on.) 198 204.14 B
+10 F
+(/wire_TraceSend) 54 184.4 T
+([args]) 198 184.4 T
+11 F
+( ) 220.48 184.4 T
+10 F
+(tagname ) 222.98 184.4 T
+11 F
+(/wire_TraceSend) 260.45 184.4 T
+10 F
+( [args] tagname ) 331.88 184.4 T
+4 F
+0.52 0.1 (Called every time you do a send. Returns what was found on the stack.) 198 164.73 B
+FMENDPAGE
+%%EndPage: "14" 15
+%%Page: "15" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (15) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+(/wire_TraceCallback) 54 642 T
+(value ) 198 642 T
+11 F
+(/wire_TraceCallback) 221.98 642 T
+10 F
+( value) 308.4 642 T
+4 F
+0.52 0.1 (Called after a client callback.) 198 622.33 B
+0.34 0.1 (The default trace output can be overridden by overriding these two subclasser ) 198 601.93 B
+0.52 0.1 (methods. Notice they leave the stack unchanged.) 198 589.53 B
+8 F
+-0.88 (Drag and Dr) 126 556.47 P
+-0.88 (op\321A pr) 197.85 556.47 P
+-0.88 (oposed interface) 249.96 556.47 P
+9 F
+-0.84 0.13 (Pr) 198 523.13 B
+-0.84 0.13 (eviewing drag and dr) 211.01 523.13 B
+-0.84 0.13 (ops) 322.31 523.13 B
+4 F
+0.52 0.1 (The methods in this section pr) 198 506.13 B
+0.52 0.1 (ovide a way for a Receptible canvas to query a ) 336.93 506.13 B
+0.04 0.1 (selection that\325s dragged over it and pr) 198 493.73 B
+0.04 0.1 (ovide user feedback as to acceptability of ) 369.81 493.73 B
+0.52 0.1 (the dr) 198 481.33 B
+0.52 0.1 (op.) 225.35 481.33 B
+10 F
+( /DropPreviewLevel) 54 460.93 T
+11 F
+(/DropPreviewLevel) 198 460.93 T
+10 F
+( /None | /Crossings | /All ) 278.42 460.93 T
+4 F
+(\050Variable\051) 376.99 460.93 T
+10 F
+( ) 420.94 460.93 T
+4 F
+0.52 0.1 (Determines which events should trigger a call to the canvas\325s ) 198 440.93 B
+11 F
+0.45 -0.27 (/DropPreview) 481.81 440.93 B
+4 F
+0.52 0.1 ( ) 536.01 440.93 B
+0.52 0.1 (method during a drag and dr) 198 428.53 B
+0.52 0.1 (op transaction. The legal values ar) 332.81 428.53 B
+0.52 0.1 (e in the table ) 489.75 428.53 B
+0.1 (below) 198 416.13 S
+0.1 (.) 224.6 416.13 S
+1 F
+0.47 0.09 (Dr) 198 396.4 B
+0.47 0.09 (op pr) 208.52 396.4 B
+0.47 0.09 (eview levels) 230.79 396.4 B
+54 381.94 558 386.4 C
+198 384.1 558 384.1 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+54 367.47 558 371.94 C
+198 369.63 558 369.63 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+6 F
+0 X
+0 K
+0.52 0.1 (Event identi\336cation) 198 375.27 B
+0.1 (Explanation) 360 375.27 S
+4 F
+0.1 (/None) 198 354.41 S
+0.52 0.1 (Do not call ) 348 354.41 B
+11 F
+0.45 -0.27 (/DropPreview) 401.23 354.41 B
+4 F
+0.52 0.1 ( at all. This is the ) 455.43 354.41 B
+0.1 (default.) 347.98 342.01 S
+0.1 (/Cr) 198 325.61 S
+0.1 (ossings) 215.21 325.61 S
+0.52 0.1 (Call ) 348 325.61 B
+11 F
+0.45 -0.27 (/DropPreview) 369.42 325.61 B
+4 F
+0.52 0.1 ( when the selection is ) 423.62 325.61 B
+0.52 0.1 (dragged into or out of the canvas.) 347.98 313.21 B
+0.1 (/All) 198 296.81 S
+0.3 0.1 (Call ) 348 296.81 B
+11 F
+0.26 -0.27 (/DropPreview) 369.2 296.81 B
+4 F
+0.3 0.1 ( for cr) 423.4 296.81 B
+0.3 0.1 (ossing events, and also ) 450.64 296.81 B
+0.07 0.1 (for every mouse motion within the Receptible ) 348 284.41 B
+0.1 (canvas.) 348 272.01 S
+10 F
+(/setdroppreviewlevel) 54 252.27 T
+(- ) 198 252.27 T
+11 F
+-0.27 (/setdroppreviewlevel) 203.49 252.27 S
+10 F
+( level) 287 252.27 T
+4 F
+0.52 0.1 (Sets the value of ) 198 232.61 B
+11 F
+0.45 -0.27 (/DropPreviewLevel) 276.42 232.61 B
+4 F
+0.52 0.1 (.) 352.25 232.61 B
+10 F
+(/droppreviewlevel) 54 212.87 T
+(- ) 198 212.87 T
+11 F
+(/droppreviewlevel) 203.49 212.87 T
+10 F
+( /None | /Crossings | /All) 279.42 212.87 T
+4 F
+0.52 0.1 (Returns the value of ) 198 193.21 B
+11 F
+0.45 -0.27 (/DropPreviewLevel) 293.94 193.21 B
+FMENDPAGE
+%%EndPage: "15" 16
+12 11 /Palatino-BoldItalic FMDEFINEFONT
+%%Page: "16" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (16) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+(/DropPreview) 54 642 T
+(event selection) 198 642 T
+11 F
+( /DropPreview) 257.95 642 T
+10 F
+( -) 317.88 642 T
+4 F
+0.52 0.1 (Sent by the T) 198 622.33 B
+0.52 0.1 (oolkit to notify a Receptible client \050i.e., a potential r) 257.62 622.33 B
+0.52 0.1 (ecipient of a ) 492.95 622.33 B
+0.52 0.1 (drag and dr) 198 609.93 B
+0.52 0.1 (op\051 that a selection has been dragged over it. Allows a client to ) 252.54 609.93 B
+-0.06 0.1 (interr) 198 597.53 B
+-0.06 0.1 (ogate ) 223.09 597.53 B
+10 F
+-0.05 (selection) 250.18 597.53 P
+4 F
+-0.06 0.1 ( to determine if the client can use ) 285.65 597.53 B
+10 F
+-0.05 (selection) 437.24 597.53 P
+4 F
+-0.06 0.1 (\325s data. Clients ar) 472.7 597.53 B
+-0.06 0.1 (e ) 550.57 597.53 B
+0.52 0.1 (encouraged to r) 198 585.13 B
+0.52 0.1 (espond only to those selections they can accept. In addition, ) 269.94 585.13 B
+0.05 0.1 (Receptible clients should pr) 198 572.73 B
+0.05 0.1 (ovide some visual feedback \050e.g., inverting an icon\051 ) 323.23 572.73 B
+0.52 0.1 (as to whether they could accept ) 198 560.33 B
+10 F
+0.5 (selection) 346.29 560.33 P
+4 F
+0.52 0.1 ( if it wer) 381.75 560.33 B
+0.52 0.1 (e to be dr) 421.1 560.33 B
+0.52 0.1 (opped on them.) 464.85 560.33 B
+0.07 0.1 (The ) 198 539.93 B
+10 F
+0.06 -0.27 (/Name) 217.7 539.93 B
+4 F
+0.07 0.1 ( of ) 242.82 539.93 B
+10 F
+0.06 -0.27 (event) 257.14 539.93 B
+4 F
+0.07 0.1 ( and its meaning ar) 277.77 539.93 B
+0.07 0.1 (e in the table below) 364.74 539.93 B
+0.07 0.1 (. The events ar) 451.96 539.93 B
+0.07 0.1 (e sent to ) 517.69 539.93 B
+0.52 0.1 (a canvas whose ) 198 527.53 B
+11 F
+0.45 -0.27 (/DropPreviewLevel) 272.32 527.53 B
+4 F
+0.52 0.1 ( is either ) 348.15 527.53 B
+10 F
+0.45 -0.27 (/Crossings) 390.95 527.53 B
+4 F
+0.52 0.1 ( or ) 430.7 527.53 B
+10 F
+0.45 -0.27 (/All) 446.54 527.53 B
+4 F
+0.52 0.1 (.) 457.95 527.53 B
+1 F
+0.47 0.09 (Names of drag and dr) 198 507.8 B
+0.47 0.09 (op pr) 289.2 507.8 B
+0.47 0.09 (eview events) 311.46 507.8 B
+54 493.34 558 497.8 C
+198 495.5 558 495.5 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+54 478.87 558 483.34 C
+198 481.03 558 481.03 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+6 F
+0 X
+0 K
+0.52 0.1 (Event /Name) 198 486.67 B
+0.1 (Explanation) 312 486.67 S
+4 F
+0.1 (/Enter) 198 465.81 S
+0.52 0.1 (Sent to a canvas when the canvas becomes ) 312 465.81 B
+0.52 0.1 ( the ) 510.21 465.81 B
+0.52 0.1 (curr) 312 453.41 B
+0.52 0.1 (ent dr) 330.58 453.41 B
+0.52 0.1 (op-site) 357.93 453.41 B
+0.1 (/Exit) 198 437.01 S
+0.52 0.1 (Sent to a canvas when the canvas ceases to be the ) 312 437.01 B
+0.52 0.1 (curr) 312 424.61 B
+0.52 0.1 (ent dr) 330.58 424.61 B
+0.52 0.1 (op-site.) 357.93 424.61 B
+0.1 (/Motion) 198 408.21 S
+0.52 0.1 (Sent to a canvas when the canvas is the curr) 312 408.21 B
+0.52 0.1 (ent dr) 514.46 408.21 B
+0.52 0.1 (op-) 541.81 408.21 B
+0.52 0.1 (site and the cursor has moved since the last ) 312 395.81 B
+11 F
+0.45 -0.27 (/DropPreview) 312 383.41 B
+4 F
+0.52 0.1 ( was sent to the canvas.) 366.2 383.41 B
+12 F
+-0.71 0.11 (Drag and dr) 198 354.34 B
+-0.71 0.11 (op animation) 256.21 354.34 B
+4 F
+0.52 0.1 (In addition to any feedback a canvas pr) 198 338.01 B
+0.52 0.1 (ovides to acknowledge a selection has ) 379.29 338.01 B
+0.46 0.1 (been dragged over it, it may pr) 198 325.61 B
+0.46 0.1 (ovide feedback about whether the dr) 340.68 325.61 B
+0.46 0.1 (op will be ) 509.17 325.61 B
+0.52 0.1 (accepted. This feedback is independent of any pr) 198 313.21 B
+0.52 0.1 (eviewing feedback.) 422.14 313.21 B
+10 F
+(/DropTarget?) 54 293.47 T
+(event selection ) 198 293.47 T
+11 F
+(/DropTarget?) 260.45 293.47 T
+10 F
+( boolean) 316.87 293.47 T
+4 F
+0.52 0.1 (Sent to a Receptible canvas when a selection is dragged over it. ) 198 273.81 B
+10 F
+0.45 -0.27 (boolean) 490.82 273.81 B
+4 F
+0.52 0.1 ( ) 520.91 273.81 B
+0.52 0.1 (determines whether the selection has been dragged over a valid dr) 198 261.41 B
+0.52 0.1 (op site ) 503.66 261.41 B
+0.52 0.1 (within the canvas. The default implementation in ClassCanvas assumes that ) 198 249.01 B
+0.52 0.1 (the entir) 198 236.61 B
+0.52 0.1 (e Receptible canvas is a valid dr) 236.32 236.61 B
+0.52 0.1 (op site. ) 383.32 236.61 B
+11 F
+0.45 -0.27 (/DropT) 419.41 236.61 B
+0.45 -0.27 (arget?) 446.08 236.61 B
+4 F
+0.52 0.1 ( may execute in a ) 471.93 236.61 B
+0.52 0.1 (non-LEM pr) 198 224.21 B
+0.52 0.1 (ocess.) 253.88 224.21 B
+3 F
+-0.94 (Converting fr) 54 190.47 P
+-0.94 (om the experimental r) 135.72 190.47 P
+-0.94 (elease) 264.73 190.47 P
+4 F
+0.52 0.1 (The changes that the TNT interface has under) 198 168.81 B
+0.52 0.1 (gone since the experimental ) 407.48 168.81 B
+0.52 0.1 (version on OpenW) 198 156.41 B
+0.52 0.1 (indows1.0 and 2.0 ar) 283.62 156.41 B
+0.52 0.1 (e mor) 378.21 156.41 B
+0.52 0.1 (e than cosmetic. T) 404.57 156.41 B
+0.52 0.1 (o summarize:) 486.15 156.41 B
+FMENDPAGE
+%%EndPage: "16" 17
+%%Page: "17" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (17) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+2 F
+(\245) 198 641.33 T
+4 F
+0.52 0.1 (An ef) 210.6 641.33 B
+0.52 0.1 (fort has been made to be much mor) 235.65 641.33 B
+0.52 0.1 (e consistent about naming ) 398.94 641.33 B
+0.52 0.1 (thr) 210.6 628.93 B
+0.52 0.1 (oughout the toolkit.) 223.74 628.93 B
+2 F
+(\245) 198 616.53 T
+4 F
+-0 0.1 (Ther) 210.6 616.53 B
+-0 0.1 (e ar) 231.5 616.53 B
+-0 0.1 (e many fewer \322building-block\323 classes that the OPEN LOOK objects ) 247.95 616.53 B
+0.37 0.1 (inherit fr) 210.6 604.13 B
+0.37 0.1 (om, and the ones that ar) 251.01 604.13 B
+0.37 0.1 (e left ar) 361.73 604.13 B
+0.37 0.1 (e ther) 396.22 604.13 B
+0.37 0.1 (e for r) 422.11 604.13 B
+0.37 0.1 (easons of obvious code ) 449.84 604.13 B
+0.52 0.1 (factoring, rather than abstraction.) 210.6 591.73 B
+2 F
+(\245) 198 579.33 T
+4 F
+0.52 0.1 (The entir) 210.6 579.33 B
+0.52 0.1 (e input system was judged to be too big, and too dif) 251.79 579.33 B
+0.52 0.1 (\336cult to use ) 491.33 579.33 B
+0.52 0.1 (without race-conditions. It has been completely r) 210.6 566.93 B
+0.52 0.1 (ewritten and given very ) 434.37 566.93 B
+0.52 0.1 (dif) 210.6 554.53 B
+0.52 0.1 (fer) 223.06 554.53 B
+0.52 0.1 (ent interfaces. See below) 235.25 554.53 B
+0.52 0.1 (.) 346.58 554.53 B
+0.52 0.1 (Her) 198 534.13 B
+0.52 0.1 (e is a set of simple changes that span the whole toolkit:) 215.17 534.13 B
+2 F
+(\245) 198 515.73 T
+4 F
+0.52 0.1 (Classes no longer have the pr) 210.6 515.73 B
+0.52 0.1 (e\336x \322OpenLook\323. They ar) 345.71 515.73 B
+0.52 0.1 (e named instead: ) 463.65 515.73 B
+0.52 0.1 (ClassW) 210.6 503.33 B
+0.52 0.1 (indow) 244.11 503.33 B
+0.52 0.1 (, ClassMenu, etc.) 272.32 503.33 B
+2 F
+(\245) 198 490.93 T
+4 F
+0.52 0.1 (Wher) 210.6 490.93 B
+0.52 0.1 (ever possible the number and complexity of ar) 235.37 490.93 B
+0.52 0.1 (guments to /new \050the ) 448.8 490.93 B
+0.33 0.1 (way objects ar) 210.6 478.53 B
+0.33 0.1 (e cr) 275.36 478.53 B
+0.33 0.1 (eated\051 has been r) 291.59 478.53 B
+0.33 0.1 (educed. This may lead to an extra line or ) 368.79 478.53 B
+0.52 0.1 (two of application code, but feedback fr) 210.6 466.13 B
+0.52 0.1 (om the experimental toolkit ) 392.97 466.13 B
+0.33 0.1 (suggested that this was one of the places wher) 210.6 453.73 B
+0.33 0.1 (e TNT code was very har) 422.33 453.73 B
+0.33 0.1 (d to ) 537.01 453.73 B
+0.1 (understand.) 210.6 441.33 S
+2 F
+(\245) 198 428.93 T
+4 F
+0.52 0.1 (/newinit \050the method that you override to perform your own per) 210.6 428.93 B
+0.52 0.1 (-object ) 510.45 428.93 B
+0.52 0.1 (initialization\051 has been r) 210.6 416.54 B
+0.52 0.1 (e-spelled /NewInit to r) 321.37 416.54 B
+0.52 0.1 (einfor) 427.9 416.54 B
+0.52 0.1 (ce the fact that you ) 454.57 416.54 B
+0.52 0.1 (should override this method rather than calling it dir) 210.6 404.14 B
+0.52 0.1 (ectly) 453.89 404.14 B
+0.52 0.1 (.) 474.23 404.14 B
+2 F
+(\245) 198 391.73 T
+4 F
+0.52 0.1 (The concept of DefaultClass, and the /newdefault method have been ) 210.6 391.73 B
+0.52 0.1 (r) 210.6 379.33 B
+0.52 0.1 (emoved. They pr) 214.47 379.33 B
+0.52 0.1 (ovided a level of abstraction that did not pr) 292.17 379.33 B
+0.52 0.1 (ove necessary) 492.26 379.33 B
+0.52 0.1 (.) 554.16 379.33 B
+8 F
+-0.88 (Application Start-Up) 126 346.27 P
+4 F
+0.52 0.1 (In TNT1.0, you started a very simple application as follows:) 198 324.93 B
+10 F
+-0.27 (% De\336ne your classes...) 210.6 309.2 S
+-0.27 (/frame MyCanvasClass [] framebuf) 210.6 287.2 S
+-0.27 (fer /new OpenLookBaseFrame send def) 340.14 287.2 S
+-0.27 (/activate frame send) 210.6 276.2 S
+-0.27 (/place frame send) 210.6 265.2 S
+-0.27 (/map frame send) 210.6 254.2 S
+-0.27 (% If this is a server-only application and run through a psh) 210.6 228.2 S
+-0.27 (% the following two lines are needed to have the psh return) 210.6 217.2 S
+-0.27 (% gracefully) 210.6 206.2 S
+-0.27 (. If you have a client-side - don\325t include them.) 255.64 206.2 S
+-0.27 (newprocessgroup) 210.6 195.2 S
+-0.27 (current\336le close\336le) 210.6 184.2 S
+4 F
+0.52 0.1 (In TNT2.0 it now looks like:) 198 164.53 B
+10 F
+-0.27 (% De\336ne your classes...) 210.6 152.8 S
+FMENDPAGE
+%%EndPage: "17" 18
+%%Page: "18" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (18) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+10 F
+-0.27 (/myinstance ... /new MyClass send def) 210.6 631 S
+-0.27 (/frame myinstance framebuf) 210.6 609 S
+-0.27 (fer /new ClassBaseWindow send def) 314.8 609 S
+-0.27 (/new ClassEventMgr send /activate frame send) 210.6 598 S
+-0.27 (/place frame send) 210.6 587 S
+-0.27 (/map frame send) 210.6 576 S
+-0.27 (% If this is a server-only application and run through a psh) 210.6 554 S
+-0.27 (% the following two lines are needed to have the psh return) 210.6 543 S
+-0.27 (% gracefully) 210.6 532 S
+-0.27 (. If you have a client-side - don\325t include them.) 255.64 532 S
+-0.27 (newprocessgroup) 210.6 521 S
+-0.27 (current\336le close\336le) 210.6 510 S
+4 F
+0.52 0.1 (Items to note about these dif) 198 490.33 B
+0.52 0.1 (fer) 328.82 490.33 B
+0.52 0.1 (ences ar) 341 490.33 B
+0.52 0.1 (e:) 377.65 490.33 B
+2 F
+(\245) 198 471.93 T
+4 F
+0.52 0.1 (Ther) 210.6 471.93 B
+0.52 0.1 (e is no longer any \322auto-instantiation\323 in ClassBag, or hence in the ) 231.5 471.93 B
+0.52 0.1 (window class. Y) 210.6 459.53 B
+0.52 0.1 (ou need to separately instantiate the main client of a ) 284.16 459.53 B
+0.1 (window) 210.6 447.13 S
+0.1 (.) 247.24 447.13 S
+2 F
+(\245) 198 434.73 T
+4 F
+0.27 0.1 (All /activate methods now take an event manager as an ar) 210.6 434.73 B
+0.27 0.1 (gument, and you ) 477.37 434.73 B
+0.52 0.1 (must cr) 210.6 422.33 B
+0.52 0.1 (eate this event manager by hand. If you have multiple windows, ) 244.87 422.33 B
+0.52 0.1 (then you\325ll pr) 210.6 409.93 B
+0.52 0.1 (obably want to use the same event manager when activating ) 273.13 409.93 B
+0.52 0.1 (each of them.) 210.6 397.53 B
+8 F
+(W) 126 364.47 T
+(indows) 138.93 364.47 T
+4 F
+0.52 0.1 (W) 198 343.14 B
+0.52 0.1 (indows ar) 207.54 343.14 B
+0.52 0.1 (e less complex in TNT2.0 than in 1.0. Ther) 253.09 343.14 B
+0.52 0.1 (e ar) 445.85 343.14 B
+0.52 0.1 (e only two classes: ) 462.82 343.14 B
+0.52 0.1 (ClassBaseW) 198 330.73 B
+0.52 0.1 (indow) 252.04 330.73 B
+0.52 0.1 (, which has a header) 280.24 330.73 B
+0.52 0.1 (, footer) 373.88 330.73 B
+0.52 0.1 (, and r) 405.7 330.73 B
+0.52 0.1 (esize corners; and ) 435.62 330.73 B
+0.52 0.1 (ClassPopupW) 198 318.33 B
+0.52 0.1 (indow) 261.55 318.33 B
+0.52 0.1 (, which has none of these by default. In either case these ) 289.75 318.33 B
+0.52 0.1 (can be turned on or of) 198 305.93 B
+0.52 0.1 (f via the /setattribute method.) 300.08 305.93 B
+0.52 0.1 (W) 198 285.54 B
+0.52 0.1 (indows ar) 207.54 285.54 B
+0.52 0.1 (e now built on top of the new ClassBor) 253.09 285.54 B
+0.52 0.1 (derBag. This means that ) 432.44 285.54 B
+0.52 0.1 (they can have \322bor) 198 273.14 B
+0.52 0.1 (der\323 clients as well as the central one \050named /Center\051. ) 284.52 273.14 B
+0.52 0.1 (These bor) 198 260.73 B
+0.52 0.1 (der clients ar) 242.43 260.73 B
+0.52 0.1 (e useful for laying out contr) 301.82 260.73 B
+0.52 0.1 (ol ar) 429.87 260.73 B
+0.52 0.1 (eas, scr) 450.52 260.73 B
+0.52 0.1 (ollbars, and ) 483.3 260.73 B
+0.48 0.1 (anything else that wants to surr) 198 248.34 B
+0.48 0.1 (ound the central ar) 343.19 248.34 B
+0.48 0.1 (ea. \050See the \322rap\323 demo for ) 430.2 248.34 B
+0.52 0.1 (a good example of this.\051) 198 235.93 B
+0.52 0.1 (W) 198 215.53 B
+0.52 0.1 (indows, like other bags can have r) 207.54 215.53 B
+0.52 0.1 (egion clients as well as canvas ones. Any ) 364.43 215.53 B
+0.52 0.1 (OPEN LOOK object, for example, can be inserted as any of the clients of a ) 198 203.14 B
+0.1 (window) 198 190.73 S
+0.1 (.) 234.64 190.73 S
+0.52 0.1 (W) 198 170.34 B
+0.52 0.1 (indows do not interact with the selection service. When a user moves a ) 207.54 170.34 B
+0.52 0.1 (window) 198 157.93 B
+0.52 0.1 (, he is ) 234.64 157.93 B
+5 F
+0.52 0.1 (not) 264.74 157.93 B
+4 F
+0.52 0.1 ( selecting it.) 278.37 157.93 B
+FMENDPAGE
+%%EndPage: "18" 19
+%%Page: "19" 19
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (19) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.88 (Graphics, Display Items and Labels.) 126 638.67 P
+4 F
+0.52 0.1 (ClassGraphic and its descendents have been r) 198 617.33 B
+0.52 0.1 (emoved fr) 407.36 617.33 B
+0.52 0.1 (om the toolkit. The ) 453.98 617.33 B
+-0.06 0.1 (\322thing\323 concept has survived though, and has been r) 198 604.93 B
+-0.06 0.1 (enamed \322Display Item\323. A ) 435.58 604.93 B
+0.52 0.1 (display item is not an instance, just a very lightweight PostScript data ) 198 592.53 B
+0.52 0.1 (str) 198 580.13 B
+0.52 0.1 (uctur) 209.66 580.13 B
+0.52 0.1 (e. All subclasses of the new ClassDrawable \050that is, all canvases and ) 233.68 580.13 B
+0.52 0.1 (r) 198 567.73 B
+0.52 0.1 (egions\051 can show and measur) 201.87 567.73 B
+0.52 0.1 (e display items. ) 337.39 567.73 B
+0.52 0.1 (Display items ar) 198 547.33 B
+0.52 0.1 (e our generalization of \322string\323. Wher) 272.77 547.33 B
+0.52 0.1 (ever OPEN LOOK ) 446.39 547.33 B
+0.52 0.1 (suggests that some character string should appear \050the title of a window) 198 534.93 B
+0.52 0.1 (, the ) 528.72 534.93 B
+0.52 0.1 (items in a menu, the writing on a button, the labels in a contr) 198 522.53 B
+0.52 0.1 (ol ar) 479.62 522.53 B
+0.52 0.1 (ea, etc.\051 we ) 500.27 522.53 B
+0.52 0.1 (allow a display item. ) 198 510.13 B
+0.52 0.1 (ClassLabel is a very simple wrapper ar) 198 489.73 B
+0.52 0.1 (ound the display item data str) 376.25 489.73 B
+0.52 0.1 (uctur) 514.84 489.73 B
+0.52 0.1 (e, ) 538.85 489.73 B
+0.52 0.1 (and allows them to be inserted in a bag, and layed out independently) 198 477.33 B
+0.52 0.1 (.) 516.22 477.33 B
+8 F
+(Menus) 126 444.27 T
+4 F
+0.52 0.1 (They ar) 198 422.93 B
+0.52 0.1 (e pinnable, and allow settings. ) 232.77 422.93 B
+0.18 0.1 (The syntax for cr) 198 402.53 B
+0.18 0.1 (eating them and inserting items in a menu has changed too. It ) 274.43 402.53 B
+0.52 0.1 (used to be: ) 198 390.13 B
+10 F
+-0.27 ( \050foo\051 null {callback}) 210.6 378.4 S
+-0.27 ( \050bar\051 mysubmenu null) 210.6 367.4 S
+-0.27 (] framebuf) 210.6 356.4 S
+-0.27 (fer /new OpenLookMenu send) 248.2 356.4 S
+4 F
+0.52 0.1 (Now you cr) 198 336.73 B
+0.52 0.1 (eate instances of menus using:) 252.38 336.73 B
+10 F
+-0.27 (<placement> framebuf) 210.6 325 S
+-0.27 (fer /new ClassMenu send) 294.96 325 S
+4 F
+0.52 0.1 (wher) 198 305.33 B
+0.52 0.1 (e ) 221.11 305.33 B
+10 F
+0.45 -0.27 (placement) 229.11 305.33 B
+4 F
+0.52 0.1 ( is a parameter that determines the type of layout to be ) 268.14 305.33 B
+0.52 0.1 (performed and the layout data that is r) 198 292.93 B
+0.52 0.1 (equir) 376.81 292.93 B
+0.52 0.1 (ed. How you cr) 400.4 292.93 B
+0.52 0.1 (eate the menu\325s ) 471.6 292.93 B
+0.52 0.1 (item list depends on what the placement parameter is. See the ClassMenu ) 198 280.54 B
+0.52 0.1 (chapter for an explanation.) 198 268.14 B
+-0.05 0.1 (Callback ar) 198 247.73 B
+-0.05 0.1 (guments can be either a pr) 248.73 247.73 B
+-0.05 0.1 (ocedur) 367.93 247.73 B
+-0.05 0.1 (e or a method name \050which will be ) 399.12 247.73 B
+0.52 0.1 (sent to the menu\325s tar) 198 235.34 B
+0.52 0.1 (get\051. In either case the application code that will r) 297.45 235.34 B
+0.52 0.1 (un ) 525.1 235.34 B
+0.52 0.1 (should assume that ther) 198 222.93 B
+0.52 0.1 (e will be two ar) 307.98 222.93 B
+0.52 0.1 (guments on the stack: the \322value\323 ) 379.63 222.93 B
+0.52 0.1 (\050index of the item selected\051 and the menu itself. ) 198 210.53 B
+0.52 0.1 (See the /demo method for menus for other examples of menu items and ) 198 190.14 B
+0.1 (noti\336cation.) 198 177.73 S
+FMENDPAGE
+%%EndPage: "19" 20
+%%Page: "20" 20
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (20) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+(Buttons) 126 638.67 T
+4 F
+0.52 0.1 (Buttons and Menu Buttons now come in gr) 198 617.33 B
+0.52 0.1 (oups, and ar) 395.52 617.33 B
+0.52 0.1 (e descended fr) 452.67 617.33 B
+0.52 0.1 (om the ) 519.16 617.33 B
+0.52 0.1 (new class, ClassItemGr) 198 604.93 B
+0.52 0.1 (oup. Her) 303.59 604.93 B
+0.52 0.1 (e\325s the change in simple button cr) 344.27 604.93 B
+0.52 0.1 (eation ) 498.8 604.93 B
+0.52 0.1 (Instead of:) 198 592.53 B
+10 F
+-0.27 (\050Foo\051 {callback} framebuf) 210.6 580.8 S
+-0.27 (fer /new OpenLookButton send def) 304.09 580.8 S
+4 F
+0.52 0.1 (you can now write:) 198 561.13 B
+10 F
+-0.27 (/Grid framebuf) 210.6 549.4 S
+-0.27 (fer /new ClassButtons send) 264.1 549.4 S
+-0.27 ([) 210.6 538.4 S
+-0.27 ( [\050foo\051 {callback}|/methodname]) 224.64 527.4 S
+-0.27 ( [\050bar\051 {callback}|/methodname]) 224.64 516.4 S
+-0.27 (] /setitemlist 2 index send) 210.6 505.4 S
+4 F
+0.44 0.1 (to make a gr) 198 485.73 B
+0.44 0.1 (oup of two buttons. Note the similarity with menus. Other layout ) 255.23 485.73 B
+0.52 0.1 (styles \050than /Grid\051 ar) 198 473.33 B
+0.52 0.1 (e available, and these styles ar) 296.2 473.33 B
+0.52 0.1 (e shar) 435.01 473.33 B
+0.52 0.1 (ed with the other ) 462.23 473.33 B
+0.1 0.1 (descendents of ClassItemGr) 198 460.93 B
+0.1 0.1 (oup, and can be used in panels \050see below\051 too. See ) 324.07 460.93 B
+0.52 0.1 (the demo method in ClassButtons and ClassMenuButtons.) 198 448.53 B
+8 F
+(Settings) 126 415.47 T
+4 F
+0.52 0.1 (All types of settings ar) 198 394.13 B
+0.52 0.1 (e now instances of the same class, ClassSettings. The ) 301.52 394.13 B
+0.52 0.1 (method /setchoicemode can be used to select between the dif) 198 381.73 B
+0.52 0.1 (fer) 479.86 381.73 B
+0.52 0.1 (ent behavior ) 492.04 381.73 B
+0.52 0.1 (types. Settings ar) 198 369.33 B
+0.52 0.1 (e descended fr) 276.02 369.33 B
+0.52 0.1 (om ClassItemGr) 342.51 369.33 B
+0.52 0.1 (oup \050like buttons\051, and have a ) 416.31 369.33 B
+0.52 0.1 (very similar interface, except that they don\325t support per) 198 356.93 B
+0.52 0.1 (-item noti\336cation.) 457.49 356.93 B
+0.52 0.1 (The ar) 198 336.54 B
+0.52 0.1 (guments pr) 227.11 336.54 B
+0.52 0.1 (ovided on the stack when a setting noti\336es have changed to ) 279.42 336.54 B
+0.52 0.1 (the following:) 198 324.14 B
+10 F
+-0.27 ([index bool] setting => -) 210.6 312.4 S
+4 F
+0.52 0.1 (The item that changed, and whether it turned on or of) 198 292.73 B
+0.52 0.1 (f, is pr) 446.4 292.73 B
+0.52 0.1 (ovided in the ) 475.99 292.73 B
+0.1 (array) 198 280.33 S
+0.1 (.) 220.84 280.33 S
+8 F
+-0.88 (Scr) 126 247.27 P
+-0.88 (olling Lists) 144.67 247.27 P
+4 F
+0.45 0.1 (Scr) 198 225.93 B
+0.45 0.1 (olling lists wer) 211.75 225.93 B
+0.45 0.1 (e not included in TNT1.0. Items in a scr) 279.24 225.93 B
+0.45 0.1 (olling list can be any ) 460.16 225.93 B
+0.52 0.1 (legal display item. Note that instances of scr) 198 213.53 B
+0.52 0.1 (olling lists do not contain their ) 400.75 213.53 B
+0.46 0.1 (own scr) 198 201.14 B
+0.46 0.1 (ollbars. Y) 233.71 201.14 B
+0.46 0.1 (ou need to cr) 275.9 201.14 B
+0.46 0.1 (eate a scr) 335.98 201.14 B
+0.46 0.1 (olling list and a scr) 378.17 201.14 B
+0.46 0.1 (ollbar and hook the ) 465.34 201.14 B
+0.52 0.1 (two together) 198 188.73 B
+0.52 0.1 (. This is a simple pr) 255.4 188.73 B
+0.52 0.1 (ocedur) 345.77 188.73 B
+0.52 0.1 (e. See the /demo method or the ) 376.95 188.73 B
+0.52 0.1 (r) 198 176.34 B
+0.52 0.1 (efer) 201.87 176.34 B
+0.52 0.1 (ence manual chapter on scr) 218.94 176.34 B
+0.52 0.1 (olling lists.) 343.98 176.34 B
+FMENDPAGE
+%%EndPage: "20" 21
+%%Page: "21" 21
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (21) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.88 (T) 126 638.67 P
+-0.88 (ext Fields) 133 638.67 P
+4 F
+0.52 0.1 (ClassT) 198 617.33 B
+0.52 0.1 (extField has a number of small interface dif) 227.27 617.33 B
+0.52 0.1 (fer) 426.34 617.33 B
+0.52 0.1 (ences fr) 438.53 617.33 B
+0.52 0.1 (om the old ) 473.51 617.33 B
+0.52 0.1 (OpenLookT) 198 604.93 B
+0.52 0.1 (extContr) 251.15 604.93 B
+0.52 0.1 (ol. See the /demo method) 290.54 604.93 B
+8 F
+-0.88 (Scr) 126 571.87 P
+-0.88 (ollbars, sliders and gauges) 144.67 571.87 P
+4 F
+0.52 0.1 (These objects used to be descended fr) 198 550.53 B
+0.52 0.1 (om the same class, ClassDial, and hence ) 370.07 550.53 B
+0.52 0.1 (shar) 198 538.13 B
+0.52 0.1 (ed much model and interface.) 217.22 538.13 B
+0.24 0.1 (They have been separated in this r) 198 517.73 B
+0.24 0.1 (elease because it was r) 354.1 517.73 B
+0.24 0.1 (ealized that scr) 456.15 517.73 B
+0.24 0.1 (ollbars ) 524.48 517.73 B
+0.29 0.1 (needed a much richer model than sliders and gauges. They shar) 198 505.33 B
+0.29 0.1 (e the notion of ) 489.1 505.33 B
+0.31 0.1 (a noti\336er and a pr) 198 492.93 B
+0.31 0.1 (eviewer) 279.96 492.93 B
+0.31 0.1 (, but the ar) 315.12 492.93 B
+0.31 0.1 (guments each hand to these pr) 364.7 492.93 B
+0.31 0.1 (ocedur) 504.32 492.93 B
+0.31 0.1 (es is ) 535.5 492.93 B
+0.1 (dif) 198 480.53 S
+0.1 (fer) 210.46 480.53 S
+0.1 (ent.) 222.65 480.53 S
+0.52 0.1 (The separation of horizontal and vertical sliders, scr) 198 460.13 B
+0.52 0.1 (ollbars, and gauges have ) 435.91 460.13 B
+0.52 0.1 (been pr) 198 447.73 B
+0.52 0.1 (eserved. All six classes have /demo methods.) 232.41 447.73 B
+8 F
+(Objects) 126 414.67 T
+4 F
+0.52 0.1 (\322Object,\323 the r) 198 393.33 B
+0.52 0.1 (oot of all TNT classes, has been r) 263.86 393.33 B
+0.52 0.1 (enamed \322ClassObject\323 to be ) 414.8 393.33 B
+0.52 0.1 (consistent with the r) 198 380.93 B
+0.52 0.1 (ule that all classes start with the pr) 291.42 380.93 B
+0.52 0.1 (e\336x \322Class\323) 451.71 380.93 B
+0.22 0.1 (Application-speci\336c pr) 198 360.53 B
+0.22 0.1 (operties may now be associated with each object via the ) 301.37 360.53 B
+0.52 0.1 (/pr) 198 348.13 B
+0.52 0.1 (operty) 214.13 348.13 B
+0.52 0.1 (, and /setpr) 242.63 348.13 B
+0.52 0.1 (operty interface. ) 297.4 348.13 B
+8 F
+(Canvases) 126 315.07 T
+4 F
+0.52 0.1 (Most of the changes to the basement of TNT that have taken place since ) 198 293.73 B
+0.52 0.1 (TNT1.0 meet the application in ClassCanvas. ) 198 281.33 B
+0.52 0.1 (The most important one is the new set of interfaces for dealing with NeWS ) 198 260.93 B
+0.52 0.1 (input\321the appr) 198 248.53 B
+0.52 0.1 (oach we r) 271.07 248.53 B
+0.52 0.1 (efer to in the design documents as the \322Services ) 315.61 248.53 B
+0.1 (Ar) 198 236.14 S
+0.1 (chitectur) 209.74 236.14 S
+0.1 (e\323) 249.34 236.14 S
+0.16 0.1 (T) 198 215.73 B
+0.16 0.1 (o tell TNT1.0 that you wer) 203.31 215.73 B
+0.16 0.1 (e inter) 322.82 215.73 B
+0.16 0.1 (ested in r) 351.5 215.73 B
+0.16 0.1 (eceiving a certain kind of input you ) 393.48 215.73 B
+0.52 0.1 (had to subclass /MakeInter) 198 203.34 B
+0.52 0.1 (ests and build your own list of inter) 323.75 203.34 B
+0.52 0.1 (ests for each ) 488.73 203.34 B
+0.52 0.1 (canvas. ) 198 190.93 B
+FMENDPAGE
+%%EndPage: "21" 22
+%%Page: "22" 22
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (22) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (The /MakeInter) 198 641.33 B
+0.52 0.1 (ests method, as well as the whole appr) 271 641.33 B
+0.52 0.1 (oach of having ) 448.55 641.33 B
+0.52 0.1 (applications build their own independent inter) 198 628.93 B
+0.52 0.1 (ests for each canvas, has been ) 412.17 628.93 B
+0.52 0.1 (r) 198 616.53 B
+0.52 0.1 (emoved fr) 201.87 616.53 B
+0.52 0.1 (om the toolkit. Instead ther) 248.49 616.53 B
+0.52 0.1 (e ar) 373.01 616.53 B
+0.52 0.1 (e a well de\336ned set of methods that ) 389.98 616.53 B
+0.52 0.1 (you call, and stubs that you ar) 198 604.13 B
+0.52 0.1 (e r) 337.34 604.13 B
+0.52 0.1 (esponsible for \336lling in your subclass of ) 349.22 604.13 B
+0.1 (ClassCanvas.) 198 591.73 S
+0.52 0.1 (Pr) 198 571.33 B
+0.52 0.1 (ogrammers should consult the ClassCanvas section of the r) 208 571.33 B
+0.52 0.1 (efer) 478.56 571.33 B
+0.52 0.1 (ence manual ) 495.63 571.33 B
+0.15 0.1 (for a list of these methods, but in general, the services ar) 198 558.93 B
+0.15 0.1 (chitectur) 453.3 558.93 B
+0.15 0.1 (e covers all of ) 492.9 558.93 B
+0.52 0.1 (the following types of input: ) 198 546.53 B
+2 F
+(\245) 198 528.13 T
+4 F
+0.52 0.1 (Mouse tracking \050with and without timers for r) 210.6 528.13 B
+0.52 0.1 (epetition\051) 422.76 528.13 B
+2 F
+(\245) 198 515.73 T
+4 F
+0.52 0.1 (Keyboar) 210.6 515.73 B
+0.52 0.1 (d input \050both r) 248.65 515.73 B
+0.52 0.1 (egular and function keys\051) 316.48 515.73 B
+2 F
+(\245) 198 503.33 T
+4 F
+0.52 0.1 (Menu handling) 210.6 503.33 B
+2 F
+(\245) 198 490.93 T
+4 F
+0.52 0.1 (Application Fr) 210.6 490.93 B
+0.52 0.1 (eezing \050when notices ar) 276.82 490.93 B
+0.52 0.1 (e up\051) 384.78 490.93 B
+2 F
+(\245) 198 478.53 T
+4 F
+0.52 0.1 (Making selections) 210.6 478.53 B
+2 F
+(\245) 198 466.13 T
+4 F
+0.52 0.1 (Receiving selections \050either by Paste, or by a drag\325n\325dr) 210.6 466.13 B
+0.52 0.1 (op\051) 459.78 466.13 B
+2 F
+(\245) 198 453.73 T
+4 F
+0.52 0.1 (Handling of the Help, Open, Fr) 210.6 453.73 B
+0.52 0.1 (ont OPEN LOOK keys.) 354.57 453.73 B
+0.52 0.1 (Other changes:) 198 433.33 B
+2 F
+(\245) 198 414.93 T
+4 F
+0.52 0.1 (No mor) 210.6 414.93 B
+0.52 0.1 (e /T) 246.03 414.93 B
+0.52 0.1 (ransform method. Do it yourself in /r) 265.52 414.93 B
+0.52 0.1 (eshape.) 438.79 414.93 B
+2 F
+(\245) 198 402.54 T
+4 F
+0.52 0.1 (No mor) 210.6 402.54 B
+0.52 0.1 (e /settextparams. Just use /settextfont.) 246.03 402.54 B
+2 F
+(\245) 198 390.14 T
+4 F
+0.52 0.1 (/setcolors takes just two ar) 210.6 390.14 B
+0.52 0.1 (guments, a for) 334.77 390.14 B
+0.52 0.1 (egr) 400.77 390.14 B
+0.52 0.1 (ound and a backgr) 415.18 390.14 B
+0.52 0.1 (ound. ) 501.1 390.14 B
+0.18 0.1 (Subclassers have access to variables called FG, BG, BG0, BG0, BG2, and BG3 ) 210.6 377.73 B
+0.52 0.1 (that implement the 3D look.) 210.6 365.33 B
+2 F
+(\245) 198 352.93 T
+4 F
+0.52 0.1 (Ther) 210.6 352.93 B
+0.52 0.1 (e is no mor) 231.5 352.93 B
+0.52 0.1 (e inheritance of colors or fonts fr) 282.91 352.93 B
+0.52 0.1 (om a par) 432.62 352.93 B
+0.52 0.1 (ent canvas. Each ) 473.51 352.93 B
+0.52 0.1 (canvas \050or r) 210.6 340.54 B
+0.52 0.1 (egion\051 must have these set separately) 264.47 340.54 B
+0.52 0.1 (. \050W) 434.26 340.54 B
+0.52 0.1 (e will pr) 452.58 340.54 B
+0.52 0.1 (obably do ) 491.14 340.54 B
+0.52 0.1 (something about this befor) 210.6 328.14 B
+0.52 0.1 (e OpenW) 333.27 328.14 B
+0.52 0.1 (indow 3.0.\051) 375.69 328.14 B
+2 F
+(\245) 198 315.73 T
+4 F
+0.52 0.1 (/PaintCanvas has been r) 210.6 315.73 B
+0.52 0.1 (enamed /Paint. Y) 323.55 315.73 B
+0.52 0.1 (ou override it as a subclasser to ) 403.82 315.73 B
+0.52 0.1 (paint your canvas. \050This is so that r) 210.6 303.33 B
+0.52 0.1 (egions and canvases can both have the ) 372.39 303.33 B
+0.52 0.1 (same name for their painting r) 210.6 290.93 B
+0.52 0.1 (outine\051) 350.45 290.93 B
+2 F
+(\245) 198 278.53 T
+4 F
+0.52 0.1 (The default /Paint used to be to str) 210.6 278.53 B
+0.52 0.1 (oke the bor) 372.71 278.53 B
+0.52 0.1 (der and \336ll the canvas. It is ) 424.26 278.53 B
+0.52 0.1 (now simply to \336ll the canvas with the BG color) 210.6 266.14 B
+0.52 0.1 (.) 426.37 266.14 B
+2 F
+(\245) 198 253.73 T
+4 F
+0.52 0.1 (/activate now r) 210.6 253.73 B
+0.52 0.1 (equir) 281.86 253.73 B
+0.52 0.1 (es an event manager ar) 305.45 253.73 B
+0.52 0.1 (gument.) 411.55 253.73 B
+2 F
+(\245) 198 241.34 T
+4 F
+0.52 0.1 (The variable that holds the canvas\325 menu is /Menu, not /CanvasMenu. ) 210.6 241.34 B
+0.52 0.1 (Same r) 210.6 228.93 B
+0.52 0.1 (easoning as /Paint vs. /PaintCanvas.) 241.84 228.93 B
+2 F
+(\245) 198 216.54 T
+4 F
+0.52 0.1 (The methods /childr) 210.6 216.54 B
+0.52 0.1 (en, /childr) 305.76 216.54 B
+0.52 0.1 (en-, /siblings-, /siblingsabove, and ) 354.98 216.54 B
+0.52 0.1 (/siblingsbelow have been r) 210.6 204.14 B
+0.52 0.1 (emoved. /childr) 335.36 204.14 B
+0.52 0.1 (en+ and /siblings+ have been ) 409.99 204.14 B
+0.52 0.1 (r) 210.6 191.74 B
+0.52 0.1 (enamed /childr) 214.47 191.74 B
+0.52 0.1 (en and /siblings.) 286.21 191.74 B
+FMENDPAGE
+%%EndPage: "22" 23
+%%Page: "23" 23
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (23) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.88 (Drawables and Regions) 126 638.67 P
+4 F
+0.46 0.1 (The toolkit has two new classes closely r) 198 617.33 B
+0.46 0.1 (elated to ClassCanvas. ClassRegion is ) 383.29 617.33 B
+0.52 0.1 (a sibling of ClassCanvas, and is meant to pr) 198 604.93 B
+0.52 0.1 (ovide a cheaper object than a ) 399.18 604.93 B
+0.33 0.1 (canvas. Regions can be drawn on, tracked over) 198 592.53 B
+0.33 0.1 (, with a menu, and layed-out in ) 411.13 592.53 B
+0.52 0.1 (a bag. Regions ar) 198 580.13 B
+0.52 0.1 (e always r) 276.54 580.13 B
+0.52 0.1 (ectangular and do not have their own ) 323.16 580.13 B
+0.52 0.1 (transformation matrix.) 198 567.73 B
+0.52 0.1 (Because r) 198 547.33 B
+0.52 0.1 (egions do not have an associated NeWS canvas, they must r) 241.07 547.33 B
+0.52 0.1 (ely on ) 515.79 547.33 B
+0.2 0.1 (some instance of ClassCanvas to r) 198 534.93 B
+0.2 0.1 (eceive and forwar) 351.9 534.93 B
+0.2 0.1 (d events to them. ClassBag ) 433.11 534.93 B
+0.52 0.1 (is set up to do this for mouse tracking and menus. ) 198 522.53 B
+0.52 0.1 (ClassDrawable is the shar) 198 502.13 B
+0.52 0.1 (ed super) 316.08 502.13 B
+0.52 0.1 (class of ClassCanvas and ClassRegion. Its ) 355.62 502.13 B
+-0.07 0.1 (only purpose so far is to hold the shar) 198 489.73 B
+-0.07 0.1 (ed code between these two basic classes.   ) 368.35 489.73 B
+8 F
+-0.88 (Bags and Layout) 126 456.67 P
+4 F
+0.52 0.1 (ClassBag itself has not changed dramatically since 1.0. The one important ) 198 435.33 B
+0.52 0.1 (dif) 198 422.93 B
+0.52 0.1 (fer) 210.46 422.93 B
+0.52 0.1 (ences is that ClassBag can handle canvases and r) 222.65 422.93 B
+0.52 0.1 (egions, rather than ) 445.79 422.93 B
+0.52 0.1 (canvases and graphics. ) 198 410.53 B
+0.52 0.1 (The classes AbsoluteBag, FlexBag, and RowColumnBag have been r) 198 390.13 B
+0.52 0.1 (emoved ) 507.73 390.13 B
+0.52 0.1 (and ClassPanel r) 198 377.73 B
+0.52 0.1 (eplaces all of them. Panels ar) 274.34 377.73 B
+0.52 0.1 (e instantiated with an ar) 406.92 377.73 B
+0.52 0.1 (gument ) 518.53 377.73 B
+0.52 0.1 (which determines the type of layout to be performed, and the type of layout ) 198 365.33 B
+0.32 0.1 (data that will be r) 198 352.93 B
+0.32 0.1 (equir) 279 352.93 B
+0.32 0.1 (ed. Panels get this layout code fr) 302.59 352.93 B
+0.32 0.1 (om ClassLayout which ) 450.98 352.93 B
+0.52 0.1 (is also mixed into the gr) 198 340.54 B
+0.52 0.1 (oup objects: buttons and settings. ) 308.75 340.54 B
+0.52 0.1 (ClassContainer has been r) 198 320.14 B
+0.52 0.1 (emoved, and has been r) 316.83 320.14 B
+0.52 0.1 (eplaced by the mor) 425.87 320.14 B
+0.52 0.1 (e \337exible ) 513.76 320.14 B
+0.52 0.1 (ClassBor) 198 307.73 B
+0.52 0.1 (derBag. Bor) 237.6 307.73 B
+0.52 0.1 (derBags can have up to \336ve clients, and ar) 291.05 307.73 B
+0.52 0.1 (e the new ) 485.4 307.73 B
+0.52 0.1 (underpinning for ClassW) 198 295.33 B
+0.52 0.1 (indow) 313.5 295.33 B
+0.52 0.1 (. ClassBor) 341.7 295.33 B
+0.52 0.1 (derBag will pr) 387.02 295.33 B
+0.52 0.1 (ovide most of the ) 452.79 295.33 B
+0.52 0.1 (layout code that simple OPEN LOOK applications will r) 198 282.93 B
+0.52 0.1 (equir) 455.59 282.93 B
+0.52 0.1 (e. ) 479.17 282.93 B
+8 F
+-0.88 (Selections and Selectables) 126 249.87 P
+4 F
+0.15 0.1 (The interface to ClassSelection and its subclasses has not changed signi\336cantly) 198 228.53 B
+0.15 0.1 (. ) 552.55 228.53 B
+0.52 0.1 (Ther) 198 216.14 B
+0.52 0.1 (e is no mor) 218.9 216.14 B
+0.52 0.1 (e ClassSelectable; selectable objects ar) 270.31 216.14 B
+0.52 0.1 (e instances of ) 442.23 216.14 B
+0.52 0.1 (ClassCanvas that have been set as selectable via the /setselectable method or ) 198 203.73 B
+0.52 0.1 (overriding the /Selectable? class variable. ) 198 191.34 B
+FMENDPAGE
+%%EndPage: "23" 24
+%%Page: "24" 24
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (24) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.88 (Contr) 126 638.67 P
+-0.88 (ols, T) 159.18 638.67 P
+-0.88 (ar) 187.84 638.67 P
+-0.88 (gets, and Callbacks) 199.24 638.67 P
+4 F
+0.52 0.1 (ClassT) 198 617.33 B
+0.52 0.1 (ar) 227.27 617.33 B
+0.52 0.1 (get has been r) 236.24 617.33 B
+0.52 0.1 (emoved fr) 300.03 617.33 B
+0.52 0.1 (om the system. Its interfaces have been ) 346.66 617.33 B
+0.52 0.1 (imported into the newly mixable ClassContr) 198 604.93 B
+0.52 0.1 (ol. \050ClassContr) 401.26 604.93 B
+0.52 0.1 (ol used to be ) 468.82 604.93 B
+0.52 0.1 (descended fr) 198 592.53 B
+0.52 0.1 (om ClassCanvas; it is now independent of ClassCanvas, and is ) 256.49 592.53 B
+0.52 0.1 (mixed-in to both canvas- and r) 198 580.13 B
+0.52 0.1 (egion-based OPEN LOOK contr) 338.85 580.13 B
+0.52 0.1 (ols.\051 ) 484.23 580.13 B
+0.52 0.1 (ClassContr) 198 559.73 B
+0.52 0.1 (ol embodies the notions of noti\336cation and pr) 247.85 559.73 B
+0.52 0.1 (eviewing. It makes ) 457.14 559.73 B
+0.52 0.1 (sur) 198 547.33 B
+0.52 0.1 (e that all noti\336cation takes place in the local event manager \050the one you ) 212.33 547.33 B
+0.52 0.1 (passed as an ar) 198 534.93 B
+0.52 0.1 (gument to your window\325s /activate\051. This is important so that ) 267.74 534.93 B
+0.52 0.1 (your user) 198 522.53 B
+0.52 0.1 (dict and connection will be available to your callback.) 241.73 522.53 B
+8 F
+-0.88 (W) 126 489.47 P
+-0.88 (ir) 138.93 489.47 P
+-0.88 (e Service) 148.01 489.47 P
+4 F
+0.52 0.1 (The W) 198 468.13 B
+0.52 0.1 (ir) 227.69 468.13 B
+0.52 0.1 (e Service has changed in only one r) 234.57 468.13 B
+0.52 0.1 (egar) 396.61 468.13 B
+0.52 0.1 (d since TNT1.0: Y) 416.12 468.13 B
+0.52 0.1 (our callback ) 496.46 468.13 B
+0.52 0.1 (pr) 198 455.73 B
+0.52 0.1 (ocedur) 207.98 455.73 B
+0.52 0.1 (es must ) 239.16 455.73 B
+5 F
+0.52 0.1 (not) 277.37 455.73 B
+4 F
+0.52 0.1 ( r) 290.99 455.73 B
+0.52 0.1 (ead the tag of) 297.98 455.73 B
+0.52 0.1 (f the wir) 360.6 455.73 B
+0.52 0.1 (e anymor) 399.74 455.73 B
+0.52 0.1 (e; they just r) 442.77 455.73 B
+0.52 0.1 (ead the ) 499.55 455.73 B
+0.52 0.1 (values that your PostScript code typedprint-ed up the wir) 198 443.33 B
+0.52 0.1 (e. The tag was, and ) 463.13 443.33 B
+0.52 0.1 (still is, passed to your callback as an ar) 198 430.93 B
+0.52 0.1 (gument.) 376.87 430.93 B
+0.52 0.1 (The 1.0 documentation for the W) 198 410.53 B
+0.52 0.1 (ir) 348.61 410.53 B
+0.52 0.1 (e Service concluded with an example that ) 355.48 410.53 B
+0.52 0.1 (was br) 198 398.13 B
+0.52 0.1 (oken in a number of ways. The example in the new documentation ) 228.48 398.13 B
+0.52 0.1 (works corr) 198 385.73 B
+0.52 0.1 (ectly) 247.16 385.73 B
+0.52 0.1 (, and will show you how to build a tiny W) 267.5 385.73 B
+0.52 0.1 (ir) 462.93 385.73 B
+0.52 0.1 (e Service ) 469.81 385.73 B
+0.1 (application.) 198 373.33 S
+9 F
+-0.84 0.13 (Known pr) 198 340.93 B
+-0.84 0.13 (oblem with wir) 250.99 340.93 B
+-0.84 0.13 (e_Sync documentation) 329.76 340.93 B
+4 F
+0.12 0.1 (Ther) 198 323.93 B
+0.12 0.1 (e is an err) 218.9 323.93 B
+0.12 0.1 (or in the W) 263.11 323.93 B
+0.12 0.1 (ir) 313.52 323.93 B
+0.12 0.1 (e Service chapter on page 243 at the top of the page. ) 320.39 323.93 B
+0.52 0.1 (The paragraphs befor) 198 311.54 B
+0.52 0.1 (e wir) 296.15 311.54 B
+0.52 0.1 (e_ExpectSync should r) 319.46 311.54 B
+0.52 0.1 (ead:) 422.52 311.54 B
+0.52 0.1 (Ther) 198 291.14 B
+0.52 0.1 (e ar) 218.9 291.14 B
+0.52 0.1 (e two cases wher) 235.87 291.14 B
+0.52 0.1 (e the client needs to be sur) 313.77 291.14 B
+0.52 0.1 (e that the server is ) 436.24 291.14 B
+0.52 0.1 (executing what it r) 198 278.73 B
+0.52 0.1 (eceives, i.e., data isn\325t being cached for \322later execution\323. ) 284.03 278.73 B
+0.52 0.1 (These two cases ar) 198 266.34 B
+0.52 0.1 (e:) 283.12 266.34 B
+0.1 (1.) 197.5 245.93 S
+0.52 0.1 (The client is about to do a \322blocking cps call\323, i.e., one that r) 210.6 245.93 B
+0.52 0.1 (eturns a value.) 487.82 245.93 B
+0.1 (2.) 197.5 225.53 S
+0.2 0.1 (The client is about to send a snippet that includes a usertoken, and wants to ) 210.6 225.53 B
+0.52 0.1 (be sur) 210.6 213.14 B
+0.52 0.1 (e that the de\336nition of that usertoken will have been executed befor) 238.57 213.14 B
+0.52 0.1 (e ) 549.08 213.14 B
+0.52 0.1 (the snippet is sent. T) 210.6 200.73 B
+0.52 0.1 (o ensur) 304.71 200.73 B
+0.52 0.1 (e that the server is executing what it r) 338.52 200.73 B
+0.52 0.1 (eceives, ) 512.22 200.73 B
+0.52 0.1 (the application writer should use the two functions: ) 210.6 188.34 B
+7 F
+1.08 (wire_ExpectSync) 451.1 188.34 P
+4 F
+0.52 0.1 ( and ) 531.98 188.34 B
+7 F
+(wire_DrainSync) 210.6 175.93 T
+4 F
+0.1 (.) 286.09 175.93 S
+FMENDPAGE
+%%EndPage: "24" 25
+%%Page: "25" 25
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (25) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+(Jot) 126 638.67 T
+4 F
+0.52 0.1 (Jot was not part of the TNT1.0 r) 198 617.33 B
+0.52 0.1 (elease.) 344.15 617.33 B
+3 F
+-0.94 ( Class tr) 54 583.6 P
+-0.94 (ee) 102.69 583.6 P
+4 F
+0.52 0.1 (See the illustration) 198 561.93 B
+6 F
+0.52 0.1 ( ) 283.35 561.93 B
+4 F
+0.52 0.1 (titled TNT Class Hierar) 286.47 561.93 B
+0.52 0.1 (chy in ) 393.8 561.93 B
+5 F
+0.52 0.1 (The NeWS T) 425.08 561.93 B
+0.52 0.1 (oolkit Refer) 478.76 561.93 B
+0.52 0.1 (ence ) 526.1 561.93 B
+0.1 (Manual) 198 549.53 S
+4 F
+0.1 (.) 230.8 549.53 S
+3 F
+-0.94 (GNT\321TNT OpenW) 54 515.8 P
+-0.94 (indows developer) 180.68 515.8 P
+-0.94 (\325) 284.05 515.8 P
+-0.94 (s guide code generator) 287.39 515.8 P
+8 F
+(Intr) 126 481.47 T
+(oduction) 148.29 481.47 T
+4 F
+0.52 0.1 (These r) 198 460.13 B
+0.52 0.1 (elease notes ar) 231.24 460.13 B
+0.52 0.1 (e for GNT) 297.61 460.13 B
+0.52 0.1 (, the TNT code generator for OpenW) 343.38 460.13 B
+0.52 0.1 (indows ) 511.8 460.13 B
+0.52 0.1 (Developer) 198 447.73 B
+0.52 0.1 (\325s Guide. W) 245.7 447.73 B
+0.52 0.1 (ith this r) 299.25 447.73 B
+0.52 0.1 (elease of GNT) 338.26 447.73 B
+0.52 0.1 (, OpenW) 402.21 447.73 B
+0.52 0.1 (indows Developer) 442.33 447.73 B
+0.52 0.1 (\325s ) 526.62 447.73 B
+0.52 0.1 (Guide now supports both an XVIEW and a TNT backend. ) 198 435.33 B
+0.52 0.1 (In or) 198 414.93 B
+0.52 0.1 (der to use GNT) 219.93 414.93 B
+0.52 0.1 (, you must have OpenW) 290.31 414.93 B
+0.52 0.1 (indows Developer) 401.53 414.93 B
+0.52 0.1 (\325s Guide.) 485.81 414.93 B
+8 F
+-0.88 (Pr) 126 381.87 P
+-0.88 (oduct description) 139.74 381.87 P
+4 F
+0.52 0.1 (GNT consists of a shell script \050GNT and gnt, linked to the same \336le\051 which ) 198 360.53 B
+0.52 0.1 (calls a PostScript Code generator \050genui\051 and a C or C++ pr) 198 348.13 B
+0.52 0.1 (ogram generator ) 471.51 348.13 B
+0.52 0.1 (\050cside\051 which cr) 198 335.73 B
+0.52 0.1 (eates a make\336le, header \336le, \322c\323 code \336le, and cps \050c to ) 270.29 335.73 B
+0.52 0.1 (PostScript\051 \336le. These \336les can be used to build a working pr) 198 323.33 B
+0.52 0.1 (ototype of the ) 476.67 323.33 B
+0.52 0.1 (interface or can be used as the basis for an application. ) 198 310.93 B
+0.52 0.1 (GNT implements some OPEN LOOK featur) 198 290.54 B
+0.52 0.1 (es with TNT which ar) 397.96 290.54 B
+0.52 0.1 (e not ) 498.02 290.54 B
+0.52 0.1 (automatically included within the toolkit. Speci\336cally) 198 278.14 B
+0.52 0.1 (, GNT implements the ) 441.47 278.14 B
+0.52 0.1 (display of the curr) 198 265.73 B
+0.52 0.1 (ent/default value for abbr) 282.5 265.73 B
+0.52 0.1 (eviated menu buttons, and ) 402.41 265.73 B
+0.52 0.1 (pr) 198 253.34 B
+0.52 0.1 (ovides the \322glue\323 to tie slider value display with movement of the slider) 207.98 253.34 B
+0.52 0.1 (.) 539.95 253.34 B
+8 F
+(Installation) 126 220.27 T
+4 F
+0.52 0.1 (GNT is included in the installation of TNT) 198 198.93 B
+0.52 0.1 (. The envir) 392.29 198.93 B
+0.52 0.1 (onment variable ) 441.59 198.93 B
+0.52 0.1 (TNTHOME should be set pointing to TNT to allow \336nding headers and ) 198 186.53 B
+0.52 0.1 (libraries which ar) 198 174.14 B
+0.52 0.1 (e part of the TNT r) 278.09 174.14 B
+0.52 0.1 (elease.) 365.05 174.14 B
+0.43 0.1 (Follow the instr) 198 153.73 B
+0.43 0.1 (uctions for Devguide to set up the interface building fr) 270.03 153.73 B
+0.43 0.1 (ont end.) 520.43 153.73 B
+FMENDPAGE
+%%EndPage: "25" 26
+%%Page: "26" 26
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (26) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (Include the location of GNT \050$TNTHOME/bin\051 in your path.) 198 641.33 B
+0.52 0.1 (T) 198 620.93 B
+0.52 0.1 (o r) 203.31 620.93 B
+0.52 0.1 (un GNT) 215.95 620.93 B
+0.52 0.1 (, you must set the following envir) 252.73 620.93 B
+0.52 0.1 (onment variables:) 407.87 620.93 B
+7 F
+(setenv TNTHOME <top-level tnt directory>) 210.6 605.2 T
+4 F
+0.1 (e.g.) 198 585.53 S
+7 F
+(setenv TNTHOME /usr/tnt/) 210.6 569.8 T
+8 F
+-0.88 (T) 126 537.47 P
+-0.88 (o compile with C++) 133 537.47 P
+7 F
+(setenv CCROOTDIR <the directory where the c++ compiler resides>) 210.6 518.8 T
+8 F
+-0.88 (Known bugs) 126 486.47 P
+4 F
+0.52 0.1 (See the GNT bugs section under Known bugs, below) 198 465.13 B
+0.52 0.1 (.) 439.25 465.13 B
+3 F
+-0.94 (Known bugs) 54 431.4 P
+8 F
+-0.88 (Major TNT bugs) 126 397.07 P
+2 F
+(\245) 198 377.73 T
+4 F
+0.52 0.1 (Arbitrarily lar) 210.6 377.73 B
+0.52 0.1 (ge ASCII selections not supported. ) 274.48 377.73 B
+0.52 0.1 (Our interfaces to the selection service, cannot handle selections of size ) 224.64 365.33 B
+0.52 0.1 (gr) 224.64 352.93 B
+0.52 0.1 (eater than 32K. This pr) 234.16 352.93 B
+0.52 0.1 (oblem is most often seen in Jot.) 338.82 352.93 B
+2 F
+(\245) 198 332.53 T
+4 F
+0.52 0.1 (Ther) 210.6 332.53 B
+0.52 0.1 (e is no support for multiple framebuf) 231.5 332.53 B
+0.52 0.1 (fers. For example, ther) 402.4 332.53 B
+0.52 0.1 (e is no ) 505.12 332.53 B
+0.52 0.1 (standar) 210.6 320.13 B
+0.52 0.1 (d way of specifying what scr) 244.48 320.13 B
+0.52 0.1 (een an application is to appear on.) 376.55 320.13 B
+8 F
+-0.88 (Other known bugs) 126 287.07 P
+4 F
+0.52 0.1 (1047515 - TNT and X1) 198 265.73 B
+0.52 0.1 (1 windows cannot be selected and moved as a gr) 298.97 265.73 B
+0.52 0.1 (oup.) 523.64 265.73 B
+0.52 0.1 (1047727 - API for menus should pr) 198 245.34 B
+0.52 0.1 (ovide support for shar) 357.65 245.34 B
+0.52 0.1 (ed pinnable menus) 460.3 245.34 B
+0.52 0.1 (Under the curr) 198 224.93 B
+0.52 0.1 (ent plans for \336xing bug 1047726, pinned menus will update ) 265.91 224.93 B
+0.52 0.1 (automatically to track changes to the original menus . This plan carries the ) 198 212.53 B
+0.34 0.1 (explicit caveat that it does not work well for pinnable shar) 198 200.14 B
+0.34 0.1 (ed menus, i.e. when ) 464.1 200.14 B
+0.52 0.1 (an application wants to use the same menu instance over multiple parallel ) 198 187.73 B
+0.52 0.1 (instantiations. For starters, once you pin the menu over one window) 198 175.34 B
+0.52 0.1 (, the pin ) 510.92 175.34 B
+0.52 0.1 (becomes inactive in all other windows. And if another window modi\336es the ) 198 162.93 B
+FMENDPAGE
+%%EndPage: "26" 27
+%%Page: "27" 27
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (27) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.36 0.1 (menu slightly \050e.g., because some menu items apply only if ther) 198 641.33 B
+0.36 0.1 (e is a selection ) 489.33 641.33 B
+0.52 0.1 (in the window\051, it will af) 198 628.93 B
+0.52 0.1 (fect the pinned copy even though it\325s for another ) 312.44 628.93 B
+0.1 (window) 198 616.53 S
+0.1 (.) 234.64 616.53 S
+0.52 0.1 (1047728 - If you use /setnextfocus to point one text \336eld at another) 198 596.13 B
+0.52 0.1 (, and the ) 505.09 596.13 B
+0.25 0.1 (latter is r) 198 583.73 B
+0.25 0.1 (eadonly) 238.67 583.73 B
+0.25 0.1 (, you can then type <r) 273.89 583.73 B
+0.25 0.1 (eturn> in the \336rst \336eld and assign focus ) 373.73 583.73 B
+0.52 0.1 (to the r) 198 571.33 B
+0.52 0.1 (eadonly \336eld. Note that the r) 231.18 571.33 B
+0.52 0.1 (eadonly \336eld does not actually accept ) 363.92 571.33 B
+0.52 0.1 (keystr) 198 558.93 B
+0.52 0.1 (okes; the focus is simply ) 225.76 558.93 B
+5 F
+0.52 0.1 (lost) 340.93 558.93 B
+4 F
+0.52 0.1 (.) 355.76 558.93 B
+0.52 0.1 (1047731 - If a menu has a long label, the label gets clipped to the width of the ) 198 538.53 B
+0.52 0.1 (menu as determined by the items within the menu pr) 198 526.13 B
+0.52 0.1 (oper) 443.29 526.13 B
+0.52 0.1 (.) 463.14 526.13 B
+0.52 0.1 (1048039 - T) 198 505.73 B
+0.52 0.1 (ext contr) 248.65 505.73 B
+0.52 0.1 (ols should r) 288.51 505.73 B
+0.52 0.1 (epaint mor) 342.67 505.73 B
+0.52 0.1 (e cleverly during selection.) 392.51 505.73 B
+0.08 0.1 (1048040 - Double-clicking near the edge of a wor) 198 485.33 B
+0.08 0.1 (d in a text \336eld can sometimes ) 418.03 485.33 B
+0.52 0.1 (yield a zer) 198 472.93 B
+0.52 0.1 (o character wor) 245.95 472.93 B
+0.52 0.1 (d-level selection instead of selecting the wor) 317.13 472.93 B
+0.52 0.1 (d.) 519.93 472.93 B
+0.52 0.1 (1048054 - Round TNT windows do not work as ) 198 452.53 B
+5 F
+0.52 0.1 (expected) 418.24 452.53 B
+4 F
+0.52 0.1 (.) 453.09 452.53 B
+0.52 0.1 (1048107 - /Paint and other client methods can\325t af) 198 432.13 B
+0.52 0.1 (for) 426.75 432.13 B
+0.52 0.1 (d to be slow) 439.61 432.13 B
+0.52 0.1 (.) 495.02 432.13 B
+0.52 0.1 (As we move mor) 198 411.73 B
+0.52 0.1 (e and mor) 276.36 411.73 B
+0.52 0.1 (e operations to r) 323.05 411.73 B
+0.52 0.1 (un in the LEM \050to avoid context ) 398.05 411.73 B
+0.52 0.1 (pr) 198 399.33 B
+0.52 0.1 (oblems with client callbacks r) 207.98 399.33 B
+0.52 0.1 (unning in the GEM\051, we lose the fr) 343.1 399.33 B
+0.52 0.1 (eedom of ) 502.64 399.33 B
+0.52 0.1 (having LEM operations take a long time to r) 198 386.93 B
+0.52 0.1 (un. W) 401.43 386.93 B
+0.52 0.1 (e need to extend the TNT ) 428.36 386.93 B
+0.52 0.1 (ar) 198 374.54 B
+0.52 0.1 (chitectur) 206.96 374.54 B
+0.52 0.1 (e to pr) 246.56 374.54 B
+0.52 0.1 (ovide support for operations that might r) 276.58 374.54 B
+0.52 0.1 (easonably take a ) 465.7 374.54 B
+0.52 0.1 (long time.) 198 362.14 B
+0.52 0.1 (1048108 - If you r) 198 341.73 B
+0.52 0.1 (ede\336ne a class using the name of an existing class, the class ) 277.69 341.73 B
+0.45 0.1 (dictionary of the old class is emptied out and r) 198 329.33 B
+0.45 0.1 (eused for the new one. Further) 411.95 329.33 B
+0.45 0.1 (, ) 552.35 329.33 B
+0.52 0.1 (the /SubClasses array is copied fr) 198 316.93 B
+0.52 0.1 (om the old class. The ef) 353.09 316.93 B
+0.52 0.1 (fect is that all the ) 461.18 316.93 B
+0.52 0.1 (subclasses automatically inherit fr) 198 304.54 B
+0.52 0.1 (om the new class in place of the old one; all ) 353.26 304.54 B
+0.02 0.1 (methodcompiled pr) 198 292.14 B
+0.02 0.1 (ocedur) 287.68 292.14 B
+0.02 0.1 (es still work because the dictionary pointer stays the ) 318.87 292.14 B
+0.52 0.1 (same. Ther) 198 279.73 B
+0.52 0.1 (e\325s a bug, though. If the new class de\336nes new instance variables, ) 247.86 279.73 B
+0.52 0.1 (the subclasses\325 /InstanceV) 198 267.34 B
+0.52 0.1 (ars dicts need to be r) 317.98 267.34 B
+0.52 0.1 (ecomputed.) 413.7 267.34 B
+0.52 0.1 (1048240 - Pr) 198 246.93 B
+0.52 0.1 (essing the MENU mouse button over one item in a ) 253.35 246.93 B
+0.52 0.1 (ClassMenuButtons gr) 198 234.53 B
+0.52 0.1 (oup, and then dragging the mouse to another item, does ) 295.96 234.53 B
+0.52 0.1 (not bring up the menu for the latter item.) 198 222.14 B
+0.52 0.1 (1048294 - Save W) 198 201.73 B
+0.52 0.1 (orkspace does not include TNT clients in the .openwin-init ) 276.72 201.73 B
+0.1 (\336le.) 198 189.34 S
+FMENDPAGE
+%%EndPage: "27" 28
+%%Page: "28" 28
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (28) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (1049724 - The /Busy state for buttons is implemented by imaging a stipple ) 198 640 B
+0.52 0.1 (pattern over the button. Sometimes this stipple pattern is imaged pass the ) 198 625.6 B
+0.52 0.1 (boundaries of the button or random dots ar) 198 611.2 B
+0.52 0.1 (e scatter) 397.51 611.2 B
+0.52 0.1 (ed ar) 434.96 611.2 B
+0.52 0.1 (ound the button.) 458.14 611.2 B
+0.52 0.1 (1049873 -T) 198 590.13 B
+0.52 0.1 (ext \336elds can lose focus without executing the noti\336er) 245.53 590.13 B
+0.52 0.1 (.) 491.64 590.13 B
+0.52 0.1 (ClassT) 198 569.73 B
+0.52 0.1 (extField pr) 227.27 569.73 B
+0.52 0.1 (ovides two methods for moving the focus to the next \336eld: ) 276.64 569.73 B
+-0.11 0.1 (/gotonextfocus and /gotonext\336eld. These two methods dif) 198 557.33 B
+-0.11 0.1 (fer in two ways. The ) 463.66 557.33 B
+-0.04 0.1 (\324\336eld\325 method \322wraps ar) 198 544.93 B
+-0.04 0.1 (ound\323, going back to the \336rst text item in a panel if the ) 308.63 544.93 B
+0.07 0.1 (next focus is not a text \050or numeric\051 \336eld, wher) 198 532.53 B
+0.07 0.1 (eas the \324focus\325 method is willing ) 409.42 532.53 B
+0.1 0.1 (to move the focus into something other than a text \336eld. The other dif) 198 520.13 B
+0.1 0.1 (fer) 512.75 520.13 B
+0.1 0.1 (ence is ) 524.93 520.13 B
+0.52 0.1 (that the \324focus\325 method executes the text\336eld\325s noti\336er) 198 507.73 B
+0.52 0.1 (, and the other method ) 445.26 507.73 B
+0.52 0.1 (doesn\325t. These dif) 198 495.33 B
+0.52 0.1 (fer) 278.7 495.33 B
+0.52 0.1 (ences ar) 290.88 495.33 B
+0.52 0.1 (e intended to support the distinction between ) 327.53 495.33 B
+0.52 0.1 (RETURN and ^N in, say) 198 482.93 B
+0.52 0.1 (, XV) 310.03 482.93 B
+0.52 0.1 (iew\325s Load File dialog. RETURN in the last \336eld ) 329.28 482.93 B
+0.52 0.1 (does not move the focus, but executes the noti\336er \050to load the \336le\051. ^N does ) 198 470.53 B
+0.52 0.1 (not execute the noti\336er) 198 458.13 B
+0.52 0.1 (, but moves the focus back to the \336rst \336eld. The Mail ) 302.47 458.13 B
+0.52 0.1 (T) 198 445.73 B
+0.52 0.1 (ool Compose W) 203.31 445.73 B
+0.52 0.1 (indow also distinguishes between RETURN and ^N in the ) 275.77 445.73 B
+0.52 0.1 (header \336elds, though in this case ther) 198 433.33 B
+0.52 0.1 (e is no noti\336er pr) 369.9 433.33 B
+0.52 0.1 (oc involved. The ) 448.98 433.33 B
+0.52 0.1 (pr) 198 420.93 B
+0.52 0.1 (oblem arises in TNT due to the client-server split. An application might ) 207.98 420.93 B
+0.36 0.1 (assume \050wr) 198 408.53 B
+0.36 0.1 (ongly\051 that it will always be noti\336ed when one of its text \336elds has ) 250.4 408.53 B
+0.52 0.1 (been changed. Thus, the pr) 198 396.14 B
+0.52 0.1 (ogram on the client side might think that it has an ) 321.95 396.14 B
+0.43 0.1 (up to date copy of the value, wher) 198 383.73 B
+0.43 0.1 (eas in fact the user might have typed a new ) 355.45 383.73 B
+0.52 0.1 (value, then ^N \050or ^P\051 to move to another item, in which case the \336rst item ) 198 371.33 B
+0.52 0.1 (might never execute its noti\336er) 198 358.93 B
+0.52 0.1 (.) 339.65 358.93 B
+0.52 0.1 (1049880\321T) 198 338.54 B
+0.52 0.1 (ext\336eld should use corr) 249.08 338.54 B
+0.52 0.1 (ect color to mark secondary selections.) 356.7 338.54 B
+0.52 0.1 (1049881\321Numeric \336elds ar) 198 318.14 B
+0.52 0.1 (e supposed to r) 323.5 318.14 B
+0.52 0.1 (eject non-numeric characters.) 394.19 318.14 B
+0.52 0.1 (1049958\321If a text \336eld uses a printermatched font, the characters can get ) 198 297.73 B
+0.52 0.1 (clipped in strange ways.) 198 285.33 B
+0.52 0.1 (1049967\321TNT does not support the COMPOSE key) 198 264.93 B
+0.52 0.1 (.) 434.4 264.93 B
+0.52 0.1 (1050032\321ClassW) 198 244.53 B
+0.52 0.1 (indow does not change the cursor shape when the cursor is ) 277.29 244.53 B
+0.52 0.1 (over the r) 198 232.14 B
+0.52 0.1 (esize corners of a window) 242.51 232.14 B
+0.52 0.1 (.) 361.25 232.14 B
+0.52 0.1 (1050450\321The StaticColor colormap is not suf) 198 211.73 B
+0.52 0.1 (\336cient for 3-D colors in TNT ) 405.19 211.73 B
+0.35 0.1 (applications. For example, default colors of TNT window bor) 198 199.34 B
+0.35 0.1 (ders ar) 477 199.34 B
+0.35 0.1 (e dif) 508.4 199.34 B
+0.35 0.1 (fer) 528.7 199.34 B
+0.35 0.1 (ent ) 540.89 199.34 B
+0.52 0.1 (fr) 198 186.93 B
+0.52 0.1 (om the default colors of X1) 205.3 186.93 B
+0.52 0.1 (1 windows. This can be minimized by) 328.99 186.93 B
+5 F
+0.52 0.1 ( ) 503.11 186.93 B
+4 F
+0.52 0.1 (specifying) 506.23 186.93 B
+5 F
+0.52 0.1 ( ) 552.77 186.93 B
+0.52 0.1 (-) 198 174.53 B
+0.52 0.1 (cubesize lar) 201.43 174.53 B
+0.52 0.1 (ge) 249.7 174.53 B
+4 F
+0.52 0.1 (, though with a lar) 258.79 174.53 B
+0.52 0.1 (ge sacri\336ce to X1) 344.18 174.53 B
+0.52 0.1 (1.) 420.91 174.53 B
+FMENDPAGE
+%%EndPage: "28" 29
+%%Page: "29" 29
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+0 F
+-0.58 0.09 (TNT 2.0 Installation Guide and Release Notes \321 Mar) 198 108.7 B
+-0.58 0.09 (ch 1991) 394.63 108.7 B
+1 F
+0.09 (29) 548.83 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (1050459\321If you adjust the font size of menu items, the spacing between the ) 198 641.33 B
+0.52 0.1 (items does not appear to adjust accor) 198 628.93 B
+0.52 0.1 (dingly) 368.47 628.93 B
+0.52 0.1 (. As a r) 396.81 628.93 B
+0.52 0.1 (esult, menus with lar) 429.94 628.93 B
+0.52 0.1 (ger ) 526.5 628.93 B
+0.52 0.1 (fonts sizes look squashed.) 198 616.53 B
+0.52 0.1 (1050796\321ClassBaseW) 198 596.13 B
+0.52 0.1 (indow frame menu \322full size\323 works even when the ) 297.82 596.13 B
+0.52 0.1 (r) 198 583.73 B
+0.52 0.1 (esize corners ar) 201.87 583.73 B
+0.52 0.1 (e not pr) 272.62 583.73 B
+0.52 0.1 (esent.) 308.55 583.73 B
+0.28 0.1 (1051449\321In /ClickFocus mode, the window header changes to r) 198 563.33 B
+0.28 0.1 (e\337ect focus as ) 492.01 563.33 B
+0.52 0.1 (soon as the mouse button is pr) 198 550.93 B
+0.52 0.1 (essed to initiate a move operation.) 338.77 550.93 B
+0.38 0.1 (1051452\321An extraneous scr) 198 530.53 B
+0.38 0.1 (oll button can appear after a numeric button turns ) 325.73 530.53 B
+0.52 0.1 (dim. Bring up the numeric \336eld demo. Pr) 198 518.13 B
+0.52 0.1 (ess the mouse over the right ) 387.67 518.13 B
+0.17 0.1 (incr) 198 505.73 B
+0.17 0.1 (ement button until the value goes to 10 and the button turns dim. Keep the ) 215.33 505.73 B
+0.52 0.1 (mouse button down, move over the decr) 198 493.33 B
+0.52 0.1 (ement button and then back to the ) 384.22 493.33 B
+0.52 0.1 (incr) 198 480.93 B
+0.52 0.1 (ement button. The value \05010\051 gets painted over by a scr) 215.33 480.93 B
+0.52 0.1 (oll button.) 468.16 480.93 B
+0.52 0.1 (1051458\321Popup and stayup menus don\325t pr) 198 460.53 B
+0.52 0.1 (event type-in. Bring up a ) 401.39 460.53 B
+0.52 0.1 (ClassT) 198 448.13 B
+0.52 0.1 (extField demo and give it the input focus. Pr) 227.27 448.13 B
+0.52 0.1 (ess the MENU button over ) 432.22 448.13 B
+0.25 0.1 (it to get the window menu. While holding the MENU button down, type some ) 198 435.73 B
+0.27 0.1 (characters. They appear in the text \336eld. Likewise, click MENU to get a stayup ) 198 423.33 B
+0.52 0.1 (menu. Again you can type into the \336eld. ) 198 410.93 B
+0.52 0.1 (1051459\321When the focus mode is /ClickFocus and SELECT is clicked to ) 198 390.54 B
+0.07 0.1 (position the car) 198 378.14 B
+0.07 0.1 (et in a text \336eld that does not curr) 267.86 378.14 B
+0.07 0.1 (ently have the focus, the car) 420.74 378.14 B
+0.07 0.1 (et ) 546.98 378.14 B
+0.52 0.1 (is painted twice.) 198 365.73 B
+0.52 0.1 (1051462\321T) 198 345.33 B
+0.52 0.1 (ext \336elds use incr) 249.08 345.33 B
+0.52 0.1 (emental painting for many operations. This ) 329.21 345.33 B
+0.52 0.1 (appr) 198 332.93 B
+0.52 0.1 (oach sometimes fails when the \336eld is inactive.) 219.18 332.93 B
+0.38 0.1 (1051625\321Accor) 198 312.54 B
+0.38 0.1 (ding to the OPEN LOOK speci\336cation, the user should be able ) 270.15 312.54 B
+-0.05 0.1 (to access the window menu when the application is busy) 198 300.14 B
+-0.05 0.1 (. TNT windows do not ) 453.29 300.14 B
+0.52 0.1 (allow this behavior when their visualstate is /Busy) 198 287.73 B
+0.52 0.1 (.) 430.9 287.73 B
+0.52 0.1 (1051666\321JotT) 198 267.34 B
+0.52 0.1 (ext_Read\050\051 will sometimes try to allocate much mor) 261.42 267.34 B
+0.52 0.1 (e memory ) 497.74 267.34 B
+0.52 0.1 (than is necessary) 198 254.93 B
+0.52 0.1 (.) 274.47 254.93 B
+0.17 0.1 (1051795\321T) 198 234.53 B
+0.17 0.1 (yping characters with the contr) 249.1 234.53 B
+0.17 0.1 (ol key down in text \336elds inserts the ) 390.48 234.53 B
+0.52 0.1 (non-contr) 198 222.14 B
+0.52 0.1 (olled versions of the characters into the text \336eld, instead of doing ) 242.06 222.14 B
+0.52 0.1 (the pr) 198 209.73 B
+0.52 0.1 (oper thing \050either inserting the contr) 225.26 209.73 B
+0.52 0.1 (ol character or doing the edit\051.) 392.37 209.73 B
+0.52 0.1 (1051800\321The highlighting interface for icons is inconsistent.) 198 189.34 B
+FMENDPAGE
+%%EndPage: "29" 30
+%%Page: "30" 30
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+1 F
+0.09 (30) 54 108.7 S
+558 675 54 675 2 L
+0.3 H
+N
+4 F
+0.52 0.1 (1051935\321The Fr) 198 641.33 B
+0.52 0.1 (eezeService inter) 273.45 641.33 B
+0.52 0.1 (est is curr) 349.83 641.33 B
+0.52 0.1 (ently Exclusive but not ) 394.57 641.33 B
+0.36 0.1 (Synchr) 198 628.93 B
+0.36 0.1 (onous.This can lead to pr) 229.24 628.93 B
+0.36 0.1 (oblems. E.g., if a /LoseFocus event is sent to a ) 344.29 628.93 B
+0.23 0.1 (fr) 198 616.53 B
+0.23 0.1 (ozen canvas, the Fr) 205.3 616.53 B
+0.23 0.1 (eezeService inter) 292.27 616.53 B
+0.23 0.1 (cepts the event and keeps the KeyService ) 368.36 616.53 B
+0.31 0.1 (fr) 198 604.13 B
+0.31 0.1 (om matching it. This lets subsequent events get distributed \050until some other ) 205.3 604.13 B
+0.52 0.1 (Synchr) 198 591.73 B
+0.52 0.1 (onous event is matched\051. The Fr) 229.24 591.73 B
+0.52 0.1 (eezeService will then r) 375.98 591.73 B
+0.52 0.1 (edistribute the ) 478.96 591.73 B
+0.52 0.1 (LoseFocus event, which then matches the KeyService and blocks the input ) 198 579.33 B
+0.52 0.1 (queue. This r) 198 566.93 B
+0.52 0.1 (esults in events being pr) 257.92 566.93 B
+0.52 0.1 (ocessed in an unexpected or) 369.58 566.93 B
+0.52 0.1 (der) 498.33 566.93 B
+0.52 0.1 (.) 512.74 566.93 B
+0.52 0.1 (1051936\321SubClassResponsibility methods should show method name.) 198 546.53 B
+0.52 0.1 (1052062\321The display items in a button gr) 198 526.13 B
+0.52 0.1 (oup ar) 390.94 526.13 B
+0.52 0.1 (e intended to be arbitrary ) 420.82 526.13 B
+0.52 0.1 (display items. Curr) 198 513.73 B
+0.52 0.1 (ently) 286 513.73 B
+0.52 0.1 (, if a display item which is an executable code ) 307.72 513.73 B
+0.52 0.1 (fragment is used, the button gr) 198 501.33 B
+0.52 0.1 (oup will crash while painting.) 340.04 501.33 B
+0.52 0.1 (1052068\321When a TNT window is closed, the icon is not placed at the corr) 198 480.93 B
+0.52 0.1 (ect ) 538.95 480.93 B
+0.52 0.1 (position. A closed window should locate its icon based on the location set in ) 198 468.53 B
+0.52 0.1 (the W) 198 456.13 B
+0.52 0.1 (orkspace Pr) 224.46 456.13 B
+0.52 0.1 (operties.) 277.81 456.13 B
+0.52 0.1 (1052070\321The /setitemlist method in ClassButtons does not pr) 198 435.73 B
+0.52 0.1 (ocess the ) 483.66 435.73 B
+0.52 0.1 (following list pr) 198 423.33 B
+0.52 0.1 (operly :) 271.5 423.33 B
+0.52 0.1 ([ display-item display-item ] ) 198 402.93 B
+0.52 0.1 (The second display-item is mistaken for a noti\336er) 198 382.54 B
+0.52 0.1 (.) 424.17 382.54 B
+0.52 0.1 (1052073\321The /setitemlist method in ClassButtons is not completely ) 198 362.14 B
+0.52 0.1 (documented. When setting the item list, [display-item noti\336er] pairs can be ) 198 349.73 B
+0.1 (supplied.) 198 337.33 S
+0.52 0.1 (1052186\321W) 198 316.93 B
+0.52 0.1 (indows paint focus feedback even when no header is pr) 253.32 316.93 B
+0.52 0.1 (esent.) 509.08 316.93 B
+0.52 0.1 (1052379\321When a panel using /Spaced placement has no clients, err) 198 296.54 B
+0.52 0.1 (ors occur ) 510.16 296.54 B
+0.52 0.1 (during layout.) 198 284.14 B
+0.52 0.1 (1052405\321Menus r) 198 263.73 B
+0.52 0.1 (epaint their default item whenever the mouse cursor is ) 281.58 263.73 B
+0.52 0.1 (moved between items.) 198 251.34 B
+8 F
+-0.88 (GNT bugs) 126 226.27 P
+4 F
+0.52 0.1 (Any combination of text \050Jot\051 and canvas panes in a single window does not ) 198 204.93 B
+0.52 0.1 (corr) 198 192.53 B
+0.52 0.1 (ectly establish the bor) 216.01 192.53 B
+0.52 0.1 (der bags for the two objects. In those cases wher) 315.61 192.53 B
+0.52 0.1 (e a ) 537.16 192.53 B
+0.52 0.1 (text canvas is involved, it may also cause a Jot failur) 198 180.14 B
+0.52 0.1 (e. W) 437.81 180.14 B
+0.52 0.1 (ork ar) 457.59 180.14 B
+0.52 0.1 (ound this ) 484.93 180.14 B
+0.52 0.1 (pr) 198 167.73 B
+0.52 0.1 (oblem by placing a contr) 207.98 167.73 B
+0.52 0.1 (ol ar) 321.4 167.73 B
+0.52 0.1 (ea between the two panes.) 342.05 167.73 B
+0.52 0.1 (GNT cannot handle buttons whose labels ar) 198 147.34 B
+0.52 0.1 (e glyphs.) 398.83 147.34 B
+FMENDPAGE
+%%EndPage: "30" 31
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 30 1
+%%DocumentFonts: Palatino-Italic
+%%+ Palatino-Roman
+%%+ Helvetica-Bold
+%%+ Palatino-Bold
+%%+ Times-Bold
+%%+ Courier
+%%+ Helvetica
+%%+ Palatino-BoldItalic

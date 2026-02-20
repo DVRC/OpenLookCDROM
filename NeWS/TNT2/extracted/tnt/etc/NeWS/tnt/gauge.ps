@@ -1,0 +1,741 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#) gauge.ps 1.18 91/02/11
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ClassHGauge
+%
+
+/ClassHGauge [ ClassControl ClassRegion ]
+dictbegin
+    /Value 0 def
+    /Min 0 def
+    /Max 100 def
+    /ValueX 0 def
+    /LastValueX -1 def
+    /ValueScale 0 def
+    /ValueSize 0 def
+dictend
+classbegin
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Class Variables
+%
+
+    /GaugeHeight 11 def				% (b)
+    /GaugeEndWidth 8 def			% (c)
+    /TickMarkHeight 8 def
+    /OutlineWidth 1 def
+    /FillWidth 3 def
+    /Fudge .001 def
+
+    /HORIZ_SLIDER_LEFT_ENDCAP_FILL			77 cvis def
+    /VERT_SLIDER_BOTTOM_ENDCAP_FILL			84 cvis def
+    /HORIZ_SLIDER_LEFT_ENDCAP_OUTLINE			173 cvis def
+    /HORIZ_GAUGE_UL					120 cvis def
+    /HORIZ_GAUGE_LL					121 cvis def
+    /HORIZ_GAUGE_UR					122 cvis def
+    /HORIZ_GAUGE_LR					123 cvis def
+    /VERT_GAUGE_UL					129 cvis def
+    /VERT_GAUGE_UR					130 cvis def
+    /VERT_GAUGE_LL					131 cvis def
+    /VERT_GAUGE_LR					132 cvis def
+    /VERT_SLIDER_BOTTOM_ENDCAP_OUTLINE			181 cvis def
+    /HORIZ_GAUGE_LEFT_ENDFILL				219 cvis def
+    /HORIZ_GAUGE_RIGHT_ENDFILL				225 cvis def
+    /VERT_GAUGE_TOP_FILL				226 cvis def
+    /VERT_GAUGE_BOT_FILL				227 cvis def
+
+    /HORIZ_SLIDER_LEFT_ENDCAP_FILL			77 cvis def
+    /HORIZ_SLIDER_RIGHT_ENDCAP_FILL			78 cvis def
+    /VERT_SLIDER_UL					79 cvis def
+    /VERT_SLIDER_UR					80 cvis def
+    /VERT_SLIDER_BOTTOM_ENDCAP_FILL			84 cvis def
+    /HORIZ_SLIDER_LEFT_ENDCAP_OUTLINE			173 cvis def
+    /HORIZ_SLIDER_RIGHT_ENDCAP_OUTLINE			174 cvis def
+    /VERT_SLIDER_TOP_ENDCAP_OUTLINE			180 cvis def
+    /VERT_SLIDER_BOTTOM_ENDCAP_OUTLINE			181 cvis def
+    /HORIZ_GAUGE_LEFT_ENDCAP_OUTLINE			186 cvis def
+    /HORIZ_GAUGE_RIGHT_ENDCAP_OUTLINE			187 cvis def
+    /VERT_GAUGE_TOPENDCAP				210 cvis def
+    /VERT_GAUGE_BOTENDCAP				211 cvis def
+    /HORIZ_GAUGE_LEFT_ENDFILL				219 cvis def
+    /HORIZ_GAUGE_RIGHT_ENDFILL				225 cvis def
+    /VERT_GAUGE_TOP_FILL				226 cvis def
+    /VERT_GAUGE_BOT_FILL				227 cvis def
+
+% Promoted when needed
+    /TickMarks 0 def
+    /MinTickX 0 def
+    /MaxTickX 0 def
+    /TickStep 1 def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Application Programmer Interface
+%
+
+    % Set the value of the gauge.
+    %
+    /setvalue { % val => -
+	/Normalize self send
+	/CheckRange self send
+	/Value 1 index def
+	/SetGauge self send
+	/valid? self send {
+	    gsave
+		Parent setcanvas
+		X Y translate
+		/Update self send
+		VisualState /Active ne {
+		    BackgroundColor setcolor
+		    0 0 /size self send StippleRect
+		} if
+	    grestore
+	} if
+    } def
+
+    % Get the value of the gauge.
+    %
+    /value { % - => value
+	Value
+    } def
+
+    % Set the minimum and maximum values of the gauge.
+    %
+    /setrange { % min max => -
+	/Max exch def /Min exch def
+	/LastGaugeX -1 def
+	/invalidate self send
+    } def
+
+    % Get the minimum and maximum values of the gauge.
+    %
+    /range { % - => min max
+	Min Max
+    } def
+
+    % Force the value to be in range.
+    %
+    /CheckRange { % value => new-value
+	Min Max					% value Min Max
+	2 copy gt { exch } if			% value min max
+	3 copy pop				% value min max value min
+	lt {					% value min max
+	    3 -1 roll pop			% value' max
+	} {					% value min max
+	    exch pop				% value' max
+	} ifelse
+	2 copy gt { exch } if			% value' max
+	pop					% value'
+    } def
+
+    % Normalize the value.
+    %
+    /Normalize nullproc def % value => value'
+
+    /setnormalizer { % proc => -
+	dup null eq {
+	    pop
+	    /Normalize unpromote
+	}{
+	    /Normalize exch promote
+	} ifelse
+	/invalidate self send
+    } def
+
+    /normalizer { % - => proc
+	/Normalize load
+    } def
+
+    % Set the distance between tick marks in user space (0 for no tick marks).
+    %
+    /settickmarks { % distance => -
+	/TickMarks exch promote
+	/invalidate self send
+    } def
+
+    /tickmarks { % - => distance
+	TickMarks
+    } def
+
+    /setvisualstate { % state => -
+	/setvisualstate super send
+	/valid? self send {
+	    VisualState /Active eq {
+		/paint self send
+	    } {
+		gsave Parent setcanvas
+		    BackgroundColor setcolor /bbox self send StippleRect
+		grestore
+	    } ifelse
+	} if
+    } def
+
+    /offset { % name => x y
+	/?validate self send
+	dup {
+	    /MinEnd {
+		pop  0  GaugeHeight 2 div
+		TickMarks 0 ne { TickMarkHeight add } if
+	    }
+	    /MaxEnd {
+		pop  Width
+		GaugeHeight 2 div
+		TickMarks 0 ne { TickMarkHeight add } if
+	    }
+	    /MinTick {
+		pop  MinTickX 0
+	    }
+	    /MaxTick {
+		pop  MaxTickX 0
+	    }
+	    /Default {
+		/offset super send
+	    }
+	} case
+    } def
+
+    % sizing and shaping
+
+    /minsize { % - => w h
+	/?validate self send
+	//GaugeEndWidth 3 mul
+	//GaugeHeight
+	TickMarks 0 ne { //TickMarkHeight add } if
+    } def
+
+    /preferredsize { % - => w h
+	/minsize self send
+	//GaugeEndWidth dup add Max Min sub abs add
+	3 -1 roll max exch
+    } def
+
+    /reshape {
+	4 2 roll round exch round exch 4 2 roll
+	/reshape super send
+    } def
+
+    /move {
+	round exch round exch
+	/move super send
+    } def
+
+    /validate { % - => -
+	Width /ValidateGauge self send
+    } def
+
+    /ValidateGauge { % size => -
+	/validate super send
+	//GaugeEndWidth dup add sub
+	/ValueSize exch def
+
+	/ValueScale  ValueSize  Max Min sub  div  def
+
+	/MinTickX //GaugeEndWidth 1 sub promote
+	/MaxTickX //GaugeEndWidth ValueSize add 1 sub promote
+	TickMarks 0 ne {
+	    /TickStep
+		ValueSize Max Min sub abs div
+		TickMarks mul
+	    promote
+	} if
+
+	/Value Value
+	    /Normalize self send
+	    /CheckRange self send
+	def
+	Value /SetGauge self send
+    } def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Horizontal Painting
+
+    /Paint { % - => -
+	/LastValueX -1 def
+	/Update self send
+	TickMarks 0 ne { /PaintTickMarks self send } if
+	VisualState /Active ne {
+	    BackgroundColor setcolor 0 0 /size self send StippleRect
+	} if
+    } def
+
+    /SetGauge { % value => -
+	Min sub ValueScale mul //GaugeEndWidth add
+	/ValueX exch def
+    } def
+
+    /Update { % - => -
+	GraphicFont setfont
+	LastValueX -1 eq {
+	    /PaintGauge self send
+	} {
+	    TickMarks 0 ne { 0 TickMarkHeight translate } if
+	    GraphicFont setfont
+	    ValueX LastValueX gt
+	    { % move RIGHT
+		ForegroundColor setcolor
+		  LastValueX FillWidth
+		  ValueX 2 index sub GaugeHeight FillWidth dup add sub
+		  rectpath fill
+		3D? { BG3 } { 2DBG } ifelse setcolor
+		  LastValueX  7  moveto
+		  ValueX 1 sub  7 lineto
+		  stroke
+	    } { % move LEFT
+		3D? { BG2 } { 2DBG } ifelse setcolor
+		  ValueX FillWidth
+		  LastValueX 2 index sub GaugeHeight FillWidth dup add sub
+		  rectpath fill
+	    } ifelse
+	} ifelse
+	/LastValueX ValueX def
+    } def
+
+    /PaintGauge { % - => -
+	TickMarks 0 ne { 0 TickMarkHeight translate } if
+
+	BackgroundColor setcolor
+	  0 0 /size self send rectpath
+	  fill
+
+	GraphicFont setfont
+
+        3D? {
+	    BG3 setcolor
+	      0  GaugeHeight  moveto
+	      HORIZ_GAUGE_UL show
+	      4  GaugeHeight  moveto
+	      Width 8 sub  0  rlineto
+	      stroke
+	    BG0 setcolor
+	      0  GaugeHeight  moveto
+	      HORIZ_GAUGE_LL show
+	      4  1  moveto
+	      Width 8 sub  0  rlineto
+	      stroke
+	    BG2 setcolor
+	      0  GaugeHeight  moveto
+	      HORIZ_GAUGE_LEFT_ENDFILL show
+	      4  OutlineWidth
+	      Width 8 sub  GaugeHeight OutlineWidth dup add sub
+	      rectpath
+	      fill
+	    FG setcolor
+	      0 FillWidth add  GaugeHeight FillWidth sub
+	      2 copy moveto
+	      HORIZ_SLIDER_LEFT_ENDCAP_OUTLINE show
+	      moveto
+	      HORIZ_SLIDER_LEFT_ENDCAP_FILL show
+	      6  FillWidth
+	      ValueX 6 sub
+	      GaugeHeight FillWidth dup add sub
+	      rectpath
+	      fill
+
+	    BG3 setcolor
+	      6  7  moveto
+	      ValueX 1 sub  7 lineto
+	      stroke
+
+	    BG3 setcolor
+	      Width 4 sub GaugeHeight
+	      2 copy moveto
+	      HORIZ_GAUGE_UR show
+	    BG0 setcolor
+	      2 copy moveto
+	      HORIZ_GAUGE_LR show
+	    BG2 setcolor
+	      moveto
+	      HORIZ_GAUGE_RIGHT_ENDFILL show
+	} {
+	    2DFG setcolor
+	      0  GaugeHeight  moveto
+	      HORIZ_GAUGE_LEFT_ENDCAP_OUTLINE show
+
+	      4  GaugeHeight  moveto
+	      Width 8 sub  0  rlineto
+	      stroke
+
+	      4  1  moveto
+	      Width 8 sub  0  rlineto
+	      stroke
+
+	      Width 4 sub  GaugeHeight  moveto
+	      HORIZ_GAUGE_RIGHT_ENDCAP_OUTLINE show
+
+	    2DBG setcolor
+	      0  GaugeHeight  moveto
+	      HORIZ_GAUGE_LEFT_ENDFILL show
+	      4  OutlineWidth
+	      Width 8 sub  GaugeHeight OutlineWidth dup add sub
+	      rectpath
+	      fill
+
+	      Width 4 sub  GaugeHeight  moveto
+	      HORIZ_GAUGE_RIGHT_ENDFILL show
+	      
+	    2DFG setcolor
+	      0 FillWidth add  GaugeHeight FillWidth sub
+	      2 copy moveto
+	      HORIZ_SLIDER_LEFT_ENDCAP_OUTLINE show
+	      moveto
+	      HORIZ_SLIDER_LEFT_ENDCAP_FILL show
+	      6  FillWidth
+	      ValueX 6 sub
+	      GaugeHeight FillWidth dup add sub
+	      rectpath
+	      fill
+
+	    2DBG setcolor
+	      6  7  moveto
+	      ValueX 1 sub  7 lineto
+	      stroke
+	} ifelse
+
+	TickMarks 0 ne { 0 TickMarkHeight neg translate } if
+    } def
+
+    /PaintTickMarks { % - => -
+        MinTickX TickStep MaxTickX
+	3D? { % REMIND: Redo as 2 loops & 2 strokes
+	    {   dup 1 moveto
+		0 //TickMarkHeight 2 sub rlineto  1 0 rlineto
+		BG0 setcolor stroke
+		1 moveto
+		1 0 rlineto  0 //TickMarkHeight 3 sub rlineto
+		BG3 setcolor stroke
+	    } for
+	} {
+	    2DFG setcolor
+	    {   0 2 //TickMarkHeight 1 sub rectpath
+		fill
+	    } for
+	} ifelse
+    } def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Demo
+%
+
+    IncludeDemos? {
+	/demo { % - => window HGauge
+	    10 dict begin gsave
+
+		% Make a window with a calculated pane.
+		/pan /Calculated framebuffer /new ClassPanel send def
+		/win pan framebuffer /new ClassBaseWindow send def
+		ClassName (% Demo) sprintf /setlabel win send
+
+		% XXX: Kludge panel to have integral size
+		/minsize {
+		    /minsize super send
+		    ceiling cvi exch ceiling cvi exch
+		} /installmethod pan send
+
+		% Make a gauge.
+		/gauge framebuffer /new ClassHGauge send def
+
+		% The range is 0 to 100 by default.
+		% There are no tick marks, by default.
+		% By default, the normalizer function doesn't change the value.
+
+		% Give the gauge a value
+		37 /setvalue gauge send
+
+		% Override the window's reshape to use its relative size to set
+		% the gauge to a fun value.
+		/reshape { 
+		    /reshape super send
+		    /size self send mul /size framebuffer send mul
+		    div 100 mul dup
+		    /Center /client self send pop
+		    /gauge /client 3 -1 roll send pop
+		    /setvalue exch send
+		    (%% of screen space) [3 -1 roll round cvi (%)] sprintf
+		    () exch /setfooter self send
+		} /installmethod win send
+
+		% Put the gauge in the center of the panel.
+		/gauge gauge [/Center {/Center PARENT POSITION}]
+		/addclient pan send
+
+		% Reshape and activate the window.
+		20 40 20 40 /setgaps win send
+		/place win send
+		/new ClassEventMgr send /activate win send
+		/map win send
+
+		win gauge
+	    grestore end
+	} def
+    } if
+
+  classend def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ClassVGauge
+%
+
+/ClassVGauge ClassHGauge []
+classbegin
+
+% Offsets
+
+    /offset { % name => x y
+	/?validate self send
+	dup {
+	    /MinEnd {
+		pop  GaugeHeight 2 div  0
+	    }
+	    /MaxEnd {
+		pop  GaugeHeight 2 div  Height
+	    }
+	    /MinTick {
+		pop  GaugeHeight TickMarkHeight add
+		MinTickX 1 add
+	    }
+	    /MaxTick {
+		pop  GaugeHeight TickMarkHeight add
+		MaxTickX 1 add
+	    }
+	    /Default {
+		/offset super send
+	    }
+	} case
+    } def
+
+    % sizing and shaping
+
+    /minsize { % - => w h
+	?validate self send
+	//GaugeHeight
+	TickMarks 0 ne { //TickMarkHeight add } if
+	//GaugeEndWidth 3 mul
+    } def
+
+    /preferredsize { % - => w h
+	/minsize self send
+	//GaugeEndWidth dup add Max Min sub abs add max
+    } def
+
+    /validate { % - => -
+	Height /ValidateGauge self send
+    } def
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Vertical Painting
+
+    /Update { % - => -
+	GraphicFont setfont
+	LastValueX -1 eq {
+	    /PaintGauge self send
+	} {
+	    GraphicFont setfont
+	    ValueX LastValueX gt { % move UP
+		ForegroundColor setcolor
+		  FillWidth LastValueX
+		  GaugeHeight FillWidth dup add sub  ValueX 2 index sub
+		  rectpath fill
+		3D? { BG3 } { 2DBG } ifelse setcolor
+		  4  LastValueX  moveto
+		  4  ValueX  lineto
+		  stroke
+	    } { % move DOWN
+		3D? { BG2 } { 2DBG } ifelse setcolor
+		  FillWidth ValueX
+		  GaugeHeight FillWidth dup add sub  LastValueX 2 index sub
+		  rectpath fill
+	    } ifelse
+	} ifelse
+	/LastValueX ValueX def
+    } def
+
+    /PaintGauge { % - => -
+	BackgroundColor setcolor
+	  0 0 /size self send rectpath
+	  fill
+
+	//GraphicFont setfont
+
+	3D? {
+	    BG3 setcolor
+	      0  Height  moveto
+	      VERT_GAUGE_UL show
+	      0  Height 4 sub  moveto
+	      0  9 Height sub  rlineto
+	      stroke
+	    BG0 setcolor
+	      0  Height  moveto
+	      VERT_GAUGE_UR show
+	      GaugeHeight Fudge sub  Height 4 sub  moveto
+	      0  9 Height sub  rlineto
+	      stroke
+	    BG2 setcolor
+	      0  Height  moveto
+	      VERT_GAUGE_TOP_FILL show
+	      OutlineWidth  4
+	      GaugeHeight OutlineWidth dup add sub
+	      Height 8 sub
+	      rectpath
+	      fill
+
+	    BG3 setcolor
+	      0  4
+	      2 copy moveto
+	      VERT_GAUGE_LL show
+	    BG0 setcolor
+	      2 copy  moveto
+	      VERT_GAUGE_LR show
+	    BG2 setcolor
+	      moveto
+	      VERT_GAUGE_BOT_FILL show
+
+	    FG setcolor
+	      FillWidth  6
+	      2 copy  moveto
+	      VERT_SLIDER_BOTTOM_ENDCAP_OUTLINE show
+	      2 copy  moveto
+	      VERT_SLIDER_BOTTOM_ENDCAP_FILL show
+	      GaugeHeight FillWidth dup add sub
+	      ValueX 6 sub
+	      rectpath
+	      fill
+
+	    BG3 setcolor
+	      4  7  moveto
+	      4  ValueX lineto
+	      stroke
+	} {
+	    2DFG setcolor
+	      0  4  moveto
+	      VERT_GAUGE_BOTENDCAP show
+
+	      0  Height 4 sub  moveto
+	      0  9 Height sub  rlineto
+	      stroke
+
+	      GaugeHeight Fudge sub  Height 4 sub  moveto
+	      0  9 Height sub  rlineto
+	      stroke
+
+	      0  Height  moveto
+	      VERT_GAUGE_TOPENDCAP show
+
+	    2DBG setcolor
+	      0  Height  moveto
+	      VERT_GAUGE_TOP_FILL show
+
+	      OutlineWidth  4
+	      GaugeHeight OutlineWidth dup add sub
+	      Height 8 sub
+	      rectpath
+	      fill
+
+	      0 4 moveto
+	      VERT_GAUGE_BOT_FILL show
+
+	    2DFG setcolor
+	      FillWidth 6
+	      2 copy moveto
+	      VERT_SLIDER_BOTTOM_ENDCAP_OUTLINE show
+
+	      2 copy moveto
+	      VERT_SLIDER_BOTTOM_ENDCAP_FILL show
+
+	      GaugeHeight FillWidth dup add sub
+	      ValueX 6 sub
+	      rectpath
+	      fill
+
+	    2DBG setcolor
+	      4  7  moveto
+	      4  ValueX lineto
+	      stroke
+	} ifelse
+    } def
+
+    /PaintTickMarks { % - => -
+	3D? {
+	    MinTickX 2 add TickStep MaxTickX 2 add {
+		dup GaugeHeight 1 add exch moveto
+		//TickMarkHeight 2 sub 0 rlineto  0 1 rlineto
+		BG3 setcolor stroke
+		GaugeHeight 1 add exch moveto
+		0 1 rlineto  //TickMarkHeight 3 sub 0 rlineto
+		BG0 setcolor stroke
+	    } for
+	} {
+	    2DFG setcolor
+	    MinTickX 1 add TickStep MaxTickX 1 add {
+		GaugeHeight 1 add exch //TickMarkHeight 1 sub 2 rectpath
+		fill
+	    } for
+	} ifelse
+    } def
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Demo
+  %
+
+    IncludeDemos? {
+	/demo { % - => window VGauge
+	    10 dict begin gsave
+
+		% Make a window with a calculated pane.
+		/pan /Calculated framebuffer /new ClassPanel send def
+		/win pan framebuffer /new ClassBaseWindow send def
+		ClassName (% Demo) sprintf /setlabel win send
+
+		% XXX: Kludge panel to have integral size
+		/minsize {
+		    /minsize super send
+		    ceiling cvi exch ceiling cvi exch
+		} /installmethod pan send
+
+		% Make a gauge.
+		/gauge framebuffer /new ClassVGauge send def
+
+		% Set the range and tick marks, and give it a desired height.
+		20 60 /setrange gauge send
+		10 /settickmarks gauge send
+		0 0 /preferredsize gauge send pop 150 /reshape gauge send
+
+		% Give the gauge a value
+		37 /setvalue gauge send
+
+		% Stick the gauge in the center of the panel.
+		/gauge gauge [/Center { /Center PARENT POSITION }]
+		/addclient pan send
+
+		% Make a minimum value label.
+		/minlabel ($20) framebuffer /new ClassLabel send def
+		% Stick it to the right of the gauge's minimum tick mark.
+		/minlabel minlabel [
+		    /West { /MinTick /gauge POSITION  3 0 xyadd }
+		] /addclient pan send
+
+		% Make a maximum value label.
+		/maxlabel ($60) framebuffer /new ClassLabel send def
+		% Stick it to the right of the gauge's maximum tick mark.
+		/maxlabel maxlabel [
+		    /West { /MaxTick /gauge POSITION  3 0 xyadd }
+		] /addclient pan send
+
+		% Reshape and activate the window.
+		(Price of West Texas crude.) () /setfooter win send
+		10 50 10 50 /setgaps win send
+		/place win send
+		/new ClassEventMgr send /activate win send
+		/map win send
+
+		win gauge
+	    grestore end
+	} def
+    } if
+
+classend def

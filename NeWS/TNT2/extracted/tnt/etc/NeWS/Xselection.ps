@@ -1,0 +1,562 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%    @(#) Xselection.ps 23.8 91/02/11
+%	Xselect.ps:	ClassXSelection: semantic machinery for X11 selections
+%       Copyright (c) 1989 Sun Microsystems, Inc.
+
+Xcompat_private begin
+
+/ClassXSelection ClassSelection dictbegin
+    /XSelection?	true def
+    /Process		null def
+dictend classbegin
+
+% Class variables
+
+    /ClassXSelectionMonitor createmonitor def
+    /ClassXSelectionTimeout createevent dup begin
+	/Name /XSelectionTimeout def
+    end def
+
+    %
+    % mapping between X11 selection Ranks and NeWS selection keywords
+    %
+    /XNeWSselectionmap dictbegin
+        /PRIMARY            /PrimarySelection def
+        /SECONDARY          /SecondarySelection def
+        /CLIPBOARD          /ShelfSelection def
+    dictend def
+
+    /XNeWStargetmap dictbegin
+        /STRING             /ContentsAscii def
+        /POSTSCRIPT         /ContentsPostScript def
+        /LENGTH             /SelectionObjsize def
+        % temp hacks for SV2 braindamage...
+        /SELN_LENGTH        /SelectionObjsize def
+        % many more to come
+    dictend def
+
+    % there should be an entry for each key in XNeWStargetmap
+    /XTargetFormatmap dictbegin
+        /STRING             8 def
+        /POSTSCRIPT         8 def
+        /LENGTH             32 def
+        /SELN_LENGTH        32 def
+        % many more to come
+    dictend def
+
+    /XGetMapVal { % dict fixed(key) => kwd(val)
+      Xcompat_private begin
+        XGetAtomName			% dict kwd
+        exch dup			% kwd dict dict
+        2 index known {			% kwd dict
+            exch get
+        } {				% kwd dict
+            pop
+        } ifelse			% kwd
+      end
+    } def
+
+    /XGetMapKey { % dict kwd(val) => fixed(key)
+      Xcompat_private begin
+        exch {				% kwd key val
+            dup 3 index eq {		% kwd key val
+                3 -1 roll pop pop	% key
+            } {				% kwd key val
+                pop pop
+            } ifelse			% key | kwd
+        } forall
+        false XInternAtom		% fixed
+      end
+    } def
+
+    %
+    % convert between X11 atoms and NeWS keywords for the appropriate classes
+    %
+    /XNeWSGetSelection {            % fixed => kwd
+        XNeWSselectionmap exch XGetMapVal
+    } def
+
+    /NeWSXGetSelection {            % kwd => fixed
+        XNeWSselectionmap exch XGetMapKey
+    } def
+
+    /XNeWSGetTarget {               % fixed => kwd
+        XNeWStargetmap exch XGetMapVal
+    } def
+
+    /NeWSXGetTarget {               % kwd => fixed
+        XNeWStargetmap exch XGetMapKey
+    } def
+
+    /XGetFormat {                   % target(int) => format(int)
+	XGetAtomName
+        dup XTargetFormatmap exch known {           % target
+            XTargetFormatmap exch get
+        } {
+	    pop 8   %%% GUESS
+	} ifelse                                    % int
+    } def
+
+    %===========conversion routines - these are far from complete!============
+    %
+    %
+    % We want to convert the given NeWS data object to a string so that it
+    % can be shoved into a property.   Target is supposedly what X wants
+    % the object to look like.  Do we even want to pay attention to it?
+    %
+    /XConvertTypeToString {         % data => data (string_type)
+            dup type {
+		/nametype
+                /realtype
+                /dicttype
+		/packedarraytype
+                /arraytype          { pop null }	% no go...
+                /stringtype         { }			% leave alone
+                /integertype        { 4 string dup 0	% num str str index
+                                      4 -1 roll		% str str index num
+                                      putcard32 }
+            } case
+    } def
+
+
+    %
+    % build the correct news type out of the string that we are handed by X
+    %
+    /XConvertTypeFromString {               % type format nitems data
+	exch pop 3 -1 roll pop				%  type data
+	exch 1 index null ne {				%  data format
+            {
+                /Format16 {				% ???
+                    pop null
+                }
+                /Format32 {
+                    0 getcard32 def			% ???
+                }
+                /Default { }
+            } case					%  string
+        } {
+	    pop pop ()
+	} ifelse
+    } def
+  
+    %=====================end of conversion routines===========================
+
+
+    %
+    % Sends an X SelectionRequest event to self
+    %
+    /SendSelectionRequest { %  ts requestor prop target sel  =>  --
+	createevent begin
+	    /Name /SelectionRequest def
+	    /Action exch def
+	    /Canvas Holder def
+	    4 array astore /ClientData exch def
+	    /TimeStamp lasteventtime def
+	currentdict end
+	% don't do this with the event on the dict stack because /Process
+	% is defined in the event...
+	dup /Process Process put
+	sendevent
+    } def
+
+    %
+    % Sends an X SelectionNotify event to self (which *must* be owned
+    % by currentprocess
+    %
+    /SendSelectionNotify { %  ts requestor prop target sel  =>  --
+	createevent begin
+	    /Name /SelectionNotify def
+	    /Action exch def
+	    3 -1 roll /Canvas exch def
+	    3 array astore /ClientData exch def
+	currentdict end writeXevent flush
+    } def
+
+    %
+    % Get a property off of a X window, dealing with the property interface.
+    %
+    /GetPropFromWin { %  cv prop   =>  string
+	0 32767 string		%  cv prop start string
+	xgetproperty {		%  string type format remaining true || false
+	    pop pop pop
+	    dup length string copy	% minimize physical data
+	} {
+	    ()
+	} ifelse
+    } def
+
+    %
+    % Yes, I know that this routine is ugly.  Sigh...
+    %
+    % REMIND: add a timeout to this monitor.
+    %
+    /DoRequest { %  request  =>  response
+      Xcompat_private begin
+	%
+	% for every piece of information requested by the requestor,
+	% send a SelectionRequest event to the X client and wait for
+	% the replys.
+	%
+	0 1 index {				%  rdict n key val
+	    pop					%  rdict n key
+	    currenttime framebuffer		%  rdict n key ts req
+	    3 -1 roll				%  rdict n ts req type
+	    dup false XInternAtom exch		%  rdict n ts req prop type
+	    NeWSXGetTarget			%  rdict n ts req prop trgt
+	    Rank NeWSXGetSelection		%  rdict n ts req prop trgt sel
+	    /SendSelectionRequest self send	%  --
+	    1 add
+	} forall				%  rdict n
+
+	% send a timeout event to ourselves.  It will arrive
+	% (numrequests/10) minutes in the future
+	ClassXSelectionTimeout dup begin
+	    /Process currentprocess def
+	    /TimeStamp 2 index 10 div currenttime add def
+	end sendevent
+
+	createevent begin			%  rdict n
+	    /Name 2 dict dup begin
+		/XSelectionTimeout {	%  rdict n event  =>  rdict n
+		    % we have recieved a timeout.  Print an error and exit
+		    % the loop
+		    /Interest get revokeinterest
+		    console (XSelection timeout: % requests\n)
+			[3 index] fprintf
+		    pop
+		    exit
+		} def
+		/ClientMessage { %  rdict n event =>  rdict n
+		    %
+		    % modify the request dict appropriately by ripping
+		    % the event apart.
+		    %
+		    % The structure contained in /Action looks like:
+		    %
+		    %  struct {
+		    %      BYTE type;
+		    %      BYTE detail;
+		    %      CARD16 sequenceNumber B16;
+		    %      Time time B32;
+		    %      Window requestor B32;
+		    %      Atom selection B32, target B32, property B32;
+		    %  } selectionNotify;
+		    %
+		    %  type is equal to SelectionNotify (31, 0x1F).
+		    %
+		    dup				%  rdict n event event
+		    /Action get			%  rdict n event str
+		    dup 0 get			%  rdict n event str 0byte
+		    16#7F and
+		    16#1F xor
+		    0 ne {			%  rdict n event str
+			pop redistributeevent
+		    } {				%  rdict n event str
+			% first, get the target
+			dup 4 getcard32		%  rdict n event str target
+			XNeWSGetTarget
+			dup null ne {		%  rdict n event str tkwd
+			    exch			%  ... tkwd str
+
+			    % see if we got the translation correct
+			    4 index 2 index known {	%  ... tkwd str
+			        dup 2 getcard32
+			        /XLookupID XResource send
+			        exch			% ... tkwd win str
+
+			        5 getcard32
+				dup 0 eq { 	    	% ... tkwd win prop
+				    pop pop /UnknownRequest
+				} { 	 	    	% ... tkwd win prop
+				    GetPropFromWin	%  rdict n ev tkwd data
+				} ifelse
+			        4 index 3 1 roll put	%  rdict n event
+			    } {
+			        pop pop pop		%  rdict n event
+			    } ifelse
+			} {
+			    pop pop
+			} ifelse			% rdict n event
+
+		        exch 1 sub			%  rdict event n
+		        dup 0 eq {
+			    pop
+			    /Interest get revokeinterest
+			    exit
+		        } {
+			    exch pop
+		        } ifelse
+		    } ifelse
+		} def
+	    end def
+	    /Canvas null def	% pre-child on root
+	currentdict end
+	expressinterest
+	unblockinputqueue
+	/awaitevent load loop			%  response
+      end
+
+      % recall our timeout event
+      ClassXSelectionTimeout recallevent
+
+      %
+      % if there are dict entries that we haven't filled, mark as Unknown
+      %
+      dup {					%  response key val
+	  null eq {				%  response key
+	      1 index exch /UnknownRequest put	%  response
+	  } {
+	      pop
+	  } ifelse				%  response
+      } forall
+    } def
+
+% Defaults
+
+% Methods
+
+    /NewInit { % rank holder => -; initialize new instance
+	/NewInit super send
+	/Process currentprocess def
+    } def
+
+    /Deselect { %  -- => --
+	% send SelectionClear to X client
+	createevent dup begin
+	   /Name /SelectionClear def
+	   /Action Rank
+	       /NeWSXGetSelection self send def
+	   /Canvas Holder def
+	   % if we are being deselected, then somebody is changing the 
+	   % selection ownership NOW
+	   /ClientData lasteventtime def
+	   /TimeStamp lasteventtime def
+	end
+	dup /Process Process put
+	sendevent
+    } def
+
+    /newXselection { % cv rank old-sel  =>  sel
+	pop					%  cv rank
+	exch /new ClassXSelection send		%  sel
+	/setselection 1 index send		%  sel
+    } def
+
+    %
+    % Clean up selections that the process may hold
+    %
+    /ProcDeathCleanUp { % process => --
+	Holders {
+	    exch pop {					% proc sel sel
+		/XSelection? known {			% proc sel bool
+	 	    dup /Process get 2 index eq {	% proc sel
+			dup /unsetselection exch send	% proc sel
+			dup /destroy exch send		% proc sel
+		    } if
+		} if pop				% proc
+	    } forall
+	} forall pop					% --
+    } def
+
+    %
+    % this method should only be invoked upon the class.  It sets the
+    % selection, X style
+    %
+    /setXselection { %  timestamp owner rank selection  =>  --
+	% are we setting the selection to None?
+	2 index null eq {				%  ts cv rank sel
+	    dup null ne {
+		% if the selection is an X selectin and owned by
+		% this client, don't send a selection clear (i.e.
+		% don't do a deselect
+		dup /XSelection? known {
+		    dup /Process get currentprocess eq {
+			/UnsetSelection exch send
+		    } {
+	                /unsetselection exch send
+		    } ifelse
+		} {
+	            /unsetselection exch send
+		} ifelse
+	    } {
+		pop
+	    } ifelse					%  ts cv rank
+	    pop pop pop					%  --
+	} {						%  ts cv rank sel
+	    dup null ne {
+		%
+		% is the selection an XSelection and already owned by
+		%	this process?  If so, we just want to update
+		%	its Holder, but do not send out notification (i.e.
+		%	no deselect on the old selection)
+		%
+		dup /XSelection? known {		%  ts cv rank sel
+		    dup /Process get currentprocess eq {
+			/RemoveHolder 1 index send
+			dup 4 2 roll pop		%  ts sel sel cv
+			/Holder exch soften put		%  ts sel
+			/AddHolder 1 index send
+		    } {
+			newXselection			%  ts sel
+		    } ifelse
+		} {					%  txhs cv rank sel
+		    newXselection			%  ts sel
+		} ifelse
+	    } {						%  ts cv rank sel
+		newXselection
+	    } ifelse
+	    /Time 3 -1 roll put			%  --
+	} ifelse
+    } def
+
+    %
+    % this will be a request coming from another PostScript (NeWS) process,
+    % *NOT* a X11 client.  X11 clients will use /convertXselection.
+    %
+    % NeWS <= X11
+    %
+    /request { %  request  =>  response
+	ClassXSelectionMonitor {
+	    //DoRequest fork waitprocess
+	    exch pop
+	} monitor
+    } def
+
+    %
+    % this method will get invoked in an instance of an X selection.
+    % It is used as an optimization to speed up X11<=>X11 selections.
+    %
+    % X11 <= X11
+    %
+    /convertXselection { % ts requestor prop target sel  =>  --
+	/SendSelectionRequest self send
+    } def
+
+    %
+    % this method should only get invoked on the Class.  It will build
+    % request dict, get the current selection, and pass a SelectionNotify
+    % back to the same X11 client that invoked it.  It will also get invoked
+    % when nobody holds the selection.
+    %
+    %  X11 <= NeWS
+    %
+    /convertselection { % ts requestor prop target Xselatom selection  =>  --
+	dup null eq {
+	    pop 3 -1 roll pop
+	    null 3 1 roll				%  ts requestor p t s
+	    /SendSelectionNotify self send		%  --
+	} {
+	    {
+	    2 index /XNeWSGetTarget self send
+	    2 dict dup 2 index null put			%  ts cv p t s sel tn rd
+	    /request 4 -1 roll send			%  ts cv p t s tn resp
+	    exch get					%  ts cv p t s data
+	    %
+	    % the data may be /UnknownRequest, in which case we don't do
+	    % any property manipulation
+	    %
+	    dup /UnknownRequest ne {
+		%
+	        % put data on Canvas reqestor's property list
+	        %
+	        /XConvertTypeToString self send
+	        4 index					%  ... cv
+	        4 index dup 0 eq {			%  ... cv p
+		    %
+		    % if the requestor specified a property of None, we 
+		    % have to pick one.  The Selection name is convenient.
+		    %
+		    pop 2 index
+	        } if					%  ... cv prop
+		2 index					%  ... cv prop data
+		5 index					%  ... cv prop data type
+		dup /XGetFormat self send		%  ... cv p d t fmt
+		xsetproperty				%  ts cv p t s data
+	    } {						%  ts cv p t s data
+		4 -1 roll				%  ts cv t s data p
+		pop null				%  ts cv t s data null
+		4 1 roll				%  ts cv null t s data
+	    } ifelse
+	    pop
+	    %
+	    % send a SelectionNotify to this X11 client
+	    %
+	    /SendSelectionNotify self send
+	    } fork
+	    7 { pop } repeat
+	} ifelse					%  --
+    } def
+
+classend def
+
+
+
+    %
+    % X specific utilities for getting into, and out of, ClassXSelection.
+    %
+
+    % get the selection owner for a given rank
+    /X11-GetSelectionOwner { %  Xatom => canvas
+	/XNeWSGetSelection ClassXSelection send		%  rank
+	/getselection ClassXSelection send		%  selection
+	dup null ne {
+	    /Holder get dup XCanvas? not {		%  canvas
+	        %
+	        % if the Holder of the selection is not an X11 canvas,
+	        % we lie and tell our client that it is the framebuffer.
+	        %
+	        pop framebuffer
+	    } if					%  cv
+	} if
+    } def
+
+    % set the selection owner for a given rank
+    /X11-SetSelectionOwner { %  timestamp canvas Xatom  =>  --
+	/XNeWSGetSelection ClassXSelection send		%  ts cv rank
+	dup /getselection ClassXSelection send		%  ts cv rank sel
+	dup null ne {
+	    %
+	    % the new timestamp must be ge than the existing
+	    % selections timestamp, and le than currenttime
+	    %
+	    dup /Time get 4 index le			%  ts cv rank sel bool
+	    4 index currenttime le and {		%  ts cv rank sel
+		/setXselection ClassXSelection send
+	    } {
+	        pop pop pop pop				%  --
+	    } ifelse
+	} {
+	    /setXselection ClassXSelection send
+	} ifelse
+    } def
+
+    /X11-ConvertSelection { %  timestamp requestor prop target selection  =>  --
+	dup /XNeWSGetSelection ClassXSelection send
+	/getselection ClassXSelection send	%  ts req prop trgt sel selinst
+	dup null ne {
+	    dup /XSelection? known {		%  ts req prop trgt sel selinst
+	        % X client holds the selection
+	        /convertXselection exch send	%  --
+	    } {					%  ... selinst
+	        % somebody else holds the selection; get it and tell the client
+	        /convertselection ClassXSelection send
+	    } ifelse
+	} {					%  ts req prop trgt sel selinst
+	    % nobody holds the selection; tell the client
+	    /convertselection ClassXSelection send
+	} ifelse
+    } def
+
+    %
+    % X specific events that each X interpreter will express interest upon
+    %
+    /XSelectionInterests 4 dict begin
+	/SelectionRequest	/writeXevent load def
+	/SelectionClear		/writeXevent load def
+    currentdict end def
+
+end % Xcompat_private

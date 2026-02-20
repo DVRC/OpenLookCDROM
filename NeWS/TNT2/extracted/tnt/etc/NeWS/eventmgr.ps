@@ -1,0 +1,333 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%       @(#)eventmgr.ps 23.18 91/02/11
+%
+
+/ClassEventMgr ClassObject [/DoItInterest /SelfRef]
+classbegin
+
+% Class Variables
+    % The Name dict for the "doit" interest used by event managers
+    % to send executable code segments to each other.  This is shared
+    % among all event managers, saving 44 bytes per event manager.
+    %
+    /DoItNameDict 2 dict dup begin
+	/DoItEvent { % event => -; execute event's ClientData proc
+	    /ClientData get exec	% ClientData: - => -
+	} def
+	/SendEvent { % event => -; send ClientData as method
+	    /ClientData get		% [<args> /method obj]
+	    aload pop send
+	} def
+    end def
+
+% Defaults:
+    /DefaultProcessName (ClassEventMgr) def
+    /Robust? false def
+
+% Methods:
+
+    % /new { % - => instance
+
+    % Override: make our object a magic instance of a NeWS process.
+    %
+    /NewObject { % - => instance
+	{   createevent dup /Name DoItNameDict put
+	    currentprocess /DoItInterest 2 index put
+	    currentprocess /SelfRef currentprocess soften put
+	    expressinterest
+	    InitContext
+	    {
+		{/awaitevent load loop} stopped {
+		    /HandleError currentprocess send
+		} {
+		    exit
+		} ifelse
+	    } loop
+	} fork /NewMagic self send
+	dup /ProcessName DefaultProcessName put
+	dup /ErrorDetailLevel 1 put
+	% Let forked process start running.  Note: the process will
+	% be an object by the time the fork procedure runs!
+	pause
+    } def
+
+    % Override: Exit the event management loop.
+    %
+    /destroy { % - => -; remove clients and quit eventmgr
+	/SelfRef null def
+	State /zombie ne {
+	    /removeallclients self send
+	    null blockinputqueue
+	    {unblockinputqueue quit} /callmanager self send
+	} if
+    } def
+    % Destroy eventmgr after pending events processed.  Used by clients
+    % needing existing events to be processed before quitting eventmgr.
+    %
+    /queuedestroy { % - => -; destroy via callmanager
+	/SelfRef null def
+	State /zombie ne {
+	    null blockinputqueue
+	    {unblockinputqueue quit} /callmanager self send
+	} if
+    } def
+
+    % Interests passed to an eventmanager specify executable matches.
+    % That is, at least one of the matching fields in the interest will
+    % have a dict with executable values which will run on exit from the
+    % awaitevent; when all executable matches have run, the event will be
+    % consumed -- the operand stack should be restored to the state it
+    % had before the awaitevent was executed.
+    % 
+    % To create a simple callback style ClassInterest instance, use:
+    %    can /DownTransition 1 dict dup begin
+    %        PointButton { % event => -
+    %            ...
+    %        } def
+    %    end /new ClassInterest send
+
+    % Add a new set of client interests to the running manager process.
+    %
+    /addclients { % interests => -
+	{/addclient self send} forall
+    } def
+    % Add a single client
+    %
+    /addclient { % interest => -
+	dup /Process self put
+	nullevent /activate 3 -1 roll send
+    } def
+
+    % Remove a set of client interests and associated data from the
+    % running manager process.
+    %
+    /removeclients { % interests => -
+	{/removeclient self send} forall
+    } def
+    % Remove a single client
+    %
+    /removeclient { % interest => -
+	/deactivate exch send
+    } def
+
+    % Remove all the interests expressed on behalf of a client. This
+    % will leave the event manager running with only the interest used
+    % by /callmanager.
+    %
+    /removeallclients { % - => -
+        Interests {
+            dup DoItInterest eq {
+                pop
+            } {
+		/removeclient self send
+            } ifelse
+         } forall
+    } def
+%    % remove all non-shared interests for this canvas.
+%    /removecanvasclients { % canvas => -
+%        Interests {
+%            2 copy /Canvas get eq { % can int
+%		/removeclient self send
+%            } {
+%                pop
+%            } ifelse
+%         } forall
+%         pop
+%    } def
+
+    % Clear the context of the event managers process.
+    %
+    /clearcontext { % - => -; clears the running event manager context
+	{/ClearContext currentprocess send} /callmanager self send
+    } def
+
+    % Return whether or not the process is dead.
+    %
+    /active? { % - => bool; return whether the eventmgr is active
+	State /zombie ne
+    } def
+
+    % Return whether or not the process will recover from errors.
+    %
+    /robust? { % - => bool; return whether the eventmgr is robust
+	Robust?
+    } def
+
+    % Set whether or not the process will recover from errors.
+    %
+    /setrobust { % bool => -; set whether the eventmgr is robust
+	/Robust? exch def
+    } def
+
+    % Execute proc within the eventmgr's process.  Done using DoItEvent.
+    %
+    /callmanager { % proc => -; exec proc in emgr process using "deliverevent"
+	createevent begin
+	    /ClientData	exch def
+	    /Name	/DoItEvent def
+	    currentdict
+	end DoItInterest			% event interest
+	dup /IsInterest get {
+	    deliverevent			% -
+	} {
+	    pop pop				% -
+	} ifelse
+    } def
+
+%    % Execute proc with args within the eventmgr's process.
+%    /argcallmanager { % argarray proc => -; callmanager w/ args
+%	append cvx /callmanager self send
+%    } def
+
+    % Perform a "send" within eventmgr's context.
+    %
+    /sendmanager { % [<args> /method obj] => -; 
+	createevent begin
+	    /ClientData	exch def		% -
+	    /Name	/SendEvent def
+	    currentdict
+	end DoItInterest			% event interest
+	dup /IsInterest get {
+	    deliverevent			% -
+	} {
+	    pop pop				% -
+	} ifelse
+
+    } def
+
+% Utilities:
+
+    % Utilities for use by the global manager.
+    /GlobalMgrUtils dictbegin
+	% Perform "event /method can send" within canvases's eventmgr process.
+	%
+        /SendCanvasHandler { % event method => -;
+            1 index /Canvas get dup /EventMgr get       % ev /method can emgr
+            dup null ne {
+                /DoItInterest get dup /IsInterest get {     % ev /method can int
+                    createevent begin
+                        /ClientData 5 -3 roll 3 array astore def    % int
+                        /Name /SendEvent def
+                        currentdict			    % int event
+                    end exch deliverevent
+		} {
+                    pop pop pop pop
+		} ifelse
+	    } {
+                pop pop pop pop
+	    } ifelse
+	} def
+
+	% OBSOLETE
+	%   Execute proc with process's userdict & stdout.
+	%
+	/DoInContext { % proc process => <results>;
+	    % Note: load used in case file is executable!
+	    currentprocess begin
+		/Temp /Stdout load def		% save my stdout
+		/Stdout 1 index /Stdout get def	% install context's stdout
+	    end
+	    /DictionaryStack get 1 get begin	% push context's userdict
+		exec
+	    end
+	    currentprocess begin
+		/Stdout /Temp load def
+		/Temp null def
+	    end
+	} def
+
+%	%   Send method to canvas with userdict & stdout from
+%	%   canvas's event manager
+%	%
+%	%   <args>  method  canvas  =>  <results>
+%	/SendInContext {    % <args>  method  canvas  =>  <results>;
+%	    { send } /eventmgr 2 index send DoInContext
+%	} def
+
+    dictend def
+
+    % Special initialization for global managers.  This is done
+    % automatically for all managers which are started by "init.ps".
+    % This is done by noticing that there is no "userdict". If you build
+    % a global manager in a different environment, to restart a global
+    % manager, for example, then you will want to explicitly call this.
+    %
+    /initglobalmanager { % - => -; (re) initialize a global manager
+	{   countdictstack 1 eq {growabledict begin} if
+	    //GlobalMgrUtils {def} forall
+	    true /setrobust currentprocess send
+	} /callmanager self send
+    } def
+
+    % Initialize the context for the event manager
+    %
+    /InitContext { % .. => ..; initialize the context for this manager
+	ClearContext
+	countdictstack 1 eq { % Global Managers started from init.ps
+	    growabledict begin
+	    //GlobalMgrUtils {def} forall
+	    true /setrobust currentprocess send
+	} {
+	    % To get /SendCanvasHandler
+	    //GlobalMgrUtils {def} forall
+	} ifelse
+    } def
+
+    % Re-initialize the context for this manager
+    %
+    /ClearContext { % .. => ..; re-initialize the context for this manager
+	clearsendcontexts
+	countdictstack 2 sub 0 max {end} repeat
+	clear
+    } def
+
+    % The default error handler: report the error and clear the context.
+    % To have errors exit the event manager, simply use:
+    %		/HandleError {quit} def
+    % Note: there is a fine point: "killprocess" is implemented as
+    % an error.  A robust manager should probably not survive a
+    % killprocess.  An exception may be made for a global manager.
+    %
+    /KillProcessError? { % - => bool
+	$error type /dicttype ne {false} {
+	    $error /errorname get /killprocess eq
+	} ifelse
+    } def
+    /HandleError { % .. => ..; handle error in event loop
+	Robust? {
+	    unblockinputqueue
+	    /deactivateall ClassFullScreenInterest send
+% REMIND: FullScreen may become obsolete if server changes to allow true
+% X grabs on behalf of NeWS.
+	    ExecutiveErrorHandler
+	    ClearContext
+	} {
+	    KillProcessError? not {ExecutiveErrorHandler} if
+	    % don't just quit; must queue the quit so we can be sure
+	    % no Synchronous events are left hanging waiting for this
+	    % LEM to process them
+	    /queuedestroy self send
+	} ifelse
+    } def
+
+classend def
+
+systemdict /GlobalEventMgr known {
+    /destroy GlobalEventMgr send
+} if
+systemdict /GlobalEventMgr /new ClassEventMgr send put
+GlobalEventMgr /ProcessName (GlobalEventMgr) put
+
+systemdict /GlobalSystemEventMgr known {
+    /destroy GlobalSystemEventMgr send
+} if
+systemdict /GlobalSystemEventMgr /new ClassEventMgr send put
+GlobalSystemEventMgr /Priority 100 put
+GlobalSystemEventMgr /ProcessName (GlobalSystemEventMgr) put
+
+% REMIND: there are non-ClassInterest interests in GlobalSystemEventMgr.
+% This causes it to fail to destroy properly.  Mail to bruce.

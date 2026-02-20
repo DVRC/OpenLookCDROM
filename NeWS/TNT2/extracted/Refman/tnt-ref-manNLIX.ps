@@ -1,0 +1,7306 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 4 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 20 /Palatino-Italic FMDEFINEFONT
+2 13 /Palatino-Bold FMDEFINEFONT
+%%Page: "295" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+0 X
+N
+45 105 567 114 R
+7 X
+V
+0 F
+0 X
+0.09 (295) 535.25 108 S
+55.01 522.61 558.36 589.36 C
+0 72 612 720 C
+1 F
+0 X
+0 K
+-0.4 (Index) 199.01 509.28 S
+201.02 144 370.22 468 R
+7 X
+V
+2 F
+0 X
+4 K
+0.13 (A) 201.02 459.33 S
+0 F
+0 K
+0.09 (abnormal event functions) 201.02 445 S
+0.09 (r) 219.02 434 S
+0.09 (egistering) 222.5 434 S
+(,) 262.76 434 T
+0.09 (232) 269.5 434 S
+0.09 (see wir) 219.02 423 S
+0.09 (e_SkipEvent) 247.82 423 S
+(,) 298.38 423 T
+0.09 (233) 305.12 423 S
+0.09 (abnormal event handling) 201.02 410.5 S
+(,) 303.54 410.5 T
+0.09 (231) 310.28 410.5 S
+0.09 (/abbr) 201.02 398 S
+0.09 (eviated) 224.74 398 S
+0.09 (ClassButton) 219.02 387 S
+(,) 268.02 387 T
+0.09 (30) 274.77 387 S
+0.09 (absolute placement) 201.02 374.5 S
+(,) 279.55 374.5 T
+0.09 (89) 286.29 374.5 S
+0.09 (accessing the psio \336les) 201.02 362 S
+(,) 292.45 362 T
+0.09 (233) 299.19 362 S
+0.09 (activation) 201.02 349.5 S
+0.09 (by bags) 219.02 338.5 S
+(,) 250.14 338.5 T
+0.09 (17) 256.88 338.5 S
+0.09 (/activate) 201.02 326 S
+0.09 (ClassBag) 219.02 315 S
+(,) 255.83 315 T
+0.09 (18) 262.57 315 S
+0.09 (ClassCanvas) 219.02 304 S
+(,) 270.6 304 T
+0.09 (46) 277.33 304 S
+0.09 (/active?) 201.02 291.5 S
+0.09 (ClassCanvas) 219.02 280.5 S
+(,) 270.6 280.5 T
+0.09 (47) 277.33 280.5 S
+0.09 (active) 201.02 268 S
+0.09 (buttons) 219.02 257 S
+(,) 249.85 257 T
+0.09 (30) 256.59 257 S
+0.09 (/addclient) 201.02 244.5 S
+0.09 (ClassBag) 219.02 233.5 S
+(,) 255.83 233.5 T
+0.09 (18) 262.57 233.5 S
+0.09 (ClassBor) 219.02 222.5 S
+0.09 (derBag) 254.63 222.5 S
+(,) 283.5 222.5 T
+0.09 (26) 290.24 222.5 S
+0.09 (/addclient \050absolute format\051) 201.02 210 S
+0.09 (ClassPanel) 219.02 199 S
+(,) 263.1 199 T
+0.09 (133) 269.84 199 S
+0.09 (/addclient \050calculated format\051) 201.02 186.5 S
+0.09 (ClassPanel) 219.02 175.5 S
+(,) 263.1 175.5 T
+0.09 (133) 269.84 175.5 S
+0.09 (/addclient \050spaced and grid formats\051) 201.02 163 S
+0.09 (ClassPanel) 219.02 152 S
+(,) 263.1 152 T
+0.09 (133) 269.84 152 S
+385.78 144 558 468 R
+7 X
+V
+0 X
+0.09 (/addsubwindow) 385.78 462 S
+0.09 (ClassW) 403.78 451 S
+0.09 (indow) 433.91 451 S
+(,) 460.1 451 T
+0.09 (222) 466.84 451 S
+0.09 (adding window attributes) 385.78 438.5 S
+0.09 (see /setattribute) 403.78 427.5 S
+(,) 470.61 427.5 T
+0.09 (218) 477.35 427.5 S
+0.09 (adding x y coor) 385.78 415 S
+0.09 (dinates) 449.01 415 S
+(,) 478.52 415 T
+0.09 (106) 485.26 415 S
+0.09 (adjusting sizes) 385.78 402.5 S
+(,) 445.5 402.5 T
+0.09 (28) 452.24 402.5 S
+0.09 (adjusting the selection) 385.78 390 S
+(,) 476.61 390 T
+0.09 (69) 483.35 390 S
+0.09 (/AdjustT) 385.78 377.5 S
+0.09 (o) 423.37 377.5 S
+0.09 (ClassCanvas) 403.78 366.5 S
+(,) 455.35 366.5 T
+0.09 (69) 462.09 366.5 S
+0.09 (Again key) 385.78 354 S
+(,) 427.46 354 T
+0.09 (61) 434.2 354 S
+0.09 (/AlphaNumeric) 385.78 341.5 S
+0.09 (ClassT) 403.78 330.5 S
+0.09 (extField) 430.1 330.5 S
+(,) 462.72 330.5 T
+0.09 (214) 469.46 330.5 S
+0.09 (/AlphaNumericT) 385.78 318 S
+0.09 (able) 457.18 318 S
+0.09 (ClassT) 403.78 307 S
+0.09 (extField) 430.1 307 S
+(,) 462.72 307 T
+0.09 (214) 469.46 307 S
+0.09 (altering the item gr) 385.78 294.5 S
+0.09 (oup) 463.69 294.5 S
+(,) 479.69 294.5 T
+0.09 (91) 486.43 294.5 S
+0.09 (/appenditem) 385.78 282 S
+0.09 (ClassItemGr) 403.78 271 S
+0.09 (oup) 454.31 271 S
+(,) 470.31 271 T
+0.09 (91) 477.05 271 S
+0.09 (ClassMenu) 403.78 260 S
+(,) 449.14 260 T
+0.09 (1) 455.89 260 S
+0.09 (12) 459.98 260 S
+0.09 (ClassScr) 403.78 249 S
+0.09 (ollList) 437.7 249 S
+(,) 463.31 249 T
+0.09 (164) 470.05 249 S
+0.09 (application windows) 385.78 236.5 S
+0.09 (see ClassBaseW) 403.78 225.5 S
+0.09 (indow) 467.4 225.5 S
+(,) 493.59 225.5 T
+0.09 (224) 500.33 225.5 S
+0.09 (applications) 385.78 213 S
+0.09 (an pr) 403.78 202 S
+0.09 (ocesses) 424.99 202 S
+(,) 454.56 202 T
+0.09 (13) 461.3 202 S
+0.09 (quitting and systemdict) 403.78 191 S
+(,) 500.14 191 T
+0.09 (1) 506.88 191 S
+0.09 (1) 510.97 191 S
+0.09 (quitting and user) 403.78 180 S
+0.09 (dict) 473.71 180 S
+(,) 489.1 180 T
+0.09 (1) 495.84 180 S
+0.09 (1) 499.92 180 S
+0.09 (splitting) 403.78 169 S
+(,) 437.73 169 T
+0.09 (9) 444.47 169 S
+0.09 (using events to communicate) 403.78 158 S
+(,) 522.27 158 T
+0.09 (9) 529.01 158 S
+FMENDPAGE
+%%EndPage: "295" 2
+1 9 /Palatino-Italic FMDEFINEFONT
+%%Page: "296" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (296) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (/Arr) 198 642 S
+0.09 (owKey) 217.74 642 S
+0.09 (ClassCanvas) 216 631 S
+(,) 267.57 631 T
+0.09 (60) 274.31 631 S
+0.09 (/Arr) 198 618.5 S
+0.09 (owKeyUp) 217.74 618.5 S
+0.09 (ClassCanvas) 216 607.5 S
+(,) 267.57 607.5 T
+0.09 (60) 274.31 607.5 S
+0.09 (associating server and client objects) 198 595 S
+(,) 342.73 595 T
+0.09 (237) 349.47 595 S
+0.09 (/AsciiReception) 198 582.5 S
+0.09 (ClassCanvas) 216 571.5 S
+(,) 267.57 571.5 T
+0.09 (73) 274.31 571.5 S
+0.09 (/attribute) 198 559 S
+0.09 (ClassW) 216 548 S
+0.09 (indow) 246.13 548 S
+(,) 272.33 548 T
+0.09 (219) 279.07 548 S
+0.09 (attributes) 198 535.5 S
+(,) 236.85 535.5 T
+0.09 (218) 243.59 535.5 S
+0.09 (attributes of selections) 198 523 S
+0.09 (r) 216 512 S
+0.09 (etrieving) 219.48 512 S
+(,) 255.91 512 T
+0.09 (174) 262.65 512 S
+0.09 (auto r) 198 499.5 S
+0.09 (epeat) 221.93 499.5 S
+0.09 (sliders) 216 488.5 S
+(,) 242.83 488.5 T
+0.09 (194) 249.57 488.5 S
+0.09 (/AutoScr) 198 476 S
+0.09 (ollPosition) 236.51 476 S
+0.09 (ClassT) 216 465 S
+0.09 (extField) 242.32 465 S
+(,) 274.94 465 T
+0.09 (213) 281.68 465 S
+2 F
+4 K
+0.13 (B) 198 437.33 S
+0 F
+0 K
+0.09 (/Backgr) 198 423 S
+0.09 (oundColor) 231.43 423 S
+0.09 (ClassCanvas) 216 412 S
+(,) 267.57 412 T
+0.09 (37) 274.31 412 S
+0.09 (bags) 198 399.5 S
+0.09 (activating canvases in) 216 388.5 S
+(,) 304.9 388.5 T
+0.09 (47) 311.65 388.5 S
+0.09 (event management) 216 377.5 S
+(,) 293.39 377.5 T
+0.09 (18) 300.13 377.5 S
+0.09 (methods to r) 216 366.5 S
+0.09 (espond to) 267.41 366.5 S
+(,) 307.45 366.5 T
+0.09 (17) 314.19 366.5 S
+0.09 (moving clients to another) 216 355.5 S
+(,) 319.73 355.5 T
+0.09 (18) 326.48 355.5 S
+0.09 (number of clients in) 216 344.5 S
+(,) 297.19 344.5 T
+0.09 (19) 303.93 344.5 S
+0.09 (tracking and r) 216 333.5 S
+0.09 (egion clients) 273.16 333.5 S
+(,) 324.13 333.5 T
+0.09 (20) 330.87 333.5 S
+0.09 (types of clients) 216 322.5 S
+(,) 276.77 322.5 T
+0.09 (17) 283.52 322.5 S
+0.09 (batching r) 198 310 S
+0.09 (equests) 238.99 310 S
+(,) 269.24 310 T
+0.09 (175) 275.98 310 S
+0.09 (/basewindow) 198 297.5 S
+0.09 (ClassNotice) 216 286.5 S
+(,) 264.31 286.5 T
+0.09 (122) 271.05 286.5 S
+0.09 (/bbox) 198 274 S
+0.09 (ClassCanvas) 216 263 S
+(,) 267.57 263 T
+0.09 (43) 274.31 263 S
+0.09 (ClassRegion) 216 252 S
+(,) 266.15 252 T
+0.09 (143) 272.89 252 S
+0.09 (bor) 198 239.5 S
+0.09 (der bags) 211.54 239.5 S
+0.09 (r) 216 228.5 S
+0.09 (earranging clients) 219.48 228.5 S
+(,) 292.3 228.5 T
+0.09 (25) 299.05 228.5 S
+0.09 (using gaps to position clients) 216 217.5 S
+(,) 334.21 217.5 T
+0.09 (26) 340.95 217.5 S
+0.09 (using insets to position clients) 216 206.5 S
+(,) 338.39 206.5 T
+0.09 (26) 345.13 206.5 S
+0.09 (bor) 198 194 S
+0.09 (derbags) 211.54 194 S
+0.09 (calculating minsize of clients) 216 183 S
+(,) 333.23 183 T
+0.09 (27) 339.98 183 S
+0.09 (clients) 216 172 S
+0.09 (interaction of named) 234 161 S
+(,) 318.45 161 T
+0.09 (26) 325.19 161 S
+0.09 (how clients change as bag ) 216 150 S
+0.09 (changes) 441 642 S
+(,) 473.69 642 T
+0.09 (28) 480.43 642 S
+0.09 (how clients sizes ar) 405 631 S
+0.09 (e adjusted) 483.59 631 S
+(,) 525.08 631 T
+0.09 (28) 531.82 631 S
+0.09 (pr) 405 620 S
+0.09 (ecedence of layout) 413.97 620 S
+(,) 489.27 620 T
+0.09 (26) 496.01 620 S
+0.09 (/BotRightPath) 387 607.5 S
+0.09 (ClassCanvas) 405 596.5 S
+(,) 456.57 596.5 T
+0.09 (39) 463.31 596.5 S
+0.09 (ClassRegion) 405 585.5 S
+(,) 455.15 585.5 T
+0.09 (141) 461.89 585.5 S
+0.09 (busy buttons) 387 573 S
+(,) 439.72 573 T
+0.09 (30) 446.46 573 S
+0.09 (busy windows) 387 560.5 S
+0.09 (see /setvisualstate) 405 549.5 S
+(,) 480.37 549.5 T
+0.09 (220) 487.11 549.5 S
+0.09 (busy windows and event handling) 387 537 S
+(,) 527.99 537 T
+0.09 (221) 534.73 537 S
+0.09 (/buttons) 387 524.5 S
+0.09 (ClassNotice) 405 513.5 S
+(,) 453.31 513.5 T
+0.09 (122) 460.05 513.5 S
+0.09 (buttons) 387 501 S
+0.09 (accepting user actions) 405 490 S
+(,) 494.49 490 T
+0.09 (30) 501.23 490 S
+0.09 (busy) 405 479 S
+(,) 424.56 479 T
+0.09 (30) 431.3 479 S
+0.09 (limitations on display size) 405 468 S
+(,) 511.66 468 T
+0.09 (30) 518.4 468 S
+0.09 (menu) 405 457 S
+0.09 (specifying item list) 423 446 S
+(,) 500.01 446 T
+0.09 (32) 506.75 446 S
+0.09 (wher) 423 435 S
+0.09 (e menu appears) 443.78 435 S
+(,) 508.18 435 T
+0.09 (33) 514.92 435 S
+0.09 (menus) 405 424 S
+0.09 (menu mark) 423 413 S
+(,) 469.92 413 T
+0.09 (33) 476.67 413 S
+0.09 (noti\336er ar) 405 402 S
+0.09 (guments) 445 402 S
+(,) 480.26 402 T
+0.09 (31) 487 402 S
+0.09 (putting in notices) 405 391 S
+0.09 (see /setbuttons) 423 380 S
+(,) 485.71 380 T
+0.09 (122) 492.45 380 S
+2 F
+4 K
+0.13 (C) 387 352.33 S
+0 F
+0 K
+0.09 (calculated placement) 387 338 S
+(,) 472.6 338 T
+0.09 (89) 479.34 338 S
+0.09 (setting a menu default) 405 327 S
+(,) 496.17 327 T
+0.09 (1) 502.91 327 S
+0.09 (1) 507 327 S
+0.09 (1) 511.09 327 S
+0.09 (calculated placement utilities) 387 314.5 S
+(,) 505.6 314.5 T
+0.09 (90) 512.34 314.5 S
+(, ) 521.51 314.5 T
+0.09 (1) 526 314.5 S
+0.09 (1) 530.09 314.5 S
+0.09 (1) 534.18 314.5 S
+0.09 (calculated pr) 387 302 S
+0.09 (otocol) 439.55 302 S
+0.09 (de\336ned) 405 291 S
+(,) 435.8 291 T
+0.09 (103) 442.54 291 S
+0.09 (callback) 387 278.5 S
+0.09 (context) 405 267.5 S
+(,) 434.56 267.5 T
+0.09 (48) 441.3 267.5 S
+0.09 (callback function envir) 387 255 S
+0.09 (onment) 479.66 255 S
+(,) 510.74 255 T
+0.09 (236) 517.48 255 S
+0.09 (callbacks) 387 242.5 S
+0.09 (mouse tracking in items) 405 231.5 S
+(,) 502.43 231.5 T
+0.09 (95) 509.17 231.5 S
+0.09 (/callmanager) 387 219 S
+0.09 (ClassEventMgr) 405 208 S
+(,) 467.36 208 T
+0.09 (50) 474.1 208 S
+0.09 (/callnoti\336er) 387 195.5 S
+0.09 (ClassT) 405 184.5 S
+0.09 (extField) 431.33 184.5 S
+(,) 463.94 184.5 T
+0.09 (206) 470.68 184.5 S
+0.09 (/CanRenderAs) 387 172 S
+0.09 (ClassSelection) 405 161 S
+(,) 462.98 161 T
+0.09 (186) 469.72 161 S
+0.09 (canvas) 387 148.5 S
+(,) 414.64 148.5 T
+0.09 (41) 421.38 148.5 S
+(, ) 430.55 148.5 T
+0.09 (42) 435.04 148.5 S
+FMENDPAGE
+%%EndPage: "296" 3
+%%Page: "297" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (297) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (activating) 216 642 S
+(,) 256.27 642 T
+0.09 (46) 263.01 642 S
+0.09 (default path) 216 631 S
+(,) 265.63 631 T
+0.09 (44) 272.37 631 S
+0.09 (event managers) 216 620 S
+(,) 280.17 620 T
+0.09 (46) 286.91 620 S
+0.09 (help) 216 609 S
+(,) 233.91 609 T
+0.09 (63) 240.65 609 S
+0.09 (initializing an instance) 216 598 S
+0.09 (see /NewInit) 234 587 S
+(,) 288.27 587 T
+0.09 (36) 295.01 587 S
+0.09 (making selectable) 216 576 S
+(,) 288.39 576 T
+0.09 (65) 295.13 576 S
+0.09 (mapped and visibility) 216 565 S
+(,) 305.49 565 T
+0.09 (42) 312.23 565 S
+0.09 (mapping default) 216 554 S
+(,) 283.92 554 T
+0.09 (42) 290.66 554 S
+0.09 (mouse tracking) 216 543 S
+(,) 278.69 543 T
+0.09 (55) 285.43 543 S
+0.09 (moving to another bag) 216 532 S
+(,) 308.34 532 T
+0.09 (18) 315.08 532 S
+0.09 (opaque) 216 521 S
+0.09 (damage) 234 510 S
+(,) 266.26 510 T
+0.09 (51) 273 510 S
+0.09 (overriding /r) 216 499 S
+0.09 (eshape) 270.59 499 S
+(,) 298.68 499 T
+0.09 (43) 305.42 499 S
+0.09 (r) 216 488 S
+0.09 (eceiving events) 219.48 488 S
+(,) 281.87 488 T
+0.09 (46) 288.61 488 S
+0.09 (utility painting methods) 216 477 S
+(,) 314.9 477 T
+0.09 (39) 321.64 477 S
+0.09 (when valid) 216 466 S
+(,) 261.7 466 T
+0.09 (45) 268.44 466 S
+0.09 (canvas activation) 198 453.5 S
+0.09 (in bags) 216 442.5 S
+(,) 244.99 442.5 T
+0.09 (47) 251.74 442.5 S
+0.09 (canvas color variable names) 198 430 S
+(,) 312.13 430 T
+0.09 (37) 318.87 430 S
+0.09 (canvas cursors) 198 417.5 S
+(,) 257.64 417.5 T
+0.09 (41) 264.38 417.5 S
+0.09 (canvas fonts) 198 405 S
+0.09 (making curr) 216 394 S
+0.09 (ent font) 265.85 394 S
+(,) 297.35 394 T
+0.09 (40) 304.09 394 S
+0.09 (show operator) 216 383 S
+(,) 274.9 383 T
+0.09 (40) 281.64 383 S
+0.09 (canvas menus) 198 370.5 S
+(,) 255.12 370.5 T
+0.09 (53) 261.87 370.5 S
+0.09 (canvas painting) 198 358 S
+0.09 (r) 216 347 S
+0.09 (endering model) 219.48 347 S
+0.09 (painting method or) 234 336 S
+0.09 (der) 312.72 336 S
+(,) 326.34 336 T
+0.09 (38) 333.08 336 S
+0.09 (canvas par) 198 323.5 S
+0.09 (ents) 241.53 323.5 S
+0.09 (painting unmapped) 216 312.5 S
+(,) 296.97 312.5 T
+0.09 (42) 303.71 312.5 S
+0.09 (canvases and selections) 198 300 S
+0.09 (sequence of operations) 216 289 S
+(,) 308.92 289 T
+0.09 (179) 315.66 289 S
+0.09 (/car) 198 276.5 S
+0.09 (et) 215.68 276.5 S
+0.09 (ClassT) 216 265.5 S
+0.09 (extField) 242.32 265.5 S
+(,) 274.94 265.5 T
+0.09 (206) 281.68 265.5 S
+0.09 (/Car) 198 253 S
+0.09 (etDelay) 218.06 253 S
+0.09 (ClassT) 216 242 S
+0.09 (extField) 242.32 242 S
+(,) 274.94 242 T
+0.09 (213) 281.68 242 S
+0.09 (CellSize) 198 229.5 S
+0.09 (ClassLayout) 216 218.5 S
+(,) 266.33 218.5 T
+0.09 (105) 273.07 218.5 S
+0.09 (Changing event managers for execution ) 198 206 S
+0.09 (and sends) 234 195 S
+(,) 274.92 195 T
+0.09 (50) 281.66 195 S
+0.09 (/characters) 198 182.5 S
+0.09 (ClassT) 216 171.5 S
+0.09 (extField) 242.32 171.5 S
+(,) 274.94 171.5 T
+0.09 (205) 281.68 171.5 S
+0.09 (/childr) 198 159 S
+0.09 (en+) 227.41 159 S
+0.09 (ClassCanvas) 216 148 S
+(,) 267.57 148 T
+0.09 (41) 274.31 148 S
+0.09 (/choicemode) 387 642 S
+0.09 (ClassScr) 405 631 S
+0.09 (ollList) 438.92 631 S
+(,) 464.53 631 T
+0.09 (164) 471.27 631 S
+0.09 (ClassSettings) 405 620 S
+(,) 458.81 620 T
+0.09 (190) 465.55 620 S
+0.09 (/chosen) 387 607.5 S
+0.09 (ClassSettings) 405 596.5 S
+(,) 458.81 596.5 T
+0.09 (190) 465.55 596.5 S
+0.09 (/chosen?) 387 584 S
+0.09 (ClassScr) 405 573 S
+0.09 (ollList) 438.92 573 S
+(,) 464.53 573 T
+0.09 (165) 471.27 573 S
+0.09 (class system) 387 560.5 S
+0.09 (r) 405 549.5 S
+0.09 (elationship to PostScript) 408.48 549.5 S
+(,) 507.49 549.5 T
+0.09 (3) 514.23 549.5 S
+0.09 (classes) 387 537 S
+0.09 (wher) 405 526 S
+0.09 (e loaded) 425.78 526 S
+(,) 460.35 526 T
+0.09 (3) 467.1 526 S
+0.09 (ClassHScr) 387 513.5 S
+0.09 (ollbar) 428.49 513.5 S
+0.09 (Scr) 405 502.5 S
+0.09 (ollbars) 417.37 502.5 S
+(,) 444.96 502.5 T
+0.09 (151) 451.7 502.5 S
+0.09 (ClassRegion) 387 490 S
+0.09 (/ModifyFont) 405 479 S
+(,) 459.01 479 T
+0.09 (142) 465.75 479 S
+0.09 (ClassSelection/Deselect) 387 466.5 S
+(,) 484.45 466.5 T
+0.09 (183) 491.19 466.5 S
+0.09 (ClassVScr) 387 454 S
+0.09 (ollbar) 427.5 454 S
+0.09 (Scr) 405 443 S
+0.09 (ollbars) 417.37 443 S
+(,) 444.96 443 T
+0.09 (151) 451.7 443 S
+0.09 (ClearAllChoices) 387 430.5 S
+(,) 453.14 430.5 T
+0.09 (165) 459.88 430.5 S
+0.09 (/clear) 387 418 S
+0.09 (choice) 411.78 418 S
+0.09 (ClassScr) 405 407 S
+0.09 (ollList) 438.92 407 S
+(,) 464.53 407 T
+0.09 (165) 471.27 407 S
+0.09 (/clearselection) 387 394.5 S
+0.09 (ClassSelection) 405 383.5 S
+(,) 462.98 383.5 T
+0.09 (187) 469.72 383.5 S
+0.09 (/cleartar) 387 371 S
+0.09 (get) 423.02 371 S
+0.09 (ClassButtons) 405 360 S
+(,) 457.9 360 T
+0.09 (32) 464.64 360 S
+0.09 (ClassContr) 405 349 S
+0.09 (ol) 449.83 349 S
+(,) 457.53 349 T
+0.09 (78) 464.27 349 S
+0.09 (ClassMenu) 405 338 S
+(,) 450.37 338 T
+0.09 (1) 457.11 338 S
+0.09 (17) 461.2 338 S
+0.09 (ClassScr) 405 327 S
+0.09 (ollList) 438.92 327 S
+(,) 464.53 327 T
+0.09 (169) 471.27 327 S
+0.09 (Sliders) 405 316 S
+(,) 432.74 316 T
+0.09 (196) 439.48 316 S
+0.09 (/client) 387 303.5 S
+0.09 (ClassBag) 405 292.5 S
+(,) 441.8 292.5 T
+0.09 (19) 448.55 292.5 S
+0.09 (/clientcount) 387 280 S
+0.09 (ClassBag) 405 269 S
+(,) 441.8 269 T
+0.09 (19) 448.55 269 S
+0.09 (/clientlist) 387 256.5 S
+0.09 (ClassBag) 405 245.5 S
+(,) 441.8 245.5 T
+0.09 (19) 448.55 245.5 S
+0.09 (clients) 387 233 S
+0.09 (bor) 405 222 S
+0.09 (derbags) 418.54 222 S
+(,) 450.78 222 T
+0.09 (28) 457.52 222 S
+0.09 (in bags) 405 211 S
+(,) 433.99 211 T
+0.09 (17) 440.73 211 S
+0.09 (moving to another bag) 405 200 S
+(,) 497.34 200 T
+0.09 (18) 504.08 200 S
+0.09 (names in bor) 405 189 S
+0.09 (derbags) 457.46 189 S
+(,) 489.71 189 T
+0.09 (23) 496.45 189 S
+( to ) 505.62 189 T
+0.09 (24) 517.95 189 S
+0.09 (number in bag) 405 178 S
+(,) 464.38 178 T
+0.09 (19) 471.12 178 S
+0.09 (r) 405 167 S
+0.09 (earranging in bor) 408.48 167 S
+0.09 (der bags) 479.08 167 S
+(,) 513.66 167 T
+0.09 (25) 520.4 167 S
+0.09 (client-server split) 387 154.5 S
+FMENDPAGE
+%%EndPage: "297" 4
+%%Page: "298" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (298) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (NFS) 216 642 S
+(,) 233.45 642 T
+0.09 (10) 240.19 642 S
+0.09 (client-side) 198 629.5 S
+0.09 (exiting) 216 618.5 S
+0.09 (ef) 234 607.5 S
+0.09 (fect on server) 241.32 607.5 S
+(,) 296.02 607.5 T
+0.09 (15) 302.76 607.5 S
+0.09 (r) 216 596.5 S
+0.09 (esponding to messages) 219.48 596.5 S
+(,) 313.16 596.5 T
+0.09 (15) 319.9 596.5 S
+0.09 (/close) 198 584 S
+0.09 (ClassNotice) 216 573 S
+(,) 264.31 573 T
+0.09 (123) 271.05 573 S
+0.09 (ClassW) 216 562 S
+0.09 (indow) 246.13 562 S
+(,) 272.33 562 T
+0.09 (223) 279.07 562 S
+0.09 (/closesubwindows) 198 549.5 S
+0.09 (ClassW) 216 538.5 S
+0.09 (indow) 246.13 538.5 S
+(,) 272.33 538.5 T
+0.09 (222) 279.07 538.5 S
+0.09 (closing a connection) 198 526 S
+(,) 280.29 526 T
+0.09 (229) 287.03 526 S
+0.09 (closing canvases) 198 513.5 S
+(,) 265.07 513.5 T
+0.09 (62) 271.81 513.5 S
+0.09 (closing notices) 198 501 S
+(,) 257.55 501 T
+0.09 (122) 264.29 501 S
+0.09 (/colors) 198 488.5 S
+0.09 (ClassCanvas) 216 477.5 S
+(,) 267.57 477.5 T
+0.09 (36) 274.31 477.5 S
+0.09 (ClassRegion) 216 466.5 S
+(,) 266.15 466.5 T
+0.09 (138) 272.89 466.5 S
+0.09 (colors) 198 454 S
+0.09 (2-D) 216 443 S
+(,) 230.71 443 T
+0.09 (36) 237.45 443 S
+(, ) 246.62 443 T
+0.09 (138) 251.11 443 S
+0.09 (3-D) 216 432 S
+(,) 230.71 432 T
+0.09 (36) 237.45 432 S
+(, ) 246.62 432 T
+0.09 (138) 251.11 432 S
+0.09 (computing) 234 421 S
+(,) 278.24 421 T
+0.09 (36) 284.98 421 S
+(, ) 294.14 421 T
+0.09 (138) 298.64 421 S
+0.09 (Backgr) 216 410 S
+0.09 (ound) 243.9 410 S
+(,) 265.31 410 T
+0.09 (37) 272.05 410 S
+0.09 (backgr) 216 399 S
+0.09 (ound) 243.38 399 S
+(,) 264.79 399 T
+0.09 (139) 271.52 399 S
+0.09 (canvas) 216 388 S
+(,) 243.64 388 T
+0.09 (36) 250.38 388 S
+0.09 (canvas variable names) 216 377 S
+(,) 307.38 377 T
+0.09 (37) 314.12 377 S
+0.09 (For) 216 366 S
+0.09 (egr) 229.56 366 S
+0.09 (ound) 242.52 366 S
+(,) 263.93 366 T
+0.09 (37) 270.67 366 S
+0.09 (for) 216 355 S
+0.09 (egr) 227.56 355 S
+0.09 (ound) 240.52 355 S
+(,) 261.93 355 T
+0.09 (139) 268.67 355 S
+0.09 (r) 216 344 S
+0.09 (egion variable names) 219.48 344 S
+(,) 305.72 344 T
+0.09 (139) 312.46 344 S
+0.09 (when validation occurs) 216 333 S
+(,) 310.87 333 T
+0.09 (36) 317.61 333 S
+(, ) 326.78 333 T
+0.09 (138) 331.27 333 S
+0.09 (/ComputeNamedPosition) 198 320.5 S
+0.09 (ClassSelection) 216 309.5 S
+(,) 273.98 309.5 T
+0.09 (185) 280.72 309.5 S
+0.09 (/computepin) 198 297 S
+0.09 (ClassSelection) 216 286 S
+(,) 273.98 286 T
+0.09 (186) 280.72 286 S
+0.09 (/computerange) 198 273.5 S
+0.09 (ClassSelection) 216 262.5 S
+(,) 273.98 262.5 T
+0.09 (186) 280.72 262.5 S
+0.09 (connection) 198 250 S
+0.09 (and user) 216 239 S
+0.09 (dict) 251.1 239 S
+(,) 266.49 239 T
+0.09 (3) 273.23 239 S
+0.09 (closing) 216 228 S
+(,) 244.8 228 T
+0.09 (229) 251.54 228 S
+0.09 (getting curr) 216 217 S
+0.09 (ent) 263.68 217 S
+(,) 276.42 217 T
+0.09 (230) 283.15 217 S
+0.09 (handling abnormal events) 216 206 S
+(,) 322.41 206 T
+0.09 (231) 329.15 206 S
+0.09 (killing and ef) 216 195 S
+0.09 (fect on user) 269.79 195 S
+0.09 (dict) 316.64 195 S
+(,) 332.03 195 T
+0.09 (15) 338.77 195 S
+0.09 (opening) 216 184 S
+(,) 249.32 184 T
+0.09 (229) 256.06 184 S
+0.09 (opening and curr) 216 173 S
+0.09 (ent wir) 286.18 173 S
+0.09 (e) 315.02 173 S
+(,) 319.42 173 T
+0.09 (229) 326.16 173 S
+0.09 (r) 216 162 S
+0.09 (eestablishing application context) 219.48 162 S
+0.09 (see wir) 234 151 S
+0.09 (e_SetData) 262.8 151 S
+(,) 303.23 151 T
+0.09 (230) 309.97 151 S
+0.09 (connection input) 387 642 S
+0.09 (ignoring) 405 631 S
+0.09 (see wir) 423 620 S
+0.09 (e_Disable) 451.8 620 S
+(,) 491.17 620 T
+0.09 (230) 497.91 620 S
+0.09 (connection r) 387 607.5 S
+0.09 (eader) 437.05 607.5 S
+0.09 (and the local event manager) 405 596.5 S
+(,) 519.57 596.5 T
+0.09 (14) 526.31 596.5 S
+0.09 (context) 387 584 S
+0.09 (callback) 405 573 S
+(,) 437.89 573 T
+0.09 (48) 444.63 573 S
+0.09 (of noti\336cation) 405 562 S
+(,) 461.69 562 T
+0.09 (77) 468.43 562 S
+0.09 (contr) 387 549.5 S
+0.09 (ol surface) 407.9 549.5 S
+0.09 (see ClassPanel) 405 538.5 S
+(,) 464.1 538.5 T
+0.09 (131) 470.84 538.5 S
+0.09 (contr) 387 526 S
+0.09 (ols) 407.9 526 S
+(,) 419.5 526 T
+0.09 (76) 426.24 526 S
+0.09 (interaction with LEM) 405 515 S
+(,) 491.85 515 T
+0.09 (14) 498.59 515 S
+0.09 (tar) 405 504 S
+0.09 (geting mechanism) 416.08 504 S
+(,) 490.39 504 T
+0.09 (78) 497.13 504 S
+0.09 (types of) 405 493 S
+(,) 437.31 493 T
+0.09 (75) 444.05 493 S
+0.09 (value of dif) 405 482 S
+0.09 (fer) 451.32 482 S
+0.09 (ent types) 462.28 482 S
+(,) 499.24 482 T
+0.09 (76) 505.98 482 S
+0.09 (converting descriptions to item ) 387 469.5 S
+0.09 (dictionaries) 423 458.5 S
+(,) 470.63 458.5 T
+0.09 (97) 477.38 458.5 S
+0.09 (coor) 387 446 S
+0.09 (dinates) 404.55 446 S
+0.09 (adding values) 405 435 S
+(,) 462.46 435 T
+0.09 (106) 469.2 435 S
+0.09 (\336nding max value) 405 424 S
+(,) 478.91 424 T
+0.09 (106) 485.65 424 S
+0.09 (\336nding min value) 405 413 S
+(,) 477.63 413 T
+0.09 (106) 484.37 413 S
+0.09 (coor) 387 400.5 S
+0.09 (dinates subtracting values) 404.55 400.5 S
+(,) 510.92 400.5 T
+0.09 (106) 517.66 400.5 S
+0.09 (CPS) 387 388 S
+0.09 (see the) 405 377 S
+1 F
+0.09 ( NeWS 2.1 Programmer\325s Guide) 432.76 377 S
+0 F
+0.09 (cr) 387 364.5 S
+0.09 (eating the grid for itemgr) 394.56 364.5 S
+0.09 (oups) 497.2 364.5 S
+(,) 517.09 364.5 T
+0.09 (89) 523.84 364.5 S
+0.09 (CTM) 387 352 S
+0.09 (changing and /move) 405 341 S
+(,) 490.79 341 T
+0.09 (43) 497.53 341 S
+0.09 (CURRENT) 387 328.5 S
+0.09 (ClassItemGr) 405 317.5 S
+0.09 (oup) 455.54 317.5 S
+(,) 471.54 317.5 T
+0.09 (90) 478.28 317.5 S
+0.09 (ClassLayout) 405 306.5 S
+(,) 455.33 306.5 T
+0.09 (103) 462.07 306.5 S
+0.09 (ClassMenu) 405 295.5 S
+(,) 450.37 295.5 T
+0.09 (1) 457.11 295.5 S
+0.09 (12) 461.2 295.5 S
+0.09 (ClassPanel) 405 284.5 S
+(,) 449.08 284.5 T
+0.09 (135) 455.82 284.5 S
+0.09 (curr) 387 272 S
+0.09 (ent connection) 403.71 272 S
+0.09 (getting) 405 261 S
+(,) 433.63 261 T
+0.09 (230) 440.38 261 S
+0.09 (curr) 387 248.5 S
+0.09 (ent font and canvas font) 403.71 248.5 S
+(,) 501.75 248.5 T
+0.09 (40) 508.49 248.5 S
+0.09 (/Curr) 387 236 S
+0.09 (entT) 411.63 236 S
+0.09 (ext) 429.13 236 S
+0.09 (ClassT) 405 225 S
+0.09 (extCanvas) 431.33 225 S
+(,) 473.48 225 T
+0.09 (202) 480.23 225 S
+0.09 (Curr) 387 212.5 S
+0.09 (ent transformation matrix) 406.09 212.5 S
+0.09 (for r) 405 201.5 S
+0.09 (egions) 422.54 201.5 S
+(,) 448.94 201.5 T
+0.09 (143) 455.68 201.5 S
+0.09 (/Cursor) 387 189 S
+0.09 (ClassCanvas) 405 178 S
+(,) 456.57 178 T
+0.09 (41) 463.31 178 S
+0.09 (/Cursors) 387 165.5 S
+0.09 (ClassCanvas) 405 154.5 S
+(,) 456.57 154.5 T
+0.09 (41) 463.31 154.5 S
+FMENDPAGE
+%%EndPage: "298" 5
+%%Page: "299" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (299) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (cursors) 198 642 S
+(,) 227.67 642 T
+0.09 (41) 234.41 642 S
+2 F
+4 K
+0.13 (D) 198 614.33 S
+0 F
+0 K
+0.09 (/damage) 198 600 S
+0.09 (ClassCanvas) 216 589 S
+(,) 267.57 589 T
+0.09 (51) 274.31 589 S
+0.09 (damage) 198 576.5 S
+0.09 (for r) 216 565.5 S
+0.09 (egions) 233.54 565.5 S
+(,) 259.94 565.5 T
+0.09 (146) 266.68 565.5 S
+0.09 (getting) 216 554.5 S
+(,) 244.63 554.5 T
+0.09 (51) 251.38 554.5 S
+0.09 (model for \336xing) 216 543.5 S
+(,) 281.47 543.5 T
+0.09 (51) 288.21 543.5 S
+0.09 (opaque canvases) 216 532.5 S
+(,) 284.37 532.5 T
+0.09 (51) 291.11 532.5 S
+0.09 (/damageable?) 198 520 S
+0.09 (ClassCanvas) 216 509 S
+(,) 267.57 509 T
+0.09 (51) 274.31 509 S
+0.09 (/damageall) 198 496.5 S
+0.09 (ClassCanvas) 216 485.5 S
+(,) 267.57 485.5 T
+0.09 (52) 274.31 485.5 S
+0.09 (damage callback) 198 473 S
+(,) 265.48 473 T
+0.09 (53) 272.22 473 S
+0.09 (damage handling) 198 460.5 S
+(,) 269.22 460.5 T
+0.09 (51) 275.96 460.5 S
+0.09 (data str) 198 448 S
+0.09 (uctur) 228.59 448 S
+0.09 (es indexed by wir) 250.19 448 S
+0.09 (e) 322.12 448 S
+(,) 326.51 448 T
+0.09 (233) 333.25 448 S
+0.09 (/deactivate) 198 435.5 S
+0.09 (ClassBag) 216 424.5 S
+(,) 252.8 424.5 T
+0.09 (18) 259.55 424.5 S
+0.09 (ClassCanvas) 216 413.5 S
+(,) 267.57 413.5 T
+0.09 (47) 274.31 413.5 S
+0.09 (/decr) 198 401 S
+0.09 (ement) 221.07 401 S
+0.09 (ClassNumericField) 216 390 S
+(,) 293.94 390 T
+0.09 (126) 300.68 390 S
+0.09 (decr) 198 377.5 S
+0.09 (ement/incr) 215.54 377.5 S
+0.09 (ement buttons) 261.81 377.5 S
+0.09 (normalization of value) 216 366.5 S
+(,) 308.3 366.5 T
+0.09 (127) 315.04 366.5 S
+0.09 (/default) 198 354 S
+0.09 (ClassButton) 216 343 S
+(,) 265 343 T
+0.09 (31) 271.74 343 S
+0.09 (ClassMenu) 216 332 S
+(,) 261.37 332 T
+0.09 (1) 268.11 332 S
+0.09 (13) 272.2 332 S
+0.09 (default item) 198 319.5 S
+0.09 (for menus) 216 308.5 S
+(,) 257.21 308.5 T
+0.09 (1) 263.95 308.5 S
+0.09 (13) 268.04 308.5 S
+0.09 (default layout) 198 296 S
+0.09 (calcualated placement) 216 285 S
+(,) 306.18 285 T
+0.09 (89) 312.92 285 S
+0.09 (default layout for calculated ) 198 272.5 S
+0.09 (placement) 234 261.5 S
+(,) 276.02 261.5 T
+0.09 (1) 282.76 261.5 S
+0.09 (1) 286.85 261.5 S
+0.09 (1) 290.94 261.5 S
+0.09 (/deletecharacters) 198 249 S
+0.09 (ClassT) 216 238 S
+0.09 (extField) 242.32 238 S
+(,) 274.94 238 T
+0.09 (207) 281.68 238 S
+0.09 (/DeleteContents) 198 225.5 S
+0.09 (r) 216 214.5 S
+0.09 (equest key) 219.48 214.5 S
+(,) 262.73 214.5 T
+0.09 (177) 269.47 214.5 S
+0.09 (deleting the contents of a selections) 198 202 S
+(,) 341.77 202 T
+0.09 (177) 348.51 202 S
+0.09 (/deleteitem) 198 189.5 S
+0.09 (ClassItemGr) 216 178.5 S
+0.09 (oup) 266.54 178.5 S
+(,) 282.54 178.5 T
+0.09 (91) 289.28 178.5 S
+0.09 (ClassMenu) 216 167.5 S
+(,) 261.37 167.5 T
+0.09 (1) 268.11 167.5 S
+0.09 (12) 272.2 167.5 S
+0.09 (ClassScr) 216 156.5 S
+0.09 (ollList) 249.92 156.5 S
+(,) 275.53 156.5 T
+0.09 (164) 282.27 156.5 S
+0.09 (/DeleteSour) 387 642 S
+0.09 (ce? \050attribute\051) 437.29 642 S
+0.09 (ClassSelection) 405 631 S
+(,) 462.98 631 T
+0.09 (180) 469.72 631 S
+0.09 (/DeleteSpan) 387 618.5 S
+0.09 (ClassT) 405 607.5 S
+0.09 (extField) 431.33 607.5 S
+(,) 463.94 607.5 T
+0.09 (207) 470.68 607.5 S
+0.09 (/deletespan) 387 595 S
+0.09 (ClassT) 405 584 S
+0.09 (extField) 431.33 584 S
+(,) 463.94 584 T
+0.09 (207) 470.68 584 S
+0.09 (/deletewor) 387 571.5 S
+0.09 (ds) 433.09 571.5 S
+0.09 (ClassT) 405 560.5 S
+0.09 (extField) 431.33 560.5 S
+(,) 463.94 560.5 T
+0.09 (207) 470.68 560.5 S
+0.09 (/delta) 387 548 S
+0.09 (ClassNumericField) 405 537 S
+(,) 482.94 537 T
+0.09 (126) 489.68 537 S
+0.09 (Sliders) 405 526 S
+(,) 432.74 526 T
+0.09 (196) 439.48 526 S
+0.09 (/descendants) 387 513.5 S
+0.09 (ClassCanvas) 405 502.5 S
+(,) 456.57 502.5 T
+0.09 (41) 463.31 502.5 S
+0.09 (demo) 387 490 S
+0.09 (of selections) 405 479 S
+(,) 454.84 479 T
+0.09 (172) 461.58 479 S
+0.09 (/Deselect) 387 466.5 S
+0.09 (ClassSelection) 405 455.5 S
+(,) 462.98 455.5 T
+0.09 (183) 469.72 455.5 S
+0.09 (/destr) 387 443 S
+0.09 (oy) 412.91 443 S
+0.09 (ClassBag) 405 432 S
+(,) 441.8 432 T
+0.09 (19) 448.55 432 S
+0.09 (ClassCanvas) 405 421 S
+(,) 456.57 421 T
+0.09 (74) 463.31 421 S
+0.09 (ClassRegion) 405 410 S
+(,) 455.15 410 T
+0.09 (149) 461.89 410 S
+0.09 (/DisplayItemMaximumSize) 387 397.5 S
+0.09 (DisplayItems) 405 386.5 S
+(,) 458.98 386.5 T
+0.09 (81) 465.72 386.5 S
+0.09 (/DisplayItemPaint) 387 374 S
+0.09 (DisplayItems) 405 363 S
+(,) 458.98 363 T
+0.09 (81) 465.72 363 S
+0.09 (/DisplayItemRect) 387 350.5 S
+0.09 (DisplayItems) 405 339.5 S
+(,) 458.98 339.5 T
+0.09 (81) 465.72 339.5 S
+0.09 (/DisplayItemSize) 387 327 S
+0.09 (DisplayItems) 405 316 S
+(,) 458.98 316 T
+0.09 (81) 465.72 316 S
+0.09 (displayitems) 387 303.5 S
+0.09 (de\336ned) 405 292.5 S
+(,) 435.8 292.5 T
+0.09 (79) 442.54 292.5 S
+0.09 (/DragAdjust) 387 280 S
+0.09 (ClassCanvas) 405 269 S
+(,) 456.57 269 T
+0.09 (70) 463.31 269 S
+0.09 (ClassT) 405 258 S
+0.09 (extCanvas) 431.33 258 S
+(,) 473.48 258 T
+0.09 (201) 480.23 258 S
+0.09 (drag and dr) 387 245.5 S
+0.09 (op) 435.11 245.5 S
+0.09 (getting events) 405 234.5 S
+(,) 462.17 234.5 T
+0.09 (71) 468.91 234.5 S
+0.09 (getting the dr) 405 223.5 S
+0.09 (op) 460.1 223.5 S
+(,) 470.59 223.5 T
+0.09 (72) 477.33 223.5 S
+0.09 (Receptible canvases) 405 212.5 S
+(,) 485.61 212.5 T
+0.09 (71) 492.35 212.5 S
+0.09 (drag box) 387 200 S
+0.09 (used to change slide value) 405 189 S
+(,) 512.19 189 T
+0.09 (196) 518.93 189 S
+0.09 (/DragStart) 387 176.5 S
+0.09 (ClassCanvas) 405 165.5 S
+(,) 456.57 165.5 T
+0.09 (70) 463.31 165.5 S
+0.09 (ClassT) 405 154.5 S
+0.09 (extCanvas) 431.33 154.5 S
+(,) 473.48 154.5 T
+0.09 (201) 480.23 154.5 S
+FMENDPAGE
+%%EndPage: "299" 6
+%%Page: "300" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (300) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (/DragStop) 198 642 S
+0.09 (ClassCanvas) 216 631 S
+(,) 267.57 631 T
+0.09 (71) 274.31 631 S
+0.09 (ClassT) 216 620 S
+0.09 (extCanvas) 242.32 620 S
+(,) 284.48 620 T
+0.09 (201) 291.23 620 S
+0.09 (drawing) 198 607.5 S
+0.09 (lightweight) 216 596.5 S
+0.09 (see Display Items) 234 585.5 S
+(,) 305.34 585.5 T
+0.09 (79) 312.08 585.5 S
+0.09 (dup) 198 573 S
+0.09 (using for client names) 216 562 S
+(,) 305.7 562 T
+0.09 (18) 312.45 562 S
+2 F
+4 K
+0.13 (E) 198 534.33 S
+0 F
+0 K
+0.09 (/endboxes?) 198 520 S
+0.09 (Sliders) 216 509 S
+(,) 243.74 509 T
+0.09 (197) 250.48 509 S
+0.09 (err) 198 496.5 S
+0.09 (or) 209.51 496.5 S
+0.09 (Jot) 216 485.5 S
+(,) 227.1 485.5 T
+0.09 (256) 233.84 485.5 S
+0.09 (err) 198 473 S
+0.09 (ors) 209.51 473 S
+0.09 (Jot_Errno) 216 462 S
+(,) 254.86 462 T
+0.09 (256) 261.6 462 S
+0.09 (etting a default layout for /Calculated ) 198 449.5 S
+0.09 (placement) 234 438.5 S
+(,) 276.02 438.5 T
+0.09 (89) 282.76 438.5 S
+0.09 (event) 198 426 S
+0.09 (name of focus events) 216 415 S
+(,) 301.18 415 T
+0.09 (58) 307.92 415 S
+0.09 (event management) 198 402.5 S
+0.09 (turning on for bags) 216 391.5 S
+(,) 294.28 391.5 T
+0.09 (18) 301.02 391.5 S
+0.09 (turning on for canvas) 216 380.5 S
+(,) 303.29 380.5 T
+0.09 (46) 310.03 380.5 S
+0.09 (event manager) 198 368 S
+0.09 (r) 216 357 S
+0.09 (obust) 219.48 357 S
+(,) 241.96 357 T
+0.09 (49) 248.71 357 S
+0.09 (event managers) 198 344.5 S
+0.09 (err) 216 333.5 S
+0.09 (or messages) 227.51 333.5 S
+(,) 276.67 333.5 T
+0.09 (50) 283.42 333.5 S
+0.09 (/EventMgr) 198 321 S
+0.09 (ClassCanvas) 216 310 S
+(,) 267.57 310 T
+0.09 (47) 274.31 310 S
+0.09 (/eventmgr) 198 297.5 S
+0.09 (ClassCanvas) 216 286.5 S
+(,) 267.57 286.5 T
+0.09 (47) 274.31 286.5 S
+0.09 (ClassRegion) 216 275.5 S
+(,) 266.15 275.5 T
+0.09 (149) 272.89 275.5 S
+0.09 (events) 198 263 S
+0.09 (\336rst one deliver) 216 252 S
+0.09 (ed) 279.9 252 S
+(,) 289.88 252 T
+0.09 (15) 296.62 252 S
+0.09 (getting damage) 216 241 S
+(,) 279.23 241 T
+0.09 (51) 285.97 241 S
+0.09 (handling for busy windows) 216 230 S
+(,) 328.59 230 T
+0.09 (221) 335.33 230 S
+0.09 (keeping menus fr) 216 219 S
+0.09 (om opening) 286.87 219 S
+0.09 (see /MenuStart) 234 208 S
+(,) 297.45 208 T
+0.09 (120) 304.19 208 S
+0.09 (open) 216 197 S
+(,) 236.2 197 T
+0.09 (62) 242.95 197 S
+0.09 (r) 216 186 S
+0.09 (edistribution) 219.48 186 S
+0.09 (pr) 234 175 S
+0.09 (eventing for track) 242.97 175 S
+(,) 315.18 175 T
+0.09 (57) 321.93 175 S
+0.09 (types canvas can r) 216 164 S
+0.09 (eceive) 290 164 S
+(,) 315.14 164 T
+0.09 (46) 321.88 164 S
+0.09 (/EventsConsumed) 198 151.5 S
+0.09 (ClassCanvas) 405 642 S
+(,) 456.57 642 T
+0.09 (47) 463.31 642 S
+0.09 (/EventT) 387 629.5 S
+0.09 (oV) 420.79 629.5 S
+0.09 (alue) 431.54 629.5 S
+0.09 (Scr) 405 618.5 S
+0.09 (ollbars) 417.37 618.5 S
+(,) 444.96 618.5 T
+0.09 (155) 451.7 618.5 S
+0.09 (/ExecuteNoti\336er) 387 606 S
+0.09 (ClassContr) 405 595 S
+0.09 (ol) 449.83 595 S
+(,) 457.53 595 T
+0.09 (77) 464.27 595 S
+2 F
+4 K
+0.13 (F) 387 567.33 S
+0 F
+0 K
+0.09 (/FillCanvas) 387 553 S
+0.09 (ClassCanvas) 405 542 S
+(,) 456.57 542 T
+0.09 (39) 463.31 542 S
+0.09 (Find key) 387 529.5 S
+(,) 422.6 529.5 T
+0.09 (61) 429.34 529.5 S
+0.09 (\336nding a point in a item) 387 517 S
+0.09 (see /pointinitem?) 405 506 S
+(,) 477.35 506 T
+0.09 (92) 484.09 506 S
+0.09 (/FitCar) 387 493.5 S
+0.09 (et) 417.87 493.5 S
+0.09 (ClassT) 405 482.5 S
+0.09 (extField) 431.33 482.5 S
+(,) 463.94 482.5 T
+0.09 (212) 470.68 482.5 S
+0.09 (/\336tcar) 387 470 S
+0.09 (et) 413.23 470 S
+0.09 (ClassT) 405 459 S
+0.09 (extField) 431.33 459 S
+(,) 463.94 459 T
+0.09 (212) 470.68 459 S
+0.09 (/Fix) 387 446.5 S
+0.09 (ClassCanvas) 405 435.5 S
+(,) 456.57 435.5 T
+0.09 (52) 463.31 435.5 S
+0.09 (/Fix \050Class Method\051) 387 423 S
+0.09 (ClassRegion) 405 412 S
+(,) 455.15 412 T
+0.09 (146) 461.89 412 S
+0.09 (Fix) 387 399.5 S
+0.09 (overriding) 405 388.5 S
+(,) 448.24 388.5 T
+0.09 (52) 454.98 388.5 S
+0.09 (/FixAll) 387 376 S
+0.09 (ClassCanvas) 405 365 S
+(,) 456.57 365 T
+0.09 (52) 463.31 365 S
+0.09 (ClassRegion) 405 354 S
+(,) 455.15 354 T
+0.09 (146) 461.89 354 S
+0.09 (/FixChildr) 387 341.5 S
+0.09 (en) 431.31 341.5 S
+0.09 (ClassCanvas) 405 330.5 S
+(,) 456.57 330.5 T
+0.09 (52) 463.31 330.5 S
+0.09 (ClassRegion) 405 319.5 S
+(,) 455.15 319.5 T
+0.09 (146) 461.89 319.5 S
+0.09 (/FixClients) 387 307 S
+0.09 (ClassBag) 405 296 S
+(,) 441.8 296 T
+0.09 (20) 448.55 296 S
+0.09 (/\336xeditemsize) 387 283.5 S
+0.09 (ClassItemGr) 405 272.5 S
+0.09 (oup) 455.54 272.5 S
+(,) 471.54 272.5 T
+0.09 (94) 478.28 272.5 S
+0.09 (/FixedItemSize?) 387 260 S
+0.09 (ClassItemGr) 405 249 S
+0.09 (oup) 455.54 249 S
+(,) 471.54 249 T
+0.09 (93) 478.28 249 S
+0.09 (\336xing damage) 387 236.5 S
+0.09 (model) 405 225.5 S
+(,) 430.7 225.5 T
+0.09 (51) 437.45 225.5 S
+0.09 (/\337ashframe) 387 213 S
+0.09 (ClassW) 405 202 S
+0.09 (indow) 435.14 202 S
+(,) 461.33 202 T
+0.09 (220) 468.07 202 S
+0.09 (focus) 387 189.5 S
+0.09 (getting) 405 178.5 S
+(,) 433.63 178.5 T
+0.09 (57) 440.38 178.5 S
+0.09 (getting without keystr) 405 167.5 S
+0.09 (okes) 495.43 167.5 S
+(,) 513.81 167.5 T
+0.09 (58) 520.55 167.5 S
+0.09 (losing) 405 156.5 S
+(,) 429.72 156.5 T
+0.09 (59) 436.46 156.5 S
+FMENDPAGE
+%%EndPage: "300" 7
+%%Page: "301" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (301) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (name of event) 216 642 S
+(,) 273.38 642 T
+0.09 (58) 280.12 642 S
+0.09 (fonts) 198 629.5 S
+0.09 (canvas) 216 618.5 S
+(,) 243.64 618.5 T
+0.09 (40) 250.38 618.5 S
+0.09 (default encoding) 216 607.5 S
+(,) 284.7 607.5 T
+0.09 (40) 291.44 607.5 S
+(, ) 300.61 607.5 T
+0.09 (142) 305.1 607.5 S
+0.09 (in displayitems) 216 596.5 S
+(,) 278.46 596.5 T
+0.09 (80) 285.2 596.5 S
+0.09 (printer matching default) 216 585.5 S
+(,) 315.91 585.5 T
+0.09 (40) 322.65 585.5 S
+(, ) 331.81 585.5 T
+0.09 (142) 336.31 585.5 S
+0.09 (r) 216 574.5 S
+0.09 (egions) 219.48 574.5 S
+(,) 245.88 574.5 T
+0.09 (142) 252.62 574.5 S
+0.09 (/footer) 198 562 S
+0.09 (ClassW) 216 551 S
+0.09 (indow) 246.13 551 S
+(,) 272.33 551 T
+0.09 (220) 279.07 551 S
+0.09 (/FooterFont) 198 538.5 S
+0.09 (ClassW) 216 527.5 S
+0.09 (indow) 246.13 527.5 S
+(,) 272.33 527.5 T
+0.09 (220) 279.07 527.5 S
+0.09 (/For) 198 515 S
+0.09 (egr) 217.1 515 S
+0.09 (oundColor) 230.06 515 S
+0.09 (ClassCanvas) 216 504 S
+(,) 267.57 504 T
+0.09 (37) 274.31 504 S
+0.09 (forking pr) 198 491.5 S
+0.09 (ocesses) 239.23 491.5 S
+(,) 268.8 491.5 T
+0.09 (13) 275.54 491.5 S
+0.09 (/framebuf) 198 479 S
+0.09 (fer) 240.75 479 S
+0.09 (of) 251.71 479 S
+0.09 (ClassCanvas) 216 468 S
+(,) 267.57 468 T
+0.09 (41) 274.31 468 S
+0.09 (ClassRegion) 216 457 S
+(,) 266.15 457 T
+0.09 (143) 272.89 457 S
+0.09 (/Fr) 198 444.5 S
+0.09 (eezable) 212.1 444.5 S
+0.09 (ClassW) 216 433.5 S
+0.09 (indow) 246.13 433.5 S
+(,) 272.33 433.5 T
+0.09 (220) 279.07 433.5 S
+0.09 (/Fr) 198 421 S
+0.09 (eezeFilter) 212.1 421 S
+0.09 (ClassW) 216 410 S
+0.09 (indow) 246.13 410 S
+(,) 272.33 410 T
+0.09 (221) 279.07 410 S
+0.09 (/Fr) 198 397.5 S
+0.09 (ontable?) 212.1 397.5 S
+0.09 (ClassCanvas) 216 386.5 S
+(,) 267.57 386.5 T
+0.09 (64) 274.31 386.5 S
+0.09 (/fr) 198 374 S
+0.09 (ontable?) 210.1 374 S
+0.09 (ClassCanvas) 216 363 S
+(,) 267.57 363 T
+0.09 (64) 274.31 363 S
+0.09 (Fr) 198 350.5 S
+0.09 (ont key) 206.57 350.5 S
+(,) 236.81 350.5 T
+0.09 (64) 243.55 350.5 S
+0.09 (/FunctionKey) 198 338 S
+0.09 (ClassCanvas) 216 327 S
+(,) 267.57 327 T
+0.09 (60) 274.31 327 S
+0.09 (/FunctionKeyUp) 198 314.5 S
+0.09 (ClassCanvas) 216 303.5 S
+(,) 267.57 303.5 T
+0.09 (60) 274.31 303.5 S
+0.09 (/FunctionString) 198 291 S
+0.09 (ClassCanvas) 216 280 S
+(,) 267.57 280 T
+0.09 (60) 274.31 280 S
+0.09 (/FunctionStringUp) 198 267.5 S
+0.09 (ClassCanvas) 216 256.5 S
+(,) 267.57 256.5 T
+0.09 (60) 274.31 256.5 S
+2 F
+4 K
+0.13 (G) 198 228.84 S
+0 F
+0 K
+0.09 (/gaps) 198 214.5 S
+0.09 (ClassBor) 216 203.5 S
+0.09 (derBag) 251.61 203.5 S
+(,) 280.48 203.5 T
+0.09 (26) 287.22 203.5 S
+0.09 (ClassItemGr) 216 192.5 S
+0.09 (oup) 266.54 192.5 S
+(,) 282.54 192.5 T
+0.09 (96) 289.28 192.5 S
+0.09 (ClassLayout) 216 181.5 S
+(,) 266.33 181.5 T
+0.09 (104) 273.07 181.5 S
+0.09 (ClassPanel) 216 170.5 S
+(,) 260.08 170.5 T
+0.09 (136) 266.82 170.5 S
+0.09 (gaps) 198 158 S
+0.09 (de\336nition of) 216 147 S
+(,) 265.99 147 T
+0.09 (26) 272.73 147 S
+0.09 (garbage collection and canvases) 387 642 S
+(,) 516.87 642 T
+0.09 (74) 523.61 642 S
+0.09 (GEM) 387 629.5 S
+0.09 (accessing fr) 405 618.5 S
+0.09 (om LEM) 451.95 618.5 S
+0.09 (see global event manager) 405 607.5 S
+0.09 (getselection) 387 595 S
+0.09 (ClassSelection) 405 584 S
+(,) 462.98 584 T
+0.09 (174) 469.72 584 S
+0.09 (getting damage) 387 571.5 S
+(,) 450.23 571.5 T
+0.09 (51) 456.97 571.5 S
+0.09 (getting drag and dr) 387 559 S
+0.09 (op events) 466.08 559 S
+0.09 (see /Receptible?) 405 548 S
+(,) 471.98 548 T
+0.09 (71) 478.73 548 S
+0.09 (getting the dr) 387 535.5 S
+0.09 (op) 442.1 535.5 S
+(,) 452.59 535.5 T
+0.09 (72) 459.33 535.5 S
+0.09 (global event manager) 387 523 S
+0.09 (accessing fr) 405 512 S
+0.09 (om local event manager) 451.95 512 S
+0.09 (de\336ned) 405 501 S
+(,) 435.8 501 T
+0.09 (48) 442.54 501 S
+0.09 (purpose) 405 490 S
+(,) 438.42 490 T
+0.09 (14) 445.17 490 S
+0.09 (graphic state) 387 477.5 S
+0.09 (af) 405 466.5 S
+0.09 (fected by display items) 412.51 466.5 S
+(,) 506.32 466.5 T
+0.09 (80) 513.06 466.5 S
+0.09 (grid layout) 387 454 S
+(,) 432.25 454 T
+0.09 (89) 438.99 454 S
+0.09 (grid menus) 387 441.5 S
+(,) 433.5 441.5 T
+0.09 (1) 440.24 441.5 S
+0.09 (10) 444.33 441.5 S
+2 F
+4 K
+0.13 (H) 387 413.83 S
+0 F
+0 K
+0.09 (/HandleAgain) 387 399.5 S
+0.09 (ClassCanvas) 405 388.5 S
+(,) 456.57 388.5 T
+0.09 (61) 463.31 388.5 S
+0.09 (/HandleDamage) 387 376 S
+0.09 (ClassCanvas) 405 365 S
+(,) 456.57 365 T
+0.09 (53) 463.31 365 S
+0.09 (/HandleErr) 387 352.5 S
+0.09 (or) 435.39 352.5 S
+0.09 (ClassEventMgr) 405 341.5 S
+(,) 467.36 341.5 T
+0.09 (50) 474.1 341.5 S
+0.09 (/HandleFind) 387 329 S
+0.09 (ClassCanvas) 405 318 S
+(,) 456.57 318 T
+0.09 (62) 463.31 318 S
+0.09 (/HandleFr) 387 305.5 S
+0.09 (ont) 431.26 305.5 S
+0.09 (ClassCanvas) 405 294.5 S
+(,) 456.57 294.5 T
+0.09 (64) 463.31 294.5 S
+0.09 (/HandleHelp) 387 282 S
+0.09 (ClassCanvas) 405 271 S
+(,) 456.57 271 T
+0.09 (63) 463.31 271 S
+0.09 (/HandleMotion) 387 258.5 S
+0.09 (Scr) 405 247.5 S
+0.09 (ollbars) 417.37 247.5 S
+(,) 444.96 247.5 T
+0.09 (157) 451.7 247.5 S
+0.09 (/HandleObsoleteT) 387 235 S
+0.09 (ar) 463.09 235 S
+0.09 (get) 471.15 235 S
+0.09 (ClassButtons) 405 224 S
+(,) 457.9 224 T
+0.09 (32) 464.64 224 S
+0.09 (ClassContr) 405 213 S
+0.09 (ol) 449.83 213 S
+(,) 457.53 213 T
+0.09 (78) 464.27 213 S
+0.09 (/HandleOpen) 387 200.5 S
+0.09 (ClassCanvas) 405 189.5 S
+(,) 456.57 189.5 T
+0.09 (62) 463.31 189.5 S
+0.09 (/HandleReception) 387 177 S
+0.09 (ClassCanvas) 405 166 S
+(,) 456.57 166 T
+0.09 (72) 463.31 166 S
+0.09 (/HandleUndo) 387 153.5 S
+FMENDPAGE
+%%EndPage: "301" 8
+%%Page: "302" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (302) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassCanvas) 216 642 S
+(,) 267.57 642 T
+0.09 (62) 274.31 642 S
+0.09 (HEIGHT) 198 629.5 S
+0.09 (ClassItemGr) 216 618.5 S
+0.09 (oup) 266.54 618.5 S
+(,) 282.54 618.5 T
+0.09 (90) 289.28 618.5 S
+0.09 (ClassLayout) 216 607.5 S
+(,) 266.33 607.5 T
+0.09 (104) 273.07 607.5 S
+0.09 (ClassMenu) 216 596.5 S
+(,) 261.37 596.5 T
+0.09 (1) 268.11 596.5 S
+0.09 (12) 272.2 596.5 S
+0.09 (ClassPanel) 216 585.5 S
+(,) 260.08 585.5 T
+0.09 (135) 266.82 585.5 S
+0.09 (/heightfr) 198 573 S
+0.09 (omr) 235.95 573 S
+0.09 (ows) 252.45 573 S
+0.09 (ClassScr) 216 562 S
+0.09 (ollList) 249.92 562 S
+(,) 275.53 562 T
+0.09 (167) 282.27 562 S
+0.09 (help) 198 549.5 S
+0.09 (for items) 216 538.5 S
+(,) 252.1 538.5 T
+0.09 (97) 258.84 538.5 S
+0.09 (/helpable?) 198 526 S
+0.09 (ClassCanvas) 216 515 S
+(,) 267.57 515 T
+0.09 (63) 274.31 515 S
+0.09 (/Helpable?\050Class V) 198 502.5 S
+0.09 (ariable\051) 277.24 502.5 S
+0.09 (ClassCanvas) 216 491.5 S
+(,) 267.57 491.5 T
+0.09 (63) 274.31 491.5 S
+0.09 (/HelpKeywor) 198 479 S
+0.09 (d) 255.85 479 S
+0.09 (ClassCanvas) 216 468 S
+(,) 267.57 468 T
+0.09 (63) 274.31 468 S
+0.09 (/helpkeywor) 198 455.5 S
+0.09 (d) 252.08 455.5 S
+0.09 (ClassCanvas) 216 444.5 S
+(,) 267.57 444.5 T
+0.09 (64) 274.31 444.5 S
+0.09 (ClassItemGr) 216 433.5 S
+0.09 (oup) 266.54 433.5 S
+(,) 282.54 433.5 T
+0.09 (97) 289.28 433.5 S
+(, ) 298.44 433.5 T
+0.09 (120) 302.94 433.5 S
+0.09 (help system) 198 421 S
+0.09 (see Help Facilities) 216 410 S
+(,) 289.41 410 T
+0.09 (63) 296.15 410 S
+0.09 (Help_HelpRequestHandler) 198 397.5 S
+0.09 (W) 216 386.5 S
+0.09 (ir) 224.58 386.5 S
+0.09 (eService) 230.77 386.5 S
+(,) 264.35 386.5 T
+0.09 (244) 271.09 386.5 S
+0.09 (Help_Initialize) 198 374 S
+0.09 (W) 216 363 S
+0.09 (ir) 224.58 363 S
+0.09 (eService) 230.77 363 S
+(,) 264.35 363 T
+0.09 (244) 271.09 363 S
+0.09 (Help_UpdateV) 198 350.5 S
+0.09 (iew) 258.98 350.5 S
+0.09 (W) 216 339.5 S
+0.09 (ir) 224.58 339.5 S
+0.09 (eService) 230.77 339.5 S
+(,) 264.35 339.5 T
+0.09 (244) 271.09 339.5 S
+0.09 (/Hilited?\050attribute\051ClassSelection) 198 327 S
+(,) 335.39 327 T
+0.09 (180) 342.13 327 S
+0.09 (hit detection) 198 314.5 S
+0.09 (using canvas path) 216 303.5 S
+(,) 289.25 303.5 T
+0.09 (9) 295.99 303.5 S
+0.09 (using pointinpath) 216 292.5 S
+(,) 288.83 292.5 T
+0.09 (9) 295.58 292.5 S
+0.09 (/Holder) 198 280 S
+0.09 (ClassCanvas) 216 269 S
+(,) 267.57 269 T
+0.09 (66) 274.31 269 S
+0.09 (/Holder \050attribute\051) 198 256.5 S
+0.09 (ClassSelection) 216 245.5 S
+(,) 273.98 245.5 T
+0.09 (181) 280.72 245.5 S
+0.09 (Holder) 198 233 S
+0.09 (de\336ned) 216 222 S
+(,) 246.8 222 T
+0.09 (171) 253.54 222 S
+2 F
+4 K
+0.13 (I) 198 194.34 S
+0 F
+0 K
+0.09 (/IconFont) 198 180 S
+0.09 (ClassBaseW) 216 169 S
+0.09 (indow) 264.6 169 S
+(,) 290.79 169 T
+0.09 (225) 297.53 169 S
+0.09 (/iconimage) 198 156.5 S
+0.09 (ClassBaseW) 405 642 S
+0.09 (indow) 453.6 642 S
+(,) 479.79 642 T
+0.09 (225) 486.53 642 S
+0.09 (/iconlabel) 387 629.5 S
+0.09 (ClassBaseW) 405 618.5 S
+0.09 (indow) 453.6 618.5 S
+(,) 479.79 618.5 T
+0.09 (225) 486.53 618.5 S
+0.09 (/IconSize) 387 606 S
+0.09 (ClassBaseW) 405 595 S
+0.09 (indow) 453.6 595 S
+(,) 479.79 595 T
+0.09 (225) 486.53 595 S
+0.09 (/IdentifySelectable) 387 582.5 S
+0.09 (ClassCanvas) 405 571.5 S
+(,) 456.57 571.5 T
+0.09 (71) 463.31 571.5 S
+0.09 (imaging model) 387 559 S
+(,) 448.56 559 T
+0.09 (2) 455.3 559 S
+0.09 (/incr) 387 546.5 S
+0.09 (ement) 408.12 546.5 S
+0.09 (ClassNumericField) 405 535.5 S
+(,) 482.94 535.5 T
+0.09 (126) 489.68 535.5 S
+0.09 (incr) 387 523 S
+0.09 (ement/decr) 402.58 523 S
+0.09 (ement buttons) 450.81 523 S
+0.09 (normalization) 405 512 S
+(,) 462.19 512 T
+0.09 (127) 468.93 512 S
+0.09 (indexing data str) 387 499.5 S
+0.09 (uctur) 455.77 499.5 S
+0.09 (es by wir) 477.37 499.5 S
+0.09 (es) 514.26 499.5 S
+(,) 522.55 499.5 T
+0.09 (233) 529.29 499.5 S
+0.09 (initializing a settings menu) 387 487 S
+0.09 (see /setvalue) 405 476 S
+(,) 459.24 476 T
+0.09 (1) 465.98 476 S
+0.09 (18) 470.07 476 S
+0.09 (input) 387 463.5 S
+0.09 (ignoring) 405 452.5 S
+(,) 439.86 452.5 T
+0.09 (230) 446.6 452.5 S
+0.09 (input focus) 387 440 S
+0.09 (getting) 405 429 S
+(,) 433.63 429 T
+0.09 (57) 440.38 429 S
+0.09 (see focus) 405 418 S
+0.09 (/InSelection?) 387 405.5 S
+0.09 (ClassCanvas) 405 394.5 S
+(,) 456.57 394.5 T
+0.09 (68) 463.31 394.5 S
+0.09 (/insets) 387 382 S
+0.09 (ClassBor) 405 371 S
+0.09 (derBag) 440.61 371 S
+(,) 469.48 371 T
+0.09 (27) 476.22 371 S
+0.09 (insets) 387 358.5 S
+0.09 (de\336nition of) 405 347.5 S
+(,) 454.99 347.5 T
+0.09 (26) 461.73 347.5 S
+0.09 (/insertcharacter) 387 335 S
+0.09 (ClassT) 405 324 S
+0.09 (extField) 431.33 324 S
+(,) 463.94 324 T
+0.09 (208) 470.68 324 S
+0.09 (/InsertionPoint \050attribute\051) 387 311.5 S
+0.09 (ClassSelection) 405 300.5 S
+(,) 462.98 300.5 T
+0.09 (181) 469.72 300.5 S
+0.09 (/insertitem) 387 288 S
+0.09 (ClassItemGr) 405 277 S
+0.09 (oup) 455.54 277 S
+(,) 471.54 277 T
+0.09 (91) 478.28 277 S
+0.09 (ClassMenu) 405 266 S
+(,) 450.37 266 T
+0.09 (1) 457.11 266 S
+0.09 (13) 461.2 266 S
+0.09 (ClassScr) 405 255 S
+0.09 (ollList) 438.92 255 S
+(,) 464.53 255 T
+0.09 (163) 471.27 255 S
+0.09 (/InsertString) 387 242.5 S
+0.09 (ClassT) 405 231.5 S
+0.09 (extField) 431.33 231.5 S
+(,) 463.94 231.5 T
+0.09 (209) 470.68 231.5 S
+0.09 (/insertstring) 387 219 S
+0.09 (ClassT) 405 208 S
+0.09 (extField) 431.33 208 S
+(,) 463.94 208 T
+0.09 (208) 470.68 208 S
+0.09 (instance) 387 195.5 S
+0.09 (initializing canvas) 405 184.5 S
+(,) 479.12 184.5 T
+0.09 (36) 485.86 184.5 S
+0.09 (interaction of ClassSelection and ) 387 172 S
+0.09 (ClassCanvas) 423 161 S
+0.09 (sequence of operations) 405 150 S
+(,) 497.92 150 T
+0.09 (179) 504.66 150 S
+FMENDPAGE
+%%EndPage: "302" 9
+%%Page: "303" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (303) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (interpr) 198 642 S
+0.09 (etation of value) 226.05 642 S
+(,) 289.21 642 T
+0.09 (76) 295.95 642 S
+0.09 (/invalidate) 198 629.5 S
+0.09 (ClassCanvas) 216 618.5 S
+(,) 267.57 618.5 T
+0.09 (45) 274.31 618.5 S
+0.09 (ClassRegion) 216 607.5 S
+(,) 266.15 607.5 T
+0.09 (145) 272.89 607.5 S
+0.09 (/InvisibleCar) 198 595 S
+0.09 (et) 253.14 595 S
+0.09 (ClassT) 216 584 S
+0.09 (extField) 242.32 584 S
+(,) 274.94 584 T
+0.09 (213) 281.68 584 S
+0.09 (/invoker) 198 571.5 S
+0.09 (ClassMenu) 216 560.5 S
+(,) 261.37 560.5 T
+0.09 (1) 268.11 560.5 S
+0.09 (17) 272.2 560.5 S
+0.09 (ISOLatin encoding) 198 548 S
+(,) 274.12 548 T
+0.09 (40) 280.86 548 S
+0.09 (/Item) 198 535.5 S
+0.09 (ClassItemGr) 216 524.5 S
+0.09 (oup) 266.54 524.5 S
+(,) 282.54 524.5 T
+0.09 (92) 289.28 524.5 S
+0.09 (/item) 198 512 S
+0.09 (ClassItemGr) 216 501 S
+0.09 (oup) 266.54 501 S
+(,) 282.54 501 T
+0.09 (92) 289.28 501 S
+0.09 (ClassMenu) 216 490 S
+(,) 261.37 490 T
+0.09 (1) 268.11 490 S
+0.09 (13) 272.2 490 S
+0.09 (item) 198 477.5 S
+0.09 (appending) 216 466.5 S
+(,) 259.98 466.5 T
+0.09 (91) 266.72 466.5 S
+0.09 (deleting) 216 455.5 S
+(,) 249.21 455.5 T
+0.09 (91) 255.95 455.5 S
+0.09 (inserting) 216 444.5 S
+(,) 252.09 444.5 T
+0.09 (91) 258.83 444.5 S
+0.09 (r) 216 433.5 S
+0.09 (eplacing) 219.48 433.5 S
+(,) 253.85 433.5 T
+0.09 (91) 260.59 433.5 S
+0.09 (/itembbox) 198 421 S
+0.09 (ClassItemGr) 216 410 S
+0.09 (oup) 266.54 410 S
+(,) 282.54 410 T
+0.09 (92) 289.28 410 S
+0.09 (/ItemCancel) 198 397.5 S
+0.09 (ClassItemGr) 216 386.5 S
+0.09 (oup) 266.54 386.5 S
+(,) 282.54 386.5 T
+0.09 (96) 289.28 386.5 S
+0.09 (/itemcount) 198 374 S
+0.09 (ClassItemGr) 216 363 S
+0.09 (oup) 266.54 363 S
+(,) 282.54 363 T
+0.09 (92) 289.28 363 S
+0.09 (ClassMenu) 216 352 S
+(,) 261.37 352 T
+0.09 (1) 268.11 352 S
+0.09 (13) 272.2 352 S
+0.09 (ClassScr) 216 341 S
+0.09 (ollList) 249.92 341 S
+(,) 275.53 341 T
+0.09 (163) 282.27 341 S
+0.09 (/itemhelpkeywor) 198 328.5 S
+0.09 (d) 270.22 328.5 S
+0.09 (ClassItemGr) 216 317.5 S
+0.09 (oup) 266.54 317.5 S
+(,) 282.54 317.5 T
+0.09 (97) 289.28 317.5 S
+(, ) 298.44 317.5 T
+0.09 (120) 302.94 317.5 S
+0.09 (/itemlist) 198 305 S
+0.09 (ClassItemGr) 216 294 S
+0.09 (oup) 266.54 294 S
+(,) 282.54 294 T
+0.09 (92) 289.28 294 S
+0.09 (ClassMenu) 216 283 S
+(,) 261.37 283 T
+0.09 (1) 268.11 283 S
+0.09 (13) 272.2 283 S
+0.09 (ClassScr) 216 272 S
+0.09 (ollList) 249.92 272 S
+(,) 275.53 272 T
+0.09 (163) 282.27 272 S
+0.09 (/ItemListV) 198 259.5 S
+0.09 (alid?) 243.05 259.5 S
+0.09 (ClassItemGr) 216 248.5 S
+0.09 (oup) 266.54 248.5 S
+(,) 282.54 248.5 T
+0.09 (94) 289.28 248.5 S
+0.09 (/itemlocation) 198 236 S
+0.09 (ClassItemGr) 216 225 S
+0.09 (oup) 266.54 225 S
+(,) 282.54 225 T
+0.09 (92) 289.28 225 S
+0.09 (/ItemMotion) 198 212.5 S
+0.09 (ClassItemGr) 216 201.5 S
+0.09 (oup) 266.54 201.5 S
+(,) 282.54 201.5 T
+0.09 (96) 289.28 201.5 S
+0.09 (/itemnoti\336er) 198 189 S
+0.09 (ClassButton) 216 178 S
+(,) 265 178 T
+0.09 (32) 271.74 178 S
+0.09 (items) 198 165.5 S
+0.09 (as dictionaries) 216 154.5 S
+(,) 274.45 154.5 T
+0.09 (88) 281.2 154.5 S
+0.09 (de\336nition) 405 642 S
+(,) 444.57 642 T
+0.09 (88) 451.31 642 S
+0.09 (determining if same size) 405 631 S
+0.09 (see /FixedItemSize?) 423 620 S
+(,) 505.19 620 T
+0.09 (93) 511.93 620 S
+0.09 (menu) 405 609 S
+0.09 (de\336ned) 423 598 S
+(,) 453.8 598 T
+0.09 (108) 460.54 598 S
+0.09 (de\336nitions for) 423 587 S
+(,) 480.53 587 T
+0.09 (109) 487.27 587 S
+0.09 (r) 405 576 S
+0.09 (efer) 408.48 576 S
+0.09 (encing or) 423.83 576 S
+0.09 (der) 461.55 576 S
+(,) 475.17 576 T
+0.09 (88) 481.91 576 S
+0.09 (/itemsize) 387 563.5 S
+0.09 (ClassItemGr) 405 552.5 S
+0.09 (oup) 455.54 552.5 S
+(,) 471.54 552.5 T
+0.09 (92) 478.28 552.5 S
+0.09 (item size) 387 540 S
+(,) 423.07 540 T
+0.09 (93) 429.81 540 S
+0.09 (/ItemStart) 387 527.5 S
+0.09 (ClassItemGr) 405 516.5 S
+0.09 (oup) 455.54 516.5 S
+(,) 471.54 516.5 T
+0.09 (95) 478.28 516.5 S
+0.09 (/ItemStop) 387 504 S
+0.09 (ClassItemGr) 405 493 S
+0.09 (oup) 455.54 493 S
+(,) 471.54 493 T
+0.09 (96) 478.28 493 S
+0.09 (/itemvisible?) 387 480.5 S
+0.09 (ClassScr) 405 469.5 S
+0.09 (ollList) 438.92 469.5 S
+(,) 464.53 469.5 T
+0.09 (164) 471.27 469.5 S
+2 F
+4 K
+0.13 (J) 387 441.83 S
+0 F
+0 K
+0.09 (Jot_Initialize) 387 427.5 S
+0.09 (Jot) 405 416.5 S
+(,) 416.1 416.5 T
+0.09 (257) 422.84 416.5 S
+0.09 (JotFont_Fr) 387 404 S
+0.09 (ee) 429.67 404 S
+0.09 (Jot) 405 393 S
+(,) 416.1 393 T
+0.09 (283) 422.84 393 S
+0.09 (JotFont_New) 387 380.5 S
+0.09 (Jot) 405 369.5 S
+(,) 416.1 369.5 T
+0.09 (282) 422.84 369.5 S
+0.09 (JotSear) 387 357 S
+0.09 (ch_CompileExpr) 415.36 357 S
+0.09 (ession) 483.41 357 S
+0.09 (Jot) 405 346 S
+(,) 416.1 346 T
+0.09 (281) 422.84 346 S
+0.09 (JotSear) 387 333.5 S
+0.09 (ch_Fr) 415.36 333.5 S
+0.09 (ee) 437.92 333.5 S
+0.09 (Jot) 405 322.5 S
+(,) 416.1 322.5 T
+0.09 (280) 422.84 322.5 S
+0.09 (JotSear) 387 310 S
+0.09 (ch_MatchPattern) 415.36 310 S
+0.09 (Jot) 405 299 S
+(,) 416.1 299 T
+0.09 (281) 422.84 299 S
+0.09 (JotSear) 387 286.5 S
+0.09 (ch_MatchString) 415.36 286.5 S
+0.09 (Jot) 405 275.5 S
+(,) 416.1 275.5 T
+0.09 (281) 422.84 275.5 S
+0.09 (JotSear) 387 263 S
+0.09 (ch_New) 415.36 263 S
+0.09 (Jot) 405 252 S
+(,) 416.1 252 T
+0.09 (280) 422.84 252 S
+0.09 (JotSear) 387 239.5 S
+0.09 (ch_Substring) 415.36 239.5 S
+0.09 (Jot) 405 228.5 S
+(,) 416.1 228.5 T
+0.09 (282) 422.84 228.5 S
+0.09 (JotSelection_Clear) 387 216 S
+0.09 (Jot) 405 205 S
+(,) 416.1 205 T
+0.09 (284) 422.84 205 S
+0.09 (JotSelection_Set) 387 192.5 S
+0.09 (Jot) 405 181.5 S
+(,) 416.1 181.5 T
+0.09 (283) 422.84 181.5 S
+0.09 (JotSelection_SetLevel) 387 169 S
+0.09 (Jot) 405 158 S
+(,) 416.1 158 T
+0.09 (284) 422.84 158 S
+FMENDPAGE
+%%EndPage: "303" 10
+%%Page: "304" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (304) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (JotSelection_Span) 198 642 S
+0.09 (Jot) 216 631 S
+(,) 227.1 631 T
+0.09 (284) 233.84 631 S
+0.09 (JotSpan_ClearModi\336ed) 198 618.5 S
+0.09 (Jot) 216 607.5 S
+(,) 227.1 607.5 T
+0.09 (269) 233.84 607.5 S
+0.09 (JotSpan_Contents) 198 595 S
+0.09 (Jot) 216 584 S
+(,) 227.1 584 T
+0.09 (267) 233.84 584 S
+0.09 (JotSpan_DeleteContents) 198 571.5 S
+0.09 (Jot) 216 560.5 S
+(,) 227.1 560.5 T
+0.09 (267) 233.84 560.5 S
+0.09 (JotSpan_Fr) 198 548 S
+0.09 (ee) 242.45 548 S
+0.09 (Jot) 216 537 S
+(,) 227.1 537 T
+0.09 (266) 233.84 537 S
+0.09 (JotSpan_Length) 198 524.5 S
+0.09 (Jot) 216 513.5 S
+(,) 227.1 513.5 T
+0.09 (268) 233.84 513.5 S
+0.09 (JotSpan_New) 198 501 S
+0.09 (Jot) 216 490 S
+(,) 227.1 490 T
+0.09 (266) 233.84 490 S
+0.09 (JotSpan_Position) 198 477.5 S
+0.09 (Jot) 216 466.5 S
+(,) 227.1 466.5 T
+0.09 (267) 233.84 466.5 S
+0.09 (JotSpan_Replace) 198 454 S
+0.09 (Jot) 216 443 S
+(,) 227.1 443 T
+0.09 (267) 233.84 443 S
+0.09 (JotSpan_Set) 198 430.5 S
+0.09 (Jot) 216 419.5 S
+(,) 227.1 419.5 T
+0.09 (268) 233.84 419.5 S
+0.09 (JotSpan_SetLength) 198 407 S
+0.09 (Jot) 216 396 S
+(,) 227.1 396 T
+0.09 (268) 233.84 396 S
+0.09 (JotSpan_SetPosition) 198 383.5 S
+0.09 (Jot) 216 372.5 S
+(,) 227.1 372.5 T
+0.09 (268) 233.84 372.5 S
+0.09 (JotSpan_SetT) 198 360 S
+0.09 (ext) 250.88 360 S
+0.09 (Jot) 216 349 S
+(,) 227.1 349 T
+0.09 (266) 233.84 349 S
+0.09 (JotSpan_T) 198 336.5 S
+0.09 (ext) 238.66 336.5 S
+0.09 (Jot) 216 325.5 S
+(,) 227.1 325.5 T
+0.09 (266) 233.84 325.5 S
+0.09 (JotT) 198 313 S
+0.09 (ext_Car) 213.87 313 S
+0.09 (et) 245.12 313 S
+0.09 (Jot) 216 302 S
+(,) 227.1 302 T
+0.09 (262) 233.84 302 S
+0.09 (JotT) 198 289.5 S
+0.09 (ext_CharacterAt) 213.87 289.5 S
+0.09 (Jot) 216 278.5 S
+(,) 227.1 278.5 T
+0.09 (258) 233.84 278.5 S
+0.09 (JotT) 198 266 S
+0.09 (ext_Characters) 213.87 266 S
+0.09 (Jot) 216 255 S
+(,) 227.1 255 T
+0.09 (261) 233.84 255 S
+0.09 (JotT) 198 242.5 S
+0.09 (ext_Clear) 213.87 242.5 S
+0.09 (Jot) 216 231.5 S
+(,) 227.1 231.5 T
+0.09 (257) 233.84 231.5 S
+0.09 (JotT) 198 219 S
+0.09 (ext_DeleteCharacters) 213.87 219 S
+0.09 (Jot) 216 208 S
+(,) 227.1 208 T
+0.09 (259) 233.84 208 S
+0.09 (JotT) 198 195.5 S
+0.09 (ext_FastCharacterAt) 213.87 195.5 S
+0.09 (Jot) 216 184.5 S
+(,) 227.1 184.5 T
+0.09 (258) 233.84 184.5 S
+0.09 (JotT) 198 172 S
+0.09 (ext_FirstSpan) 213.87 172 S
+0.09 (Jot) 216 161 S
+(,) 227.1 161 T
+0.09 (262) 233.84 161 S
+0.09 (JotT) 198 148.5 S
+0.09 (ext_FirstV) 213.87 148.5 S
+0.09 (iew) 255.04 148.5 S
+0.09 (Jot) 405 642 S
+(,) 416.1 642 T
+0.09 (261) 422.84 642 S
+0.09 (JotT) 387 629.5 S
+0.09 (ext_Fr) 402.87 629.5 S
+0.09 (ee) 428.16 629.5 S
+0.09 (Jot) 405 618.5 S
+(,) 416.1 618.5 T
+0.09 (257) 422.84 618.5 S
+0.09 (JotT) 387 606 S
+0.09 (ext_InsertCharacters) 402.87 606 S
+0.09 (Jot) 405 595 S
+(,) 416.1 595 T
+0.09 (258) 422.84 595 S
+0.09 (JotT) 387 582.5 S
+0.09 (ext_InsertString) 402.87 582.5 S
+0.09 (Jot) 405 571.5 S
+(,) 416.1 571.5 T
+0.09 (259) 422.84 571.5 S
+0.09 (JotT) 387 559 S
+0.09 (ext_Modi\336ed) 402.87 559 S
+0.09 (Jot) 405 548 S
+(,) 416.1 548 T
+0.09 (261) 422.84 548 S
+0.09 (JotT) 387 535.5 S
+0.09 (ext_New) 402.87 535.5 S
+0.09 (Jot) 405 524.5 S
+(,) 416.1 524.5 T
+0.09 (257) 422.84 524.5 S
+0.09 (JotT) 387 512 S
+0.09 (ext_Newlines) 402.87 512 S
+0.09 (Jot) 405 501 S
+(,) 416.1 501 T
+0.09 (261) 422.84 501 S
+0.09 (JotT) 387 488.5 S
+0.09 (ext_NextSpan) 402.87 488.5 S
+0.09 (Jot) 405 477.5 S
+(,) 416.1 477.5 T
+0.09 (262) 422.84 477.5 S
+0.09 (JotT) 387 465 S
+0.09 (ext_NextV) 402.87 465 S
+0.09 (iew) 445.38 465 S
+0.09 (Jot) 405 454 S
+(,) 416.1 454 T
+0.09 (261) 422.84 454 S
+0.09 (JotT) 387 441.5 S
+0.09 (ext_Read) 402.87 441.5 S
+0.09 (Jot) 405 430.5 S
+(,) 416.1 430.5 T
+0.09 (260) 422.84 430.5 S
+0.09 (JotT) 387 418 S
+0.09 (ext_Redo) 402.87 418 S
+0.09 (Jot) 405 407 S
+(,) 416.1 407 T
+0.09 (264) 422.84 407 S
+0.09 (JotT) 387 394.5 S
+0.09 (ext_RedoCount) 402.87 394.5 S
+0.09 (Jot) 405 383.5 S
+(,) 416.1 383.5 T
+0.09 (264) 422.84 383.5 S
+0.09 (JotT) 387 371 S
+0.09 (ext_ReplaceCharacters) 402.87 371 S
+0.09 (Jot) 405 360 S
+(,) 416.1 360 T
+0.09 (259) 422.84 360 S
+0.09 (JotT) 387 347.5 S
+0.09 (ext_ScanCharacter) 402.87 347.5 S
+0.09 (Jot) 405 336.5 S
+(,) 416.1 336.5 T
+0.09 (258) 422.84 336.5 S
+0.09 (JotT) 387 324 S
+0.09 (ext_SetCar) 402.87 324 S
+0.09 (et) 446.35 324 S
+0.09 (Jot) 405 313 S
+(,) 416.1 313 T
+0.09 (262) 422.84 313 S
+0.09 (JotT) 387 300.5 S
+0.09 (ext_SetUndo) 402.87 300.5 S
+0.09 (Jot) 405 289.5 S
+(,) 416.1 289.5 T
+0.09 (263) 422.84 289.5 S
+0.09 (JotT) 387 277 S
+0.09 (ext_Undo) 402.87 277 S
+0.09 (Jot) 405 266 S
+(,) 416.1 266 T
+0.09 (263) 422.84 266 S
+0.09 (JotT) 387 253.5 S
+0.09 (ext_UndoBegin) 402.87 253.5 S
+0.09 (Jot) 405 242.5 S
+(,) 416.1 242.5 T
+0.09 (264) 422.84 242.5 S
+0.09 (JotT) 387 230 S
+0.09 (ext_UndoBr) 402.87 230 S
+0.09 (eak) 451.64 230 S
+0.09 (Jot) 405 219 S
+(,) 416.1 219 T
+0.09 (264) 422.84 219 S
+0.09 (JotT) 387 206.5 S
+0.09 (ext_UndoCount) 402.87 206.5 S
+0.09 (Jot) 405 195.5 S
+(,) 416.1 195.5 T
+0.09 (264) 422.84 195.5 S
+0.09 (JotT) 387 183 S
+0.09 (ext_UndoEnd) 402.87 183 S
+0.09 (Jot) 405 172 S
+(,) 416.1 172 T
+0.09 (264) 422.84 172 S
+0.09 (JotT) 387 159.5 S
+0.09 (ext_W) 402.87 159.5 S
+0.09 (rite) 428.01 159.5 S
+0.09 (Jot) 405 148.5 S
+(,) 416.1 148.5 T
+0.09 (260) 422.84 148.5 S
+FMENDPAGE
+%%EndPage: "304" 11
+%%Page: "305" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (305) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (JotV) 198 642 S
+0.09 (iew_BoundingBox) 215.18 642 S
+0.09 (Jot) 216 631 S
+(,) 227.1 631 T
+0.09 (274) 233.84 631 S
+0.09 (JotV) 198 618.5 S
+0.09 (iew_Canvas) 215.18 618.5 S
+0.09 (Jot) 216 607.5 S
+(,) 227.1 607.5 T
+0.09 (278) 233.84 607.5 S
+0.09 (JotV) 198 595 S
+0.09 (iew_Characters) 215.18 595 S
+0.09 (Jot) 216 584 S
+(,) 227.1 584 T
+0.09 (270) 233.84 584 S
+0.09 (JotV) 198 571.5 S
+0.09 (iew_ConstrainT) 215.18 571.5 S
+0.09 (ext) 279.18 571.5 S
+0.09 (Jot) 216 560.5 S
+(,) 227.1 560.5 T
+0.09 (271) 233.84 560.5 S
+0.09 (JotV) 198 548 S
+0.09 (iew_Contr) 215.18 548 S
+0.09 (ollers) 257.73 548 S
+0.09 (Jot) 216 537 S
+(,) 227.1 537 T
+0.09 (278) 233.84 537 S
+0.09 (JotV) 198 524.5 S
+0.09 (iew_Data) 215.18 524.5 S
+0.09 (Jot) 216 513.5 S
+(,) 227.1 513.5 T
+0.09 (277) 233.84 513.5 S
+0.09 (JotV) 198 501 S
+0.09 (iew_Ensur) 215.18 501 S
+0.09 (ePositionV) 258.24 501 S
+0.09 (isible) 301.89 501 S
+0.09 (Jot) 216 490 S
+(,) 227.1 490 T
+0.09 (270) 233.84 490 S
+0.09 (JotV) 198 477.5 S
+0.09 (iew_Fr) 215.18 477.5 S
+0.09 (ee) 243.02 477.5 S
+0.09 (Jot) 216 466.5 S
+(,) 227.1 466.5 T
+0.09 (270) 233.84 466.5 S
+0.09 (JotV) 198 454 S
+0.09 (iew_Height) 215.18 454 S
+0.09 (Jot) 216 443 S
+(,) 227.1 443 T
+0.09 (274) 233.84 443 S
+0.09 (JotV) 198 430.5 S
+0.09 (iew_LineBoundingBox) 215.18 430.5 S
+0.09 (Jot) 216 419.5 S
+(,) 227.1 419.5 T
+0.09 (274) 233.84 419.5 S
+0.09 (JotV) 198 407 S
+0.09 (iew_LineFr) 215.18 407 S
+0.09 (omPosition) 261.02 407 S
+0.09 (Jot) 216 396 S
+(,) 227.1 396 T
+0.09 (275) 233.84 396 S
+0.09 (JotV) 198 383.5 S
+0.09 (iew_Lines) 215.18 383.5 S
+0.09 (Jot) 216 372.5 S
+(,) 227.1 372.5 T
+0.09 (272) 233.84 372.5 S
+0.09 (JotV) 198 360 S
+0.09 (iew_New) 215.18 360 S
+0.09 (Jot) 216 349 S
+(,) 227.1 349 T
+0.09 (269) 233.84 349 S
+0.09 (JotV) 198 336.5 S
+0.09 (iew_PositionFr) 215.18 336.5 S
+0.09 (omLine) 276.18 336.5 S
+0.09 (Jot) 216 325.5 S
+(,) 227.1 325.5 T
+0.09 (273) 233.84 325.5 S
+0.09 (JotV) 198 313 S
+0.09 (iew_ReadOnly) 215.18 313 S
+0.09 (Jot) 216 302 S
+(,) 227.1 302 T
+0.09 (277) 233.84 302 S
+0.09 (JotV) 198 289.5 S
+0.09 (iew_RelativeLineFr) 215.18 289.5 S
+0.09 (omPosition) 294.09 289.5 S
+0.09 (Jot) 216 278.5 S
+(,) 227.1 278.5 T
+0.09 (275) 233.84 278.5 S
+0.09 (JotV) 198 266 S
+0.09 (iew_Scr) 215.18 266 S
+0.09 (ollAbsolute) 246.82 266 S
+0.09 (Jot) 216 255 S
+(,) 227.1 255 T
+0.09 (276) 233.84 255 S
+0.09 (JotV) 198 242.5 S
+0.09 (iew_Scr) 215.18 242.5 S
+0.09 (ollAutomatic) 246.82 242.5 S
+0.09 (Jot) 216 231.5 S
+(,) 227.1 231.5 T
+0.09 (275) 233.84 231.5 S
+0.09 (JotV) 198 219 S
+0.09 (iew_Scr) 215.18 219 S
+0.09 (ollRelative) 246.82 219 S
+0.09 (Jot) 216 208 S
+(,) 227.1 208 T
+0.09 (276) 233.84 208 S
+0.09 (JotV) 198 195.5 S
+0.09 (iew_SetData) 215.18 195.5 S
+0.09 (Jot) 216 184.5 S
+(,) 227.1 184.5 T
+0.09 (277) 233.84 184.5 S
+0.09 (JotV) 198 172 S
+0.09 (iew_SetFont) 215.18 172 S
+0.09 (Jot) 216 161 S
+(,) 227.1 161 T
+0.09 (283) 233.84 161 S
+0.09 (JotV) 198 148.5 S
+0.09 (iew_SetMar) 215.18 148.5 S
+0.09 (gins) 263.33 148.5 S
+0.09 (Jot) 405 642 S
+(,) 416.1 642 T
+0.09 (274) 422.84 642 S
+0.09 (JotV) 387 629.5 S
+0.09 (iew_SetReadOnly) 404.18 629.5 S
+0.09 (Jot) 405 618.5 S
+(,) 416.1 618.5 T
+0.09 (277) 422.84 618.5 S
+0.09 (JotV) 387 606 S
+0.09 (iew_SetT) 404.18 606 S
+0.09 (ext) 440.45 606 S
+0.09 (Jot) 405 595 S
+(,) 416.1 595 T
+0.09 (270) 422.84 595 S
+0.09 (JotV) 387 582.5 S
+0.09 (iew_T) 404.18 582.5 S
+0.09 (ext) 428.23 582.5 S
+0.09 (Jot) 405 571.5 S
+(,) 416.1 571.5 T
+0.09 (270) 422.84 571.5 S
+0.09 (JotV) 387 559 S
+0.09 (iew_Update) 404.18 559 S
+0.09 (Jot) 405 548 S
+(,) 416.1 548 T
+0.09 (271) 422.84 548 S
+0.09 (JotV) 387 535.5 S
+0.09 (iew_UpdateV) 404.18 535.5 S
+0.09 (iews) 459.69 535.5 S
+0.09 (Jot) 405 524.5 S
+(,) 416.1 524.5 T
+0.09 (272) 422.84 524.5 S
+0.09 (JotV) 387 512 S
+0.09 (iew_V) 404.18 512 S
+0.09 (iew) 429.54 512 S
+0.09 (Jot) 405 501 S
+(,) 416.1 501 T
+0.09 (278) 422.84 501 S
+0.09 (JotV) 387 488.5 S
+0.09 (iew_W) 404.18 488.5 S
+0.09 (idth) 432.04 488.5 S
+0.09 (Jot) 405 477.5 S
+(,) 416.1 477.5 T
+0.09 (274) 422.84 477.5 S
+0.09 (JotV) 387 465 S
+0.09 (iew_W) 404.18 465 S
+0.09 (ir) 432.04 465 S
+0.09 (e) 438.22 465 S
+0.09 (Jot) 405 454 S
+(,) 416.1 454 T
+0.09 (278) 422.84 454 S
+0.09 (/justi\336cation) 387 441.5 S
+0.09 (ClassButton) 405 430.5 S
+(,) 454 430.5 T
+0.09 (31) 460.74 430.5 S
+0.09 (ClassSettings) 405 419.5 S
+(,) 458.81 419.5 T
+0.09 (190) 465.55 419.5 S
+2 F
+4 K
+0.13 (K) 387 391.83 S
+0 F
+0 K
+0.09 (/Keyable?) 387 377.5 S
+0.09 (ClassCanvas) 405 366.5 S
+(,) 456.57 366.5 T
+0.09 (57) 463.31 366.5 S
+0.09 (/keyable?) 387 354 S
+0.09 (ClassCanvas) 405 343 S
+(,) 456.57 343 T
+0.09 (58) 463.31 343 S
+0.09 (keys) 387 330.5 S
+0.09 (determining which to get) 405 319.5 S
+(,) 507.74 319.5 T
+0.09 (58) 514.48 319.5 S
+0.09 (getting) 405 308.5 S
+(,) 433.63 308.5 T
+0.09 (57) 440.38 308.5 S
+0.09 (getting number pad keystr) 405 297.5 S
+0.09 (okes) 513.22 297.5 S
+(,) 531.6 297.5 T
+0.09 (59) 538.34 297.5 S
+0.09 (getting standar) 405 286.5 S
+0.09 (d typing) 466.44 286.5 S
+0.09 (see /Standar) 423 275.5 S
+0.09 (dKey) 474.94 275.5 S
+(,) 496.62 275.5 T
+0.09 (59) 503.36 275.5 S
+0.09 (/KeyStart) 387 263 S
+0.09 (ClassCanvas) 405 252 S
+(,) 456.57 252 T
+0.09 (58) 463.31 252 S
+0.09 (/KeyStop) 387 239.5 S
+0.09 (ClassCanvas) 405 228.5 S
+(,) 456.57 228.5 T
+0.09 (59) 463.31 228.5 S
+0.09 (keystr) 387 216 S
+0.09 (okes) 411.97 216 S
+0.09 (getting) 405 205 S
+(,) 433.63 205 T
+0.09 (57) 440.38 205 S
+2 F
+4 K
+0.13 (L) 387 177.34 S
+0 F
+0 K
+0.09 (/label) 387 163 S
+0.09 (ClassMenu) 405 152 S
+(,) 450.37 152 T
+0.09 (1) 457.11 152 S
+0.09 (14) 461.2 152 S
+FMENDPAGE
+%%EndPage: "305" 12
+%%Page: "306" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (306) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassW) 216 642 S
+0.09 (indow) 246.13 642 S
+(,) 272.33 642 T
+0.09 (219) 279.07 642 S
+0.09 (labels) 198 629.5 S
+0.09 (for menus) 216 618.5 S
+(,) 257.21 618.5 T
+0.09 (1) 263.95 618.5 S
+0.09 (14) 268.04 618.5 S
+0.09 (for pinned menus) 216 607.5 S
+0.09 (pinned menu lables) 234 596.5 S
+(,) 314.09 596.5 T
+0.09 (1) 320.83 596.5 S
+0.09 (14) 324.92 596.5 S
+0.09 (see ClassLabel) 216 585.5 S
+(,) 274.9 585.5 T
+0.09 (99) 281.64 585.5 S
+0.09 (/Layout) 198 573 S
+0.09 (ClassBag) 216 562 S
+(,) 252.8 562 T
+0.09 (20) 259.55 562 S
+0.09 (ClassBor) 216 551 S
+0.09 (derBag) 251.61 551 S
+(,) 280.48 551 T
+0.09 (28) 287.22 551 S
+0.09 (ClassItemGr) 216 540 S
+0.09 (oup) 266.54 540 S
+(,) 282.54 540 T
+0.09 (96) 289.28 540 S
+0.09 (ClassLayout) 216 529 S
+(,) 266.33 529 T
+0.09 (102) 273.07 529 S
+0.09 (ClassPanel) 216 518 S
+(,) 260.08 518 T
+0.09 (136) 266.82 518 S
+0.09 (/layout) 198 505.5 S
+0.09 (ClassBag) 216 494.5 S
+(,) 252.8 494.5 T
+0.09 (20) 259.55 494.5 S
+0.09 (layout) 198 482 S
+0.09 (bor) 216 471 S
+0.09 (derbag client pr) 229.54 471 S
+0.09 (ecedence) 293.75 471 S
+(,) 330.39 471 T
+0.09 (26) 337.14 471 S
+0.09 (calculated placement utilities) 216 460 S
+(,) 334.6 460 T
+0.09 (90) 341.34 460 S
+0.09 (context of) 216 449 S
+(,) 255.98 449 T
+0.09 (102) 262.72 449 S
+0.09 (default calculated) 216 438 S
+0.09 (in item gr) 234 427 S
+0.09 (oups) 273.41 427 S
+(,) 293.31 427 T
+0.09 (89) 300.05 427 S
+0.09 (validating de\336nition) 216 416 S
+(,) 299.37 416 T
+0.09 (44) 306.11 416 S
+0.09 (/layoutparameters) 198 403.5 S
+0.09 (ClassItemGr) 216 392.5 S
+0.09 (oup) 266.54 392.5 S
+(,) 282.54 392.5 T
+0.09 (96) 289.28 392.5 S
+0.09 (ClassLayout) 216 381.5 S
+(,) 266.33 381.5 T
+0.09 (104) 273.07 381.5 S
+0.09 (ClassMenu) 216 370.5 S
+(,) 261.37 370.5 T
+0.09 (1) 268.11 370.5 S
+0.09 (12) 272.2 370.5 S
+0.09 (ClassPanel) 216 359.5 S
+(,) 260.08 359.5 T
+0.09 (136) 266.82 359.5 S
+0.09 (layout parameters) 198 347 S
+0.09 (for grid item gr) 216 336 S
+0.09 (oups) 278.45 336 S
+(,) 298.35 336 T
+0.09 (89) 305.09 336 S
+0.09 (LEM) 198 323.5 S
+0.09 (see also event manager) 216 312.5 S
+0.09 (see local event manager) 216 301.5 S
+0.09 (/Level) 198 289 S
+0.09 (\050attribute\051ClassSelection) 216 278 S
+(,) 315.1 278 T
+0.09 (181) 321.84 278 S
+0.09 (List) 198 265.5 S
+0.09 (ClassLayout) 216 254.5 S
+(,) 266.33 254.5 T
+0.09 (105) 273.07 254.5 S
+0.09 (local event manager) 198 242 S
+0.09 (and user) 216 231 S
+0.09 (dict) 251.1 231 S
+(,) 266.49 231 T
+0.09 (14) 273.23 231 S
+0.09 (de\336ned) 216 220 S
+(,) 246.8 220 T
+0.09 (49) 253.54 220 S
+0.09 (execution envir) 216 209 S
+0.09 (onment) 278.55 209 S
+(,) 309.63 209 T
+0.09 (14) 316.37 209 S
+0.09 (using to activate a canvas) 216 198 S
+(,) 319.66 198 T
+0.09 (49) 326.4 198 S
+0.09 (LocateChoice) 198 185.5 S
+(,) 252.62 185.5 T
+0.09 (165) 259.36 185.5 S
+0.09 (/locatechoice) 198 173 S
+0.09 (ClassScr) 216 162 S
+0.09 (ollList) 249.92 162 S
+(,) 275.53 162 T
+0.09 (165) 282.27 162 S
+0.09 (LocateNextChoice) 198 149.5 S
+(,) 272.32 149.5 T
+0.09 (165) 279.06 149.5 S
+0.09 (locating point in item) 387 642 S
+0.09 (see /pointinitem?) 405 631 S
+(,) 477.35 631 T
+0.09 (92) 484.09 631 S
+0.09 (/location) 387 618.5 S
+0.09 (ClassCanvas) 405 607.5 S
+(,) 456.57 607.5 T
+0.09 (43) 463.31 607.5 S
+0.09 (ClassRegion) 405 596.5 S
+(,) 455.15 596.5 T
+0.09 (143) 461.89 596.5 S
+0.09 (Location) 387 584 S
+0.09 (ClassLayout) 405 573 S
+(,) 455.33 573 T
+0.09 (105) 462.07 573 S
+0.09 (losing focus) 387 560.5 S
+0.09 (method sent) 405 549.5 S
+(,) 455.31 549.5 T
+0.09 (59) 462.05 549.5 S
+2 F
+4 K
+0.13 (M) 387 521.83 S
+0 F
+0 K
+0.09 (Main loop, owning) 387 507.5 S
+0.09 (Jot) 405 496.5 S
+(,) 416.1 496.5 T
+0.09 (272) 422.84 496.5 S
+0.09 (/map) 387 484 S
+0.09 (ClassCanvas) 405 473 S
+(,) 456.57 473 T
+0.09 (42) 463.31 473 S
+0.09 (ClassRegion) 405 462 S
+(,) 455.15 462 T
+0.09 (143) 461.89 462 S
+0.09 (/Mapped) 387 449.5 S
+0.09 (ClassCanvas) 405 438.5 S
+(,) 456.57 438.5 T
+0.09 (42) 463.31 438.5 S
+0.09 (/mapped?) 387 426 S
+0.09 (ClassCanvas) 405 415 S
+(,) 456.57 415 T
+0.09 (42) 463.31 415 S
+0.09 (ClassRegion) 405 404 S
+(,) 455.15 404 T
+0.09 (143) 461.89 404 S
+0.09 (mapped canvas and visibility) 387 391.5 S
+(,) 506.46 391.5 T
+0.09 (42) 513.2 391.5 S
+0.09 (mapping and painting interaction) 387 379 S
+(,) 524.22 379 T
+0.09 (42) 530.96 379 S
+0.09 (mapping and transpar) 387 366.5 S
+0.09 (ent canvases) 477.88 366.5 S
+(,) 528.89 366.5 T
+0.09 (42) 535.63 366.5 S
+0.09 (max value) 387 354 S
+0.09 (\336nding for coor) 405 343 S
+0.09 (dinates) 468.49 343 S
+(,) 497.99 343 T
+0.09 (106) 504.73 343 S
+0.09 (Memory Management) 387 330.5 S
+(,) 477.4 330.5 T
+0.09 (10) 484.14 330.5 S
+0.09 (/Menu) 387 318 S
+0.09 (ClassCanvas) 405 307 S
+(,) 456.57 307 T
+0.09 (53) 463.31 307 S
+0.09 (ClassMenu) 405 296 S
+(,) 450.37 296 T
+0.09 (1) 457.11 296 S
+0.09 (18) 461.2 296 S
+0.09 (/menu) 387 283.5 S
+0.09 (ClassCanvas) 405 272.5 S
+(,) 456.57 272.5 T
+0.09 (53) 463.31 272.5 S
+0.09 (ClassMenu) 405 261.5 S
+(,) 450.37 261.5 T
+0.09 (1) 457.11 261.5 S
+0.09 (19) 461.2 261.5 S
+0.09 (ClassMenuButton) 405 250.5 S
+(,) 477.82 250.5 T
+0.09 (33) 484.56 250.5 S
+0.09 (ClassRegion) 405 239.5 S
+(,) 455.15 239.5 T
+0.09 (148) 461.89 239.5 S
+0.09 (/Menu\050Class V) 387 227 S
+0.09 (ariable\051) 449.08 227 S
+0.09 (ClassRegion) 405 216 S
+(,) 455.15 216 T
+0.09 (147) 461.89 216 S
+0.09 (/menuable) 387 203.5 S
+0.09 (ClassCanvas) 405 192.5 S
+(,) 456.57 192.5 T
+0.09 (54) 463.31 192.5 S
+0.09 (/Menuable?) 387 180 S
+0.09 (ClassMenu) 405 169 S
+(,) 450.37 169 T
+0.09 (53) 457.11 169 S
+(, ) 466.28 169 T
+0.09 (1) 470.77 169 S
+0.09 (19) 474.86 169 S
+0.09 (/menuable?) 387 156.5 S
+FMENDPAGE
+%%EndPage: "306" 13
+%%Page: "307" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (307) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (ClassMenu) 216 642 S
+(,) 261.37 642 T
+0.09 (1) 268.11 642 S
+0.09 (19) 272.2 642 S
+0.09 (menu buttons) 198 629.5 S
+0.09 (buttons) 216 618.5 S
+0.09 (menu) 234 607.5 S
+(,) 257.25 607.5 T
+0.09 (32) 263.99 607.5 S
+0.09 (menu default tar) 198 595 S
+0.09 (get changing) 265.88 595 S
+0.09 (see /MenuStart) 216 584 S
+(,) 279.45 584 T
+0.09 (1) 286.19 584 S
+0.09 (19) 290.28 584 S
+0.09 (/menudir) 198 571.5 S
+0.09 (ection) 238.55 571.5 S
+0.09 (ClassMenuButton) 216 560.5 S
+(,) 288.82 560.5 T
+0.09 (33) 295.56 560.5 S
+0.09 (menu item layout) 198 548 S
+(,) 269.97 548 T
+0.09 (1) 276.71 548 S
+0.09 (10) 280.8 548 S
+0.09 (menu labels) 198 535.5 S
+0.09 (setting) 216 524.5 S
+0.09 (see /setlabel) 234 513.5 S
+(,) 285.33 513.5 T
+0.09 (1) 292.07 513.5 S
+0.09 (14) 296.16 513.5 S
+0.09 (/MenuStart) 198 501 S
+0.09 (ClassBag) 216 490 S
+(,) 252.8 490 T
+0.09 (21) 259.55 490 S
+0.09 (ClassCanvas) 216 479 S
+(,) 267.57 479 T
+0.09 (54) 274.31 479 S
+0.09 (ClassMenu) 216 468 S
+(,) 261.37 468 T
+0.09 (1) 268.11 468 S
+0.09 (19) 272.2 468 S
+0.09 (ClassRegion) 216 457 S
+(,) 266.15 457 T
+0.09 (148) 272.89 457 S
+0.09 (/MenuStop) 198 444.5 S
+0.09 (ClassBag) 216 433.5 S
+(,) 252.8 433.5 T
+0.09 (21) 259.55 433.5 S
+0.09 (ClassCanvas) 216 422.5 S
+(,) 267.57 422.5 T
+0.09 (55) 274.31 422.5 S
+0.09 (ClassMenu) 216 411.5 S
+(,) 261.37 411.5 T
+0.09 (120) 268.11 411.5 S
+0.09 (ClassRegion) 216 400.5 S
+(,) 266.15 400.5 T
+0.09 (149) 272.89 400.5 S
+0.09 (menu type) 198 388 S
+0.09 (setting) 216 377 S
+0.09 (see /setchoicemode) 234 366 S
+(,) 314.46 366 T
+0.09 (108) 321.2 366 S
+0.09 (menu values) 198 353.5 S
+0.09 (see /setvalue) 216 342.5 S
+(,) 270.24 342.5 T
+0.09 (1) 276.98 342.5 S
+0.09 (18) 281.07 342.5 S
+0.09 (menus) 198 330 S
+0.09 (allowing other objects to open) 216 319 S
+(,) 338.28 319 T
+0.09 (148) 345.02 319 S
+0.09 (buttons) 216 308 S
+0.09 (setting the menu) 234 297 S
+(,) 302.11 297 T
+0.09 (33) 308.85 297 S
+0.09 (canvas) 216 286 S
+(,) 243.64 286 T
+0.09 (53) 250.38 286 S
+0.09 (default item) 216 275 S
+(,) 265.36 275 T
+0.09 (1) 272.1 275 S
+0.09 (13) 276.19 275 S
+0.09 (default tar) 216 264 S
+0.09 (get) 258.3 264 S
+(,) 270.8 264 T
+0.09 (1) 277.54 264 S
+0.09 (16) 281.63 264 S
+0.09 (grid) 216 253 S
+(,) 233.01 253 T
+0.09 (1) 239.75 253 S
+0.09 (10) 243.84 253 S
+0.09 (inter) 216 242 S
+0.09 (cepting the menu event) 234.92 242 S
+(,) 330.31 242 T
+0.09 (120) 337.05 242 S
+0.09 (invoker) 216 231 S
+0.09 (de\336nition) 234 220 S
+(,) 273.57 220 T
+0.09 (1) 280.31 220 S
+0.09 (17) 284.4 220 S
+0.09 (setting dif) 234 209 S
+0.09 (fer) 274.99 209 S
+0.09 (ent) 285.95 209 S
+(,) 298.68 209 T
+0.09 (1) 305.42 209 S
+0.09 (19) 309.51 209 S
+0.09 (opening over canvases) 216 198 S
+(,) 308.12 198 T
+0.09 (54) 314.86 198 S
+0.09 (opening over r) 216 187 S
+0.09 (egions) 275.67 187 S
+(,) 302.07 187 T
+0.09 (148) 308.82 187 S
+0.09 (pr) 216 176 S
+0.09 (eventing any menu fr) 224.97 176 S
+0.09 (om ) 312.19 176 S
+0.09 (opening) 252 165 S
+(,) 285.32 165 T
+0.09 (148) 292.06 165 S
+0.09 (pr) 216 154 S
+0.09 (eventing fr) 224.97 154 S
+0.09 (om opening) 269.28 154 S
+(,) 317.95 154 T
+0.09 (148) 324.7 154 S
+0.09 (r) 405 642 S
+0.09 (egion) 408.48 642 S
+(,) 430.98 642 T
+0.09 (148) 437.72 642 S
+0.09 (r) 405 631 S
+0.09 (ules for determining tar) 408.57 631 S
+0.09 (get) 505.09 631 S
+(,) 517.59 631 T
+0.09 (1) 524.33 631 S
+0.09 (17) 528.42 631 S
+0.09 (see /MenuStart) 405 620 S
+(,) 468.45 620 T
+0.09 (148) 475.19 620 S
+0.09 (setting the default item) 405 609 S
+0.09 (see /setdefault) 423 598 S
+(,) 483.76 598 T
+0.09 (1) 490.5 598 S
+0.09 (13) 494.59 598 S
+0.09 (settings) 405 587 S
+0.09 (noti\336cation) 423 576 S
+(,) 469.28 576 T
+0.09 (1) 476.02 576 S
+0.09 (16) 480.11 576 S
+0.09 (spaced) 405 565 S
+(,) 433.03 565 T
+0.09 (1) 439.77 565 S
+0.09 (10) 443.86 565 S
+0.09 (types) 405 554 S
+(,) 426.89 554 T
+0.09 (107) 433.63 554 S
+0.09 (user interaction with) 405 543 S
+0.09 (see /setvisualstate) 423 532 S
+(,) 498.37 532 T
+0.09 (1) 505.11 532 S
+0.09 (15) 509.2 532 S
+0.09 (values and noti\336cation) 405 521 S
+(,) 497.7 521 T
+0.09 (1) 504.44 521 S
+0.09 (15) 508.53 521 S
+0.09 (/MetaKey) 387 508.5 S
+0.09 (ClassCanvas) 405 497.5 S
+(,) 456.57 497.5 T
+0.09 (60) 463.31 497.5 S
+0.09 (/MetaKeyUp) 387 485 S
+0.09 (ClassCanvas) 405 474 S
+(,) 456.57 474 T
+0.09 (60) 463.31 474 S
+0.09 (method sent) 387 461.5 S
+(,) 437.31 461.5 T
+0.09 (59) 444.05 461.5 S
+0.09 (mouse) 387 449 S
+0.09 (moving in items) 405 438 S
+(,) 471.05 438 T
+0.09 (95) 477.79 438 S
+0.09 (/MinimumV) 387 425.5 S
+0.09 (isible) 439.51 425.5 S
+0.09 (ClassT) 405 414.5 S
+0.09 (extField) 431.33 414.5 S
+(,) 463.94 414.5 T
+0.09 (205) 470.68 414.5 S
+0.09 (/minimumvisible) 387 402 S
+0.09 (ClassT) 405 391 S
+0.09 (extField) 431.33 391 S
+(,) 463.94 391 T
+0.09 (205) 470.68 391 S
+0.09 (/minsize) 387 378.5 S
+0.09 (ClassBaseW) 405 367.5 S
+0.09 (indow) 453.6 367.5 S
+(,) 479.79 367.5 T
+0.09 (226) 486.53 367.5 S
+0.09 (ClassBor) 405 356.5 S
+0.09 (derBag) 440.61 356.5 S
+(,) 469.48 356.5 T
+0.09 (27) 476.22 356.5 S
+0.09 (ClassCanvas) 405 345.5 S
+(,) 456.57 345.5 T
+0.09 (43) 463.31 345.5 S
+0.09 (ClassItemGr) 405 334.5 S
+0.09 (oup) 455.54 334.5 S
+(,) 471.54 334.5 T
+0.09 (93) 478.28 334.5 S
+0.09 (ClassLayout) 405 323.5 S
+(,) 455.33 323.5 T
+0.09 (102) 462.07 323.5 S
+0.09 (ClassRegion) 405 312.5 S
+(,) 455.15 312.5 T
+0.09 (143) 461.89 312.5 S
+0.09 (ClassT) 405 301.5 S
+0.09 (extField) 431.33 301.5 S
+(,) 463.94 301.5 T
+0.09 (205) 470.68 301.5 S
+0.09 (Gauges) 405 290.5 S
+(,) 435.42 290.5 T
+0.09 (85) 442.16 290.5 S
+0.09 (Scr) 405 279.5 S
+0.09 (ollbars) 417.37 279.5 S
+(,) 444.96 279.5 T
+0.09 (154) 451.7 279.5 S
+0.09 (Sliders) 405 268.5 S
+(,) 432.74 268.5 T
+0.09 (197) 439.48 268.5 S
+0.09 (/ModifyFont) 387 256 S
+0.09 (ClassCanvas) 405 245 S
+(,) 456.57 245 T
+0.09 (40) 463.31 245 S
+0.09 (ClassRegion) 405 234 S
+(,) 455.15 234 T
+0.09 (142) 461.89 234 S
+0.09 (/motion) 387 221.5 S
+0.09 (Scr) 405 210.5 S
+0.09 (ollbars) 417.37 210.5 S
+(,) 444.96 210.5 T
+0.09 (152) 451.7 210.5 S
+0.09 (mouse tracking) 387 198 S
+0.09 (pr) 405 187 S
+0.09 (oviding methods for) 413.97 187 S
+(,) 497.17 187 T
+0.09 (56) 503.91 187 S
+0.09 (/move) 387 174.5 S
+0.09 (ClassCanvas) 405 163.5 S
+(,) 456.57 163.5 T
+0.09 (43) 463.31 163.5 S
+0.09 (ClassRegion) 405 152.5 S
+(,) 455.15 152.5 T
+0.09 (144) 461.89 152.5 S
+FMENDPAGE
+%%EndPage: "307" 14
+%%Page: "308" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (308) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (Move) 198 642 S
+0.09 (ClassLayout) 216 631 S
+(,) 266.33 631 T
+0.09 (105) 273.07 631 S
+0.09 (/movebaseline) 198 618.5 S
+0.09 (ClassT) 216 607.5 S
+0.09 (extField) 242.32 607.5 S
+(,) 274.94 607.5 T
+0.09 (215) 281.68 607.5 S
+2 F
+4 K
+0.13 (N) 198 579.83 S
+0 F
+0 K
+0.09 (names) 198 565.5 S
+0.09 (for bag clients) 216 554.5 S
+(,) 273.25 554.5 T
+0.09 (18) 279.99 554.5 S
+0.09 (of bor) 216 543.5 S
+0.09 (derbag clients) 239.95 543.5 S
+(,) 296.76 543.5 T
+0.09 (23) 303.5 543.5 S
+0.09 (using dup for bag clients) 216 532.5 S
+(,) 317.03 532.5 T
+0.09 (18) 323.77 532.5 S
+0.09 (Naming panel clients) 198 520 S
+(,) 284.58 520 T
+0.09 (132) 291.32 520 S
+0.09 (/new) 198 507.5 S
+0.09 (ClassBag) 216 496.5 S
+(,) 252.8 496.5 T
+0.09 (17) 259.55 496.5 S
+0.09 (ClassBaseW) 216 485.5 S
+0.09 (indow) 264.6 485.5 S
+(,) 290.79 485.5 T
+0.09 (224) 297.53 485.5 S
+0.09 (ClassButton) 216 474.5 S
+(,) 265 474.5 T
+0.09 (30) 271.74 474.5 S
+0.09 (ClassCanvas) 216 463.5 S
+(,) 267.57 463.5 T
+0.09 (35) 274.31 463.5 S
+0.09 (ClassCheckBoxes) 216 452.5 S
+(,) 286.5 452.5 T
+0.09 (192) 293.24 452.5 S
+0.09 (ClassEventMgr) 216 441.5 S
+(,) 278.36 441.5 T
+0.09 (49) 285.1 441.5 S
+0.09 (ClassItemGr) 216 430.5 S
+0.09 (oup) 266.54 430.5 S
+(,) 282.54 430.5 T
+0.09 (87) 289.28 430.5 S
+0.09 (ClassLabel) 216 419.5 S
+(,) 259.88 419.5 T
+0.09 (99) 266.62 419.5 S
+0.09 (ClassMenu) 216 408.5 S
+(,) 261.37 408.5 T
+0.09 (107) 268.11 408.5 S
+0.09 (ClassNotice) 216 397.5 S
+(,) 264.31 397.5 T
+0.09 (121) 271.05 397.5 S
+0.09 (ClassPanel) 216 386.5 S
+(,) 260.08 386.5 T
+0.09 (131) 266.82 386.5 S
+0.09 (ClassPopupW) 216 375.5 S
+0.09 (indow) 273.14 375.5 S
+(,) 299.33 375.5 T
+0.09 (226) 306.07 375.5 S
+0.09 (ClassRegion) 216 364.5 S
+(,) 266.15 364.5 T
+0.09 (138) 272.89 364.5 S
+0.09 (ClassSelection) 216 353.5 S
+(,) 273.98 353.5 T
+0.09 (179) 280.72 353.5 S
+0.09 (ClassSettings) 216 342.5 S
+(,) 269.81 342.5 T
+0.09 (190) 276.55 342.5 S
+0.09 (ClassT) 216 331.5 S
+0.09 (extField) 242.32 331.5 S
+(,) 274.94 331.5 T
+0.09 (203) 281.68 331.5 S
+0.09 (ClassW) 216 320.5 S
+0.09 (indow) 246.13 320.5 S
+(,) 272.33 320.5 T
+0.09 (218) 279.07 320.5 S
+0.09 (Scr) 216 309.5 S
+0.09 (ollbars) 228.37 309.5 S
+(,) 255.96 309.5 T
+0.09 (152) 262.7 309.5 S
+0.09 (Sliders) 216 298.5 S
+(,) 243.74 298.5 T
+0.09 (194) 250.48 298.5 S
+0.09 (/NewInit) 198 286 S
+0.09 (ClassCanvas) 216 275 S
+(,) 267.57 275 T
+0.09 (36) 274.31 275 S
+0.09 (ClassItemGr) 216 264 S
+0.09 (oup) 266.54 264 S
+(,) 282.54 264 T
+0.09 (88) 289.28 264 S
+0.09 (/NewItem) 198 251.5 S
+0.09 (ClassItemGr) 216 240.5 S
+0.09 (oup) 266.54 240.5 S
+(,) 282.54 240.5 T
+0.09 (97) 289.28 240.5 S
+0.09 (/NewSelection) 198 228 S
+0.09 (ClassCanvas) 216 217 S
+(,) 267.57 217 T
+0.09 (67) 274.31 217 S
+0.09 (/Normalizer) 198 204.5 S
+0.09 (ClassNumericField) 216 193.5 S
+(,) 293.94 193.5 T
+0.09 (127) 300.68 193.5 S
+0.09 (/normalizer) 198 181 S
+0.09 (ClassNumericField) 216 170 S
+(,) 293.94 170 T
+0.09 (127) 300.68 170 S
+0.09 (Gauges) 216 159 S
+(,) 246.42 159 T
+0.09 (84) 253.16 159 S
+0.09 (Sliders) 216 148 S
+(,) 243.74 148 T
+0.09 (196) 250.48 148 S
+0.09 (normalizing gauge values) 387 642 S
+0.09 (see Gauge granularity) 405 631 S
+(,) 494.77 631 T
+0.09 (84) 501.51 631 S
+0.09 (normalizing slider values) 387 618.5 S
+(,) 490.54 618.5 T
+0.09 (196) 497.28 618.5 S
+0.09 (notices) 387 606 S
+0.09 (closing and noti\336er) 405 595 S
+(,) 483.56 595 T
+0.09 (122) 490.3 595 S
+0.09 (noti\336er for buttons) 405 584 S
+(,) 481.83 584 T
+0.09 (122) 488.57 584 S
+0.09 (opening) 405 573 S
+0.09 (see /open) 423 562 S
+(,) 463.77 562 T
+0.09 (123) 470.51 562 S
+0.09 (putting buttons in) 405 551 S
+0.09 (see /setbuttons) 423 540 S
+(,) 485.71 540 T
+0.09 (122) 492.45 540 S
+0.09 (tail) 405 529 S
+0.09 (see apex) 423 518 S
+(,) 457.23 518 T
+0.09 (123) 463.96 518 S
+0.09 (warping the cursor to) 405 507 S
+(,) 492.94 507 T
+0.09 (122) 499.68 507 S
+0.09 (Noti\336cation) 387 494.5 S
+0.09 (button ar) 405 483.5 S
+0.09 (guments on the stack ) 442.33 483.5 S
+0.09 (during) 441 472.5 S
+(,) 468.84 472.5 T
+0.09 (31) 475.58 472.5 S
+0.09 (Buttons) 405 461.5 S
+(,) 436.35 461.5 T
+0.09 (31) 443.09 461.5 S
+0.09 (noti\336cation) 387 449 S
+0.09 (changing context of) 405 438 S
+(,) 484.82 438 T
+0.09 (77) 491.56 438 S
+0.09 (context of) 405 427 S
+(,) 444.98 427 T
+0.09 (77) 451.72 427 S
+0.09 (scr) 405 416 S
+0.09 (ollbars) 416.46 416 S
+(,) 444.05 416 T
+0.09 (155) 450.79 416 S
+0.09 (settings) 405 405 S
+(,) 436.35 405 T
+0.09 (191) 443.09 405 S
+0.09 (sliders) 405 394 S
+(,) 431.83 394 T
+0.09 (195) 438.57 394 S
+0.09 (turning of) 405 383 S
+0.09 (f) 445.86 383 S
+(,) 448.94 383 T
+0.09 (77) 455.68 383 S
+0.09 (noti\336cation and menu values) 387 370.5 S
+(,) 505.29 370.5 T
+0.09 (1) 512.03 370.5 S
+0.09 (15) 516.11 370.5 S
+0.09 (/noti\336er) 387 358 S
+0.09 (ClassButton) 405 347 S
+(,) 454 347 T
+0.09 (31) 460.74 347 S
+0.09 (ClassContr) 405 336 S
+0.09 (ol) 449.83 336 S
+(,) 457.53 336 T
+0.09 (77) 464.27 336 S
+0.09 (ClassMenu) 405 325 S
+(,) 450.37 325 T
+0.09 (1) 457.11 325 S
+0.09 (16) 461.2 325 S
+0.09 (ClassNumericField) 405 314 S
+(,) 482.94 314 T
+0.09 (127) 489.68 314 S
+0.09 (ClassScr) 405 303 S
+0.09 (ollList) 438.92 303 S
+(,) 464.53 303 T
+0.09 (168) 471.27 303 S
+0.09 (ClassSettings) 405 292 S
+(,) 458.81 292 T
+0.09 (192) 465.55 292 S
+0.09 (ClassT) 405 281 S
+0.09 (extField) 431.33 281 S
+(,) 463.94 281 T
+0.09 (206) 470.68 281 S
+0.09 (Scr) 405 270 S
+0.09 (ollbars) 417.37 270 S
+(,) 444.96 270 T
+0.09 (156) 451.7 270 S
+0.09 (Sliders) 405 259 S
+(,) 432.74 259 T
+0.09 (195) 439.48 259 S
+0.09 (noti\336er) 387 246.5 S
+0.09 (ar) 405 235.5 S
+0.09 (guments for) 413.06 235.5 S
+(,) 462.38 235.5 T
+0.09 (77) 469.12 235.5 S
+0.09 (driving with tags) 405 224.5 S
+(,) 475.1 224.5 T
+0.09 (234) 481.84 224.5 S
+0.09 (for notice buttons) 405 213.5 S
+(,) 476.74 213.5 T
+0.09 (122) 483.48 213.5 S
+0.09 (speci\336ed as PostScript code) 405 202.5 S
+(,) 516.81 202.5 T
+0.09 (77) 523.55 202.5 S
+0.09 (specifying) 405 191.5 S
+(,) 446.86 191.5 T
+0.09 (77) 453.6 191.5 S
+0.09 (noti\336ers) 387 179 S
+(,) 420.51 179 T
+0.09 (48) 427.25 179 S
+0.09 (setting for single buttons) 405 168 S
+0.09 (see /setitemnotifer) 423 157 S
+(,) 500.18 157 T
+0.09 (31) 506.93 157 S
+FMENDPAGE
+%%EndPage: "308" 15
+%%Page: "309" 15
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (309) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (time-consuming) 216 642 S
+(,) 282.17 642 T
+0.09 (48) 288.92 642 S
+0.09 (using with help facilities) 216 631 S
+(,) 315.96 631 T
+0.09 (243) 322.7 631 S
+0.09 (numeric \336eld) 198 618.5 S
+0.09 (buttons) 216 607.5 S
+0.09 (changing deltas) 234 596.5 S
+(,) 298.03 596.5 T
+0.09 (126) 304.77 596.5 S
+0.09 (normalizer 127) 216 585.5 S
+0.09 (normalizing values) 216 574.5 S
+(,) 294.27 574.5 T
+0.09 (126) 301.01 574.5 S
+0.09 (range of values) 216 563.5 S
+0.09 (see /setrange) 234 552.5 S
+(,) 288.9 552.5 T
+0.09 (125) 295.65 552.5 S
+0.09 (value) 216 541.5 S
+(,) 238.36 541.5 T
+0.09 (127) 245.1 541.5 S
+0.09 (/NumPadKey) 198 529 S
+0.09 (ClassCanvas) 216 518 S
+(,) 267.57 518 T
+0.09 (59) 274.31 518 S
+0.09 (/NumPadKeyUp) 198 505.5 S
+0.09 (ClassCanvas) 216 494.5 S
+(,) 267.57 494.5 T
+0.09 (59) 274.31 494.5 S
+2 F
+4 K
+0.13 (O) 198 455.83 S
+0 F
+0 K
+0.09 (objects) 198 441.5 S
+0.09 (associating server and client) 216 430.5 S
+(,) 330.74 430.5 T
+0.09 (237) 337.48 430.5 S
+0.09 (obsolete objects) 198 418 S
+0.09 (r) 216 407 S
+0.09 (esponding) 219.48 407 S
+(,) 262.28 407 T
+0.09 (73) 269.02 407 S
+0.09 (of numeric \336elds) 198 394.5 S
+(,) 266.54 394.5 T
+0.09 (127) 273.28 394.5 S
+0.09 (/of) 198 382 S
+0.09 (fset) 211.45 382 S
+0.09 (Gauges) 216 371 S
+(,) 246.42 371 T
+0.09 (85) 253.16 371 S
+0.09 (Sliders) 216 360 S
+(,) 243.74 360 T
+0.09 (197) 250.48 360 S
+0.09 (of) 198 347.5 S
+0.09 (fsets) 205.92 347.5 S
+-0.14 0.09 (used for positioning slider labels) 216 336.5 B
+-0.14 (,) 348.42 336.5 P
+-0.14 0.09 (198) 355.16 336.5 B
+0.09 (opaque and transpar) 198 324 S
+0.09 (ent) 282.28 324 S
+(,) 295.01 324 T
+0.09 (51) 301.75 324 S
+0.09 (opaque canvas) 198 311.5 S
+0.09 (damage) 216 300.5 S
+(,) 248.26 300.5 T
+0.09 (51) 255 300.5 S
+0.09 (/open) 198 288 S
+0.09 (ClassNotice) 216 277 S
+(,) 264.31 277 T
+0.09 (123) 271.05 277 S
+0.09 (ClassW) 216 266 S
+0.09 (indow) 246.13 266 S
+(,) 272.33 266 T
+0.09 (223) 279.07 266 S
+0.09 (/Openable?) 198 253.5 S
+0.09 (ClassCanvas) 216 242.5 S
+(,) 267.57 242.5 T
+0.09 (62) 274.31 242.5 S
+0.09 (/openable?) 198 230 S
+0.09 (ClassCanvas) 216 219 S
+(,) 267.57 219 T
+0.09 (62) 274.31 219 S
+0.09 (/opened) 198 206.5 S
+0.09 (ClassW) 216 195.5 S
+0.09 (indow) 246.13 195.5 S
+(,) 272.33 195.5 T
+0.09 (223) 279.07 195.5 S
+0.09 (/opened?) 198 183 S
+0.09 (ClassBaseW) 216 172 S
+0.09 (indow) 264.6 172 S
+(,) 290.79 172 T
+0.09 (225) 297.53 172 S
+0.09 (opening a connection) 198 159.5 S
+0.09 (NEWSSER) 216 148.5 S
+0.09 (VER variable) 259.01 148.5 S
+(,) 312.45 148.5 T
+0.09 (229) 319.19 148.5 S
+0.09 (opening canvases) 387 642 S
+(,) 458.59 642 T
+0.09 (62) 465.33 642 S
+0.09 (opening notices) 387 629.5 S
+(,) 451.07 629.5 T
+0.09 (123) 457.81 629.5 S
+0.09 (/opensubwindows) 387 617 S
+0.09 (ClassW) 405 606 S
+0.09 (indow) 435.14 606 S
+(,) 461.33 606 T
+0.09 (222) 468.07 606 S
+0.09 (owning the main loop) 387 593.5 S
+0.09 (Jot) 405 582.5 S
+(,) 416.1 582.5 T
+0.09 (272) 422.84 582.5 S
+2 F
+4 K
+0.13 (P) 387 554.83 S
+0 F
+0 K
+0.09 (/Paint) 387 540.5 S
+0.09 (ClassCanvas) 405 529.5 S
+(,) 456.57 529.5 T
+0.09 (39) 463.31 529.5 S
+0.09 (ClassRegion) 405 518.5 S
+(,) 455.15 518.5 T
+0.09 (141) 461.89 518.5 S
+0.09 (/paint) 387 506 S
+0.09 (ClassCanvas) 405 495 S
+(,) 456.57 495 T
+0.09 (38) 463.31 495 S
+0.09 (ClassRegion) 405 484 S
+(,) 455.15 484 T
+0.09 (140) 461.89 484 S
+0.09 (Painting) 387 471.5 S
+0.09 (Regions) 405 460.5 S
+0.09 (graphical context of) 423 449.5 S
+(,) 503.51 449.5 T
+0.09 (140) 510.25 449.5 S
+0.09 (painting a 2-D box) 423 438.5 S
+(,) 498.33 438.5 T
+0.09 (141) 505.07 438.5 S
+0.09 (painting a 3-D box) 423 427.5 S
+(,) 498.33 427.5 T
+0.09 (141) 505.07 427.5 S
+0.09 (validation during) 423 416.5 S
+(,) 494.55 416.5 T
+0.09 (140) 501.29 416.5 S
+0.09 (translated origin during) 405 405.5 S
+(,) 502.72 405.5 T
+0.09 (140) 509.46 405.5 S
+0.09 (painting) 387 393 S
+0.09 (r) 405 382 S
+0.09 (endering model) 408.48 382 S
+(,) 472.96 382 T
+0.09 (38) 479.7 382 S
+(, ) 488.87 382 T
+0.09 (140) 493.37 382 S
+0.09 (painting and validation) 387 369.5 S
+(,) 482.76 369.5 T
+0.09 (45) 489.5 369.5 S
+0.09 (painting r) 387 357 S
+0.09 (egions) 427.05 357 S
+0.09 (context for) 405 346 S
+(,) 448.62 346 T
+0.09 (140) 455.36 346 S
+0.09 (paintwindow) 387 333.5 S
+0.09 (ClassW) 405 322.5 S
+0.09 (indow) 435.14 322.5 S
+(,) 461.33 322.5 T
+0.09 (220) 468.07 322.5 S
+0.09 (/Paint2DBox) 387 310 S
+0.09 (ClassCanvas) 405 299 S
+(,) 456.57 299 T
+0.09 (39) 463.31 299 S
+0.09 (ClassRegion) 405 288 S
+(,) 455.15 288 T
+0.09 (141) 461.89 288 S
+0.09 (/Paint3DBox) 387 275.5 S
+0.09 (ClassCanvas) 405 264.5 S
+(,) 456.57 264.5 T
+0.09 (39) 463.31 264.5 S
+0.09 (ClassRegion) 405 253.5 S
+(,) 455.15 253.5 T
+0.09 (141) 461.89 253.5 S
+0.09 (/Paint3DLine) 387 241 S
+0.09 (ClassCanvas) 405 230 S
+(,) 456.57 230 T
+0.09 (39) 463.31 230 S
+0.09 (ClassRegion) 405 219 S
+(,) 455.15 219 T
+0.09 (141) 461.89 219 S
+0.09 (/PaintAll) 387 206.5 S
+0.09 (ClassCanvas) 405 195.5 S
+(,) 456.57 195.5 T
+0.09 (38) 463.31 195.5 S
+0.09 (ClassRegion) 405 184.5 S
+(,) 455.15 184.5 T
+0.09 (140) 461.89 184.5 S
+0.09 (/PaintChildr) 387 172 S
+0.09 (en) 439.94 172 S
+0.09 (ClassRegion) 405 161 S
+(,) 455.15 161 T
+0.09 (141) 461.89 161 S
+0.09 (/PaintClients) 387 148.5 S
+FMENDPAGE
+%%EndPage: "309" 16
+%%Page: "310" 16
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (310) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassBag) 216 642 S
+(,) 252.8 642 T
+0.09 (20) 259.55 642 S
+0.09 (/PaintItem) 198 629.5 S
+0.09 (ClassItemGr) 216 618.5 S
+0.09 (oup) 266.54 618.5 S
+(,) 282.54 618.5 T
+0.09 (93) 289.28 618.5 S
+0.09 (/paintitem) 198 606 S
+0.09 (ClassItemGr) 216 595 S
+0.09 (oup) 266.54 595 S
+(,) 282.54 595 T
+0.09 (93) 289.28 595 S
+0.09 (/PaintT) 198 582.5 S
+0.09 (ext) 229.46 582.5 S
+0.09 (ClassT) 216 571.5 S
+0.09 (extField) 242.32 571.5 S
+(,) 274.94 571.5 T
+0.09 (207) 281.68 571.5 S
+0.09 (/parameters) 198 559 S
+0.09 (Scr) 216 548 S
+0.09 (ollbars) 228.37 548 S
+(,) 255.96 548 T
+0.09 (155) 262.7 548 S
+0.09 (/Par) 198 535.5 S
+0.09 (ent) 217.12 535.5 S
+0.09 (ClassRegion) 216 524.5 S
+(,) 266.15 524.5 T
+0.09 (143) 272.89 524.5 S
+0.09 (P) 198 512 S
+0.09 (ARENT) 202.69 512 S
+0.09 (ClassItemGr) 216 501 S
+0.09 (oup) 266.54 501 S
+(,) 282.54 501 T
+0.09 (91) 289.28 501 S
+0.09 (ClassLayout) 216 490 S
+(,) 266.33 490 T
+0.09 (104) 273.07 490 S
+0.09 (ClassMenu) 216 479 S
+(,) 261.37 479 T
+0.09 (1) 268.11 479 S
+0.09 (1) 272.2 479 S
+0.09 (1) 276.29 479 S
+0.09 (ClassPanel) 216 468 S
+(,) 260.08 468 T
+0.09 (135) 266.82 468 S
+0.09 (par) 198 455.5 S
+0.09 (ent) 211.55 455.5 S
+0.09 (r) 216 444.5 S
+0.09 (egion\325s) 219.48 444.5 S
+(,) 248.47 444.5 T
+0.09 (143) 255.21 444.5 S
+0.09 (/par) 198 432 S
+0.09 (ents) 217.09 432 S
+0.09 (ClassCanvas) 216 421 S
+(,) 267.57 421 T
+0.09 (42) 274.31 421 S
+0.09 (P) 198 408.5 S
+0.09 (ASTE key) 202.69 408.5 S
+0.09 (canvas r) 216 397.5 S
+0.09 (ecognition of) 249.45 397.5 S
+(,) 302.5 397.5 T
+0.09 (58) 309.24 397.5 S
+0.09 (pasting to XV) 198 385 S
+0.09 (iew) 252.97 385 S
+0.09 (r) 216 374 S
+0.09 (equir) 219.48 374 S
+0.09 (ed r) 240.69 374 S
+0.09 (equest key) 256.48 374 S
+(,) 299.73 374 T
+0.09 (178) 306.47 374 S
+0.09 (/path) 198 361.5 S
+0.09 (ClassCanvas) 216 350.5 S
+(,) 267.57 350.5 T
+0.09 (44) 274.31 350.5 S
+0.09 (ClassRegion) 216 339.5 S
+(,) 266.15 339.5 T
+0.09 (144) 272.89 339.5 S
+0.09 (/PendingDelete? \050attribute\051) 198 327 S
+0.09 (ClassSelection) 216 316 S
+(,) 273.98 316 T
+0.09 (181) 280.72 316 S
+0.09 (/pin) 198 303.5 S
+0.09 (ClassW) 216 292.5 S
+0.09 (indow) 246.13 292.5 S
+(,) 272.33 292.5 T
+0.09 (223) 279.07 292.5 S
+0.09 (/Pin\050attribute\051) 198 280 S
+0.09 (ClassSelection) 216 269 S
+(,) 273.98 269 T
+0.09 (181) 280.72 269 S
+0.09 (/Pinnable) 198 256.5 S
+0.09 (ClassMenu) 216 245.5 S
+(,) 261.37 245.5 T
+0.09 (1) 268.11 245.5 S
+0.09 (14) 272.2 245.5 S
+0.09 (/pinnable) 198 233 S
+0.09 (ClassMenu) 216 222 S
+(,) 261.37 222 T
+0.09 (1) 268.11 222 S
+0.09 (14) 272.2 222 S
+0.09 (/Pinnable?) 198 209.5 S
+0.09 (ClassMenu) 216 198.5 S
+(,) 261.37 198.5 T
+0.09 (1) 268.11 198.5 S
+0.09 (14) 272.2 198.5 S
+0.09 (/pinned?) 198 186 S
+0.09 (ClassW) 216 175 S
+0.09 (indow) 246.13 175 S
+(,) 272.33 175 T
+0.09 (223) 279.07 175 S
+0.09 (pinned menus) 198 162.5 S
+(,) 256.3 162.5 T
+0.09 (1) 263.04 162.5 S
+0.09 (14) 267.13 162.5 S
+0.09 (/place) 198 150 S
+0.09 (ClassW) 405 642 S
+0.09 (indow) 435.14 642 S
+(,) 461.33 642 T
+0.09 (221) 468.07 642 S
+0.09 (placement for menus) 387 629.5 S
+(,) 472.56 629.5 T
+0.09 (109) 479.3 629.5 S
+0.09 (placement parameter) 387 617 S
+0.09 (de\336ned) 405 606 S
+(,) 435.8 606 T
+0.09 (101) 442.54 606 S
+0.09 (/pointinitem?) 387 593.5 S
+0.09 (ClassItemGr) 405 582.5 S
+0.09 (oup) 455.54 582.5 S
+(,) 471.54 582.5 T
+0.09 (92) 478.28 582.5 S
+0.09 (/pointinr) 387 570 S
+0.09 (egion?) 425.58 570 S
+0.09 (ClassRegion) 405 559 S
+(,) 455.15 559 T
+0.09 (149) 461.89 559 S
+0.09 (/pointtoitem) 387 546.5 S
+0.09 (ClassItemGr) 405 535.5 S
+0.09 (oup) 455.54 535.5 S
+(,) 471.54 535.5 T
+0.09 (93) 478.28 535.5 S
+0.09 (POSITION) 387 523 S
+0.09 (ClassItemGr) 405 512 S
+0.09 (oup) 455.54 512 S
+(,) 471.54 512 T
+0.09 (91) 478.28 512 S
+0.09 (ClassLayout) 405 501 S
+(,) 455.33 501 T
+0.09 (104) 462.07 501 S
+0.09 (ClassMenu) 405 490 S
+(,) 450.37 490 T
+0.09 (1) 457.11 490 S
+0.09 (12) 461.2 490 S
+0.09 (ClassPanel) 405 479 S
+(,) 449.08 479 T
+0.09 (135) 455.82 479 S
+0.09 (PostScript data str) 387 466.5 S
+0.09 (uctur) 461.11 466.5 S
+0.09 (e) 482.71 466.5 S
+0.09 (de\336nition) 405 455.5 S
+(,) 444.57 455.5 T
+0.09 (10) 451.31 455.5 S
+0.09 (/pr) 387 443 S
+0.09 (eferr) 401.51 443 S
+0.09 (edsize) 420.5 443 S
+0.09 (ClassBaseW) 405 432 S
+0.09 (indow) 453.6 432 S
+(,) 479.79 432 T
+0.09 (226) 486.53 432 S
+0.09 (ClassBor) 405 421 S
+0.09 (derBag) 440.61 421 S
+(,) 469.48 421 T
+0.09 (27) 476.22 421 S
+0.09 (ClassCanvas) 405 410 S
+(,) 456.57 410 T
+0.09 (44) 463.31 410 S
+0.09 (ClassItemGr) 405 399 S
+0.09 (oup) 455.54 399 S
+(,) 471.54 399 T
+0.09 (93) 478.28 399 S
+0.09 (ClassRegion) 405 388 S
+(,) 455.15 388 T
+0.09 (144) 461.89 388 S
+0.09 (Gauges) 405 377 S
+(,) 435.42 377 T
+0.09 (85) 442.16 377 S
+0.09 (Scr) 405 366 S
+0.09 (ollbars) 417.37 366 S
+(,) 444.96 366 T
+0.09 (154) 451.7 366 S
+0.09 (Sliders) 405 355 S
+(,) 432.74 355 T
+0.09 (197) 439.48 355 S
+0.09 (/pr) 387 342.5 S
+0.09 (eviewer) 401.51 342.5 S
+0.09 (ClassContr) 405 331.5 S
+0.09 (ol) 449.83 331.5 S
+(,) 457.53 331.5 T
+0.09 (77) 464.27 331.5 S
+0.09 (ClassNumericField) 405 320.5 S
+(,) 482.94 320.5 T
+0.09 (128) 489.68 320.5 S
+0.09 (ClassScr) 405 309.5 S
+0.09 (ollList) 438.92 309.5 S
+(,) 464.53 309.5 T
+0.09 (168) 471.27 309.5 S
+0.09 (ClassT) 405 298.5 S
+0.09 (extField) 431.33 298.5 S
+(,) 463.94 298.5 T
+0.09 (206) 470.68 298.5 S
+0.09 (Scr) 405 287.5 S
+0.09 (ollbars) 417.37 287.5 S
+(,) 444.96 287.5 T
+0.09 (156) 451.7 287.5 S
+0.09 (Sliders) 405 276.5 S
+(,) 432.74 276.5 T
+0.09 (195) 439.48 276.5 S
+0.09 (pr) 387 264 S
+0.09 (eviewing) 395.97 264 S
+0.09 (de\336nition) 405 253 S
+(,) 444.57 253 T
+0.09 (76) 451.31 253 S
+0.09 (PREVIOUS) 387 240.5 S
+0.09 (ClassItemGr) 405 229.5 S
+0.09 (oup) 455.54 229.5 S
+(,) 471.54 229.5 T
+0.09 (91) 478.28 229.5 S
+0.09 (ClassLayout) 405 218.5 S
+(,) 455.33 218.5 T
+0.09 (104) 462.07 218.5 S
+0.09 (ClassMenu) 405 207.5 S
+(,) 450.37 207.5 T
+0.09 (1) 457.11 207.5 S
+0.09 (12) 461.2 207.5 S
+0.09 (ClassPanel) 405 196.5 S
+(,) 449.08 196.5 T
+0.09 (135) 455.82 196.5 S
+0.09 (pr) 387 184 S
+0.09 (ocess) 395.97 184 S
+0.09 (de\336ntion of context) 405 173 S
+(,) 484.18 173 T
+0.09 (48) 490.92 173 S
+0.09 (pr) 387 160.5 S
+0.09 (ocesses) 395.97 160.5 S
+0.09 (client\325s ef) 405 149.5 S
+0.09 (fect on exiting) 443.37 149.5 S
+(,) 500.9 149.5 T
+0.09 (15) 507.64 149.5 S
+FMENDPAGE
+%%EndPage: "310" 17
+%%Page: "311" 17
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (31) 544.74 108.7 S
+0.09 (1) 553.42 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (killing connection) 216 642 S
+0.09 (ef) 234 631 S
+0.09 (fect on user) 241.32 631 S
+0.09 (dict) 288.17 631 S
+(,) 303.55 631 T
+0.09 (15) 310.3 631 S
+0.09 (spawning new for noti\336ers) 216 620 S
+(,) 325.53 620 T
+0.09 (48) 332.27 620 S
+0.09 (which to use) 216 609 S
+(,) 267.51 609 T
+0.09 (13) 274.25 609 S
+0.09 (pr) 198 596.5 S
+0.09 (ograms) 206.97 596.5 S
+0.09 (parts of) 216 585.5 S
+(,) 247.05 585.5 T
+0.09 (4) 253.79 585.5 S
+0.09 (/Pr) 198 573 S
+0.09 (operties) 212.53 573 S
+0.09 (ClassObject) 216 562 S
+(,) 263.45 562 T
+0.09 (129) 270.2 562 S
+0.09 (/pr) 198 549.5 S
+0.09 (operty) 212.51 549.5 S
+0.09 (ClassObject) 216 538.5 S
+(,) 263.45 538.5 T
+0.09 (129) 270.2 538.5 S
+0.09 (pr) 198 526 S
+0.09 (operty sheets) 206.97 526 S
+0.09 (windows for) 216 515 S
+0.09 (see ClassPopW) 234 504 S
+0.09 (indow) 295.17 504 S
+(,) 321.36 504 T
+0.09 (226) 328.1 504 S
+0.09 (PS-1\321De\336nition) 198 491.5 S
+(,) 266.11 491.5 T
+0.09 (4) 272.85 491.5 S
+0.09 (PS-2\321Instantiation) 198 479 S
+(,) 276.69 479 T
+0.09 (4) 283.43 479 S
+0.09 (PS-3\321Composition) 198 466.5 S
+(,) 277.69 466.5 T
+0.09 (5) 284.43 466.5 S
+0.09 (PS-4\321Start Up) 198 454 S
+(,) 259.05 454 T
+0.09 (5) 265.79 454 S
+0.09 (psh) 198 441.5 S
+0.09 (using) 216 430.5 S
+(,) 238.52 430.5 T
+0.09 (8) 245.26 430.5 S
+0.09 (psio \336les) 198 418 S
+0.09 (accessing) 216 407 S
+(,) 254.05 407 T
+0.09 (233) 260.79 407 S
+2 F
+4 K
+0.13 (Q) 198 379.33 S
+0 F
+0 K
+0.09 (/query) 198 365 S
+0.09 (ClassSelection) 216 354 S
+(,) 273.98 354 T
+0.09 (174) 280.72 354 S
+0.09 (/QuitFr) 198 341.5 S
+0.09 (omUser) 230.49 341.5 S
+0.09 (ClassW) 216 330.5 S
+0.09 (indow) 246.13 330.5 S
+(,) 272.33 330.5 T
+0.09 (224) 279.07 330.5 S
+0.09 (using to inform clients) 216 319.5 S
+(,) 307.45 319.5 T
+0.09 (16) 314.19 319.5 S
+2 F
+4 K
+0.13 (R) 198 291.83 S
+0 F
+0 K
+0.09 (/range) 198 277.5 S
+0.09 (ClassNumericField) 216 266.5 S
+(,) 293.94 266.5 T
+0.09 (126) 300.68 266.5 S
+0.09 (Gauges) 216 255.5 S
+(,) 246.42 255.5 T
+0.09 (84) 253.16 255.5 S
+0.09 (Sliders) 216 244.5 S
+(,) 243.74 244.5 T
+0.09 (195) 250.48 244.5 S
+0.09 (range) 198 232 S
+0.09 (numeric \336eld) 216 221 S
+0.09 (default) 234 210 S
+(,) 262.88 210 T
+0.09 (125) 269.62 210 S
+0.09 (/Rank\050attribute\051) 198 197.5 S
+0.09 (ClassSelection) 216 186.5 S
+(,) 273.98 186.5 T
+0.09 (182) 280.72 186.5 S
+0.09 (/ReadOnly) 198 174 S
+0.09 (ClassT) 216 163 S
+0.09 (extField) 242.32 163 S
+(,) 274.94 163 T
+0.09 (204) 281.68 163 S
+0.09 (/r) 198 150.5 S
+0.09 (eadonly) 207.01 150.5 S
+0.09 (ClassT) 405 642 S
+0.09 (extField) 431.33 642 S
+(,) 463.94 642 T
+0.09 (204) 470.68 642 S
+0.09 (ReadOnly text \336eld) 387 629.5 S
+0.09 (de\336nition) 405 618.5 S
+(,) 444.57 618.5 T
+0.09 (204) 451.31 618.5 S
+0.09 (r) 387 606 S
+0.09 (eceiving the dr) 390.48 606 S
+0.09 (op) 450.8 606 S
+0.09 (see /HandleReception) 405 595 S
+(,) 496.21 595 T
+0.09 (72) 502.95 595 S
+0.09 (/Receptible?) 387 582.5 S
+0.09 (ClassCanvas) 405 571.5 S
+(,) 456.57 571.5 T
+0.09 (71) 463.31 571.5 S
+0.09 (/r) 387 559 S
+0.09 (eceptible?) 396.02 559 S
+0.09 (ClassCanvas) 405 548 S
+(,) 456.57 548 T
+0.09 (72) 463.31 548 S
+0.09 (r) 387 535.5 S
+0.09 (eceptible canvases and selection ) 390.48 535.5 S
+0.09 (transfers) 423 524.5 S
+(,) 458.48 524.5 T
+0.09 (179) 465.22 524.5 S
+0.09 (r) 387 512 S
+0.09 (efer) 390.48 512 S
+0.09 (ence cycles) 405.83 512 S
+0.09 (br) 405 501 S
+0.09 (eaking) 413.54 501 S
+(,) 440.72 501 T
+0.09 (13) 447.46 501 S
+0.09 (r) 387 488.5 S
+0.09 (efer) 390.48 488.5 S
+0.09 (ences) 405.83 488.5 S
+0.09 (and dictionaries) 405 477.5 S
+(,) 470.46 477.5 T
+0.09 (1) 477.2 477.5 S
+0.09 (1) 481.29 477.5 S
+0.09 (and object tr) 405 466.5 S
+0.09 (ees) 455.4 466.5 S
+(,) 468.09 466.5 T
+0.09 (12) 474.83 466.5 S
+0.09 (cr) 405 455.5 S
+0.09 (oss-object) 412.56 455.5 S
+(,) 452.18 455.5 T
+0.09 (12) 458.92 455.5 S
+0.09 (cycles) 405 444.5 S
+0.09 (and /destr) 423 433.5 S
+0.09 (oy) 466.73 433.5 S
+(,) 476.82 433.5 T
+0.09 (13) 483.56 433.5 S
+0.09 (how the T) 405 422.5 S
+0.09 (oolkit maintains) 445.08 422.5 S
+(,) 511.1 422.5 T
+0.09 (1) 517.84 422.5 S
+0.09 (1) 521.93 422.5 S
+0.09 (r) 387 410 S
+0.09 (efer) 390.48 410 S
+0.09 (encing items) 405.83 410 S
+(,) 457.12 410 T
+0.09 (88) 463.86 410 S
+0.09 (r) 387 397.5 S
+0.09 (efer) 390.48 397.5 S
+0.09 (encing r) 405.83 397.5 S
+0.09 (emote objects) 438.55 397.5 S
+0.09 (handle allocation and ) 405 386.5 S
+0.09 (r) 441 375.5 S
+0.09 (egistration) 444.48 375.5 S
+(,) 487.85 375.5 T
+0.09 (234) 494.59 375.5 S
+0.09 (Regions) 387 363 S
+0.09 (CTM) 405 352 S
+(,) 425.65 352 T
+0.09 (143) 432.39 352 S
+0.09 (de\336nition of) 405 341 S
+(,) 454.99 341 T
+0.09 (137) 461.73 341 S
+0.09 (mapping) 405 330 S
+0.09 (comparison to canvases) 423 319 S
+(,) 519.36 319 T
+0.09 (143) 526.1 319 S
+0.09 (moving the origin) 405 308 S
+(,) 478.17 308 T
+0.09 (144) 484.91 308 S
+0.09 (par) 405 297 S
+0.09 (ent of) 418.55 297 S
+(,) 441.7 297 T
+0.09 (143) 448.45 297 S
+0.09 (/r) 387 284.5 S
+0.09 (egionclientcount) 396.02 284.5 S
+0.09 (ClassBag) 405 273.5 S
+(,) 441.8 273.5 T
+0.09 (19) 448.55 273.5 S
+0.09 (/Register) 387 261 S
+0.09 (ed? \050attribute\051) 425.61 261 S
+0.09 (ClassSelection) 405 250 S
+(,) 462.98 250 T
+0.09 (182) 469.72 250 S
+0.09 (r) 387 237.5 S
+0.09 (egister) 390.48 237.5 S
+0.09 (ed selection) 417.46 237.5 S
+0.09 (getting) 405 226.5 S
+(,) 433.63 226.5 T
+0.09 (174) 440.38 226.5 S
+0.09 (r) 387 214 S
+0.09 (egistering) 390.48 214 S
+0.09 (tokens) 405 203 S
+(,) 431.72 203 T
+0.09 (237) 438.46 203 S
+0.09 (r) 387 190.5 S
+0.09 (egistering a client handler) 390.48 190.5 S
+(,) 496.1 190.5 T
+0.09 (235) 502.84 190.5 S
+0.09 (r) 387 178 S
+0.09 (egistering callbacks and tags) 390.48 178 S
+(,) 506.61 178 T
+0.09 (234) 513.35 178 S
+0.09 (/r) 387 165.5 S
+0.09 (emoveclient) 396.02 165.5 S
+0.09 (ClassBag) 405 154.5 S
+(,) 441.8 154.5 T
+0.09 (19) 448.55 154.5 S
+FMENDPAGE
+%%EndPage: "311" 18
+%%Page: "312" 18
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (312) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassPanel) 216 642 S
+(,) 260.08 642 T
+0.09 (135) 266.82 642 S
+0.09 (/r) 198 629.5 S
+0.09 (emovesubwindow) 207.01 629.5 S
+0.09 (ClassW) 216 618.5 S
+0.09 (indow) 246.13 618.5 S
+(,) 272.33 618.5 T
+0.09 (222) 279.07 618.5 S
+0.09 (r) 198 606 S
+0.09 (endering a selection\325s value) 201.48 606 S
+0.09 (see /SingleRequest) 216 595 S
+(,) 294.02 595 T
+0.09 (184) 300.76 595 S
+0.09 (ResolveOf) 198 582.5 S
+0.09 (fset) 239.73 582.5 S
+0.09 (ClassLayout) 216 571.5 S
+(,) 266.33 571.5 T
+0.09 (105) 273.07 571.5 S
+0.09 (/r) 198 559 S
+0.09 (epar) 207.01 559 S
+0.09 (ent) 224.96 559 S
+0.09 (ClassCanvas) 216 548 S
+(,) 267.57 548 T
+0.09 (42) 274.31 548 S
+0.09 (ClassRegion) 216 537 S
+(,) 266.15 537 T
+0.09 (143) 272.89 537 S
+0.09 (/r) 198 524.5 S
+0.09 (eplaceitem) 207.01 524.5 S
+0.09 (ClassItemGr) 216 513.5 S
+0.09 (oup) 266.54 513.5 S
+(,) 282.54 513.5 T
+0.09 (91) 289.28 513.5 S
+0.09 (ClassMenu) 216 502.5 S
+(,) 261.37 502.5 T
+0.09 (1) 268.11 502.5 S
+0.09 (13) 272.2 502.5 S
+0.09 (ClassScr) 216 491.5 S
+0.09 (ollList) 249.92 491.5 S
+(,) 275.53 491.5 T
+0.09 (164) 282.27 491.5 S
+0.09 (/r) 198 479 S
+0.09 (equest) 207.01 479 S
+0.09 (ClassSelection) 216 468 S
+(,) 273.98 468 T
+0.09 (175) 280.72 468 S
+0.09 (example use) 216 457 S
+(,) 266.46 457 T
+0.09 (176) 273.21 457 S
+0.09 (or) 216 446 S
+0.09 (dering selection r) 224.48 446 S
+0.09 (equests) 294.88 446 S
+(,) 325.12 446 T
+0.09 (178) 331.86 446 S
+0.09 (when to use) 216 435 S
+(,) 265.12 435 T
+0.09 (175) 271.86 435 S
+0.09 (/RequestSequence) 198 422.5 S
+0.09 (or) 216 411.5 S
+0.09 (dering selection r) 224.48 411.5 S
+0.09 (equests) 294.88 411.5 S
+(,) 325.12 411.5 T
+0.09 (178) 331.86 411.5 S
+0.09 (/r) 198 399 S
+0.09 (eshape) 207.01 399 S
+0.09 (ClassCanvas) 216 388 S
+(,) 267.57 388 T
+0.09 (44) 274.31 388 S
+0.09 (ClassRegion) 216 377 S
+(,) 266.15 377 T
+0.09 (144) 272.89 377 S
+0.09 (/r) 198 364.5 S
+0.09 (eshape overrides and /move) 207.01 364.5 S
+(,) 324.14 364.5 T
+0.09 (43) 330.88 364.5 S
+0.09 (/r) 198 352 S
+0.09 (eshaped?) 207.01 352 S
+0.09 (ClassCanvas) 216 341 S
+(,) 267.57 341 T
+0.09 (44) 274.31 341 S
+0.09 (ClassRegion) 216 330 S
+(,) 266.15 330 T
+0.09 (144) 272.89 330 S
+0.09 (ResolveRefer) 198 317.5 S
+0.09 (ence) 251.1 317.5 S
+0.09 (ClassLayout) 216 306.5 S
+(,) 266.33 306.5 T
+0.09 (105) 273.07 306.5 S
+0.09 (/ResolveT) 198 294 S
+0.09 (oChar) 239.96 294 S
+0.09 (ClassT) 216 283 S
+0.09 (extField) 242.32 283 S
+(,) 274.94 283 T
+0.09 (214) 281.68 283 S
+0.09 (/Retained) 198 270.5 S
+0.09 (ClassCanvas) 216 259.5 S
+(,) 267.57 259.5 T
+0.09 (53) 274.31 259.5 S
+0.09 (/Robust?) 198 247 S
+0.09 (ClassEventMgr) 216 236 S
+(,) 278.36 236 T
+0.09 (49) 285.1 236 S
+0.09 (/r) 198 223.5 S
+0.09 (obust?) 207.01 223.5 S
+0.09 (ClassEventMgr) 216 212.5 S
+(,) 278.36 212.5 T
+0.09 (50) 285.1 212.5 S
+0.09 (r) 198 200 S
+0.09 (obust event manager) 201.48 200 S
+0.09 (de\336nition) 216 189 S
+(,) 255.57 189 T
+0.09 (49) 262.31 189 S
+(, ) 271.48 189 T
+0.09 (50) 275.97 189 S
+0.09 (/RootW) 198 176.5 S
+0.09 (indow) 231.23 176.5 S
+0.09 (ClassW) 216 165.5 S
+0.09 (indow) 246.13 165.5 S
+(,) 272.33 165.5 T
+0.09 (222) 279.07 165.5 S
+0.09 (/r) 198 153 S
+0.09 (owgap) 207.01 153 S
+0.09 (ClassScr) 405 642 S
+0.09 (ollList) 438.92 642 S
+(,) 464.53 642 T
+0.09 (167) 471.27 642 S
+0.09 (/r) 387 629.5 S
+0.09 (ows) 396.02 629.5 S
+0.09 (ClassScr) 405 618.5 S
+0.09 (ollList) 438.92 618.5 S
+(,) 464.53 618.5 T
+0.09 (166) 471.27 618.5 S
+2 F
+4 K
+0.13 (S) 387 590.83 S
+0 F
+0 K
+0.09 (/SaveBehind) 387 576.5 S
+0.09 (ClassCanvas) 405 565.5 S
+(,) 456.57 565.5 T
+0.09 (53) 463.31 565.5 S
+0.09 (/Scr) 387 553 S
+0.09 (oll) 404.9 553 S
+0.09 (ClassT) 405 542 S
+0.09 (extField) 431.33 542 S
+(,) 463.94 542 T
+0.09 (212) 470.68 542 S
+0.09 (/scr) 387 529.5 S
+0.09 (oll) 404 529.5 S
+0.09 (ClassScr) 405 518.5 S
+0.09 (ollList) 438.92 518.5 S
+(,) 464.53 518.5 T
+0.09 (166) 471.27 518.5 S
+0.09 (ClassT) 405 507.5 S
+0.09 (extField) 431.33 507.5 S
+(,) 463.94 507.5 T
+0.09 (212) 470.68 507.5 S
+0.09 (/Scr) 387 495 S
+0.09 (ollDelay) 404.9 495 S
+0.09 (Scr) 405 484 S
+0.09 (ollbars) 417.37 484 S
+(,) 444.96 484 T
+0.09 (152) 451.7 484 S
+0.09 (scr) 387 471.5 S
+0.09 (oll list) 398.46 471.5 S
+0.09 (adding scr) 405 460.5 S
+0.09 (ollbars to) 447.65 460.5 S
+(,) 485.6 460.5 T
+0.09 (165) 492.34 460.5 S
+0.09 (changing fonts in) 405 449.5 S
+(,) 475.53 449.5 T
+0.09 (169) 482.27 449.5 S
+0.09 (painting and scr) 405 438.5 S
+0.09 (olling) 470.85 438.5 S
+(,) 494.37 438.5 T
+0.09 (162) 501.11 438.5 S
+0.09 (scr) 405 427.5 S
+0.09 (olling and r) 416.46 427.5 S
+0.09 (epainting) 463.62 427.5 S
+(,) 502.25 427.5 T
+0.09 (162) 508.99 427.5 S
+0.09 (validation) 405 416.5 S
+(,) 446.37 416.5 T
+0.09 (162) 453.11 416.5 S
+0.09 (scr) 387 404 S
+0.09 (ollbar) 398.46 404 S
+0.09 (noti\336cation) 405 393 S
+(,) 451.28 393 T
+0.09 (155) 458.02 393 S
+0.09 (value) 405 382 S
+(,) 427.36 382 T
+0.09 (151) 434.1 382 S
+0.09 (scr) 387 369.5 S
+0.09 (ollbar r) 398.46 369.5 S
+0.09 (epeating) 427.97 369.5 S
+0.09 (setting values for) 405 358.5 S
+(,) 475.1 358.5 T
+0.09 (152) 481.84 358.5 S
+0.09 (scr) 387 346 S
+0.09 (ollbars) 398.46 346 S
+0.09 (adding to scr) 405 335 S
+0.09 (oll lists) 458.01 335 S
+(,) 486.98 335 T
+0.09 (165) 493.73 335 S
+0.09 (contr) 405 324 S
+0.09 (olling motion) 425.9 324 S
+0.09 (see/HandleMotion) 423 313 S
+(,) 501.01 313 T
+0.09 (157) 507.75 313 S
+0.09 (/Scr) 387 300.5 S
+0.09 (ollThr) 404.9 300.5 S
+0.09 (esh) 429.71 300.5 S
+0.09 (Scr) 405 289.5 S
+0.09 (ollbars) 417.37 289.5 S
+(,) 444.96 289.5 T
+0.09 (152) 451.7 289.5 S
+0.09 (/scr) 387 277 S
+0.09 (olltoher) 404 277 S
+0.09 (e) 435.61 277 S
+0.09 (ClassScr) 405 266 S
+0.09 (ollList) 438.92 266 S
+(,) 464.53 266 T
+0.09 (166) 471.27 266 S
+0.09 (seeing mapped canvases) 387 253.5 S
+(,) 486.98 253.5 T
+0.09 (42) 493.72 253.5 S
+0.09 (/Selectable) 387 241 S
+0.09 (ClassCanvas) 405 230 S
+(,) 456.57 230 T
+0.09 (65) 463.31 230 S
+0.09 (/selectable?) 387 217.5 S
+0.09 (ClassCanvas) 405 206.5 S
+(,) 456.57 206.5 T
+0.09 (65) 463.31 206.5 S
+0.09 (/SelectableT) 387 194 S
+0.09 (ype) 437.47 194 S
+0.09 (ClassCanvas) 405 183 S
+(,) 456.57 183 T
+0.09 (65) 463.31 183 S
+0.09 (selectable canvas) 387 170.5 S
+(,) 456.21 170.5 T
+0.09 (65) 462.95 170.5 S
+0.09 (/SelectAt) 387 158 S
+0.09 (ClassCanvas) 405 147 S
+(,) 456.57 147 T
+0.09 (69) 463.31 147 S
+FMENDPAGE
+%%EndPage: "312" 19
+%%Page: "313" 19
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (313) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (/selection) 198 642 S
+0.09 (ClassT) 216 631 S
+0.09 (extField) 242.32 631 S
+(,) 274.94 631 T
+0.09 (209) 281.68 631 S
+0.09 (selection) 198 618.5 S
+0.09 (getting curr) 216 607.5 S
+0.09 (ent) 263.68 607.5 S
+(,) 276.42 607.5 T
+0.09 (174) 283.15 607.5 S
+0.09 (selection attributes) 198 595 S
+0.09 (de\336nition) 216 584 S
+(,) 255.57 584 T
+0.09 (180) 262.31 584 S
+0.09 (r) 216 573 S
+0.09 (etrieving) 219.48 573 S
+0.09 (see /query) 234 562 S
+(,) 278.32 562 T
+0.09 (174) 285.06 562 S
+0.09 (r) 216 551 S
+0.09 (etrieving multiple) 219.48 551 S
+0.09 (see /r) 234 540 S
+0.09 (equest) 258.04 540 S
+(,) 284.38 540 T
+0.09 (175) 291.12 540 S
+0.09 (/SelectionCancel) 198 527.5 S
+0.09 (ClassCanvas) 216 516.5 S
+(,) 267.57 516.5 T
+0.09 (71) 274.31 516.5 S
+0.09 (selection client) 198 504 S
+0.09 (de\336nition) 216 493 S
+(,) 255.57 493 T
+0.09 (179) 262.31 493 S
+0.09 (/selectionholder) 198 480.5 S
+0.09 (ClassCanvas) 216 469.5 S
+(,) 267.57 469.5 T
+0.09 (67) 274.31 469.5 S
+0.09 (selection instance variables) 198 457 S
+0.09 (see selection attributes) 216 446 S
+(,) 307.74 446 T
+0.09 (180) 314.48 446 S
+0.09 (selection method\325s context) 198 433.5 S
+(,) 305.58 433.5 T
+0.09 (173) 312.32 433.5 S
+0.09 (/SelectionObjsize) 198 421 S
+0.09 (r) 216 410 S
+0.09 (equest key) 219.48 410 S
+(,) 262.73 410 T
+0.09 (178) 269.47 410 S
+0.09 (selection r) 198 397.5 S
+0.09 (equests and the client-side) 239.33 397.5 S
+(,) 346.7 397.5 T
+0.09 (175) 353.44 397.5 S
+0.09 (selections) 198 385 S
+0.09 (adjusting) 216 374 S
+0.09 (see /SelectionAdjust) 234 363 S
+(,) 318.28 363 T
+0.09 (69) 325.02 363 S
+0.09 (amount of code needed) 216 352 S
+(,) 311.27 352 T
+0.09 (180) 318.01 352 S
+0.09 (changing type on canvas) 216 341 S
+0.09 (see /Dynamic) 234 330 S
+0.09 (see also) 252 317 S
+0.09 (/IdentifySelectable) 270 303 S
+0.09 (completing the selection transaction) 216 291 S
+0.09 (See /SelectionStop) 234 280 S
+(,) 310.21 280 T
+0.09 (70) 316.95 280 S
+0.09 (context names) 216 269 S
+(,) 274.12 269 T
+0.09 (68) 280.86 269 S
+0.09 (context of) 216 258 S
+(,) 255.98 258 T
+0.09 (68) 262.72 258 S
+0.09 (demo) 216 247 S
+(,) 239 247 T
+0.09 (172) 245.74 247 S
+0.09 (determining how canvas handles) 216 236 S
+(,) 350.55 236 T
+0.09 (65) 357.29 236 S
+0.09 (determining the canvas client) 216 225 S
+0.09 (see /Holder) 234 214 S
+(,) 283.45 214 T
+0.09 (66) 290.19 214 S
+0.09 (dragging) 216 203 S
+(,) 253.09 203 T
+0.09 (method calling sequence 70) 234 192 S
+0.09 (identifying the natur) 216 181 S
+0.09 (e of r) 300.33 181 S
+0.09 (equest) 320.96 181 S
+0.09 (see /SingleRequest) 234 170 S
+(,) 312.02 170 T
+0.09 (184) 318.76 170 S
+0.09 (r) 216 159 S
+0.09 (ejecting) 219.48 159 S
+(,) 250.67 159 T
+0.09 (69) 257.42 159 S
+0.09 (r) 216 148 S
+0.09 (equests to r) 219.48 148 S
+0.09 (ender its value) 265.89 148 S
+(,) 325.88 148 T
+0.09 (184) 332.62 148 S
+0.09 (r) 405 642 S
+0.09 (eturning an instance) 408.48 642 S
+(,) 491.38 642 T
+0.09 (67) 498.12 642 S
+0.09 (signalling the end of a drag) 405 631 S
+0.09 (see /DragStop) 423 620 S
+(,) 482.24 620 T
+0.09 (71) 488.98 620 S
+0.09 (starting) 405 609 S
+0.09 (see /SelectionStart) 423 598 S
+(,) 499.06 598 T
+0.09 (69) 505.8 598 S
+0.09 (use for /UnknownRequest) 405 587 S
+0.09 (see /SingleRequest) 423 576 S
+(,) 501.02 576 T
+0.09 (184) 507.76 576 S
+0.09 (what the UI sets for you) 405 565 S
+(,) 502.66 565 T
+0.09 (180) 509.4 565 S
+0.09 (selections and canvases) 387 552.5 S
+0.09 (sequence of events) 405 541.5 S
+(,) 481.07 541.5 T
+0.09 (179) 487.81 541.5 S
+0.09 (selections and split views) 387 529 S
+(,) 490.49 529 T
+0.09 (66) 497.23 529 S
+0.09 (/SelectionStop) 387 516.5 S
+0.09 (ClassCanvas) 405 505.5 S
+(,) 456.57 505.5 T
+0.09 (70) 463.31 505.5 S
+0.09 (/SelectResult \050attribute\051) 387 493 S
+0.09 (ClassSelection) 405 482 S
+(,) 462.98 482 T
+0.09 (182) 469.72 482 S
+0.09 (/sendmanager) 387 469.5 S
+0.09 (ClassEventMgr) 405 458.5 S
+(,) 467.36 458.5 T
+0.09 (50) 474.1 458.5 S
+0.09 (/sendtar) 387 446 S
+0.09 (get) 422.82 446 S
+0.09 (ClassMenu) 405 435 S
+(,) 450.37 435 T
+0.09 (1) 457.11 435 S
+0.09 (18) 461.2 435 S
+0.09 (ClassScr) 405 424 S
+0.09 (ollList) 438.92 424 S
+(,) 464.53 424 T
+0.09 (169) 471.27 424 S
+0.09 (/sendtocanvas) 387 411.5 S
+0.09 (ClassSelection) 405 400.5 S
+(,) 462.98 400.5 T
+0.09 (186) 469.72 400.5 S
+0.09 (server v) 387 388 S
+0.09 (. client-side) 418.64 388 S
+(,) 465.21 388 T
+0.09 (9) 471.95 388 S
+0.09 (ClassCanvas) 405 377 S
+(,) 456.57 377 T
+0.09 (38) 463.31 377 S
+0.09 (/setabbr) 387 364.5 S
+0.09 (eviated) 422.03 364.5 S
+0.09 (ClassButton) 405 353.5 S
+(,) 454 353.5 T
+0.09 (30) 460.74 353.5 S
+0.09 (/setattribute) 387 341 S
+0.09 (ClassW) 405 330 S
+0.09 (indow) 435.14 330 S
+(,) 461.33 330 T
+0.09 (218) 468.07 330 S
+0.09 (/setbasewindow) 387 317.5 S
+0.09 (ClassNotice) 405 306.5 S
+(,) 453.31 306.5 T
+0.09 (121) 460.05 306.5 S
+0.09 (/setbuttons) 387 294 S
+0.09 (ClassNotice) 405 283 S
+(,) 453.31 283 T
+0.09 (122) 460.05 283 S
+0.09 (/setcar) 387 270.5 S
+0.09 (et) 415.99 270.5 S
+0.09 (ClassT) 405 259.5 S
+0.09 (extField) 431.33 259.5 S
+(,) 463.94 259.5 T
+0.09 (206) 470.68 259.5 S
+0.09 (/setchoicemode) 387 247 S
+0.09 (ClassMenu) 405 236 S
+(,) 450.37 236 T
+0.09 (108) 457.11 236 S
+0.09 (ClassScr) 405 225 S
+0.09 (ollList) 438.92 225 S
+(,) 464.53 225 T
+0.09 (164) 471.27 225 S
+0.09 (ClassSettings) 405 214 S
+(,) 458.81 214 T
+0.09 (190) 465.55 214 S
+0.09 (/setcolors) 387 201.5 S
+0.09 (ClassRegion) 405 190.5 S
+(,) 455.15 190.5 T
+0.09 (138) 461.89 190.5 S
+0.09 (/setcursor) 387 178 S
+0.09 (ClassCanvas) 405 167 S
+(,) 456.57 167 T
+0.09 (41) 463.31 167 S
+0.09 (/setdamageable) 387 154.5 S
+FMENDPAGE
+%%EndPage: "313" 20
+%%Page: "314" 20
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (314) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassCanvas) 216 642 S
+(,) 267.57 642 T
+0.09 (51) 274.31 642 S
+0.09 (/setdefault) 198 629.5 S
+0.09 (ClassButton) 216 618.5 S
+(,) 265 618.5 T
+0.09 (31) 271.74 618.5 S
+0.09 (ClassMenu) 216 607.5 S
+(,) 261.37 607.5 T
+0.09 (1) 268.11 607.5 S
+0.09 (13) 272.2 607.5 S
+0.09 (/setdelta) 198 595 S
+0.09 (ClassNumericField) 216 584 S
+(,) 293.94 584 T
+0.09 (126) 300.68 584 S
+0.09 (Sliders) 216 573 S
+(,) 243.74 573 T
+0.09 (196) 250.48 573 S
+0.09 (/setendboxes) 198 560.5 S
+0.09 (Sliders) 216 549.5 S
+(,) 243.74 549.5 T
+0.09 (197) 250.48 549.5 S
+0.09 (/set\336xeditemsize) 198 537 S
+0.09 (ClassItemGr) 216 526 S
+0.09 (oup) 266.54 526 S
+(,) 282.54 526 T
+0.09 (93) 289.28 526 S
+0.09 (/setfooter) 198 513.5 S
+0.09 (ClassW) 216 502.5 S
+0.09 (indow) 246.13 502.5 S
+(,) 272.33 502.5 T
+0.09 (219) 279.07 502.5 S
+0.09 (/setfr) 198 490 S
+0.09 (ontable) 221.41 490 S
+0.09 (ClassCanvas) 216 479 S
+(,) 267.57 479 T
+0.09 (64) 274.31 479 S
+0.09 (/setgaps) 198 466.5 S
+0.09 (ClassBor) 216 455.5 S
+0.09 (derBag) 251.61 455.5 S
+(,) 280.48 455.5 T
+0.09 (26) 287.22 455.5 S
+0.09 (ClassItemGr) 216 444.5 S
+0.09 (oup) 266.54 444.5 S
+(,) 282.54 444.5 T
+0.09 (96) 289.28 444.5 S
+0.09 (ClassLayout) 216 433.5 S
+(,) 266.33 433.5 T
+0.09 (104) 273.07 433.5 S
+0.09 (ClassPanel) 216 422.5 S
+(,) 260.08 422.5 T
+0.09 (136) 266.82 422.5 S
+0.09 (/sethelpable) 198 410 S
+0.09 (ClassCanvas) 216 399 S
+(,) 267.57 399 T
+0.09 (63) 274.31 399 S
+0.09 (/sethelpkeywor) 198 386.5 S
+0.09 (d) 263.39 386.5 S
+0.09 (ClassCanvas) 216 375.5 S
+(,) 267.57 375.5 T
+0.09 (64) 274.31 375.5 S
+0.09 (ClassItemGr) 216 364.5 S
+0.09 (oup) 266.54 364.5 S
+(,) 282.54 364.5 T
+0.09 (97) 289.28 364.5 S
+(, ) 298.44 364.5 T
+0.09 (120) 302.94 364.5 S
+0.09 (/seticonimage) 198 352 S
+0.09 (ClassBaseW) 216 341 S
+0.09 (indow) 264.6 341 S
+(,) 290.79 341 T
+0.09 (225) 297.53 341 S
+0.09 (/seticonlabel) 198 328.5 S
+0.09 (ClassBaseW) 216 317.5 S
+0.09 (indow) 264.6 317.5 S
+(,) 290.79 317.5 T
+0.09 (225) 297.53 317.5 S
+0.09 (/setinsets) 198 305 S
+0.09 (ClassBor) 216 294 S
+0.09 (derBag) 251.61 294 S
+(,) 280.48 294 T
+0.09 (27) 287.22 294 S
+0.09 (/setitemhelpkeywor) 198 281.5 S
+0.09 (d) 281.54 281.5 S
+0.09 (ClassItemGr) 216 270.5 S
+0.09 (oup) 266.54 270.5 S
+(,) 282.54 270.5 T
+0.09 (97) 289.28 270.5 S
+(, ) 298.44 270.5 T
+0.09 (120) 302.94 270.5 S
+0.09 (/setitemlist) 198 258 S
+0.09 (ClassScr) 216 247 S
+0.09 (ollList) 249.92 247 S
+(,) 275.53 247 T
+0.09 (163) 282.27 247 S
+0.09 (/setitemlist \050absolute\051) 198 234.5 S
+0.09 (ClassItemGr) 216 223.5 S
+0.09 (oup) 266.54 223.5 S
+(,) 282.54 223.5 T
+0.09 (89) 289.28 223.5 S
+0.09 (ClassMenu) 216 212.5 S
+(,) 261.37 212.5 T
+0.09 (1) 268.11 212.5 S
+0.09 (10) 272.2 212.5 S
+0.09 (/setitemlist \050calculated\051) 198 200 S
+0.09 (ClassItemGr) 216 189 S
+0.09 (oup) 266.54 189 S
+(,) 282.54 189 T
+0.09 (89) 289.28 189 S
+0.09 (ClassMenu) 216 178 S
+(,) 261.37 178 T
+0.09 (1) 268.11 178 S
+0.09 (10) 272.2 178 S
+0.09 (/setitemlist \050spaced and grid\051) 198 165.5 S
+0.09 (ClassItemGr) 216 154.5 S
+0.09 (oup) 266.54 154.5 S
+(,) 282.54 154.5 T
+0.09 (89) 289.28 154.5 S
+0.09 (ClassMenu) 405 642 S
+(,) 450.37 642 T
+0.09 (1) 457.11 642 S
+0.09 (10) 461.2 642 S
+0.09 (/setitemnoti\336er) 387 629.5 S
+0.09 (ClassButton) 405 618.5 S
+(,) 454 618.5 T
+0.09 (31) 460.74 618.5 S
+0.09 (/setjusti\336cation) 387 606 S
+0.09 (ClassButton) 405 595 S
+(,) 454 595 T
+0.09 (31) 460.74 595 S
+0.09 (ClassSettings) 405 584 S
+(,) 458.81 584 T
+0.09 (190) 465.55 584 S
+0.09 (/setkeyable) 387 571.5 S
+0.09 (ClassCanvas) 405 560.5 S
+(,) 456.57 560.5 T
+0.09 (57) 463.31 560.5 S
+0.09 (/setlabel) 387 548 S
+0.09 (ClassMenu) 405 537 S
+(,) 450.37 537 T
+0.09 (1) 457.11 537 S
+0.09 (14) 461.2 537 S
+0.09 (ClassW) 405 526 S
+0.09 (indow) 435.14 526 S
+(,) 461.33 526 T
+0.09 (219) 468.07 526 S
+0.09 (/setlayoutparameters) 387 513.5 S
+0.09 (ClassPanel) 405 502.5 S
+(,) 449.08 502.5 T
+0.09 (134) 455.82 502.5 S
+0.09 (/setlayoutparameters \050calculated\051) 387 490 S
+0.09 (ClassItemGr) 405 479 S
+0.09 (oup) 455.54 479 S
+(,) 471.54 479 T
+0.09 (89) 478.28 479 S
+0.09 (ClassLayout) 405 468 S
+(,) 455.33 468 T
+0.09 (103) 462.07 468 S
+0.09 (ClassMenu) 405 457 S
+(,) 450.37 457 T
+0.09 (1) 457.11 457 S
+0.09 (1) 461.2 457 S
+0.09 (1) 465.29 457 S
+0.09 (/setlayoutparameters \050grid\051) 387 444.5 S
+0.09 (ClassItemGr) 405 433.5 S
+0.09 (oup) 455.54 433.5 S
+(,) 471.54 433.5 T
+0.09 (89) 478.28 433.5 S
+0.09 (ClassLayout) 405 422.5 S
+(,) 455.33 422.5 T
+0.09 (102) 462.07 422.5 S
+0.09 (ClassMenu) 405 411.5 S
+(,) 450.37 411.5 T
+0.09 (1) 457.11 411.5 S
+0.09 (10) 461.2 411.5 S
+0.09 (ClassPanel) 405 400.5 S
+(,) 449.08 400.5 T
+0.09 (133) 455.82 400.5 S
+0.09 (/setmenu) 387 388 S
+0.09 (ClassCanvas) 405 377 S
+(,) 456.57 377 T
+0.09 (53) 463.31 377 S
+0.09 (ClassMenu) 405 366 S
+(,) 450.37 366 T
+0.09 (1) 457.11 366 S
+0.09 (19) 461.2 366 S
+0.09 (ClassMenuButton) 405 355 S
+(,) 477.82 355 T
+0.09 (33) 484.56 355 S
+0.09 (ClassRegion) 405 344 S
+(,) 455.15 344 T
+0.09 (148) 461.89 344 S
+0.09 (/setmenuable) 387 331.5 S
+0.09 (ClassCanvas) 405 320.5 S
+(,) 456.57 320.5 T
+0.09 (54) 463.31 320.5 S
+0.09 (ClassMenu) 405 309.5 S
+(,) 450.37 309.5 T
+0.09 (1) 457.11 309.5 S
+0.09 (19) 461.2 309.5 S
+0.09 (/setmenudir) 387 297 S
+0.09 (ection) 438.87 297 S
+0.09 (ClassMenuButton) 405 286 S
+(,) 477.82 286 T
+0.09 (33) 484.56 286 S
+0.09 (/setminimumvisible) 387 273.5 S
+0.09 (ClassT) 405 262.5 S
+0.09 (extField) 431.33 262.5 S
+(,) 463.94 262.5 T
+0.09 (205) 470.68 262.5 S
+0.09 (/setnormalizer) 387 250 S
+0.09 (ClassNumericField) 405 239 S
+(,) 482.94 239 T
+0.09 (127) 489.68 239 S
+0.09 (Gauges) 405 228 S
+(,) 435.42 228 T
+0.09 (84) 442.16 228 S
+0.09 (Sliders) 405 217 S
+(,) 432.74 217 T
+0.09 (196) 439.48 217 S
+0.09 (/setnoti\336er) 387 204.5 S
+0.09 (ClassButton) 405 193.5 S
+(,) 454 193.5 T
+0.09 (31) 460.74 193.5 S
+0.09 (ClassContr) 405 182.5 S
+0.09 (ol) 449.83 182.5 S
+(,) 457.53 182.5 T
+0.09 (77) 464.27 182.5 S
+0.09 (ClassMenu) 405 171.5 S
+(,) 450.37 171.5 T
+0.09 (1) 457.11 171.5 S
+0.09 (16) 461.2 171.5 S
+0.09 (ClassNumericField) 405 160.5 S
+(,) 482.94 160.5 T
+0.09 (127) 489.68 160.5 S
+0.09 (ClassScr) 405 149.5 S
+0.09 (ollList) 438.92 149.5 S
+(,) 464.53 149.5 T
+0.09 (168) 471.27 149.5 S
+FMENDPAGE
+%%EndPage: "314" 21
+%%Page: "315" 21
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (315) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (ClassSettings) 216 642 S
+(,) 269.81 642 T
+0.09 (192) 276.55 642 S
+0.09 (ClassT) 216 631 S
+0.09 (extField) 242.32 631 S
+(,) 274.94 631 T
+0.09 (206) 281.68 631 S
+0.09 (Scr) 216 620 S
+0.09 (ollbars) 228.37 620 S
+(,) 255.96 620 T
+0.09 (155) 262.7 620 S
+0.09 (Sliders) 216 609 S
+(,) 243.74 609 T
+0.09 (195) 250.48 609 S
+0.09 (/setopenable) 198 596.5 S
+0.09 (ClassCanvas) 216 585.5 S
+(,) 267.57 585.5 T
+0.09 (62) 274.31 585.5 S
+0.09 (/setparameters) 198 573 S
+0.09 (Scr) 216 562 S
+0.09 (ollbars) 228.37 562 S
+(,) 255.96 562 T
+0.09 (154) 262.7 562 S
+0.09 (/setpinnable) 198 549.5 S
+0.09 (/setpr) 198 537 S
+0.09 (eviewer) 223.82 537 S
+0.09 (ClassContr) 216 526 S
+0.09 (ol) 260.83 526 S
+(,) 268.53 526 T
+0.09 (77) 275.27 526 S
+0.09 (ClassNumericField) 216 515 S
+(,) 293.94 515 T
+0.09 (127) 300.68 515 S
+0.09 (ClassScr) 216 504 S
+0.09 (ollList) 249.92 504 S
+(,) 275.53 504 T
+0.09 (168) 282.27 504 S
+0.09 (ClassT) 216 493 S
+0.09 (extField) 242.32 493 S
+(,) 274.94 493 T
+0.09 (206) 281.68 493 S
+0.09 (Scr) 216 482 S
+0.09 (ollbars) 228.37 482 S
+(,) 255.96 482 T
+0.09 (156) 262.7 482 S
+0.09 (Sliders) 216 471 S
+(,) 243.74 471 T
+0.09 (195) 250.48 471 S
+0.09 (/setpr) 198 458.5 S
+0.09 (operty) 223.82 458.5 S
+0.09 (ClassObject) 216 447.5 S
+(,) 263.45 447.5 T
+0.09 (129) 270.2 447.5 S
+0.09 (/setrange) 198 435 S
+0.09 (ClassNumericField) 216 424 S
+(,) 293.94 424 T
+0.09 (125) 300.68 424 S
+0.09 (Gauges) 216 413 S
+(,) 246.42 413 T
+0.09 (84) 253.16 413 S
+0.09 (Sliders) 216 402 S
+(,) 243.74 402 T
+0.09 (194) 250.48 402 S
+0.09 (/setr) 198 389.5 S
+0.09 (eadonly) 218.33 389.5 S
+0.09 (ClassT) 216 378.5 S
+0.09 (extField) 242.32 378.5 S
+(,) 274.94 378.5 T
+0.09 (204) 281.68 378.5 S
+0.09 (/setr) 198 366 S
+0.09 (eceptible) 218.33 366 S
+0.09 (ClassCanvas) 216 355 S
+(,) 267.57 355 T
+0.09 (72) 274.31 355 S
+0.09 (/setr) 198 342.5 S
+0.09 (obust) 218.33 342.5 S
+0.09 (ClassEventMgr) 216 331.5 S
+(,) 278.36 331.5 T
+0.09 (50) 285.1 331.5 S
+0.09 (/setr) 198 319 S
+0.09 (owgap) 218.33 319 S
+0.09 (ClassScr) 216 308 S
+0.09 (ollList) 249.92 308 S
+(,) 275.53 308 T
+0.09 (167) 282.27 308 S
+0.09 (/setscr) 198 295.5 S
+0.09 (ollbar) 226.31 295.5 S
+0.09 (ClassScr) 216 284.5 S
+0.09 (ollList) 249.92 284.5 S
+(,) 275.53 284.5 T
+0.09 (166) 282.27 284.5 S
+0.09 (/setselectable) 198 272 S
+0.09 (ClassCanvas) 216 261 S
+(,) 267.57 261 T
+0.09 (65) 274.31 261 S
+0.09 (/setselection) 198 248.5 S
+0.09 (ClassT) 216 237.5 S
+0.09 (extField) 242.32 237.5 S
+(,) 274.94 237.5 T
+0.09 (209) 281.68 237.5 S
+0.09 (/setselectionholder) 198 225 S
+0.09 (ClassCanvas) 216 214 S
+(,) 267.57 214 T
+0.09 (67) 274.31 214 S
+0.09 (/settar) 198 201.5 S
+0.09 (get) 225.93 201.5 S
+0.09 (ClassButtons) 216 190.5 S
+(,) 268.9 190.5 T
+0.09 (32) 275.64 190.5 S
+0.09 (ClassContr) 216 179.5 S
+0.09 (ol) 260.83 179.5 S
+(,) 268.53 179.5 T
+0.09 (78) 275.27 179.5 S
+0.09 (ClassMenu) 216 168.5 S
+(,) 261.37 168.5 T
+0.09 (1) 268.11 168.5 S
+0.09 (17) 272.2 168.5 S
+0.09 (ClassScr) 216 157.5 S
+0.09 (ollList) 249.92 157.5 S
+(,) 275.53 157.5 T
+0.09 (169) 282.27 157.5 S
+0.09 (Sliders) 405 642 S
+(,) 432.74 642 T
+0.09 (195) 439.48 642 S
+0.09 (/set3D) 387 629.5 S
+0.09 (/settext) 387 617 S
+0.09 (ClassNotice) 405 606 S
+(,) 453.31 606 T
+0.09 (122) 460.05 606 S
+0.09 (/settextfont) 387 593.5 S
+0.09 (ClassCanvas) 405 582.5 S
+(,) 456.57 582.5 T
+0.09 (40) 463.31 582.5 S
+0.09 (ClassRegion) 405 571.5 S
+(,) 455.15 571.5 T
+0.09 (142) 461.89 571.5 S
+0.09 (ClassScr) 405 560.5 S
+0.09 (ollList) 438.92 560.5 S
+(,) 464.53 560.5 T
+0.09 (169) 471.27 560.5 S
+0.09 (/settickmarks) 387 548 S
+0.09 (Gauges) 405 537 S
+(,) 435.42 537 T
+0.09 (85) 442.16 537 S
+0.09 (Sliders) 405 526 S
+(,) 432.74 526 T
+0.09 (197) 439.48 526 S
+0.09 (setting 2-D in UserPr) 387 513.5 S
+0.09 (o\336le) 472.21 513.5 S
+(,) 489.84 513.5 T
+0.09 (38) 496.58 513.5 S
+0.09 (setting item help) 387 501 S
+(,) 455.18 501 T
+0.09 (97) 461.92 501 S
+0.09 (setting the type of menu) 387 488.5 S
+0.09 (see /setchoicemode) 405 477.5 S
+(,) 485.46 477.5 T
+0.09 (108) 492.2 477.5 S
+0.09 (settings menus) 387 465 S
+0.09 (noti\336cation) 405 454 S
+(,) 451.28 454 T
+0.09 (1) 458.02 454 S
+0.09 (16) 462.11 454 S
+0.09 (/settrackable) 387 441.5 S
+0.09 (ClassCanvas) 405 430.5 S
+(,) 456.57 430.5 T
+0.09 (55) 463.31 430.5 S
+0.09 (/setvalue) 387 418 S
+0.09 (ClassContr) 405 407 S
+0.09 (ol) 449.83 407 S
+(,) 457.53 407 T
+0.09 (76) 464.27 407 S
+0.09 (ClassLabel) 405 396 S
+(,) 448.88 396 T
+0.09 (100) 455.62 396 S
+0.09 (ClassMenu) 405 385 S
+(,) 450.37 385 T
+0.09 (1) 457.11 385 S
+0.09 (18) 461.2 385 S
+0.09 (ClassNumericField) 405 374 S
+(,) 482.94 374 T
+0.09 (125) 489.68 374 S
+0.09 (ClassScr) 405 363 S
+0.09 (ollList) 438.92 363 S
+(,) 464.53 363 T
+0.09 (165) 471.27 363 S
+0.09 (ClassSettings) 405 352 S
+(,) 458.81 352 T
+0.09 (191) 465.55 352 S
+0.09 (ClassT) 405 341 S
+0.09 (extField) 431.33 341 S
+(,) 463.94 341 T
+0.09 (204) 470.68 341 S
+0.09 (Gauges) 405 330 S
+(,) 435.42 330 T
+0.09 (84) 442.16 330 S
+0.09 (Scr) 405 319 S
+0.09 (ollbars) 417.37 319 S
+(,) 444.96 319 T
+0.09 (155) 451.7 319 S
+0.09 (Sliders) 405 308 S
+(,) 432.74 308 T
+0.09 (194) 439.48 308 S
+0.09 (/setvisualstate) 387 295.5 S
+0.09 (ClassButton) 405 284.5 S
+(,) 454 284.5 T
+0.09 (30) 460.74 284.5 S
+0.09 (ClassContr) 405 273.5 S
+0.09 (ol) 449.83 273.5 S
+(,) 457.53 273.5 T
+0.09 (46) 464.27 273.5 S
+0.09 (ClassMenu) 405 262.5 S
+(,) 450.37 262.5 T
+0.09 (1) 457.11 262.5 S
+0.09 (15) 461.2 262.5 S
+0.09 (ClassScr) 405 251.5 S
+0.09 (ollList) 438.92 251.5 S
+(,) 464.53 251.5 T
+0.09 (167) 471.27 251.5 S
+0.09 (ClassT) 405 240.5 S
+0.09 (extField) 431.33 240.5 S
+(,) 463.94 240.5 T
+0.09 (203) 470.68 240.5 S
+0.09 (ClassW) 405 229.5 S
+0.09 (indow) 435.14 229.5 S
+(,) 461.33 229.5 T
+0.09 (220) 468.07 229.5 S
+0.09 (Gauges) 405 218.5 S
+(,) 435.42 218.5 T
+0.09 (85) 442.16 218.5 S
+0.09 (/siblings) 387 206 S
+0.09 (ClassCanvas) 405 195 S
+(,) 456.57 195 T
+0.09 (43) 463.31 195 S
+0.09 (signals) 387 182.5 S
+0.09 (handling) 405 171.5 S
+0.09 (see wir) 423 160.5 S
+0.09 (e_Notify) 451.8 160.5 S
+(,) 487.23 160.5 T
+0.09 (239) 493.97 160.5 S
+0.09 (/SingleRequest) 387 148 S
+FMENDPAGE
+%%EndPage: "315" 22
+%%Page: "316" 22
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (316) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassSelection) 216 642 S
+(,) 273.98 642 T
+0.09 (184) 280.72 642 S
+0.09 (Size) 198 629.5 S
+0.09 (ClassLayout) 216 618.5 S
+(,) 266.33 618.5 T
+0.09 (105) 273.07 618.5 S
+0.09 (/size) 198 606 S
+0.09 (ClassCanvas) 216 595 S
+(,) 267.57 595 T
+0.09 (44) 274.31 595 S
+0.09 (ClassLabel) 216 584 S
+(,) 259.88 584 T
+0.09 (99) 266.62 584 S
+0.09 (ClassRegion) 216 573 S
+(,) 266.15 573 T
+0.09 (144) 272.89 573 S
+0.09 (size of items) 198 560.5 S
+(,) 248.38 560.5 T
+0.09 (93) 255.12 560.5 S
+0.09 (slider) 198 548 S
+0.09 (auto r) 216 537 S
+0.09 (epeat) 239.93 537 S
+0.09 (setting) 234 526 S
+(,) 261.45 526 T
+0.09 (194) 268.19 526 S
+0.09 (/SliderDelay) 198 513.5 S
+0.09 (Sliders) 216 502.5 S
+(,) 243.74 502.5 T
+0.09 (194) 250.48 502.5 S
+0.09 (/SliderThr) 198 490 S
+0.09 (esh) 241.77 490 S
+0.09 (Sliders) 216 479 S
+(,) 243.74 479 T
+0.09 (194) 250.48 479 S
+0.09 (spaced and grid placement) 198 466.5 S
+(,) 307.56 466.5 T
+0.09 (89) 314.3 466.5 S
+0.09 (spaced menus) 198 454 S
+(,) 255.52 454 T
+0.09 (1) 262.26 454 S
+0.09 (10) 266.35 454 S
+0.09 (spawning pr) 198 441.5 S
+0.09 (ocesses for) 249.3 441.5 S
+(,) 292.93 441.5 T
+0.09 (48) 299.67 441.5 S
+0.09 (/SpecialActions) 198 429 S
+0.09 (ClassT) 216 418 S
+0.09 (extField) 242.32 418 S
+(,) 274.94 418 T
+0.09 (215) 281.68 418 S
+0.09 (split views and selections) 198 405.5 S
+(,) 301.49 405.5 T
+0.09 (66) 308.23 405.5 S
+0.09 (/Standar) 198 393 S
+0.09 (dKey) 234.91 393 S
+0.09 (ClassCanvas) 216 382 S
+(,) 267.57 382 T
+0.09 (59) 274.31 382 S
+0.09 (/Standar) 198 369.5 S
+0.09 (dKeyUp) 234.91 369.5 S
+0.09 (ClassCanvas) 216 358.5 S
+(,) 267.57 358.5 T
+0.09 (59) 274.31 358.5 S
+0.09 (/starttimer) 198 346 S
+0.09 (ClassCanvas) 216 335 S
+(,) 267.57 335 T
+0.09 (55) 274.31 335 S
+0.09 (/stoptimer) 198 322.5 S
+0.09 (ClassCanvas) 216 311.5 S
+(,) 267.57 311.5 T
+0.09 (55) 274.31 311.5 S
+0.09 (strings) 198 299 S
+0.09 (as displayitems) 216 288 S
+(,) 278.92 288 T
+0.09 (80) 285.66 288 S
+0.09 (StringSelection) 198 275.5 S
+(,) 259.01 275.5 T
+0.09 (185) 265.75 275.5 S
+0.09 (/Str) 198 263 S
+0.09 (okeCanvas) 214.84 263 S
+0.09 (ClassCanvas) 216 252 S
+(,) 267.57 252 T
+0.09 (40) 274.31 252 S
+0.09 (/Style\050attribute\051) 198 239.5 S
+0.09 (ClassSelection) 216 228.5 S
+(,) 273.98 228.5 T
+0.09 (182) 280.72 228.5 S
+0.09 (submenus) 198 216 S
+(,) 239.62 216 T
+0.09 (108) 246.36 216 S
+0.09 (subtracting x y coor) 198 203.5 S
+0.09 (dinates) 278.3 203.5 S
+(,) 307.81 203.5 T
+0.09 (106) 314.55 203.5 S
+0.09 (/Subwindows) 198 191 S
+0.09 (ClassW) 216 180 S
+0.09 (indow) 246.13 180 S
+(,) 272.33 180 T
+0.09 (222) 279.07 180 S
+0.09 (subwindow tr) 198 167.5 S
+0.09 (ee) 255.08 167.5 S
+(,) 263.87 167.5 T
+0.09 (221) 270.61 167.5 S
+0.09 (subwindows) 198 155 S
+(,) 250.15 155 T
+0.09 (221) 256.89 155 S
+0.09 (/SuperW) 387 642 S
+0.09 (indow) 424.96 642 S
+0.09 (ClassW) 405 631 S
+0.09 (indow) 435.14 631 S
+(,) 461.33 631 T
+0.09 (222) 468.07 631 S
+-0.53 0.09 (Switching between 3-D and 2-D looks) 387 618.5 B
+-0.51 (,) 537.42 618.5 P
+-0.53 0.09 (140) 544.16 618.5 B
+0.09 (Switching between 3-D and 2-D looks in ) 387 606 S
+0.09 (r) 423 595 S
+0.09 (egions) 426.48 595 S
+(,) 452.88 595 T
+0.09 (140) 459.62 595 S
+0.09 (synchr) 387 582.5 S
+0.09 (onization of user actions) 414.19 582.5 S
+(,) 513.56 582.5 T
+0.09 (14) 520.3 582.5 S
+2 F
+4 K
+0.13 (T) 387 554.83 S
+0 F
+0 K
+0.09 (tags) 387 540.5 S
+0.09 (ignoring) 405 529.5 S
+0.09 (see wir) 423 518.5 S
+0.09 (e_ReserveT) 451.8 518.5 S
+0.09 (ags) 497.53 518.5 S
+(,) 511.11 518.5 T
+0.09 (235) 517.85 518.5 S
+0.09 (r) 405 507.5 S
+0.09 (eading a single on) 408.48 507.5 S
+0.09 (see wir) 423 496.5 S
+0.09 (e_Notify) 451.8 496.5 S
+(,) 487.23 496.5 T
+0.09 (239) 493.97 496.5 S
+0.09 (r) 405 485.5 S
+0.09 (eserving) 408.48 485.5 S
+0.09 (see wir) 423 474.5 S
+0.09 (e_AllocateT) 451.8 474.5 S
+0.09 (ags) 499.12 474.5 S
+(,) 512.69 474.5 T
+0.09 (234) 519.43 474.5 S
+0.09 (tail) 387 449.5 S
+0.09 (for notices) 405 438.5 S
+0.09 (see apex) 423 427.5 S
+(,) 457.23 427.5 T
+0.09 (123) 463.96 427.5 S
+0.09 (/tar) 387 415 S
+0.09 (get) 403.62 415 S
+0.09 (ClassButtons) 405 404 S
+(,) 457.9 404 T
+0.09 (32) 464.64 404 S
+0.09 (ClassContr) 405 393 S
+0.09 (ol) 449.83 393 S
+(,) 457.53 393 T
+0.09 (78) 464.27 393 S
+0.09 (ClassMenu) 405 382 S
+(,) 450.37 382 T
+0.09 (1) 457.11 382 S
+0.09 (17) 461.2 382 S
+0.09 (ClassScr) 405 371 S
+0.09 (ollList) 438.92 371 S
+(,) 464.53 371 T
+0.09 (169) 471.27 371 S
+0.09 (Sliders) 405 360 S
+(,) 432.74 360 T
+0.09 (196) 439.48 360 S
+0.09 (tar) 387 347.5 S
+0.09 (get) 398.08 347.5 S
+0.09 (default for menus) 405 336.5 S
+(,) 477.42 336.5 T
+0.09 (1) 484.16 336.5 S
+0.09 (16) 488.25 336.5 S
+0.09 (menu default) 405 325.5 S
+0.09 (changing) 423 314.5 S
+(,) 460.51 314.5 T
+0.09 (1) 467.25 314.5 S
+0.09 (19) 471.33 314.5 S
+0.09 (tar) 387 302 S
+0.09 (get mechanism) 398.08 302 S
+0.09 (de\336ned) 405 291 S
+(,) 435.8 291 T
+0.09 (76) 442.54 291 S
+0.09 (tar) 387 278.5 S
+0.09 (gets) 398.08 278.5 S
+0.09 (as r) 405 267.5 S
+0.09 (efer) 419.3 267.5 S
+0.09 (ence managers) 434.65 267.5 S
+(,) 494.71 267.5 T
+0.09 (78) 501.45 267.5 S
+0.09 (/text) 387 255 S
+0.09 (ClassNotice) 405 244 S
+(,) 453.31 244 T
+0.09 (122) 460.05 244 S
+0.09 (text) 387 231.5 S
+0.09 (putting in notices) 405 220.5 S
+0.09 (see /settext) 423 209.5 S
+(,) 470.04 209.5 T
+0.09 (122) 476.78 209.5 S
+0.09 (text canvas) 387 197 S
+0.09 (purpose) 405 186 S
+(,) 438.42 186 T
+0.09 (201) 445.17 186 S
+0.09 (/T) 387 173.5 S
+0.09 (extFont) 397.31 173.5 S
+0.09 (ClassCanvas) 405 162.5 S
+(,) 456.57 162.5 T
+0.09 (40) 463.31 162.5 S
+0.09 (ClassRegion) 405 151.5 S
+(,) 455.15 151.5 T
+0.09 (142) 461.89 151.5 S
+FMENDPAGE
+%%EndPage: "316" 23
+%%Page: "317" 23
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (317) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0.09 (ClassW) 216 642 S
+0.09 (indow) 246.13 642 S
+(,) 272.33 642 T
+0.09 (220) 279.07 642 S
+0.09 (/textfont) 198 629.5 S
+0.09 (ClassCanvas) 216 618.5 S
+(,) 267.57 618.5 T
+0.09 (40) 274.31 618.5 S
+0.09 (ClassRegion) 216 607.5 S
+(,) 266.15 607.5 T
+0.09 (142) 272.89 607.5 S
+0.09 (/3D?) 198 595 S
+0.09 (ClassCanvas) 216 584 S
+(,) 267.57 584 T
+0.09 (38) 274.31 584 S
+0.09 (ClassMenu) 216 573 S
+(,) 261.37 573 T
+0.09 (1) 268.11 573 S
+0.09 (14) 272.2 573 S
+0.09 (3-D) 198 560.5 S
+0.09 (switching to 2-D) 216 549.5 S
+(,) 283.13 549.5 T
+0.09 (38) 289.87 549.5 S
+0.09 (3-D colors) 198 537 S
+0.09 (computing) 216 526 S
+(,) 260.24 526 T
+0.09 (36) 266.98 526 S
+0.09 (/tickmark) 198 513.5 S
+0.09 (Gauges) 216 502.5 S
+(,) 246.42 502.5 T
+0.09 (85) 253.16 502.5 S
+0.09 (/tickmarks) 198 490 S
+0.09 (Sliders) 216 479 S
+(,) 243.74 479 T
+0.09 (197) 250.48 479 S
+0.09 (tick marks) 198 466.5 S
+0.09 (for gauges) 216 455.5 S
+0.09 (see /settickmarks) 234 444.5 S
+(,) 306.01 444.5 T
+0.09 (85) 312.75 444.5 S
+0.09 (/tobottom) 198 432 S
+0.09 (ClassCanvas) 216 421 S
+(,) 267.57 421 T
+0.09 (43) 274.31 421 S
+0.09 (/toggleopened) 198 408.5 S
+0.09 (ClassW) 216 397.5 S
+0.09 (indow) 246.13 397.5 S
+(,) 272.33 397.5 T
+0.09 (223) 279.07 397.5 S
+0.09 (/togglepinned) 198 385 S
+0.09 (ClassW) 216 374 S
+0.09 (indow) 246.13 374 S
+(,) 272.33 374 T
+0.09 (223) 279.07 374 S
+0.09 (/togglezoomed) 198 361.5 S
+0.09 (ClassW) 216 350.5 S
+0.09 (indow) 246.13 350.5 S
+(,) 272.33 350.5 T
+0.09 (224) 279.07 350.5 S
+0.09 (token example) 198 338 S
+(,) 257.48 338 T
+0.09 (238) 264.22 338 S
+0.09 (tokens) 198 325.5 S
+0.09 (handles to PostScript objects) 216 314.5 S
+(,) 331.66 314.5 T
+0.09 (236) 338.4 314.5 S
+0.09 (usertokens) 216 303.5 S
+0.09 (see tokens) 234 292.5 S
+(,) 275.75 292.5 T
+0.09 (236) 282.49 292.5 S
+0.09 (toolkit components) 198 280 S
+(,) 276.42 280 T
+0.09 (1) 283.16 280 S
+0.09 (/T) 198 267.5 S
+0.09 (opLeftPath) 208.31 267.5 S
+0.09 (ClassCanvas) 216 256.5 S
+(,) 267.57 256.5 T
+0.09 (40) 274.31 256.5 S
+0.09 (ClassRegion) 216 245.5 S
+(,) 266.15 245.5 T
+0.09 (142) 272.89 245.5 S
+0.09 (/totop) 198 233 S
+0.09 (ClassCanvas) 216 222 S
+(,) 267.57 222 T
+0.09 (43) 274.31 222 S
+0.09 (/T) 198 209.5 S
+0.09 (rackable?) 208.33 209.5 S
+0.09 (ClassCanvas) 216 198.5 S
+(,) 267.57 198.5 T
+0.09 (55) 274.31 198.5 S
+0.09 (/trackable?) 198 186 S
+0.09 (ClassCanvas) 216 175 S
+(,) 267.57 175 T
+0.09 (55) 274.31 175 S
+0.09 (/T) 198 162.5 S
+0.09 (rackCancel) 208.33 162.5 S
+0.09 (ClassBag) 216 151.5 S
+(,) 252.8 151.5 T
+0.09 (21) 259.55 151.5 S
+0.09 (ClassCanvas) 405 642 S
+(,) 456.57 642 T
+0.09 (57) 463.31 642 S
+0.09 (ClassItemGr) 405 631 S
+0.09 (oup) 455.54 631 S
+(,) 471.54 631 T
+0.09 (95) 478.28 631 S
+0.09 (ClassRegion) 405 620 S
+(,) 455.15 620 T
+0.09 (147) 461.89 620 S
+0.09 (/T) 387 607.5 S
+0.09 (rackCr) 397.33 607.5 S
+0.09 (ossing) 424.66 607.5 S
+0.09 (ClassCanvas) 405 596.5 S
+(,) 456.57 596.5 T
+0.09 (57) 463.31 596.5 S
+0.09 (tracking) 387 584 S
+0.09 (default method sequence) 405 573 S
+(,) 507.01 573 T
+0.09 (56) 513.75 573 S
+0.09 (for r) 405 562 S
+0.09 (egion clients) 422.54 562 S
+(,) 473.5 562 T
+0.09 (20) 480.24 562 S
+0.09 (pr) 405 551 S
+0.09 (eventing r) 413.97 551 S
+0.09 (edistribution of ) 455.2 551 S
+0.09 (events) 441 540 S
+(,) 467.2 540 T
+0.09 (57) 473.94 540 S
+0.09 (pr) 405 529 S
+0.09 (oviding methods for) 413.97 529 S
+(,) 497.17 529 T
+0.09 (56) 503.91 529 S
+0.09 (r) 405 518 S
+0.09 (egions) 408.48 518 S
+(,) 434.88 518 T
+0.09 (147) 441.62 518 S
+0.09 (tracking mouse in items) 387 505.5 S
+(,) 484.43 505.5 T
+0.09 (95) 491.17 505.5 S
+0.09 (tracking the mouse) 387 493 S
+(,) 464.76 493 T
+0.09 (55) 471.5 493 S
+0.09 (/T) 387 480.5 S
+0.09 (rackMotion) 397.33 480.5 S
+0.09 (ClassBag) 405 469.5 S
+(,) 441.8 469.5 T
+0.09 (21) 448.55 469.5 S
+0.09 (ClassCanvas) 405 458.5 S
+(,) 456.57 458.5 T
+0.09 (57) 463.31 458.5 S
+0.09 (ClassItemGr) 405 447.5 S
+0.09 (oup) 455.54 447.5 S
+(,) 471.54 447.5 T
+0.09 (95) 478.28 447.5 S
+0.09 (ClassRegion) 405 436.5 S
+(,) 455.15 436.5 T
+0.09 (147) 461.89 436.5 S
+0.09 (/T) 387 424 S
+0.09 (rackStart) 397.33 424 S
+0.09 (ClassBag) 405 413 S
+(,) 441.8 413 T
+0.09 (21) 448.55 413 S
+0.09 (ClassCanvas) 405 402 S
+(,) 456.57 402 T
+0.09 (56) 463.31 402 S
+0.09 (ClassItemGr) 405 391 S
+0.09 (oup) 455.54 391 S
+(,) 471.54 391 T
+0.09 (95) 478.28 391 S
+0.09 (ClassRegion) 405 380 S
+(,) 455.15 380 T
+0.09 (147) 461.89 380 S
+0.09 (/T) 387 367.5 S
+0.09 (rackStop) 397.33 367.5 S
+0.09 (ClassBag) 405 356.5 S
+(,) 441.8 356.5 T
+0.09 (21) 448.55 356.5 S
+0.09 (ClassCanvas) 405 345.5 S
+(,) 456.57 345.5 T
+0.09 (57) 463.31 345.5 S
+0.09 (ClassItemGr) 405 334.5 S
+0.09 (oup) 455.54 334.5 S
+(,) 471.54 334.5 T
+0.09 (95) 478.28 334.5 S
+0.09 (ClassRegion) 405 323.5 S
+(,) 455.15 323.5 T
+0.09 (147) 461.89 323.5 S
+0.09 (/T) 387 311 S
+0.09 (rackT) 397.33 311 S
+0.09 (imer) 419.82 311 S
+0.09 (ClassCanvas) 405 300 S
+(,) 456.57 300 T
+0.09 (57) 463.31 300 S
+0.09 (transferring selections) 387 287.5 S
+0.09 (drag and dr) 405 276.5 S
+0.09 (op) 453.11 276.5 S
+(,) 463.6 276.5 T
+0.09 (179) 470.34 276.5 S
+0.09 (/T) 387 264 S
+0.09 (ranspar) 397.33 264 S
+0.09 (ent) 428.33 264 S
+0.09 (ClassCanvas) 405 253 S
+(,) 456.57 253 T
+0.09 (51) 463.31 253 S
+0.09 (transpar) 387 240.5 S
+0.09 (ent and mapped canvases) 421.02 240.5 S
+(,) 525.75 240.5 T
+0.09 (42) 532.49 240.5 S
+0.09 (transpar) 387 228 S
+0.09 (ent and opaque) 421.02 228 S
+(,) 484.01 228 T
+0.09 (51) 490.75 228 S
+0.09 (tr) 387 215.5 S
+0.09 (ees) 393.5 215.5 S
+0.09 (destr) 405 204.5 S
+0.09 (oying) 425.38 204.5 S
+(,) 448.57 204.5 T
+0.09 (12) 455.31 204.5 S
+0.09 (2-D) 387 192 S
+0.09 (setting in UserPr) 405 181 S
+0.09 (o\336le) 473.16 181 S
+(,) 490.79 181 T
+0.09 (140) 497.53 181 S
+0.09 (switching to 3-D) 405 170 S
+(,) 472.13 170 T
+0.09 (38) 478.87 170 S
+0.09 (/2DBG) 387 157.5 S
+FMENDPAGE
+%%EndPage: "317" 24
+%%Page: "318" 24
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (318) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (ClassCanvas) 216 642 S
+(,) 267.57 642 T
+0.09 (37) 274.31 642 S
+(, ) 283.48 642 T
+0.09 (139) 287.97 642 S
+0.09 (/2DFG) 198 629.5 S
+0.09 (ClassCanvas) 216 618.5 S
+(,) 267.57 618.5 T
+0.09 (37) 274.31 618.5 S
+(, ) 283.48 618.5 T
+0.09 (139) 287.97 618.5 S
+0.09 (types of contr) 198 606 S
+0.09 (ols) 253.54 606 S
+(,) 265.15 606 T
+0.09 (75) 271.89 606 S
+2 F
+4 K
+0.13 (U) 198 578.33 S
+0 F
+0 K
+0.09 (Undo key) 198 564 S
+(,) 237.89 564 T
+0.09 (61) 244.63 564 S
+0.09 (UNIX) 198 551.5 S
+0.09 (client-server split) 216 540.5 S
+(,) 286.61 540.5 T
+0.09 (10) 293.35 540.5 S
+0.09 (/unmap) 198 528 S
+0.09 (ClassCanvas) 216 517 S
+(,) 267.57 517 T
+0.09 (43) 274.31 517 S
+0.09 (ClassRegion) 216 506 S
+(,) 266.15 506 T
+0.09 (143) 272.89 506 S
+0.09 (/unpin) 198 493.5 S
+0.09 (ClassW) 216 482.5 S
+0.09 (indow) 246.13 482.5 S
+(,) 272.33 482.5 T
+0.09 (223) 279.07 482.5 S
+0.09 (/unzoom) 198 470 S
+0.09 (ClassW) 216 459 S
+0.09 (indow) 246.13 459 S
+(,) 272.33 459 T
+0.09 (224) 279.07 459 S
+0.09 (user) 198 446.5 S
+0.09 (dict) 215.28 446.5 S
+0.09 (de\336nition) 216 435.5 S
+(,) 255.57 435.5 T
+0.09 (3) 262.31 435.5 S
+0.09 (utilities for calculated placement) 198 423 S
+(,) 330.66 423 T
+0.09 (1) 337.4 423 S
+0.09 (1) 341.49 423 S
+0.09 (1) 345.58 423 S
+0.09 (Utility painting methods) 198 410.5 S
+0.09 (ClassCanvas) 216 399.5 S
+(,) 267.57 399.5 T
+0.09 (39) 274.31 399.5 S
+0.09 (utility painting methods) 198 387 S
+(,) 296.9 387 T
+0.09 (39) 303.64 387 S
+(, ) 312.81 387 T
+0.09 (141) 317.3 387 S
+2 F
+4 K
+0.13 (V) 198 359.33 S
+0 F
+0 K
+0.09 (/V) 198 345 S
+0.09 (alid?) 209.29 345 S
+0.09 (ClassCanvas) 216 334 S
+(,) 267.57 334 T
+0.09 (45) 274.31 334 S
+0.09 (ClassRegion) 216 323 S
+(,) 266.15 323 T
+0.09 (145) 272.89 323 S
+0.09 (/valid?) 198 310.5 S
+0.09 (ClassCanvas) 216 299.5 S
+(,) 267.57 299.5 T
+0.09 (45) 274.31 299.5 S
+0.09 (ClassRegion) 216 288.5 S
+(,) 266.15 288.5 T
+0.09 (145) 272.89 288.5 S
+0.09 (/?validate) 198 276 S
+0.09 (ClassCanvas) 216 265 S
+(,) 267.57 265 T
+0.09 (45) 274.31 265 S
+0.09 (ClassRegion) 216 254 S
+(,) 266.15 254 T
+0.09 (145) 272.89 254 S
+0.09 (/validate) 198 241.5 S
+0.09 (ClassBag) 216 230.5 S
+(,) 252.8 230.5 T
+0.09 (20) 259.55 230.5 S
+0.09 (ClassCanvas) 216 219.5 S
+(,) 267.57 219.5 T
+0.09 (46) 274.31 219.5 S
+0.09 (ClassItemGr) 216 208.5 S
+0.09 (oup) 266.54 208.5 S
+(,) 282.54 208.5 T
+0.09 (94) 289.28 208.5 S
+0.09 (ClassRegion) 216 197.5 S
+(,) 266.15 197.5 T
+0.09 (146) 272.89 197.5 S
+0.09 (valid wir) 198 185 S
+0.09 (e) 234.85 185 S
+0.09 (de\336nition of) 216 174 S
+(,) 265.99 174 T
+0.09 (230) 272.73 174 S
+0.09 (/?V) 198 161.5 S
+0.09 (alidateItemList) 213.37 161.5 S
+0.09 (ClassItemGr) 216 150.5 S
+0.09 (oup) 266.54 150.5 S
+(,) 282.54 150.5 T
+0.09 (94) 289.28 150.5 S
+0.09 (/V) 387 642 S
+0.09 (alidateItemList) 398.29 642 S
+0.09 (ClassItemGr) 405 631 S
+0.09 (oup) 455.54 631 S
+(,) 471.54 631 T
+0.09 (94) 478.28 631 S
+0.09 (validation) 387 618.5 S
+0.09 (changing colors) 405 607.5 S
+(,) 469.16 607.5 T
+0.09 (36) 475.9 607.5 S
+0.09 (de\336nition) 405 596.5 S
+(,) 444.57 596.5 T
+0.09 (44) 451.31 596.5 S
+(, ) 460.48 596.5 T
+0.09 (144) 464.97 596.5 S
+0.09 (optimizing painting) 405 585.5 S
+(,) 486.21 585.5 T
+0.09 (45) 492.95 585.5 S
+0.09 (validation and painting) 387 573 S
+(,) 482.76 573 T
+0.09 (45) 489.5 573 S
+0.09 (/value) 387 560.5 S
+0.09 (ClassContr) 405 549.5 S
+0.09 (ol) 449.83 549.5 S
+(,) 457.53 549.5 T
+0.09 (77) 464.27 549.5 S
+0.09 (ClassLabel) 405 538.5 S
+(,) 448.88 538.5 T
+0.09 (100) 455.62 538.5 S
+0.09 (ClassMenu) 405 527.5 S
+(,) 450.37 527.5 T
+0.09 (1) 457.11 527.5 S
+0.09 (18) 461.2 527.5 S
+0.09 (ClassNumericField) 405 516.5 S
+(,) 482.94 516.5 T
+0.09 (125) 489.68 516.5 S
+0.09 (ClassScr) 405 505.5 S
+0.09 (ollList) 438.92 505.5 S
+(,) 464.53 505.5 T
+0.09 (165) 471.27 505.5 S
+0.09 (ClassSettings) 405 494.5 S
+(,) 458.81 494.5 T
+0.09 (191) 465.55 494.5 S
+0.09 (ClassT) 405 483.5 S
+0.09 (extField) 431.33 483.5 S
+(,) 463.94 483.5 T
+0.09 (205) 470.68 483.5 S
+0.09 (Gauges) 405 472.5 S
+(,) 435.42 472.5 T
+0.09 (84) 442.16 472.5 S
+0.09 (Scr) 405 461.5 S
+0.09 (ollbars) 417.37 461.5 S
+(,) 444.96 461.5 T
+0.09 (155) 451.7 461.5 S
+0.09 (Sliders) 405 450.5 S
+(,) 432.74 450.5 T
+0.09 (194) 439.48 450.5 S
+0.09 (value) 387 438 S
+(,) 409.36 438 T
+0.09 (127) 416.1 438 S
+0.09 (changing slider) 405 427 S
+0.09 (\325s in r) 468.43 427 S
+0.09 (esponse to drag ) 491.1 427 S
+0.09 (box) 441 416 S
+(,) 455.79 416 T
+0.09 (196) 462.52 416 S
+0.09 (interpr) 405 405 S
+0.09 (etation for contr) 433.05 405 S
+0.09 (ols) 498.38 405 S
+(,) 509.98 405 T
+0.09 (76) 516.72 405 S
+0.09 (of contr) 405 394 S
+0.09 (ols) 436.31 394 S
+(,) 447.92 394 T
+0.09 (76) 454.66 394 S
+0.09 (of scr) 405 383 S
+0.09 (ollbar) 426.88 383 S
+(,) 450.57 383 T
+0.09 (151) 457.31 383 S
+0.09 (scr) 405 372 S
+0.09 (oll list) 416.46 372 S
+0.09 (ef) 423 361 S
+0.09 (fect of changing) 430.32 361 S
+(,) 495.15 361 T
+0.09 (165) 501.89 361 S
+0.09 (scr) 405 350 S
+0.09 (ollbar) 416.46 350 S
+0.09 (how it changes) 423 339 S
+(,) 483.99 339 T
+0.09 (156) 490.73 339 S
+0.09 (value of text \336elds) 387 326.5 S
+(,) 461.72 326.5 T
+0.09 (204) 468.46 326.5 S
+0.09 (variables) 387 314 S
+0.09 (color) 405 303 S
+(,) 425.42 303 T
+0.09 (139) 432.16 303 S
+0.09 (colors) 405 292 S
+(,) 429.32 292 T
+0.09 (37) 436.06 292 S
+0.09 (/V) 387 279.5 S
+0.09 (isibleCar) 398.62 279.5 S
+0.09 (et) 434.62 279.5 S
+0.09 (ClassT) 405 268.5 S
+0.09 (extField) 431.33 268.5 S
+(,) 463.94 268.5 T
+0.09 (213) 470.68 268.5 S
+0.09 (/visualstate) 387 256 S
+0.09 (ClassButton) 405 245 S
+(,) 454 245 T
+0.09 (30) 460.74 245 S
+0.09 (ClassContr) 405 234 S
+0.09 (ol) 449.83 234 S
+(,) 457.53 234 T
+0.09 (46) 464.27 234 S
+0.09 (ClassMenu) 405 223 S
+(,) 450.37 223 T
+0.09 (1) 457.11 223 S
+0.09 (15) 461.2 223 S
+0.09 (ClassScr) 405 212 S
+0.09 (ollList) 438.92 212 S
+(,) 464.53 212 T
+0.09 (167) 471.27 212 S
+0.09 (ClassT) 405 201 S
+0.09 (extField) 431.33 201 S
+(,) 463.94 201 T
+0.09 (204) 470.68 201 S
+0.09 (ClassW) 405 190 S
+0.09 (indow) 435.14 190 S
+(,) 461.33 190 T
+0.09 (221) 468.07 190 S
+0.09 (Gauges) 405 179 S
+(,) 435.42 179 T
+0.09 (85) 442.16 179 S
+FMENDPAGE
+%%EndPage: "318" 25
+%%Page: "319" 25
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+1 F
+0 X
+0.09 (Index) 198 108.7 S
+0 F
+0.09 (319) 544.25 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+2 F
+4 K
+0.13 (W) 198 639.33 S
+0 F
+0 K
+0.09 (/warpcursor) 198 625 S
+0.09 (Scr) 216 614 S
+0.09 (ollbars) 228.37 614 S
+(,) 255.96 614 T
+0.09 (153) 262.7 614 S
+0.09 (WIDTH) 198 601.5 S
+0.09 (ClassItemGr) 216 590.5 S
+0.09 (oup) 266.54 590.5 S
+(,) 282.54 590.5 T
+0.09 (91) 289.28 590.5 S
+0.09 (ClassLayout) 216 579.5 S
+(,) 266.33 579.5 T
+0.09 (104) 273.07 579.5 S
+0.09 (ClassMenu) 216 568.5 S
+(,) 261.37 568.5 T
+0.09 (1) 268.11 568.5 S
+0.09 (12) 272.2 568.5 S
+0.09 (ClassPanel) 216 557.5 S
+(,) 260.08 557.5 T
+0.09 (135) 266.82 557.5 S
+0.09 (window) 198 545 S
+0.09 (as bor) 216 534 S
+0.09 (der bag) 240.36 534 S
+(,) 271.04 534 T
+0.09 (217) 277.78 534 S
+0.09 (window attributes) 198 521.5 S
+(,) 272.96 521.5 T
+0.09 (217) 279.71 521.5 S
+0.09 (window attributes adding) 198 509 S
+(,) 304.16 509 T
+0.09 (218) 310.9 509 S
+0.09 (window attributes and OPEN LOOK) 198 496.5 S
+(,) 347.78 496.5 T
+0.09 (218) 354.52 496.5 S
+0.09 (window interaction with users) 198 484 S
+0.09 (see /setvisualstate) 216 473 S
+(,) 291.37 473 T
+0.09 (220) 298.11 473 S
+0.09 (windows) 198 460.5 S
+(,) 235.68 460.5 T
+0.09 (218) 242.42 460.5 S
+0.09 (busy) 216 449.5 S
+0.09 (event handling) 234 438.5 S
+(,) 295.26 438.5 T
+0.09 (221) 302 438.5 S
+0.09 (windows for pr) 198 426 S
+0.09 (operty sheets) 261.04 426 S
+0.09 (see ClassPopupW) 216 415 S
+0.09 (indow) 288.17 415 S
+(,) 314.36 415 T
+0.09 (226) 321.1 415 S
+0.09 (wir) 198 402.5 S
+0.09 (e_AddFileHandler) 211.77 402.5 S
+0.09 (W) 216 391.5 S
+0.09 (ir) 224.58 391.5 S
+0.09 (eService) 230.77 391.5 S
+(,) 264.35 391.5 T
+0.09 (240) 271.09 391.5 S
+0.09 (wir) 198 379 S
+0.09 (e_AllocateNamedT) 211.77 379 S
+0.09 (ags) 289.23 379 S
+0.09 (W) 216 368 S
+0.09 (ir) 224.58 368 S
+0.09 (eService) 230.77 368 S
+(,) 264.35 368 T
+0.09 (234) 271.09 368 S
+0.09 (wir) 198 355.5 S
+0.09 (e_AllocateNamedT) 211.77 355.5 S
+0.09 (okens) 289.23 355.5 S
+0.09 (W) 216 344.5 S
+0.09 (ir) 224.58 344.5 S
+0.09 (eService) 230.77 344.5 S
+(,) 264.35 344.5 T
+0.09 (237) 271.09 344.5 S
+0.09 (wir) 198 332 S
+0.09 (e_AllocateT) 211.77 332 S
+0.09 (ags) 259.09 332 S
+0.09 (W) 216 321 S
+0.09 (ir) 224.58 321 S
+0.09 (eService) 230.77 321 S
+(,) 264.35 321 T
+0.09 (234) 271.09 321 S
+0.09 (wir) 198 308.5 S
+0.09 (e_AllocateT) 211.77 308.5 S
+0.09 (okens) 259.09 308.5 S
+0.09 (W) 216 297.5 S
+0.09 (ir) 224.58 297.5 S
+0.09 (eService) 230.77 297.5 S
+(,) 264.35 297.5 T
+0.09 (236) 271.09 297.5 S
+0.09 (wir) 198 285 S
+0.09 (e_Close) 211.77 285 S
+0.09 (W) 216 274 S
+0.09 (ir) 224.58 274 S
+0.09 (eService) 230.77 274 S
+(,) 264.35 274 T
+0.09 (229) 271.09 274 S
+0.09 (wir) 198 261.5 S
+0.09 (e_Curr) 211.77 261.5 S
+0.09 (ent) 239.84 261.5 S
+0.09 (W) 216 250.5 S
+0.09 (ir) 224.58 250.5 S
+0.09 (eService) 230.77 250.5 S
+(,) 264.35 250.5 T
+0.09 (230) 271.09 250.5 S
+0.09 (wir) 198 238 S
+0.09 (e_Data) 211.77 238 S
+0.09 (W) 216 227 S
+0.09 (ir) 224.58 227 S
+0.09 (eService) 230.77 227 S
+(,) 264.35 227 T
+0.09 (230) 271.09 227 S
+0.09 (wir) 198 214.5 S
+0.09 (e_DeallocateT) 211.77 214.5 S
+0.09 (okens) 268.03 214.5 S
+0.09 (W) 216 203.5 S
+0.09 (ir) 224.58 203.5 S
+0.09 (eService) 230.77 203.5 S
+(,) 264.35 203.5 T
+0.09 (237) 271.09 203.5 S
+0.09 (wir) 198 191 S
+0.09 (e_DeathDefault) 211.77 191 S
+0.09 (W) 216 180 S
+0.09 (ir) 224.58 180 S
+0.09 (eService) 230.77 180 S
+(,) 264.35 180 T
+0.09 (232) 271.09 180 S
+0.09 (wir) 198 167.5 S
+0.09 (e_Disable) 211.77 167.5 S
+0.09 (W) 216 156.5 S
+0.09 (ir) 224.58 156.5 S
+0.09 (eService) 230.77 156.5 S
+(,) 264.35 156.5 T
+0.09 (230) 271.09 156.5 S
+0.09 (wir) 387 642 S
+0.09 (e_DiseaseDefault) 400.77 642 S
+0.09 (W) 405 631 S
+0.09 (ir) 413.58 631 S
+0.09 (eService) 419.77 631 S
+(,) 453.35 631 T
+0.09 (232) 460.09 631 S
+0.09 (wir) 387 618.5 S
+0.09 (e_DrainSync) 400.77 618.5 S
+0.09 (W) 405 607.5 S
+0.09 (ir) 413.58 607.5 S
+0.09 (eService) 419.77 607.5 S
+(,) 453.35 607.5 T
+0.09 (243) 460.09 607.5 S
+0.09 (wir) 387 595 S
+0.09 (e_Enable) 400.77 595 S
+0.09 (W) 405 584 S
+0.09 (ir) 413.58 584 S
+0.09 (eService) 419.77 584 S
+(,) 453.35 584 T
+0.09 (231) 460.09 584 S
+0.09 (wir) 387 571.5 S
+0.09 (e_Enabled) 400.77 571.5 S
+0.09 (W) 405 560.5 S
+0.09 (ir) 413.58 560.5 S
+0.09 (eService) 419.77 560.5 S
+(,) 453.35 560.5 T
+0.09 (231) 460.09 560.5 S
+0.09 (wir) 387 548 S
+0.09 (e_EnterNoti\336er) 400.77 548 S
+0.09 (W) 405 537 S
+0.09 (ir) 413.58 537 S
+0.09 (eService) 419.77 537 S
+(,) 453.35 537 T
+0.09 (240) 460.09 537 S
+0.09 (wir) 387 524.5 S
+0.09 (e_Err) 400.77 524.5 S
+0.09 (orString) 422.45 524.5 S
+0.09 (W) 405 513.5 S
+0.09 (ir) 413.58 513.5 S
+0.09 (eService) 419.77 513.5 S
+(,) 453.35 513.5 T
+0.09 (228) 460.09 513.5 S
+0.09 (wir) 387 501 S
+0.09 (e_ExitNoti\336er) 400.77 501 S
+0.09 (W) 405 490 S
+0.09 (ir) 413.58 490 S
+0.09 (eService) 419.77 490 S
+(,) 453.35 490 T
+0.09 (240) 460.09 490 S
+0.09 (wir) 387 477.5 S
+0.09 (e_ExpectSync) 400.77 477.5 S
+0.09 (W) 405 466.5 S
+0.09 (ir) 413.58 466.5 S
+0.09 (eService) 419.77 466.5 S
+(,) 453.35 466.5 T
+0.09 (243) 460.09 466.5 S
+0.09 (wir) 387 454 S
+0.09 (e_GobbleAny) 400.77 454 S
+0.09 (W) 405 443 S
+0.09 (ir) 413.58 443 S
+0.09 (eService) 419.77 443 S
+(,) 453.35 443 T
+0.09 (241) 460.09 443 S
+0.09 (wir) 387 430.5 S
+0.09 (e_InSync) 400.77 430.5 S
+0.09 (W) 405 419.5 S
+0.09 (ir) 413.58 419.5 S
+0.09 (eService) 419.77 419.5 S
+(,) 453.35 419.5 T
+0.09 (242) 460.09 419.5 S
+0.09 (wir) 387 407 S
+0.09 (e_IntT) 400.77 407 S
+0.09 (oW) 425.98 407 S
+0.09 (ir) 439.56 407 S
+0.09 (e) 445.74 407 S
+0.09 (W) 405 396 S
+0.09 (ir) 413.58 396 S
+0.09 (eService) 419.77 396 S
+(,) 453.35 396 T
+0.09 (233) 460.09 396 S
+0.09 (wir) 387 383.5 S
+0.09 (e_Notify) 400.77 383.5 S
+0.09 (W) 405 372.5 S
+0.09 (ir) 413.58 372.5 S
+0.09 (eService) 419.77 372.5 S
+(,) 453.35 372.5 T
+0.09 (239) 460.09 372.5 S
+0.09 (wir) 387 360 S
+0.09 (e_Open) 400.77 360 S
+0.09 (W) 405 349 S
+0.09 (ir) 413.58 349 S
+0.09 (eService) 419.77 349 S
+(,) 453.35 349 T
+0.09 (229) 460.09 349 S
+0.09 (wir) 387 336.5 S
+0.09 (e_Perr) 400.77 336.5 S
+0.09 (or) 426.78 336.5 S
+0.09 (W) 405 325.5 S
+0.09 (ir) 413.58 325.5 S
+0.09 (eService) 419.77 325.5 S
+(,) 453.35 325.5 T
+0.09 (228) 460.09 325.5 S
+0.09 (wir) 387 313 S
+0.09 (e_Pr) 400.77 313 S
+0.09 (oblems) 418.74 313 S
+0.09 (W) 405 302 S
+0.09 (ir) 413.58 302 S
+0.09 (eService) 419.77 302 S
+(,) 453.35 302 T
+0.09 (232) 460.09 302 S
+0.09 (wir) 387 289.5 S
+0.09 (e_PSinput) 400.77 289.5 S
+0.09 (W) 405 278.5 S
+0.09 (ir) 413.58 278.5 S
+0.09 (eService) 419.77 278.5 S
+(,) 453.35 278.5 T
+0.09 (233) 460.09 278.5 S
+0.09 (wir) 387 266 S
+0.09 (e_PSoutput) 400.77 266 S
+0.09 (W) 405 255 S
+0.09 (ir) 413.58 255 S
+0.09 (eService) 419.77 255 S
+(,) 453.35 255 T
+0.09 (234) 460.09 255 S
+0.09 (wir) 387 242.5 S
+0.09 (e_ReadFloat) 400.77 242.5 S
+0.09 (W) 405 231.5 S
+0.09 (ir) 413.58 231.5 S
+0.09 (eService) 419.77 231.5 S
+(,) 453.35 231.5 T
+0.09 (241) 460.09 231.5 S
+0.09 (wir) 387 219 S
+0.09 (e_ReadInt) 400.77 219 S
+0.09 (W) 405 208 S
+0.09 (ir) 413.58 208 S
+0.09 (eService) 419.77 208 S
+(,) 453.35 208 T
+0.09 (241) 460.09 208 S
+0.09 (wir) 387 195.5 S
+0.09 (e_ReadString) 400.77 195.5 S
+0.09 (W) 405 184.5 S
+0.09 (ir) 413.58 184.5 S
+0.09 (eService) 419.77 184.5 S
+(,) 453.35 184.5 T
+0.09 (241) 460.09 184.5 S
+0.09 (wir) 387 172 S
+0.09 (e_RegisterT) 400.77 172 S
+0.09 (ag) 447.76 172 S
+0.09 (W) 405 161 S
+0.09 (ir) 413.58 161 S
+0.09 (eService) 419.77 161 S
+(,) 453.35 161 T
+0.09 (235) 460.09 161 S
+0.09 (wir) 387 148.5 S
+0.09 (e_RegisterT) 400.77 148.5 S
+0.09 (oken) 447.76 148.5 S
+FMENDPAGE
+%%EndPage: "319" 26
+%%Page: "320" 26
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (320) 54 108.7 S
+1 F
+0.09 (The NeWS T) 198 108.7 S
+0.09 (oolkit Refer) 245.34 108.7 S
+0.09 (ence Manual \321 Mar) 287.45 108.7 S
+0.09 (ch 1991) 365.11 108.7 S
+558 675 54 675 2 L
+0.3 H
+2 Z
+N
+0 F
+0.09 (W) 216 642 S
+0.09 (ir) 224.58 642 S
+0.09 (eService) 230.77 642 S
+(,) 264.35 642 T
+0.09 (237) 271.09 642 S
+0.09 (wir) 198 629.5 S
+0.09 (e_RemoveFileHandler) 211.77 629.5 S
+0.09 (W) 216 618.5 S
+0.09 (ir) 224.58 618.5 S
+0.09 (eService) 230.77 618.5 S
+(,) 264.35 618.5 T
+0.09 (240) 271.09 618.5 S
+0.09 (wir) 198 606 S
+0.09 (e_ReserveT) 211.77 606 S
+0.09 (ags) 257.51 606 S
+0.09 (W) 216 595 S
+0.09 (ir) 224.58 595 S
+0.09 (eService) 230.77 595 S
+(,) 264.35 595 T
+0.09 (235) 271.09 595 S
+0.09 (wir) 198 582.5 S
+0.09 (e_ReserveT) 211.77 582.5 S
+0.09 (okens) 257.51 582.5 S
+0.09 (W) 216 571.5 S
+0.09 (ir) 224.58 571.5 S
+0.09 (eService) 230.77 571.5 S
+(,) 264.35 571.5 T
+0.09 (237) 271.09 571.5 S
+0.09 (wir) 198 559 S
+0.09 (e_SetCurr) 211.77 559 S
+0.09 (ent) 252.06 559 S
+0.09 (W) 216 548 S
+0.09 (ir) 224.58 548 S
+0.09 (eService) 230.77 548 S
+(,) 264.35 548 T
+0.09 (229) 271.09 548 S
+0.09 (wir) 198 535.5 S
+0.09 (e_SetData) 211.77 535.5 S
+0.09 (W) 216 524.5 S
+0.09 (ir) 224.58 524.5 S
+0.09 (eService) 230.77 524.5 S
+(,) 264.35 524.5 T
+0.09 (230) 271.09 524.5 S
+0.09 (wir) 198 512 S
+0.09 (e_SkipEvent) 211.77 512 S
+0.09 (W) 216 501 S
+0.09 (ir) 224.58 501 S
+0.09 (eService) 230.77 501 S
+(,) 264.35 501 T
+0.09 (233) 271.09 501 S
+0.09 (wir) 198 488.5 S
+0.09 (e_Sync) 211.77 488.5 S
+0.09 (W) 216 477.5 S
+0.09 (ir) 224.58 477.5 S
+0.09 (eService) 230.77 477.5 S
+(,) 264.35 477.5 T
+0.09 (241) 271.09 477.5 S
+0.09 (wir) 198 465 S
+0.09 (e_T) 211.77 465 S
+0.09 (agData) 225.52 465 S
+0.09 (W) 216 454 S
+0.09 (ir) 224.58 454 S
+0.09 (eService) 230.77 454 S
+(,) 264.35 454 T
+0.09 (235) 271.09 454 S
+0.09 (wir) 198 441.5 S
+0.09 (e_T) 211.77 441.5 S
+0.09 (agFunction) 225.52 441.5 S
+0.09 (W) 216 430.5 S
+0.09 (ir) 224.58 430.5 S
+0.09 (eService) 230.77 430.5 S
+(,) 264.35 430.5 T
+0.09 (235) 271.09 430.5 S
+0.09 (wir) 198 418 S
+0.09 (e_T) 211.77 418 S
+0.09 (okenData) 225.52 418 S
+0.09 (W) 216 407 S
+0.09 (ir) 224.58 407 S
+0.09 (eService) 230.77 407 S
+(,) 264.35 407 T
+0.09 (237) 271.09 407 S
+0.09 (wir) 198 394.5 S
+0.09 (e_UnknownT) 211.77 394.5 S
+0.09 (agDefault) 266.23 394.5 S
+0.09 (W) 216 383.5 S
+0.09 (ir) 224.58 383.5 S
+0.09 (eService) 230.77 383.5 S
+(,) 264.35 383.5 T
+0.09 (232) 271.09 383.5 S
+0.09 (wir) 198 371 S
+0.09 (e_V) 211.77 371 S
+0.09 (alid) 226.5 371 S
+0.09 (W) 216 360 S
+0.09 (ir) 224.58 360 S
+0.09 (eService) 230.77 360 S
+(,) 264.35 360 T
+0.09 (230) 271.09 360 S
+0.09 (wir) 198 347.5 S
+0.09 (e_W) 211.77 347.5 S
+0.09 (ir) 229.33 347.5 S
+0.09 (eT) 235.51 347.5 S
+0.09 (oInt) 244.68 347.5 S
+0.09 (W) 216 336.5 S
+0.09 (ir) 224.58 336.5 S
+0.09 (eService) 230.77 336.5 S
+(,) 264.35 336.5 T
+0.09 (233) 271.09 336.5 S
+0.09 (wir) 198 324 S
+0.09 (e_W) 211.77 324 S
+0.09 (ouldNotify) 229 324 S
+0.09 (W) 216 313 S
+0.09 (ir) 224.58 313 S
+0.09 (eService) 230.77 313 S
+(,) 264.35 313 T
+0.09 (239) 271.09 313 S
+2 F
+4 K
+0.13 (X) 198 285.33 S
+0 F
+0 K
+-0.33 0.09 (XV) 198 271 B
+-0.33 0.09 (iew pasting and /SelectionObjsize) 210.17 271 B
+-0.32 (,) 348.42 271 P
+-0.33 0.09 (178) 355.16 271 B
+0.09 (xyadd) 198 258.5 S
+0.09 (ClassLayout) 216 247.5 S
+(,) 266.33 247.5 T
+0.09 (106) 273.07 247.5 S
+0.09 (xymax) 198 235 S
+0.09 (ClassLayout) 216 224 S
+(,) 266.33 224 T
+0.09 (106) 273.07 224 S
+0.09 (xymin) 198 211.5 S
+0.09 (ClassLayout) 216 200.5 S
+(,) 266.33 200.5 T
+0.09 (106) 273.07 200.5 S
+0.09 (xysub) 198 188 S
+0.09 (ClassLayout) 216 177 S
+(,) 266.33 177 T
+0.09 (106) 273.07 177 S
+2 F
+4 K
+0.13 (Z) 387 639.33 S
+0 F
+0 K
+0.09 (/zoom) 387 625 S
+0.09 (ClassW) 405 614 S
+0.09 (indow) 435.14 614 S
+(,) 461.33 614 T
+0.09 (224) 468.07 614 S
+0.09 (/zoomed?) 387 601.5 S
+0.09 (ClassW) 405 590.5 S
+0.09 (indow) 435.14 590.5 S
+(,) 461.33 590.5 T
+0.09 (224) 468.07 590.5 S
+0.09 (zooming windows) 387 578 S
+(,) 462.73 578 T
+0.09 (224) 469.47 578 S
+FMENDPAGE
+%%EndPage: "320" 27
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 26 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Palatino-Bold

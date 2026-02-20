@@ -1,0 +1,684 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%		@(#)debug.ps 23.4 91/02/11
+%
+%  Debugging tools.
+%
+%    telnet connection:
+%	Spawn a process to listen for debug events: DbgEventMgr
+%	This currently has two interests, one for breaks, one for
+%	printing.  Each new client capability will add a new interest.
+%    systemdict:
+%	DbgBreaks: 100 dict [ process - DbgClientDict pairs ]
+%	    DbgClientDict:
+%		DbgBreakName: name of this break
+%		DbgClientInterests: interests this client had before
+%			I revoked them.
+%	DbgDicts: 20 dict [ telnetprocess - DbgDict pairs ]
+%	    DbgDict:
+%		DbgEventMgr: this connection's listner.
+%		DbgEnteredProcess: the currently entered process or
+%				   null if none.
+%		DbgDictStack: telnet process' DictionaryStack less sysdict.
+%		DbgOpStack: telnet process' operandstack.
+%	DbgUsers: number of telnet connections debugging.
+%	DbgErrorList: list of errors handled by errordict.
+%	DbgErrorTable: DbgErrorList in dictionary form for fast lookup.
+%	errordict: set by DbgInstallErrordict
+%
+%  dbgstart does the following:
+%    * insures there is a userdict
+%    * makes a DbgBreaks dict in systemdict if not already there
+%    * makes a DbgDicts dict in systemdict if not already there
+%    * builds a DbgDict dict in DbgDicts
+%    * launches debugger listner, stores process as /DbgEventMgr in DbgDict
+%    * initializes the rest of DbgDict
+%
+%  dbgenterbreak tries to make the current telnet process look like the
+%  process being debugged by:
+%    * saving the telnet's state in DbgDict.
+%    * pop-ing off all the telennet's dicts and replacing them
+%      with the entered process's dicts
+%    * ditto for the operand stack
+%  The result is the telnet process now "looks like" the entered process.
+%  The stack can be looked at using the standard PostScript commands like
+%  pstack, ==, and the like; and the PostScript interpreter can be used
+%  to evaluate expressions using the entered process' dictionary stack.
+%
+% BUG:
+% From jfarrell@jf Fri Dec 11 14:28:45 1987
+% From: jfarrell@jf (Jerry Farrell)
+% To: owen@bigmac
+% Subject: debugging zombied processes
+% 
+% I think the debugger makes some unwarranted assumptions about what
+% it will find in a process, and loops when they're wrong.  Can you
+% help me track this?
+
+systemdict begin  % must be in system dict!
+
+/DefaultBreakNumber 999 def % number used for implicit breaknumber commands.
+
+% debugger client commands (those that communicate to the DbgEventMgr:
+
+/dbgbreak { % breakname => - (sends break request to DbgEventMgr)
+% Note: should probably install the entry in DbgBreaks here rather
+% than in the handler.  OOPS: causes bad synch probs w/ lister!
+    DbgUsers 0 eq {
+        (Dbgbreak "%" encountered with no debugger installed!\n) dbgprintf
+    } { DbgDicts currentprocess known {
+	(Dbgbreak "%" encountered in a debugger.\n) dbgprintf
+	(Recursive debugging not allowed!\n) [] dbgprintf
+    } {
+	10 dict begin
+	    /Name exch def
+	    /Interests currentprocess /Interests get def
+	    currentdict
+	end
+%	DbgBreaks currentprocess 2 index put
+	createevent begin
+	    /Name /DbgBreakEvent def
+	    /Action [currentprocess 4 -1 roll] def
+	    currentdict
+	end sendevent
+	
+	currentprocess /Interests get {revokeinterest} forall
+    
+	createevent dup /Name /DbgClientEvent put expressinterest
+	{ awaitevent dup /Action get cvx exec } loop
+
+	currentprocess /Interests get {revokeinterest} forall % just mine!
+	DbgBreaks currentprocess get /Interests get {expressinterest} forall
+	DbgBreaks currentprocess undef
+    } ifelse
+    } ifelse
+} def
+
+/dbgprintf { % fmtstring argarray => - (sends print request to DbgEventMgr)
+    DbgUsers 0 eq {
+        sprintf console exch writestring
+        console flushfile
+    } {
+        dup xcheck { [ exch exec ] } if
+	createevent dup begin
+	    /Name /DbgPrintEvent def
+	    /Action [5 -2 roll] def
+	end sendevent
+    } ifelse
+} def
+
+% debugger commands
+
+/dbgcontinuebreak { % breaknumber => - (continues a breakpoint-ed process)
+DbgBreaknumOK {
+    DbgCheckExited
+    null {pop exit} DbgDict /DbgPendingProcess get dbgcallbreak
+} if
+} def
+
+/dbgcontinue { % - => - (dbgcontinuebreak for entered process)
+    DbgImplicitBreak dbgcontinuebreak
+} def
+
+/dbgkillbreak { % breaknumber => - (kills a breakpoint-ed process)
+DbgBreaknumOK {
+    DbgCheckExited
+    DbgDict /DbgPendingProcess get
+    DbgBreaks 1 index undef
+    killprocess
+} if
+} def
+
+/dbgkill { % - => - (dbgkillbreak for entered process)
+    DbgImplicitBreak dbgkillbreak
+} def
+
+/dbgwherebreak { % breaknumber => - (print indicated process' exec stack)
+DbgBreaknumOK {
+    DbgGetExecStack printexecstack
+} if
+} def
+
+/dbgwhere { % - => - (dbgwherebreak for entered process)
+    DbgImplicitBreak dbgwherebreak
+} def
+
+/dbgremovebreak { % breaknumber => - (remove current breakpoint)
+DbgBreaknumOK {
+    DbgGetExecStack		% es
+    dup length 1 sub		% es ix1
+    2 copy get			% es ix1 ix2
+    3 1 roll 1 sub get		% ix2 ex
+    DbgRemoveBreakTypes 1 index truetype 2 copy known {	% ix2 ex drbt type
+	get exec
+    } {
+	(can't remove a breakpoint from a %\n) printf	% ix2 ex drbt
+	pop pop pop
+    } ifelse
+} if
+} def
+
+/dbgremove { % - => - (dbgremovebreak for entered process)
+    DbgImplicitBreak dbgremovebreak
+} def
+
+% all routines in here are speced as
+%	es ix => -
+/DbgRemoveBreakTypes dictbegin
+    /arraytype {
+	exch 1 sub		% ex ix2
+	2 copy get		% ex ix2 any
+	/dbgbreak eq {
+	    /pop load put
+	} {
+	    get (stopped at %, not a breakpoint\n) printf
+	} ifelse
+    } def
+    % /packedarraytype
+    % /stringtype
+dictend def
+
+/dbglistbreaks { % - => -   (list the current breakpoint-ed process)
+    DbgBreaksExist {
+	(Currently pending breakpoints are:\n) print
+	1 DbgBreaks {		% i p ClientDict
+	    /Name get		% i p breakname
+	    (  %%: % called from %\n) [	% i p breakname fmtstring [
+		3 index DbgDict /DbgEnteredProcess get eq
+		    {(=>)} {(  )} ifelse % i p breakname fmtstring [ str
+		5 index		% i p breakname fmtstring [ str i
+		6 -2 roll exch	% i fmtstring [ str i p breakname
+	    ] printf		% i
+	    1 add			% i+1
+	} forall
+	pop				% -
+    } if
+} def
+
+/dbgenterbreak { % breaknumber => - (push the break's context.)
+DbgBreaknumOK {
+    DbgCheckExited
+    DbgDict begin /DbgEnteredProcess DbgPendingProcess def end
+
+    % save debugger's state:
+    %	dictstack less sysdict
+    %	operand stack
+    DbgDict /DbgDictStack			% dict /k
+	currentprocess /DictionaryStack get	% dict /k array
+	1 1 index length 1 sub getinterval put	% -
+    [ count copy pop ]				% array (copy of stack)
+    DbgDict /DbgOpStack 3 -1 roll put		% -
+    
+    % Now replace the debugger's state (dictstack and OperandStack) with
+    % the breaker's state.
+    countdictstack 1 sub {end} repeat	% pop off all but sysdict
+    DbgDict				% push on the breaker's dictstack
+        /DbgEnteredProcess get			% process
+        /DictionaryStack get			% array (dictstack)
+        1 1 index length 1 sub getinterval	% subarray (" w/o sysdict)
+        {begin} forall				% - (dictstack=entered proc)
+    clear				% pop off all of debugger's op stack
+    DbgDict				% push on the breaker's opstack
+        /DbgEnteredProcess get			% process
+        /OperandStack get aload pop		% - (opstack=entered proc)
+} if
+} def
+
+/dbgenter { % - => - (push the last break's context.)
+    DefaultBreakNumber dbgenterbreak
+} def
+
+/dbgexit { % - => -   (pop the break's context, if any.)
+DbgBreaksExist {
+    DbgDict /DbgEnteredProcess get null ne {
+	% pop off entered dictstack (except sysdict) and replace
+	% with debugger's saved dictstack
+        countdictstack 1 sub {end} repeat
+        DbgDict /DbgDictStack get {begin} forall
+        % ditto for operand stack
+        clear
+        DbgDict /DbgOpStack get aload pop
+
+	% "forget" the entered process
+        DbgDict /DbgEnteredProcess null put
+    } if
+} if
+} def
+
+/dbgcopystack { % - => - (copies our op stack to the entered process)
+DbgBreaksExist {
+    DbgDict /DbgEnteredProcess get null ne {
+        [count copy pop]				% args
+        {begin clear ClientData aload pop end}		% args proc
+	dbgcall						% -
+    } {
+        ("dbgcopystack" can only be called from an entered process.\n) print
+    } ifelse
+} if
+} def
+
+/dbgcallbreak { % arg clientproc breaknumber => -
+% Execute clientproc in client with arg as data.
+% Note: the proc will be executed (in the client environment) with the
+% event on the stack, thus is responsible for popping it off.
+DbgBreaknumOK {
+    DbgNum2Proc 3 1 roll	% process arg clientproc
+    createevent begin		% process arg clientproc (e on dictstack)
+        /Name /DbgClientEvent def
+        /Action exch def	% process arg (e on dictstack)
+        /ClientData exch def	% process (e on dictstack)
+        /Process exch def	%
+        currentdict		% event
+    end sendevent
+} {pop pop} ifelse
+} def
+
+/dbgcall { % arg clientproc => - (dbgcallbreak with entered process)
+% As above for the entered process.  Also re-enters the process, if possible.
+    DbgImplicitBreak dbgcallbreak DbgReEnter
+} def
+
+/dbggetbreak { % breaknumber => process (returns break's process)
+DbgBreaknumOK {
+    DbgNum2Proc
+} if
+} def
+
+/dbgpatchbreak { % level index patch breaknumber => -
+% Patch the execution stack for breaknumber process.
+% The patch over-writes the word in the executable at the given
+% level, and at the given index within that level.
+DbgBreaknumOK {
+    DbgNum2Proc /ExecutionStack get	% l i p xstack
+    4 -1 roll 2 copy			% i p xstack l xstack l
+    6 2 roll 2 mul get			% xstack l i p code[for level l]
+    3 1 roll put			% xstack l (code modified)
+    (Result: ) print printexeclevel
+} {pop pop pop} ifelse
+} def
+
+/dbgpatch { % level index patch => - (Patch the entered process)
+    DbgImplicitBreak dbgpatchbreak
+} def
+
+/dbgmodifyproc { % name/[dict name] head tail => - (modify the proc)
+    2 index dup isarray? {aload pop get} if		% name hd tl proc
+%    3 1 roll modifyproc					% name proc'
+    exch [ [ 5 2 roll ]	{aload pop} forall ] cvx  	% name proc'
+    1 index isarray?
+        {exch aload pop 3 -1 roll put} {store} ifelse
+} def
+
+/DbgNameAsString { % name/[dict name] => str (convert the name to a string)
+    dup isarray? {1 get} if
+} def
+/dbgbreakenter { % name/[dict name] => - (dbgbreak at beginning of proc)
+    dup DbgNameAsString [exch /dbgbreak cvx] cvx
+    {} dbgmodifyproc
+} def
+/dbgbreakexit { % name/[dict name] => - (dbgbreak at end of proc)
+    dup DbgNameAsString [exch /dbgbreak cvx] cvx
+    {} exch dbgmodifyproc
+} def
+
+/dbgprintfenter { % name/[dict name] fmtstr argarray => - (dbgprintf at entry)
+    [ 3 1 roll /dbgprintf cvx ] cvx
+    {} dbgmodifyproc
+} def
+/dbgprintfexit { % name/[dict name] fmtstr argarray => - (dbgprintf at exit)
+    [ 3 1 roll /dbgprintf cvx ] cvx
+    {} exch dbgmodifyproc
+} def
+
+% debugger setup & DbgEventMgr management
+
+/DbgBreakHandler { % event => - (receive the client break event)
+% Install this break into the DbgBreaks dictionary.
+% Print a notice.
+% Enter the break if no other breaks pending.
+% Print the current breaks.
+    dup redistributeevent % temp: till jerry get's his stuff back in.
+    begin
+        DbgBreaks Action aload pop put
+        (Break:% from %\n) [Action aload pop /Name get exch] printf
+    end
+    dbglistbreaks
+} def
+
+/DbgPrintHandler { % event => - (receive the client print event)
+    dup redistributeevent % temp: till jerry get's his stuff back in.
+    /Action get aload pop printf
+} def
+
+/DbgDeathHandler { % event=> - (clean up after debugger client death)
+    dup /Action get
+    DbgDicts exch undef
+    DbgDicts currentprocess undef
+    currentprocess killprocess
+} def
+
+/DbgErrorList  [ % the list of errors the debugger catches
+    /accept		/dictfull		/dictstackoverflow
+    /dictstackunderflow	/execstackoverflow	/interrupt
+    /invalidaccess	/invalidexit		/invalidfileaccess
+    /invalidfont	/invalidrestore		/ioerr
+    /limitcheck		/nocurrentpoint		/rangecheck
+    /stackoverflow	/stackunderflow		/syntaxerror
+    /timeout		/typecheck		/undefined
+    /undefinedfilename	/undefinedresult	/unimplemented
+    /unmatchedmark	/unregistered		/VMerror
+%   /killprocess must be omitted from this list
+] def
+
+/DbgErrorTable dictbegin
+    DbgErrorList {dup def} forall
+dictend def
+
+/DbgErrorHandler { % /errname => -
+% Either print out an error message or call dbgbreak, depending on
+% whether or not we're in a debugging executive.
+    stoppedpending? { defaulterroraction }{ dbgbreak } ifelse
+} def
+
+/DbgUsers 0 def
+
+/dbgstart { % - => -
+    % Build a userdict if not there yet.
+%    countdictstack 1 eq {100 dict begin} if
+
+    % Build the shared DbgBreaks if not already existing.
+    DbgUsers 0 eq {
+	systemdict /DbgBreaks 100 dict put
+	systemdict /DbgDicts 20 dict put
+	/DbgInstallErrEntry load DbgInstallErrordict
+    } if
+
+    % Build the per-debugger client stuff.
+    % Note: We build a seperate DbgEventMgr per debugger so that each client
+    % can recieve messages from it.  This means each client is re-stuffing
+    % the break data into DbgBreaks.  This is considered exceptable, mainly
+    % because DbgBreaks is a dict, thus the redundant storing is "free".
+    DbgDicts currentprocess known {
+        (Debugger already installed.\n) print
+    } {
+	DbgDicts currentprocess 100 dict put
+	DbgDicts currentprocess 100 dict dup begin
+%	    /DbgExecutive currentprocess def
+	    /DbgEventMgr [
+		/DbgBreakEvent /DbgBreakHandler null null eventmgrinterest
+		/DbgPrintEvent /DbgPrintHandler null null eventmgrinterest
+		/ProcessDied /DbgDeathHandler currentprocess null
+		eventmgrinterest % Clean up after debugger client death
+	    ] forkeventmgr def
+	    DbgEventMgr /ProcessName (Debug Event Manager) put
+    
+	    /DbgEnteredProcess null def
+
+	    % currently there are 2 entries in DbgDicts for each debugger,
+	    % one for the telnet connection, one for the listner.  They
+	    % both have the DbgDict as their value.  This may go away.
+	    DbgDicts DbgEventMgr currentdict put
+	end put
+	
+	/DbgUsers DbgUsers 1 add store
+        (Debugger installed.\n) print
+	countdictstack 1 ne {
+	    userdict /execfile known not
+		{(Installing executive.\n) print executive} if
+	} if
+    } ifelse
+} def
+
+/dbgstop { % - => -
+    DbgDicts currentprocess known {
+        dbgexit
+        
+        % kill our listener
+        DbgDict /DbgEventMgr get killprocess
+
+	% pull out of the set of debuggers
+	DbgDicts DbgDict /DbgEventMgr get undef
+	DbgDicts currentprocess undef
+	
+        % remove all debugging if we're the last debugger
+	/DbgUsers DbgUsers 1 sub store
+	DbgUsers 0 eq {
+            systemdict /DbgDicts undef
+            systemdict /DbgBreaks undef
+	    /DbgInstallDefEntry load DbgInstallErrordict
+%            systemdict /errordict undef
+%            DbgOldErrorDict null ne
+%                {systemdict /errordict DbgOldErrorDict put} if
+            systemdict /DbgOldErrorDict undef
+	    (Debugger removed!\n) print
+	} {
+	    (Debugger removed.\n) print
+	} ifelse
+    } {
+        (No debugger installed!\n) print
+    } ifelse
+} def
+
+% debugger utilities
+
+% Pass to DbgInstallErrordict for installing debugger entries
+/DbgInstallErrEntry {		% proc1 proc2 k v
+    3 index eq {
+	DbgErrorTable 1 index known {
+	    [1 index 3 index] cvx def
+	} {
+	    pop
+	} ifelse
+    } {
+	pop
+    } ifelse
+} def
+
+% Pass to DbgInstallErrordict for installing defaulterrorhandler
+/DbgInstallDefEntry {				% proc1 proc2 k v
+    dup type /arraytype eq			% proc1 proc2 k v b
+    {dup length 2 eq} {false} ifelse		% proc1 proc2 k v b
+    {1 get 2 index eq} {pop false} ifelse	% proc1 proc2 k b
+    {
+	DbgErrorTable 1 index known 		% proc1 proc2 k b
+	{2 index def} {pop} ifelse
+    } {
+	pop
+    } ifelse
+} def
+
+% Installs error dict entries for all processes in the system.
+% iproc may be DbgInstallErrEntry or DbgInstallDefEntry
+/DbgInstallErrordict { % iproc => -
+    /defaulterroraction load
+    /DbgErrorHandler cvx	% iproc proc1 proc2
+    getprocesses {		% iproc proc1 proc2 arr
+	{			% iproc proc1 proc2 process
+	    /errordict get dup null eq {	% ipr p1 p2 errd
+		pop
+	    } {
+		dup begin	% iproc proc1 proc2 errd
+		{		% iproc proc1 proc2 k v
+		    4 index exec
+		} forall
+		end
+	    } ifelse
+	} forall
+    } forall
+    pop pop pop
+} def
+
+/DbgDict { % - => - (Returns this process' debug dict.)
+    DbgDicts currentprocess get
+} def
+
+/DbgShowAllExecStack false def
+/DbgGetExecStack { % breaknumber => array (Returns this process' execstack.)
+10 dict begin
+    DbgNum2Proc /ExecutionStack get dup	% xstack xstack
+    /xstack exch def			% xstack: execution stack
+    /xsize exch length def		% xsize: length of execstack
+    
+    DbgShowAllExecStack not {
+        xsize 2 sub -2 0 {		% (for: i: xsize-2, -2, 0)
+            /i exch def			% i: index in xstack
+            /p xstack i get cvlit def	% p: proc or file there
+            /ix xstack i 1 add get def	% ix: index for current execution
+            p isarray? {		% is p an array rather than file?
+                p ix 1 sub get		% object that is currently executing
+                cvlit /dbgbreak eq {	% if it is "dbgbreak", truncate
+                    /i 2 i add xsize min def		% i: count to copy.
+                    p length 1 eq {/i i 6 sub def} if	% DbgErrorHandler?
+                    /xstack xstack			% xstack: truncated.
+                        0 i getinterval def
+                    exit
+                } if
+            } if
+        } for
+    } if
+    xstack
+end
+} def
+
+/DbgReEnter { % - => - (exit & re-enter current process)
+DbgBreaksExist {
+    DbgDict begin /DbgPendingProcess DbgEnteredProcess def end
+    dbgexit 4 {pause} repeat
+    DbgDict /DbgPendingProcess get DbgBreaks 1 index known 
+        {dbgenterbreak} {pop} ifelse
+} if
+} def
+
+/DbgCheckExited { % breaknumber => -
+% Insures exit from breaks
+% DbgDict /DbgPendingProcess set to breaknumber's process.
+% This is done because the exit might pop the breaknumber from the stack!
+    DbgDict /DbgPendingProcess
+        3 -1 roll DbgNum2Proc put	% save breaknumber
+    dbgexit				% now let exit cleanup
+} def
+
+/DbgImplicitBreak { % - => breaknumber (returns implicit break number)
+% Returns the current process if currently am entered into a break.
+% Otherwise returns the DefaultBreakNumber.
+    systemdict /DbgBreaks known {
+	DbgDict /DbgEnteredProcess get dup null eq
+	    {pop DefaultBreakNumber} if
+    } {
+	DefaultBreakNumber
+    } ifelse
+} def
+
+/DbgNum2Proc { % breakname-or-number => process (BUG: problem if no breaks!!)
+% this probably should take in any specifier for the break:
+%    1: /oneB called from process(3076060, breakpoint)
+% should match 1, /oneB, 3076060, ...
+    dup type /processtype ne {
+	1 DbgBreaks {			% bknum index process ClientDict
+	    /Name get			% bknum index process name
+	    3 index 3 index eq		% bknum index process name bool
+	    4 index 2 index eq or	% bknum index process name bool
+	    3 index DbgBreaks length eq or {exit} if
+	    pop pop 1 add
+	} forall
+	4 -2 roll pop pop pop
+    } if
+} def
+
+/DbgProc2Num { % process => breaknumber (BUG: problem if no breaks!!)
+    1 DbgBreaks { % process index process ClientDict
+        3 index 2 index eq 3 index DbgBreaks length eq or {exit} if
+        pop pop 1 add
+    } forall
+    4 -1 roll pop pop pop
+} def
+
+/DbgBreaksExist { % - => bool
+%    systemdict /DbgBreaks known {DbgBreaks length 0 ne} {false} ifelse
+    false
+    systemdict /DbgBreaks known not {
+	(The debugger is not installed; use "dbgstart".\n) print
+    } {
+        DbgBreaks length 0 eq {
+	    (There are no breaks pending.\n) print
+        } {
+            pop true
+        } ifelse
+    } ifelse
+} def
+
+/DbgBreaknumOK { % breaknumber => breaknumber true -or- false
+    DbgBreaksExist dup not {exch pop} if
+} def
+
+%%%%%%%%%%%%%%%%
+% from util.ps %
+%%%%%%%%%%%%%%%%
+%
+% Debugging aids:
+% Print an execstack in a sensable form.
+% (Use "process /ExecutionStack get" to get the stack array itself)
+%
+/printexecstack { % process/xstack => -
+    dup type /processtype eq {/ExecutionStack get} if
+    dup length 2 idiv 1 sub -1 0 {
+        1 index exch printexeclevel
+    } for
+    pop
+} def
+
+/printexeclevel { % process/xstack level => -
+    10 dict begin
+        /level exch def
+        /xstack exch dup type /processtype eq {/ExecutionStack get} if def
+        /p xstack level 2 mul get cvlit def
+    
+        p type /filetype eq {
+	    (Level %\n    %\n) [level p] printf
+        } {
+            /ix xstack level 2 mul 1 add get def
+            /i ix def
+	    (Level %\n) [level] printf
+	    (  { ) print /x 4 def
+	    p { /i i 1 sub def
+	        dup type /stringtype eq {litstring} if	% ai
+	        i 0 eq {(*)}{()} ifelse			% ai str
+	        (%% ) sprintf				% printstr
+	        /dx 1 index length def
+	        x dx add 75 ge {(\n    ) print /x 4 def} if
+	        print /x x dx add def
+	    } forall
+	    (} (*%,%)\n) [ix 1 sub p length] printf
+        } ifelse
+    end
+} def
+end % systemdict begin
+
+
+% =========================================================
+% Put stuff like this in your user.ps:
+% Debugger Aliases
+%	/dbe	{dbgbreakenter} def
+%	/dbx	{dbgbreakexit} def
+%	/dc	{dbgcontinue} def
+%	/dcb	{dbgcontinuebreak} def
+%	/dcc	{dbgcopystack dbgcontinue} def
+%	/dcs	{dbgcopystack} def
+%	/de	{dbgenter} def
+%	/deb	{dbgenterbreak} def
+%	/dgb	{dbggetbreak} def
+%	/dk	{dbgkill} def
+%	/dkb	{dbgkillbreak} def
+%	/dlb	{dbglistbreaks} def
+%	/dmp	{dbgmodifyproc} def
+%	/dp	{dbgpatch} def
+%	/dpe	{dbgprintfenter} def
+%	/dpx	{dbgprintfexit} def
+%	/dw	{dbgwhere} def
+%	/dwb	{dbgwherebreak} def
+%	/dx	{dbgexit} def
+% =========================================================

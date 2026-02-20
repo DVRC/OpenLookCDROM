@@ -1,0 +1,4236 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 2.0, for use with FrameMaker 2.0
+% Copyright (c) 1986,87,89 by Frame Technology, Inc.  All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (2.0) def 
+/FrameDict 170 dict def 
+systemdict /errordict known not { /errordict 10 dict def
+		errordict /rangecheck { stop } put } if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	FrameDict /graymode true put
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/PrintInColor systemdict /colorimage known def
+% Uncomment this line to force b&w on color printer
+%   /PrintInColor false def
+PrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} def
+	/mysetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray }
+			{HUE SAT BRIGHT sethsbcolor } 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY } def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc } def
+	/mysetgray { setgray } bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/max	{2 copy lt {exch} if pop} bind def
+/min	{2 copy gt {exch} if pop} bind def
+/mtx matrix defaultmatrix def
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/FMDOCUMENT { 
+	array /FMfonts exch def
+	/#copies exch def
+	0 ne dup {setmanualfeed} if
+	FrameDict begin
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	setpapername
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE {  
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne store
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{ pop pop }
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+	/fontname FMLOCAL
+	/fontscale FMLOCAL
+	/fontnum FMLOCAL
+	/fontdict FMLOCAL
+/FMDEFINEFONT {
+	FrameDict begin
+	/fontname exch def
+	/fontscale exch def
+	/fontnum exch def
+	/fontdict fontname findfont fontscale scalefont def
+	fontdict /Encoding get StandardEncoding eq
+	{
+		fontdict DiacriticEncode 
+		/fontdict exch def
+	} {
+		fontdict NonDiacriticEncode
+		/fontdict exch def
+	} ifelse
+	FMfonts fontnum
+		fontnum fontdict definefont
+	put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 mysetgray
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+/inch {72 mul} def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray} def
+		/Ledger {ledgertray} def
+		/Legal {legaltray} def
+		/Statement {statementtray} def
+		/Executive {executivetray} def
+		/A3 {a3tray} def
+		/A4 {a4tray} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray} def
+		/B5 {b5tray} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq { pop 1 } if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+	/basefontdict FMLOCAL
+	/newfontdict FMLOCAL
+/DiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{dup /Encoding eq
+			{exch pop DiacriticEncoding}
+			{exch}
+			ifelse
+			newfontdict 3 1 roll put
+			}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+/NonDiacriticEncode {
+	/basefontdict exch def
+	/newfontdict basefontdict maxlength dict def
+	basefontdict
+	{exch dup /FID ne
+		{exch newfontdict 3 1 roll put}
+		{pop pop}
+		ifelse
+		} forall
+	newfontdict
+	} bind def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div mysetgray
+	/graymode false store
+	} bind def
+/grayness {
+	mysetgray
+	graymode not {
+		/graymode true store
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z { 
+	setlinecap
+	} bind def
+/X { 
+	fillprocs exch get exec
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+/U { 
+	grestore
+	gsave
+	} bind def
+/F { 
+	FMfonts exch get
+	setfont
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne { -1 1 scale } if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/dx FMLOCAL
+	/dy FMLOCAL
+	/dl FMLOCAL
+	/t FMLOCAL
+	/t2 FMLOCAL
+	/Cos FMLOCAL
+	/Sin FMLOCAL
+	/r FMLOCAL
+/W { 
+	dnormalize
+	/dy exch def
+	/dx exch def
+	normalize
+	/y  exch def
+	/x  exch def
+	/dl dx dx mul dy dy mul add sqrt def
+	dl 0.0 gt {
+		/t currentlinewidth def
+		savematrix
+		/Cos dx dl div def
+		/Sin dy dl div def
+		/r [Cos Sin Sin neg Cos 0.0 0.0] def
+		/t2 t 2.5 mul 3.5 max def
+		newpath
+		x y translate
+		r concat
+		0.0 0.0 moveto
+		dl t 2.7 mul sub 0.0 rlineto
+		stroke
+		restorematrix
+		x dx add y dy add translate
+		r concat
+		t 0.67 mul setlinewidth
+		t 1.61 mul neg  0.0 translate
+		0.0 0.0 moveto
+		t2 1.7 mul neg  t2 2.0 div     moveto
+		0.0 0.0 lineto
+		t2 1.7 mul neg  t2 2.0 div neg lineto
+		stroke
+		t setlinewidth
+		restorematrix
+		} if
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes {  
+	dup 
+	8 eq { pop } { 1 eq { 7 add 8 idiv } { 3 add 4 idiv } ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } image
+	bitmapsave restore 
+	grestore
+	} bind def
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	/ngrayt 256 array def
+	/nredt 256 array def
+	/nbluet 256 array def
+	/ngreent 256 array def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 { /ind exch def 
+		tran ind
+		red ind get 77 mul
+		green ind get 151 mul
+		blue ind get 28 mul
+		add add 256 idiv put } for
+	currenttransfer
+	{ 255 mul cvi tran exch get 255.0 div }
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ cf is readhexstring pop } {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+%%EndProlog
+%%BeginSetup
+(2.0) FMVERSION
+1 1 612 792 0 1 20 FMDOCUMENT
+/fillprocs 32 array def
+fillprocs 0 { 0.000000 grayness } put
+fillprocs 1 { 0.100000 grayness } put
+fillprocs 2 { 0.300000 grayness } put
+fillprocs 3 { 0.500000 grayness } put
+fillprocs 4 { 0.700000 grayness } put
+fillprocs 5 { 0.900000 grayness } put
+fillprocs 6 { 0.970000 grayness } put
+fillprocs 7 { 1.000000 grayness } put
+fillprocs 8 {<0f1e3c78f0e1c387> 8 1 setpattern } put
+fillprocs 9 {<0f87c3e1f0783c1e> 8 1 setpattern } put
+fillprocs 10 {<cccccccccccccccc> 8 1 setpattern } put
+fillprocs 11 {<ffff0000ffff0000> 8 1 setpattern } put
+fillprocs 12 {<8142241818244281> 8 1 setpattern } put
+fillprocs 13 {<03060c183060c081> 8 1 setpattern } put
+fillprocs 14 {<8040201008040201> 8 1 setpattern } put
+fillprocs 15 {} put
+fillprocs 16 { 1.000000 grayness } put
+fillprocs 17 { 0.900000 grayness } put
+fillprocs 18 { 0.700000 grayness } put
+fillprocs 19 { 0.500000 grayness } put
+fillprocs 20 { 0.300000 grayness } put
+fillprocs 21 { 0.100000 grayness } put
+fillprocs 22 { 0.030000 grayness } put
+fillprocs 23 { 0.000000 grayness } put
+fillprocs 24 {<f0e1c3870f1e3c78> 8 1 setpattern } put
+fillprocs 25 {<f0783c1e0f87c3e1> 8 1 setpattern } put
+fillprocs 26 {<3333333333333333> 8 1 setpattern } put
+fillprocs 27 {<0000ffff0000ffff> 8 1 setpattern } put
+fillprocs 28 {<7ebddbe7e7dbbd7e> 8 1 setpattern } put
+fillprocs 29 {<fcf9f3e7cf9f3f7e> 8 1 setpattern } put
+fillprocs 30 {<7fbfdfeff7fbfdfe> 8 1 setpattern } put
+fillprocs 31 {} put
+%%EndSetup
+0 9 /Palatino-Roman FMDEFINEFONT
+1 4 /Palatino-Roman FMDEFINEFONT
+2 20 /Palatino-Italic FMDEFINEFONT
+3 24 /Palatino-Italic FMDEFINEFONT
+4 9 /Palatino-Italic FMDEFINEFONT
+5 10 /Palatino-Roman FMDEFINEFONT
+6 9 /Helvetica FMDEFINEFONT
+7 9 /Helvetica-Bold FMDEFINEFONT
+8 15 /Palatino-Italic FMDEFINEFONT
+9 10 /Palatino-Italic FMDEFINEFONT
+10 7 /Helvetica-Oblique FMDEFINEFONT
+%%Page: "107" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+0 F
+0 X
+0.09 (107) 544.25 108.7 S
+198 500.18 558 500.18 2 L
+0.3 H
+2 Z
+N
+530.57 511.42 557.93 511.42 2 L
+0.02 H
+N
+530.57 530.86 557.93 530.86 2 L
+N
+530.57 529.7 557.93 529.7 2 L
+N
+530.57 528.55 557.93 528.55 2 L
+N
+530.57 527.4 557.93 527.4 2 L
+N
+530.57 526.25 557.93 526.25 2 L
+N
+530.57 525.1 557.93 525.1 2 L
+N
+530.57 524.02 557.93 524.02 2 L
+N
+530.57 522.86 557.93 522.86 2 L
+N
+530.57 521.71 557.93 521.71 2 L
+N
+530.57 520.56 557.93 520.56 2 L
+N
+530.57 519.41 557.93 519.41 2 L
+N
+530.57 518.26 557.93 518.26 2 L
+N
+530.57 517.18 557.93 517.18 2 L
+N
+530.57 516.02 557.93 516.02 2 L
+N
+530.57 514.87 557.93 514.87 2 L
+N
+530.57 513.72 557.93 513.72 2 L
+N
+530.57 512.57 557.93 512.57 2 L
+N
+530.57 510.34 557.93 510.34 2 L
+N
+530.57 509.18 557.93 509.18 2 L
+N
+530.57 508.03 557.93 508.03 2 L
+N
+530.57 506.88 557.93 506.88 2 L
+N
+530.57 505.73 557.93 505.73 2 L
+N
+530.57 504.58 557.93 504.58 2 L
+N
+530.57 503.5 557.93 503.5 2 L
+N
+135 657 189 675 R
+7 X
+V
+1 F
+1 K
+-0.12 (12-0) 158.58 672.33 S
+-0.12 (12-0) 158.58 668.33 S
+55.01 522.36 558.36 648.36 C
+0 72 612 720 C
+2 F
+0 X
+0 K
+-0.4 (ClassMenu) 199.01 509.03 S
+3 F
+7 X
+1 K
+-3.12 (12) 536.13 508.36 S
+4 F
+0 X
+0 K
+0.47 0.09 (Figur) 198 399.6 B
+0.47 0.09 (e 12-1) 218.77 399.6 B
+0 F
+0.47 0.09 (The ClassMenu subtr) 248.4 399.6 B
+0.47 0.09 (ee) 335.66 399.6 B
+5 F
+0.52 0.1 (ClassMenu implements OPEN LOOK menus. In addition to explaining the ) 198 374.93 B
+0.52 0.1 (methods that a menu r) 198 362.53 B
+0.52 0.1 (esponds to, this chapter also includes menu-r) 302.21 362.53 B
+0.52 0.1 (elated ) 509.54 362.53 B
+0.52 0.1 (interfaces fr) 198 350.13 B
+0.52 0.1 (om ClassCanvas and ClassRegion.) 251.92 350.13 B
+0.52 0.1 (Four types of menus ar) 198 329.73 B
+0.52 0.1 (e possible: ) 304.35 329.73 B
+6 F
+0.45 -0.27 (/Command) 354.94 329.73 B
+5 F
+0.52 0.1 (, and thr) 396.73 329.73 B
+0.52 0.1 (ee settings-based menus, ) 435.93 329.73 B
+6 F
+0.45 -0.27 (/Exclusive) 198 317.33 B
+5 F
+0.52 0.1 (, ) 235.75 317.33 B
+6 F
+0.45 -0.27 (/NonExclusive) 241.47 317.33 B
+5 F
+0.52 0.1 (, and ) 294.89 317.33 B
+6 F
+0.45 -0.27 (/ExclusiveV) 320.95 317.33 B
+0.45 -0.27 (ariation) 363.76 317.33 B
+5 F
+0.52 0.1 (. Only ) 391.07 317.33 B
+6 F
+0.45 -0.27 (/Command) 422.45 317.33 B
+5 F
+0.52 0.1 ( menus can have ) 464.23 317.33 B
+0.52 0.1 (submenus. The \322type\323 of menus r) 198 304.93 B
+0.52 0.1 (efers to the kind of items a menu has and ) 352.76 304.93 B
+0.52 0.1 (ther) 198 292.53 B
+0.52 0.1 (efor) 216.03 292.53 B
+0.52 0.1 (e the types of choices that can be made. Command menus have items ) 233.77 292.53 B
+0.52 0.1 (that look and act like buttons \050see Buttons on page 29\051. The settings-based ) 198 280.13 B
+0.52 0.1 (menus look and act like settings \050see ClassSettings and ClassCheckBoxes on ) 198 267.73 B
+0.52 0.1 (page 189\051. Y) 198 255.33 B
+0.52 0.1 (ou determine the type of menu using ) 253.15 255.33 B
+7 F
+0.45 -0.27 (/setchoicemode) 426.84 255.33 B
+5 F
+0.52 0.1 ( \050page 108\051.) 490.99 255.33 B
+8 F
+(Cr) 54 221.6 T
+(eation) 69.57 221.6 T
+6 F
+(/new) 54 200.6 T
+(placement parent-canvas ) 198 200.6 T
+7 F
+(/new) 301.4 200.6 T
+6 F
+( menu) 321.38 200.6 T
+5 F
+-0.02 0.1 (Cr) 198 180.93 B
+-0.02 0.1 (eates a menu that uses the given placement style. Placement determines how ) 209.05 180.93 B
+0.52 0.1 (menu items ar) 198 168.53 B
+0.52 0.1 (e laid out. ) 263.57 168.53 B
+6 F
+0.45 -0.27 (placement) 312.78 168.53 B
+5 F
+0.52 0.1 ( is one of ) 351.81 168.53 B
+6 F
+0.45 -0.27 (/Spaced) 396.97 168.53 B
+5 F
+0.52 0.1 (, ) 428.06 168.53 B
+6 F
+0.45 -0.27 (/Absolute) 433.77 168.53 B
+5 F
+0.52 0.1 (, ) 468.81 168.53 B
+6 F
+0.45 -0.27 (/Calculated) 474.53 168.53 B
+5 F
+0.52 0.1 (, or ) 516.51 168.53 B
+6 F
+0.45 -0.27 (/Grid) 534.95 168.53 B
+5 F
+0.52 0.1 ( ) 553.08 168.53 B
+0.52 0.1 (\050see ) 198 156.13 B
+9 F
+0.52 0.1 (Placement) 218.66 156.13 B
+5 F
+0.52 0.1 ( on page 101 in ClassLayout\051.) 261.39 156.13 B
+54 144 558 466.34 C
+108 414 558 456.34 C
+108 414 558 456.34 R
+7 X
+0 K
+V
+7 F
+0 X
+(ClassObject) 113.54 420.78 T
+(ClassDrawable) 188.57 420.28 T
+(ClassBorderBag) 415.94 418.04 T
+166.32 422.72 186.34 422.72 2 L
+7 X
+V
+0.5 H
+2 Z
+0 X
+N
+252.72 422.65 272.66 422.65 2 L
+7 X
+V
+0 X
+N
+333.07 422 353.02 422 2 L
+7 X
+V
+0 X
+N
+414.22 421.07 394.2 421.07 2 L
+7 X
+V
+0 X
+N
+(ClassCanvas) 275.47 420.42 T
+(ClassBag) 354.53 418.55 T
+(ClassMenu) 502.98 438.03 T
+485.92 421.64 500.68 438.63 2 L
+7 X
+V
+0 X
+N
+10 F
+(\050ClassControl\051) 505.13 446.61 T
+54 144 558 466.34 C
+0 72 612 720 C
+FMENDPAGE
+%%EndPage: "107" 2
+1 6 /Helvetica FMDEFINEFONT
+3 14 /Times-Bold FMDEFINEFONT
+%%Page: "108" 2
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (12) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (108) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+-0.94 (Choice Modes) 54 638 P
+6 F
+(/setchoicemode) 54 617 T
+(mode-name ) 198 617 T
+7 F
+(/setchoicemode) 248.45 617 T
+6 F
+( -) 316.37 617 T
+5 F
+0.52 0.1 (Sets the choice mode for the menu. ) 198 597.33 B
+6 F
+0.45 -0.27 (mode-name) 361.59 597.33 B
+5 F
+0.52 0.1 ( is one of: ) 407.11 597.33 B
+6 F
+0.45 -0.27 (/Command) 454.87 597.33 B
+5 F
+0.52 0.1 ( \050which ) 496.66 597.33 B
+0.52 0.1 (allows a mixtur) 198 584.93 B
+0.52 0.1 (e of command and submenu items\051, ) 269.32 584.93 B
+6 F
+0.45 -0.27 (/Exclusive) 436.78 584.93 B
+5 F
+0.52 0.1 (, ) 474.53 584.93 B
+6 F
+0.45 -0.27 (/NonExclusive) 480.25 584.93 B
+5 F
+0.52 0.1 (, or ) 533.67 584.93 B
+6 F
+0.45 -0.27 (/ExclusiveV) 198 572.53 B
+0.45 -0.27 (ariation) 240.81 572.53 B
+5 F
+0.52 0.1 (. ) 268.12 572.53 B
+6 F
+0.45 -0.27 (/Command) 273.84 572.53 B
+5 F
+0.52 0.1 ( is the default choice mode.) 315.63 572.53 B
+0.52 0.1 (If you call ) 198 552.13 B
+7 F
+0.45 -0.27 (/setchoicemode) 247.24 552.13 B
+5 F
+0.52 0.1 ( ) 311.39 552.13 B
+9 F
+0.52 0.1 (after) 314.51 552.13 B
+5 F
+0.52 0.1 ( having called ) 333.33 552.13 B
+7 F
+0.45 -0.27 (/setitemlist) 400.77 552.13 B
+5 F
+0.52 0.1 ( or other methods that ) 444.48 552.13 B
+0.31 0.1 (manipulate the item list \050e.g., ) 198 539.73 B
+7 F
+0.27 -0.27 (/deleteitem) 333.9 539.73 B
+5 F
+0.31 0.1 (, ) 377.88 539.73 B
+7 F
+0.27 -0.27 (/insertitem) 383.39 539.73 B
+5 F
+0.31 0.1 (\051, the items \050and layout info, ) 425.87 539.73 B
+0.31 0.1 (if any\051 ar) 198 527.33 B
+0.31 0.1 (e copied over to the new mode. However) 239.32 527.33 B
+0.31 0.1 (, changing an existing menu ) 426.85 527.33 B
+0.19 0.1 (between ) 198 514.93 B
+6 F
+0.16 -0.27 (/Command) 238.79 514.93 B
+5 F
+0.19 0.1 ( and non-) 280.58 514.93 B
+6 F
+0.16 -0.27 (/Command) 324.2 514.93 B
+5 F
+0.19 0.1 ( modes is likely not to r) 365.98 514.93 B
+0.19 0.1 (esult in a working ) 472.82 514.93 B
+0.52 0.1 (menu, because:) 198 502.53 B
+0.1 (1.) 197.5 482.13 S
+0.52 0.1 (non-) 210.6 482.13 B
+6 F
+0.45 -0.27 (/Command) 231.42 482.13 B
+5 F
+0.52 0.1 ( menus don\325t have submenu items, which will confuse the ) 273.21 482.13 B
+0.52 0.1 (non-) 210.6 469.73 B
+6 F
+0.45 -0.27 (/Command) 231.42 469.73 B
+5 F
+0.52 0.1 ( menus ) 273.21 469.73 B
+0.52 0.1 (and ) 198 449.33 B
+0.1 (2.) 197.5 428.93 S
+0.26 0.1 (The noti\336er callbacks for ) 210.6 428.93 B
+6 F
+0.22 -0.27 (/Command) 325.94 428.93 B
+5 F
+0.26 0.1 ( and non-) 367.73 428.93 B
+6 F
+0.22 -0.27 (/Command) 411.49 428.93 B
+5 F
+0.26 0.1 ( menus expect slightly ) 453.28 428.93 B
+0.52 0.1 (dif) 210.6 416.53 B
+0.52 0.1 (fer) 223.06 416.53 B
+0.52 0.1 (ent ar) 235.25 416.53 B
+0.52 0.1 (guments on the stack. \050See ) 261.49 416.53 B
+7 F
+0.45 -0.27 (/setnoti\336er) 386.06 416.53 B
+5 F
+0.52 0.1 (, page 1) 428.3 416.53 B
+0.52 0.1 (16.\051) 463.43 416.53 B
+6 F
+(/choicemode) 54 396.8 T
+(- ) 198 396.8 T
+7 F
+(/choicemode) 203.49 396.8 T
+6 F
+( mode-name) 258.43 396.8 T
+5 F
+0.52 0.1 (Returns the menus mode. ) 198 377.13 B
+6 F
+0.45 -0.27 (mode-name) 318.45 377.13 B
+5 F
+0.52 0.1 ( is one of: ) 363.97 377.13 B
+6 F
+0.45 -0.27 (/Command) 411.73 377.13 B
+5 F
+0.52 0.1 ( \050which allows a ) 453.52 377.13 B
+0.52 0.1 (mixtur) 198 364.73 B
+0.52 0.1 (e of command and submenu items\051, ) 228.54 364.73 B
+6 F
+0.45 -0.27 (/Exclusive) 396 364.73 B
+5 F
+0.52 0.1 (, ) 433.75 364.73 B
+6 F
+0.45 -0.27 (/NonExclusive) 439.47 364.73 B
+5 F
+0.52 0.1 (, or ) 492.9 364.73 B
+6 F
+0.45 -0.27 (/ExclusiveV) 198 352.33 B
+0.45 -0.27 (ariation) 240.81 352.33 B
+5 F
+0.52 0.1 (. ) 268.12 352.33 B
+6 F
+0.45 -0.27 (/Command) 273.84 352.33 B
+5 F
+0.52 0.1 ( is the default choice mode.) 315.63 352.33 B
+8 F
+-0.94 (Menu items) 54 318.6 P
+5 F
+0.52 0.1 (For the methods in this section the ar) 198 296.93 B
+0.52 0.1 (gument) 368.72 296.93 B
+6 F
+0.45 -0.27 ( item) 403.59 296.93 B
+5 F
+0.52 0.1 ( expands to:) 422.16 296.93 B
+6 F
+0.45 -0.27 (string | [ display-item <notifyname | notifyproc | submenu>) 198 277.2 B
+1 F
+0.3 -0.18 (optional) 415.43 280 B
+6 F
+0.45 -0.27 (]) 434.99 277.2 B
+5 F
+0.35 0.1 (An item is either a simple string, or it is an array whose \336rst entry is a display ) 198 257.14 B
+0.52 0.1 (item, and whose ) 198 244.73 B
+9 F
+0.52 0.1 (optional) 276.49 244.73 B
+5 F
+0.52 0.1 ( second entry is one of the following thr) 310.04 244.73 B
+0.52 0.1 (ee objects:) 493.87 244.73 B
+3 F
+(\245) 198 226.34 T
+5 F
+-0.03 0.1 (the name of a noti\336cation method that is called in the tar) 210.6 226.34 B
+-0.03 0.1 (get object when this ) 465.52 226.34 B
+0.52 0.1 (item is chosen fr) 210.6 213.93 B
+0.52 0.1 (om the menu) 285.93 213.93 B
+3 F
+(\245) 198 195.53 T
+5 F
+0.52 0.1 (a pr) 210.6 195.53 B
+0.52 0.1 (ocedur) 228.79 195.53 B
+0.52 0.1 (e to execute when this item is chosen fr) 259.97 195.53 B
+0.52 0.1 (om the menu) 440.41 195.53 B
+3 F
+(\245) 198 177.14 T
+5 F
+0.21 0.1 (a submenu to bring up when the user pulls-right over this object. Use of the ) 210.6 177.14 B
+0.52 0.1 (submenu ar) 210.6 164.73 B
+0.52 0.1 (gument is legal only for ) 264.63 164.73 B
+6 F
+0.45 -0.27 (/Command) 377.27 164.73 B
+5 F
+0.52 0.1 ( menus.) 419.06 164.73 B
+FMENDPAGE
+%%EndPage: "108" 3
+1 14 /Palatino-Italic FMDEFINEFONT
+10 10 /Palatino-Bold FMDEFINEFONT
+%%Page: "109" 3
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassMenu) 198 108.7 S
+0 F
+0.09 (109) 544.25 108.7 S
+2 F
+7 X
+1 K
+-0.2 (12) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (Thus the following ar) 198 641.33 B
+0.52 0.1 (e all legal ar) 296.67 641.33 B
+0.52 0.1 (guments to ) 352.64 641.33 B
+6 F
+0.45 -0.27 (/setitemlist) 407.01 641.33 B
+5 F
+0.52 0.1 (:) 446.21 641.33 B
+0.52 0.1 (Example 1:) 198 620.93 B
+6 F
+([ string string. . . ]) 216 604.2 T
+5 F
+0.52 0.1 (Example 2:) 198 584.53 B
+6 F
+([ [displayitem1] [displayitem2] . . . ]) 216 567.8 T
+5 F
+0.52 0.1 (Example 3:) 198 548.13 B
+6 F
+([ ) 216 531.4 T
+([ displayitem1 /notifier1 ]) 221.98 515.4 T
+([ displayitem2 /notifier2 ]) 221.98 499.4 T
+([ displayitem3 submenu ]) 221.98 483.4 T
+(. . .) 221.98 467.4 T
+(]) 216 451.4 T
+5 F
+0.52 0.1 (If no noti\336er is pr) 198 431.73 B
+0.52 0.1 (ovided in the array then the menu-wide noti\336er \050if any\051 is ) 279.08 431.73 B
+0.52 0.1 (used when the user selects that item. Menu items ar) 198 419.33 B
+0.52 0.1 (e accessed via an item-) 436.17 419.33 B
+0.52 0.1 (index. ) 198 406.93 B
+1 F
+-0.88 (Setting the menu\325) 126 373.87 P
+-0.88 (s item list) 224.56 373.87 P
+5 F
+0.52 0.1 (Menu items can be accessed thr) 198 352.53 B
+0.52 0.1 (ough a zer) 342.63 352.53 B
+0.52 0.1 (o r) 391.07 352.53 B
+0.52 0.1 (elative integer \050its index\051 ) 403.62 352.53 B
+0.52 0.1 (r) 198 340.13 B
+0.52 0.1 (epr) 201.87 340.13 B
+0.52 0.1 (esenting its position in the menu. This integer is not a constant, because ) 216.73 340.13 B
+0.52 0.1 (items can be inserted and/or deleted. The NeWS T) 198 327.73 B
+0.52 0.1 (oolkit does not check for ) 430.27 327.73 B
+0.52 0.1 (indexes out of range.) 198 315.33 B
+0.02 0.1 (For ) 198 294.93 B
+6 F
+0.01 -0.27 (/Absolute) 215.88 294.93 B
+5 F
+0.02 0.1 ( and ) 250.92 294.93 B
+6 F
+0.01 -0.27 (/Calculated) 273.37 294.93 B
+5 F
+0.02 0.1 ( placement menus, layout data is r) 315.36 294.93 B
+0.02 0.1 (equir) 470.35 294.93 B
+0.02 0.1 (ed during the ) 493.93 294.93 B
+0.41 0.1 (call to ) 198 282.54 B
+7 F
+0.35 -0.27 (/setitemlist) 228.58 282.54 B
+5 F
+0.41 0.1 (. However) 272.29 282.54 B
+0.41 0.1 (, for menus of ) 319.14 282.54 B
+6 F
+0.35 -0.27 (/Calculated) 385.98 282.54 B
+5 F
+0.41 0.1 ( placement you can pr) 427.96 282.54 B
+0.41 0.1 (ovide ) 529.59 282.54 B
+0.52 0.1 (a default layout by using ) 198 270.14 B
+7 F
+0.45 -0.27 (/setlayoutparameters) 315.93 270.14 B
+5 F
+0.52 0.1 ( \050page 1) 400.94 270.14 B
+0.52 0.1 (1) 436.9 270.14 B
+0.52 0.1 (1\051. ) 441.45 270.14 B
+6 F
+0.45 -0.27 (/Spaced) 455.69 270.14 B
+5 F
+0.52 0.1 ( and ) 486.77 270.14 B
+6 F
+0.45 -0.27 (/Grid) 510.23 270.14 B
+5 F
+0.52 0.1 ( ) 528.36 270.14 B
+0.52 0.1 (gr) 198 257.73 B
+0.52 0.1 (oups do not r) 207.52 257.73 B
+0.52 0.1 (equir) 269.47 257.73 B
+0.52 0.1 (e layout data at setitemlist time. The dif) 293.06 257.73 B
+0.52 0.1 (fer) 475.54 257.73 B
+0.52 0.1 (ent ) 487.72 257.73 B
+0.52 0.1 (speci\336cations of the layout data ar) 198 245.34 B
+0.52 0.1 (e in T) 355.1 245.34 B
+0.52 0.1 (able 12-1. ) 380.46 245.34 B
+4 F
+0.47 0.09 (T) 198 225.6 B
+0.47 0.09 (able 12-1) 202.58 225.6 B
+0 F
+0.47 0.09 (Layout data r) 241.2 225.6 B
+0.47 0.09 (equir) 296.83 225.6 B
+0.47 0.09 (ed during calls to /setitemlist.) 318.04 225.6 B
+54 211.14 558 215.6 C
+198 213.3 558 213.3 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+54 196.67 558 201.14 C
+198 198.83 558 198.83 2 L
+0.3 H
+2 Z
+0 X
+0 K
+N
+0 72 612 720 C
+10 F
+0 X
+0 K
+0.1 (placement) 198 204.47 S
+0.1 (layout-data) 315 204.47 S
+6 F
+-0.27 (/Spaced) 198 183.61 S
+5 F
+0.52 0.1 (none r) 318.02 183.61 B
+0.52 0.1 (equir) 347.29 183.61 B
+0.52 0.1 (ed) 370.88 183.61 B
+6 F
+-0.27 (/Absolute) 198 167.21 S
+5 F
+0.52 0.1 (x-y coor) 318.02 167.21 B
+0.52 0.1 (dinate pair: ) 355 167.21 B
+6 F
+0.45 -0.27 ([ x y ]) 410.57 167.21 B
+FMENDPAGE
+%%EndPage: "109" 4
+10 13 /Palatino-Italic FMDEFINEFONT
+11 7 /Helvetica FMDEFINEFONT
+%%Page: "110" 4
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (12) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (1) 54 108.7 S
+0.09 (10) 58.09 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+-0.27 (/Calculated) 198 641.33 S
+5 F
+0.52 0.1 (a compass point and a code fragment that the ) 318.02 641.33 B
+0.52 0.1 (T) 318.02 628.93 B
+0.52 0.1 (oolkit executes whenever the item gr) 323.33 628.93 B
+0.52 0.1 (oup is ) 491.94 628.93 B
+0.52 0.1 (r) 318.02 616.53 B
+0.52 0.1 (eshaped: ) 321.89 616.53 B
+6 F
+0.45 -0.27 ([ compass-point {calculated protocol } ) 365.05 616.53 B
+5 F
+0.52 0.1 (]) 508.61 616.53 B
+6 F
+-0.27 (/Grid) 198 600.13 S
+5 F
+0.52 0.1 (none r) 318.02 600.13 B
+0.52 0.1 (equir) 347.29 600.13 B
+0.52 0.1 (ed. Set the layout using ) 370.88 600.13 B
+7 F
+-0.27 (/setlayoutparameters) 318.02 587.73 S
+5 F
+0.1 (.) 403.03 587.73 S
+10 F
+-0.84 0.13 (Spaced and Grid placements) 198 555.33 B
+5 F
+0.52 0.1 (Menus using ) 198 538.33 B
+6 F
+0.45 -0.27 (/Spaced) 260.11 538.33 B
+5 F
+0.52 0.1 ( and ) 291.19 538.33 B
+6 F
+0.45 -0.27 (/Grid) 314.65 538.33 B
+5 F
+0.52 0.1 ( placement do not pass layout data to ) 332.77 538.33 B
+7 F
+0.45 -0.27 (/setitemlist) 508.4 538.33 B
+5 F
+0.52 0.1 (. ) 552.11 538.33 B
+6 F
+0.45 -0.27 (/Spaced) 198 525.93 B
+5 F
+0.52 0.1 ( layout pr) 229.09 525.93 B
+0.52 0.1 (ovides automatic and limited layout.  ) 274.1 525.93 B
+6 F
+0.45 -0.27 (/Grid) 448.64 525.93 B
+5 F
+0.52 0.1 ( placement menus ) 466.77 525.93 B
+0.52 0.1 (use ) 198 513.53 B
+7 F
+0.45 -0.27 (/setlayoutparameters) 216.47 513.53 B
+5 F
+0.52 0.1 ( to describe the shape of the grid.) 301.48 513.53 B
+6 F
+(/setitemlist) 54 493.8 T
+([ item item ] ) 198 493.8 T
+7 F
+(/setitemlist) 246.95 493.8 T
+6 F
+( -) 293.9 493.8 T
+5 F
+0.52 0.1 (Sets the menu\325s item list. Invalidates the menu.) 198 474.13 B
+6 F
+(/setlayoutparameters) 54 454.4 T
+([layout-by-rows? rows columns] ) 198 454.4 T
+7 F
+(/setlayoutparameters) 326.35 454.4 T
+6 F
+( -) 416.75 454.4 T
+5 F
+0.06 0.1 (Sets the shape of the grid for ) 198 434.73 B
+6 F
+0.05 (/Grid) 330.13 434.73 P
+5 F
+0.06 0.1 ( placement format. ) 349.61 434.73 B
+6 F
+0.05 -0.27 (layout-by-rows?) 437.31 434.73 B
+5 F
+0.06 0.1 ( is a boolean; ) 496.68 434.73 B
+0.52 0.1 (if tr) 198 422.33 B
+0.52 0.1 (ue r) 214.88 422.33 B
+0.52 0.1 (ows ar) 232.88 422.33 B
+0.52 0.1 (e \336lled with clients befor) 263.29 422.33 B
+0.52 0.1 (e columns; if false, columns ar) 377.05 422.33 B
+0.52 0.1 (e \336lled ) 515.71 422.33 B
+0.52 0.1 (befor) 198 409.93 B
+0.52 0.1 (e r) 221.37 409.93 B
+0.52 0.1 (ows. Neither ) 233.24 409.93 B
+6 F
+0.45 -0.27 (rows) 294.92 409.93 B
+5 F
+0.52 0.1 ( nor ) 312.81 409.93 B
+6 F
+0.45 -0.27 (columns) 334.57 409.93 B
+5 F
+0.52 0.1 ( can be null.) 366.14 409.93 B
+10 F
+-0.84 0.13 (Absolute placement) 198 377.53 B
+6 F
+(/setitemlist) 54 361.2 T
+([ item1 [ x) 198 361.2 T
+11 F
+(1) 236.96 358.95 T
+6 F
+( y) 240.85 361.2 T
+11 F
+(1) 247.84 358.95 T
+6 F
+( ] item2 [ x) 251.72 361.2 T
+11 F
+(2) 293.18 358.95 T
+6 F
+( y) 297.07 361.2 T
+11 F
+(2 ) 304.06 358.95 T
+6 F
+(] . . . ] ) 309.89 361.2 T
+7 F
+(/setitemlist) 334.87 361.2 T
+6 F
+( -) 381.83 361.2 T
+5 F
+0.52 0.1 (Determines the set of items that ar) 198 339.95 B
+0.52 0.1 (e managed by a menu with absolute ) 355.74 339.95 B
+0.52 0.1 (placement, and wher) 198 327.55 B
+0.52 0.1 (e they ar) 293.89 327.55 B
+0.52 0.1 (e to be placed. ) 333.8 327.55 B
+6 F
+0.45 -0.27 ([ x) 403.03 327.55 B
+11 F
+0.35 -0.21 (n) 412.15 325.3 B
+6 F
+0.45 -0.27 ( y) 415.83 327.55 B
+11 F
+0.35 -0.21 (n) 422.73 325.3 B
+6 F
+0.45 -0.27 ( ]) 426.4 327.55 B
+5 F
+0.52 0.1 ( is the position wher) 431.3 327.55 B
+0.52 0.1 (e you ) 525.24 327.55 B
+0.52 0.1 (want the lower) 198 315.15 B
+0.52 0.1 (-left corner of the item\325s bounding box placed. Invalidates the ) 266.96 315.15 B
+0.1 (menu.) 198 302.75 S
+10 F
+-0.84 0.13 (Calculated placement) 198 270.35 B
+6 F
+(/setitemlist) 54 254.02 T
+([ item [ compasspoint {calculated protocol} ]. . . ] ) 198 254.02 T
+7 F
+(/setitemlist) 391.33 254.02 T
+6 F
+( -) 438.28 254.02 T
+5 F
+0.52 0.1 (Sets the item list for a menu with calculated placement. [compasspoint ) 198 234.35 B
+0.52 0.1 ({calculated pr) 198 221.95 B
+0.52 0.1 (otocol}] is the item\325s layout data and determines wher) 260.39 221.95 B
+0.52 0.1 (e the item ) 508.02 221.95 B
+0.52 0.1 (is positioned in the menu. Invalidates the menu.) 198 209.55 B
+FMENDPAGE
+%%EndPage: "110" 5
+10 11 /Palatino-BoldItalic FMDEFINEFONT
+%%Page: "111" 5
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassMenu) 198 108.7 S
+0 F
+0.09 (1) 545.24 108.7 S
+0.09 (1) 549.33 108.7 S
+0.09 (1) 553.42 108.7 S
+2 F
+7 X
+1 K
+-0.2 (12) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+5 F
+0.52 0.1 (Y) 198 641.33 B
+0.52 0.1 (ou can use ) 203.85 641.33 B
+7 F
+0.45 -0.27 (/setlayoutparameters) 255.79 641.33 B
+5 F
+0.52 0.1 ( to pr) 340.79 641.33 B
+0.52 0.1 (ovide a default calculated layout. \050See ) 365.92 641.33 B
+9 F
+0.37 0.1 (Setting a default layout for /Calculated placement) 198 628.93 B
+5 F
+0.37 0.1 (, below) 405.12 628.93 B
+0.37 0.1 (.\051 Generally) 437.29 628.93 B
+0.37 0.1 (, you will give ) 489.41 628.93 B
+0.52 0.1 (the \336rst item its own layout data and the default is used to place the other ) 198 616.53 B
+0.52 0.1 (items. In this case you would pass an empty array as layout data for all items ) 198 604.13 B
+0.52 0.1 (other than the \336rst one:) 198 591.73 B
+6 F
+0.45 -0.27 ([ item1 ) 198 572 B
+0.5 ( [compasspoint {calculated protocol}) 226.2 572 P
+0.45 -0.27 ( item2 nullarray item2 nullarray) 371.57 572 B
+0.45 -0.27 (. . . ] /setitemlist) 486.91 572 B
+10 F
+-0.71 0.11 (Setting a default layout for /Calculated placement) 198 543.27 B
+6 F
+(/setlayoutparameters) 54 527.6 T
+([ compass-point {calculated-protocol} ] ) 198 527.6 T
+7 F
+(/setlayoutparameters) 352.85 527.6 T
+6 F
+( -) 443.26 527.6 T
+5 F
+0.52 0.1 (Sets the default layout for ) 198 507.93 B
+6 F
+0.45 -0.27 (/Calculated) 319.63 507.93 B
+5 F
+0.52 0.1 ( placement. If you use ) 361.62 507.93 B
+7 F
+0.45 -0.27 (/setlayoutparameters) 466.12 507.93 B
+5 F
+0.52 0.1 ( ) 551.12 507.93 B
+0.52 0.1 (for a menu of placement-type ) 198 495.53 B
+6 F
+0.45 -0.27 (/Calculated) 336.72 495.53 B
+5 F
+0.52 0.1 ( you can specify the layout data ) 378.71 495.53 B
+0.52 0.1 (associated with an item as an empty array) 198 483.13 B
+0.52 0.1 (. That is if you did:) 390.38 483.13 B
+6 F
+([ /West { /East PREVIOUS POSITION } ] /setlayoutparameters mymenu send) 198 467.4 T
+5 F
+0.52 0.1 (Then, during a call to ) 198 447.73 B
+7 F
+0.45 -0.27 (/insertitem) 299.76 447.73 B
+5 F
+0.52 0.1 (, for example, you could do:) 342.24 447.73 B
+6 F
+(item-index myitem nullarray /insertitem mymenu send) 198 432 T
+5 F
+0.15 0.1 (which would position myitem\325s west edge along the pr) 198 412.33 B
+0.15 0.1 (evious item\325s east edge. ) 448.02 412.33 B
+0.52 0.1 (Each subsequent call to ) 198 399.93 B
+7 F
+0.45 -0.27 (/insertitem) 308.1 399.93 B
+5 F
+0.52 0.1 ( \050with an empty layout data array\051 would ) 350.58 399.93 B
+0.52 0.1 (position the new client\325s west edge along the east edge of the pr) 198 387.53 B
+0.52 0.1 (evious item. ) 492.1 387.53 B
+10 F
+-0.71 0.11 (/Calculated placement utilities) 198 358.47 B
+5 F
+-0.04 0.1 (The calculated placement utilities ar) 198 342.14 B
+-0.04 0.1 (e used as part of the calculated pr) 360.91 342.14 B
+-0.04 0.1 (otocol for ) 512.28 342.14 B
+0.52 0.1 (gr) 198 329.73 B
+0.52 0.1 (oups using calculated placement. They allow you to get r) 207.52 329.73 B
+0.52 0.1 (efer) 469.77 329.73 B
+0.52 0.1 (ences to ) 486.84 329.73 B
+0.52 0.1 (individual items, the menu itself, ) 198 317.33 B
+0.52 0.1 (and) 352.68 317.33 B
+9 F
+0.52 0.1 ( ) 369.9 317.33 B
+5 F
+0.52 0.1 (the x,y positions of items ) 373.02 317.33 B
+9 F
+0.52 0.1 (while) 490.98 317.33 B
+5 F
+0.52 0.1 ( ) 513.14 317.33 B
+0.52 0.1 (placement is taking place. Y) 198 304.93 B
+0.52 0.1 (ou can use these r) 325.32 304.93 B
+0.52 0.1 (efer) 407.63 304.93 B
+0.52 0.1 (ences and coor) 424.7 304.93 B
+0.52 0.1 (dinates for ) 492.25 304.93 B
+0.52 0.1 (positioning other items. For example the compass-point-calculated pr) 198 292.54 B
+0.52 0.1 (otocol ) 515.28 292.54 B
+0.1 (pair:) 198 280.14 S
+6 F
+([ item1/West {/West PARENT POSITION} ]) 210.6 264.4 T
+5 F
+0.52 0.1 (positions item1\325s west edge along the west edge of item1\325s par) 198 244.73 B
+0.52 0.1 (ent container) 484.12 244.73 B
+0.52 0.1 (.) 542.99 244.73 B
+6 F
+(PARENT) 54 225 T
+(- ) 198 225 T
+7 F
+(PARENT) 203.49 225 T
+6 F
+( parent) 240.44 225 T
+5 F
+0.03 0.1 (Returns a r) 198 205.34 B
+0.03 0.1 (efer) 247.67 205.34 B
+0.03 0.1 (ence to the par) 264.74 205.34 B
+0.03 0.1 (ent container \050self\051.) 331 205.34 B
+7 F
+0.03 -0.27 ( P) 417.86 205.34 B
+0.03 -0.27 (ARENT) 425.18 205.34 B
+5 F
+0.03 0.1 ( can be passed as ) 454.78 205.34 B
+6 F
+0.03 (client) 534.4 205.34 P
+5 F
+0.03 0.1 ( ) 555.37 205.34 B
+0.52 0.1 (to other utilities such as ) 198 192.93 B
+7 F
+0.45 -0.27 (WIDTH) 310.73 192.93 B
+5 F
+0.52 0.1 (, ) 338.83 192.93 B
+7 F
+0.45 -0.27 (HEIGHT) 344.55 192.93 B
+5 F
+0.52 0.1 (, and ) 376.14 192.93 B
+7 F
+0.45 -0.27 (POSITION) 402.2 192.93 B
+5 F
+0.52 0.1 (.) 442.99 192.93 B
+FMENDPAGE
+%%EndPage: "111" 6
+%%Page: "112" 6
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (12) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (1) 54 108.7 S
+0.09 (12) 58.09 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(CURRENT) 54 642 T
+(- ) 198 642 T
+7 F
+(CURRENT) 203.49 642 T
+6 F
+( current-client) 247.42 642 T
+5 F
+0.44 0.1 (Returns a r) 198 622.33 B
+0.44 0.1 (efer) 248.48 622.33 B
+0.44 0.1 (ence to the curr) 265.55 622.33 B
+0.44 0.1 (ent client that is being positioned. ) 336.54 622.33 B
+7 F
+0.37 -0.27 (CURRENT) 494.34 622.33 B
+5 F
+0.44 0.1 ( can ) 536.38 622.33 B
+0.52 0.1 (be passed as the ) 198 609.93 B
+6 F
+0.5 (client) 275.56 609.93 P
+5 F
+0.52 0.1 ( ar) 296.53 609.93 B
+0.52 0.1 (gument to other utilities such as ) 308.62 609.93 B
+7 F
+0.45 -0.27 (WIDTH) 459.33 609.93 B
+5 F
+0.52 0.1 (, ) 487.44 609.93 B
+7 F
+0.45 -0.27 (HEIGHT) 493.15 609.93 B
+5 F
+0.52 0.1 (, and ) 524.75 609.93 B
+7 F
+-0.27 (POSITION) 198 597.53 S
+5 F
+0.1 (.) 238.79 597.53 S
+6 F
+(PREVIOUS) 54 577.8 T
+(- ) 198 577.8 T
+7 F
+(PREVIOUS) 203.49 577.8 T
+6 F
+( previous-client) 249.94 577.8 T
+5 F
+0.04 0.1 (Returns a r) 198 558.13 B
+0.04 0.1 (efer) 247.7 558.13 B
+0.04 0.1 (ence to the pr) 264.77 558.13 B
+0.04 0.1 (evious client that was positioned. ) 325.98 558.13 B
+7 F
+0.04 -0.27 (PREVIOUS) 479.72 558.13 B
+5 F
+0.04 0.1 ( can be ) 524.01 558.13 B
+0.52 0.1 (passed as the ) 198 545.73 B
+6 F
+0.5 (client) 261.92 545.73 P
+5 F
+0.52 0.1 ( ar) 282.9 545.73 B
+0.52 0.1 (gument to other utilities such as ) 294.98 545.73 B
+7 F
+0.45 -0.27 (WIDTH) 445.7 545.73 B
+5 F
+0.52 0.1 (, ) 473.8 545.73 B
+7 F
+0.45 -0.27 (HEIGHT) 479.52 545.73 B
+5 F
+0.52 0.1 (, and ) 511.11 545.73 B
+7 F
+-0.27 (POSITION) 198 533.33 S
+5 F
+0.1 (.) 238.79 533.33 S
+6 F
+(WIDTH) 54 513.6 T
+(client ) 198 513.6 T
+7 F
+(WIDTH) 221.48 513.6 T
+6 F
+( width) 250.93 513.6 T
+5 F
+0.52 0.1 (Returns the width of the speci\336ed ) 198 493.93 B
+6 F
+0.5 (client) 356.51 493.93 P
+5 F
+0.52 0.1 (.) 377.49 493.93 B
+6 F
+(HEIGHT) 54 474.2 T
+(client ) 198 474.2 T
+7 F
+(HEIGHT) 221.48 474.2 T
+6 F
+( height) 255.43 474.2 T
+5 F
+0.52 0.1 (Returns the height of the speci\336ed ) 198 454.53 B
+6 F
+0.5 (client) 358.33 454.53 P
+5 F
+0.52 0.1 (.) 379.31 454.53 B
+6 F
+(POSITION) 54 434.8 T
+(compasspoint client ) 198 434.8 T
+7 F
+(POSITION) 279.42 434.8 T
+6 F
+( X Y) 322.37 434.8 T
+5 F
+0.52 0.1 (Returns the X-Y position for the speci\336ed ) 198 415.13 B
+6 F
+0.5 (compasspoint) 390.56 415.13 P
+5 F
+0.52 0.1 ( on ) 446.01 415.13 B
+6 F
+0.5 (client) 463.72 415.13 P
+5 F
+0.52 0.1 (.) 484.69 415.13 B
+8 F
+(Layout) 54 381.4 T
+6 F
+(/layoutparameters) 54 360.4 T
+(- ) 198 360.4 T
+7 F
+(/layoutparameters) 203.49 360.4 T
+6 F
+( layout-parameters) 280.91 360.4 T
+5 F
+0.52 0.1 (Returns the menu\325s layout parameters.) 198 340.73 B
+8 F
+-0.94 (Other item methods) 54 307 P
+5 F
+0.52 0.1 (See Menu items on page 108 for a de\336nition of ) 198 285.33 B
+6 F
+0.45 -0.27 (item) 414.94 285.33 B
+5 F
+0.52 0.1 (. If a method r) 430.84 285.33 B
+0.52 0.1 (eturns an ) 496.62 285.33 B
+0.52 0.1 (item, the entir) 198 272.93 B
+0.52 0.1 (e item is r) 262.21 272.93 B
+0.52 0.1 (eturned. ) 307.85 272.93 B
+6 F
+(/appenditem) 54 253.2 T
+(item layout-data ) 198 253.2 T
+7 F
+(/appenditem) 264.43 253.2 T
+6 F
+( -) 317.37 253.2 T
+5 F
+0.44 0.1 (Adds ) 198 233.53 B
+6 F
+0.38 -0.27 (item) 225.67 233.53 B
+5 F
+0.44 0.1 ( to the end of the menu\325s item list. Invalidates the menu. ) 241.57 233.53 B
+6 F
+0.38 -0.27 (/Spaced) 503.61 233.53 B
+5 F
+0.44 0.1 ( and ) 534.7 233.53 B
+6 F
+0.45 -0.27 (/Grid) 198 221.14 B
+5 F
+0.52 0.1 ( menus omit ) 216.13 221.14 B
+6 F
+0.45 -0.27 (layout-data) 276.52 221.14 B
+5 F
+0.52 0.1 (; calculated placement menus may speci\336y layout-) 318.01 221.14 B
+0.52 0.1 (data as a null array if a default layout has been set with ) 198 208.73 B
+7 F
+0.45 -0.27 (/setlayoutparamters) 457.26 208.73 B
+5 F
+0.52 0.1 (.) 537.53 208.73 B
+6 F
+(/deleteitem) 54 189 T
+(item-index ) 198 189 T
+7 F
+(/deleteitem) 241.95 189 T
+6 F
+( -) 288.9 189 T
+5 F
+0.52 0.1 (Deletes the item at ) 198 169.34 B
+6 F
+0.45 -0.27 (item-index) 286.47 169.34 B
+5 F
+0.52 0.1 (. Invalidates the menu.) 325.22 169.34 B
+FMENDPAGE
+%%EndPage: "112" 7
+%%Page: "113" 7
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassMenu) 198 108.7 S
+0 F
+0.09 (1) 544.74 108.7 S
+0.09 (13) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (12) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(/insertitem) 54 642 T
+(item-index item layout-data ) 198 642 T
+7 F
+(/insertitem) 308.38 642 T
+6 F
+( -) 353.83 642 T
+5 F
+0.52 0.1 (Inserts ) 198 622.33 B
+6 F
+0.45 -0.27 (item) 231.47 622.33 B
+5 F
+0.52 0.1 ( at ) 247.37 622.33 B
+6 F
+0.45 -0.27 (item-index) 262.06 622.33 B
+5 F
+0.52 0.1 ( in the menu. Insertions go ) 300.81 622.33 B
+9 F
+0.52 0.1 (befor) 427.11 622.33 B
+0.52 0.1 (e) 447.05 622.33 B
+5 F
+0.52 0.1 ( any existing item of ) 451.04 622.33 B
+0.13 0.1 (that index. ) 198 609.93 B
+6 F
+0.11 -0.27 (/Spaced) 249.07 609.93 B
+5 F
+0.13 0.1 ( and ) 280.15 609.93 B
+6 F
+0.11 -0.27 (/Grid) 302.84 609.93 B
+5 F
+0.13 0.1 ( menus omit ) 320.96 609.93 B
+6 F
+0.11 -0.27 (layout-data) 380.2 609.93 B
+5 F
+0.13 0.1 (; calculated placement menus ) 421.69 609.93 B
+0.52 0.1 (may speci\336y layout-data as a null array if a default layout has been set with ) 198 597.53 B
+7 F
+0.45 -0.27 (/setlayoutparamters) 198 585.13 B
+5 F
+0.52 0.1 (. Invalidates the menu.) 278.28 585.13 B
+6 F
+(/item) 54 565.4 T
+(item-index ) 198 565.4 T
+7 F
+(/item) 241.95 565.4 T
+6 F
+( item) 262.92 565.4 T
+5 F
+0.52 0.1 (Returns the ) 198 545.73 B
+6 F
+0.45 -0.27 (item) 253.85 545.73 B
+5 F
+0.52 0.1 ( located at ) 269.75 545.73 B
+6 F
+0.45 -0.27 (item-index) 320.21 545.73 B
+5 F
+0.52 0.1 (. ) 358.96 545.73 B
+6 F
+(/itemcount) 54 526 T
+(- ) 198 526 T
+7 F
+(/itemcount) 203.49 526 T
+6 F
+( item-count) 248.93 526 T
+5 F
+0.52 0.1 (Returns the number of items in the menu. \050The pin is ) 198 506.33 B
+9 F
+0.52 0.1 (not) 445.32 506.33 B
+5 F
+0.52 0.1 ( consider) 458.95 506.33 B
+0.52 0.1 (ed an item.\051) 500.38 506.33 B
+6 F
+(/itemlist) 54 486.6 T
+(- ) 198 486.6 T
+7 F
+(/itemlist) 203.49 486.6 T
+6 F
+( [ item item ...]) 237.46 486.6 T
+5 F
+0.52 0.1 (Returns the items in the menu. The layout data is ) 198 466.93 B
+9 F
+0.52 0.1 (not) 427.79 466.93 B
+5 F
+0.52 0.1 ( r) 441.42 466.93 B
+0.52 0.1 (eturned.) 448.4 466.93 B
+6 F
+(/replaceitem) 54 447.2 T
+(item-index item ) 198 447.2 T
+7 F
+(/replaceitem) 261.42 447.2 T
+6 F
+( -) 313.88 447.2 T
+5 F
+0.52 0.1 (Replaces the item at ) 198 427.53 B
+6 F
+0.45 -0.27 (item-index) 292.91 427.53 B
+5 F
+0.52 0.1 (. The layout data, if any) 331.66 427.53 B
+0.52 0.1 (, of the old item at item-) 440.04 427.53 B
+0.52 0.1 (index is used to position the new item. Invalidates the menu.) 198 415.13 B
+1 F
+-0.88 (Default item) 126 382.07 P
+5 F
+0.52 0.1 (A default item is visually highlighted, and determines wher) 198 360.73 B
+0.52 0.1 (e the pop-up ) 472.38 360.73 B
+0.52 0.1 (menus ar) 198 348.33 B
+0.52 0.1 (e positioned on the scr) 240.28 348.33 B
+0.52 0.1 (een r) 343.96 348.33 B
+0.52 0.1 (elative to the mouse. Menu buttons use ) 366.64 348.33 B
+0.52 0.1 (their associated menu\325s default item as their r) 198 335.93 B
+0.52 0.1 (esponse to SELECT) 407.35 335.93 B
+0.52 0.1 (. TNT allows ) 495.18 335.93 B
+0.52 0.1 (you to have a pop-up menu that has no default. ) 198 323.53 B
+6 F
+(/setdefault) 54 303.8 T
+(null | item-index ) 198 303.8 T
+7 F
+(/setdefault) 263.27 303.8 T
+6 F
+( -) 308.21 303.8 T
+5 F
+0.52 0.1 (Sets the item at ) 198 284.14 B
+6 F
+0.45 -0.27 (item-index) 271.2 284.14 B
+5 F
+0.52 0.1 ( to be the default item for the menu.) 309.95 284.14 B
+0.52 0.1 (A default item is visually highlighted, and determines wher) 198 263.73 B
+0.52 0.1 (e the pop-up ) 472.38 263.73 B
+0.52 0.1 (menus ar) 198 251.34 B
+0.52 0.1 (e positioned on the scr) 240.28 251.34 B
+0.52 0.1 (een r) 343.96 251.34 B
+0.52 0.1 (elative to the mouse. Menu buttons use ) 366.64 251.34 B
+0.25 0.1 (their associated menu\325s default item as their r) 198 238.93 B
+0.25 0.1 (esponse to SELECT) 405.48 238.93 B
+0.25 0.1 (. It ) 492.77 238.93 B
+9 F
+0.25 0.1 (is) 507.89 238.93 B
+5 F
+0.25 0.1 ( legal for ) 514.76 238.93 B
+0.52 0.1 (a pop-up menu to have no default.) 198 226.53 B
+6 F
+(/default) 54 206.8 T
+(- ) 198 206.8 T
+7 F
+(/default) 203.49 206.8 T
+6 F
+( null | item-index) 235.45 206.8 T
+5 F
+0.52 0.1 (Returns the index of the menu\325s default item, or null if ther) 198 187.14 B
+0.52 0.1 (e is no default.) 470.43 187.14 B
+FMENDPAGE
+%%EndPage: "113" 8
+%%Page: "114" 8
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (12) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (1) 54 108.7 S
+0.09 (14) 58.09 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+8 F
+(Labels) 54 638 T
+6 F
+(/setlabel) 54 617 T
+(display-item | null ) 198 617 T
+7 F
+(/setlabel) 269.76 617 T
+6 F
+( -) 305.72 617 T
+5 F
+0.52 0.1 (Sets the label shown at the top of the menu. ) 198 597.33 B
+6 F
+0.45 -0.27 (null) 402.31 597.33 B
+5 F
+0.52 0.1 ( implies that ther) 415.21 597.33 B
+0.52 0.1 (e is no label, ) 493.61 597.33 B
+0.52 0.1 (which is the default. Invalidates the menu.) 198 584.93 B
+6 F
+(/label) 54 565.2 T
+(- ) 198 565.2 T
+7 F
+(/label) 203.49 565.2 T
+6 F
+( display-item | null) 226.47 565.2 T
+5 F
+0.52 0.1 (Returns the label shown at the top of the menu or ) 198 545.53 B
+6 F
+0.45 -0.27 (null) 429.95 545.53 B
+5 F
+0.52 0.1 ( if ther) 442.86 545.53 B
+0.52 0.1 (e is no label.) 473.56 545.53 B
+6 F
+(/setpinnedlabel) 54 525.8 T
+(display-item | null ) 198 525.8 T
+7 F
+(/setpinnedlabel) 269.76 525.8 T
+6 F
+( -) 335.18 525.8 T
+5 F
+0.52 0.1 (Sets the label for the pinned copy of the menu. OPEN LOOK r) 198 506.13 B
+0.52 0.1 (equir) 483.88 506.13 B
+0.52 0.1 (es that a ) 507.47 506.13 B
+0.25 0.1 (pinned copy of a menu have a label; ) 198 493.73 B
+7 F
+0.22 -0.27 (/setpinnedlabel) 365.63 493.73 B
+5 F
+0.25 0.1 ( is pr) 427.01 493.73 B
+0.25 0.1 (ovided so you can give ) 450.04 493.73 B
+0.52 0.1 (the pinned copy of your menu a label. If null, then the label of the original ) 198 481.33 B
+0.52 0.1 (menu is used. If the original menu has no label, and you don\325t use ) 198 468.93 B
+7 F
+0.45 -0.27 (/setpinnedlabel) 198 456.53 B
+5 F
+0.52 0.1 ( to pr) 259.38 456.53 B
+0.52 0.1 (ovide on for the pinned copy) 284.51 456.53 B
+0.52 0.1 (, then the pinned copy has no ) 416.96 456.53 B
+0.52 0.1 (label either) 198 444.13 B
+0.52 0.1 (. The default is null. ) 248.11 444.13 B
+7 F
+0.45 -0.27 (/setpinnedlabel) 343.45 444.13 B
+5 F
+0.52 0.1 ( invalidates the menu.) 404.83 444.13 B
+6 F
+(/pinnedlabel) 54 424.4 T
+(- ) 198 424.4 T
+7 F
+(/pinnedlabel) 203.49 424.4 T
+6 F
+( display-item | null) 255.93 424.4 T
+5 F
+0.52 0.1 (Returns the label of pinned copy of the menu, or null if it has no label.) 198 404.73 B
+8 F
+-0.94 (Pinned menus) 54 371 P
+5 F
+0.19 0.1 (TNT handles the interaction between a menu and its pinned copy so you don\325t ) 198 349.33 B
+0.08 0.1 (have to make sur) 198 336.93 B
+0.08 0.1 (e changes made to your menu ar) 275.51 336.93 B
+0.08 0.1 (e r) 423.09 336.93 B
+0.08 0.1 (e\337ected in its pinned copy) 434.52 336.93 B
+0.08 0.1 (. ) 552.62 336.93 B
+0.52 0.1 (When changes that cause invalidation \050e.g., ) 198 324.54 B
+7 F
+0.45 -0.27 (/insertitem) 399.29 324.54 B
+5 F
+0.52 0.1 (\051 ar) 441.77 324.54 B
+0.52 0.1 (e made to a menu, ) 457.28 324.54 B
+0.52 0.1 (you send ) 198 312.14 B
+7 F
+0.45 -0.27 (/paint) 242.93 312.14 B
+5 F
+0.52 0.1 ( only to the menu. TNT ensur) 265.27 312.14 B
+0.52 0.1 (es that the pinned copy also is ) 401.65 312.14 B
+0.52 0.1 (updated to r) 198 299.73 B
+0.52 0.1 (e\337ect the changes, including size, made to the menu. In general, ) 255.01 299.73 B
+0.52 0.1 (you shouldn\325t send any messages to the pinned copy) 198 287.33 B
+0.52 0.1 (.) 439.95 287.33 B
+6 F
+(/Pinnable?) 54 266.93 T
+7 F
+(/Pinnable?) 198 266.93 T
+6 F
+( boolean ) 243.45 266.93 T
+5 F
+(\050Variable\051) 280.42 266.93 T
+0.52 0.1 (Determines whether the menu has a pin.) 198 246.93 B
+6 F
+(/setpinnable) 54 227.2 T
+(boolean ) 198 227.2 T
+7 F
+(/setpinnable) 232.48 227.2 T
+6 F
+( -) 284.92 227.2 T
+5 F
+0.52 0.1 (Sets the value of the variable ) 198 207.53 B
+6 F
+0.45 -0.27 (/Pinnable?) 333.34 207.53 B
+(/pinnable? ) 54 187.8 T
+(- ) 198 187.8 T
+7 F
+(/pinnable?) 203.49 187.8 T
+6 F
+( boolean) 248.44 187.8 T
+5 F
+0.52 0.1 (Returns the value of the variable ) 198 168.14 B
+6 F
+0.45 -0.27 (/Pinnable?) 350.86 168.14 B
+FMENDPAGE
+%%EndPage: "114" 9
+%%Page: "115" 9
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassMenu) 198 108.7 S
+0 F
+0.09 (1) 544.74 108.7 S
+0.09 (15) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (12) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+-0.88 (Pr) 126 638.67 P
+-0.88 (ogrammatically pinning menus) 139.74 638.67 P
+5 F
+0.16 0.1 (The methods in this section ar) 198 617.33 B
+0.16 0.1 (e only de\336ned for menus that ar) 334.13 617.33 B
+0.16 0.1 (e pinnable. They ) 479.88 617.33 B
+-0.06 0.1 (would only be called by applications that want to pr) 198 604.93 B
+-0.06 0.1 (ogrammatically contr) 433.44 604.93 B
+-0.06 0.1 (ol the ) 530.19 604.93 B
+0.52 0.1 (pinning of menus. \050Users usually look after this.\051 ) 198 592.53 B
+6 F
+(/pin) 54 572.8 T
+(x y ) 198 572.8 T
+7 F
+(/pin) 211.98 572.8 T
+6 F
+( -) 227.96 572.8 T
+5 F
+0.31 0.1 (Cr) 198 553.13 B
+0.31 0.1 (eates the pinned copy \050if necessary\051, maps it, activates it, and positions it on ) 209.05 553.13 B
+0.52 0.1 (the scr) 198 540.73 B
+0.52 0.1 (een so that its northwest corner is at the given position. If the menu is ) 228.02 540.73 B
+0.52 0.1 (alr) 198 528.33 B
+0.52 0.1 (eady pinned the pinned window moves to the given location. The pinned ) 209.97 528.33 B
+0.52 0.1 (menu is activated using the event manager of the canvas that most r) 198 515.93 B
+0.52 0.1 (ecently ) 511.21 515.93 B
+0.08 0.1 (activated the original menu; if the original menu has never been popped up, or ) 198 503.53 B
+0.52 0.1 (if that event manager has since gone away) 198 491.13 B
+0.52 0.1 (, an err) 391.65 491.13 B
+0.52 0.1 (or will r) 424.3 491.13 B
+0.52 0.1 (esult. If the ) 461.48 491.13 B
+0.52 0.1 (originating canvas is inside a window) 198 478.73 B
+0.52 0.1 (, the pinned menu is added as a ) 371.01 478.73 B
+0.52 0.1 (subwindow of that window\325s r) 198 466.33 B
+0.52 0.1 (oot window) 339.48 466.33 B
+0.52 0.1 (.) 393.71 466.33 B
+6 F
+(/pinned?) 54 446.6 T
+(- ) 198 446.6 T
+7 F
+(/pinned?) 203.49 446.6 T
+6 F
+( boolean) 240.94 446.6 T
+5 F
+0.52 0.1 (Returns whether the menu has a pinned copy curr) 198 426.93 B
+0.52 0.1 (ently displayed.) 428.79 426.93 B
+6 F
+(/unpin) 54 407.2 T
+(- ) 198 407.2 T
+7 F
+(/unpin) 203.49 407.2 T
+6 F
+( -) 230.45 407.2 T
+5 F
+0.52 0.1 (Unmaps and deactivates the pinned menu.) 198 387.53 B
+8 F
+-0.94 (Ability to interact with menu items) 54 353.8 P
+6 F
+(/setvisualstate) 54 332.8 T
+(index state ) 198 332.8 T
+7 F
+(/setvisualstate) 243.96 332.8 T
+6 F
+( -) 305.9 332.8 T
+5 F
+0.32 0.1 (Sets the visual pr) 198 313.14 B
+0.32 0.1 (esentation of the menu item at ) 276.15 313.14 B
+6 F
+0.27 -0.27 (index) 417.62 313.14 B
+5 F
+0.32 0.1 (. ) 437.75 313.14 B
+6 F
+0.27 -0.27 (state) 443.26 313.14 B
+5 F
+0.32 0.1 ( can be one of ) 461.4 313.14 B
+6 F
+0.27 -0.27 (/Active) 527.4 313.14 B
+5 F
+0.32 0.1 (, ) 552.48 313.14 B
+6 F
+0.45 -0.27 (/Inactive) 198 300.73 B
+5 F
+0.52 0.1 (, or ) 229.04 300.73 B
+6 F
+0.45 -0.27 (/Busy) 247.48 300.73 B
+5 F
+0.52 0.1 (. ) 267.5 300.73 B
+6 F
+0.45 -0.27 (/Active) 273.21 300.73 B
+5 F
+0.52 0.1 ( is the default. ) 298.3 300.73 B
+7 F
+0.45 -0.27 (/setvisualstate) 366.99 300.73 B
+5 F
+0.52 0.1 ( also determines whether ) 424.88 300.73 B
+0.52 0.1 (users can interact with the menu. Users can interact) 198 288.33 B
+6 F
+0.45 -0.27 ( ) 435.03 288.33 B
+5 F
+0.52 0.1 (with ) 437.7 288.33 B
+6 F
+0.45 -0.27 (/Active) 461.54 288.33 B
+5 F
+0.52 0.1 ( items; ) 486.62 288.33 B
+6 F
+0.45 -0.27 (/Inactive) 519.97 288.33 B
+5 F
+0.52 0.1 ( ) 551.01 288.33 B
+0.52 0.1 (and ) 198 275.93 B
+6 F
+0.45 -0.27 (/Busy) 218.34 275.93 B
+5 F
+0.52 0.1 ( items ignor) 239.47 275.93 B
+0.52 0.1 (e user interactions.) 294.23 275.93 B
+6 F
+(/visualstate) 54 256.2 T
+7 F
+(-) 198 256.2 T
+6 F
+( ) 200.99 256.2 T
+7 F
+(/visualstate ) 203.49 256.2 T
+6 F
+(index statename) 254.94 256.2 T
+5 F
+0.52 0.1 (Returns the state of the item at ) 198 236.53 B
+6 F
+0.45 -0.27 (index) 342.26 236.53 B
+5 F
+0.52 0.1 (.) 362.39 236.53 B
+8 F
+-0.94 (Noti\336cation and pr) 54 202.8 P
+-0.94 (eviewing) 167.53 202.8 P
+5 F
+0.31 0.1 (When menu noti\336cation occurs the ) 198 181.14 B
+9 F
+0.31 0.1 (noti\336cation value) 360.01 181.14 B
+5 F
+0.31 0.1 ( and the menu instance ar) 432.17 181.14 B
+0.31 0.1 (e ) 550 181.14 B
+0.52 0.1 (placed on the stack befor) 198 168.73 B
+0.52 0.1 (e the noti\336er is called. The noti\336cation value varies ) 312.31 168.73 B
+0.52 0.1 (with the type of menu:) 198 156.34 B
+FMENDPAGE
+%%EndPage: "115" 10
+10 9 /Courier FMDEFINEFONT
+%%Page: "116" 10
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (12) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (1) 54 108.7 S
+0.09 (16) 58.09 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+3 F
+(\245) 198 641.33 T
+5 F
+0.07 0.1 (For ) 210.6 641.33 B
+6 F
+0.06 -0.27 (/Command) 228.53 641.33 B
+5 F
+0.07 0.1 ( menus the noti\336cation value is the index of the item wher) 270.31 641.33 B
+0.07 0.1 (e the ) 533.52 641.33 B
+0.14 0.1 (mouse button was r) 210.6 628.93 B
+0.14 0.1 (eleased. The index and the menu instance ar) 300.32 628.93 B
+0.14 0.1 (e put on the ) 500.95 628.93 B
+0.52 0.1 (stack befor) 210.6 616.53 B
+0.52 0.1 (e the noti\336er is called. If the noti\336er is a pr) 260.07 616.53 B
+0.52 0.1 (oc then the index, ) 456.31 616.53 B
+0.52 0.1 (menu instance and pr) 210.6 604.13 B
+0.52 0.1 (oc ar) 310.07 604.13 B
+0.52 0.1 (e put on the stack and the pr) 332.24 604.13 B
+0.52 0.1 (oc is executed.) 464.53 604.13 B
+3 F
+(\245) 198 591.73 T
+5 F
+0.52 0.1 (For the settings-based menus \050) 210.6 591.73 B
+6 F
+0.45 -0.27 (/Exclusive) 350.56 591.73 B
+5 F
+0.52 0.1 (, ) 388.32 591.73 B
+6 F
+0.45 -0.27 (/NonExclusive) 394.03 591.73 B
+5 F
+0.52 0.1 ( and ) 447.46 591.73 B
+6 F
+0.45 -0.27 (/ExclusiveV) 470.92 591.73 B
+0.45 -0.27 (ariation) 513.73 591.73 B
+5 F
+0.52 0.1 (\051 ) 541.04 591.73 B
+0.52 0.1 (the noti\336cation value is an array: ) 210.6 579.33 B
+6 F
+-0.27 ([ item-index boolean) 210.6 563.6 S
+10 F
+(]) 286.12 563.6 T
+5 F
+0.52 0.1 (Dif) 198 543.93 B
+0.52 0.1 (fer) 212.09 543.93 B
+0.52 0.1 (ent types of settings notify at dif) 224.28 543.93 B
+0.52 0.1 (fer) 373.18 543.93 B
+0.52 0.1 (ent user actions:) 385.37 543.93 B
+6 F
+-0.27 (/Exclusive) 214.2 527.53 S
+5 F
+0.52 0.1 (noti\336es ) 318.02 527.53 B
+9 F
+0.52 0.1 (only) 354.35 527.53 B
+5 F
+0.52 0.1 ( when an item is turned on. This means ) 372.52 527.53 B
+0.49 0.1 (you ar) 318.02 515.13 B
+0.49 0.1 (e not noti\336ed about the item being unchosen, ) 347.42 515.13 B
+0.52 0.1 (and the boolean in the array is always tr) 318.02 502.73 B
+0.52 0.1 (ue.) 503.34 502.73 B
+6 F
+-0.27 (/ExclusiveV) 214.2 486.33 S
+-0.27 (ariation) 257.01 486.33 S
+5 F
+0.52 0.1 (noti\336es when an item is turned on) 318.02 486.33 B
+6 F
+0.45 -0.27 ( as /Exclusive) 475.66 486.33 B
+5 F
+0.52 0.1 ( ) 527.71 486.33 B
+0.52 0.1 (settings do and noti\336es when the item curr) 318.02 473.93 B
+0.52 0.1 (ently ) 514.99 473.93 B
+-0.06 0.1 (turned on is turned of) 318.02 461.53 B
+-0.06 0.1 (f and the setting has no chosen ) 416.9 461.53 B
+0.52 0.1 (item. ) 318.02 449.13 B
+6 F
+-0.27 (/NonExclusive) 214.2 432.73 S
+5 F
+0.52 0.1 ( noti\336es when any item is turned on or of) 318.02 432.73 B
+0.52 0.1 (f.) 509.08 432.73 B
+0.52 0.1 (The array and the menu instance ar) 210.6 399.93 B
+0.52 0.1 (e put on the stack befor) 373.55 399.93 B
+0.52 0.1 (e the noti\336er is ) 481.61 399.93 B
+0.04 0.1 (called. If the noti\336er is a pr) 210.6 387.54 B
+0.04 0.1 (oc then the array) 332.14 387.54 B
+0.04 0.1 (, menu instance and pr) 407.22 387.54 B
+0.04 0.1 (oc ar) 510.46 387.54 B
+0.04 0.1 (e put ) 532.15 387.54 B
+0.52 0.1 (on the stack and then the pr) 210.6 375.14 B
+0.52 0.1 (oc is executed.) 339.37 375.14 B
+6 F
+(/setnotifier) 54 355.4 T
+(notifier ) 198 355.4 T
+7 F
+(/setnotifier) 227.47 355.4 T
+6 F
+( -) 273.41 355.4 T
+5 F
+0.52 0.1 (Sets the noti\336er for the entir) 198 335.73 B
+0.52 0.1 (e menu. The noti\336er can be either a PostScript ) 326.84 335.73 B
+0.32 0.1 (name or a pr) 198 323.33 B
+0.32 0.1 (ocedur) 256.25 323.33 B
+0.32 0.1 (e. The noti\336er determines what action takes place when an ) 287.43 323.33 B
+0.37 0.1 (item that has no individual noti\336cation speci\336cation is selected. \050An item with ) 198 310.93 B
+0.44 0.1 (no noti\336er is speci\336ed using the form ) 198 298.54 B
+6 F
+0.38 -0.27 (string ) 372.28 298.54 B
+5 F
+0.44 0.1 (or) 395.23 298.54 B
+6 F
+0.38 -0.27 ( [displayitem]) 404.84 298.54 B
+5 F
+0.44 0.1 (.\051 Y) 453.88 298.54 B
+0.44 0.1 (our noti\336er should ) 468.79 298.54 B
+0.52 0.1 (be written to use the noti\336cation value and the menu instance as ar) 198 286.14 B
+0.52 0.1 (guments.) 506.4 286.14 B
+6 F
+(/notifier) 54 266.4 T
+(- ) 198 266.4 T
+7 F
+(/notifier) 203.49 266.4 T
+6 F
+( notifier) 236.45 266.4 T
+5 F
+0.52 0.1 (Returns the single noti\336er that is associated with the entir) 198 246.73 B
+0.52 0.1 (e menu. ) 462.83 246.73 B
+8 F
+-0.94 (Menu tar) 54 213 P
+-0.94 (gets) 110.71 213 P
+5 F
+-0.03 0.1 (The NeWS T) 198 191.34 B
+-0.03 0.1 (oolkit has the notion of a default object that is af) 254.22 191.34 B
+-0.03 0.1 (fected by a menu\325s ) 470.95 191.34 B
+0.52 0.1 (noti\336er) 198 178.93 B
+0.52 0.1 (. If you want to r) 230.18 178.93 B
+0.52 0.1 (etar) 308.2 178.93 B
+0.52 0.1 (get the noti\336er use the tar) 325.41 178.93 B
+0.52 0.1 (get mechanism \050see ) 443.82 178.93 B
+9 F
+0.52 0.1 (Target interface inherited from ClassControl) 198 166.53 B
+5 F
+0.52 0.1 ( on page 1) 383.46 166.53 B
+0.52 0.1 (17\051.) 430.58 166.53 B
+FMENDPAGE
+%%EndPage: "116" 11
+%%Page: "117" 11
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassMenu) 198 108.7 S
+0 F
+0.09 (1) 544.74 108.7 S
+0.09 (17) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (12) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+1 F
+-0.88 (The invoker mechanism) 126 638.67 P
+5 F
+0.52 0.1 (Menus r) 198 617.33 B
+0.52 0.1 (emember which object invoked them.The invoker of a menu is the ) 235.81 617.33 B
+0.52 0.1 (object that most r) 198 604.93 B
+0.52 0.1 (ecently caused the menu to be displayed. So, for a popup ) 277.54 604.93 B
+0.52 0.1 (menu the invoker is a canvas, for a menu-button menu the invoker is the ) 198 592.53 B
+0.52 0.1 (button gr) 198 580.13 B
+0.52 0.1 (oup, and for a submenu \050pullright\051 the invoker is the par) 240.59 580.13 B
+0.52 0.1 (ent menu.) 502.11 580.13 B
+0.52 0.1 (If you choose not to call ) 198 559.73 B
+7 F
+0.45 -0.27 (/settarget) 311.14 559.73 B
+5 F
+0.52 0.1 ( yourself then the following r) 348.89 559.73 B
+0.52 0.1 (ules apply:) 483.32 559.73 B
+3 F
+(\245) 198 541.33 T
+5 F
+0.52 0.1 (The tar) 210.6 541.33 B
+0.52 0.1 (get of a popup-menu is its invoker \050i.e. the canvas or r) 243.07 541.33 B
+0.52 0.1 (egion fr) 492.4 541.33 B
+0.52 0.1 (om ) 527.84 541.33 B
+0.52 0.1 (which it came\051.) 210.6 528.93 B
+3 F
+(\245) 198 516.53 T
+5 F
+0.32 0.1 (The tar) 210.6 516.53 B
+0.32 0.1 (get of a submenu is the tar) 242.88 516.53 B
+0.32 0.1 (get of its invoker) 364.16 516.53 B
+0.32 0.1 (. \050In this case the invoker ) 440.6 516.53 B
+0.26 0.1 (is a menu. The invoker menu may have an application-speci\336ed tar) 210.6 504.13 B
+0.26 0.1 (get, or it ) 516.84 504.13 B
+0.52 0.1 (too might default via these r) 210.6 491.73 B
+0.52 0.1 (ules.\051) 340.85 491.73 B
+3 F
+(\245) 198 479.33 T
+5 F
+0.14 0.1 (The tar) 210.6 479.33 B
+0.14 0.1 (get of a menu button\325s menu is the tar) 242.69 479.33 B
+0.14 0.1 (get of its invoker) 415.25 479.33 B
+0.14 0.1 (. Its invoker is ) 491.13 479.33 B
+0.48 0.1 (the menu button instance, and because menu buttons ar) 210.6 466.93 B
+0.48 0.1 (e contr) 466.68 466.93 B
+0.48 0.1 (ols, they can ) 497.89 466.93 B
+0.52 0.1 (have tar) 210.6 454.53 B
+0.52 0.1 (gets.) 247.69 454.53 B
+-0.06 0.1 (The invoker is available to pr) 198 434.13 B
+-0.06 0.1 (ogrammers via the ) 329.38 434.13 B
+7 F
+-0.05 -0.27 (/invoker) 416.5 434.13 B
+5 F
+-0.06 0.1 ( method. Generally you ) 448.8 434.13 B
+0.52 0.1 (don\325t use ) 198 421.73 B
+7 F
+0.45 -0.27 (/invoker) 243.51 421.73 B
+5 F
+0.52 0.1 ( yourself but if you wanted to \336nd out the chain of menus ) 275.81 421.73 B
+0.52 0.1 (that r) 198 409.33 B
+0.52 0.1 (esulted in a callback to be executed you just keep walking backwar) 222.72 409.33 B
+0.52 0.1 (ds ) 530.24 409.33 B
+0.52 0.1 (down the invoker chain until you come to an object that isn\325t a menu.) 198 396.93 B
+6 F
+(/invoker ) 54 377.2 T
+(- ) 198 377.2 T
+7 F
+(/invoker) 203.49 377.2 T
+6 F
+( object) 237.96 377.2 T
+5 F
+0.52 0.1 (Returns the object that invoked the menu.) 198 357.54 B
+1 F
+-0.88 (T) 126 324.47 P
+-0.88 (ar) 133 324.47 P
+-0.88 (get interface inherited fr) 144.4 324.47 P
+-0.88 (om ClassContr) 277.45 324.47 P
+-0.88 (ol) 360.67 324.47 P
+6 F
+(/settarget) 54 303.8 T
+(object) 198 303.8 T
+7 F
+( ) 221.98 303.8 T
+6 F
+(| null) 224.48 303.8 T
+7 F
+( /settarget) 243.3 303.8 T
+6 F
+( -) 286.25 303.8 T
+5 F
+0.52 0.1 (Sets ) 198 284.14 B
+6 F
+0.45 -0.27 (object) 219.05 284.14 B
+5 F
+0.52 0.1 ( to be the tar) 241.41 284.14 B
+0.52 0.1 (get of the menu. If null is speci\336ed the tar) 299.8 284.14 B
+0.52 0.1 (get is clear) 492.27 284.14 B
+0.52 0.1 (ed.) 541.15 284.14 B
+6 F
+(/cleartarget) 54 264.4 T
+(null | object ) 198 264.4 T
+7 F
+(/cleartarget) 245.79 264.4 T
+6 F
+( -) 294.25 264.4 T
+5 F
+0.1 0.1 (Clears the tar) 198 244.73 B
+0.1 0.1 (get. If object is speci\336ed the tar) 258.45 244.73 B
+0.1 0.1 (get is clear) 398.39 244.73 B
+0.1 0.1 (ed only if the tar) 446.43 244.73 B
+0.1 0.1 (get and ) 521.38 244.73 B
+6 F
+0.45 -0.27 (object) 198 232.34 B
+5 F
+0.52 0.1 ( ar) 220.36 232.34 B
+0.52 0.1 (e the same.) 232.44 232.34 B
+6 F
+(/target) 54 212.6 T
+(-) 198 212.6 T
+7 F
+( /target) 200.99 212.6 T
+6 F
+( null | object) 230.96 212.6 T
+5 F
+0.52 0.1 (Returns the tar) 198 192.93 B
+0.52 0.1 (get object. If /settar) 266.17 192.93 B
+0.52 0.1 (get has not been called \050or /cleartar) 356.39 192.93 B
+0.52 0.1 (get has ) 520.34 192.93 B
+0.52 0.1 (been called\051, a default tar) 198 180.53 B
+0.52 0.1 (get is determined using the Invoker mechanism.) 314.1 180.53 B
+FMENDPAGE
+%%EndPage: "117" 12
+%%Page: "118" 12
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (12) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (1) 54 108.7 S
+0.09 (18) 58.09 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+6 F
+(/sendtarget) 54 642 T
+(args /method ) 198 642 T
+7 F
+(/sendtarget) 252.95 642 T
+6 F
+( results) 301.39 642 T
+5 F
+0.52 0.1 (Sends ) 198 622.33 B
+6 F
+0.45 -0.27 (/method) 227.81 622.33 B
+5 F
+0.52 0.1 ( and any necessary ar) 258.39 622.33 B
+0.52 0.1 (guments to the tar) 357.43 622.33 B
+0.52 0.1 (get and r) 441.39 622.33 B
+0.52 0.1 (eturns the ) 482.62 622.33 B
+0.52 0.1 (method\325s r) 198 609.93 B
+0.52 0.1 (esults, if any) 247.05 609.93 B
+0.52 0.1 (.) 303.94 609.93 B
+8 F
+-0.94 (Menu V) 54 576.2 P
+-0.94 (alues) 103.21 576.2 P
+6 F
+(/setvalue) 54 555.2 T
+([ index index ...] ) 198 555.2 T
+7 F
+(/setvalue) 263.45 555.2 T
+6 F
+( -) 301.91 555.2 T
+5 F
+0.2 0.1 (Sets the value of the menu. ) 198 535.53 B
+7 F
+0.17 -0.27 (/setvalue) 323.34 535.53 B
+5 F
+0.2 0.1 ( can be used to initialize a settings menu to ) 359.37 535.53 B
+0.34 0.1 (a speci\336c state: the items corr) 198 523.13 B
+0.34 0.1 (esponding to the indices pr) 331.69 523.13 B
+0.34 0.1 (ovided will be turned ) 456 523.13 B
+0.12 0.1 (on\321the r) 198 510.73 B
+0.12 0.1 (est will be of) 240.31 510.73 B
+0.12 0.1 (f. The behavior is unde\336ned if an ) 297.82 510.73 B
+6 F
+0.1 -0.27 (/Exclusive) 450.87 510.73 B
+5 F
+0.12 0.1 ( menu is given ) 488.62 510.73 B
+0.52 0.1 (an array of other than a single index, or an ) 198 498.33 B
+6 F
+0.45 -0.27 (/ExclusiveV) 397.59 498.33 B
+0.45 -0.27 (ariation) 440.4 498.33 B
+5 F
+0.52 0.1 ( menu is given an ) 467.71 498.33 B
+0.23 0.1 (array of other than 0 or 1 indices. Command menus ar) 198 485.93 B
+0.23 0.1 (e not stateful, and hence ) 444.56 485.93 B
+0.2 0.1 (have no r) 198 473.53 B
+0.2 0.1 (eal need for this method. \050It can be legally used however) 240.58 473.53 B
+0.2 0.1 (, and has the ) 497.48 473.53 B
+0.01 0.1 (ef) 198 461.13 B
+0.01 0.1 (fect of changing the menu\325s notion of which command item was last selected. ) 206.14 461.13 B
+0.52 0.1 (An array containg a single index should be used in this case.\051) 198 448.73 B
+6 F
+(/value) 54 429 T
+(- ) 198 429 T
+7 F
+(/value) 203.49 429 T
+6 F
+( [ index index ... ]) 228.97 429 T
+5 F
+0.45 0.1 (Returns the value of the menu. For settings menus \050) 198 409.33 B
+6 F
+0.39 -0.27 (/Exclusive) 435.26 409.33 B
+5 F
+0.45 0.1 (, ) 473.01 409.33 B
+6 F
+0.39 -0.27 (/NonExclusive) 478.66 409.33 B
+5 F
+0.45 0.1 (, and ) 532.08 409.33 B
+6 F
+0.45 -0.27 (/ExclusiveV) 198 396.93 B
+0.45 -0.27 (ariation) 240.81 396.93 B
+5 F
+0.52 0.1 (\051, ) 268.12 396.93 B
+7 F
+0.45 -0.27 (/value) 277.27 396.93 B
+5 F
+0.52 0.1 ( r) 301.13 396.93 B
+0.52 0.1 (eturns an array of indices \050possibly empty\051 ) 308.11 396.93 B
+0.52 0.1 (corr) 198 384.53 B
+0.52 0.1 (esponding to the curr) 216.01 384.53 B
+0.52 0.1 (ently \322on\323 items. For ) 314.62 384.53 B
+6 F
+0.45 -0.27 (/Command) 413.96 384.53 B
+5 F
+0.52 0.1 ( menus an array ) 455.75 384.53 B
+0.52 0.1 (containing a single index corr) 198 372.13 B
+0.52 0.1 (esponding to the item last selected  is r) 333.64 372.13 B
+0.52 0.1 (eturned.) 512.57 372.13 B
+8 F
+-0.94 (ClassCanvas and ClassRegion interfaces) 54 338.4 P
+1 F
+-0.88 (Canvas menu methods) 126 304.07 P
+5 F
+0.52 0.1 (Instances of ClassCanvas do not r) 198 282.73 B
+0.52 0.1 (espond to MENU by default. They will if ) 352.24 282.73 B
+0.52 0.1 (made \322menuable.\323 Regions sitting on menuable canvases simply make sur) 198 270.34 B
+0.52 0.1 (e ) 539.08 270.34 B
+0.52 0.1 (that their menu is not null befor) 198 257.93 B
+0.52 0.1 (e showing it when the user pr) 345.12 257.93 B
+0.52 0.1 (esses MENU ) 482.6 257.93 B
+0.52 0.1 (over them.) 198 245.53 B
+6 F
+(/Menu) 54 225.14 T
+7 F
+(/Menu) 198 225.14 T
+6 F
+( menu-instance ) 223.96 225.14 T
+5 F
+(\050Variable\051) 287.9 225.14 T
+0.52 0.1 (The menu for a canvas or r) 198 205.14 B
+0.52 0.1 (egion. Subclass it to associate a menu with all ) 321.93 205.14 B
+0.52 0.1 (instances of this type of canvas or r) 198 192.73 B
+0.52 0.1 (egion.) 360.03 192.73 B
+FMENDPAGE
+%%EndPage: "118" 13
+1 9 /Times-Roman FMDEFINEFONT
+%%Page: "119" 13
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+540 677.52 558 677.52 2 L
+0.02 H
+2 Z
+0 X
+N
+540 695.88 558 695.88 2 L
+N
+540 694.8 558 694.8 2 L
+N
+540 693.72 558 693.72 2 L
+N
+540 692.64 558 692.64 2 L
+N
+540 691.56 558 691.56 2 L
+N
+540 690.48 558 690.48 2 L
+N
+540 689.4 558 689.4 2 L
+N
+540 688.32 558 688.32 2 L
+N
+540 687.24 558 687.24 2 L
+N
+540 686.16 558 686.16 2 L
+N
+540 685.08 558 685.08 2 L
+N
+540 684 558 684 2 L
+N
+540 682.92 558 682.92 2 L
+N
+540 681.84 558 681.84 2 L
+N
+540 680.76 558 680.76 2 L
+N
+540 679.68 558 679.68 2 L
+N
+540 678.6 558 678.6 2 L
+N
+4 F
+0.09 (ClassMenu) 198 108.7 S
+0 F
+0.09 (1) 544.74 108.7 S
+0.09 (19) 548.83 108.7 S
+2 F
+7 X
+1 K
+-0.2 (12) 538.91 680.03 S
+558 675 54 675 2 L
+0.3 H
+0 X
+0 K
+N
+6 F
+(/setmenu) 54 642 T
+(menu | null ) 198 642 T
+7 F
+(/setmenu) 244.29 642 T
+6 F
+( -) 283.75 642 T
+5 F
+0.26 0.1 (Associates a menu with this Canvas or Region. Calling this method alone does ) 198 622.33 B
+0.01 0.1 (not ensur) 198 609.93 B
+0.01 0.1 (e that the menu will be shown when the user pr) 240.58 609.93 B
+0.01 0.1 (esses MENU. In or) 456.17 609.93 B
+0.01 0.1 (der ) 540.25 609.93 B
+0.52 0.1 (for the menu to appear the canvas must be made menuable.) 198 597.53 B
+6 F
+(/menu) 54 577.8 T
+(- ) 198 577.8 T
+7 F
+(/menu) 203.49 577.8 T
+6 F
+( menu | null) 229.96 577.8 T
+5 F
+0.52 0.1 (Returns the menu \050if any\051 associated with this canvas or r) 198 558.13 B
+0.52 0.1 (egion.) 462.58 558.13 B
+6 F
+(/Menuable?) 54 537.73 T
+7 F
+(/Menuable?) 198 537.73 T
+6 F
+( boolean) 247.44 537.73 T
+5 F
+( \050Variable\051) 281.92 537.73 T
+1 F
+( \050only in ClassCanvas\051 ) 328.36 537.73 T
+5 F
+0.52 0.1 (Determines whether a canvas should show its menu when MENU is pr) 198 517.73 B
+0.52 0.1 (essed ) 524.15 517.73 B
+0.37 0.1 (with the pointer over the canvas. When ) 198 505.33 B
+6 F
+0.32 -0.27 (/Menuable?) 381.11 505.33 B
+5 F
+0.37 0.1 ( is tr) 425.37 505.33 B
+0.37 0.1 (ue the canvas r) 445.98 505.33 B
+0.37 0.1 (eceives a ) 514.67 505.33 B
+7 F
+0.45 -0.27 (/MenuStart) 198 492.93 B
+5 F
+0.52 0.1 ( when MENU is pr) 241.74 492.93 B
+0.52 0.1 (essed over it \050see ) 328.73 492.93 B
+7 F
+0.45 -0.27 (/MenuStart) 410.01 492.93 B
+5 F
+0.52 0.1 ( on page 1) 453.74 492.93 B
+0.52 0.1 (19\051.) 500.87 492.93 B
+6 F
+(/setmenuable) 54 473.2 T
+(boolean ) 198 473.2 T
+7 F
+(/setmenuable) 232.48 473.2 T
+6 F
+( - ) 289.91 473.2 T
+1 F
+(\050only in ClassCanvas\051) 297.9 473.2 T
+5 F
+0.52 0.1 (Sets the value of ) 198 453.53 B
+7 F
+0.45 -0.27 (/Menuable?) 276.42 453.53 B
+5 F
+0.52 0.1 (. ) 323.16 453.53 B
+6 F
+(/menuable?) 54 433.8 T
+(- ) 198 433.8 T
+7 F
+(/menuable?) 203.49 433.8 T
+6 F
+( boolean ) 253.43 433.8 T
+1 F
+(\050only in ClassCanvas\051) 290.41 433.8 T
+5 F
+0.52 0.1 (Returns the value of the variable ) 198 414.13 B
+6 F
+0.45 -0.27 (/Menuable?) 350.86 414.13 B
+5 F
+0.52 0.1 (.) 395.11 414.13 B
+6 F
+(/MenuStart) 54 394.4 T
+(invoker posname event ) 198 394.4 T
+7 F
+(/MenuStart) 293.41 394.4 T
+6 F
+( invoker posname event menu true ) 339.85 394.4 T
+-0.27 (| invoker posname event false) 342 383.4 S
+(| invoker posname event null true) 342 372.4 T
+5 F
+0.52 0.1 (Determines which menu \050if any\051 should be shown over this object, and wher) 198 352.73 B
+0.52 0.1 (e ) 549.17 352.73 B
+0.52 0.1 (it should be positioned. Y) 198 340.33 B
+0.52 0.1 (ou can change wher) 314.89 340.33 B
+0.52 0.1 (e the menu pops up by:) 406.61 340.33 B
+3 F
+(\245) 198 321.93 T
+5 F
+-0.07 0.1 (Overriding ) 210.6 321.93 B
+7 F
+-0.06 -0.27 (/MenuStart) 263.61 321.93 B
+5 F
+-0.07 0.1 ( and modifying the ) 307.35 321.93 B
+6 F
+-0.06 -0.27 (XLocation) 396.23 321.93 B
+5 F
+-0.07 0.1 (, ) 433.77 321.93 B
+6 F
+-0.06 -0.27 (YLocation) 438.9 321.93 B
+5 F
+-0.07 0.1 ( pair of the event; ) 476.43 321.93 B
+0.52 0.1 (and/or ) 198 301.54 B
+3 F
+(\245) 198 283.14 T
+5 F
+0.52 0.1 (Changing the ) 210.6 283.14 B
+6 F
+0.45 -0.27 (posname) 275.35 283.14 B
+5 F
+0.52 0.1 (. ) 310.43 283.14 B
+6 F
+0.45 -0.27 (posname) 198 262.73 B
+5 F
+0.52 0.1 ( defaults to ) 233.07 262.73 B
+6 F
+0.45 -0.27 (/Default) 287.8 262.73 B
+5 F
+0.52 0.1 (, which means that the default item \050or the item at ) 316.61 262.73 B
+0.52 0.1 (index 0 if ther) 198 250.34 B
+0.52 0.1 (e is no default\051 is aligned beside the given point. Curr) 262.2 250.34 B
+0.52 0.1 (ently) 509.86 250.34 B
+0.52 0.1 (, the ) 531.58 250.34 B
+0.17 0.1 (only other legal posname is ) 198 237.93 B
+6 F
+0.14 -0.27 (/NorthW) 325.57 237.93 B
+0.14 -0.27 (est) 356.48 237.93 B
+5 F
+0.17 0.1 (, which corr) 367.66 237.93 B
+0.17 0.1 (esponds to the top-left corner ) 421.61 237.93 B
+0.52 0.1 (of the menu. \050) 198 225.53 B
+6 F
+0.45 -0.27 (posname) 262.38 225.53 B
+5 F
+0.52 0.1 ( is used by menu buttons for positioning their menus.\051) 297.46 225.53 B
+6 F
+0.45 -0.27 (invoker) 198 205.14 B
+5 F
+0.52 0.1 ( is the object that most r) 225.08 205.14 B
+0.52 0.1 (ecently caused the menu to be displayed. The ) 335.48 205.14 B
+6 F
+0.45 -0.27 (invoker) 198 192.73 B
+5 F
+0.52 0.1 ( also determines the local event manager in which the menu\325s noti\336er ) 225.08 192.73 B
+0.52 0.1 (executes and is the default tar) 198 180.34 B
+0.52 0.1 (get of the menu \050see ) 335.03 180.34 B
+9 F
+0.52 0.1 (The invoker mechanism) 431.07 180.34 B
+5 F
+0.52 0.1 ( on ) 529.35 180.34 B
+0.52 0.1 (page 1) 198 167.93 B
+0.52 0.1 (17\051. ) 227.41 167.93 B
+7 F
+0.45 -0.27 (/MenuStart) 246.75 167.93 B
+5 F
+0.52 0.1 ( can r) 290.49 167.93 B
+0.52 0.1 (eturn a dif) 316.15 167.93 B
+0.52 0.1 (fer) 364.28 167.93 B
+0.52 0.1 (ent invoker to change teh event ) 376.46 167.93 B
+0.52 0.1 (manager and tar) 198 155.53 B
+0.52 0.1 (get.) 273.41 155.53 B
+FMENDPAGE
+%%EndPage: "119" 14
+%%Page: "120" 14
+612 792 0 FMBEGINPAGE
+0 72 612 720 C
+0 72 612 720 R
+7 X
+0 K
+V
+54 677.52 72 677.52 2 L
+V
+0.02 H
+2 Z
+0 X
+N
+54 695.88 72 695.88 2 L
+7 X
+V
+0 X
+N
+54 694.8 72 694.8 2 L
+7 X
+V
+0 X
+N
+54 693.72 72 693.72 2 L
+7 X
+V
+0 X
+N
+54 692.64 72 692.64 2 L
+7 X
+V
+0 X
+N
+54 691.56 72 691.56 2 L
+7 X
+V
+0 X
+N
+54 690.48 72 690.48 2 L
+7 X
+V
+0 X
+N
+54 689.4 72 689.4 2 L
+7 X
+V
+0 X
+N
+54 688.32 72 688.32 2 L
+7 X
+V
+0 X
+N
+54 687.24 72 687.24 2 L
+7 X
+V
+0 X
+N
+54 686.16 72 686.16 2 L
+7 X
+V
+0 X
+N
+54 685.08 72 685.08 2 L
+7 X
+V
+0 X
+N
+54 684 72 684 2 L
+7 X
+V
+0 X
+N
+54 682.92 72 682.92 2 L
+7 X
+V
+0 X
+N
+54 681.84 72 681.84 2 L
+7 X
+V
+0 X
+N
+54 680.76 72 680.76 2 L
+7 X
+V
+0 X
+N
+54 679.68 72 679.68 2 L
+7 X
+V
+0 X
+N
+54 678.6 72 678.6 2 L
+7 X
+V
+0 X
+N
+2 F
+7 X
+1 K
+-2.6 (12) 55.6 680.03 S
+0 F
+0 X
+0 K
+0.09 (120) 54 108.7 S
+4 F
+-0.58 0.09 (The NeWS T) 198 108.7 B
+-0.58 0.09 (oolkit Refer) 244.17 108.7 B
+-0.58 0.09 (ence Manual \321 Mar) 285.69 108.7 B
+-0.58 0.09 (ch 1991) 361.61 108.7 B
+558 675 54 675 2 L
+0.3 H
+N
+5 F
+0.52 0.1 (By default ) 198 641.33 B
+7 F
+0.45 -0.27 (/MenuStart) 248.21 641.33 B
+5 F
+0.52 0.1 ( r) 291.95 641.33 B
+0.52 0.1 (eturns the ) 298.94 641.33 B
+6 F
+0.45 -0.27 (/Menu) 348.01 641.33 B
+5 F
+0.52 0.1 ( class/instance variable, and does not ) 371.64 641.33 B
+0.52 0.1 (modify the positioning or invoker ar) 198 628.93 B
+0.52 0.1 (guments.) 365.36 628.93 B
+0.52 0.1 (Returning) 198 608.53 B
+6 F
+0.45 -0.27 ( invoker posname event false) 243.7 608.53 B
+5 F
+0.52 0.1 ( causes event to be r) 354.81 608.53 B
+0.52 0.1 (edistributed allowing ) 447.82 608.53 B
+0.52 0.1 (some other object to open a menu.) 198 596.13 B
+0.52 0.1 (The) 198 575.73 B
+6 F
+0.45 -0.27 ( invoker posname event null tru) 215.03 575.73 B
+5 F
+0.52 0.1 (e r) 333.77 575.73 B
+0.52 0.1 (eturn is pr) 345.64 575.73 B
+0.52 0.1 (ovided so that you can r) 393.54 575.73 B
+0.52 0.1 (espond to ) 505.12 575.73 B
+0.52 0.1 (MENU down over your canvas or r) 198 563.33 B
+0.52 0.1 (egion by not opening any menu and ) 360.7 563.33 B
+0.52 0.1 (pr) 198 550.93 B
+0.52 0.1 (eventing anyone else \050e.g., the window under the canvas or r) 207.98 550.93 B
+0.52 0.1 (egion\051 fr) 487.73 550.93 B
+0.52 0.1 (om ) 526.6 550.93 B
+0.52 0.1 (opening a menu in r) 198 538.53 B
+0.52 0.1 (esponse to the MENU.) 291.27 538.53 B
+0.52 0.1 (This method is executed in the local event manager) 198 518.13 B
+0.52 0.1 (.) 432.76 518.13 B
+6 F
+(/MenuStop) 54 498.4 T
+(menu ) 198 498.4 T
+7 F
+(/MenuStop) 222.98 498.4 T
+6 F
+( -) 268.91 498.4 T
+5 F
+0.15 0.1 (Called when the menu \050the r) 198 478.73 B
+0.15 0.1 (oot of the chain of submenus if such a chain is up\051 ) 327.75 478.73 B
+0.52 0.1 (is br) 198 466.33 B
+0.52 0.1 (ought down. Y) 217.96 466.33 B
+0.52 0.1 (ou can subclass it if you need to perform any action at this ) 285.37 466.33 B
+0.52 0.1 (time, such as destr) 198 453.93 B
+0.52 0.1 (oying a temporary menu. ) 283.14 453.93 B
+7 F
+0.45 -0.27 (/MenuStop) 402.65 453.93 B
+5 F
+0.52 0.1 ( executes in the local ) 446.15 453.93 B
+0.52 0.1 (event manager) 198 441.53 B
+0.52 0.1 (.) 264.8 441.53 B
+8 F
+-0.94 (Help facilites for menus) 54 407.8 P
+5 F
+0.52 0.1 (Help is available for menus on a menu-wide and on a per item basis. See ) 198 386.13 B
+0.5 0.1 (Chapter 5) 198 373.73 B
+9 F
+0.5 0.1 (, ) 242.8 373.73 B
+5 F
+0.5 0.1 (ClassCanvas, ) 248.5 373.73 B
+9 F
+0.5 0.1 (Help facilities) 311.55 373.73 B
+5 F
+0.5 0.1 ( on page 63 for an explanation of the the ) 368.99 373.73 B
+0.52 0.1 (TNT help facilities and, mor) 198 361.33 B
+0.52 0.1 (e speci\336cally) 327.1 361.33 B
+0.52 0.1 (, the format for ) 384.33 361.33 B
+6 F
+0.45 -0.27 (keyword-string.) 457.01 361.33 B
+(/sethelpkeyword) 54 341.6 T
+(keyword-string ) 198 341.6 T
+7 F
+(/sethelpkeyword) 258.93 341.6 T
+6 F
+( -) 329.35 341.6 T
+5 F
+0.52 0.1 (Sets the help string for the gr) 198 321.93 B
+0.52 0.1 (oup.) 331.77 321.93 B
+6 F
+(/helpkeyword) 54 302.2 T
+(event ) 198 302.2 T
+7 F
+(/helpkeyword) 222.48 302.2 T
+6 F
+( keyword-string) 279.92 302.2 T
+5 F
+0.52 0.1 (Returns the gr) 198 282.54 B
+0.52 0.1 (oup\325s help string. ) 263.37 282.54 B
+6 F
+(/setitemhelpkeyword) 54 262.8 T
+(item-index keyword-string ) 198 262.8 T
+7 F
+(/setitemhelpkeyword) 302.87 262.8 T
+6 F
+( -) 391.78 262.8 T
+5 F
+0.52 0.1 (Sets the help string for the item at ) 198 243.14 B
+6 F
+0.45 -0.27 (item-index) 357.11 243.14 B
+5 F
+0.52 0.1 (.) 395.86 243.14 B
+6 F
+(/itemhelpkeyword) 54 223.4 T
+(item-index ) 198 223.4 T
+7 F
+(/itemhelpkeyword) 241.95 223.4 T
+6 F
+( keyword-string) 317.86 223.4 T
+5 F
+0.52 0.1 (Returns the help string for the item at ) 198 203.73 B
+6 F
+0.45 -0.27 (item-index) 374.63 203.73 B
+5 F
+0.52 0.1 (.) 413.38 203.73 B
+FMENDPAGE
+%%EndPage: "120" 15
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 14 1
+%%DocumentFonts: Palatino-Roman
+%%+ Palatino-Italic
+%%+ Helvetica
+%%+ Helvetica-Bold
+%%+ Helvetica-Oblique
+%%+ Times-Bold
+%%+ Palatino-Bold
+%%+ Palatino-BoldItalic
+%%+ Courier
+%%+ Times-Roman

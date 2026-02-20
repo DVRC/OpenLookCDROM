@@ -1,0 +1,581 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#) interest.ps 23.23 91/02/11
+%
+%   interest.ps: ClassInterest and its various subclasses.
+
+%    ClassInterest: *very* simple wrapper on createevent
+%
+/ClassInterest ClassObject [
+]
+classbegin
+
+% Defaults:
+
+% Class variables:
+
+    % Priorities for certain well-known types of interest.  Note that
+    % canvases that choose to interpret raw mouse-clicks (trackers)
+    % supersede all forms of selection.  Canvases that are selected
+    % in toto do not get the focus, while canvases whose contents are
+    % selectable DO get the focus (in click-to-type mode).
+    
+    /GrabPriority		1000	def
+    /FocusManagerPriority	  20	def
+    /TrackPriority		  18	def
+    /CanvasSelectPriority	  15	def
+    /ContentsSelectPriority	   7	def
+    /FunctionKeyPriority	   5	def
+    /BoundKeyPriority		   3	def
+    /MenuButtonPriority		   3	def
+    /NormalButtonPriority	   2	def
+    /ShiftKeyPriority		   1	def
+    /FullScreenPriority		  -1	def
+
+    % Default values for certain magic-dict variables, so subclasses can
+    % override them.
+    %
+    /Priority 0 def
+    /Exclusivity false def
+    /Synchronous false def
+    
+    %	SelfAction matches crossings directly into/out of a canvas
+    %
+    /SelfAction [
+	0	% Ancestor: entered me from, or left to, an ancestor
+	2	% Inferior: entered me from, or left to, a descendant
+	3	% Nonlinear: entered me from, or left to, a
+		%	    non-{ancestor,descendant}
+    ]  def
+
+    %	SubTreeAction matches crossing into/out of a canvas' subtree
+    %
+    /SubTreeAction [
+	0	% Ancestor: entered this window from, or left to, an ancestor
+	1	% Virtual: ancestor to descendant or vice-versa
+	3	% Nonlinear: between me and non-{ancestor,descendant}
+	4	% Nonlinear Virtual: between a descendant and
+		%	    a non-{ancestor, descendant}
+    ] def
+
+% Methods:
+
+    % Make a new instance of ClassInterest. Note that this instance
+    % will actually be an (unexpressed) NeWS interest "magic" dictionary
+    % rather than a simple dictionary.
+    %
+    /NewObject { % - => instance; make new instance
+        createevent
+        % See ClassCanvas for note re defaulting of magic dict fields.
+        dup /Priority		Priority put
+        dup /Exclusivity	Exclusivity put
+        dup /Synchronous	Synchronous put
+        /NewMagic self send
+    } def
+    /NewInit {  % canvas action name  =>  interest
+        /NewInit super send
+	/Name exch def
+	/Action exch def
+	/Canvas exch def
+    } def
+
+    %   Has this interest been activated (expressed)?
+    %
+    /Active? { % - => bool
+    	IsInterest
+    } def
+
+    %   Express an interest.  Redundant (but safe) if already expressed.
+    %   The event argument is present because some subclasses require it,
+    %   and the caller may not always know whether this particular interest
+    %   belongs to such a class.
+    %
+    /activate { % event  =>  -
+    	pop
+	self Process dup null eq {		%  interest process
+	    pop					%  interest
+	} if					%  interest [process]
+	expressinterest
+    } def
+
+    %	Revoke an interest.  No-op if not expressed.
+    %
+    /deactivate { % -  =>  -
+	IsInterest {
+	    self Process revokeinterest
+	} if
+    } def
+
+    %	Deactivate & destroy the interest.
+    %
+    /destroy { % - => -
+	/deactivate self send
+	/Name null def
+	/Action null def
+	/Canvas null def
+	/Process null def
+	/destroy super send
+    } def
+
+    /addclient { % canvas => -
+	Canvas
+	dup truetype /dicttype eq /typecheck assert
+	exch soften dup put
+    } def
+
+    /removeclient { % canvas => -
+	Canvas exch undef
+    } def
+
+    % Does a send to this interest but in the context of a LEM.  This is for
+    % use in executable matches running in the GEM.  If the canvas is not
+    % specified on the stack, the /Canvas of the event is used.  (Allowing the
+    % canvas on the stack supports clients who can't afford to have
+    % non-executable matches modify the event, because the event might have to
+    % be redistributed to a client who cares about the /Synthetic bit.)  If
+    % the LEM is a zombie, the request is ignored, and the input queue is
+    % unblocked if necessary (otherwise the LEM is expected to do it).
+    %
+    /SendInContext { % event [canvas] /method => -
+	1 index type /canvastype eq {
+	    exch
+	}{
+	    1 index /Canvas get
+	} ifelse					% ev meth canvas
+	dup null ne dup {
+	    pop /eventmgr exch send 	    	    	% ev meth emgr
+	    dup null ne dup {
+		pop dup /State get /zombie ne		% ev meth emgr alive?
+	    } if
+	} if
+	{						% ev meth emgr
+	    3 1 roll self 3 array astore		% emgr [ev meth self]
+	    /sendmanager 3 -1 roll send
+	}{
+	    % We arrive here if there is no Canvas specified in the
+	    % parameters, or in the event; or if the canvas has a null
+	    % eventmgr.
+	    %
+	    % If we couldn't find an appropriate LEM, ignore the proc.
+	    %
+	    pop pop pop
+	    Synchronous {unblockinputqueue} if
+	    % do not use /Unwind since don't want subclass-added Unwinding
+	    % and don't want the 'stop'
+	} ifelse
+    } def
+
+    % Utility for cleaning up the state if an error occurs during
+    % event processing.  Uses 'stop' to propagate the error.
+    %
+    /Unwind { % - => -
+    	Synchronous {unblockinputqueue} if
+    	stop
+    } def
+
+classend def
+
+%    ClassNotifyInterest: an interest which triggers others, as in Focus for
+%    keyboard management.  The latter interests are called Dependents.  The
+%    triggering event is passed to the Dependents when they are activated.
+%    If no such event is available, nullevent is passed.  (This happens when
+%    a Dependent is added after the Notify has already triggered, or when the
+%    Notify itself is activated after the triggering event has gone past.)
+%
+/ClassNotifyInterest ClassInterest dictbegin
+    /CurrentClient  null	def	%  canvas
+    /Dependents	    nulldict	def	%  dict [ label : interest ]
+    /Triggered?	    false	def	%  bool
+dictend
+classbegin
+
+% Class variable overrides:
+
+    /Synchronous true def
+    
+% Methods:
+
+    %	initialize the notify-interest; i.e., one which triggers other
+    %	interests when it is satisfied, and revokes them symmetrically
+    %
+    /NewInit { % canvas action name  =>  -
+	/NewInit super send
+	/Dependents growabledict def
+    } def
+
+    %	Destroy a notify-interest, disowning (and therefore deactivating)
+    %   all of its dependent interests.
+    %
+    /destroy { % -  =>  -
+    	% Get dependents on stack since undefs during forall can cause errors.
+	Dependents {exch pop} forall
+	Dependents length {			% ... Dint
+	    /removedependency exch send
+	    % Note: dependent will call us back to get undefed
+	} repeat
+	/destroy super send
+    } def
+
+    %   Override: When the Notify is activated, it immediately activates its
+    %   dependents if it determines that the triggering event has already
+    %   gone by.
+    %
+    /activate { % event => -
+	dup /activate super send
+    	/TestTrigger self send {
+    	    /trigger self send
+    	} {
+	    pop
+    	} ifelse
+    } def
+
+    %	Deactivate to a NotifyInterest should deactivate all its
+    %   Dependents first (but not disown them; cf /destroy).
+    %
+    /deactivate { % -  =>  -
+        Triggered? {nullevent /untrigger self send} if
+	/deactivate super send
+    } def
+
+    %	Override to deactivate dependents, clear CurrentClient, etc.
+    %
+    /Unwind { % - => -
+    	/CancelNotify self send
+	/Unwind super send
+    } def
+
+    %	Activate all Dependents.  Generally executed in the LEM via
+    %	SendInContext.  The triggering event is expected to be on the stack.
+    %
+    /trigger { % event  =>  -
+   	{ % stopped context
+   	
+	Triggered? { /CancelNotify self send } if	%  ev
+	dup /Canvas get	/CurrentClient exch store	%  ev
+	
+	% Test whether this canvas is still an active client.  This covers for
+	% some race conditions if a client removes itself without having first
+	% blocked the input queue.  (Blocking the queue is not always feasible
+	% since the triggering event may be a menu callback catcher, where the
+	% relevant interest can't afford to always block the queue.)
+	Canvas dup type /dicttype ne {pop true}{CurrentClient known} ifelse
+	{						%  ev
+	    /ActivateDependents self send
+	} {
+	    pop /CurrentClient null def
+	} ifelse					%  -
+	
+	% If ActivateDependents calls CancelNotify, we're not triggered.
+	% We can't set Triggered? to true before calling ActivateDependents
+	% since it mucks up the KeyService.  (When a key client asks for a new
+	% suite, the new dependent interest gets activated automatically
+	% because the notify interest's /Triggered? is true, and KeyService
+	% cannot then set the dependent's Priority.)
+	/Triggered? CurrentClient null ne store
+	
+	} stopped {Unwind} if
+	unblockinputqueue
+    } def
+
+    %	Deactivate all Dependents.  Doesn't use stopped/Unwind since untrigger
+    %	is often called from within subclass-specific code which itself needs
+    %	to have the stopped/Unwind wrapper.
+    %
+    /untrigger { % event  =>  -
+	pop
+	/DeactivateDependents self send
+	/Triggered? false store
+	/CurrentClient null def
+	unblockinputqueue
+    } def
+
+    %	return Triggered? state
+    /triggered? {  %  -  =>  bool
+	Triggered?
+    } def
+
+    %   Accept a dependent interest.  This method is called by the Dependent
+    %   in its /adddependency method.  Clients should not call this method
+    %   directly.  The "any" is a label for the interest, typically the name
+    %   of the method it invokes in the client.
+    %
+    /AddDependent { % any Dint => -
+	Triggered? {
+	    nullevent /activate 2 index send
+	} if
+	Dependents 3 1 roll put
+    } def
+
+    %	Remove a dependent interest.  This method is called by the Dependent
+    %   in its /removedependency method.  Clients should not call this method
+    %   directly.
+    %
+    /RemoveDependent { % name | Dint  =>  -
+	dup type /eventtype eq {
+	    true
+	} {
+	    FindDependent
+	} ifelse			%  false | interest true
+	{   Triggered? {
+		/deactivate 1 index send
+	    } if
+	    Dependents exch undef
+	} if
+    } def
+
+    %	Find a dependent by the associated value.
+    %
+    /FindDependent { %   value	=> false | Dependent true
+	Dependents exch 2 copy known {
+	    get true
+	} {
+	    pop pop false
+	} ifelse
+    } def
+
+    %   Test whether our triggering event has already occurred.  This is for
+    %   when the Notify itself is activated, when it wants to determine if
+    %   it should immediately activate its Dependents.
+    %
+    /TestTrigger { % - => bool
+    	false
+    } def
+
+    %  CancelNotify is overridden by subclasses which need to undo client state
+    %
+    /CancelNotify { %  -  =>  -
+	/DeactivateDependents self send
+	/Triggered? false store
+	/CurrentClient null def
+    } def
+    
+    %  Override: If client being removed is CurrentClient, cancel the operation.
+    %
+    /removeclient { % canvas => -
+    	dup CurrentClient eq {/CancelNotify self send} if
+    	/removeclient super send
+    } def
+
+    %  ActivateDependents: by default, activate all dependents.
+    %  Some subclasses (e.g. keys & trackers) will override it to
+    %  be selective.
+    %
+    /ActivateDependents { % event  =>  -
+	dup Dependents {		%  ev ev label Dint
+	    exch pop			%  ev ev Dint
+	    /activate exch send dup	%  ev ev 
+	} forall pop pop
+    } def
+
+    %  DeactivateDependents: factored so CancelNotify can use it.
+    %  It deactivates all active dependents; this works for
+    %  selective subclasses, too.
+    %
+    /DeactivateDependents { %  -  =>  -
+	Dependents {			%  label Dint
+	    dup /IsInterest get {
+		/deactivate exch send	%  label
+	    } {
+		pop			%  label
+	    } ifelse
+	    pop 
+	} forall
+    } def
+
+    %	DepCreate: create a dependent interest.
+    %
+    /DepCreate { %  label canvas action name => Dint
+	self 4 1 roll /new ClassDependentInterest send
+    } def
+
+classend def
+
+%    Focus (Keyboard) Interests
+
+/ClassFocusSelfInterest ClassNotifyInterest [
+]
+classbegin
+
+% Defaults:
+
+% Class variables:
+    %	FocusIntDict is used in the Name of an interest
+    %	triggered by a Focus change
+    %
+    /FocusIntDict dictbegin
+	/AcceptFocus	{/trigger 1 index /Interest get send}	def
+	/RestoreFocus	{/trigger 1 index /Interest get send}	def
+	/LoseFocus	{/untrigger 1 index /Interest get send}	def
+    dictend def
+
+% Methods:
+
+    %   Initialize the notify interest for focus in a specific canvas.
+    %
+    /NewInit { % canvas  =>  -
+	SelfAction FocusIntDict /NewInit super send
+    } def
+
+    %   Override: See if this canvas already has the input focus.
+    %
+    /TestTrigger { %  -  =>  bool
+	currentinputfocus Canvas eq
+    } def
+
+classend def
+
+/ClassFocusSubtreeInterest ClassNotifyInterest [
+]
+classbegin
+
+% Defaults:
+
+% Class variables:
+
+    %	FocusIntDict is used in the Name of an interest triggered
+    %	by a Focus change; it's shared with ClassFocusSelfInterest.
+    %
+    /FocusIntDict ClassFocusSelfInterest 1 index get def
+
+% Methods:
+
+    %   Initialize the notify interest for focus in a canvas's subtree.
+    %
+    /NewInit { % canvas  =>  -
+	SubTreeAction FocusIntDict /NewInit super send
+    } def
+
+    %   Override: See if focus is this canvas or any descendant.
+    %
+    /TestTrigger { %  -  =>  bool
+	currentinputfocus {			%  cv
+	    dup null eq {
+		pop false exit
+	    } if
+	    dup Canvas eq {
+		pop true exit
+	    } if
+	    /Parent get
+	} loop
+    } def
+
+classend def
+
+%   ClassDependentInterest
+%
+%   A Dependent interest is activated by a Notify interest; until activated,
+%   it is not expressed.
+%
+%   It is also possible for a Dependent to be activated explicitly, without
+%   being associated with a Notify interest.  This is because some subclasses
+%   of Dependent have additional functionality that is useful even without
+%   the Notify aspects, and it was deemed not worth the overhead to factor
+%   this functionality out via multiple inheritance subclassing.  The one
+%   specific instance of this is the global shift-key manager.
+%
+/ClassDependentInterest ClassInterest dictbegin
+    /NotifyInterest	null	def
+dictend
+classbegin
+
+% Defaults:
+
+% Class variables:
+
+% Methods:
+
+    %   Override: If a Notify is provided, the caller must also provide
+    %   the "any" argument for /adddependency.
+    %
+    /NewInit { % any notifyinterest canvas action name  =>  -
+	       %	       null canvas action name  =>  -
+	/NewInit super send			%  any Nint | null
+	dup null ne {				%  any Nint
+	    /adddependency self send  
+	} {					%  null
+	    pop
+	} ifelse
+    } def
+
+    %	Override: Remove our dependency when we're about to go away.
+    %
+    /destroy { % - =>  -
+	/removedependency self send
+	/destroy super send
+    } def
+
+    %	Make this interest dependent on a specified Notify interest.
+    %   The Dependent is first disconnected from its current Notify, if any.
+    %   The "any" is a value that can later be used to obtain the Dependent
+    %   from the Notify using /finddependent.
+    %
+    /adddependency { % any Nint  =>  -
+    	dup NotifyInterest ne NotifyInterest null ne and {
+    	    /removedependency self send
+    	} if					% any Nint
+    	/NotifyInterest 1 index soften store	% any Nint
+    	self /AddDependent 3 -1 roll send
+    } def
+
+    %	Disconnect this interest from its current Notify, if any.
+    %
+    /removedependency { % -  =>  -
+    	NotifyInterest null ne {
+    	    self /RemoveDependent NotifyInterest send
+    	    /NotifyInterest null store
+    	} if
+    } def
+
+    %	Activate is a complete override of ClassInterest's; it does not
+    %	call super.  This supports efficient expression of interests in
+    %	client processes.  The assumption is that, unless a process is
+    %	explicitly stored in the interest, the dependent wants to be
+    %	expressed in the eventmgr of the current client canvas, and
+    %	we're already running in either that process or the GEM.  Note
+    %	that the /Process field is explicitly nulled out whenever the
+    %	dependent is deactivated.
+    %
+    /activate { % event => -
+    	pop self Process dup null eq {
+    	    pop currentprocess GlobalEventMgr eq {
+	        /eventmgr CurrentClient send
+	    } if				% Dint process | Dint
+	} if
+	expressinterest
+    } def
+
+    %   Deactivate is again completely overridden for efficiency, though
+    %   this might be less of an issue for deactivation.  The override is
+    %   to clear the Process field, since (a) it's not used by /activate
+    %	(the way it is for vanilla ClassInterests), and (b) failing to
+    %	clear it leaves a dangling reference to the process and hence
+    %	sometimes to a canvas.
+    %
+    /deactivate { % -  =>  -
+	IsInterest {
+	    self Process revokeinterest
+	} if
+	/Process null def
+    } def
+
+    %  Convenience proc: Send /untrigger to our NotifyInterest, since often
+    %  the end-trigger event is one that matches a Dependent.
+    %
+    /untrigger { % event => -
+	NotifyInterest dup null ne {
+    	    /untrigger exch send
+    	} {
+    	    pop pop
+    	} ifelse
+    } def
+    
+    %  Utility to obtain CurrentClient of this interest's NotifyInterest.
+    %
+    /CurrentClient { % - => canvas
+    	NotifyInterest /CurrentClient get
+    } def
+
+classend def

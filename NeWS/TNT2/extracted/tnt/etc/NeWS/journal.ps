@@ -1,0 +1,1728 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%              @(#)journal.ps 23.7 91/02/11
+% 
+% ---------
+% 
+% This is the new OpenWindows journaler.  It is a (mostly) complete
+% rewrite of earlier versions of journaling.  A default user interface
+% is included in a separate file.
+% 
+% The functionality of this journaling package is similar to that
+% provided by earlier versions, but improvements include the following:
+% 
+%   * The journaler is now implemented as a class.  The journaler is
+%     structured for easy subclassing, and hooks are provided for easy
+%     implementation of most things you might want to do.
+% 
+%   * The interface to journaling is simpler and more generalized.
+% 
+%   * Code is simpler and more structured.
+% 
+%   * It now has comments that tell you what is going on.
+% 
+%   * Journal scripts are now executable PostScript files.  They do
+%     not require outside interpretation and may be simply exec'ed
+%     within the context of the journaler, where a number of
+%     utilities expected by the scripts are defined.
+% 
+%   * Mouse motion is handled correctly and uniformly.
+% 
+%   * During recording, only a specific (but extensible) set of event
+%     types are logged.  Previously, a list of event types not to log
+%     was maintained and any event not on this list was recorded.
+% 
+%   * There now exist precisely defined and documented error handling
+%     and recovery standards.  The current schema is designed with
+%     subclassers and user interface writers in mind.
+% 
+%   * The journaler is self-cleaning and robust.  No garbage will be
+%     left lying around.  Subprocesses are fault-tolerant and support
+%     cleanup-on-error.
+% 
+%   * The journaler is sensitive to the presence of other event
+%     logger processes and will not stomp on them, although it can
+%     neither play nor record without being the logger.  Note that this
+%     means it is not possible to simultaneously record and play.
+% 
+%   * Synchronous playback now supports a flexible, low-overhead
+%     timeout handler.
+% 
+%   * Bunching of sync events during recording is handled at a higher
+%     level than before, so event-writing utilities don't have to
+%     worry about it.  Bunching policy is easy to change via
+%     subclassing.
+% 
+%   * Three different synchronization policies are available during
+%     playback: strict, loose, and none.  Loose synchronization is the
+%     most generally successful of these and is the default.
+% 
+%   * High-speed playback mode will play back scripts at a speed just
+%     slow enough to be sure that each submitted event has a unique time
+%     stamp.  This is compatible with all modes of synchronous playback,
+%     although in practice it can sometimes cause timing problems with
+%     complicated packages such as OpenLook menus.
+% 
+%   * All options may be changed at any time and take effect "almost
+%     immediately".  Currently pending operations (syncs, current
+%     event awaiting submission) are typically not affected.  For
+%     example, event timing data is now based on deltas rather than
+%     absolute times, so changing the playback speed in the middle of
+%     a journal is handled correctly.  The one exception is the
+%     journal file name.
+% 
+%   * User aborts are now supported.  Clicking the mouse during
+%     playback gracefully terminates the script.  Abort monitoring is
+%     performed by a separate process, and is transparent to the rest
+%     of the playback code.  Subclassers can redefine playback without
+%     explicitly dealing with aborts.
+% 
+%   * Input events (except /MouseDragged events) generated on playback
+%     are recognized by the /JournallingEvent key.
+% 
+%   * 23% fewer calories than ordinary mayonaise.  Optional designer
+%     coat rack available in many areas.  Non-comedogenic.
+% 
+% 
+% Interface methods
+% 
+% There are only three non-trivial public methods: /record, /play,
+% and /stop.  None of them take arguments.
+% 
+% /record
+% 
+% record opens the journal file for writing and begins logging events.
+% There are four different kinds of records that can be written out:
+% one for setting initial conditions, one for recording mouse motion
+% events, one for recording other kinds of user input, and one for
+% logging synchronization events.  These are detailed below.
+% 
+%   Calling record during recording is a no-op.
+%   Calling record during playback is an error.
+% 
+% /stop
+% 
+%   stop halts the journaler in its tracks and cajoles it
+%   gracefully back to a cleaned-up, idle state.  It more or less
+%   combines the functions "stop recording", "stop playing", "reset
+%   journaler", and "stop the world I want to get off".
+% 
+%   It is safe to call stop at any time.  You may call it as
+%   frequently as you like if it makes your application structure
+%   simpler.
+% 
+% /play
+% 
+%   Starts playing the journal file.
+% 
+%   Calling play during playback is a no-op.
+%   Calling play during recording is an error.
+% 
+% Options
+% 
+% A number of recording and playback options are defined.
+% 
+%   /speed               % -- => speed
+%   /setspeed            % speed => --
+% 
+% The playback speed is a multiplier applied to the spacing between
+% events.  Thus, a speed of 1 plays back the journal at the same speed
+% at which it was recorded.  A speed of 0.5 plays it back twice as fast,
+% and a speed of 2 plays at half speed.
+% 
+% Submitted events will always have unique timestamps.
+% 
+% Note that if the speed is set to 0, no time is allowed between events
+% except that necessary to insure timestamp uniqueness.  Speed 0 is
+% handled as an optimized special case.
+% 
+% Speed changes take effect no later than the next event played.  The
+% current event pending submission (if any) may play at either the old
+% or new speed.
+% 
+%   /synchronization	% -- => policy
+%   /setsynchronization % policy => -- 
+% 
+% Synchronized playback is not always 100% reliable, so three different
+% synchronization policies are available to fit a variety of needs:
+% /Strict, /Loose, and /None.
+% 
+% Strict synchronization interprets the script as an inflexible
+% blueprint for the sequence in which events occur.  It requires that
+% all sync events be caused by caused by the input events that
+% immediately precede them.  Strict synchronization is easily broken,
+% for example, by moving the mouse while a window is created.
+% 
+% Loose synchronization assumes only that each synchronization event is
+% the result of _some_ user event which precedes it.  As long as the
+% results follow the causes in the script, loose synchronization will
+% handle the situation with aplomb.  However, loose synchronization will
+% become confused if extra events are generated during playback.  For
+% example, if an extraneous window is created during playback this is
+% sure to mess up the script.
+% 
+% No synchronization ignores sync points.
+% 
+% Setting the synchronization policy will take effect "soon", but cannot
+% be used to break a synchronization attempt in progress.
+% 
+%   /journalfile	% -- => string
+%   /setjournalfile	% string => --
+% 
+% Sets or gets the current journal file name.  setjournalfile does not
+% take effect until the next play or record.  setjournalfile during
+% continuous play is handled correctly (i.e.  setjournalfile does not
+% affect it).
+% 
+%   /playforever?       % -- => bool
+%   /setplayforever     % bool => --
+% 
+% Set or query continuous play mode.  If continuous play mode is set,
+% journal scripts are considered infinite loops on playback.  No
+% cacheing occurs, so the script file must stay around as long as the
+% journal is playing from it.  setplayforever always takes effect
+% immediately.
+% 
+%   /timeout            % -- => time
+%   /settimeout         % time => --
+% 
+% Set or get the timeout value: how long to wait for a sync to complete
+% before assuming success.  Does not affect a sync in progress.
+% 
+%   /journalstate              % -- => state
+% 
+% Query the state of the journaler.  Currenly, only /Idle, /Playing,
+% and /Recording are defined.
+% 
+% 
+% Journaler states and changes of state
+%
+% The journaler always knows its current state.  Whenever the
+% journaler changes state, the ChangeState method is called with the
+% new state as an argument.  ChangeState is always called no matter why
+% the change occurs.
+% 
+% The correct cliche for writing a user interface is to subclass
+% ChangeState and make all your button highlighting, etc. be tied to the
+% information you get via that route.  Do NOT do something like send out
+% a play and then disable your play button immediately.
+%
+% In some cases this may open a small window in which a user could, say,
+% press a button twice.  However, such occurrences will be handled
+% fairly reasonably (no-op for the same button, error and return to idle
+% for different buttons).
+% 
+% Avoid using the /journalstate method unless absolutely necessary.  If
+% you have to call /journalstate, you may not be using the journaling
+% package in the most optimal way.
+% 
+%
+% Error handling
+% 
+% All errors the journaler encounters are considered equally severe.
+% When an error is detected, JournalError is called with the name of the
+% error.  Errors always force the journal back to the idle state.  It is
+% the responsibility of the code that calls JournalError to implement
+% this, not JournalError.  Most errors will generate a call to
+% ChangeState as well.
+% 
+% Minimal error handling consists of no error handling.  As long as you
+% act on the state change events, you won't get into strange situations.
+% 
+% Possible errors are:
+% 
+%   /EventLoggerBusy        % Another process is already logging events
+%   /BadJournalFileName     % Couldn't open the journal file
+%   /JournalBusy            % Tried to play while recording or vice versa
+%   /BadSetSpeedValue       % Non-numeric value for /setspeed
+%   /BadSetSyncValue        % Non-boolean given to /setsynchronization
+%   /BadSetFileValue        % Non-string given to /setjournalfile
+%   /BadSetPlayForever      % Non-boolean given to /setplayforever
+%   /BadSetTimeoutValue     % Non-numeric given to /settimeout
+%   PostScript errors       % As normal, probably indicates a bug
+% 
+% 
+% Journal file record formats
+%
+% The first line in a script is always a call to initiallocation, which
+% sets the mouse position and cleanses the input queue.  It looks like:
+%
+%   823 453 initiallocation
+%
+% A mouse motion record looks like:
+% 
+%   394 729 0.0003 moveTo
+% 
+% The first two numbers are the coordinates to move to, and the third
+% number is the time delta between this event and the last recorded
+% event.  The default implementation of moveTo computes when the event
+% should be submitted, sleeps until then, and then calls
+% setcursorlocation.  A side effect of setcursorlocation is the
+% generation of a /MouseDragged event describing the move.
+% 
+% A user input event looks like:
+% 
+%   /RightMouseButton /DownTransition 645 304 0.0183411 userevent
+% 
+% The userevent procedure takes the five arguments from the stack, packs
+% them into a new event, and submits the event at the appropriate time.
+% 
+% The first two arguments are the Name and Action of the event, and the
+% second two are the mouse coordinates.  userevent handles the time delta
+% the same way that moveTo does.
+% 
+% Synchronization events are specified in groups so that slight
+% rearrangements of the event sequence do not stymie the player's
+% attempt to synchronize.  A typical record looks like:
+% 
+%   startsyncdata
+%       /ExitEvent 2 def
+%       /EnterEvent 1 def
+%       /DoItEvent 1 def
+%   syncpoint
+% 
+% startsyncdata opens up a new dictionary into which the event counts
+% are def'ed.  syncpoint closes the dictionary and monitors incoming
+% events until the required number of each listed event have been
+% received.
+% 
+% The default sync timeout is about 10 seconds - probably too low in
+% many cases, but a handy value to use until synchronized journaling
+% gets really reliable.  The default timeout action is to abort the sync
+% and continue playing as if the sync had succeeded.
+% 
+% 
+% Subclasser cliches
+% 
+% Here are brief instruction for doing some of the less weird things you
+% might want to do:
+%   
+%   To log more event types than normal, override the
+%   SubClasserLoggedEvents dictionary and define keys into it.
+%   
+%   To keep some sync events from being logged (or outlog filter events
+%   completely, for that matter), override FilterSyncEvents and chuck
+%   out the ones you don't want.  Combines well with
+%   SubClasserLoggedEvents to give you a "preview" of special events
+%   before having to commit to logging.
+%   
+%   To use a different script format, override WriteEvent,
+%   WriteMoveTo, or FlushSyncEvents, and the playback handlers that go
+%   with whatever you change (userevent, moveTo, and
+%   startsyncdata/syncpoint).
+%   
+%   To change the sync timeout behavior, override TimeoutHandler.
+%   
+%   To synchronize on other criteria than just event name, override
+%   CacheSyncEvent and FlushSyncEvents to write out more info, and
+%   override MatchSyncEvents.  You will have to override Synchronize and
+%   FlushInputQueue as well.
+%   
+%   To change the kinds of events that cause a user abort during
+%   playback, override AbortEvents.  To do something really wild with
+%   user aborts, override MonitorUserQuit.  Don't forget that it's a
+%   separate process.
+%   
+%   To provide a new playback timing policy, override WaitPostTime.
+%   
+%   To hook into option value changes, look at SetOptionValue.
+%   
+% 
+% People who have worked on this:
+% 
+%   Jerry Farrell, ????
+%   Steven Isaac, 8/25/87
+%   Nayeem Islam and Bruce Martin, 9/20/88
+%   Bruce Martin, 7/8/89
+%   Garth Snyder and Bruce Martin, 7/30/89
+% 
+
+currentpacking true setpacking
+currentautobind true setautobind
+
+/ClassJournal ClassObject
+
+dictbegin
+
+    /SyncPolicy         /Loose def
+    /PlaySpeed          1 def
+    /JournalFile        (/tmp/NeWS.journal) def
+    /PlayForever        false def
+    /JournalProcess     null def
+    /JournalState       /Idle def
+    /Timeout            .17 def
+
+dictend classbegin
+
+    % Class Variables
+
+    % The debugging file.  A small amount of diagnostic info will come
+    % here if it isn't null.  Must be a file object.
+
+    /DebugFile              null def
+
+    % UserEventDict is the list of input events that we want to record.
+    % These events include all that can be produced by some user action.
+    % Manipulating the mouse produces /MouseDragged, for instance
+    
+    /UserEventDict dictbegin
+
+	/LeftMouseButton    dup def
+	/MiddleMouseButton  dup def
+	/RightMouseButton   dup def
+	/MouseDragged       dup def
+
+	% Keyboard events
+
+	0 1 255 {
+	    16#6F00 add dup def
+	} for
+
+    dictend def
+
+    % LoggedEvents is the dictionary of events which will be logged for
+    % synchronization.  This used to be a dictionary of events not to
+    % log, but for various reasons, this is better.  To wit:
+    %
+    % 1) Any time someone starts generating random internal events for
+    %    their own use, that will break synchronized journaling.  For
+    %    example, /Tick.  It was apparently not around when the code was
+    %    first written and now causes lockups if not specifically
+    %    blocked.
+    %    
+    % 2) The universe of events we are interested in for synchronized
+    %    journaling is much smaller than the universe of events we are
+    %    not interested in, so dealing with the former is more efficient.
+    %
+    % 3) We need to get specific about which events we want to sync on.
+    %    "Everything but these N events" doesn't seem like the correct
+    %    conceptual solution.
+    %
+    % 4) Subclassing for special purposes somehow seems nicer if you are
+    %    adding things to a dictionary rather than taking 'em out.
+    %
+    % 5) Negative space. Negative thinking. The Wholly Other.  Bad karma.  
+
+    /LoggedEvents dictbegin
+
+	% Cursor enter and exit events (X11 and NeWS)
+
+	/EnterEvent		null def
+	/ExitEvent		null def
+
+	% Mapping and unmapping events (X11 only)
+
+	/MapRequest		null def
+	/UnmapRequest		null def
+	/MapNotify		null def
+	/UnmapNotify		null def
+
+	% Focus handling (X11 and NeWS)
+
+	/LoseFocus		null def
+	/RestoreFocus		null def
+	/AcceptFocus		null def
+
+	% Misc events
+
+	/Obsolete		null def 
+	/DoItEvent		null def
+	/ClientMessage		null def
+
+	% Events that might work, but who knows:
+	%
+	%   /ReparentNotify
+	%   /Reply (X11?)
+	%   /ConfigureRequest (X11)
+	%   /Damaged
+
+	% Events that definitely don't work as sync events (for now):
+	%
+	%   /PropertyNotify (X11)
+	%   /ConfigureNotify (X11)
+
+    dictend def
+
+    % SubClasserLoggedEvents is functionally equivalent to LoggedEvents,
+    % and both dictionaries are referenced in tandem.
+    %
+    % The idea is that LoggedEvents will list the core events that
+    % everyone will be interested in.  Subclasses can override
+    % SubClasserLoggedEvents to add special interests without worrying
+    % about disrupting or reiterating the core event set.
+
+    /SubClasserLoggedEvents nulldict def
+
+    % Input cached events is the list of events that will be compiled
+    % into the summarized input queue.  It defaults to the contents of
+    % LoggedEvents and SubClasserLoggedEvents plus internal events.
+
+    /InputCachedEvents dictbegin
+
+	LoggedEvents		{def} forall
+	SubClasserLoggedEvents	{def} forall
+
+	/SyncTimeout null def
+
+    dictend def
+
+    % AbortEvents is a set of events that should cause a playback
+    % abort if they are seen during playback.
+
+    /AbortEvents [
+	/LeftMouseButton
+	/MiddleMouseButton
+	/RightMouseButton
+    ] def
+
+    % Private methods
+
+    %
+    % ChangeState: Change the state of the journaler.  Updates the
+    % JournalState instance variable.
+    %
+    % State information is used to tell what (if any) subprocesses exist
+    % that are performing work on behalf of the journaler.  Possible
+    % states in the basic journaler are /Recording, /Playing, and /Idle.
+    % 
+    % The state argument is the name of the state to change to.
+    %
+
+    /ChangeState { % state => --
+
+	/JournalState exch store
+
+    } def
+
+
+    %
+    % JournalError: Log a journaling error.  This can be anything, and
+    % may be submitted by a subprocess.  The default JournalError
+    % prints out the error on currentfile.
+    %
+    % The argument should be a descriptive name.
+    %
+    % All user interfaces for journaling should be on the alert for
+    % errors and handle them correctly. (easy!)
+    %
+    % When an error condition is raised, the journaler is _guaranteed_ to
+    % clean itself up autonomously and return to the reset /Idle
+    % state, even if the error is only an innocuous user input error or
+    % some such (e.g. sending a play when the journal is
+    % already playing).
+    %
+    % This is primarily for the convenience of interface writers and
+    % subclassers, who reap the benefits of uniform error recovery,
+    %
+    % Subclassers should preserve the error handling semantics.
+    %
+
+    /JournalError { % errorname => --
+
+	/DebugFile self send dup null eq {
+	    pop currentprocess /Stderr get
+	} if
+	exch (Journal error: %\n) fprintf
+
+    } def
+
+
+    %
+    % Set a signal to external clients that we are journaling.
+    % 
+    % This is used by X clients who want to generate extra
+    % synchronization events (ClientMessage) to help.
+    %
+
+    /SetJournalingSignal { % -- => --
+
+	version cvr 2.1 ge {
+	    Xcompat_private begin   % set up atom and prop
+		framebuffer
+		/JOURNAL_SYNC false XInternAtom
+		()
+		/INTEGER false XInternAtom
+		8 xsetproperty
+	    end
+	} {
+	    Xcompat_private begin
+		(JOURNAL_SYNC) null XInternAtom
+		/atom_number exch store
+		framebuffer /JOURNAL_SYNC
+		/INTEGER % find XA_INTEGER atom
+		/Format32 () /ModeReplace XChangeProperty   % data ()
+	    end
+	} ifelse
+	
+    } def
+
+
+    %
+    % Remove the journaling signal
+    %
+
+    /DeleteJournalingSignal { % -- => --
+    
+	version cvr 2.1 ge {
+	    Xcompat_private begin
+		framebuffer
+		/JOURNAL_SYNC false XInternAtom
+		xdeleteproperty
+	    end
+	} {
+	    Xcompat_private begin % remove property
+		framebuffer /JOURNAL_SYNC XDeleteProperty
+	    end
+	} ifelse
+	
+    } def
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % Recording code
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Control functions
+
+    %
+    % StartRecorder: Record a journal.
+    %
+    % StartRecorder calls InitRecorder to get everything set up, then
+    % calls RecordLoop (an infinite loop) to do all the actual
+    % recording.  When RecordLoop terminates (in the expected case, via
+    % a killprocess submitted by stop), the error dictionary is
+    % checked to see why.  If RecordLoop terminates because of a true
+    % error, this error is passed on to JournalError.  In any case,
+    % CleanupRecorder is called to swab the decks.
+    %
+    % The argument should be a file object opened for writing; it is
+    % passed on to InitRecorder.
+    %
+    % StartRecorder is expected to be executed in subprocess and in an
+    % idle context.  Thus running off the end of StartRecorder
+    % effectively terminates the recording thread.
+    %
+
+    /StartRecorder { % file => --
+
+	geteventlogger null ne {
+	    /EventLoggerBusy /JournalError self send
+	    stop
+	} if
+
+	/InitRecorder self send % --
+	
+	{/RecordLoop self send} stopped {
+	    $error begin
+		$error errorname /killprocess ne {
+		    errorname /JournalError self send 
+		} if
+	    end
+	} if
+
+	/CleanupRecorder self send
+	
+    } def
+
+
+    %
+    % InitRecorder: Do all necessary initialization in preparation for
+    % recording.  InitRecorder can assume that the journaler is in a
+    % cleaned-up and idle state.
+    %
+    % The argument is a file object opened for writing to which the
+    % journal should be written.
+    %
+    % InitRecorder performs the following functions:
+    %
+    %   1) Installs itself as the current journaling background
+    %      process, in a new process group.
+    %
+    %   2) Promotes and initializes a number of variables used during
+    %      recording.
+    %
+    %   3) Changes the state of the journaler to /Recording.
+    %
+    %   4)  Sets up the current process as the system event logger.
+    %
+    %   5) Sets up the X journaling signal.
+    %
+    %   6) Writes out the initiallocation record for the script.
+    %
+
+    /InitRecorder { % file => --
+    
+	/JournalProcess currentprocess store
+	JournalProcess /Priority SystemPriority put
+	JournalProcess /ProcessName (Journal Recorder) put
+
+	/Script         exch promote
+	/LastLogTime	currenttime promote
+	/LastSerial     0 promote
+	/LastTimeStamp  0 promote
+	/SyncBuffer     growabledict promote
+
+	/Recording /ChangeState self send
+
+	newprocessgroup
+
+	createevent dup /Name /Fake put expressinterest
+	currentprocess seteventlogger
+
+	/SetJournalingSignal self send
+
+	% Make sure we use the right coordinate system
+
+	framebuffer setcanvas
+	initmatrix
+
+	% Initialize the cursor loc.
+
+	Script (% % initiallocation\n) [ currentcursorlocation ] fprintf
+
+    } def
+    
+
+    %
+    % CleanupRecorder: Undo the effects of an InitRecorder.
+    %
+    % CleanupRecorder calls FlushSyncEvents once to make sure any queued
+    % but unlogged sync events get written out, closes the journal file,
+    % disposes of all the variables installed by InitRecorder for use
+    % during recording, resets system event logging, resets the
+    % state of the journaler to idle, removes the instance's reference
+    % to the recording process, and deletes the X journal flag.
+    %
+
+    /CleanupRecorder { % -- => --
+    
+	/FlushSyncEvents self send
+
+	Script flushfile % REMIND: I don't think this is needed -grs
+	Script closefile
+	
+	null seteventlogger
+
+	/Script         unpromote
+	/LastLogTime	unpromote
+	/LastSerial     unpromote
+	/LastTimeStamp  unpromote
+	/SyncBuffer     unpromote
+	
+	/JournalProcess null store
+	/Idle /ChangeState self send
+
+	/DeleteJournalingSignal self send
+	
+    } def
+
+
+    % Actual recording functions and utilities
+
+    % 
+    % RecordLoop is the main loop for event logging.
+    %
+    % RecordLoop examines all events as they come in and determines
+    % whether or not to log them.  The rules are:
+    %
+    %   If the event is a /MouseDragged, the event is logged using the
+    %   WriteMoveTo method.  This is because on playback you normally
+    %   want to mimic mouse drags by doing a setcursorlocation rather
+    %   than posting an actual event.
+    %
+    %   OTHERWISE, if the event's name is known in UserEventDict, then
+    %   the event is considered a generic input event and is written
+    %   out with WriteEvent.
+    %
+    %   OTHERWISE, if the event's name is known in either the LoggedEvents
+    %   or SubClasserLoggedEvents dictionaries, it is given to
+    %   FilterSyncEvent.  If FilterSyncEvent OK's it, it is passed on to
+    %   CacheSyncEvent, which will squirrel it away pending a
+    %   FlushSyncEvents.  CacheSyncEvent may be overridden to discard the
+    %   event or write it out immediately if desired.
+    %
+    %   OTHERWISE, the event is discarded.
+    %
+    % Before calling WriteEvent or WriteMoveTo, RecordLoop always calls
+    % FlushSyncEvents.  CleanupRecorder is responsible for insuring that
+    % FlushSyncEvents is called once before the journal file is closed.
+    %
+    % Typically, you want to gather up all your sync events and sync on
+    % them together.  CacheSyncEvent and FlushSyncEvents make this easy
+    % to do.  Having CacheSyncEvent do all the writing on an
+    % event-by-event basis and making FlushSyncEvents a no-op is fine,
+    % if that's what you need to do.
+    %
+    % Since it is implemented as an infinite loop, RecordLoop can never
+    % exit except by generating an error or being zapped by a
+    % killprocess.
+    %
+
+    /RecordLoop { % -- => --
+
+	/LastLogTime currenttime store
+
+	{ % loop
+
+	    awaitevent
+
+	    % We shun events that have Serial numbers in the past (events
+	    % that are being redistributed, for instance, by grabs). 
+
+	    dup /Serial get /LastSerial self send gt {		% event
+
+		dup /Name get					% event Name
+		
+		/UserEventDict self send 1 index known {	% event Name
+	    
+		    % It's an input event
+
+		    /FlushSyncEvents self send
+	        
+		    dup /MouseDragged eq {
+			1 index /WriteMoveTo self send
+		    }{
+			1 index /WriteEvent self send
+		    } ifelse
+	        
+		} if					% event Name
+
+		/LoggedEvents self send
+		1 index known exch			% event known? name
+		/SubClasserLoggedEvents self send
+		exch known or {				% event name
+		    
+		    % It's a sync event
+
+		    dup /EnterEvent eq
+		    1 index /ExitEvent eq
+		    or {
+			1 index /WriteMoveTo self send
+		    } if
+
+		    1 index /FilterSyncEvent self send {
+			1 index /CacheSyncEvent self send
+		    } if
+			
+		} if					% event name
+		
+		pop
+		dup /Serial get /LastSerial exch store
+		/TimeStamp get /LastTimeStamp exch store
+	    
+	    }{pop} ifelse
+	        
+	} loop
+	
+    } def
+
+
+    %
+    % FilterSyncEvent: possibly avoid logging a sync event
+    %
+    % This is subclasser hook that lets you reject events before
+    % CacheSyncEvent sees them.
+    %
+    % A true return indicates that the event should be logged.
+    %
+
+    /FilterSyncEvent { % event => bool
+
+	pop true
+
+    } def
+    
+
+    %
+    % CacheSyncEvent: handle a sync event.
+    %
+    % See RecordLoop for a description of how this method is used: an
+    % unmodified event is the only argument.
+    %
+    % This default implementation counts the number of times that each
+    % kind of event appears.  It depends on FlushSyncEvents to do all of
+    % its writing.
+    %
+    % Implementations of CacheSyncEvent which require storage should use
+    % and depend upon the predefined SyncBuffer dictionary.  Creation of
+    % other temporary variables is not recommended, as no facility
+    % exists to give a clean-up call when recording is shut down.
+    %
+    
+    /CacheSyncEvent { % event => --
+	
+	/Name get
+
+	/SyncBuffer self send 1 index known {
+	    /SyncBuffer self send 1 index get 1 add
+	}{
+	    1
+	} ifelse
+
+	/SyncBuffer self send 3 1 roll put
+	
+    } def
+
+
+    %
+    % FlushSyncEvents: write out information about any events queued
+    % with CacheSyncEvent.
+    %
+    % FlushSyncEvents is called at the boundary which separates a number
+    % of sync events from an input event.  It should write out any sync
+    % events in its queue and clean out the queue so that these events
+    % don't make an unwelcome second appearance later on.
+    %
+    % FlushSyncEvents is guaranteed to be called as the journal
+    % terminates, so there is no danger of losing events in the cache.
+    %
+    % Anything that FlushSyncEvents wants to write in the journal should
+    % be sent to the file object Script.  Be aware of and obey, as much
+    % as possible, the conventions for logging sync events listed at
+    % the head of this file when subclassing this method.
+    %
+    
+    /FlushSyncEvents { % -- => --
+
+	/SyncBuffer self send length 0 gt {
+	
+	    /Script self send
+	    dup dup (startsyncdata\n) writestring % file file
+
+	    /SyncBuffer self send { % file file name #instances
+		exch (\t/% % def\n) fprintf
+		dup % file file
+	    } forall pop % file
+	    
+	    (syncpoint\n) writestring
+	    /SyncBuffer self send cleanoutdict
+	
+	} if
+	
+    } def
+
+
+    %
+    % WriteEvent: Output a generic input event to the journal.
+    %
+    % The default implementation of WriteEvent logs the Name, Action,
+    % XLocation, YLocation, and time of the event.
+    %
+    % Since the set of possible input events is well-characterized,
+    % there should be no reason to override this method (unless you
+    % want create a journaler that only records sync events or
+    % something weird like that).
+    %
+
+    /WriteEvent { % event => --
+    
+	% Do our self sends before we get into the local dict so
+	% that we get compiled.
+
+	/LastLogTime self send
+	/Script self send % event lastlogtime file 
+
+	 3 -1 roll begin % lastlogtime file
+ 
+	    dup Name writeobject  
+	    dup ( ) writestring
+	    dup Action writeobject
+	    exch TimeStamp exch sub 0 max % file deltatime
+	    YLocation
+	    XLocation
+	    ( % % % userevent\n) fprintf
+
+	    /LastLogTime TimeStamp store
+	    
+	end
+	
+    } def
+
+
+    %
+    % WriteMoveTo: Record a mouse motion event.
+    %
+    % Mouse motion is implemented separately from generic user input.
+    % When a /MouseDragged event is submitted by a random process, the
+    % cursor location is not properly updated, although the cursor does
+    % move on the screen.
+    %
+    % To make things work right, we need to substitute calls to
+    % setcursorlocation for /MouseDragged events when we play back the
+    % journal.  The playback-time "moveTo" procedure is expected to wait
+    % for the right moment and then simply execute setcursorlocation.
+    %
+
+    /WriteMoveTo { % event => --
+    
+	/Script self send
+	/LastLogTime self send % event file logtime
+	
+	3 -1 roll begin % file logtime
+	
+	    TimeStamp exch sub 0 max % file deltatime
+	    YLocation
+	    XLocation
+	    (% % % moveTo\n) fprintf
+
+	    /LastLogTime TimeStamp store
+	    
+	end
+	
+    } def
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Playback code
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    %
+    % WaitPostTime: Wait until the right time to submit an event, taking
+    % the current PlaySpeed into account.
+    %
+    % If PlaySpeed is 0, then events are pumped out as fast as
+    % possible, subject only to timestamp uniqueness considerations.
+    %
+
+    /WaitPostTime { % deltatime => -
+    
+	/PlaySpeed self send 0 eq {
+	
+	    pop 
+
+	    /LastPostTime /LastPostTime self send % /LPT LPT
+	    currenttime exch 1 index eq {
+		{dup currenttime ne {pop currenttime exit} if} loop
+	    } if
+	    
+	    store
+	    
+	}{
+
+	    /PlaySpeed self send mul % deltatime
+
+	    /LastPostTime self send exch 1 index add % LPT delta+LPT
+	    currenttime sub 0 max sleep % LPT
+	    
+	    currenttime exch 1 index eq {
+		{dup currenttime ne {pop currenttime exit} if} loop
+	    } if
+
+	    /LastPostTime exch store
+	    
+	} ifelse
+	
+    } def
+
+
+    %
+    % FlushInputQueue: clean out the input event summary.
+    %
+
+    /FlushInputQueue { % -- => --
+
+	/InputQueue self send cleanoutdict
+	countinputqueue {awaitevent pop} repeat
+
+    } def
+		    
+
+    %
+    % Synchronize: wait until all expected sync events have materialized
+    % or hang forever.
+    %
+    % This method is the meat of synchronized journaling.  Any subclass
+    % which wants to do snazzy synchronization will override this.  This
+    % default implementation takes a dictionary in which the keys are
+    % event names and the values are the number of events of this type
+    % to wait for.  Actual event matching is done by MatchSyncEvents.
+    %
+    % This code doesn't care in what order the events materialize.
+    %
+    % Events which aren't needed now but which might prove useful later
+    % are kept in the cache if the synchronization policy is /Loose.
+    %
+    
+    /Synchronize { % eventdict => -
+    
+	% First check the cached input events queue.  Maybe we can
+	% satisfy the whole sync with summarized events...
+
+	dup /InputQueue self send /MatchSyncEvents self send % eventdict
+	
+	dup length 0 eq {
+	    pop
+	}{
+
+	    %  Sigh.  Have to start scanning the input queue.
+	    %
+	    %  First, put a mark on the stack to aid error recovery.
+
+	    mark exch % mark dict
+
+	    % Submit a postdated event that will let us know when we've
+	    % timed out.
+
+	    /Timeout self send currenttime add
+	    createevent begin
+	
+		/Name       /SyncTimeout def
+		/TimeStamp  exch def
+	    
+	    currentdict end dup sendevent exch % mark event dict
+
+	    {{ % inner=loop, outer=stopped - event dict
+
+		pause awaitevent
+		
+		/Name get dup /SyncTimeout eq { % mark event dict name
+		    pop /TimeoutHandler self send
+		}{
+		    2 copy known { % Sync on this event?
+			2 copy get dup 1 eq { % mark event dict name num
+			    pop 1 index % mark event dict name dict
+			    exch undef dup length 0 eq {exit} if
+			}{ % mark event dict name num
+			    1 sub 2 index 3 1 roll put
+			} ifelse
+		    }{ % mark event dict name
+			/InputCachedEvents self send 1 index known {
+			    /InputQueue self send exch % mark event dict iq name
+			    2 copy known { 
+				2 copy get 1 add % mark event dict iq name num+1
+				put % mark event dict
+			    }{
+				1 put
+			    } ifelse
+			}{pop} ifelse
+		    } ifelse % mark event dict
+		} ifelse % timeout
+
+	    } loop } stopped { % mark dict (timeout), mark event dict (no error)
+ 	
+		 $error begin
+		     errorname /timeout eq {
+			 pop pop
+		    }{
+			% Clean off the stack.  To be absolutely sure we
+			% don't leave any outstanding SyncTimeout events,
+			% we have to comb the stack looking for them, down
+			% to the mark. 
+
+			counttomark { % repeat
+			    dup type /eventtype eq {
+				dup /Name get /SyncTimeout eq
+				{recallevent}{pop} ifelse
+			    }{pop} ifelse
+			} repeat pop
+			false errorname assert
+		    } ifelse
+		end
+	    
+	    }{ % mark event dict
+	
+		pop recallevent pop
+	    
+	    } ifelse % stopped
+
+	} ifelse % zero length
+
+    } def
+
+
+    %
+    % MatchSyncEvents: match the events we are currently syncing on
+    % to those in the current (summarized) input queue.
+    %
+    % The default just compares the names of the events.
+    %
+    % This is actually general bi-dictionarial redundancy eliminator =:0
+    %
+
+    /MatchSyncEvents { % syncdict refdict => --
+    
+	% We want to cycle through the sync dict and check to see if
+	% each key is also listed in the reference dict.  Since we can't
+	% simultaneously forall over the sync dict and modify it, we have
+	% to precompute an array of all the key names and forall over that.
+
+	exch dup [ exch {pop} forall ] { % forall
+
+	    2 copy get % refdict syncdict syncname synccount
+	    3 index 2 index known { % is syncname in refdict?
+		3 index 2 index get % rd sd sn sc rc
+		2 copy gt {
+		    sub % rd sd sn diff
+		    3 index 2 index undef % take syncname out of refdict
+		    2 index 3 1 roll put % update sync dict
+		}{
+		    2 copy lt {
+			exch sub % rd sd sn diff
+			2 index 2 index undef % take out of syncdict
+			3 index 3 1 roll put % update refdict
+		    }{
+			pop pop % rd sd sn 
+			2 copy undef % take it out of both dicts
+			2 index exch undef
+		    } ifelse
+		} ifelse
+	    }{pop pop} ifelse
+
+	} forall pop pop
+
+    } def
+	    
+
+    %
+    % TimeoutHandler: What to do if you time out while waiting for a
+    % sync event.
+    %
+    % The eventdict passed in is the current synchronization dictionary.
+    % Using the default sync schema, things in this dictionary have
+    % not yet been synced on.
+    %
+    % This is a subclasser hook.  The default just stops with a timeout
+    % which is trapped back in Synchronize.  However, it is perfectly
+    % legit for this method not to exit.  In this case, the sync
+    % continues normally.  Thus, making TimeoutHandler a no op prevents
+    % timing out of synchronizations.
+    %
+    % You can also do a createevent and submit another postdated
+    % /SyncTimeout event to buy more time.  TimeoutHandler will be
+    % called when the event arrives.
+    %
+    
+    /TimeoutHandler { % timeoutevent eventdict => eventdict
+
+	exch pop % eventdict
+	
+	/DebugFile self send dup null ne {
+	    dup (Sync failed: ) fprintf % dict file
+	    dup 2 index {exch (% % ) fprintf dup} forall % dict file file
+	    (\n) fprintf flushfile
+	}{pop} ifelse
+
+	/FlushInputQueue self send
+	false /timeout assert
+	
+    } def
+
+
+    %
+    % MonitorUserQuit: Playback abort server
+    %
+    % This method is executed from within a forked context by InitPlayer.
+    % It checks to be sure that the user doesn't generate any of the events
+    % in the AbortEvents dictionary while a playback is in progress.
+    %
+    % MonitorUserQuit distinguishes synthetic events submitted by the
+    % playback code from genuine user inputs by checking to see if the
+    % key /JournallingEvent is defined in the event.
+    %
+
+    /MonitorUserQuit { % parentproc => --
+
+	newprocessgroup
+
+	createevent dup /Name AbortEvents put expressinterest
+
+	{
+	    awaitevent /JournallingEvent known not {
+		/stop self send
+	    } if
+	} loop
+	    
+    } def
+
+    
+    %
+    % StartPlayer: Start playing the journal file.
+    %
+    % This method should only be called when the journaler is idle, and
+    % should be called from a forked process.  StartPlayer essentially
+    % just sets everything up, execs the journal file directly, and
+    % cleans up the aftermath.
+    %
+    % If PlayForever is true, the journaler re-executes the file until
+    % PlayForever is no longer true.  The file is re-opened on every
+    % pass, so if it is deleted, an error results.
+    %
+    
+    /StartPlayer { % -- => --
+
+	geteventlogger null ne {
+	    /EventLoggerBusy /JournalError self send
+	    stop
+	} if
+
+	/InitPlayer self send
+
+	{ % stopped
+    
+	    % Get the value of JournalFile at the very beginning and
+	    % re-use it if we do a PlayForever in case someone changes
+	    % the value on us later.
+	    
+	    /JournalFile self send
+    
+	    /Playing /ChangeState self send
+    
+	    { % loop
+
+		/InputQueue self send cleanoutdict
+
+		dup (r) {file} stopped {
+		    /BadJournalFileName /JournalError self send
+		    pop pop exit
+		}{
+		    cvx exec
+		} ifelse
+
+    		/PlayForever self send not {exit} if
+		
+	    } loop
+	    
+	    pop
+    
+	} stopped {
+
+	% [for testing only]
+	% console $error writeobject console flushfile
+
+	    $error begin
+	 	errorname /killprocess ne {
+	 	    errorname /JournalError self send
+	 	} if
+	    end
+	     
+	} if 
+
+	/CleanupPlayer self send
+	
+    } def
+
+
+    %
+    % InitPlayer: Set up for playing.
+    %
+    % Very similar to InitRecorder - see that method for explanations.
+    %
+
+    /InitPlayer { % -- => --
+
+	/JournalProcess currentprocess store
+	JournalProcess /Priority SystemPriority put
+	JournalProcess /ProcessName (Journal Player) put
+
+	/LastPostTime       0 promote
+	/InputQueue	    growabledict promote
+	/Repeat             /repetition ClassRepeatKeys send promote
+	false /setrepetition ClassRepeatKeys send
+    
+	newprocessgroup
+
+	createevent dup /Name /Fake put expressinterest
+	currentprocess seteventlogger
+
+	% Create an abort monitor.
+
+	currentprocess { /MonitorUserQuit self send } fork exch pop
+	dup /MonitorProc exch promote
+	dup /ProcessName (Journal Abort Server) put
+	/Priority SystemPriority put
+
+	/SetJournalingSignal self send
+
+    } def
+
+
+    %
+    % CleanupPlayer: reverse the effects of InitPlayer.
+    %
+    
+    /CleanupPlayer { % -- => --
+
+	% Toast the subprocesses
+
+	/MonitorProc self send killprocess
+
+	/MonitorProc		unpromote
+	/LastPostTime		unpromote
+	/InputQueue		unpromote
+	Repeat /setrepetition ClassRepeatKeys send
+	/Repeat			unpromote
+	
+	null seteventlogger
+	/JournalProcess null store
+	/Idle /ChangeState self send
+
+	/DeleteJournalingSignal self send
+
+    } def
+
+
+    % Public methods
+
+    /destroy {
+    
+	/stop self send
+	/destroy super send
+	
+    } def
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Playback utility code
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    %
+    % initiallocation: start the playback process at this location
+    %
+    % This utility is called from the journal script at the start of the
+    % playback.  It primes the event system by setting the cursor location,
+    % and cleaning out any extraneous events that may be generated by this
+    % action.
+    %
+
+    /initiallocation { % x y => --
+    
+	framebuffer setcanvas initmatrix
+	setcursorlocation
+
+	{
+	    pause
+	    countinputqueue dup 0 eq {
+		pop exit
+	    } {
+		{ awaitevent pop } repeat
+	    } ifelse
+	} loop
+
+	/LastPostTime currenttime store
+
+    } def
+
+
+    %
+    % moveTo: move the cursor
+    %
+    % This is a utility called directly from journal scripts.  It is
+    % the input counterpart to WriteMoveTo.
+    %
+
+    /moveTo {  % x y time => --
+    
+	/WaitPostTime self send
+	setcursorlocation pause
+	
+    } def
+
+
+    %
+    % userevent: submit an input event.
+    %
+    % This function is called directly from journal scripts.  It is the
+    % input counterpart to WriteEvent.
+    %
+    % userevent cobbles together an event from the info on the stack and
+    % submits it.
+    %
+    
+    /userevent { % name action x y time => --
+    
+	/WaitPostTime self send
+	
+	createevent begin
+
+	    /YLocation      exch def
+	    /XLocation      exch def
+	    /Action         exch def
+	    /Name           exch def
+	    
+	    /TimeStamp      currenttime def
+	    /JournallingEvent true def
+	    
+	currentdict end sendevent pause
+	
+    } def
+
+
+    %
+    % startsyncdata: create something to hold sync events
+    %
+    % A journal script calls this method before a run of sync events
+    % comes down the line.  See the beginning of this file for more info
+    % on how this works.  This will probably need to be overridden if
+    % you change the format of sync events too much.
+    %
+    % In the default case, sync event records just def numbers into 
+    % names, so all we need to do is be sure there's a dict there to
+    % catch them.
+    %
+    
+    /startsyncdata { % -- => --
+    
+	dictbegin
+	
+    } def
+
+
+    %
+    % syncpoint: do a synchronization if necessary
+    %
+    % This closes up a run of sync events started with startsyncdata and
+    % synchronizes on them if necessary.
+    %
+    
+    /syncpoint { % -- => --
+    
+	dictend % dict
+	
+	/SyncPolicy self send { % case
+
+	    /Strict {
+		/Synchronize self send
+		/FlushInputQueue self send
+	    }
+
+	    /Loose {
+		/Synchronize self send
+	    }
+
+	    /None {
+		pop pause
+		/FlushInputQueue self send
+	    }
+	    
+	} case
+
+    } def
+
+
+    %
+    % SetOptionValue: set the value of one of the instance variables.
+    %
+    % This is just a utility used to make the set/get option public
+    % routines smaller.  It checks to be sure the proposed value is
+    % of the right type.  If not, it calls JournalError to distribute
+    % the given error and calls stop to reset the journaler.
+    % Otherwise, it sets the value of the variable.
+    %   
+
+    /SetOptionValue { % value errname variable type => --
+
+	% Reals are more general than ints and we don't really need
+	% ints anywhere.  "Converting" ints to reals makes the type check
+	% simple for numbers.
+
+	3 index type dup /integertype eq {pop /realtype} if 
+
+	ne { % value errname variable
+	    pop /JournalError self send
+	    /stop self send
+	    pop
+	}{
+	    2 index store pop pop
+	} ifelse
+
+    } def
+	
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Public interface methods
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    %
+    % record: Start recording.
+    %
+    % If event security is on, print error message
+    %
+    % If the journaler is playing, record is an error.
+    % If the journaler is recording, record is a no-op.
+    %
+
+    /record { % -- => --
+    
+	createevent /Synthetic get { 
+	    /SecureMode /JournalError self send
+	} {
+	    /JournalState self send {
+
+		/Playing {
+		    /stop self send
+		    /JournalBusy /JournalError self send
+		}
+
+		/Idle {
+		    /JournalFile self send (w) {file} stopped {
+			pop pop
+			/BadJournalFileName /JournalError self send
+		    }{
+			{
+			    /StartRecorder self send
+			} fork pop
+			pop
+		    } ifelse
+		}
+		
+	    } case
+	} ifelse
+    } def
+
+
+    %
+    % play: Play a previously recorded script.
+    %
+    % If event security is on, print error message
+    %
+    % If the journaler is recording, play is an error.
+    % If the journaler is playing, play is a no-op.
+    %
+    
+    /play { % -- => --
+
+	createevent /Synthetic get { 
+	    /SecureMode /JournalError self send
+	} {
+	    /JournalState self send {
+
+		/Recording {
+		    /stop self send
+		    /JournalBusy /JournalError self send
+		}
+
+		/Idle {
+		    {
+			/StartPlayer self send
+		    } fork pop
+		}
+		
+	    } case
+	} ifelse
+    } def
+
+
+    %
+    % stop: Stop recording or playing or whatever it is the
+    % journaler is doing.  Go back to cleaned-up idle state.
+    %
+    % It is ok (no-op) to call stop on an idle journaler.
+    %
+    % Since both the player code and the recorder code are prepared
+    % to deal with being killed and clean themselves up, all we
+    % need to do is kill the current process.
+    %
+
+    /stop { % -- => --
+    
+	/JournalState self send /Idle ne {
+	    /JournalProcess self send killprocess
+	} if 
+	
+    } def
+
+
+    % Trivial option query/set routines
+
+    %
+    % speed and setspeed: query or set the playing speed
+    %
+
+    /speed { % -- => speed
+	/PlaySpeed self send
+    } def
+
+    /setspeed { % speed => -
+	/BadSetSpeedValue /PlaySpeed /realtype
+	/SetOptionValue self send
+    } def
+
+    %
+    % synchronization and setsynchronization: get or set the sync
+    % policy.
+    %
+
+    /synchronization { % -- => policy
+	/SyncPolicy self send
+    } def
+
+    /setsynchronization { % policy => --
+    
+	dup {
+
+	    /None /Loose /Strict {
+		/SyncPolicy exch store
+	    }
+
+	    /Default {
+		pop
+		/BadSetSyncValue /JournalError self send
+	    }
+	    
+	} case
+	
+    } def
+
+    %
+    % journalfile and setjournalfile: get or set the journal filename
+    %
+
+    /journalfile { % -- => filename
+	/JournalFile self send
+    } def
+
+    /setjournalfile { % filename => --
+	/BadSetFileValue /JournalFile /stringtype
+	/SetOptionValue self send
+    } def
+
+    %
+    % playforever setplayforever: get or set loop playback mode
+    %
+
+    /playforever? { % -- => bool
+	/PlayForever self send
+    } def
+
+    /setplayforever { % bool => --
+	/BadSetPlayForeverValue /PlayForever /booleantype
+	/SetOptionValue self send
+    } def
+
+    %
+    % timeout settimeout: get or set syncrhonous playback timeout value
+    %
+    
+    /timeout { % -- => time
+	/Timeout self send
+    } def
+
+    /settimeout { % time => --
+	/BadSetTimeoutValue /Timeout /realtype
+	/SetOptionValue self send
+    } def
+
+    %
+    % journalstate: query state: /Idle, /Playing, or /Recording
+    %
+
+    /journalstate { % -- => state
+	/JournalState self send
+    } def
+    
+classend def
+
+setautobind setpacking

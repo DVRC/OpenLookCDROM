@@ -1,0 +1,995 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%    @(#) UI.ps 23.36 91/02/11
+%       UI.ps:   basic user interface definitions
+
+%    ClassUI is a mixin class which contains common data & utility routines
+%    relating to the look and (especially) feel of the UI.  It is now OL-
+%    specific.
+%
+/ClassUI ClassObject [
+] classbegin
+
+% Class variables
+
+    /PrimarySelection	dup		def
+    /SecondarySelection	dup		def
+    /ClipBoard		/ShelfSelection	def
+
+    /SecondaryMade?	false		def
+
+    %	CurrentRank gives the rank of a selection currently being manipulated
+    %	(or the next one to be made, absent function-key interference);
+    %	its equilibrium value is /PrimarySelection.
+    %
+    /CurrentRank	/PrimarySelection	def
+
+% Methods
+
+    %	See ClassKeyboard for API.  This method is left in ClassUI as a
+    %	compatibility hook.
+    %
+    /modifierdown? {	%   event key | event [key ...] => event bool
+	/modifierdown? ClassKeyboard send
+	console (Please change your use of /modifierdown? to send it to ClassKeyboard.\n) fprintf
+    } def
+
+    /resetinput { %  -- => --
+	/ResetInput ClassSelectUI send
+    } def
+
+    %	Function keys need to be able to tell the selection UI to
+    %	change rank
+    %
+    /setcurrentrank { %  key  =>  --
+	/CurrentRank exch store
+    } def
+
+    /selectioncopy { %  event => -
+	/terminateselection ClassSelectUI send
+	false /ShelveSelection self send	%  don't delete, shelve it
+    } def
+
+    /selectioncut { %  event => -
+	/terminateselection ClassSelectUI send
+	/SecondaryMade? self send {
+	    dup true /GetSecondary self send	%  Quick Move
+	} {
+	    true /ShelveSelection self send	%  shelve it & delete it
+	} ifelse
+    } def
+
+    /selectionpaste { %  event => -
+	dup /terminateselection ClassSelectUI send
+	/SecondaryMade? self send {
+	    false /GetSecondary self send	%  Quick Paste
+	} {
+	    /GetClipboard self send		%  standard Paste
+	} ifelse
+    } def
+
+    % REMIND: Props should eventually use a secondary selection as a model
+    /selectionprops { %  event => -
+	/terminateselection ClassSelectUI send
+	mark /ShowProperties null /SendToPrimary self send
+    } def
+
+
+
+    %	Initiate a transfer of selection data from the ClipBoard
+    %	to the InputFocus; event is used to carry the request.
+    %
+    /GetClipboard { %  event => -
+	ClipBoard getselection			%  ev sel
+	dup null ne {
+	    dup /DeleteSource? false put    	%  ev sel
+	    /TransferSelection SendEventToFocus	%
+	} {
+	    pop pop
+	} ifelse
+    } def
+
+    %	Initiate a transfer of selection data from the Secondary selection
+    %	to the InputFocus; event is used to carry the request.
+    %
+    /GetSecondary { % event delete-src? => -
+	/SecondarySelection getselection		%  ev d-s sel
+	dup null ne {
+	    dup /DeleteSource? 4 -1 roll put	    	%  ev sel
+	    /TransferSelection SendEventToFocus	%
+	} {
+	    pop pop pop
+	} ifelse
+    } def
+
+    %	Utility to clobber a semantic interpretation into the
+    %	Name and Action fields of an event and redistribute it.
+    %
+    /ReSendEvent { %  event Action Name =>  -
+	2 index begin
+	    /Name exch def
+	    /Action exch def
+	    Serial 0 ne			%  has event been distributed? 
+	end { redistributeevent } { sendevent } ifelse
+    } def
+
+    % Resets keyboard translation, and resets all keyboard state
+    %
+    /ResetInput { %  -- => --
+	% reset repeat keys
+	stoprepeating
+
+	% turn off fullscreen pseudo-grab
+	/deactivateall ClassFullScreenInterest send
+	
+	% reset the focus manager
+	/clearinhibitions ClassFocus send
+
+	% reset the keyboard state
+	true setkeyboardtranslation
+	false setkeyboardtranslation
+
+	% make sure all function keys know they're deactivated
+	/cancelall ClassFunctionKey send
+
+	% now send /UpTransition for everything in the keystate
+	createevent dup /Action /UpTransition put
+	dup /TimeStamp currenttime put		%  event
+	lasteventkeystate {			%  event key
+	    /Name exch				%  event /Name key
+	    2 index createevent copy		%  event /Name key event'
+	    dup 4 2 roll put			%  event event'
+	    sendevent				%  event
+	} forall pop
+	
+	% cancel any services transactions in progress
+	%%% REMIND: should the services register themselves with ClassUI
+	%%% to avoid having a list of service names hardwired here?  It
+	%%% seems only NotifyInterest-based services with fixed durations
+	%%% (i.e. not KeyService) matter, so maybe these are the only two?
+	[TrackService MenuService] {
+	    /triggered? 1 index send {
+	    	/CancelNotify exch send
+	    }{
+	    	pop
+	    } ifelse
+	} forall
+    } def
+
+    %	Send a message (such as /HandleAgain) to the LEM of the focus
+    %	canvas, but only if there is such a thing
+    %
+    /SendMsgToFocus { %  event message  =>  -
+	/currentfocus ClassFocus send		% ev msg cv
+	dup type /canvastype eq {
+	    2 index /Canvas 3 -1 roll put	% ev msg
+	    SendCanvasHandler
+	} {
+	    pop pop pop
+	} ifelse
+    } def
+
+    %	Set up an event to be redistributed to the Focus.
+    %
+    /SendEventToFocus { %  event action name => -
+	2 index /Canvas currentinputfocus	%  ev act nm ev /C foc
+	dup null ne {
+	    dup type /canvastype ne {
+		pop null
+	    } if put				%  ev act nm
+	    ReSendEvent
+	} {
+	    pop pop pop pop exch pop		%  act(sel)
+	    dup null ne {
+		false /endtransfer 3 -1 roll send
+	    } {
+		pop
+	    } ifelse
+	} ifelse
+    } def
+
+    %	Set up an event to be redistributed to the canvas under the cursor.
+    %	
+    /SendToCursor { %  event Action Name => -
+	2 index /Canvas null put
+	ReSendEvent
+    } def
+
+    %	Construct a request and send it to the Primary selection.
+    %	Elements of the request are AV pairs (e.g. ContentsAscii: null);
+    %	a mark delimits the pairs.
+    %
+    /SendToPrimary { %  mark obj obj... => -
+	    /PrimarySelection getselection
+	    dup null ne {
+		counttomark 1 add 1 roll
+		SendToSelection
+	    } {
+		cleartomark beep
+	    } ifelse
+    } def
+
+    %	Construct a request and send it to an indicated selection;
+    %	args after the first are same as for SendToPrimary.
+    %
+    /SendToSelection { %  selection mark obj obj... => -
+	dictbegin				%  sel [ obj obj ...
+	    counttomark 2 idiv { def } repeat	%  sel [
+	    pop					%  sel
+	dictend					%  sel rdict
+	/request 3 -1 roll send pop
+    } def
+
+    %	Initiates a transfer of contents from the Primary selection
+    %	to the ClipBoard; argument indicates whether source should
+    %	be deleted after transfer is complete.
+    %
+    /ShelveSelection { %  delete-src? => -
+	/PrimarySelection getselection		%  d-s? sel
+	dup null ne {
+	    dup /DeleteSource? 4 -1 roll put
+
+	    % REMIND:	Replace /Checkpoint
+	    ClipBoard /Checkpoint 2 index send		%  sel ckptsel
+	    dup null ne	    	    	    	    	%  sel ckptsel bool
+	    dup {   	    	    	    	    	%  sel ckptsel bool
+		/setselection 3 -1 roll send	    	%  sel bool
+	    } {		    	    	    	    	%  sel ckptsel bool
+		exch pop     	    	    	    	%  sel bool
+	    } ifelse	     	    	    	    	%  sel bool
+	    /endtransfer 3 -1 roll send		%  -
+	} {
+	    pop pop
+	} ifelse
+    } def
+
+    /StartSecondary { %  
+	/SecondarySelection /setcurrentrank self send
+	true /inhibitfocus ClassFocus send
+    } def
+
+    /StopSecondary { %  
+	/PrimarySelection /setcurrentrank self send
+	false /inhibitfocus ClassFocus send
+	/SecondaryMade? false store
+    } def
+
+    /AdjustButton UserProfile 1 index get def
+    /PointButton UserProfile 1 index get def
+
+classend def    % ClassUI
+
+%   ClassFunctionKey provides for the various global function keys.
+
+/ClassFunctionKey ClassUI dictbegin
+    /Active?		false	def
+    /Destination	null	def
+    /Interest		null	def
+    /KeyCode		null	def
+    /XGotDown?		false	def
+dictend classbegin
+
+
+% Class variables
+
+    % 	Array of function keys that can initiate secondary
+    %	selections, and so their state needs to be checked when we
+    %	start to make a selection & want to validate the current
+    %	rank.
+
+    /SecondaryKeys nullarray def
+
+    /ActionDict dictbegin
+	/DownTransition { % ev => -
+	     dup begin
+		/?Activate			%  ev /?A
+		Interest /ClientData get	%  ev /?A FKs
+		Name get			%  ev /?A FK
+	     end send
+	} def
+	/UpTransition {
+	     dup begin
+		/?Deactivate			%  ev /?D
+		Interest /ClientData get	%  ev /?D FKs
+		Name get			%  ev /?D FK
+	     end send
+	} def
+    dictend				def
+
+    /FunctionKeys	growabledict	def	%  keycode : functionkey
+
+    % Validate the state of the function keys.  There are a bunch of ways
+    % the function key state can get messed up, and I don't even want to
+    % talk about it right now.  What we've decided is if we think we're
+    % trying to make a PrimarySelection, great, keep on going.  If on the
+    % other hand we're trying to make a SecondarySelection selection, let's
+    % at least check to make sure we think we have at least one function
+    % key pressed.  If we have NONE pressed then we assume there's something
+    % wrong, and cancel all the function keys, which causes CurrentRank to
+    % go back down to PrimarySelection.
+
+    /ValidateState { % event => -
+	dup /KeyState get					% ev ks
+	CurrentRank /PrimarySelection ne {			% ev ks
+	    false						% ev ks F
+	    SecondaryKeys {					% ev ks F kc
+		2 index exch arraycontains? {			% ev ks F
+		    pop true exit				% ev ks T
+		} if
+	    } forall						% ev ks bool
+	    not {						% ev ks
+		SecondaryKeys {					% ev ks kc
+		    2 index /cancel FunctionKeys 4 -1 roll get send
+		} forall
+	    } if
+	} if
+	pop pop
+    } def
+
+% Methods
+
+    /cleanoutclass { %  --  =>  --
+	FunctionKeys { exch pop } forall	% fkey1 fkey2 ...
+	FunctionKeys length {
+	    /destroy exch send
+	} repeat
+    } def
+
+    /NewInit { % {deactivate} {activate} dest key => -
+	/NewInit super send			% {deact} {act} dest key
+	InstallKeyCode				% {deact} {act} dest
+	/Destination exch store			% {deact} {act}
+	/Interest FunctionKeyInterest store
+	dup null ne {
+	    /activate exch installmethod
+	} {
+	    pop
+	} ifelse				% {deact}
+	dup null ne {
+	    /deactivate exch installmethod
+	} {
+	    pop
+	} ifelse				%
+    } def
+
+    /destroy { %  --  =>  --
+	RemoveKeyCode
+	/destroy Interest send
+	/destroy super send 
+    } def
+
+    /activate { %  event  =>  --
+	/Active? true store
+	pop
+    } def
+
+    /deactivate { %  event  =>  --
+	/Active? false store
+	/StopSecondary self send
+	pop
+    } def
+
+    /active? { %  --  => bool
+	Active?
+    } def
+
+    /cancel { %  event => -
+	/terminateselection ClassSelectUI send
+	/StopSecondary self send
+	/Active? false store
+    } def
+
+    /cancelall { %  - => -
+	FunctionKeys {			%  kcode fkey
+	    exch pop			%  fkey
+	    dup StopKey ne {
+		/Active? false put	%
+	    } {
+		pop
+	    } ifelse
+	} forall
+    } def
+
+%   Utilities
+
+    /?Activate { %  event  =>  --
+	SendToX? {
+	    /XGotDown? true store
+	    redistributeevent
+	} {
+	    /activate self send
+	} ifelse
+	unblockinputqueue
+    } def
+
+    /?Deactivate { %  event  =>  --
+	Active? {
+	    /deactivate self send
+	} {
+	    XGotDown? {
+	        redistributeevent
+	    } {
+	        pop
+	    } ifelse
+	} ifelse
+	/XGotDown? false store
+	unblockinputqueue
+    } def
+
+    /FunctionKeyInterest { %  -  =>  interest
+	Destination /Cursor eq {growabledict } { null } ifelse
+	ActionDict KeyCode /new ClassInterest send dup begin
+	    /ClientData FunctionKeys def
+	    /Exclusivity true def
+	    /Priority /FunctionKeyPriority ClassInterest send def
+	    /Synchronous true def
+	end
+	dup /addclient GlobalEventMgr send
+    } def
+
+    /InstallKeyCode { %  key  =>  -
+	dup type /integertype ne {			%  key
+	    UserProfile exch 2 copy known {
+		get
+	    } {
+		exch pop
+	    } ifelse
+	    /keyforsymbol ClassKeyboard send
+	} if
+	FunctionKeys 1 index self put
+	dup /removefunctionkey ClassKeyboard send
+	/KeyCode exch store
+    } def
+
+    /RemoveKeyCode { % interest => -
+	KeyCode dup type /arraytype eq {
+	    { RemoveKeyCode } forall 
+	} {
+	    dup /restorefunctionkey ClassKeyboard send
+	    FunctionKeys exch undef
+	} ifelse
+    } def
+
+    /SendToX? { % - => -
+	Destination {
+	    /Focus      { currentinputfocus XCanvas?}
+	    /Selection  { /PrimarySelection getselection
+			  dup null eq {
+			    pop false
+			  } {
+			    /XSelection? known
+			  } ifelse
+				}
+	    /Cursor	% the shared interest will only match NeWS canvases
+	    /Default    { false }
+	} case
+    } def
+
+classend def    % ClassFunctionKey
+
+% REMIND: a temporary work around for keys that grabbed by X window manager.
+%
+/ClassGrabbedFunctionKeyService ClassInterest []
+classbegin
+
+    /Priority GrabPriority def
+    /Exclusivity true def
+    /Synchronous true def
+    
+    /NewInit { % /keyname /method => -
+	1 dict begin
+	    [exch /HandleGrab] buildinterestsend
+	    /DownTransition exch def
+	currentdict end					% /keyname actiondict
+	exch /keyforsymbol ClassKeyboard send		% actiondict key
+	dup null eq {pop nullarray} if
+	null 3 1 roll /NewInit super send
+	/ClientData growabledict def
+    } def
+
+    /addclient { % canvas => -
+	ClientData exch soften null put
+    } def
+
+    /removeclient { % canvas => -
+	ClientData exch undef
+    } def
+
+    /HandleGrab { % event /method => -
+	1 index begin XLocation YLocation end	% ev meth x y
+	canvasesunderpoint false exch {		% ev meth bool can
+	    ClientData 1 index known {
+	        exch not exit
+	    } {pop} ifelse
+	} forall			% ev meth can true | ev meth false
+	{					% ev meth can
+	    3 copy 3 array astore		% ev meth can [e m c]
+	    /eventmgr 3 -1 roll send		% ev meth [e m c] emgr
+	    /sendmanager exch send pop pop	% -
+	} {					% ev meth
+	    pop redistributeevent
+	} ifelse
+	unblockinputqueue
+    } def
+classend def
+
+
+%   "Services" are interests in events (or classes of events) which
+%   get translated into calls to client code to handle particular
+%   well-known classes of interaction (Damage, Help, Open/Close, etc.)
+%   Most of them work by sending a DoIt event to the affected canvas.
+%   They are defined in systemdict for easy access from Canvas' /activate
+%   and related methods.  The ones associated with FunctionKey definitions
+%   are created after the independent services.
+
+%   The Reception Service allows a canvas to receive /TransferSelection
+%   events.  Normally, at least any canvas which can get the focus
+%   should be receptible.  This service has enough hair that it needs
+%   its own subclass of Interest.
+
+/ClassReceptionService ClassInterest []
+classbegin
+
+% Class Variables
+
+    %	The Reception service has two interests:
+    %	The Reception interest (in /TransferSelection events)
+    %	is the service itself.
+    %	PreviewInterest is used to control previewing by potential
+    %	recipients during the Drag portion of a Drag & Drop;
+    %	NOTE that its ClientData field is used to cache an array with
+    %	the selection being dragged and the canvas which is currently
+    %	performing Drop-previewing.
+    %
+    /PreviewInterest	    null    def	    % int([/Enter /Exit], [0 1 3 4])
+    /PreviewDragInterest    null    def	    % int([/MouseDragged])
+
+    %	ReceptionClients is the dict of canvases used by both the
+    %	Preview & Reception interests.  Its entries are of the form
+    %		canvas: {same-canvas exch exec}
+    %	This is so that, when an event matches either interest, the
+    %	event is left on the stack unchanged; the executable match on
+    %	Name leaves a proc on top of it; the executable match on Canvas
+    %	pushes the canvas on which it matched on top of that; and then
+    %	the proc is swapped to the top of the stack & executed.
+    %
+    /ReceptionClients	growabledict	def
+
+% Methods 
+
+    /NewInit { %  - => -
+	/PreviewInterest    	%indent%
+	    ReceptionClients SubTreeAction 2 dict
+	    % ReceptionClients null 3 dict
+	    dup begin
+		/EnterEvent {
+		    {				%  ev cv
+			1 index /Interest get	%  ev cv int
+			/ClientData get		%  ev cv [sel null]
+			dup 1 3 index put	%  ev cv [sel null]
+			0 get			%  ev cv sel
+			dup null ne {
+			    3 copy /SetDragCursor exch send	%  ev cv sel
+			} if
+			/droppreviewlevel 2 index send /None ne {
+			    2 index /Name /Enter put	%  ev cv sel
+			    /DropPreview 3 -1 roll	%  ev sel /DP cv
+			    4 array astore
+			    /sendmanager currentprocess send
+			} {
+			    pop pop pop
+			} ifelse
+		    }
+		}		def
+	    	/ExitEvent {
+		    {				%  ev cv
+			1 index /Interest get	%  ev cv int
+			/ClientData get		%  ev cv [sel cv']
+			dup 1 null put 0 get	%  ev cv se
+			dup null ne {   	    	%  ev cv se
+			    2 index null /SetDragCursor 3 index send
+			} if
+			/droppreviewlevel 2 index send /None ne {
+			    2 index /Name /Exit put 	%  ev cv sel
+			    /DropPreview 3 -1 roll	%  ev sel /PDR cv
+			    4 array astore
+			    /sendmanager currentprocess send
+			} {
+			    pop pop pop
+			} ifelse
+		    }
+		}		def
+    	    end /new ClassInterest send
+	    dup /ClientData 2 array put
+	    /Unwind {
+		/disarmpreview ReceptionService send
+		/Unwind super send
+	    } /installmethod 3 index send
+	store
+
+	/PreviewDragInterest    	%indent%
+	    ReceptionClients null 2 dict
+	    dup begin
+	    	% REMIND:   If FullScreen goes away, just use /MouseDragged.
+	    	/FSMouseDragged {
+		    {				%  ev cv
+			1 index /Interest get	%  ev cv int
+			/ClientData get
+			/ClientData get		%  ev cv [sel null]
+			dup 1 3 index put	%  ev cv [sel null]
+			0 get			%  ev cv sel
+			dup null ne {
+			    3 copy /SetDragCursor exch send	%  ev cv sel
+			} if
+			/droppreviewlevel 2 index send /All eq {
+			    2 index /Name /Motion put	%  ev cv sel
+			    /DropPreview 3 -1 roll	%  ev sel /DP cv
+			    4 array astore
+			    /sendmanager currentprocess send
+			} {
+			    pop pop pop
+			} ifelse
+		    }
+		}   	    	def
+    	    end /new ClassInterest send
+	    dup /ClientData PreviewInterest put
+	    /Unwind {
+		/disarmpreview ReceptionService send
+		/Unwind super send
+	    } /installmethod 3 index send
+	store
+
+	ReceptionClients null 5 dict dup begin
+	    /TransferSelection {
+		{   			    	    	% ev can
+		    dup 1 array astore	    	    	% ev can [can]
+		    {
+			{ Match } stopped { Unwind } if
+		    } append cvx    	    	    	% ev can proc
+		    /SendInContext 3 index /Interest get
+		    send
+		}
+	    }		def
+	end /NewInit super send
+	% /Synchronous true def
+    } def
+
+    %	Clean up in case of error in callback.
+    %
+    %   -  =>  -
+    /Unwind {	%   -  =>  -
+	/disarmpreview self send
+	/Unwind super send
+    } def
+	    
+
+    /destroy { %  - => -
+	ReceptionClients cleanoutdict
+	PreviewInterest /ClientData null put
+	PreviewDragInterest /ClientData null put
+	PreviewInterest /Process null put
+	PreviewDragInterest /Process null put
+	/destroy PreviewInterest send
+	/destroy PreviewDragInterest send
+	/destroy super send
+    } def
+
+    /armpreview {  % selection => -
+	nullevent /activate PreviewInterest send	%  sel
+	nullevent /activate PreviewDragInterest send	%  sel
+
+	% In case the drag didn't start in a Receptable canvas...
+	nullevent null /SetDragCursor 3 index send    	%  sel
+	
+	PreviewInterest /ClientData get			%  sel [? ?]
+	dup 0 3 index put				%  sel [s ?]
+	dup 1 null put					%  sel [s n]
+	% if there's a receptible window under the cursor, start preview
+	null canvasesunderpoint {			%  sel [s n] cv
+	    ReceptionClients 1 index known {
+		nullevent 4 -1 roll			%  [s n] cv nev sel
+		dup null ne {
+		    1 index  3 index  /SetDragCursor  3 index send
+		} if	    	    			%  [s n] cv nev sel
+		/droppreviewlevel 3 index send /None ne {
+		    1 index /Name /Enter put
+		    /DropPreview 3 index send	    	%  [s n] cv
+		} {
+		    pop pop
+		} ifelse
+		1 exch put
+		null null exit				%  n n
+	    } {
+		pop					%  sel [s n]
+	    } ifelse
+	} forall pop pop
+    } def
+
+    /disarmpreview { %  - => -
+	PreviewInterest /ClientData get		%  [sel cv|null]
+	dup 1 get null ne {			%  [s c]
+	    aload nullevent 4 -2 roll		%  [s c] nev sel cv
+	    /droppreviewlevel 1 index send /None ne {
+		2 index /Name /Exit put
+		/DropPreview exch send	    	% [s c]
+	    } {
+		pop pop pop
+	    } ifelse
+	} if					%  [s c]
+	dup 0 null put 1 null put		%
+	/deactivate PreviewInterest send
+	/deactivate PreviewDragInterest send
+	PreviewInterest /Process null put
+	PreviewDragInterest /Process null put
+	null grabcursor
+    } def
+
+    /addclient { % canvas => -
+	%   add an entry of the form cv: {cv exch exec} to ReceptionClients
+    	soften ReceptionClients exch 
+	[1 index /exch cvx /exec cvx] cvx put	%  REMIND: can we pack it?
+    } def
+
+    /removeclient { % canvas => -
+	ReceptionClients 1 index undef
+	PreviewInterest /ClientData get		%  cv [sel cv'|null]
+	dup 1 get 3 -1 roll eq {		%  [s c']
+	    1 null put
+	} {
+	    pop
+	} ifelse
+    } def
+
+    % private
+    %	Handle a TransferSelection event.  The Canvas on the stack is the
+    %	canvas with the interest that matched, triggering this execution.
+    %
+    %	The event is of the form:
+    %	    /Action	    dict:	/Source	    	selection
+    %	    	    	    	    	/DeleteSource?	bool
+    %	    	    	    		/Destination	canvas
+    %	    /Canvas 	    canvas | null
+    %	    /Name   	    /TransferSelection
+    %	    ...
+    %
+    %	event  canvas  =>  -
+    /Match { % event canvas => -
+	1 index createevent copy    	    	    %  ev  cv  ev'
+	
+	% Disambiguate transfer type into a copy of the event.
+	% ToLocation if event's Canvas is null, otherwise ToCaret
+	% Copy if DeleteSource?, otherwise Move
+	dup /Action get	    	         	    %  ev  cv  ev'  sel
+	/DeleteSource? 1 index send {    	    %  ev  cv  ev'  sel
+	    1 index /Canvas get null eq	    	    %  ev  cv  ev'  sel  bool
+	    {/MoveToLocation} {/MoveToCaret} ifelse %  ev  cv  ev'  sel  /MT?
+	} { 		    	       	    	    %  ev  cv  ev'  sel
+	    1 index /Canvas get null eq	    	    %  ev  cv  ev'  sel  bool
+	    {/CopyToLocation} {/CopyToCaret} ifelse %  ev  cv  ev'  sel /CT?
+	} ifelse
+	2 index /Name 3 -1 roll put 	    	    %  ev  cv  ev'  sel
+
+	dup 4 1 roll				    %  ev  sel  cv  ev'  sel
+	/HandleReception 4 -1 roll send		    %  ev  sel  bool
+	/transferinprogress? 2 index send {	    %  ev  sel  bool
+	    /CheckAutoEnd? 2 index send {   	    %  ev  sel  bool
+		/endtransfer 3 -1 roll send	    %  ev
+	    } {					    %  ev  sel  bool
+		pop pop	    	    	    	    %  ev
+	    } ifelse
+	    pop	    	    	    	    	    %  -
+	} {
+	    % If there is no transfer currently in progress, either the
+	    % event has been rejected (return value = false), or the
+	    % transfer is complete and /endtransfer has already been
+	    % called (return value = true).
+
+	    exch /CheckAutoEnd? false put   	    %  ev  bool
+	    {	    	    	    	    	    %  ev
+		pop 	    	    	    	    %  -
+	    } {	    	    	    	    	    %  ev
+		% NOTE: This does (correctly) match the same interest
+		% on parent canvases, provided the event being
+		% redistributed does not have an explicit /Canvas
+		% value.  Since we're using an executable match in the
+		% /Canvas dict, the event's original /Canvas value
+		% (null or explicit) is unchanged, which is how we want it.
+
+		redistributeevent		   %  -
+	    } ifelse
+	} ifelse
+	
+	unblockinputqueue
+    } def
+
+classend def	    %-%	    ClassReceptionService
+
+%	The Damage Service watches for damage notifications on any canvas
+%	which has declared itself damageable.
+
+/DamageService growabledict null 1 dict dup begin
+    /Damaged {/HandleDamage SendCanvasHandler} def
+end /new ClassInterest send def
+
+%   The Reception Service allows a canvas to receive /TransferSelection
+%   events, which indicate data has been dragged or pasted into that canvas.
+
+/ReceptionService /new ClassReceptionService send def
+
+%	The Track Service can be used by any canvas which wants to have a
+%	tracking-style interaction, as in a draw program, or a scrollbar.
+
+/TrackService growabledict /Default [PointButton AdjustButton]
+    /new ClassTrackInterest send def
+
+[DamageService TrackService ReceptionService] /addclients GlobalEventMgr send
+
+%    Function keys with associated Services:
+%	Again, Copy, Cut, Find, Front, Help, Open, Paste, Props, Stop, Undo.
+%	Note not all function keys have named services.
+%	NewInit in ClassFunctionKey takes care of adding the interest
+%	to the global manager.
+
+
+%   Again (not OL-specified): send a /HandleAgain event to the focus.
+%
+/AgainService
+    {	dup /HandleAgain /SendMsgToFocus self send
+	/deactivate super send
+    } null /Focus /AgainKey /new ClassFunctionKey send
+    /Interest get
+def
+
+
+%   Copy: copy primary selection to clipboard.
+%
+/CopyKey
+    { dup /selectioncopy self send /deactivate super send }
+    null /Selection /CopyKey /new ClassFunctionKey send
+def
+
+
+%   Cut: Either delete the primary selection (stashing it
+%   on the clipboard) or move the secondary selection to the
+%   focus, if one was made.
+%
+/CutKey
+    { dup /selectioncut self send /deactivate super send }
+    { /StartSecondary self send /activate super send }
+    % /Selection /CutKey /new ClassFunctionKey send
+    /Focus /CutKey /new ClassFunctionKey send
+def
+
+
+%   Find (not OL-specified): send a HandleFind event to focus.
+%
+/FindKey
+    { %  event  =>  --
+	dup /terminateselection ClassSelectUI send  %  ev
+	dup dup /Action				    %  ev ev ev /A
+	/SecondaryMade? self send {
+	    /SecondarySelection
+	} {
+	    /PrimarySelection
+	} ifelse getselection put		    %  ev ev
+	/HandleFind /SendMsgToFocus self send	    %  ev
+	/deactivate super send			    %
+    }
+    { % event => -
+	/StartSecondary self send
+	/activate super send
+    }
+    /Focus /FindKey /new ClassFunctionKey send
+def
+
+/FindService FindKey /Interest get def
+
+% REMIND: these services are temporarily using ClassGrabbedFunctionKeyService
+% until a better integrated solution can be built.
+%
+%	The Front Service handles the "Front" function key,
+%	dropping a HandleFront event off the cursor
+%
+%/FrontService
+%    { %  event  =>  --
+%	dup dup /Action
+%	/Shift /modifierdown? ClassKeyboard send
+%	{ /Back } { /Front } ifelse put
+%	/HandleFront SendCanvasHandler
+%	/deactivate super send
+%    }
+%    null /Cursor /FrontKey /new ClassFunctionKey send
+%    /Interest get
+%def
+%
+%	The Help Service watches for a key-press that means "Help"
+%	(function key or ^?); it sends a HandleHelp event to the cursor.
+%
+%/HelpService
+%    null
+%    { /HandleHelp SendCanvasHandler /activate super send }
+%    /Cursor /HELPKey /new ClassFunctionKey send
+%    /Interest get
+%def
+%
+%
+%	The Open Service handles the "Open" function key; it
+%	sends a HandleOpen event to the cursor.
+%
+%/OpenService
+%    {	dup dup /Action /Toggle put
+%	/HandleOpen SendCanvasHandler
+%	/deactivate super send
+%    }
+%    null /Cursor /OpenKey /new ClassFunctionKey send
+%    /Interest get
+%def
+
+/FrontService
+    UserProfile /FrontKey /FunctionL5 ?get /HandleFront
+    /new ClassGrabbedFunctionKeyService send def
+
+/HelpService
+    /HELPKey /HandleHelp
+    /new ClassGrabbedFunctionKeyService send def
+
+/OpenService
+    UserProfile /OpenKey /FunctionL7 ?get /HandleOpen
+    /new ClassGrabbedFunctionKeyService send def
+
+[FrontService HelpService OpenService] /addclients GlobalEventMgr send
+
+%	Paste: Insert either the secondary selection (if one was made)
+%	or the contents of the clipboard.
+%
+/PasteKey
+    { dup /selectionpaste self send /deactivate super send }
+    { /StartSecondary self send /activate super send }
+     /Focus /PasteKey /new ClassFunctionKey send
+def
+
+
+%	Props: Send a HandleProps message to the selection.
+%
+/PropsKey
+    { dup /selectionprops self send /deactivate super send }
+    null /Selection /PropsKey /new ClassFunctionKey send
+def
+
+
+%   Stop (only partially OL-specified): clear all OLUI's state --
+%   secondary selection, inhibited & pending focus, any down
+%   function keys; then pass the event on for any other
+%   interested parties (e.g. ClassRepeat). 
+%
+/StopKey
+    {
+	/cancel ClassSelectUI send
+	/resetinput ClassUI send
+	dup /UpTransition KeyCode /SendToCursor self send
+	/deactivate super send		%  --
+    }
+    null null /StopKey /new ClassFunctionKey send
+def
+
+
+%   Undo (not fully OL-specified): send a HandleUndo event to the focus.
+%
+/UndoService
+    {	dup /HandleUndo /SendMsgToFocus self send
+	/deactivate super send
+    }
+    null /Focus /UndoKey /new ClassFunctionKey send
+    /Interest get
+def
+
+{
+    /SecondaryKeys [ /KeyCode CutKey send
+		     /KeyCode PasteKey send
+		     /KeyCode FindKey send
+		     /KeyCode PropsKey send
+		   ] store
+} ClassFunctionKey send

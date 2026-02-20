@@ -1,0 +1,71 @@
+.\" @(#)circles.6 1.3 91/02/11
+.ds Dc 12/22/89
+.TH CIRCLES 6 "\*(Dc" "" "TNT Demos"
+.SH NAME
+circles \- TNT Selection and Reception service demo
+.SH DISCLAIMER
+.LP
+This program is furnished on an AS IS basis as a demonstration
+of TNT applications programming.
+.SH SYNOPSIS
+.B circles
+.SH DESCRIPTION
+.B Circles
+is a complete application that demonstrates much of what's involved in
+supporting making/manipulating selections within a canvas.  The application
+brings up two instances of a window containing a few circular subcanvases
+(which scale automatically with the parent window).
+
+.I OPEN LOOK
+specifies two basic mechanisms by which a graphical object may be
+(de)selected.  The first method involves pressing the
+.I SELECT
+button over the canvas behind the object to be selected, and then dragging
+a bounding-box to enclose the objects to be selected.  The second
+method involves clicking the
+.I SELECT
+button directly over the object to be selected.
+
+Objects may be added to or removed from the selection in a similar manner
+using the
+.I ADJUST
+button to toggle the selected state.  When used to draw a bounding box,
+each object within the box will individually toggle it's state.
+
+Per
+.I OPEN LOOK
+, if you mouse down inside an existing selection and move the
+mouse, it drags the selection to a new location.  (Holding down the CONTROL
+key while you do this causes the selection to be copied instead of moved.)
+You can drag between two different Circles windows; you can also use cut and
+paste.
+
+.I OPEN LOOK
+also allows an object to be selected and drug in a single operation by holding
+the
+.I SELECT
+button down over an object.
+
+To demonstrate the use of invalid dropsites, only portions of the background
+canvas not covered by a circle are valid dropsites.  (It is possible to drop
+a canvas where it will overlap another, but the center of the dropped canvas
+must be over the background.)
+
+Comments throughout the code explain how each piece fits into the
+selection paradigm.
+.SH BUGS
+Transient selections (quick-copy/move) are not supported.
+
+A circle is considered to be within a rubber-banded selection box if it's
+center is within the box.
+.SH SEE ALSO
+The Open Look Graphical User Interface Functional Specification.
+.SH LEGAL STUFF
+.I PostScript
+is a trademark of Adobe Systems, Inc.
+.br
+.I NeWS
+is a trademark of Sun Microsystems, Inc.
+.br
+.I OPEN LOOK
+is a trademark of AT&T.

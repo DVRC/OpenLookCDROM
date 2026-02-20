@@ -1,0 +1,85 @@
+
+This directory contains a variety of utilities that may be of interest
+to LispView programmers.  Especially note the grapher and the interface
+to XGL ("3D-graphics").
+
+The utilities are generally documented by the comments in the source
+files; in some cases a README gives a brief overview or a .doc file
+provides more extensive information.  A manual is included with the
+grapher.
+
+Some of the utilities are defined in package "LISPVIEW"; use the "LV"
+package qualifier as needed.
+
+Subdirectories:
+-------------------------------
+3D-graphics
+
+The directory 3D-graphics contains a Lisp interface to Sun's XGL 2.0 (2D/3D
+graphics) library.  The interface is constructed using the Lisp foreign
+function interface.  You must purchase XGL 2.0 separately in order to use
+this interface.  Examples include scale and rotation operations on various
+polyhedra which are controlled via LispView graphical user interface
+objects.
+See the README file for build instructions.
+
+-------------------------------
+contrib
+
+Utilities contributed by LispView users.
+
+--------------------------------
+extras
+
+Coding ideas on several LispView topics (drawing without damage interest,
+converting icons to arrays, finding object id's, sending events, spot help)
+
+--------------------------------
+grapher
+
+This directory contains the code and documentation for a CLOS based
+grapher library and a couple of grapher applications.  The external
+interface (display of graphs as well as input of mouse and keyboard
+events) of the grapher is made through LispView.
+
+To bring up a class grapher, load lispview-grapher.sbin from the
+grapher subdirectory into a LispView image and evaluate
+(cg:make-class-graph (find-class 'lv:canvas)).
+
+To bring up a window grapher, assuming lispview-grapher.sbin is
+loaded, evaluate (wg:make-window-graph).
+
+The grapher documentation includes a description of the programmatic
+interface necessary to customize your own grapher application as well
+as two sample applications.
+
+--------------------------------
+list-viewer
+
+Utility for viewing a potentially large list of choices, but with
+more flexibility than a scrolling-list (for example, list-viewer choices
+can be anything your application can draw on a canvas).
+A demo file provides examples (image viewer, string viewer, class viewer).
+
+---------------------------------
+presentations
+
+Example "presentation style" framework and "visibox" demo
+
+-----------------------------------
+textedit
+
+LispView Interface for the XView Textsw Module
+
+-----------------------------------
+tty
+
+LispView Interface for the XView Ttysw Module
+
+-----------------------------------
+with-fast-output
+
+Macro to aid in achieving performance speedup for graphics-intensive
+portions of code
+
+-----------------------------------

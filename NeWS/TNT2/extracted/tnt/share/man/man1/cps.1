@@ -1,0 +1,237 @@
+.\" @(#)cps.1	1.4 91/02/11 SMI;
+.ds Ps P\s-2OST\s+2S\s-2CRIPT\s+2
+.ds Xn \s-2X11/N\s+2e\h'-0.2n'\s-2WS\s+2
+.ds Sd \s-2Ne\h'-0.2n'WS\s+2
+.TH CPS 1 "2 November 1990"
+.IX cps#(1) "" "\fLcps\fP(1)"
+.IX "cps facility" cps#(1) "\*(Cp facility" "\fLcps\fP(1)"
+.SH NAME
+cps \- construct C to \*(Ps language interface
+.SH SYNOPSIS
+.B cps
+[
+.BR \-c \||\|\c
+.B \-C
+]
+[
+.B \-o
+.I style
+]
+[
+.B \-D 
+.I symbol
+]
+[
+.B \-I
+.I filename
+]
+.if n .ti +5
+[\fB-s \fP[\fInumber\fP] ]
+[
+.B \-i
+]
+[
+.I file\fB.cps\fP
+]
+.#
+.SH DESCRIPTION
+.LP
+.B cps
+compiles a specification file containing 
+C procedure names and 
+\*(Ps language code into a header file
+.RI ( file\fB.h\fP )
+that can be included
+in C programs.
+The header file associates the C procedure names with
+macros that transmit
+a compressed form of the \*(Ps language code
+to the \*(Xn server stream.
+Only one input file can be specified.
+If the
+.IB file .h
+file already exists,
+a backup copy of it will be generated
+of the form
+\fIfile\fP\fB.h\s-2.BAK\s+2\fP
+before the new file is generated.
+.LP
+The convention is for the input specification file to end with
+the suffix
+.BR \&.cps . 
+.#
+.SH OPTIONS 
+.LP
+.TP 10
+.B \-c
+Compiles the file of \*(Ps language code for faster
+loading by \*(Sd, but does not generate a specification file
+for C programs.   
+For example, the command line
+.RS
+.IP
+\fBexample% cps -c < \fIinput_file\fP > \fIoutput_file\fP
+.RE
+.IP
+converts the input file
+from the
+.SM ASCII
+form of the \*(Ps language
+to a compressed binary form.
+When read by \*(Sd, the output file
+will execute exactly the same as
+.IR input_file ,
+except that it will be parsed faster.  
+.IP
+.SB NOTE:
+The
+.B \-c
+option will not work if the input file uses constructs such as
+.BR "currentfile readstring" ,
+which are often used with the
+.B image
+primitive.
+.TP 10
+.B\-C
+Compiles the file of \*(Ps language code in the same way that the \fB-c\fP
+option does:  however, when \fB-C\fP is used, the file can contain
+usertoken specifications.  The tokens are automatically set up at
+the start of the output file; they are used throughout the output file
+to compress the \*(Ps language even further than occurs with the \fB-c\fP option.
+.#
+.TP 10
+.BI \-D " symbol"
+Defines symbols to be passed to the 
+C language preprocessor
+.RB ( cpp (1)),
+which processes the input file.
+.\" The '-D' option passes itself onto 'cpp' (the C language preprocessor), 
+.\" which is called to preprocess the input file.  The '-D' is used to define 
+.\" symbols as if by '#define' directive.   
+.#
+.TP 10
+.BI \-I " filename"
+Specifies include files or include paths.
+Passed on to the C preprocessor.
+.\" The '-I' option is similar to the '-D' option, since it also passes itself
+.\" onto 'cpp', which is called to preprocess the input file.  The '-I' option
+.\" is used to specify include files.
+.TP 10
+.BI \-o " style"
+Specifies the output format.
+.IP
+Most of these options are useful for minimizing the size impact of \*(Cp
+interfaces that contain procedures called from several places
+in the C code.
+The 
+.IB file .c
+generated would only need to be compiled once.
+Each file that needs to use the interface could then include only the
+.IB file .h
+and use the macros in that file multiple times.
+Each repeated invocation of the macro would refer to the shared
+\*(Ps language code in the
+.IB file .c
+rather than its own static copy of the \*(Ps language code.
+.IP
+In all cases if the output file(s) exist,
+\B \&.\s-2BAK\s+2
+backup copies will be generated.
+.IP
+.I styles recognized are:
+.RS
+.TP 14
+.BR macros
+Generates a single specification file of the form file.h, which
+contains the string
+constants and macro definitions required for the C-\*(Ps interface.
+.TP
+.BR ansi
+Generates two specification files: the first file contains only
+ANSI-c function prototypes;
+the second file contains the function definitions required for the 
+C-\*(Ps
+interface.
+The first file is of the form
+.IB file .c\fR;\fP
+the second file is of the form
+.IB file .h\fR.\fP
+.TP
+.BR c++
+Generates code identical to the ansi option, but the second file is
+of the form file.cc.
+.TP
+.BR conststr
+Generates two specification files: the first file contains only the
+compressed form of the \*(Ps language code; the second file contains the
+macro definitions required for the 
+C-\*(Ps
+interface.
+For example,
+.B ps_open_PostScript()
+and 
+.B ps_close_PostScript()
+would be defined in the second
+file. The second file references
+compressed \*(Ps language code as
+\fBextern char\fR arrays.
+The first file is of the form
+.IB file .c\fR;\fP
+the second file is of the form
+.IB file .h\fR.\fP
+.#
+.TP
+.BR functions
+Generates two specification files: the first file contains only
+traditional (K&R) c function prototypes;
+the second file contains the function definitions required for the 
+C-\*(Ps
+interface.
+The first file is of the form
+.IB file .c\fR;\fP
+the second file is of the form
+.IB file .h\fR.\fP
+.TP
+.BR inline
+Generates a single specification file of the form file.h, which contains
+the function definitions required for the C-\*(Ps interface expressed
+as ANSI static inline functions.
+.TP
+.BR portable
+Generates two specification files: the first file contains only
+function prototypes declared using the extended portability macros
+defined in NeWS/c_varieties.h.
+The second file contains the traditional (K&R)
+function definitions required for the 
+C-\*(Ps
+interface.
+The first file is of the form
+.IB file .c\fR;\fP
+the second file is of the form
+.IB file .h\fR.\fP
+.RE
+.TP 10
+.B \-i
+Obsolete.  Replaced by `-o conststr'.
+.TP 10
+\fB-s \fP[\fInumber\fP]
+Specifies the threshold at which compiled \*(Ps language code will be output as decimal
+arrays instead of string constants.  If
+.I number
+is missing, all \*(Ps language code
+will be ouput as string constants in the resulting
+.IB file .h\fR.\fP
+This may be useful for debugging purposes,
+even though the \*(Ps language code is in compressed form.
+If
+.I number
+is 0, all \*(Ps language code will be output as decimal arrays.
+The default threshold is 400 characters,
+which is less than the maximum limit of string constants for most compilers.
+Note that there must be no space before \fInumber\fP, since it is optional.
+.SH "SEE ALSO"
+.LP
+.BR cpp (1V) 
+.SH TRADEMARK
+.LP
+\*(Ps is a registered trademark of Adobe Systems, Inc.

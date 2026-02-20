@@ -1,0 +1,733 @@
+(echo '/;exit /pop cvx def' | exec psh - $0) ;exit
+
+% @(#)circles 1.12 91/02/21 Copyright 1990-91 Sun Microsystems
+%
+% This file is a product of Sun Microsystems, Inc. and is provided for
+% unrestricted use provided that this legend is included on all tape
+% media and as a part of the software program in whole or part.  Users
+% may copy or modify this file without charge, but are not authorized to
+% license or distribute it to anyone else except as part of a product
+% or program developed by the user.
+%
+% THIS FILE IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
+% WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+% PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
+%
+% This file is provided with no support and without any obligation on the
+% part of Sun Microsystems, Inc. to assist in its use, correction,
+% modification or enhancement.
+%
+% SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
+% INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY THIS FILE
+% OR ANY PART THEREOF.
+%
+% In no event will Sun Microsystems, Inc. be liable for any lost revenue
+% or profits or other special, indirect and consequential damages, even
+% if Sun has been advised of the possibility of such damages.
+%
+% Sun Microsystems, Inc.
+% 2550 Garcia Avenue
+% Mountain View, California  94043
+
+
+% This is a complete application that demonstrates much of what's involved in
+% supporting making/manipulating selections within a canvas.  The application
+% brings up two instances of a window containing a few circular subcanvases
+% (which scale automatically with the parent window).
+% 
+% You can select circles by dragging out a bounding box that encloses the
+% CENTER of the desired circle.	 (It wouldn't be hard to add selection of
+% single circles by clicking on them, but it wouldn't be any more
+% instructive.)	 If you drag out a box using the "adjust" mouse button, it
+% adds/removes the enclosed circles from an existing selection.
+% 
+% Per OPEN LOOK, if you mouse down inside an existing selection and move the
+% mouse, it drags the selection to a new location.  (Holding down the CONTROL
+% key while you do this causes the selection to be copied instead of moved.)
+% You can drag between two different Circles windows; you can also use cut and
+% paste.  Secondary selections (quick-copy/move) are NOT supported for this
+% example.
+%
+% Comments throughout the code explain how each piece fits into the
+% selection paradigm.
+
+% The ClassSelection subclass again implements the required methods.
+% Commonly these are implemented by short bits of code that simply
+% call similar methods in the Canvas (which is available as the /Holder
+% instance variable in most Selections).  Here, though, the operations
+% are simple enough that most of the work is done directly.
+
+/CircleSelection ClassSelection nullarray
+classbegin
+
+    % Override: This class variable tells the global machinery what forms
+    % of query to stash away when copying one of our selections to the
+    % clipboard (i.e., for cut & paste).
+    %
+    /CanRenderAs 1 dict dup begin
+	/Circles    null    def
+    end def
+    
+    % The following methods are promoted to constants when a drag operation
+    % is performed.  The defaults normalise all the selected circles to be
+    % at 0,0 (which is then offset by the location of the "get" action).
+    % When a drag is performed, the promoted constants cause the destination
+    % coords to be interpreted relative to the starting point of the drag.
+    %
+    /DeltaX {dup} def	% offset due to drag (promoted)
+    /DeltaY {dup} def	% ditto
+    
+    % Subclass responsibility: Remove all circles from this selection,
+    % thereby dehighlighting them.  We do this by asking our Holder (the
+    % CirclesCanvas) for a list of its children, and then telling each
+    % child to deselect itself.
+    %
+    /Deselect { % - => -
+	Rank /PrimarySelection eq {
+	    /children Holder send {
+		/KillSelection exch send
+	    } forall
+	} if
+	/DeltaX unpromote /DeltaY unpromote
+    } def
+    
+    % Get a list of the CircleChild canvases that are selected in our
+    % canvas.  This is a utility used by /SingleRequest.  Note that the
+    % list is always empty if this is not a PrimarySelection.
+    % 
+    /SelectedChildren { % - => [canvases]
+	[ Rank /PrimarySelection eq {
+	    /children Holder send {
+		/Selected? 1 index send not {pop} if
+	    } forall
+	} if ]
+    } def
+    
+    % Subclass responsibility: The only requests we understand are (1)
+    % render the selection as an array of circles, (2) render it as a
+    % single canvas (the parent), and (3) delete the selected canvases
+    % from the CirclesCanvas parent.
+    %
+    % For the first, we offset the x/y of each circle according to DeltaX/Y.
+    % If those methods have not been promoted, this causes each circle to be
+    % given a 0/0 origin, which is then offset by the destination coords.
+    % If /SetDeltas has been called, DeltaX/Y offset the circles by the
+    % starting coordinates of the drag operation.
+    %
+    % The second form of query, /Canvas, isn't by any means required;
+    % indeed, there are few if any clients who query for such a value.	But
+    % it's so trivial to provide that most Selections might as well offer it.
+    % Note however that it is NOT included in the /CanRenderAs array, lest
+    % the /Canvas value get copied to the ClipBoard and thus prevent the
+    % window from going away in a timely fashion.
+    %
+    % For /DeleteContents, we use the trick of turning the to-be-deleted
+    % canvas(es) opaque just before deleting them, to force that portion
+    % of the parent to be repainted.  Other selection clients might be able
+    % to make more precise calculations of what needs to be repainted.
+    /SingleRequest { % oldval key => newval
+	{
+	    /Circles {
+		pop [ SelectedChildren {
+		    /baggage 1 index send aload pop
+		    /BG 5 -1 roll send
+		    colorrgb pop pop		% x y r gray
+		    4 -1 roll DeltaX sub
+		    4 -1 roll DeltaY sub
+		    4 2 roll 4 array astore
+		} forall ]
+	    }
+	    /Canvas {
+		pop Holder
+	    }
+	    /DeleteContents {
+		SelectedChildren {
+		    true /setdamageable 2 index send	% force damage
+		    /removeclient Holder send { /destroy exch send } if
+		} forall
+	    }
+	    /Default { pop /UnknownRequest }
+	} case
+    } def 
+    % Stash the starting coordinates of a drag operation.
+    %
+    /SetDeltas { % x y => -
+	/DeltaY exch promote
+	/DeltaX exch promote
+    } def
+
+classend def
+
+% Next we have the circular children themselves.  They use /BorderStroke
+% to note whether they're selected, by promoting a non-zero value.  (Note
+% that the value used is very small, because it's interpreted on the parent's
+% 1x1 coordinate system.)  A few simple methods are provided for toggling
+% or clearing the selected state.  The rest of the class has to do just
+% with implementing the circular border.
+
+/CircleChild ClassCanvas
+dictbegin
+    /baggage	    null    	def
+    /Selected?	    false   	def
+    /Previewed?	    false   	def
+dictend
+classbegin
+    /Mapped 	    false   	def
+
+    /BorderStroke {
+	Selected? Previewed? ne { .01 } { .0 } ifelse
+    } def
+    
+    
+    /setbaggage { % baggage => -
+	/baggage exch def
+    } def
+
+    /NewInit {	% gray => -
+	/NewInit super send
+	/BG exch dup dup rgbcolor promote
+	3 array astore /setbaggage self send
+    } def
+    
+    
+    /Paint { %
+	/Paint super send
+	FG BorderStroke /StrokeCanvas self send
+    } def
+
+    /ToggleState { % - => -
+	/Selected? Selected? not store
+	/Previewed? false store
+	/paint self send
+    } def
+
+
+    /TogglePreview {	%   -  =>  -
+	/Previewed? Previewed? not store
+	/paint self send
+    } def
+
+    /setpreviewed {   %	bool  =>  -
+	Previewed? ne {
+	    /Previewed? Previewed? not store
+	    /paint self send
+	} if
+    } def
+
+    /Select {	%   -  =>  -
+	Selected? not { ToggleState } if
+    } def
+    
+    /KillSelection { % - => -
+	Selected? {ToggleState} if
+    } def
+
+    % Override: Circular border.  Note that incoming x/y are lower left, not
+    % center.
+    %
+    /path { % x y w h => -
+	min 2 div 3 1 roll			% r x y
+	2 index add exch 2 index add exch	% r cx cy
+	3 -1 roll 0 360 arc
+    } def
+    
+    % Override.	 Default method sometimes suffers from roundoff errors.
+    %
+    /StrokeCanvas { % color inset => -
+	2 {neg dup /bbox self send insetrect /path self send} repeat
+	pop setcolor eofill
+    } def
+    
+classend def
+
+% First, the parent canvas.  It is a Bag that will contain the circular
+% canvases as children.	 The "baggage" for each child is the x/y of its
+% center, and the radius.  The parent uses a 1x1 coordinate space, so
+% the children automatically rescale with the parent.  The first several
+% methods -- down through /Layout -- are stuff for the bag and have
+% nothing to do with selections.
+
+/CirclesCanvas ClassBag nullarray
+classbegin
+
+    /BG .5 dup dup rgbcolor def		% 50% gray
+    /BorderStroke 0 def		% default (2) is bogus in our coordinate space
+    /Transparent false def	% don't flash background when removing circles
+    /Mapped true def		% override default (false for opaque canvases)
+
+    % This variable is used to generate the boolean from /SelectionContext
+    /CurrentObject  /None   def
+    
+    % Override: create some initial circles.  The "gray" parameter is
+    % consumed by /new to CircleChild; the x/y/radius is our "baggage".
+    %
+    /NewInit {
+	/NewInit super send
+	%      X  Y radius gray
+	.3 .3	.1    .35 framebuffer /new CircleChild send
+	.8 .5  .15    .7  framebuffer /new CircleChild send
+	.5 .9  .05    .85 framebuffer /new CircleChild send
+	3 { dup /addclient self send /map exch send } repeat
+    } def
+
+
+    /destroy {	%   -  =>  -
+	/CurrentObject unpromote
+	/destroy super send
+    } def
+    
+    
+    /addclient { % client => -
+	dup /addclient super send
+    } def
+
+    % Override: Cause canvas to be some reasonable size by default.  Note
+    % that /minsize is not overridden, so the canvas CAN be made smaller.
+    %
+    /preferredsize { % - => w h
+	300 300
+    } def
+    
+    % Override: Give this canvas a 0-1 0-1 coordinate system.
+    %
+    /reshape { % x y w h => -
+	gsave
+	    4 2 roll	% w h x y
+	    translate	% w h
+	    scale	% -
+	    0 0 1 1
+	    /reshape super send
+	grestore
+    } def
+
+    % Override: Lay out our children according to the baggage.	Since the
+    % children's /reshape method wants x y w h, we have to convert the
+    % center coords and radius into a rect, even though the child will
+    % immediately convert them back.  Such is object-oriented life.
+    %
+    /Layout {
+	/clientlist self send {
+	    /baggage 1 index send			% can [cx cy r]
+	    aload pop 3 1 roll				% can r cx cy
+	    2 index sub exch 2 index sub exch		% can r x y
+	    3 -1 roll 2 mul dup				% can x y w h
+	    /reshape 6 -1 roll send
+	} forall
+    } def
+    
+    
+    % Override: Add selection-related interests.  CircleSelectable is the
+    % interest in selection-causing events.  TransferInterest is the
+    % interest in being on the receiving end of a drag or paste.  The
+    % ClassFocusSelfInterest is necessary so that we can become the input
+    % focus, because the "paste" key sends a /TransferSelection event to
+    % the focus, not to the window the mouse is over.  That is, the
+    % TransferInterest will see a /TransferSelection event if it gets
+    % sent to us, but we have to be the focus in order for the event to
+    % get sent in the first place.
+    %
+    % If the ClassFocusSelfInterest were removed, the ONLY effects would be
+    % (a) the circles window would never take over the input focus, and
+    % (b) you couldn't paste circles into a circles window after deleting them.
+    %
+    /Receptible?	true def
+    /Selectable?	true def	    % override
+    /SelectableType	/Graphic def	    % override
+    /Keyable?		true def
+
+    /KeyStart { % event => null true
+	pop nullarray true
+    } def
+
+    /HandleReception { % event selection => bool
+	2 copy /DropTarget? self send {	    	    	% ev sel
+	    /Circles /query 3 -1 roll send {  	    	% ev array
+		/CircleReception self send		% true
+	    } {						% event; (no text)
+		pop false				% false
+	    } ifelse
+	} { 	    	    	    	    	    	% ev sel
+	    pop pop false
+	} ifelse
+    } def
+
+
+%    /DropPreviewLevel	/All	def
+%
+%    %	event  selection   =>  -
+%    /DropPreview {
+%	console (Circles:DropPreview: % %\n) [ 5 -2 roll ] fprintf
+%    } def
+
+    % SubClass
+    %	Return true iff the event occurred over a valid dropsite for
+    %	the given selection.
+    %
+    %	There is no particular reason to disallow dropping on top of
+    %	another circle, it just makes for a fancier demo...
+    %
+    %	event  selection  =>  bool
+    /DropTarget? { %	event  selection  =>  bool
+	SelectionContext pop /Background eq
+    } def
+
+    % Toggle the selectedness of each child contained by the given rect.
+    % This method is invoked from CircleSelectable.  (It could have been
+    % implemented directly in CircleSelectable, but since it needs to
+    % invoke several methods of CirclesCanvas it is more efficient to
+    % package them up as a single "send"; i.e., it's much faster to do
+    % a single send that then does several "self send"s.
+    %
+    % Note that ToggleSelection in turn sends to the individual children to
+    % change their selectedness; many selection clients, of course, do not
+    % have subcanvases and maintain all their selection state within a
+    % single instance.	See ClassTextControl for an example.
+    %
+    /ToggleSelection { % x y w h => -
+	/children self send {
+	    5 copy ChildInRect? {		% x y w h child
+		/ToggleState exch send
+	    } {
+		pop
+	    } ifelse				% x y w h
+	} forall
+	pop pop pop pop
+    } def
+
+    % Return true if child is contained by given rect.	To keep the example
+    % simple, we return true if the child's center is within the rect,
+    % rather than testing for complete enclosure.  Of course, this makes
+    % it impossible to select just one of several concentric circles.
+    % But hey, it's just a demo!
+    %
+    /ChildInRect? { % x y w h child => bool
+	/baggage exch send				% x y w h [cx cy cr]
+	aload pop pop					% x y w h cx cy
+	0.0001 dup rectsoverlap 
+    } def
+    
+    
+    % Receive a selection via a /TransferSelection event.  TransferInterest
+    % (see /MakeInterests) will call this method when such an event is seen.
+    % We query the selection to see if it's a "Circles" selection; if not,
+    % we return false and TransferInterest redistributes the event for us.
+    % (E.g., if an icon is dragged over a Circles window and released, it
+    % will fall through to the desktop.)  Assuming the selection IS Circles,
+    % we add the circles to our canvas, translating them according to the
+    % location of the event.  (We apply min/max to keep them from falling
+    % outside the canvas, lest they be lost forever.)
+    %
+    % NOTA BENE: The newly inserted circles do NOT end up being selected.
+    % If the operation was a Move, nothing ends up selected; if it was a
+    % Copy, the source stays selected.	Clients might well wish to select
+    % the newly inserted stuff, but if the /ReceiveTransfer method were to
+    % do this it could cause trouble if the operation is a Move, because the
+    % global mechanism will subsequently try to delete the source Selection,
+    % which might no longer exist!  This is a recognised design deficiency
+    % that will be addressed after the initial release.
+    % 
+    /CircleReception { % event circles => bool
+	gsave
+	    self setcanvas
+	    exch /Coordinates get aload pop		% [circs] dx dy
+	    3 -1 roll {					% dx dy [x y r gray]
+		aload pop 4 -1 roll			% dx dy y r gray x
+		5 index add 0.005 max 0.995 min		% dx dy y r gray x'
+		4 -1 roll				% dx dy r gray x' y
+		4 index add 0.005 max 0.995 min		% dx dy r gray x' y'
+		4 2 roll				% dx dy x' y' r gray
+		4 copy pop 0 360 arc extenddamage
+		framebuffer /new //CircleChild send	% dx dy child
+		dup /addclient self send		% dx dy
+		/map exch send
+	    } forall
+	    pop pop true
+	grestore
+    } def
+    
+% Selectable routines.
+
+    % These three values are overridden when an operation is in progress
+    % that involves an overlay canvas for feedback.  The two operations
+    % that do so are (1) bounding box for making/adjusting a selection,
+    % and (2) dragging an existing selection to a new location.
+    
+    /OverlayCanvas null def	% promoted when in use (bounding box and drags)
+    /X null def			% initial X of bounding box (promoted)
+    /Y null def			% initial Y of bounding box (promoted)
+
+% Methods:
+
+    % Subclass responsibility: Create an instance of our subclass of
+    % ClassSelection.  No special initialisation is required.
+    %
+    % Note that, as with the other subclass responsibility methods, this
+    % demo code does not itself contain any sends to the /newselection
+    % method.  CircleSelectable INHERITS code that, having decided that
+    % a particular user action should be interpreted as starting a new
+    % selection, then does "/newselection self send", thereby calling the
+    % method below.
+    %
+    /NewSelection { % event rank => selection
+%	Holder /new //CircleSelection send
+	Holder /new CircleSelection send
+	exch pop
+    } def
+    
+    % Subclass responsibility: Update a CircleSelection instance to reflect
+    % the start of a new selection.  For our purposes this is treated the
+    % same as when we start adjusting an old selection, so we share the
+    % code with that method.
+    %
+    /SelectionStart { % event selection => bool
+	/Pin 1 index send /NoPin ne {
+	    1 index self StartOverlay
+	} if
+
+	1 index WhichCircle 	    	    	    	% ev sel can|null
+	dup null ne {	    	    	    	    	% ev sel can
+	    true /setpreviewed 3 -1 roll send	    	% ev sel
+	} { pop } ifelse    	    	    	    	% ev sel
+	
+	/SelectionAdjust self send
+	true
+    } def
+    
+    % Subclass responsibility
+    %	Update a CircleSelection instance to reflect a new selection
+    %	action.	 This method is only invoked during previewing, so
+    %	all we need to change is the bounding-box feedback.  (If we
+    %	wanted to get fancy, we could adjust the highlighting of the circles
+    %	on the screen but not actually change whether they're selected yet,
+    %	but let's not be fancy.)
+    % 
+    %	Note that we support only PrimarySelection; if we're asked to make
+    %	a SecondarySelection we ignore the request and leave the selection
+    %	empty. 
+    % 
+    %	As mentioned earlier, when the operation is finished (Preview=false),
+    %	we use a method in CirclesCanvas to do the actual toggling, to avoid
+    %	doing too many cross-instance sends. 
+    %
+    %	event  selection  =>  -
+    /SelectionAdjust { % event selection => -
+	{ Pin Rank } 1 index send /PrimarySelection ne {    % ev sel pin
+	    pop pop pop					    % -
+	} {						    % ev sel pin
+	    /NoPin eq {	    	    	    	    	    % ev sel
+		% We are selecting by clicking directly on a circle.
+		%
+		/ToggleSelected? exch send {
+		    WhichCircle				    % c|n
+		    /children self send {    	    	    % c|n can
+			dup 2 index eq  	    	    % c|n can bool
+			/setpreviewed 3 -1 roll send	    % c|n
+		    } forall
+		} if
+		pop 	    	    	    	    	    % -
+	    } {						    % ev sel
+		% We are selecting by wiping a bounding-box
+		% around the canvases we want to change.
+		%
+		pop
+		EventCoords X Y points2rect		    % sel x y w h
+		gsave	    %indent%
+		    OverlayCanvas setcanvas erasepage
+		    0 setgray 0 setlinewidth rectpath stroke
+		grestore    %exdent%
+	    } ifelse
+	} ifelse
+    } def
+
+    % Subclass responsibility
+    %	Update a CircleSelection instance to reflect completion of
+    %	a selection action.  Change the state of the affected canvases.
+    % 
+    %	Note that we support only PrimarySelection; if we're asked to make
+    %	a SecondarySelection we ignore the request and leave the selection
+    %	empty. 
+    % 
+    %	As mentioned earlier, when the operation is finished,
+    %	we use a method in CirclesCanvas to do the actual toggling, to avoid
+    %	doing too many cross-instance sends. 
+    %
+    %	event  selection  =>  -
+    /SelectionStop { % event selection => -
+	{ Pin Rank } exch send 	    	    	    % event pin rank
+	/PrimarySelection ne exch /NoPin eq or {    % event
+	    WhichCircle dup null ne {
+		/ToggleState exch send 	   	    % -
+	    } { pop } ifelse
+	} {					    % event
+	    EventCoords X Y points2rect		    % x y w h
+	    StopOverlay
+	    /ToggleSelection self send		    % -
+	} ifelse
+
+	/children self send {
+	    false /setpreviewed 3 -1 roll send
+	} forall
+    } def
+
+    % Subclass responsibility: When a drag operation begins we just remember
+    % the initial coords and create the overlay.  Note the overlay covers the
+    % whole framebuffer (unlike in /adjustto), but the coords are in our own
+    % CTM.  We use a temp event's Coords in /dragto to convert between them.
+    %
+    /DragStart { % event selection => -
+	pop framebuffer StartOverlay
+    } def
+    
+    % Subclass responsibility
+    %	Give feedback for the drag in progress. We won't try to do
+    %	anything fancy like showing the actual circles (hard to decide
+    %	how to scale them anyway when moving between windows); we just
+    %	draw a line from where the drag started to the current point.
+    %
+    %	event  selection  =>  - 
+    /DragAdjust {   %	event  selection  =>  - 
+	pop 
+	gsave 
+	    % Use a temporary event to convert X/Y from the original 
+	    % canvas's CTM to that of the overlay. 
+	    self setcanvas 
+	    createevent dup /Coordinates [X Y] put		% ev evtemp 
+	    OverlayCanvas setcanvas				% ev evtemp 
+	    /Coordinates get aload pop			% ev x' y' 
+	    erasepage 0 setgray 0 setlinewidth moveto	% ev 
+	    /Coordinates get aload pop lineto stroke 
+	grestore 
+    } def
+    
+
+    % Subclass responsibility
+    %	The drag is over, perform any cleanup necessary to terminate
+    %	drag feedback.	Tell the selection to remember the offset
+    %	where the drag began (we could've done that in /dragat instead). 
+    % 
+    %	Note that we don't actually perform the transfer operation here;
+    %	/dragat and /dragto are mainly involved in feedback to the user.
+    %	The /TransferSelection event is generated by the global UI machinery. 
+    %
+    %	event  selection  =>  - 
+    /DragStop {
+	X Y /SetDeltas 4 -1 roll send			% ev 
+	pop 
+	StopOverlay
+    } def
+
+
+    % private
+    %	Given an event, return the circle under it, or null
+    %
+    %	Normally we'd extract the coordinates from the given event
+    %	and see if they're inside the given selection.  But in this
+    %	demo we have the advantage of knowing that the selected objects
+    %	are canvases, so we can let NeWS do a lot of the work for us by
+    %	using canvasesunderpoint.
+    %
+    %	event  =>  canvas
+    %	event  =>  null
+    /WhichCircle {  %	event  =>  canvas | null
+	null exch
+	begin XLocation YLocation end
+	canvasesunderpoint {				    % null|can can'
+	    % Look for canvas whose parent is the CirclesCanvas.
+	    dup /Parent get self eq {
+		exch pop exit				    % can'
+	    } {
+		pop					    % can|null
+	    } ifelse
+	} forall
+    } def
+    
+    % Subclass responsibility:
+    %	As before, note that we uniformly return /Background if
+    %	the selection is not Primary.
+    %
+    %	event  selection  =>  name
+    /SelectionContext { % event selection => name bool
+	dup null eq {
+	    pop false  	    	    	    	    	    	% event t
+	} { 	    	    	    	    	    	    	% event sel
+	    /Rank exch send					% event rank
+	    /PrimarySelection ne    	    	    	    	% event bool
+	} ifelse    	    	    	    	    	    	% event bool
+	{				    	    	    	% event
+	    % REMIND: This demo doesn't really handle other selections
+	    pop /Background false				% name bool
+	} {	    	    	    	    	    	    	% event
+	    WhichCircle						% can|null
+	    dup null eq {
+		/Background					% can|null name
+	    } {		    					% can|null
+		/Selected? 1 index send				% can|null bool
+		/SelectedObject /UnselectedObject ifelse	% can|null name
+	    } ifelse			    			% can|null name
+	    
+	    CurrentObject   	    	    	    	    	% c|n name obj
+	    /CurrentObject 4 -1 roll soften promote 		% name obj
+	    CurrentObject eq    	    	    	    	% name bool
+	} ifelse
+    } def
+    
+    % Given an event, obtain its X/Y in our canvas's coordinate space.
+    %
+    /EventCoords { % event => x y
+	gsave
+	    self setcanvas
+	    /Coordinates get aload pop
+	grestore
+    } def
+
+    % Start an operation that uses an overlay canvas.  The overlay sits on
+    % either our own canvas or the whole framebuffer.  This method also
+    % obtains the coordinates from the initiating event (using our canvas
+    % for the CTM) and stashes them for later use.
+    %
+    /StartOverlay { % event canvas => -
+	createoverlay /OverlayCanvas exch promote	% event
+	EventCoords /Y exch promote /X exch promote
+    } def
+
+    % Clean up after an overlay operation.
+    %
+    /StopOverlay { % - => -
+	gsave OverlayCanvas setcanvas erasepage grestore
+	/OverlayCanvas unpromote /X unpromote /Y unpromote
+    } def
+
+classend def
+
+% Finally, here's the code to fire up the windows.
+
+/c1 framebuffer /new CirclesCanvas send framebuffer /new ClassBaseWindow send def
+(Selection Example) /setlabel c1 send
+(SelDemo) /seticonlabel c1 send
+
+/c2 framebuffer /new CirclesCanvas send framebuffer /new ClassBaseWindow send def
+(More Selections!) /setlabel c2 send
+(SelDemo) /seticonlabel c2 send
+
+/new ClassEventMgr send /activate c1 send
+/new ClassEventMgr send /activate c2 send
+/place c1 send			/place c2 send
+/map c1 send			/map c2 send
+
+% Because both windows were fired up from the same process, they share
+% the userdict that contains /c1 and /c2.  Therefore neither window will go
+% away until both have been told to Quit.  (When both processes have been
+% killed, the userdict will go away.)  To avoid this problem, we tell
+% each frame's EventMgr to put a copy of the frame on the stack, then get
+% rid of the copies in userdict.
+
+{/ProcessName (Selections LEM) store }      /callmanager /eventmgr c1 send send
+{/ProcessName (More Selections LEM) store } /callmanager /eventmgr c2 send send
+
+{c1 /c1 null def} /callmanager /eventmgr c1 send send
+{c2 /c2 null def} /callmanager /eventmgr c2 send send
+
+% This last part lets you run the code through psh and have it exit cleanly.
+
+newprocessgroup
+currentfile closefile

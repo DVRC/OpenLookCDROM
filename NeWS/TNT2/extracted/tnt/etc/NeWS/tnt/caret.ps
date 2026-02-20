@@ -1,0 +1,163 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)caret.ps 23.14 91/02/11
+%
+
+% A caret is an object that paints on the current canvas to mark an x/y spot.
+% Carets are given their own class so clients can subclass to implement
+% blinking carets, etc.  A caret can be either "on" or "off" (invisible),
+% and either "active" or "inactive" (not currently the focus).
+
+/ClassCaret ClassObject
+dictbegin
+	/Active?	false	def	% true to cause it to paint
+	/Visible?	false	def	% true if it's the current focus
+	/X		0	def	% canvas-relative X coord
+	/Y		0	def	% canvas-relative Y coord
+dictend
+classbegin
+
+% Methods:
+
+    % /new { % - => instance
+
+    % Define the font and the character(s) for the caret.
+    %
+    /CaretFamily	/OLGlyph def
+    /ActiveGlyph	<d0> def
+    /InactiveGlyph	<d1> def
+
+    % Build and promote the caret font.
+    %
+    /CaretFont { % - => font
+        CaretFamily findfont
+        /TextFont currentcanvas send fontscale scalefont
+        /CaretFont 1 index promote
+    } def
+
+    % Promote current text color.
+    %
+    /ForegroundColor { % - => color
+	/ForegroundColor currentcanvas send
+	/ForegroundColor 1 index promote
+    } def
+
+    % Promote current fill color.
+    %
+    /BackgroundColor { % - => color
+    	/BackgroundColor currentcanvas send
+    	/BackgroundColor 1 index promote
+    } def
+    
+    % Promote the x-offset for centering the glyph.  Assumes currentfont
+    % is CaretFont.
+    %
+    /HalfWidth { % - => dx
+    	InactiveGlyph stringwidth pop -.5 mul ceiling
+    	/HalfWidth 1 index promote
+    } def
+
+    % The canvas owning the caret should send /invalidate whenever the canvas
+    % changes its font and/or colors.  This gives ClassCaret a chance to
+    % unpromote cached values.
+    %
+    /invalidate { % - => -
+        /CaretFont unpromote
+        /ForegroundColor unpromote
+        /BackgroundColor unpromote
+        /HalfWidth unpromote
+    } def
+
+% Caret Procs:
+
+    % Paint caret on current canvas.
+    %
+    /paint { % - => -
+	currentcolor currentfont
+	    CaretFont setfont
+	    Visible? {ForegroundColor} {BackgroundColor} ifelse setcolor
+	    X HalfWidth add Y 2 sub moveto
+	    Active? {
+		1 0 rmoveto % olglyph font kludge
+		ActiveGlyph show
+	    } {
+		InactiveGlyph show
+	    } ifelse 
+        setfont setcolor
+    } def
+
+    % Make caret visible.
+    %
+    /startcaret { % - => -
+    	Visible? not {
+    	    /Visible? true def
+    	    /paint self send
+    	} if
+    } def
+
+    % Make caret invisible.
+    %
+    /stopcaret { % - => -
+    	Visible? {
+    	    /Visible? false def
+    	    /paint self send
+    	} if
+    } def
+
+    % Move the caret to x y (canvas coordinates).
+    % 
+    /movecaret { % x y => -
+    	{/Y exch def /X exch def} ChangeState
+    } def
+
+    % Combine start & move to save clients an extra send.  Assumes caret is
+    % currently NOT Visible.
+    %
+    /startcaretat { % x y => -
+    	/Y exch def /X exch def
+    	/Visible? true def
+    	/paint self send
+    } def
+    
+    % Paint the caret in its dark form (denoting it has the focus).
+    %
+    /activate { % - => -
+    	Active? not {
+    	    {/Active? true def} ChangeState
+    	} if
+    } def
+
+    % Paint the caret in a gray form (denoting a non-current focus location).
+    %
+    /deactivate { % - => -
+    	Active? {
+    	    {/Active? false def} ChangeState
+    	} if
+    } def
+
+    % Temporarily unpaint the caret while changing its state.
+    %
+    /ChangeState { % [optional args] proc => -
+    	Visible? {
+    	    /stopcaret self send
+    	    exec
+    	    /startcaret self send
+    	} {
+    	    exec
+    	} ifelse
+    } def
+
+    % Figure out how much room the caret takes up.
+    %
+    /minsize { % - => width height
+        currentfont
+        CaretFont setfont
+        ActiveGlyph stringbbox 5 -3 roll pop pop
+        setfont
+    } def
+
+classend def

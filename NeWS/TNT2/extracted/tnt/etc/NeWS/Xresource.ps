@@ -1,0 +1,112 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%       @(#)Xresource.ps 23.6 91/02/11
+
+Xcompat_private /UserDictSize	2560	put	% used in client connection
+
+% An instance of class XResources is an X11 client resource database.
+% In X11 resource, the word "class" has a different meaning from
+% the PostScript or object oriented usage.
+% A resource class indicates ownership of a set of resource ID's,
+% ie. by the core protocol, or by some extension.
+/XResource ClassObject
+Xcompat_private /UserDictSize get dict begin
+    /XClientIndex -1 def
+    /XinterpAlive false def
+    /XInterpHandle null def
+    /XNextResID 0 def
+currentdict end
+classbegin
+
+% ===== X resources class variables =====
+
+%
+% These definitions are no longer actually used.
+% They are here for backward compatibility at the
+% XResource class interface level.
+% 
+% X resource types -- Obsolete
+/Xrt_colormap	1 0 bitshift def
+/Xrt_font	1 1 bitshift def
+/Xrt_cursor	1 2 bitshift def
+/Xrt_pixmap	1 3 bitshift def
+/Xrt_window	1 4 bitshift def
+/Xrt_drawable	Xrt_window Xrt_pixmap or def
+/Xrt_gc		1 5 bitshift def
+/Xrt_fake	1 6 bitshift def
+/Xrt_visualid	1 7 bitshift def
+/Xrt_cmapentry	1 8 bitshift def
+
+% X resource classes -- Obsolete
+/Xrc_core	0 def
+/Xrc_none	1 def
+
+% Masks for ConfigureWindow (used in ConfigureRequests)
+
+/CWX		    1 0 bitshift def
+/CWY		    1 1 bitshift def
+/CWWidth	    1 2 bitshift def
+/CWHeight	    1 3 bitshift def
+/CWBorderWidth	    1 4 bitshift def
+/CWSibling	    1 5 bitshift def
+/CWStackMode	    1 6 bitshift def
+
+% Masks for extracting pieces of X resource IDs.
+
+/XIDResourceMask    16#0007ffff def	% RESOURCE_ID_MASK
+/XIDServerMask	    16#00080000 def	% SERVER_BIT
+/XIDClientMask	    16#0fff def		% Client ID Mask
+/XIDClientShift	    20 def		% CLIENTOFFSET
+/XIDServerShift	    19 def		% SERVER_BIT_SHIFT
+
+% ===== X resources public polymorphic methods =====
+
+% ID => clientID(fract)
+/XExtractClientID {
+    XIDClientShift neg bitshift
+    XIDClientMask and
+} def
+
+/XConstructID {		% int => id
+    XClientIndex XIDClientShift bitshift or
+} def
+
+/XNextResourceID {	% - => nextxresourceid
+    XNextResID XClientIndex XIDClientShift bitshift or
+    /XNextResID XNextResID 1 add def
+} def
+
+/XLookupID { % id => any | false
+    xlookupid			%
+    dup true eq {pop} if	% xlookupid => any true|false
+} def
+
+% Class and type are keywords, not the actual values
+% and, in any case, they are ignored. The actual resource type
+% is derived from the NeWS object type by 'xaddresource'.
+/XAddResource {		% id class [type func value] => bool
+    exch pop 2 get xaddresource
+} def
+
+/XFreeResource {	% id => 
+    xfreeresource
+} def
+
+% ===== X resources public instance methods =====
+
+/XKillClient {		% _ => _
+    XClientIndex xfreeclientresources
+} def
+
+% assume Xcompat_private is on the dictstack
+% Get a client ID and resource database,
+% leaving the database dict on the dictstack
+/NewInit { % - => -; initialize new instance
+    /NewInit super send
+    /XClientIndex xinitclientresources def
+} def
+
+classend def

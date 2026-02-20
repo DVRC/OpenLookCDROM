@@ -1,0 +1,12 @@
+Gterm is missing three files:
+- io.c
+- sampl.pstermrc
+- sampl.user.ps
+
+These files come from an earlier iteration of psterm, which is in the NeWS
+tape (SUG-89).
+
+sampl.pstermrc was modified to match GTerm.
+
+Eventually this directory will be removed when the original lost files will
+be found.

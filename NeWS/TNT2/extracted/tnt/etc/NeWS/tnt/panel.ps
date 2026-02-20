@@ -1,0 +1,110 @@
+% Copyright (c) 1990, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%       @(#)panel.ps 1.8 91/02/11
+%
+
+/ClassPanel [ClassLayout ClassBag] []
+classbegin
+
+    /Trackable?	true def
+    /Menuable?	true def
+    
+    % A window with multiple panels should allow each panel to forward
+    % focus within that panel when the mouse enters or clicks there.
+    /FocusForwardable? true def
+
+    /List {
+        /clientlist self send
+    } def
+
+    /Move { % x y client => -
+        /move exch send
+    } def
+
+    /Size { % client => width height
+        /size exch send
+    } def
+
+    /Location { % client => x y
+        /location exch send
+    } def
+
+    % Map names to client canvases, and assume anything that is
+    % not found is a client already.
+    %
+    /ResolveReference { % client-name => client-canvas
+                        % canvas      => canvas
+	dup /client self send {
+	    exch pop
+	} if
+    } def
+
+    /CellSize { % - => <cell width> <cell height>
+        0 0
+        /clientlist self send {
+            /size exch send
+            4 -1 roll max 3 1 roll max
+            pause
+        } forall
+        exch
+    } def
+
+    /NewInit {
+        /NewInit super send
+        /Placement exch promote
+    } def
+
+    /addclient { % name instance layout => -
+        Placement dup /Absolute eq exch /Calculated eq or {
+            1 index exch /SetLayoutData self send
+        } if
+
+        Placement dup /Calculated eq exch /Spaced eq or {
+            /Contents Contents 2 index arrayappend promote
+        } if
+
+	dup 3 1 roll /addclient super send
+
+        /reshaped? 1 index send not {
+            0 0 /preferredsize 3 index send
+            /reshape 6 -1 roll send
+        } {
+	    pop
+	} ifelse
+
+     } def
+
+    /removeclient { % name => client true  |  false
+	/removeclient super send {
+            Placement dup /Calculated eq exch /Spaced eq or {
+                Contents 2 copy exch arrayindex pop arraydelete
+                /Contents exch promote
+            } if 	 
+	    dup /TNTLayout undef true
+	}{
+	    false
+	} ifelse
+    } def
+
+    /destroy {
+	/clientlist self send {
+	    /TNTLayout undef
+	} forall
+        /Contents unpromote
+	/destroy super send
+    } def
+
+    /clientlist {
+        Placement dup /Calculated eq exch /Spaced eq or {
+            Contents
+        }{
+            /clientlist super send
+        } ifelse
+    } def
+    
+classend def
+

@@ -1,0 +1,167 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%
+%	@(#)Xlistener.ps 23.6 91/02/11
+%
+% Listener loop, interpreter process, input agent, and process cleanup.
+%
+
+Xcompat_private begin
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Event manager setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+/XSetupInterests { %  --  =>  --
+    //UniversalInterest createevent copy
+	expressinterest
+    //DestroyInterest createevent copy
+	dup userdict /_DestroyInt 3 -1 roll put
+	dup /Action growabledict put
+	expressinterest
+    //SubdestroyInterest createevent copy
+	dup userdict /_SubDestroyInt 3 -1 roll put
+	dup /Action growabledict put
+	dup /ClientData _DestroyInt /Action get put
+	expressinterest
+} def
+
+% undef all of the events in our instance dict.  If we don't, there could
+% be a cycle when we die.
+/XDestroyInterests {
+     userdict
+     dup /_DestroyInt undef
+     dup /_SubDestroyInt undef
+     pop
+} def
+
+%	Connection Manager & Event Manager
+
+/XInputAgent {		% ... conn
+    /OldStdout currentprocess /Stdout get def
+    currentprocess /Stdout 2 index put
+    clear newprocessgroup
+    currentprocess cvx /ProcessName OriginatingHost ( X11 client) append put
+    Xcompat_private begin
+	XSetupInterests
+	currentprocess dup /Stdout get cvx
+	{ xinterp } stopped pop
+
+        verbose? {
+	    userdict /XErrorStdout currentprocess /Stdout get put
+	    currentprocess /Stdout OldStdout put
+	    ExecutiveErrorHandler	% red book compat erorr handler
+	    currentprocess /Stdout userdict /XErrorStdout get put
+	    OldStdout flushfile
+        } if
+        null XFlushGrabs
+        Xclosedown
+	XDestroyInterests
+	currentprocess /ProcDeathCleanUp ClassXSelection send
+	userdict /XInterpHandle undef
+    end
+} def
+
+/XRejectClient { %  conn  =>  --
+    null exch xinterp
+} def
+
+%
+% X11 initialization.
+% Set up the framebuffer as the root of the X11 window hierarchy.
+rootcanvases xinit
+
+verbose? { (Starting X11 server.\n) print } if
+
+/XListenLoop {	% lsock => lsock
+    (X client) vm setvm
+    dup acceptconnection				%  lsock conn
+    Xcompat_private /verbose? get {
+	(accepting connection from ) print
+	dup ==
+    } if						%  lsock conn
+    %
+    % An unconventional use of classes.
+    % We instantiate an X Resource DB, but then we place it
+    % on the dictstack without its class hierarchy.
+    % This is so it can be userdict, and therefore easily
+    % locatable by the interpreter process.
+    %
+    /new XResource send begin
+	initmatrix
+	/XinterpAlive true def
+        dup { getsocketpeername } stopped {
+            pop //XRejectClient fork
+            pop pop
+        } if
+        /OriginatingHost exch def
+        XClientIndex 0 gt {                             %  lsock conn bool
+            //XInputAgent fork
+            % let it run at SystemPriority
+            /XInterpHandle exch def                     %  lsock conn
+            pop
+        } {
+            //XRejectClient fork
+            pop pop
+        } ifelse
+    end
+} def
+
+/XListener { % filename socketfile
+    count dup 2 sub neg roll		% push our two args to the bottom.
+    count 2 sub { pop } repeat		% clear operand stack (less our 2).
+    countdictstack 1 sub { end } repeat	% clear dict stack (less systemdict).
+    newprocessgroup
+
+    currentprocess cvx dup /Priority SystemPriority put
+    /ProcessName (X Listener ) 4 index append put
+    {								% string file
+	{ Xcompat_private /XListenLoop get loop } stopped	% - file bool
+	pop pop closefile					% string
+	dup (r) file						% string file
+     } loop
+} def
+
+/XTCPname (%socketl) 6000 ConnectionNumber add (    ) cvs append def
+/XUDSname (%socketl/tmp/.X11-unix/X) ConnectionNumber ( ) cvs append def
+/XDNIname (%socketlX$X) ConnectionNumber ( ) cvs append def
+
+% We only test the TCP socket open, since it will reliably fail if it
+% is already in use.  If it succeeds, then we ASSUME that the UNIX
+% domain socket open will be unused, since because of a possible
+% bug in bind(2) which fails if the rendezvous point exists, whether
+% it's in use or not.
+
+{ XTCPname (r) file } stopped {
+    ConnectionNumber (XNeWS: there is already an X11 server running on :%\n)
+    sprintf FatalError
+} if
+
+XTCPname exch /XListener load fork pop pop pop
+XUDSname dup (r) file /XListener load fork pop pop pop
+(DNI_X_ENABLE) envknown? {
+    { (/dev/dni) (r) file } stopped 
+    {pop pop}
+    {    
+        XDNIname dup (r) file /XListener load fork pop pop pop
+        closefile
+    } ifelse
+} if
+    
+
+% construct the dict of screen names for this display.
+systemdict /XDisplayDict dictbegin
+    /ScreenNum 0 def
+    rootcanvases {
+	(:%.%) [ ConnectionNumber ScreenNum ] sprintf def
+	/ScreenNum ScreenNum 1 add def
+    } forall
+    currentdict /ScreenNum undef
+dictend put
+
+verbose? { (Started X11 server.\n) print } if
+
+end

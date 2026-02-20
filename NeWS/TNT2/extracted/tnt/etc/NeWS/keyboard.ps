@@ -1,0 +1,595 @@
+% Copyright (c) 1989, Sun Microsystems, Inc.  RESTRICTED RIGHTS LEGEND:
+% Use, duplication, or disclosure by the Government is subject to
+% restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in
+% Technical Data and Computer Software clause at DFARS 52.227-7013 and
+% in similar clauses in the FAR and NASA FAR Supplement.
+%	@(#)keyboard.ps 23.8 91/02/11
+
+%    keyboard.ps: basic definitions for ClassKeyboard
+%
+%	Copyright (c) 1988 Sun Microsystems Inc.
+
+/ClassKeyboard ClassObject [
+] classbegin
+
+% Defaults:
+
+% Class variables:
+
+    /KeyTable growabledict def
+
+    %	Symbolic names of keyboard types
+    %
+    /KB_KLUNK			0	def
+    /KB_VT100			1	def
+    /KB_SUN2			2	def
+    /KB_SUN3			3	def
+    /KB_SUN4_US			4	def
+    /KB_SUN4_FRANCE_BELGIUM	6	def
+    /KB_SUN4_CANADA_FRENCH	7	def
+    /KB_SUN4_DENMARK		8	def
+    /KB_SUN4_GERMANY		9	def
+    /KB_SUN4_ITALY		10	def
+    /KB_SUN4_NETHERLANDS	11	def
+    /KB_SUN4_NORWAY		12	def
+    /KB_SUN4_PORTUGAL		13	def
+    /KB_SUN4_SPAIN		14	def
+    /KB_SUN4_SWEDEN_FINLAND	15	def
+    /KB_SUN4_SWITZERLAND_FRENCH	16	def
+    /KB_SUN4_SWITZERLAND_GERMAN	17	def
+    /KB_SUN4_UK			18	def
+    /KB_SUN4_XEROX		19	def	% not sure, but reserve
+    /KB_SUN4_JAPAN		36	def
+    % add other keyboards types here
+
+    %
+    % The type 3 keyboard is a subset of the type 4.  They can safely
+    % use the same maps.
+    %
+    % Filenames should be <= 12 chars (for SVR4 portability).
+    %
+    % REMIND: how much space is being wasted on this stuff, given that
+    % most servers use it only once during startup, and for only a
+    % single keyboard?
+    %
+    /KeyboardNames dictbegin
+	//KB_KLUNK			(NeWS/sun0maps.ps)	def
+	//KB_VT100			(NeWS/sun1maps.ps)	def
+	//KB_SUN2			(NeWS/sun2maps.ps)	def
+	//KB_SUN3			(NeWS/sun3maps.ps)	def
+	//KB_SUN4_FRANCE_BELGIUM	(NeWS/FranceBe4.qm)	def
+	//KB_SUN4_CANADA_FRENCH		(NeWS/CanadaFr4.qm)	def
+	//KB_SUN4_DENMARK		(NeWS/Denmark4.qm)	def
+	//KB_SUN4_GERMANY		(NeWS/Germany4.qm)	def
+	//KB_SUN4_ITALY			(NeWS/Italy4.qm)	def
+	//KB_SUN4_JAPAN			(NeWS/Japan4.qm)	def
+	//KB_SUN4_NETHERLANDS		(NeWS/Nether4.qm)	def
+	//KB_SUN4_NORWAY		(NeWS/Norway4.qm)	def
+	//KB_SUN4_PORTUGAL		(NeWS/Portugal4.qm)	def
+	//KB_SUN4_SPAIN			(NeWS/Spain4.qm)	def
+	//KB_SUN4_SWEDEN_FINLAND	(NeWS/SwedenFi4.qm)	def
+	//KB_SUN4_SWITZERLAND_FRENCH	(NeWS/SwitzFr4.qm)	def
+	//KB_SUN4_SWITZERLAND_GERMAN	(NeWS/SwitzGe4.qm)	def
+	//KB_SUN4_UK			(NeWS/UK4.qm)		def
+	//KB_SUN4_US			(NeWS/US4.qm)		def
+	//KB_SUN4_XEROX			(NeWS/Xerox4.qm)	def
+	% add other quick maps here
+    dictend def
+
+    %	Escape sequences for the cursor keys
+    /CursorStrings	16 dict dup begin
+	/UpArrowkey	(\033[A)	def
+	/DownArrowkey	(\033[B)	def
+	/RightArrowkey	(\033[C)	def
+	/LeftArrowkey	(\033[D)	def
+	/Homekey	(\033[H)	def
+    end def
+
+    %	Escape sequences for the function keys (when they're not pre-empted)
+    /FunctionStrings	256 dict dup begin
+	/FunctionL1	(\033[192z)     def     % Left 1
+	/FunctionL2	(\033[193z)     def
+	/FunctionL3	(\033[194z)     def
+	/FunctionL4	(\033[195z)     def
+	/FunctionL5	(\033[196z)     def
+	/FunctionL6	(\033[197z)     def
+	/FunctionL7	(\033[198z)     def
+	/FunctionL8	(\033[199z)     def
+	/FunctionL9	(\033[200z)     def
+	/FunctionL10	(\033[201z)     def
+	/FunctionL11	(\033[202z)     def     % unused left pad
+	/FunctionL12	(\033[203z)     def
+	/FunctionL13	(\033[204z)     def
+	/FunctionL14	(\033[205z)     def
+	/FunctionL15	(\033[206z)     def
+	/FunctionL16	(\033[207z)     def
+
+	/FunctionR1	(\033[208z)     def     % Right 1
+	/FunctionR2	(\033[209z)     def
+	/FunctionR3	(\033[210z)     def
+	/FunctionR4	(\033[211z)     def
+	/FunctionR5	(\033[212z)     def
+	/FunctionR6	(\033[213z)     def
+	/FunctionR7	(\033[214z)     def
+	/FunctionR8	(\033[215z)     def
+	/FunctionR9	(\033[216z)     def
+	/FunctionR10	(\033[217z)     def
+	/FunctionR11	(\033[218z)     def
+	/FunctionR12	(\033[219z)     def
+	/FunctionR13	(\033[220z)     def
+	/FunctionR14	(\033[221z)     def
+	/FunctionR15	(\033[222z)     def
+	/FunctionR16	(\033[223z)     def
+
+	/FunctionF1	(\033[224z)     def     % Top 1
+	/FunctionF2	(\033[225z)     def
+	/FunctionF3	(\033[226z)     def
+	/FunctionF4	(\033[227z)     def
+	/FunctionF5	(\033[228z)     def
+	/FunctionF6	(\033[229z)     def
+	/FunctionF7	(\033[230z)     def
+	/FunctionF8	(\033[231z)     def
+	/FunctionF9	(\033[232z)     def
+	/FunctionF10	(\033[233z)     def
+	/FunctionF11	(\033[234z)     def     % unused top
+	/FunctionF12	(\033[235z)     def
+	/FunctionF13	(\033[236z)     def
+	/FunctionF14	(\033[237z)     def
+	/FunctionF15	(\033[238z)     def
+	/FunctionF16	(\033[239z)     def
+
+	/FunctionB1	(\033[240z)     def
+	/FunctionLeft	(\033[240z)     def     % Bottom left
+	/FunctionB2	(\033[241z)     def
+	/FunctionRight	(\033[241z)     def     % Bottom right
+	/FunctionB3	(\033[242z)     def
+	/FunctionCaps	(\033[242z)     def     % Caps key on Sun-3, lower left
+	/FunctionB4	(\033[243z)     def
+	/FunctionAlt	(\033[243z)     def     % Alternate key on Sun-3s
+	/FunctionB5	(\033[244z)     def
+	/FunctionB6	(\033[245z)     def
+	/FunctionB7	(\033[246z)     def
+	/FunctionB8	(\033[247z)     def
+	/FunctionB9	(\033[248z)     def
+	/FunctionB10	(\033[249z)     def
+	/FunctionB11	(\033[250z)     def
+	/FunctionB12	(\033[251z)     def
+	/FunctionB13	(\033[252z)     def
+	/FunctionB14	(\033[253z)     def
+	/FunctionB15	(\033[254z)     def
+	/FunctionB16	(\033[255z)     def
+	/Kanji		(\000)		def
+	/Execute	(\000)		def
+	/HenkanMode	(\000)		def
+
+    end def
+
+    /RemovedFunctions	growabledict	def	%  keycode: FunctionKeyName
+
+% Methods:
+
+    /classinit {
+	false setkeyboardtranslation
+    
+	%	Make sure there's a Help key (Choose first found of
+	%	{Help, F1, L1, ESC}), and take it out of the set
+	%	emitting function-key escape sequences
+	/HELPKey /keyforsymbol self send
+	dup null eq {
+	    pop /FunctionF1 /keyforsymbol self send
+	    dup null eq {
+		pop /FunctionL1 /keyforsymbol self send
+		dup null eq { pop /ESCkey /keyforsymbol self send } if 
+	    } if dup null ne {
+		KeyTable /HELPKey [3 index /shiftkey ] put
+%		removefunctionkey
+		FKeyNames 1 index 2 copy known {	%  kc FKN kc
+		    2 copy get	 			%  kc FKN kc N
+		    RemovedFunctions 3 1 roll put	%  kc FKN
+		    1 index undef	 		%  kc
+		    FKeyStrings exch undef		%
+		} {
+		    pop pop pop
+		} ifelse
+	    } if
+	} {
+	    pop
+	} ifelse
+    
+	% Do the same for the Caps key
+	/Caps /keyforsymbol self send
+	dup null eq {
+	    pop /FunctionF1 /keyforsymbol self send	%  F1code
+	    dup null eq					%  F1code bool
+	    /HELPKey /keyforsymbol self send		%  F1code bool HELPcode
+	    2 index eq or {				%  F1code; (unusable)
+		pop /FunctionF2 /keyforsymbol self send	%  if no F2, give up
+	    } if
+	} if dup null ne {
+	    KeyTable /Caps [3 index /lock_key ] put
+%	    removefunctionkey
+	    FKeyNames 1 index 2 copy known {	%  kc FKN kc
+		2 copy get	 			%  kc FKN kc N
+		RemovedFunctions 3 1 roll put	%  kc FKN
+		1 index undef	 		%  kc
+		FKeyStrings exch undef		%
+	    } {
+		pop pop pop
+	    } ifelse
+	} {
+	    pop
+	} ifelse
+    } def
+
+    % build the Meta keymaps from their ascii equivalents iff needed
+
+    /ascii000M {
+	/ascii000M dictbegin
+	    ascii000 { toMeta def } forall
+	dictend dup 3 1 roll store
+    } def
+
+    /asciiC00M {
+	/asciiC00M dictbegin
+	    asciiC00 { toMeta def } forall
+	dictend dup 3 1 roll store
+    } def
+
+    /ascii0S0M {
+	/ascii0S0M dictbegin
+	    ascii0S0 { toMeta def } forall
+	dictend dup 3 1 roll store
+    } def
+
+    /ascii00LM {
+	/ascii00LM dictbegin
+	    ascii00L { toMeta def } forall
+	dictend dup 3 1 roll store
+    } def
+
+    % Cursor-key name map is not currently constructed during initialisation
+    % nor saved by writemaps, so construct it here on request.
+    %
+    /CursKeyNames { % - => dict
+    	dictbegin
+    	    CursKeyStrings {		% keystation string
+    	    	null CursorStrings {	% keystation string null keyname string
+    	    	    3 index eq {exch pop exit} {pop} ifelse
+    	    	} forall		% keystation string keyname
+    	    	exch pop dup null eq {pop pop} {def} ifelse
+    	    } forall
+    	dictend
+    } def
+
+    % return the keyboard type
+    %
+    /kbdtype { % -- => keyboardtype (integer)
+	keyboardtype
+    } def
+
+    %	External utilities for building keytables
+
+    %  add the keyboard's device # to a key number
+    %
+    /keyStation { % n  =>  n
+	16#6F00 add
+    } def
+
+    % extract the numeric value of the first character in a string
+    %		CAUTION: doesn't work for chars > 8 bits
+    %
+    /toChar { % str  =>  c
+	0 get
+    } def
+
+    %  convert an ascii character to its Control-shifted equivalent
+    %		CAUTION: doesn't validate its arg
+    %
+    /toControl { % c  =>  c
+	64 sub
+    } def
+
+    %  extract the first char from a string & return its Control-shifted    
+    %  numeric value. 
+    %		CAUTIONs above apply.
+    %
+    /toControlChar { % str  =>  c
+	toChar toControl
+    } def
+
+    % /toLower:	converts an upper-case ascii letter to lower-case
+    %		CAUTION: doesn't validate its arg
+    %
+    /toLower { % c  =>  c
+	32 add
+    } def
+
+    % /toMeta:	converts an ascii letter to meta-shifted
+    %		CAUTION: doesn't validate its arg
+    %
+    /toMeta { % c  =>  c
+	16#80 or
+    }      def
+
+    %  return the keycode for the key which bears a given keysymbol 
+    %  if it exists, else null.  Keysymbol may be a name, a character,
+    %  or a 1-character string. 
+    %
+    /keyforsymbol { %  name | character | string  =>  keycode | null
+	% leave null unchanged
+	dup null ne {
+	    % extract the first character of a string
+	    dup type /stringtype eq {
+		toChar
+	    } if
+	    % fold a lower case letter to upper case
+	    dup type /integertype eq {
+		dup (a) toChar ge
+		1 index (z) toChar le and {
+		    32 sub
+		} if
+	    } if
+	    % keys in KeyTable are names & upper case letters
+	    KeyTable exch 2 copy known {
+		get 0 get
+	    } {
+		pop pop null
+	    } ifelse
+	} if
+    } def
+
+    % Dictionary used by /modifierdown? (see below).
+    %
+    /ModifierSets dictbegin
+    	/Shift	 [/LeftShift /RightShift] def
+    	/Control [/LeftControl /RightControl] def
+    	/Meta	 [/LeftMeta /RightMeta] def
+    dictend def
+
+    %	Return a boolean indicating whether the given key was down when
+    %	the event occurred.  Note that if the event is an DownTransition
+    %	the KeyState will represent the state -before- the event, and if
+    %	it is an UpTransition, it will represent the state -after- the
+    %	transition.  << It is not expected that this method will be used
+    %	frequently to test the state of the key that caused the event. >>
+    %
+    %	The top argument to /modifierdown? is one of:
+    %	- an integer key code,
+    %	- a key name (to be translated via ClassKeyboard),
+    %	- a special name representing multiple keys (/Shift, /Control, /Meta),
+    %	- an instance of ClassFunctionKey (to query about its key), or
+    %	- an array containing one or more of the above.
+    %	The other argument is the event whose keystate is being queried; the
+    %	event is left unchanged on the stack.
+    %
+    /modifierdown? {	%   event key | event [key ...] => event bool
+    	% wrap single key into an array
+    	dup isarray? not {1 array astore} if		% ev [keys]
+    	
+    	% expand elements that represent multiple keys
+    	[ exch {
+	    ModifierSets 1 index known {
+	    	ModifierSets exch get aload pop
+	    } if
+	} forall ]					% ev [keys]
+	
+	% convert each element to a keycode and check keystate for it
+	1 index /KeyState get false 3 -1 roll {		% ev state bool key
+	    dup isinstance? {				% ev state bool fnkey
+	        /KeyCode exch send			% ev state bool kcode
+	    } if
+	    dup type /nametype eq {
+	        /keyforsymbol self send	% ev state bool kcode
+	    } if
+	    2 index exch arraycontains? or		% ev state bool
+	    % don't bother testing for early exit; won't matter often enough
+	} forall
+	exch pop					% ev bool
+    } def
+
+    %  return the keyclass of some keysym associated with the
+    %  given keycode, if any exists; else null.
+    %		CAUTION: keysyms are n:1 with keycodes, so
+    %			results are not completely determinate
+    %
+    /classforkey { %  keycode  =>  keyclass | null
+	null
+	KeyTable {			%  null kwd array[ keycode: class ]
+	    dup 0 get 2 index eq {	%  null kwd arr
+		1 get exch pop exch pop	%  keyclass
+		exit
+	    } {
+		pop pop			%  --
+	    } ifelse
+	} forall
+    } def
+
+    %  Utility to assist in constructing dicts that map keystations to
+    %  values and/or executable arrays.  The proc is executed in the
+    %  context of ClassKeyboard and thus may contain direct invocations
+    %  of 'keyforsymbol' and other ClassKeyboard methods.  Executing the
+    %  proc should put 2N values on the stack; these values are then taken
+    %  as key/value pairs and defined into the given dict.  Null dictkeys
+    %  are discarded (along with the corresponding values).  A typical use
+    %  might be:
+    %	/shifts growabledict dup {
+    %		/LeftShift keyforsymbol  1
+    %		/RightShift keyforsymbol 1
+    %		/Caps keyforsymbol	 [2 /LockChange] buildinterestsend
+    %	} /buildkeydict ClassKeyboard send def
+    %
+    /buildkeydict { % dict proc => -
+    	mark exch exec			% dict [ k1 v1 ... kN vN
+    	counttomark			% dict [ k1 v1 ... kN vN 2N
+    	% wait until now to open dict, in case it would interfere with sends
+    	% during the above 'exec'
+    	dup 3 add -1 roll begin
+    	    2 idiv {
+    	    	1 index null eq { pop pop } { def } ifelse
+    	    } repeat pop
+    	end
+    } def
+    
+    %	Remove a function key from the set covered by
+    %	FKeyNames/FKeyStrings.
+    /removefunctionkey { % keycode => -
+	dup /inhibitrepeat ClassRepeatKeys send
+	FKeyNames 1 index 2 copy known {	%  kc FKN kc
+	    2 copy get	 			%  kc FKN kc N
+	    RemovedFunctions 3 1 roll put	%  kc FKN
+	    1 index undef	 		%  kc
+	    FKeyStrings exch undef		%
+	} {
+	    pop pop pop
+	} ifelse
+    } def
+
+    %	Restore a function key to the set covered by
+    %	FKeyNames/FKeyStrings.
+    /restorefunctionkey { % keycode => -
+	dup /allowrepeat ClassRepeatKeys send
+	RemovedFunctions exch 2 copy known {	%  RF kc
+	    2 copy get				%  RF kc N
+	    FKeyNames 2 index 2 index put	%  RF kc N
+	    FKeyStrings 2 index FunctionStrings	%  RF kc N FKS kc FS
+	    4 -1 roll get put			%  RF kc
+	    undef
+	} {
+	    pop pop
+	} ifelse
+    } def
+
+
+%	General data definitions,
+%	here because they use the procedures defined above
+
+    %	Symbolic names of special keys
+    /KeyNames 128 dict dup begin
+	/BELkey	(G) toControlChar	def	%  bell
+	/BSkey	(H) toControlChar	def	%  backspace
+	/HTkey	(I) toControlChar	def	%  horizontal tab
+	/LFkey	(J) toControlChar	def	%  line feed
+	/CRkey	(M) toControlChar	def	%  carriage return
+	/VTkey	(K) toControlChar	def	%  vertical tab
+	/FFkey	(L) toControlChar	def	%  form feed
+	/ESCkey	([) toControlChar	def	%  escape
+	/SPkey	( ) toChar		def	%  space
+	/DELkey	127			def	%  DEL
+	/DeadKeyGrave   (`) toChar	def	%  grave accent
+	/DeadKeyCircum  (^) toChar	def	%  circumflex accent
+	/DeadKeyTilde	(~) toChar	def	%  tilde accent
+    % does the following belong here?  or in keytable.ps?
+	/NumPad0	(0) toChar		def
+	/NumPad1	(1) toChar		def
+	/NumPad2	(2) toChar		def
+	/NumPad3	(3) toChar		def
+	/NumPad4	(4) toChar		def
+	/NumPad5	(5) toChar		def
+	/NumPad6	(6) toChar		def
+	/NumPad7	(7) toChar		def
+	/NumPad8	(8) toChar		def
+	/NumPad9	(9) toChar		def
+	/NumPadComma	(,) toChar		def
+	/NumPadEnter	(M) toControlChar	def
+	/NumPadMinus	(-) toChar		def
+	/NumPadDot	(.) toChar		def
+	/NumPadPlus	(+) toChar		def
+	/NumPadSlash	(/) toChar		def
+	/NumPadStar	(*) toChar		def
+	/NumPadEqual	(=) toChar		def
+	/NumPadDel	127			def
+%	/KanaSwitch
+	/Kana_FS	(\216\241)		def
+	/Kana_OB	(\216\242)		def
+	/Kana_CB	(\216\243)		def
+	/Kana_CM	(\216\244)		def
+	/Kana_CJ	(\216\245)		def
+	/Kana_WO	(\216\246)		def
+	/Kana_a		(\216\247)		def
+	/Kana_i		(\216\250)		def
+	/Kana_e		(\216\251)		def
+	/Kana_o		(\216\252)		def
+	/Kana_u		(\216\253)		def
+	/Kana_ya	(\216\254)		def
+	/Kana_yo	(\216\255)		def
+	/Kana_yu	(\216\256)		def
+	/Kana_tsu	(\216\257)		def
+	/Kana_PS	(\216\260)		def
+	/Kana_A		(\216\261)		def
+	/Kana_I		(\216\262)		def
+	/Kana_U		(\216\263)		def
+	/Kana_E		(\216\264)		def
+	/Kana_O		(\216\265)		def
+	/Kana_KA	(\216\266)		def
+	/Kana_KI	(\216\267)		def
+	/Kana_KU	(\216\270)		def
+	/Kana_KE	(\216\271)		def
+	/Kana_KO	(\216\272)		def
+	/Kana_SA	(\216\273)		def
+	/Kana_SHI	(\216\274)		def
+	/Kana_SU	(\216\275)		def
+	/Kana_SE	(\216\276)		def
+	/Kana_SO	(\216\277)		def
+	/Kana_TA	(\216\300)		def
+	/Kana_CHI	(\216\301)		def
+	/Kana_TSU	(\216\302)		def
+	/Kana_TE	(\216\303)		def
+	/Kana_TO	(\216\304)		def
+	/Kana_NA	(\216\305)		def
+	/Kana_NI	(\216\306)		def
+	/Kana_NU	(\216\307)		def
+	/Kana_NE	(\216\310)		def
+	/Kana_NO	(\216\311)		def
+	/Kana_HA	(\216\312)		def
+	/Kana_HI	(\216\313)		def
+	/Kana_FU	(\216\314)		def
+	/Kana_HE	(\216\315)		def
+	/Kana_HO	(\216\316)		def
+	/Kana_MA	(\216\317)		def
+	/Kana_MI	(\216\320)		def
+	/Kana_MU	(\216\321)		def
+	/Kana_ME	(\216\322)		def
+	/Kana_MO	(\216\323)		def
+	/Kana_YA	(\216\324)		def
+	/Kana_YU	(\216\325)		def
+	/Kana_YO	(\216\326)		def
+	/Kana_RA	(\216\327)		def
+	/Kana_RI	(\216\330)		def
+	/Kana_RU	(\216\331)		def
+	/Kana_RE	(\216\332)		def
+	/Kana_RO	(\216\333)		def
+	/Kana_WA	(\216\334)		def
+	/Kana_N		(\216\335)		def
+	/Kana_VS	(\216\336)		def
+	/Kana_SVS	(\216\337)		def
+	/YENCtrlkey	(\\) toControlChar	def
+	/YENkey		(\\) toChar		def
+    end def
+
+% Initialization:
+%	try to load a precomputed set of maps
+%
+
+/KeyboardType /kbdtype self send def
+
+KeyboardNames KeyboardType 2 copy known
+UserProfile /PrivateKeyTable known not and {
+    get LoadFile
+} {
+    pop pop false
+} ifelse
+
+{
+   true					%  propagate success
+} {
+    (NeWS/keybdinit.ps) LoadFile 	%  else try again
+    currentdict /ascii000 known and 	%  and propagate this result
+} ifelse
+					%  bool: is KeyTable initialized?
+not {
+    console (ClassKeyboard couldn't initialize the keyboard.\n) [] fprintf
+} if
+
+classend def %	ClassKeyboard
+
+/classinit ClassKeyboard send
